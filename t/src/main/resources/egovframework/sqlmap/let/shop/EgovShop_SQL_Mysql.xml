@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Product">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="ProductVO" type="egovframework.let.shop.service.ProductVO"/> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias  alias="Product" type="egovframework.let.shop.service.Product"/>
+	
+	<resultMap id="mngProductList" class="egovframework.let.shop.service.ProductVO"> <!-- property는 vo값 -->
+		<result property="idx" column="IDX" columnIndex="1"/>						 <!-- collum 은 db의 컬럼값 -->
+		<result property="product_nm" column="PRODUCT_NM" columnIndex="2"/>			 <!--  db의 컬럼 순서 -->
+		<result property="product_con" column="PRODUCT_CON" columnIndex="3"/>
+		<result property="ceo" column="CEO" columnIndex="4"/>
+		<result property="phone" column="PHONE" columnIndex="5"/>
+		<result property="addr" column="ADDR" columnIndex="6"/>
+		<result property="email" column="EMAIL" columnIndex="7"/>
+		<result property="price" column="PRICE" columnIndex="8"/>
+		<result property="create_date" column="CREATE_DATE" columnIndex="9"/>
+		<result property="reg_date" column="REG_DATE" columnIndex="10"/>
+		<result property="update_date" column="UPDATE_DATE" columnIndex="11"/>
+		<result property="main_path" column="MAIN_PATH" columnIndex="12"/>
+		<result property="main_img" column="MAIN_IMG" columnIndex="13"/>
+		<result property="sub_path" column="SUB_PATH" columnIndex="14"/>
+		<result property="sub_img" column="SUB_IMG" columnIndex="15"/>
+		<result property="del_yn" column="DEL_YN" columnIndex="16"/>
+	</resultMap>
+	
+	<select id="EgovMngProductDAO.selectMngProductList" parameterClass="ProductVO" resultMap="mngProductList" >
+		<![CDATA[
+			SELECT 
+				 IDX
+				,COMPANY_NM
+				,PRODUCT_NM
+				,PRODUCT_CON
+				,CEO
+				,PHONE
+				,ADDR
+				,EMAIL
+				,PRICE
+				,CREATE_DATE
+				,REG_DATE
+				,UPDATE_DATE
+				,MAIN_PATH
+				,MAIN_IMG
+				,SUB_PATH
+				,SUB_IMG
+				,DEL_YN
+			FROM
+				PRODUCT
+			WHERE 1=1
+			AND DEL_YN = 'N'
+		]]>			
+			<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>
+			<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>	
+		<![CDATA[			
+			ORDER BY IDX DESC
+			LIMIT #recordCountPerPage# OFFSET #firstIndex#
+		]]>					
+	</select>
+	
+	<select id="BBSManageDAO.selectMngProductListCnt" parameterClass="ProductVO" resultClass="java.lang.Integer" >
+		<![CDATA[
+			SELECT
+				COUNT(IDX)
+			FROM
+				PRODUCT
+			WHERE 1=1
+			AND DEL_YN = 'N'
+		]]>
+			<isEqual prepend="AND" property="searchCnd" compareValue="0">
+				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>
+			<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>	
+	</select>
+</sqlMap>
