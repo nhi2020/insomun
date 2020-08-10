@@ -63,7 +63,7 @@
 		]]>					
 	</select>
 	
-	<select id="BBSManageDAO.selectMngProductListCnt" parameterClass="ProductVO" resultClass="java.lang.Integer" >
+	<select id="EgovMngProductDAO.selectMngProductListCnt" parameterClass="ProductVO" resultClass="java.lang.Integer" >
 		<![CDATA[
 			SELECT
 				COUNT(IDX)
@@ -79,4 +79,23 @@
 				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 			</isEqual>	
 	</select>
+	
+	<insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
+		<![CDATA[
+			INSERT INTO 테이블명
+			(컬럼명, 날짜)
+			VALUES
+			( #변수명#, SYSDATE()  
+			 )			
+		]]>
+	</insert>
+	
+	<update id="EgovMngProductDAO.updateMngProduct" parameterClass="Product">
+ 		<![CDATA[
+			UPDATE 테이블명 SET 
+				컬럼명 = #변수명#,
+				LAST_UPDT_PNTTM = SYSDATE()
+			WHERE 컬럼명 = #변수명#
+ 		]]>
+ 	</update>
 </sqlMap>
