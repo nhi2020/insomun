@@ -25,159 +25,229 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @SuppressWarnings("serial")
 public class Product implements Serializable {
 
-	private long idx;
-	private String company_nm;
-	private String product_nm;
-	private String product_con;
-	private String ceo;
-	private String phone;
-	private String addr;
-	private String email;
+	private int m_id;
+	private int b_idx;
+	private int p_idx;
+	private String product_name;
 	private String price;
-	private Date create_date;
-	private Date reg_date;
-	private Date update_date;
-	private String main_path;
+	private String reg_date;
+	private String update_date;
 	private String main_img;
-	private String sub_path;
-	private String sub_img;
-	private String del_yn;
+	private String main_path;
+	private Date sub_img;
+	private Date d_loc;
+	private Date d_how;
+	private String d_when;
+	private String d_cost;
+	private String product_method;
+	private String p_sdate;
+	private String p_edate;
 	
-	public String getCompany_nm() {
-		return company_nm;
+
+
+	public int getM_id() {
+		return m_id;
 	}
 
-	public void setCompany_nm(String company_nm) {
-		this.company_nm = company_nm;
+
+
+	public void setM_id(int m_id) {
+		this.m_id = m_id;
 	}
 
-	public String getProduct_nm() {
-		return product_nm;
+
+
+	public int getB_idx() {
+		return b_idx;
 	}
 
-	public void setProduct_nm(String product_nm) {
-		this.product_nm = product_nm;
+
+
+	public void setB_idx(int b_idx) {
+		this.b_idx = b_idx;
 	}
 
-	public String getProduct_con() {
-		return product_con;
+
+
+	public int getP_idx() {
+		return p_idx;
 	}
 
-	public void setProduct_con(String product_con) {
-		this.product_con = product_con;
+
+
+	public void setP_idx(int p_idx) {
+		this.p_idx = p_idx;
 	}
 
-	public String getCeo() {
-		return ceo;
+
+
+	public String getProduct_name() {
+		return product_name;
 	}
 
-	public void setCeo(String ceo) {
-		this.ceo = ceo;
+
+
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getAddr() {
-		return addr;
-	}
-
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	public String getPrice() {
 		return price;
 	}
 
+
+
 	public void setPrice(String price) {
 		this.price = price;
 	}
 
-	public Date getCreate_date() {
-		return create_date;
-	}
 
-	public void setCreate_date(Date create_date) {
-		this.create_date = create_date;
-	}
 
-	public Date getReg_date() {
+	public String getReg_date() {
 		return reg_date;
 	}
 
-	public void setReg_date(Date reg_date) {
+
+
+	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
 	}
 
-	public Date getUpdate_date() {
+
+
+	public String getUpdate_date() {
 		return update_date;
 	}
 
-	public void setUpdate_date(Date update_date) {
+
+
+	public void setUpdate_date(String update_date) {
 		this.update_date = update_date;
 	}
 
-	public String getMain_path() {
-		return main_path;
-	}
 
-	public void setMain_path(String main_path) {
-		this.main_path = main_path;
-	}
 
 	public String getMain_img() {
 		return main_img;
 	}
 
+
+
 	public void setMain_img(String main_img) {
 		this.main_img = main_img;
 	}
 
-	public String getSub_path() {
-		return sub_path;
+
+
+	public String getMain_path() {
+		return main_path;
 	}
 
-	public void setSub_path(String sub_path) {
-		this.sub_path = sub_path;
+
+
+	public void setMain_path(String main_path) {
+		this.main_path = main_path;
 	}
 
-	public String getSub_img() {
+
+
+	public Date getSub_img() {
 		return sub_img;
 	}
 
-	public void setSub_img(String sub_img) {
+
+
+	public void setSub_img(Date sub_img) {
 		this.sub_img = sub_img;
 	}
 
-	public String getDel_yn() {
-		return del_yn;
+
+
+	public Date getD_loc() {
+		return d_loc;
 	}
 
-	public void setDel_yn(String del_yn) {
-		this.del_yn = del_yn;
+
+
+	public void setD_loc(Date d_loc) {
+		this.d_loc = d_loc;
 	}
 
-	public long getIdx() {
-		return idx;
+
+
+	public Date getD_how() {
+		return d_how;
 	}
 
-	public void setIdx(long idx) {
-		this.idx = idx;
+
+
+	public void setD_how(Date d_how) {
+		this.d_how = d_how;
 	}
+
+
+
+	public String getD_when() {
+		return d_when;
+	}
+
+
+
+	public void setD_when(String d_when) {
+		this.d_when = d_when;
+	}
+
+
+
+	public String getD_cost() {
+		return d_cost;
+	}
+
+
+
+	public void setD_cost(String d_cost) {
+		this.d_cost = d_cost;
+	}
+
+
+
+	public String getProduct_method() {
+		return product_method;
+	}
+
+
+
+	public void setProduct_method(String product_method) {
+		this.product_method = product_method;
+	}
+
+
+
+	public String getP_sdate() {
+		return p_sdate;
+	}
+
+
+
+	public void setP_sdate(String p_sdate) {
+		this.p_sdate = p_sdate;
+	}
+
+
+
+	public String getP_edate() {
+		return p_edate;
+	}
+
+
+
+	public void setP_edate(String p_edate) {
+		this.p_edate = p_edate;
+	}
+
+
 
 	/**
 	 * toString 메소드를 대치한다.

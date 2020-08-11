@@ -86,7 +86,7 @@ public class EgovMngProductController {
 	public String forwardPageWithMenuNo(@ModelAttribute("searchVO") ProductVO vo, HttpServletRequest request, ModelMap model)
 			  throws Exception{
 		
-		/*vo.setPageUnit(propertyService.getInt("pageUnit"));
+		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
 
 		PaginationInfo paginationInfo = new PaginationInfo();
@@ -104,7 +104,7 @@ public class EgovMngProductController {
 		List<ProductVO> list = mngProductService.selectMngProductList(vo);
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
-		model.addAttribute("paginationInfo", paginationInfo);*/
+		model.addAttribute("paginationInfo", paginationInfo);
 		
 		return "shop/EgovMngMain";
 	}

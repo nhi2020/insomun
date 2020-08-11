@@ -5,52 +5,138 @@
 
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias  alias="ProductVO" type="egovframework.let.shop.service.ProductVO"/> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias  alias="MemberVO" type="egovframework.let.shop.service.MemberVO"/>
+	<typeAlias  alias="S_MemberVO" type="egovframework.let.shop.service.S_MemberVO"/>
+	<typeAlias  alias="ProVO" type="egovframework.let.shop.service.ProVO"/>
 	<typeAlias  alias="Product" type="egovframework.let.shop.service.Product"/>
 	
 	<resultMap id="mngProductList" class="egovframework.let.shop.service.ProductVO"> <!-- property는 vo값 -->
-		<result property="idx" column="IDX" columnIndex="1"/>						 <!-- collum 은 db의 컬럼값 -->
-		<result property="product_nm" column="PRODUCT_NM" columnIndex="2"/>			 <!--  db의 컬럼 순서 -->
-		<result property="product_con" column="PRODUCT_CON" columnIndex="3"/>
-		<result property="ceo" column="CEO" columnIndex="4"/>
-		<result property="phone" column="PHONE" columnIndex="5"/>
-		<result property="addr" column="ADDR" columnIndex="6"/>
-		<result property="email" column="EMAIL" columnIndex="7"/>
-		<result property="price" column="PRICE" columnIndex="8"/>
-		<result property="create_date" column="CREATE_DATE" columnIndex="9"/>
-		<result property="reg_date" column="REG_DATE" columnIndex="10"/>
-		<result property="update_date" column="UPDATE_DATE" columnIndex="11"/>
-		<result property="main_path" column="MAIN_PATH" columnIndex="12"/>
-		<result property="main_img" column="MAIN_IMG" columnIndex="13"/>
-		<result property="sub_path" column="SUB_PATH" columnIndex="14"/>
-		<result property="sub_img" column="SUB_IMG" columnIndex="15"/>
-		<result property="del_yn" column="DEL_YN" columnIndex="16"/>
+		<result property="m_id" column="M_ID" columnIndex="1"/>						 <!-- collum 은 db의 컬럼값 -->
+		<result property="b_idx" column="B_IDX" columnIndex="2"/>			 <!--  db의 컬럼 순서 -->
+		<result property="p_idx" column="P_IDX" columnIndex="3"/>
+		<result property="product_name" column="PRODUCT_NAME" columnIndex="4"/>
+		<result property="price" column="PRICE" columnIndex="5"/>
+		<result property="reg_date" column="REG_DATE" columnIndex="6"/>
+		<result property="update_date" column="UPDATE_DATE" columnIndex="7"/>
+		<result property="main_img" column="MAIN_IMG" columnIndex="8"/>
+		<result property="main_path" column="MAIN_PATH" columnIndex="9"/>
+		<result property="sub_img" column="SUB_IMG" columnIndex="10"/>
+		<result property="d_loc" column="D_LOC" columnIndex="11"/>
+		<result property="d_how" column="D_HOW" columnIndex="12"/>
+		<result property="d_when" column="D_WHEN" columnIndex="13"/>
+		<result property="d_cost" column="D_COST" columnIndex="14"/>
+		<result property="product_method" column="PRODUCT_METHOD" columnIndex="15"/>
+		<result property="p_sdate" column="P_SDATE" columnIndex="16"/>
+		<result property="p_edate" column="P_EDATE" columnIndex="17"/>
 	</resultMap>
 	
 	<select id="EgovMngProductDAO.selectMngProductList" parameterClass="ProductVO" resultMap="mngProductList" >
 		<![CDATA[
 			SELECT 
-				 IDX
-				,COMPANY_NM
-				,PRODUCT_NM
-				,PRODUCT_CON
-				,CEO
-				,PHONE
-				,ADDR
-				,EMAIL
-				,PRICE
-				,CREATE_DATE
-				,REG_DATE
-				,UPDATE_DATE
-				,MAIN_PATH
-				,MAIN_IMG
-				,SUB_PATH
-				,SUB_IMG
-				,DEL_YN
+				  M_ID
+				 ,B_IDX
+				 ,P_IDX
+				 ,PRODUCT_NAME
+				 ,PRICE
+				 ,REG_DATE
+				 ,UPDATE_DATE
+				 ,MAIN_IMG
+				 ,MAIN_PATH
+				 ,SUB_IMG
+				 ,D_LOC
+				 ,D_HOW
+				 ,D_WHEN
+				 ,D_COST
+				 ,PRODUCT_METHOD
+				 ,P_SDATE
+				 ,P_EDATE
 			FROM
 				PRODUCT
 			WHERE 1=1
 			AND DEL_YN = 'N'
-		]]>			
+		]]>
+		
+		<resultMap id="mngMemberList" class="egovframework.let.shop.service.MemberVO"> <!-- property는 vo값 -->
+		<result property="m_id" column="M_ID" columnIndex="1"/>						 <!-- collum 은 db의 컬럼값 -->
+		<result property="m_nickname" column="M_NICKNAME" columnIndex="2"/>			 <!--  db의 컬럼 순서 -->
+		<result property="password" column="PASSWORD" columnIndex="3"/>
+		<result property="email" column="EMAIL" columnIndex="4"/>
+		<result property="photo" column="PHOTO" columnIndex="5"/>
+		<result property="you_out" column="YOU_OUT" columnIndex="6"/>
+		<result property="you_stop" column="YOU_STOP" columnIndex="7"/>
+		<result property="phone" column="PHONE" columnIndex="8"/>
+		<result property="addr" column="ADDR" columnIndex="9"/>
+		<result property="del_yn" column="DEL_YN" columnIndex="10"/>
+		<result property="m_idx" column="M_IDX" columnIndex="11"/>
+	</resultMap>
+	
+	<select id="EgovMngMemberDAO.selectMngMemberList" parameterClass="MemberVO" resultMap="mngMemberList" >
+		<![CDATA[
+			SELECT 
+				   M_ID
+				  ,M_NICKNAME
+				  ,PASSWORD
+				  ,EMAIL
+				  ,PHOTO
+				  ,YOU_OUT
+				  ,YOU_STOP
+				  ,PHONE
+				  ,ADDR
+				  ,DEL_YN
+				  ,M_IDX
+			FROM
+				MEMBER
+			WHERE 1=1
+			AND DEL_YN = 'N'
+		]]>		
+		<resultMap id="mngS_MemberList" class="egovframework.let.shop.service.S_MemberVO"> <!-- property는 vo값 -->
+		<result property="s_email" column="S_EMAIL" columnIndex="1"/>						 <!-- collum 은 db의 컬럼값 -->
+		<result property="s_id" column="S_ID" columnIndex="2"/>			 <!--  db의 컬럼 순서 -->
+		<result property="s_idx" column="S_IDX" columnIndex="3"/>
+		<result property="s_bitrhday" column="S_BIRTHDAY" columnIndex="4"/>
+		<result property="s_sex" column="S_SEX" columnIndex="5"/>
+	</resultMap>
+	
+	<select id="EgovMngS_MemberDAO.selectMngS_MemberList" parameterClass="S_MemberVO" resultMap="mngS_MemberList" >
+		<![CDATA[
+			SELECT 
+				   S_EMAIL
+				  ,S_ID
+				  ,S_IDX
+				  ,S_BIRTHDAY
+				  ,S_SEX
+			FROM
+				S_MEMBER
+			WHERE 1=1
+			AND DEL_YN = 'N'
+		]]>				
+		<resultMap id="mngProList" class="egovframework.let.shop.service.ProVO"> <!-- property는 vo값 -->
+		<result property="m_id2" column="M_ID2" columnIndex="1"/>						 <!-- collum 은 db의 컬럼값 -->
+		<result property="s_email" column="S_EMAIL" columnIndex="2"/>			 <!--  db의 컬럼 순서 -->
+		<result property="p_idx2" column="P_IDX2" columnIndex="3"/>
+		<result property="s_id" column="S_ID" columnIndex="4"/>
+		<result property="j_idx" column="J_IDX" columnIndex="5"/>
+		<result property="m_phone" column="M_PHONE" columnIndex="6"/>
+		<result property="m_addr" column="M_ADDR" columnIndex="7"/>
+		<result property="j_pro" column="J_PRO" columnIndex="8"/>
+	</resultMap>
+	
+	<select id="EgovMngProDAO.selectMngProList" parameterClass="ProVO" resultMap="mngProList" >
+		<![CDATA[
+			SELECT 
+				   M_ID2
+				  ,S_EMAIL
+				  ,P_IDX2
+				  ,S_ID
+				  ,J_IDX
+				  ,M_PHONE
+				  ,M_ADDR
+				  ,J_PRO
+			FROM
+				PRO
+			WHERE 1=1
+			AND DEL_YN = 'N'
+		]]>				
 			<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
 				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 			</isEqual>
@@ -80,7 +166,7 @@
 			</isEqual>	
 	</select>
 	
-	<!-- <insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
+	<insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
 		<![CDATA[
 			INSERT INTO 테이블명
 			(컬럼명, 날짜)
@@ -97,5 +183,5 @@
 				LAST_UPDT_PNTTM = SYSDATE()
 			WHERE 컬럼명 = #변수명#
  		]]>
- 	</update> -->
+ 	</update>
 </sqlMap>
