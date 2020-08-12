@@ -26,7 +26,7 @@
 <!--
 	function fn_egov_select_productList(pageNo) {
 		document.frm.pageIndex.value = pageNo;
-		document.frm.action = "<c:url value='/shop/EgovMngMain.do'/>";
+		document.frm.action = "<c:url value='/shop/product/EgovMngMain.do'/>";
 		document.frm.submit();
 	}
 //-->
@@ -34,17 +34,17 @@
 </head>
 <body>
 <%@ include file="./inc/EgovShopHeader.jsp" %>
-<%-- <c:forEach items="${list}" var="result">
-	${result.idx }
-	${result.company_nm }
-	${result.product_nm }
-	${result.product_con }
-	${result.ceo }
+<c:forEach items="${list}" var="result">
+	${result.product_name }
+	${result.price }
+	${result.p_sdate }
+	${result.p_edate }
+	${result.m_id }
 </c:forEach>
 	<div id="paging_div">
 		<ul class="paging_align">
 			<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="fn_egov_select_productList" />
 		</ul>
-	</div> --%>
+	</div>
 </body>
 </html>
