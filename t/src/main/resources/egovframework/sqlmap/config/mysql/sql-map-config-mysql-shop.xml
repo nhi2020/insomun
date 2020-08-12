@@ -3,5 +3,8 @@
     "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
 
 <sqlMapConfig>
-	<sqlMap resource="egovframework/sqlmap/let/shop/EgovShop_SQL_Mysql.xml"/>
+	<!-- <sqlMap resource="egovframework/sqlmap/let/shop/member/EgovMember_SQL_Mysql.xml"/>
+	<sqlMap resource="egovframework/sqlmap/let/shop/member/EgovS_Member_SQL_Mysql.xml"/> -->
+	<sqlMap resource="egovframework/sqlmap/let/shop/product/EgovProduct_SQL_Mysql.xml"/>
+	<!-- <sqlMap resource="egovframework/sqlmap/let/shop/snsuser/EgovPro_SQL_Mysql.xml"/> -->
 </sqlMapConfig>

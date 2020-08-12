@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Product">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="ProVO" type="egovframework.let.shop.service.ProVO"/>
+					
+	<resultMap id="mngProList" class="egovframework.let.shop.service.ProVO"> <!-- property는 vo값 -->
+		<result property="m_id2" column="M_ID2" columnIndex="1"/>						 <!-- collum 은 db의 컬럼값 -->
+		<result property="s_email" column="S_EMAIL" columnIndex="2"/>			 <!--  db의 컬럼 순서 -->
+		<result property="p_idx2" column="P_IDX2" columnIndex="3"/>
+		<result property="s_id" column="S_ID" columnIndex="4"/>
+		<result property="j_idx" column="J_IDX" columnIndex="5"/>
+		<result property="m_phone" column="M_PHONE" columnIndex="6"/>
+		<result property="m_addr" column="M_ADDR" columnIndex="7"/>
+		<result property="j_pro" column="J_PRO" columnIndex="8"/>
+	</resultMap>
+	
+	<select id="EgovMngProDAO.selectMngProList" parameterClass="ProVO" resultMap="mngProList" >
+		<![CDATA[
+			SELECT 
+				   M_ID2
+				  ,S_EMAIL
+				  ,P_IDX2
+				  ,S_ID
+				  ,J_IDX
+				  ,M_PHONE
+				  ,M_ADDR
+				  ,J_PRO
+			FROM
+				PRO
+			WHERE 1=1
+			AND DEL_YN = 'N'
+		]]>				
+			<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>
+			<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>	
+		<![CDATA[			
+			ORDER BY IDX DESC
+			LIMIT #recordCountPerPage# OFFSET #firstIndex#
+		]]>					
+	</select>
+	
+	<!-- <insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
+		<![CDATA[
+			INSERT INTO 테이블명
+			(컬럼명, 날짜)
+			VALUES
+			( #변수명#, SYSDATE()  
+			 )			
+		]]>
+	</insert> -->
+	
+	<!-- <update id="EgovMngProductDAO.updateMngProduct" parameterClass="Product">
+ 		<![CDATA[
+			UPDATE 테이블명 SET 
+				컬럼명 = #변수명#,
+				LAST_UPDT_PNTTM = SYSDATE()
+			WHERE 컬럼명 = #변수명#
+ 		]]>
+ 	</update> -->
+</sqlMap>

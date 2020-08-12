@@ -1,4 +1,4 @@
-package egovframework.let.shop.web;
+package egovframework.let.shop.product.web;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import egovframework.com.cmm.ComDefaultVO;
-import egovframework.let.shop.service.EgovMngProductService;
-import egovframework.let.shop.service.ProductVO;
+import egovframework.let.shop.product.service.EgovMngProductService;
+import egovframework.let.shop.product.service.ProductVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -40,7 +40,7 @@ public class EgovMngProductController {
 	 * EgovBBSManageService
 	 */
 	@Resource(name = "EgovMngProductService")
-    private EgovMngProductService mngProductService;
+	private EgovMngProductService mngProductService;
 	
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
@@ -82,11 +82,11 @@ public class EgovMngProductController {
 	 * @param commandMap
 	 * @exception Exception Exception
 	 */
-	@RequestMapping(value = "/shop/EgovMngMain.do")
+	@RequestMapping(value = "/shop/product/EgovMngMain.do")
 	public String forwardPageWithMenuNo(@ModelAttribute("searchVO") ProductVO vo, HttpServletRequest request, ModelMap model)
 			  throws Exception{
 		
-		/*vo.setPageUnit(propertyService.getInt("pageUnit"));
+		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
 
 		PaginationInfo paginationInfo = new PaginationInfo();
@@ -104,7 +104,7 @@ public class EgovMngProductController {
 		List<ProductVO> list = mngProductService.selectMngProductList(vo);
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
-		model.addAttribute("paginationInfo", paginationInfo);*/
+		model.addAttribute("paginationInfo", paginationInfo);
 		
 		return "shop/EgovMngMain";
 	}

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Product">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="ProductVO" type="egovframework.let.shop.service.ProductVO"/> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias  alias="MemberVO" type="egovframework.let.shop.service.MemberVO"/>
+	
+	<resultMap id="mngMemberList" class="egovframework.let.shop.service.MemberVO"> <!-- property는 vo값 -->
+		<result property="m_id" column="M_ID" columnIndex="1"/>						 <!-- collum 은 db의 컬럼값 -->
+		<result property="m_nickname" column="M_NICKNAME" columnIndex="2"/>			 <!--  db의 컬럼 순서 -->
+		<result property="password" column="PASSWORD" columnIndex="3"/>
+		<result property="email" column="EMAIL" columnIndex="4"/>
+		<result property="photo" column="PHOTO" columnIndex="5"/>
+		<result property="you_out" column="YOU_OUT" columnIndex="6"/>
+		<result property="you_stop" column="YOU_STOP" columnIndex="7"/>
+		<result property="phone" column="PHONE" columnIndex="8"/>
+		<result property="addr" column="ADDR" columnIndex="9"/>
+		<result property="del_yn" column="DEL_YN" columnIndex="10"/>
+		<result property="m_idx" column="M_IDX" columnIndex="11"/>
+	</resultMap>
+	
+	<select id="EgovMngMemberDAO.selectMngMemberList" parameterClass="MemberVO" resultMap="mngMemberList" >
+		<![CDATA[
+			SELECT 
+				   M_ID
+				  ,M_NICKNAME
+				  ,PASSWORD
+				  ,EMAIL
+				  ,PHOTO
+				  ,YOU_OUT
+				  ,YOU_STOP
+				  ,PHONE
+				  ,ADDR
+				  ,DEL_YN
+				  ,M_IDX
+			FROM
+				MEMBER
+			WHERE 1=1
+			AND DEL_YN = 'N'
+		]]>				
+			<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>
+			<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>	
+		<![CDATA[			
+			ORDER BY IDX DESC
+			LIMIT #recordCountPerPage# OFFSET #firstIndex#
+		]]>					
+	</select>
+	
+	<select id="EgovMngProductDAO.selectMngProductListCnt" parameterClass="ProductVO" resultClass="java.lang.Integer" >
+		<![CDATA[
+			SELECT
+				COUNT(IDX)
+			FROM
+				Member
+			WHERE 1=1
+			AND DEL_YN = 'N'
+		]]>
+			<isEqual prepend="AND" property="searchCnd" compareValue="0">
+				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>
+			<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>	
+	</select>
+	
+	<!-- <insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
+		<![CDATA[
+			INSERT INTO 테이블명
+			(컬럼명, 날짜)
+			VALUES
+			( #변수명#, SYSDATE()  
+			 )			
+		]]>
+	</insert>
+	
+	<update id="EgovMngProductDAO.updateMngProduct" parameterClass="Product">
+ 		<![CDATA[
+			UPDATE 테이블명 SET 
+				컬럼명 = #변수명#,
+				LAST_UPDT_PNTTM = SYSDATE()
+			WHERE 컬럼명 = #변수명#
+ 		]]>
+ 	</update> -->
+</sqlMap>
