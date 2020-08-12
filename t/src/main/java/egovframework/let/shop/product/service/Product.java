@@ -33,9 +33,9 @@ public class Product implements Serializable {
 	private String update_date;
 	private String main_img;
 	private String main_path;
-	private Date sub_img;
-	private Date d_loc;
-	private Date d_how;
+	private String sub_img;
+	private String d_loc;
+	private String d_how;
 	private String d_when;
 	private String d_cost;
 	private String product_method;
@@ -149,40 +149,37 @@ public class Product implements Serializable {
 
 
 
-	public Date getSub_img() {
+	
+
+
+	public String getSub_img() {
 		return sub_img;
 	}
 
 
-
-	public void setSub_img(Date sub_img) {
+	public void setSub_img(String sub_img) {
 		this.sub_img = sub_img;
 	}
 
 
-
-	public Date getD_loc() {
+	public String getD_loc() {
 		return d_loc;
 	}
 
 
-
-	public void setD_loc(Date d_loc) {
+	public void setD_loc(String d_loc) {
 		this.d_loc = d_loc;
 	}
 
 
-
-	public Date getD_how() {
+	public String getD_how() {
 		return d_how;
 	}
 
 
-
-	public void setD_how(Date d_how) {
+	public void setD_how(String d_how) {
 		this.d_how = d_how;
 	}
-
 
 
 	public String getD_when() {

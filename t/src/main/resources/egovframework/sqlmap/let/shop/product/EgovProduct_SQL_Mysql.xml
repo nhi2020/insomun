@@ -37,8 +37,8 @@
 				 ,P_IDX
 				 ,PRODUCT_NAME
 				 ,PRICE
-				 ,REG_DATE
-				 ,UPDATE_DATE
+				 ,DATE_FORMAT(REG_DATE, '%Y-%m-%d') AS REG_DATE
+				 ,DATE_FORMAT(UPDATE_DATE, '%Y-%m-%d') AS UPDATE_DATE
 				 ,MAIN_IMG
 				 ,MAIN_PATH
 				 ,SUB_IMG
@@ -47,8 +47,8 @@
 				 ,D_WHEN
 				 ,D_COST
 				 ,PRODUCT_METHOD
-				 ,P_SDATE
-				 ,P_EDATE
+				 ,DATE_FORMAT(P_SDATE, '%Y-%m-%d') AS P_SDATE
+				 ,DATE_FORMAT(P_EDATE, '%Y-%m-%d') AS P_EDATE
 				 ,DEL_YN
 			FROM
 				PRODUCT
