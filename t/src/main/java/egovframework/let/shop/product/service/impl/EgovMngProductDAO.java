@@ -1,10 +1,9 @@
-package egovframework.let.shop.service.impl;
+package egovframework.let.shop.product.service.impl;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import egovframework.let.cop.bbs.service.BoardVO;
-import egovframework.let.shop.service.ProductVO;
+import egovframework.let.shop.product.service.ProductVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
 /**

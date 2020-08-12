@@ -1,20 +1,13 @@
-package egovframework.let.shop.service.impl;
+package egovframework.let.shop.product.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import egovframework.let.cop.bbs.service.Board;
-import egovframework.let.cop.bbs.service.BoardVO;
-import egovframework.let.shop.service.EgovMngProductService;
-import egovframework.let.shop.service.ProductVO;
-import egovframework.let.utl.fcc.service.EgovDateUtil;
+import egovframework.let.shop.product.service.EgovMngProductService;
+import egovframework.let.shop.product.service.ProductVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
 /**
