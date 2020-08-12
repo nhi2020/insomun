@@ -28,6 +28,7 @@
 		<result property="product_method" column="PRODUCT_METHOD" columnIndex="15"/>
 		<result property="p_sdate" column="P_SDATE" columnIndex="16"/>
 		<result property="p_edate" column="P_EDATE" columnIndex="17"/>
+		<result property="del_yn" column="DEL_YN" columnIndex="18"/>
 	</resultMap>
 	
 	<select id="EgovMngProductDAO.selectMngProductList" parameterClass="ProductVO" resultMap="mngProductList" >
@@ -50,6 +51,7 @@
 				 ,PRODUCT_METHOD
 				 ,P_SDATE
 				 ,P_EDATE
+				 ,DEL_YN
 			FROM
 				PRODUCT
 			WHERE 1=1
