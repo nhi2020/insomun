@@ -49,9 +49,12 @@ public class Product implements Serializable {
 		return del_yn;
 	}
 
+
 	public void setDel_yn(String del_yn) {
 		this.del_yn = del_yn;
 	}
+
+
 
 	public int getM_id() {
 		return m_id;
