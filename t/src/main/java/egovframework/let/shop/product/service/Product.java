@@ -42,8 +42,16 @@ public class Product implements Serializable {
 	private String product_method;
 	private String p_sdate;
 	private String p_edate;
-	
+	private String del_yn;
 
+
+	public String getDel_yn() {
+		return del_yn;
+	}
+
+	public void setDel_yn(String del_yn) {
+		this.del_yn = del_yn;
+	}
 
 	public int getM_id() {
 		return m_id;
