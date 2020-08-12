@@ -7,7 +7,7 @@
 	<typeAlias  alias="ProductVO" type="egovframework.let.shop.service.ProductVO"/> <!-- db에서 세터로 받아넣는 -->
 	<typeAlias  alias="S_MemberVO" type="egovframework.let.shop.service.S_MemberVO"/>
 	
-		<resultMap id="mngS_MemberList" class="egovframework.let.shop.service.S_MemberVO"> <!-- property는 vo값 -->
+	<resultMap id="mngS_MemberList" class="egovframework.let.shop.service.S_MemberVO"> <!-- property는 vo값 -->
 		<result property="s_email" column="S_EMAIL" columnIndex="1"/>						 <!-- collum 은 db의 컬럼값 -->
 		<result property="s_id" column="S_ID" columnIndex="2"/>			 <!--  db의 컬럼 순서 -->
 		<result property="s_idx" column="S_IDX" columnIndex="3"/>
@@ -28,7 +28,6 @@
 			WHERE 1=1
 			AND DEL_YN = 'N'
 		]]>				
-			
 			<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
 				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 			</isEqual>
@@ -58,7 +57,7 @@
 			</isEqual>	
 	</select>
 	
-	<insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
+	<!-- <insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
 		<![CDATA[
 			INSERT INTO 테이블명
 			(컬럼명, 날짜)
@@ -75,5 +74,5 @@
 				LAST_UPDT_PNTTM = SYSDATE()
 			WHERE 컬럼명 = #변수명#
  		]]>
- 	</update>
+ 	</update> -->
 </sqlMap>

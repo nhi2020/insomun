@@ -7,7 +7,7 @@
 	<typeAlias  alias="ProductVO" type="egovframework.let.shop.service.ProductVO"/> <!-- db에서 세터로 받아넣는 -->
 	<typeAlias  alias="MemberVO" type="egovframework.let.shop.service.MemberVO"/>
 	
-		<resultMap id="mngMemberList" class="egovframework.let.shop.service.MemberVO"> <!-- property는 vo값 -->
+	<resultMap id="mngMemberList" class="egovframework.let.shop.service.MemberVO"> <!-- property는 vo값 -->
 		<result property="m_id" column="M_ID" columnIndex="1"/>						 <!-- collum 은 db의 컬럼값 -->
 		<result property="m_nickname" column="M_NICKNAME" columnIndex="2"/>			 <!--  db의 컬럼 순서 -->
 		<result property="password" column="PASSWORD" columnIndex="3"/>
@@ -39,7 +39,7 @@
 				MEMBER
 			WHERE 1=1
 			AND DEL_YN = 'N'
-					
+		]]>				
 			<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
 				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 			</isEqual>
