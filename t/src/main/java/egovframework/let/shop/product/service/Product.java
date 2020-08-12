@@ -1,4 +1,4 @@
-package egovframework.let.shop.service;
+package egovframework.let.shop.product.service;
 
 import java.io.Serializable;
 import java.util.Date;

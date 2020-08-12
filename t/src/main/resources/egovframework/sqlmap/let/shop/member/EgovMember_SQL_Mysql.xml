@@ -69,7 +69,7 @@
 			</isEqual>	
 	</select>
 	
-	<insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
+	<!-- <insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
 		<![CDATA[
 			INSERT INTO 테이블명
 			(컬럼명, 날짜)
@@ -86,5 +86,5 @@
 				LAST_UPDT_PNTTM = SYSDATE()
 			WHERE 컬럼명 = #변수명#
  		]]>
- 	</update>
+ 	</update> -->
 </sqlMap>
