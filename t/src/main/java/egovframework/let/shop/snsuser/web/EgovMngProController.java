@@ -1,4 +1,4 @@
-package egovframework.let.shop.product.web;
+package egovframework.let.shop.snsuser.web;
 
 import java.util.List;
 
@@ -12,38 +12,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import egovframework.com.cmm.ComDefaultVO;
-import egovframework.let.shop.product.service.EgovMngProductService;
-import egovframework.let.shop.product.service.ProductVO;
+import egovframework.let.shop.snsuser.service.EgovMngProService;
+import egovframework.let.shop.snsuser.service.ProVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 /**
  * 템플릿 메인 페이지 컨트롤러 클래스(Sample 소스)
- * 
  * @author 실행환경 개발팀 JJY
  * @since 2011.08.31
  * @version 1.0
  * @see
  *
- *      <pre>
+ * <pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
  *  -------    --------    ---------------------------
  *   2011.08.31  JJY            최초 생성
  *
- *      </pre>
+ * </pre>
  */
-@Controller
-@SessionAttributes(types = ComDefaultVO.class)
-public class EgovMngProductController {
+@Controller@SessionAttributes(types = ComDefaultVO.class)
+public class EgovMngProController {
 
 	/**
 	 * EgovBBSManageService
 	 */
-	@Resource(name = "EgovMngProductService")
-	private EgovMngProductService mngProductService;
-
+	@Resource(name = "EgovMngProService")
+	private EgovMngProService mngProService;
+	
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
 
@@ -77,19 +75,17 @@ public class EgovMngProductController {
 
 		return ret;
 	}
-
 	/**
 	 * 상품 정보
 	 *
 	 * @param request
 	 * @param commandMap
-	 * @exception Exception
-	 *                Exception
+	 * @exception Exception Exception
 	 */
-	@RequestMapping(value = "/shop/product/EgovMngMain.do")
-	public String forwardPageWithMenuNo(@ModelAttribute("searchVO") ProductVO vo, HttpServletRequest request,
-			ModelMap model) throws Exception {
-
+	@RequestMapping(value = "/shop/snsuser/EgovMngPro.do")
+	public String forwardPageWithMenuNo(@ModelAttribute("searchVO") ProVO vo, HttpServletRequest request, ModelMap model)
+			  throws Exception{
+		
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
 
@@ -102,15 +98,17 @@ public class EgovMngProductController {
 		vo.setFirstIndex(paginationInfo.getFirstRecordIndex());
 		vo.setLastIndex(paginationInfo.getLastRecordIndex());
 		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-		int totCnt = mngProductService.selectMngProductListCnt(vo);
+		int totCnt = mngProService.selectMngProListCnt(vo);
 		paginationInfo.setTotalRecordCount(totCnt);
-
-		List<ProductVO> list = mngProductService.selectMngProductList(vo);
+		
+		List<ProVO> list = mngProService.selectMngProList(vo);
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
-
-		return "shop/EgovMngMain";
+		
+		return "shop/EgovMngPro";
 	}
+
+	
 
 }

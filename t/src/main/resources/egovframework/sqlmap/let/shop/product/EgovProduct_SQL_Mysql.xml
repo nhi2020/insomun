@@ -31,7 +31,8 @@
 	</resultMap>
 	
 	<select id="EgovMngProductDAO.selectMngProductList" parameterClass="ProductVO" resultMap="mngProductList" >
-		<![CDATA[
+	<!-- 쿼리문 작성 -->
+		<![CDATA[  
 			SELECT 
 				  M_ID
 				 ,P_IDX
