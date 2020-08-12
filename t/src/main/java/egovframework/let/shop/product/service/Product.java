@@ -26,7 +26,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class Product implements Serializable {
 
 	private int m_id;
-	private int b_idx;
 	private int p_idx;
 	private String product_name;
 	private String price;
@@ -65,20 +64,6 @@ public class Product implements Serializable {
 	public void setM_id(int m_id) {
 		this.m_id = m_id;
 	}
-
-
-
-	public int getB_idx() {
-		return b_idx;
-	}
-
-
-
-	public void setB_idx(int b_idx) {
-		this.b_idx = b_idx;
-	}
-
-
 
 	public int getP_idx() {
 		return p_idx;
