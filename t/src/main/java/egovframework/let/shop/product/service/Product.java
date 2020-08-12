@@ -1,7 +1,6 @@
 package egovframework.let.shop.product.service;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
