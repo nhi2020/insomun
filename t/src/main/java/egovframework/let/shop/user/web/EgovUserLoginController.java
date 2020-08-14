@@ -1,49 +1,47 @@
-package egovframework.let.shop.product.web;
+package egovframework.let.shop.user.web;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import egovframework.com.cmm.ComDefaultVO;
 import egovframework.let.shop.product.service.EgovMngProductService;
 import egovframework.let.shop.product.service.ProductVO;
+import egovframework.let.shop.user.service.KakaoAPI;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 /**
  * 템플릿 메인 페이지 컨트롤러 클래스(Sample 소스)
- * 
  * @author 실행환경 개발팀 JJY
  * @since 2011.08.31
  * @version 1.0
  * @see
  *
- *      <pre>
+ * <pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
  *  -------    --------    ---------------------------
  *   2011.08.31  JJY            최초 생성
  *
- *      </pre>
+ * </pre>
  */
-@Controller
-@SessionAttributes(types = ComDefaultVO.class)
-public class EgovMngProductController {
+@Controller@SessionAttributes(types = ComDefaultVO.class)
+public class EgovUserLoginController {
 
-	/**
-	 * EgovBBSManageService
-	 */
-	@Resource(name = "EgovMngProductService")
-	private EgovMngProductService mngProductService;
-
+	@Autowired
+    private KakaoAPI kakao;
+	
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
 
@@ -77,40 +75,34 @@ public class EgovMngProductController {
 
 		return ret;
 	}
-
 	/**
 	 * 상품 정보
 	 *
 	 * @param request
 	 * @param commandMap
-	 * @exception Exception
-	 *                Exception
+	 * @exception Exception Exception
 	 */
-	@RequestMapping(value = "/shop/product/EgovMngMain.do")
-	public String forwardPageWithMenuNo(@ModelAttribute("searchVO") ProductVO vo, HttpServletRequest request,
-			ModelMap model) throws Exception {
-
-		vo.setPageUnit(propertyService.getInt("pageUnit"));
-		vo.setPageSize(propertyService.getInt("pageSize"));
-
-		PaginationInfo paginationInfo = new PaginationInfo();
-
-		paginationInfo.setCurrentPageNo(vo.getPageIndex());
-		paginationInfo.setRecordCountPerPage(vo.getPageUnit());
-		paginationInfo.setPageSize(vo.getPageSize());
-
-		vo.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		vo.setLastIndex(paginationInfo.getLastRecordIndex());
-		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-		int totCnt = mngProductService.selectMngProductListCnt(vo);
-		paginationInfo.setTotalRecordCount(totCnt);
-
-		List<ProductVO> list = mngProductService.selectMngProductList(vo);
-		model.addAttribute("totCnt", totCnt);
-		model.addAttribute("list", list);
-		model.addAttribute("paginationInfo", paginationInfo);
-
-		return "shop/EgovMngMain";
+	@RequestMapping(value = "/shop/user/EgovUserLogin.do")
+	public String forwardPageWithMenuNo(HttpServletRequest request, ModelMap model)
+			  throws Exception{
+		return "shop/userLogin/EgovUserLogin";
 	}
+	
+	/**
+	 * 상품 정보
+	 *
+	 * @param request
+	 * @param commandMap
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/shop/user/EgovUserLoginCheck.do")
+	public String forwardPageWithMenuNo(@RequestParam("code") String code, HttpServletRequest request, ModelMap model)
+			  throws Exception{
+		String access_Token = kakao.getAccessToken(code);
+        System.out.println("controller access_token : " + access_Token);
+		return "shop/userLogin/EgovUserLogin";
+	}
+
+	
 
 }

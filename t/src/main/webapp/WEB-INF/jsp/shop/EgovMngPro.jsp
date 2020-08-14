@@ -34,26 +34,11 @@
 </head>
 <body>
 <%@ include file="./inc/EgovShopHeader.jsp" %>
-<<<<<<< HEAD
 <c:forEach items="${list}" var="result">
-	${result.product_name }
-	${result.price }
-	<%-- ${result.p_sdate }
-	${result.p_edate } --%>
-	${result.m_id }
+	${result.m_id2 }
+	${result.s_email}
+	${result.m_phone }
 </c:forEach>
-=======
-<div class="container text-center">
-	<h2>마켓 컬리</h2>
-		<c:forEach items="${list}" var="result">
-			<a>상품 : ${result.product_name }</a> <p>
-			가격 : ${result.price }<p>
-			${result.p_sdate }<p>
-			${result.p_edate }<p>
-			${result.main_img }
-		</c:forEach>
-</div>
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 	<div id="paging_div">
 		<ul class="paging_align">
 			<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="fn_egov_select_productList" />
