@@ -30,7 +30,7 @@
 		<result property="del_yn" column="DEL_YN" columnIndex="17" jdbcType="String"/>
 	</resultMap>
 	
-	<select id="EgovMngProductDAO.selectMngProductList" parameterClass="ProductVO" resultMap="mngProductList" >
+	<select id="EgovMngProductDAO.selectMngProductList" parameterClass="ProductVO" resultMap="mngProductList">
 		<![CDATA[
 			SELECT 
 				  M_ID
