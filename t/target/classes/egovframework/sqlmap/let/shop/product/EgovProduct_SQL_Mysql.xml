@@ -30,14 +30,9 @@
 		<result property="del_yn" column="DEL_YN" columnIndex="17" jdbcType="String"/>
 	</resultMap>
 	
-<<<<<<< HEAD
-	<select id="EgovMngProductDAO.selectMngProductList" parameterClass="ProductVO" resultMap="mngProductList">
-		<![CDATA[
-=======
 	<select id="EgovMngProductDAO.selectMngProductList" parameterClass="ProductVO" resultMap="mngProductList" >
 	<!-- 쿼리문 작성 -->
 		<![CDATA[  
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 			SELECT 
 				  M_ID
 				 ,P_IDX
