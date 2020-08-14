@@ -37,10 +37,10 @@
 <div class="container text-center">
 	<h2>마켓 컬리</h2>
 		<c:forEach items="${list}" var="result">
-			${result.product_name }
-			${result.price }
-			${result.p_sdate }
-			${result.p_edate }
+			<a>상품 : ${result.product_name }</a> <p>
+			가격 : ${result.price }<p>
+			${result.p_sdate }<p>
+			${result.p_edate }<p>
 			${result.main_img }
 		</c:forEach>
 </div>
