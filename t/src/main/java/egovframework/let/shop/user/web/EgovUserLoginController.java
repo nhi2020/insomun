@@ -111,17 +111,12 @@ public class EgovUserLoginController {
 
 	    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
 	    if (userInfo.get("kakaoid") != null) {
-	    	snsProfileVO.setSnsid((String) userInfo.get("kakaoid"));
+	    	snsProfileVO.setUserid((String) userInfo.get("kakaoid"));
 	    	System.out.println("Snsid : "+userInfo.toString());
-	    	//int cnt=sampleService.selectSnsProfileCnt(snsProfileVO);
-	    	
-	    	//if(cnt <= 0){
-	    		snsProfileVO.setSnscode("kakao");
-	    		//sampleService.insertSnsProfile(snsProfileVO);
-	    	//}
+	    	snsProfileVO.setSnscode("kakao");
 	        session.setAttribute("userid", userInfo.get("kakaoid"));
 	        session.setAttribute("nickname", userInfo.get("nickname"));
-	        session.setAttribute("email", userInfo.get("email"));
+	        session.setAttribute("email", userInfo.get("email"));//카카오에서 이메일 못가져옴
 	        session.setAttribute("snscode","kakao"); //세션 생성
 	        session.setAttribute("access_Token", access_Token);
 	    }

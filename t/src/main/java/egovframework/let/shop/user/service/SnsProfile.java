@@ -24,17 +24,26 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @SuppressWarnings("serial")
 public class SnsProfile implements Serializable {
 
-	private String snsid;
+	private String userid;
 	private String snscode;
+	private String email;
 	private String reg_date;
 	private String del_yn;
 
-	public String getSnsid() {
-		return snsid;
+	public String getUserid() {
+		return userid;
 	}
 
-	public void setSnsid(String snsid) {
-		this.snsid = snsid;
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSnscode() {

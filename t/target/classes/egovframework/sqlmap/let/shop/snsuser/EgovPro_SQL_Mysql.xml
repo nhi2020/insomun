@@ -1,46 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
 
-<sqlMap namespace="Product">
+<sqlMap namespace="SnsProfile">
 
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
-	<typeAlias  alias="ProVO" type="egovframework.let.shop.service.ProVO"/>
+	<typeAlias  alias="SnsProfileVO" type="egovframework.let.shop.user.service.SnsProfileVO"/>
+	<typeAlias  alias="SnsProfile" type="egovframework.let.shop.user.service.SnsProfile"/>
 					
-	<resultMap id="mngProList" class="egovframework.let.shop.service.ProVO"> <!-- property는 vo값 -->
-		<result property="m_id2" column="M_ID2" columnIndex="1"/>						 <!-- collum 은 db의 컬럼값 -->
-		<result property="s_email" column="S_EMAIL" columnIndex="2"/>			 <!--  db의 컬럼 순서 -->
-		<result property="p_idx2" column="P_IDX2" columnIndex="3"/>
-		<result property="s_id" column="S_ID" columnIndex="4"/>
-		<result property="j_idx" column="J_IDX" columnIndex="5"/>
-		<result property="m_phone" column="M_PHONE" columnIndex="6"/>
-		<result property="m_addr" column="M_ADDR" columnIndex="7"/>
-		<result property="j_pro" column="J_PRO" columnIndex="8"/>
+	<resultMap id="snsProfileList" class="egovframework.let.shop.user.service.SnsProfileVO"> <!-- property는 vo값 -->
+		<result property="userid" column="USERID" columnIndex="1"/>						 <!-- collum 은 db의 컬럼값 -->
+		<result property="snscode" column="SNSCODE" columnIndex="2"/>			 <!--  db의 컬럼 순서 -->
+		<result property="email" column="EMAIL" columnIndex="3"/>
+		<result property="reg_date" column="REG_DATE" columnIndex="4"/>
+		<result property="del_yn" column="DEL_YN" columnIndex="5"/>
 	</resultMap>
 	
-	<select id="EgovMngProDAO.selectMngProList" parameterClass="ProVO" resultMap="mngProList" >
+	<select id="EgovMngProDAO.selectMngProList" parameterClass="SnsProfileVO" resultMap="snsProfileList" >
 		<![CDATA[
 			SELECT 
-				   M_ID2
-				  ,S_EMAIL
-				  ,P_IDX2
-				  ,S_ID
-				  ,J_IDX
-				  ,M_PHONE
-				  ,M_ADDR
-				  ,J_PRO
+				   USERID
+				  ,SNSCODE
+				  ,EMAIL
+				  ,REG_DATE
+				  ,DEL_YN
 			FROM
-				PRO
+				SNSPROFILE
 			WHERE 1=1
-			AND DEL_YN = 'N'
 		]]>				
 			<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
-				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+				<![CDATA[	USERID LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 			</isEqual>
 			<isEqual prepend="AND" property="searchCnd" compareValue="1">
-				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+				<![CDATA[	SNSCODE LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 			</isEqual>	
 		<![CDATA[			
-			ORDER BY IDX DESC
+			ORDER BY REG_DATE DESC
+			LIMIT #recordCountPerPage# OFFSET #firstIndex#
+		]]>					
+	</select>
+	
+	<select id="EgovMngProDAO.selectMngProListCnt" parameterClass="SnsProfileVO" resultClass="java.lang.Integer" >
+		<![CDATA[
+			SELECT 
+				   COUNT(USERID)
+			FROM
+				SNSPROFILE
+			WHERE 1=1
+		]]>				
+			<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	USERID LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>
+			<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	SNSCODE LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>	
+		<![CDATA[			
+			ORDER BY REG_DATE DESC
 			LIMIT #recordCountPerPage# OFFSET #firstIndex#
 		]]>					
 	</select>
