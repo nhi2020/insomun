@@ -1,24 +1,22 @@
 package egovframework.let.shop.user.web;
 
-import java.util.List;
+import java.util.HashMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import egovframework.com.cmm.ComDefaultVO;
-import egovframework.let.shop.product.service.EgovMngProductService;
-import egovframework.let.shop.product.service.ProductVO;
 import egovframework.let.shop.user.service.KakaoAPI;
+import egovframework.let.shop.user.service.SnsProfileVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
-import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 /**
  * 템플릿 메인 페이지 컨트롤러 클래스(Sample 소스)
@@ -44,7 +42,7 @@ public class EgovUserLoginController {
 	
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
-
+	
 	/**
 	 * XSS 방지 처리.
 	 *
@@ -75,34 +73,51 @@ public class EgovUserLoginController {
 
 		return ret;
 	}
+	
+	@RequestMapping(value = "/shop/user/EgovUserLoginForm.do")
+	public String egovUserLoginForm(HttpServletRequest request, ModelMap model, HttpSession session) throws Exception{
+		String kakaoUrl = kakao.getAuthorizationUrl(session);
+		model.addAttribute("kakaoUrl", kakaoUrl);
+		return "shop/userLogin/EgovUserLoginForm"; 
+	}
 	/**
-	 * 상품 정보
+	 * sns 로그인
 	 *
 	 * @param request
 	 * @param commandMap
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/shop/user/EgovUserLogin.do")
-	public String forwardPageWithMenuNo(HttpServletRequest request, ModelMap model)
-			  throws Exception{
-		return "shop/userLogin/EgovUserLogin";
-	}
-	
-	/**
-	 * 상품 정보
-	 *
-	 * @param request
-	 * @param commandMap
-	 * @exception Exception Exception
-	 */
-	@RequestMapping(value = "/shop/user/EgovUserLoginCheck.do")
-	public String forwardPageWithMenuNo(@RequestParam("code") String code, HttpServletRequest request, ModelMap model)
+	public String egovUserLogin(@RequestParam("code") String code, SnsProfileVO snsProfileVO, HttpServletRequest request, ModelMap model, HttpSession session)
 			  throws Exception{
 		String access_Token = kakao.getAccessToken(code);
-        System.out.println("controller access_token : " + access_Token);
-		return "shop/userLogin/EgovUserLogin";
+		HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
+	    System.out.println("login Controller : " + userInfo);
+
+	    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
+	    if (userInfo.get("kakaoid") != null) {
+	    	snsProfileVO.setSnsid((String) userInfo.get("kakaoid"));
+	    	System.out.println("Snsid : "+snsProfileVO.getSnsid());
+	    	//int cnt=sampleService.selectSnsProfileCnt(snsProfileVO);
+	    	
+	    	//if(cnt <= 0){
+	    		snsProfileVO.setSnscode("kakao");
+	    		//sampleService.insertSnsProfile(snsProfileVO);
+	    	//}
+	        session.setAttribute("userid", userInfo.get("kakaoid"));
+	        session.setAttribute("nickname", userInfo.get("nickname"));
+	        session.setAttribute("access_Token", access_Token);
+	    }
+        
+		return "shop/main/EgovMain";
 	}
 
-	
+	@RequestMapping(value="/shop/user/EgovUserLogout.do")
+	public String egovUserLogout(HttpSession session) {
+	    kakao.kakaoLogout((String)session.getAttribute("access_Token"));
+	    session.removeAttribute("access_Token");
+	    session.removeAttribute("userId");
+	    return "shop/main/EgovMain";
+	}
 
 }
