@@ -12,9 +12,8 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
  </head>
  
- <body>	${kakaoUrl}<br/>
+ <body>
   	<a href="${kakaoUrl}">카카오로그인</a><br/>
-  	${naverUrl}<br/>
   	<a href="${naverUrl}">네이버로그인</a> 
  </body>
 </html>
