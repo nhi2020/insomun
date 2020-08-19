@@ -13,6 +13,7 @@
  
  <body>
   ${sessionScope.userid }<br/>
-  ${sessionScope.nickname }
+  ${sessionScope.nickname }<br/>
+  ${sessionScope.email }
  </body>
 </html>

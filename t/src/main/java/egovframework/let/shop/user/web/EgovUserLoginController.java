@@ -3,9 +3,13 @@ package egovframework.let.shop.user.web;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
+import javax.json.JsonObject;
+import javax.json.stream.JsonParser;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
+
 import egovframework.com.cmm.ComDefaultVO;
 import egovframework.let.shop.user.service.KakaoAPI;
+import egovframework.let.shop.user.service.NaverAPI;
 import egovframework.let.shop.user.service.SnsProfileVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 
@@ -39,6 +46,11 @@ public class EgovUserLoginController {
 
 	@Autowired
     private KakaoAPI kakao;
+	
+	@Autowired
+    private NaverAPI naver;
+	
+	private String apiResult = null;
 	
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
@@ -77,7 +89,10 @@ public class EgovUserLoginController {
 	@RequestMapping(value = "/shop/user/EgovUserLoginForm.do")
 	public String egovUserLoginForm(HttpServletRequest request, ModelMap model, HttpSession session) throws Exception{
 		String kakaoUrl = kakao.getAuthorizationUrl(session);
+		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+        String naverUrl = naver.getAuthorizationUrl(session);
 		model.addAttribute("kakaoUrl", kakaoUrl);
+		model.addAttribute("naverUrl", naverUrl);
 		return "shop/userLogin/EgovUserLoginForm"; 
 	}
 	/**
@@ -87,7 +102,7 @@ public class EgovUserLoginController {
 	 * @param commandMap
 	 * @exception Exception Exception
 	 */
-	@RequestMapping(value = "/shop/user/EgovUserLogin.do")
+	@RequestMapping(value = "/shop/user/EgovKakaoLogin.do")
 	public String egovUserLogin(@RequestParam("code") String code, SnsProfileVO snsProfileVO, HttpServletRequest request, ModelMap model, HttpSession session)
 			  throws Exception{
 		String access_Token = kakao.getAccessToken(code);
@@ -97,7 +112,7 @@ public class EgovUserLoginController {
 	    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
 	    if (userInfo.get("kakaoid") != null) {
 	    	snsProfileVO.setSnsid((String) userInfo.get("kakaoid"));
-	    	System.out.println("Snsid : "+snsProfileVO.getSnsid());
+	    	System.out.println("Snsid : "+userInfo.toString());
 	    	//int cnt=sampleService.selectSnsProfileCnt(snsProfileVO);
 	    	
 	    	//if(cnt <= 0){
@@ -106,17 +121,60 @@ public class EgovUserLoginController {
 	    	//}
 	        session.setAttribute("userid", userInfo.get("kakaoid"));
 	        session.setAttribute("nickname", userInfo.get("nickname"));
+	        session.setAttribute("email", userInfo.get("email"));
+	        session.setAttribute("snscode","kakao"); //세션 생성
 	        session.setAttribute("access_Token", access_Token);
 	    }
+
+		return "shop/main/EgovMain";
+	}
+	
+	@RequestMapping(value = "/shop/user/EgovNaverLogin.do")
+	public String egovUserLogin(@RequestParam("code") String code, @RequestParam("state") String state, SnsProfileVO snsProfileVO, HttpServletRequest request, ModelMap model, HttpSession session)
+			  throws Exception{
+	    OAuth2AccessToken oauthToken;
+        oauthToken = naver.getAccessToken(session, code, state);
+        //로그인 사용자 정보를 읽어온다.
+        apiResult = naver.getUserProfile(oauthToken);
+        if(apiResult != null){
+	        System.out.println("result"+apiResult);
+	        
+	        //1. 로그인 사용자 정보를 읽어온다.
+	        apiResult = naver.getUserProfile(oauthToken); //String형식의 json데이터
+	        /** apiResult json 구조
+	        {"resultcode":"00",
+	        "message":"success",
+	        "response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
+	        **/
+	        //2. String형식인 apiResult를 json형태로 바꿈
+	        JSONParser parser = new JSONParser();
+	        Object obj = parser.parse(apiResult);
+	        JSONObject jsonObj = (JSONObject) obj;
+	        //3. 데이터 파싱
+	        //Top레벨 단계 _response 파싱
+	        JSONObject response_obj = (JSONObject)jsonObj.get("response");
+	        //response의 nickname값 파싱
+	        String id = (String)response_obj.get("id");
+	        String name = (String)response_obj.get("name");
+	        String email = (String)response_obj.get("email");
+	        //4.파싱 닉네임 세션으로 저장
+	        snsProfileVO.setSnscode("naver");
+	        session.setAttribute("userid",id); //세션 생성
+	        session.setAttribute("nickname",name); //세션 생성
+	        session.setAttribute("snscode","naver"); //세션 생성
+	        session.setAttribute("email",email); //세션 생성
+	        model.addAttribute("result", apiResult);
+        }
         
 		return "shop/main/EgovMain";
 	}
-
+	
 	@RequestMapping(value="/shop/user/EgovUserLogout.do")
 	public String egovUserLogout(HttpSession session) {
-	    kakao.kakaoLogout((String)session.getAttribute("access_Token"));
+	    /*kakao.kakaoLogout((String)session.getAttribute("access_Token"));
 	    session.removeAttribute("access_Token");
-	    session.removeAttribute("userId");
+	    session.removeAttribute("userId");*/
+	    session.invalidate();
 	    return "shop/main/EgovMain";
 	}
 

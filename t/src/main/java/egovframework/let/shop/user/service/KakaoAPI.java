@@ -22,7 +22,7 @@ import com.google.gson.JsonParser;
 public class KakaoAPI {
     
 	private final static String K_CLIENT_ID = "7e2a4e5240c656b96978c81a1a99fa2a"; //이런식으로 REDIRECT_URI를 써넣는다. 
-	private final static String K_REDIRECT_URI = "http://xn--z92bt9ibqf.net/shop/user/EgovUserLogin.do"; 
+	private final static String K_REDIRECT_URI = "http://xn--z92bt9ibqf.net/shop/user/EgovKakaoLogin.do"; 
 	
 	public static String getAuthorizationUrl(HttpSession session) { 
 		String kakaoUrl = "https://kauth.kakao.com/oauth/authorize?client_id=" + K_CLIENT_ID + "&redirect_uri=" + K_REDIRECT_URI + "&response_type=code"; 
@@ -47,7 +47,7 @@ public class KakaoAPI {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=7e2a4e5240c656b96978c81a1a99fa2a");
-            sb.append("&redirect_uri=http://xn--z92bt9ibqf.net/shop/user/EgovUserLogin.do");
+            sb.append("&redirect_uri=http://xn--z92bt9ibqf.net/shop/user/EgovKakaoLogin.do");
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());
             bw.flush();
@@ -114,6 +114,7 @@ public class KakaoAPI {
             JsonElement element = parser.parse(result);
             JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
             //JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+            System.out.println(element.getAsJsonObject().toString());
             String nickname = properties.getAsJsonObject().get("nickname").getAsString();
             
             String kakaoid=element.getAsJsonObject().get("id").getAsString();
