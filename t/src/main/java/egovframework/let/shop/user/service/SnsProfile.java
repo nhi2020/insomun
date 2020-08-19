@@ -26,9 +26,18 @@ public class SnsProfile implements Serializable {
 
 	private String userid;
 	private String snscode;
+	private String nickname;
 	private String email;
 	private String reg_date;
 	private String del_yn;
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 
 	public String getUserid() {
 		return userid;

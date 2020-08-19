@@ -10,9 +10,10 @@
 	<resultMap id="snsProfileList" class="egovframework.let.shop.user.service.SnsProfileVO"> <!-- property는 vo값 -->
 		<result property="userid" column="USERID" columnIndex="1"/>						 <!-- collum 은 db의 컬럼값 -->
 		<result property="snscode" column="SNSCODE" columnIndex="2"/>			 <!--  db의 컬럼 순서 -->
-		<result property="email" column="EMAIL" columnIndex="3"/>
-		<result property="reg_date" column="REG_DATE" columnIndex="4"/>
-		<result property="del_yn" column="DEL_YN" columnIndex="5"/>
+		<result property="nickname" column="NICKNAME" columnIndex="3"/>
+		<result property="email" column="EMAIL" columnIndex="4"/>
+		<result property="reg_date" column="REG_DATE" columnIndex="5"/>
+		<result property="del_yn" column="DEL_YN" columnIndex="6"/>
 	</resultMap>
 	
 	<select id="EgovMngProDAO.selectMngProList" parameterClass="SnsProfileVO" resultMap="snsProfileList" >
@@ -20,6 +21,7 @@
 			SELECT 
 				   USERID
 				  ,SNSCODE
+				  ,NICKNAME
 				  ,EMAIL
 				  ,REG_DATE
 				  ,DEL_YN
@@ -42,7 +44,7 @@
 	<select id="EgovMngProDAO.selectMngProListCnt" parameterClass="SnsProfileVO" resultClass="java.lang.Integer" >
 		<![CDATA[
 			SELECT 
-				   COUNT(USERID)
+				COUNT(USERID)
 			FROM
 				SNSPROFILE
 			WHERE 1=1
