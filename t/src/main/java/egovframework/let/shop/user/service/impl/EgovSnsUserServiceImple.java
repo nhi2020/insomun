@@ -17,8 +17,8 @@ public class EgovSnsUserServiceImple extends EgovAbstractServiceImpl implements 
 	private EgovSnsUserDAO snsUserDAO;
 
 	
-	public List<SnsProfileVO> selectSnsUserList(SnsProfileVO snsProfileVo) throws Exception {
-		List<SnsProfileVO> list = snsUserDAO.selectSnsUserList(snsProfileVo);
+	public List<SnsProfileVO> insertSnsUserList(SnsProfileVO snsProfileVo) throws Exception {
+		List<SnsProfileVO> list = snsUserDAO.insertSnsUserList(snsProfileVo);
 		return list;
 	}
 	
