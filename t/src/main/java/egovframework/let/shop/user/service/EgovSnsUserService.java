@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface EgovSnsUserService {
 	
-	public List<SnsProfileVO> selectSnsUserList(SnsProfileVO snsProfileVo)throws Exception;
+	public List<SnsProfileVO> insertSnsUserList(SnsProfileVO snsProfileVo)throws Exception;
 }
