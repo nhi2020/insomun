@@ -21,9 +21,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<form action="sellerDashboardPro.do">
-					<input type="text" name="id" />
-				</form>
+			${idx }
+			${id }
+			${nickname }
 			</div>
 		</div>
 	</div>
