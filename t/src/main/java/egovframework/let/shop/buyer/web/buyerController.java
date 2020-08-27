@@ -1,12 +1,20 @@
 package egovframework.let.shop.buyer.web;
 
+import java.util.List;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import egovframework.let.shop.buyer.service.BuyerService;
 import egovframework.let.shop.buyer.service.BuyerVO;
+import egovframework.rte.fdl.property.EgovPropertyService;
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
 @SessionAttributes(types = BuyerVO.class)
@@ -14,6 +22,9 @@ public class buyerController {
 
 	@Resource(name = "BuyerService")
 	private BuyerService buyerService;
+	
+	@Resource(name = "propertiesService")
+	protected EgovPropertyService propertyService;
 
 	protected String unscript(String data) {
 		if (data == null || data.trim().equals("")) {
@@ -39,4 +50,42 @@ public class buyerController {
 
 		return ret;
 	}
+	
+	@RequestMapping(value = "/shop/buyer/Buyer.do")
+	public String buyerForwardPage(@ModelAttribute("searchVO") BuyerVO vo, HttpServletRequest request, ModelMap model){
+		
+		vo.setPageUnit(propertyService.getInt("pageUnit"));
+		vo.setPageSize(propertyService.getInt("pageSize"));
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		paginationInfo.setCurrentPageNo(vo.getPageIndex());
+		paginationInfo.setRecordCountPerPage(vo.getPageUnit());
+		paginationInfo.setPageSize(vo.getPageSize());
+
+		vo.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		vo.setLastIndex(paginationInfo.getLastRecordIndex());
+		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+
+		int totCnt = buyerService.selectListCnt(vo);
+		paginationInfo.setTotalRecordCount(totCnt);
+		
+		List<BuyerVO> list = buyerService.selectList(vo);
+		model.addAttribute("totCnt", totCnt);
+		model.addAttribute("list", list);
+		model.addAttribute("paginationInfo", paginationInfo);
+		
+		return "shop/buyer/Buyer";
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
