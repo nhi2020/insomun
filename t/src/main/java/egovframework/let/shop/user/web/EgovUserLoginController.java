@@ -117,7 +117,7 @@ public class EgovUserLoginController {
 
 	    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
 	    if (userInfo.get("kakaoid") != null) {
-	    	//db에 넣는 로직
+	    	//db에  값을 넣는 로직
 	    	snsProfileVO.setUserid((String) userInfo.get("kakaoid"));
 	    	snsProfileVO.setSnscode("kakao");
 	    	snsProfileVO.setNickname((String) userInfo.get("nickname"));
@@ -132,6 +132,7 @@ public class EgovUserLoginController {
 	        session.setAttribute("access_Token", access_Token);
 	        System.out.println();
 	        int result = snsUserService.insertSnsUserList(snsProfileVO);
+	        
 	        if(userInfo.get("kakaoid") == null){
 	        	
 	        }
@@ -168,13 +169,22 @@ public class EgovUserLoginController {
 	        String id = (String)response_obj.get("id");
 	        String name = (String)response_obj.get("name");
 	        String email = (String)response_obj.get("email");
-	        //4.파싱 닉네임 세션으로 저장
+	        //navre 정보 dbd에 담는 로직
 	        snsProfileVO.setSnscode("naver");
+	        snsProfileVO.setEmail((String)jsonObj.get("email"));
+	        snsProfileVO.setNickname((String)jsonObj.get("nickname"));
+	        snsProfileVO.setUserid((String)jsonObj.get("userid"));
+	        int result = snsUserService.insertSnsUserList(snsProfileVO);
+	        //----------------
+	        //4.파싱 닉네임 세션으로 저장
 	        session.setAttribute("userid",id); //세션 생성
 	        session.setAttribute("nickname",name); //세션 생성
 	        session.setAttribute("snscode","naver"); //세션 생성
 	        session.setAttribute("email",email); //세션 생성
 	        model.addAttribute("result", apiResult);
+	        if(jsonObj.get("kakaoid") == null){
+	        	
+	        }
         }
         
 		return "shop/main/EgovMain";
