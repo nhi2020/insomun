@@ -1,6 +1,8 @@
 package egovframework.let.shop.user.web;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.json.JsonObject;
@@ -123,6 +125,13 @@ public class EgovUserLoginController {
 	        session.setAttribute("email", userInfo.get("email"));//카카오에서 이메일 못가져옴
 	        session.setAttribute("snscode","kakao"); //세션 생성
 	        session.setAttribute("access_Token", access_Token);
+	        
+	        List<SnsProfileVO> kakaoSnslist = snsUserService.insertSnsUserList(snsProfileVO);
+	        snsProfileVO.getUserid();
+	        snsProfileVO.getSnscode();
+	        snsProfileVO.getNickname();
+	        snsProfileVO.getEmail();
+	        snsProfileVO.getReg_date();
 	    }
 
 		return "shop/main/EgovMain";
@@ -163,6 +172,13 @@ public class EgovUserLoginController {
 	        session.setAttribute("snscode","naver"); //세션 생성
 	        session.setAttribute("email",email); //세션 생성
 	        model.addAttribute("result", apiResult);
+	        
+	        List<SnsProfileVO> naverSnslist = snsUserService.insertSnsUserList(snsProfileVO);
+	        snsProfileVO.getUserid();
+	        snsProfileVO.getSnscode();
+	        snsProfileVO.getNickname();
+	        snsProfileVO.getEmail();
+	        snsProfileVO.getReg_date();
         }
         
 		return "shop/main/EgovMain";
