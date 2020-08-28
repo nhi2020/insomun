@@ -14,4 +14,9 @@ public class EgovSnsUserDAO extends EgovAbstractDAO {
 	public List<SnsProfileVO> insertSnsUserList(SnsProfileVO snsProfileVo) throws Exception{
 		return (List<SnsProfileVO>) list("EgovSnsUserDAO.insertSnsUserList", snsProfileVo);
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<SnsProfileVO> selectSnsUserList(SnsProfileVO snsProfileVo) {
+		return (List<SnsProfileVO>) list("EgovSnsUserDAO.selectSnsUserList", snsProfileVo);
+	}
 }
