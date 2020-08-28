@@ -26,4 +26,10 @@ public class EgovSnsUserServiceImple extends EgovAbstractServiceImpl implements 
 		return list;
 	}
 
+	@Override
+	public List<String> checkUserLogin(SnsProfileVO snsProfileVo) throws Exception {
+		List<SnsProfileVO> list = snsUserDAO.checkUserLogin(snsProfileVo);
+		return null;
+	}
+
 }

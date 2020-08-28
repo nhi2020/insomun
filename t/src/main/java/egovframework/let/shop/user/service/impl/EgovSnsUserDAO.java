@@ -19,4 +19,8 @@ public class EgovSnsUserDAO extends EgovAbstractDAO {
 	public List<SnsProfileVO> selectSnsUserList(SnsProfileVO snsProfileVo) {
 		return (List<SnsProfileVO>) list("EgovSnsUserDAO.selectSnsUserList", snsProfileVo);
 	}
+	@SuppressWarnings("unchecked")
+	public List<SnsProfileVO> checkUserLogin(SnsProfileVO snnProfileVO){
+		return (List<SnsProfileVO>) list("EgovSnsUserDAO.checkUserLogin", snnProfileVO);
+	}
 }
