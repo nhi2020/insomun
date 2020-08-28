@@ -117,21 +117,24 @@ public class EgovUserLoginController {
 
 	    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
 	    if (userInfo.get("kakaoid") != null) {
+	    	//db에 넣는 로직
 	    	snsProfileVO.setUserid((String) userInfo.get("kakaoid"));
-	    	System.out.println("Snsid : "+userInfo.toString());
 	    	snsProfileVO.setSnscode("kakao");
+	    	snsProfileVO.setNickname((String) userInfo.get("nickname"));
+	    	snsProfileVO.setEmail((String)userInfo.get("email"));
+	    	snsProfileVO.setReg_date((String)userInfo.get("reg_date"));
+	    	//---------------------
+	    	System.out.println("Snsid : "+userInfo.toString());
 	        session.setAttribute("userid", userInfo.get("kakaoid"));
 	        session.setAttribute("nickname", userInfo.get("nickname"));
 	        session.setAttribute("email", userInfo.get("email"));//카카오에서 이메일 못가져옴
 	        session.setAttribute("snscode","kakao"); //세션 생성
 	        session.setAttribute("access_Token", access_Token);
-	        
-	        List<SnsProfileVO> kakaoSnslist = snsUserService.insertSnsUserList(snsProfileVO);
-	        snsProfileVO.getUserid();
-	        snsProfileVO.getSnscode();
-	        snsProfileVO.getNickname();
-	        snsProfileVO.getEmail();
-	        snsProfileVO.getReg_date();
+	        System.out.println();
+	        int result = snsUserService.insertSnsUserList(snsProfileVO);
+	        if(userInfo.get("kakaoid") == null){
+	        	
+	        }
 	    }
 
 		return "shop/main/EgovMain";
@@ -172,13 +175,6 @@ public class EgovUserLoginController {
 	        session.setAttribute("snscode","naver"); //세션 생성
 	        session.setAttribute("email",email); //세션 생성
 	        model.addAttribute("result", apiResult);
-	        
-	        List<SnsProfileVO> naverSnslist = snsUserService.insertSnsUserList(snsProfileVO);
-	        snsProfileVO.getUserid();
-	        snsProfileVO.getSnscode();
-	        snsProfileVO.getNickname();
-	        snsProfileVO.getEmail();
-	        snsProfileVO.getReg_date();
         }
         
 		return "shop/main/EgovMain";

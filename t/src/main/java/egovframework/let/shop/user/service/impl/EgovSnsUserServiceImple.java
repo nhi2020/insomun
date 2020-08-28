@@ -16,9 +16,9 @@ public class EgovSnsUserServiceImple extends EgovAbstractServiceImpl implements 
 	@Resource(name = "EgovSnsUserDAO")
 	private EgovSnsUserDAO snsUserDAO;
 
-	public List<SnsProfileVO> insertSnsUserList(SnsProfileVO snsProfileVo) throws Exception {
-		List<SnsProfileVO> list = snsUserDAO.insertSnsUserList(snsProfileVo);
-		return list;
+	public int insertSnsUserList(SnsProfileVO snsProfileVo) throws Exception {
+		int result = snsUserDAO.insertSnsUserList(snsProfileVo);
+		return result;
 	}
 
 	public List<SnsProfileVO> selectSnsUserList(SnsProfileVO snsProfileVo) throws Exception {
