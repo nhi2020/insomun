@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import egovframework.com.cmm.ComDefaultVO;
+import egovframework.let.shop.user.service.EgovSnsUserService;
 import egovframework.let.shop.user.service.KakaoAPI;
 import egovframework.let.shop.user.service.NaverAPI;
 import egovframework.let.shop.user.service.SnsProfileVO;
@@ -54,6 +55,9 @@ public class EgovUserLoginController {
 	
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
+	
+	@Resource(name ="EgovSnsUserService")
+	protected EgovSnsUserService snsUserService;
 	
 	/**
 	 * XSS 방지 처리.
