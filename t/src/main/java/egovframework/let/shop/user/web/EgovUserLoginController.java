@@ -128,8 +128,11 @@ public class EgovUserLoginController {
 	        session.setAttribute("nickname", userInfo.get("nickname"));
 	        //session.setAttribute("email", userInfo.get("email"));//카카오에서 이메일 못가져옴
 	        session.setAttribute("snscode","kakao"); //세션 생성
+	        System.out.println("=================111============ ");
 	        session.setAttribute("access_Token", access_Token);
+	        System.out.println("=================222============ "+access_Token);
 	        int result2 = snsUserService.checkUserLogin(snsProfileVO);
+	        System.out.println("=================333============ "+access_Token);
 	        /*if(result2 == 0){
 	        	int result = snsUserService.insertSnsUser(snsProfileVO);
 	        	System.out.println("결과 : "+result);
