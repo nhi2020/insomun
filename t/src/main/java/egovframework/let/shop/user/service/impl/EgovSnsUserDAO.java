@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import egovframework.let.shop.user.service.SnsProfileVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
-@Repository("EgovMngSnsUserDAO")
+@Repository("EgovSnsUserDAO")
 public class EgovSnsUserDAO extends EgovAbstractDAO {
 
 	@SuppressWarnings("unchecked")
