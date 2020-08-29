@@ -123,16 +123,16 @@ public class EgovUserLoginController {
 	    	snsProfileVO.setUserid((String) userInfo.get("kakaoid"));
 	    	snsProfileVO.setSnscode("kakao");
 	    	snsProfileVO.setNickname((String) userInfo.get("nickname"));
-	    	snsProfileVO.setEmail((String)userInfo.get("email"));
+	    	//snsProfileVO.setEmail((String)userInfo.get("email"));
 	    	System.out.println("==============2======================");
 	    	//---------------------
 	    	System.out.println("Snsid : "+userInfo.toString());
 	        session.setAttribute("userid", userInfo.get("kakaoid"));
 	        session.setAttribute("nickname", userInfo.get("nickname"));
-	        session.setAttribute("email", userInfo.get("email"));//카카오에서 이메일 못가져옴
+	        //session.setAttribute("email", userInfo.get("email"));//카카오에서 이메일 못가져옴
 	        session.setAttribute("snscode","kakao"); //세션 생성
 	        session.setAttribute("access_Token", access_Token);
-	        
+	        System.out.println("==============3======================");
 	        int result2 = snsUserService.checkUserLogin(snsProfileVO);
 	        if(result2 == 0){
 	        	int result = snsUserService.insertSnsUser(snsProfileVO);
