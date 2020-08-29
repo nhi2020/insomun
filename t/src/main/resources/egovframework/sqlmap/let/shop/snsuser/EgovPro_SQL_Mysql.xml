@@ -70,7 +70,7 @@
 		]]>
 	</insert>
 	
-	<select id="EgovSnsUserDAO.checkUserLogin" parameterClass="SnsProfileVO" resultClass="java.lang.Integer" >
+	<select id="EgovSnsUserDAO.checkUserLogin" parameterClass="SnsProfile" resultClass="java.lang.Integer" >
 		<![CDATA[
 			SELECT 
 					COUNT(*) 
