@@ -133,8 +133,8 @@ public class EgovUserLoginController {
 	        session.setAttribute("snscode","kakao"); //세션 생성
 	        session.setAttribute("access_Token", access_Token);
 	        System.out.println("==============3======================");
-	        /*int result2 = snsUserService.checkUserLogin(snsProfileVO);
-	        if(result2 == 0){
+	        int result2 = snsUserService.checkUserLogin(snsProfileVO);
+	        /*if(result2 == 0){
 	        	int result = snsUserService.insertSnsUser(snsProfileVO);
 	        	System.out.println("결과 : "+result);
 	        }*/
