@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface EgovSnsUserService {
 	
-	public int insertSnsUserList(SnsProfileVO snsProfileVo)throws Exception;
+	public int insertSnsUser(SnsProfileVO snsProfileVo)throws Exception;
 	
 	public int checkUserLogin(SnsProfileVO snsProfileVo)throws Exception;
 }

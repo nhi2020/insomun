@@ -17,7 +17,7 @@ public class EgovSnsUserServiceImple extends EgovAbstractServiceImpl implements 
 	private EgovSnsUserDAO snsUserDAO;
 
 	public int insertSnsUserList(SnsProfileVO snsProfileVo) throws Exception {
-		int result = snsUserDAO.insertSnsUserList(snsProfileVo);
+		int result = snsUserDAO.insertSnsUser(snsProfileVo);
 		return result;
 	}
 

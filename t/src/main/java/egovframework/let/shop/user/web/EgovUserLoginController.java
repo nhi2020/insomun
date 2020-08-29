@@ -134,7 +134,7 @@ public class EgovUserLoginController {
 	        
 	        int result2 = snsUserService.checkUserLogin(snsProfileVO);
 	        if(result2 == 0){
-	        	int result = snsUserService.insertSnsUserList(snsProfileVO);
+	        	int result = snsUserService.insertSnsUser(snsProfileVO);
 	        	System.out.println("결과 : "+result);
 	        }
 	    }
