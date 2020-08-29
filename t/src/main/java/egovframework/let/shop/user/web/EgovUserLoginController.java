@@ -115,16 +115,13 @@ public class EgovUserLoginController {
 		String access_Token = kakao.getAccessToken(code);
 		HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
 	    System.out.println("login Controller : " + userInfo);
-	    System.out.println("====================================");
 	    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
 	    if (userInfo.get("kakaoid") != null) {
-	    	System.out.println("=================1===================");
 	    	//db에  값을 넣는 로직
 	    	snsProfileVO.setUserid((String) userInfo.get("kakaoid"));
 	    	snsProfileVO.setSnscode("kakao");
 	    	snsProfileVO.setNickname((String) userInfo.get("nickname"));
 	    	//snsProfileVO.setEmail((String)userInfo.get("email"));
-	    	System.out.println("==============2======================");
 	    	//---------------------
 	    	System.out.println("Snsid : "+userInfo.toString());
 	        session.setAttribute("userid", userInfo.get("kakaoid"));
@@ -132,7 +129,6 @@ public class EgovUserLoginController {
 	        //session.setAttribute("email", userInfo.get("email"));//카카오에서 이메일 못가져옴
 	        session.setAttribute("snscode","kakao"); //세션 생성
 	        session.setAttribute("access_Token", access_Token);
-	        System.out.println("==============3======================");
 	        int result2 = snsUserService.checkUserLogin(snsProfileVO);
 	        /*if(result2 == 0){
 	        	int result = snsUserService.insertSnsUser(snsProfileVO);
