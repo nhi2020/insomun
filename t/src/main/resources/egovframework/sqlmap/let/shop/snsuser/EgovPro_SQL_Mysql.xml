@@ -80,7 +80,7 @@
 					USERID = #userid#;
 					
 		]]>
-		
+	</select>
 	<!-- <insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
 		<![CDATA[
 			INSERT INTO 테이블명
