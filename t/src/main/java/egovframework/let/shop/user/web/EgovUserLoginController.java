@@ -1,8 +1,12 @@
 package egovframework.let.shop.user.web;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
+import javax.json.JsonObject;
+import javax.json.stream.JsonParser;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,9 +17,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
+import egovframework.com.cmm.ComDefaultVO;
 import egovframework.let.shop.user.service.EgovSnsUserService;
 import egovframework.let.shop.user.service.KakaoAPI;
 import egovframework.let.shop.user.service.NaverAPI;
@@ -38,7 +44,7 @@ import egovframework.rte.fdl.property.EgovPropertyService;
  *
  * </pre>
  */
-@Controller
+@Controller@SessionAttributes(types = ComDefaultVO.class)
 public class EgovUserLoginController {
 
 	@Autowired
