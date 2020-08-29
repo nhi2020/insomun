@@ -16,11 +16,7 @@ public class EgovSnsUserServiceImple extends EgovAbstractServiceImpl implements 
 	@Resource(name = "EgovSnsUserDAO")
 	private EgovSnsUserDAO snsUserDAO;
 
-	public int insertSnsUserList(SnsProfileVO snsProfileVo) throws Exception {
-		int result = snsUserDAO.insertSnsUser(snsProfileVo);
-		return result;
-	}
-
+	@Override
 	public List<SnsProfileVO> selectSnsUserList(SnsProfileVO snsProfileVo) throws Exception {
 		List<SnsProfileVO> list = snsUserDAO.selectSnsUserList(snsProfileVo);
 		return list;
@@ -29,6 +25,12 @@ public class EgovSnsUserServiceImple extends EgovAbstractServiceImpl implements 
 	@Override
 	public int checkUserLogin(SnsProfileVO snsProfileVo) throws Exception {
 		int result = snsUserDAO.checkUserLogin(snsProfileVo);
+		return result;
+	}
+
+	@Override
+	public int insertSnsUser(SnsProfileVO snsProfileVo) throws Exception {
+		int result = snsUserDAO.insertSnsUser(snsProfileVo);
 		return result;
 	}
 
