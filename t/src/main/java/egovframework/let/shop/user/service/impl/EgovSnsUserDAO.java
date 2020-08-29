@@ -20,8 +20,8 @@ public class EgovSnsUserDAO extends EgovAbstractDAO {
 		return (List<SnsProfileVO>) list("EgovSnsUserDAO.selectSnsUserList", snsProfileVo);
 	}
 	@SuppressWarnings("unchecked")
-	public int checkUserLogin(SnsProfileVO snsProfileVo){
-		System.out.println("snsProfileVo.getUserid() : "+snsProfileVo.getUserid());
-		return (Integer) select ("EgovSnsUserDAO.checkUserLogin", snsProfileVo);
+	public int checkUserLogin(String userid){
+		System.out.println("dao.getUserid() : "+userid);
+		return (Integer) select ("EgovSnsUserDAO.checkUserLogin", userid);
 	}
 }

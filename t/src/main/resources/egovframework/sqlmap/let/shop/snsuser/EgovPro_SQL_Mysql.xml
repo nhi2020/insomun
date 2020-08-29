@@ -70,14 +70,15 @@
 		]]>
 	</insert>
 	
-	<select id="EgovSnsUserDAO.checkUserLogin" parameterClass="SnsProfile" resultClass="java.lang.Integer" >
+	<select id="EgovSnsUserDAO.checkUserLogin" parameterClass="java.lang.String" resultClass="java.lang.Integer" >
 		<![CDATA[
 			SELECT 
 					COUNT(*) 
 			FROM 
 					SNSPROFILE 
 			WHERE 	
-					USERID = #userid#
+					1=1
+					AND USERID=#userid#
 					
 		]]>
 	</select>

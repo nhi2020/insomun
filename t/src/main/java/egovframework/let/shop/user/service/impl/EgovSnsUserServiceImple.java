@@ -23,9 +23,9 @@ public class EgovSnsUserServiceImple extends EgovAbstractServiceImpl implements 
 	}
 
 	@Override
-	public int checkUserLogin(SnsProfileVO snsProfileVo) throws Exception {
-		System.out.println("snsProfileVo.getUserid() : "+snsProfileVo.getUserid());
-		int result = snsUserDAO.checkUserLogin(snsProfileVo);
+	public int checkUserLogin(String userid) throws Exception {
+		System.out.println("userid : "+userid);
+		int result = snsUserDAO.checkUserLogin(userid);
 		return result;
 	}
 
