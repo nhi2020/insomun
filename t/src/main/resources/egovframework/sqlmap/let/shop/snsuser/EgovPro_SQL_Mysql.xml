@@ -77,7 +77,7 @@
 			FROM 
 					SNSPROFILE 
 			WHERE 	
-					USERID = #userid#;
+					USERID = #userid#
 					
 		]]>
 	</select>
