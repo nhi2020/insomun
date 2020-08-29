@@ -20,7 +20,7 @@ public class EgovSnsUserDAO extends EgovAbstractDAO {
 		return (List<SnsProfileVO>) list("EgovSnsUserDAO.selectSnsUserList", snsProfileVo);
 	}
 	@SuppressWarnings("unchecked")
-	public List<SnsProfileVO> checkUserLogin(SnsProfileVO snnProfileVO){
-		return (List<SnsProfileVO>) list("EgovSnsUserDAO.checkUserLogin", snnProfileVO);
+	public int checkUserLogin(SnsProfileVO snnProfileVO){
+		return (Integer) select ("EgovSnsUserDAO.checkUserLogin", snnProfileVO);
 	}
 }

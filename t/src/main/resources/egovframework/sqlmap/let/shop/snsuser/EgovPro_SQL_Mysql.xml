@@ -70,6 +70,17 @@
 		]]>
 	</insert>
 	
+	<select id="EgovMngProDAO.checkUserLogin" parameterClass="SnsProfileVO" resultClass="java.lang.Integer" >
+		<![CDATA[
+			SELECT 
+					COUNT(*) 
+			FROM 
+					SNSPROFILE 
+			WHERE 	
+					USERID = #USERID#;
+					
+		]]>
+		
 	<!-- <insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
 		<![CDATA[
 			INSERT INTO 테이블명
