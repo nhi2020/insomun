@@ -1,6 +1,8 @@
 package egovframework.let.shop.user.web;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.json.JsonObject;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import egovframework.com.cmm.ComDefaultVO;
+import egovframework.let.shop.user.service.EgovSnsUserService;
 import egovframework.let.shop.user.service.KakaoAPI;
 import egovframework.let.shop.user.service.NaverAPI;
 import egovframework.let.shop.user.service.SnsProfileVO;
@@ -54,6 +57,10 @@ public class EgovUserLoginController {
 	
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
+	
+	@Resource(name ="EgovSnsUserService")
+	protected EgovSnsUserService snsUserService;
+	
 	
 	/**
 	 * XSS 방지 처리.
@@ -111,14 +118,25 @@ public class EgovUserLoginController {
 
 	    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
 	    if (userInfo.get("kakaoid") != null) {
+	    	//db에  값을 넣는 로직
 	    	snsProfileVO.setUserid((String) userInfo.get("kakaoid"));
-	    	System.out.println("Snsid : "+userInfo.toString());
 	    	snsProfileVO.setSnscode("kakao");
+	    	snsProfileVO.setNickname((String) userInfo.get("nickname"));
+	    	snsProfileVO.setEmail((String)userInfo.get("email"));
+	    	snsProfileVO.setReg_date((String)userInfo.get("reg_date"));
+	    	//---------------------
+	    	System.out.println("Snsid : "+userInfo.toString());
 	        session.setAttribute("userid", userInfo.get("kakaoid"));
 	        session.setAttribute("nickname", userInfo.get("nickname"));
 	        session.setAttribute("email", userInfo.get("email"));//카카오에서 이메일 못가져옴
 	        session.setAttribute("snscode","kakao"); //세션 생성
 	        session.setAttribute("access_Token", access_Token);
+	        
+	        int result2 = snsUserService.checkUserLogin(snsProfileVO);
+	        if(result2 == 0){
+	        	int result = snsUserService.insertSnsUserList(snsProfileVO);
+	        	System.out.println("결과 : "+result);
+	        }
 	    }
 
 		return "shop/main/EgovMain";
@@ -152,13 +170,25 @@ public class EgovUserLoginController {
 	        String id = (String)response_obj.get("id");
 	        String name = (String)response_obj.get("name");
 	        String email = (String)response_obj.get("email");
-	        //4.파싱 닉네임 세션으로 저장
+	        //navre 정보 dbd에 담는 로직
 	        snsProfileVO.setSnscode("naver");
+	        snsProfileVO.setEmail((String)jsonObj.get("email"));
+	        snsProfileVO.setNickname((String)jsonObj.get("nickname"));
+	        snsProfileVO.setUserid((String)jsonObj.get("userid"));
+	        
+	        //----------------
+	        //4.파싱 닉네임 세션으로 저장
 	        session.setAttribute("userid",id); //세션 생성
 	        session.setAttribute("nickname",name); //세션 생성
 	        session.setAttribute("snscode","naver"); //세션 생성
 	        session.setAttribute("email",email); //세션 생성
 	        model.addAttribute("result", apiResult);
+	        
+	        int result2 = snsUserService.checkUserLogin(snsProfileVO);
+	        if(result2 == 0){
+	        	int result = snsUserService.insertSnsUserList(snsProfileVO);
+	        	System.out.println("결과 : "+result);
+	        }
         }
         
 		return "shop/main/EgovMain";

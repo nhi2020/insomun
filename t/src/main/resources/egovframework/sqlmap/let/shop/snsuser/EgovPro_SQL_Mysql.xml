@@ -61,7 +61,7 @@
 		]]>					
 	</select>
 	
-	<insert id="EgovSnsUserDAO.selectSnsUserList" parameterClass="SnsProfileVO">
+	<insert id="EgovSnsUserDAO.selectSnsUserList" parameterClass="SnsProfileVO" resultClass="java.lang.Integer">
 		<![CDATA[
 			INSERT INTO SNSPROFILE
 			(USERID, SNSCODE, NICKNAME, EMAIL, REG_DATE)
@@ -70,6 +70,17 @@
 		]]>
 	</insert>
 	
+	<select id="EgovMngProDAO.checkUserLogin" parameterClass="SnsProfileVO" resultClass="java.lang.Integer" >
+		<![CDATA[
+			SELECT 
+					COUNT(*) 
+			FROM 
+					SNSPROFILE 
+			WHERE 	
+					USERID = #USERID#;
+					
+		]]>
+		
 	<!-- <insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
 		<![CDATA[
 			INSERT INTO 테이블명
