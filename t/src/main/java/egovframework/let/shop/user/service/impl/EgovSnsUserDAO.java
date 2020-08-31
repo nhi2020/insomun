@@ -11,8 +11,8 @@ import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 public class EgovSnsUserDAO extends EgovAbstractDAO {
 
 	@SuppressWarnings("unchecked")
-	public int insertSnsUser(SnsProfileVO snsProfileVo) throws Exception{
-		return (Integer) insert("EgovSnsUserDAO.insertSnsUser", snsProfileVo);
+	public String insertSnsUser(SnsProfileVO snsProfileVo) throws Exception{
+		return (String)insert("EgovSnsUserDAO.insertSnsUser", snsProfileVo);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -23,8 +23,6 @@ public class EgovSnsUserDAO extends EgovAbstractDAO {
 	public int checkUserLogin(SnsProfileVO vo){
 		System.out.println("dao.getUserid() : "+vo.getUserid());
 		int result=(Integer)select("EgovSnsUserDAO.checkUserLogin", vo);
-		System.out.println("111111111111111");
-		System.out.println("111111111111111"+result);
 		return result;
 	}
 }

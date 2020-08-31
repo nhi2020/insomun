@@ -26,14 +26,12 @@ public class EgovSnsUserServiceImple extends EgovAbstractServiceImpl implements 
 	public int checkUserLogin(SnsProfileVO vo) throws Exception {
 		System.out.println("userid : "+vo.getUserid());
 		int result = snsUserDAO.checkUserLogin(vo);
-		System.out.println("111111111111111");
-		System.out.println("111111111111111"+result);
 		return result;
 	}
 
 	@Override
-	public int insertSnsUser(SnsProfileVO snsProfileVo) throws Exception {
-		int result = snsUserDAO.insertSnsUser(snsProfileVo);
+	public String insertSnsUser(SnsProfileVO snsProfileVo) throws Exception {
+		String result = snsUserDAO.insertSnsUser(snsProfileVo);
 		return result;
 	}
 

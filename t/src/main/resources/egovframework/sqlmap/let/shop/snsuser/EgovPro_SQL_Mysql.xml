@@ -61,14 +61,14 @@
 		]]>					
 	</select>
 	
-	<!-- <insert id="EgovSnsUserDAO.insertSnsUser" parameterClass="SnsProfileVO" resultClass="java.lang.Integer">
+	<insert id="EgovSnsUserDAO.insertSnsUser" parameterClass="SnsProfileVO">
 		<![CDATA[
 			INSERT INTO SNSPROFILE
 			(USERID, SNSCODE, NICKNAME, EMAIL, REG_DATE, DEL_YN)
 			VALUES
-			(#userid#,#snscode#,#nickname#,#email#,sysdate,'N')
+			(#userid#,#snscode#,#nickname#,#email#,SYSDATE(),'N')
 		]]>
-	</insert> -->
+	</insert>
 	
 	<select id="EgovSnsUserDAO.checkUserLogin" parameterClass="SnsProfileVO" resultClass="java.lang.Integer" >
 		<![CDATA[

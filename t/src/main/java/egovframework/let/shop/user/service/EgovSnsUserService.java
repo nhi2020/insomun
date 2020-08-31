@@ -6,7 +6,7 @@ public interface EgovSnsUserService {
 	
 	public List<SnsProfileVO> selectSnsUserList(SnsProfileVO snsProfileVo) throws Exception;
 	
-	public int insertSnsUser(SnsProfileVO snsProfileVo)throws Exception;
+	public String insertSnsUser(SnsProfileVO snsProfileVo)throws Exception;
 	
 	public int checkUserLogin(SnsProfileVO vo)throws Exception;
 }
