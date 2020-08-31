@@ -4,10 +4,8 @@ import java.io.Serializable;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import egovframework.let.shop.snsuser.service.Pro;
-
 @SuppressWarnings("serial")
-public class BuyerVO extends Pro implements Serializable {
+public class BuyerVO extends Buyer implements Serializable {
 	/** 검색시작일 */
 	private String searchBgnDe = "";
 

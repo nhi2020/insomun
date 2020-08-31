@@ -70,16 +70,14 @@
 		]]>
 	</insert>
 	
-	<select id="EgovSnsUserDAO.checkUserLogin" parameterClass="java.lang.String" resultClass="java.lang.Integer" >
+	<select id="EgovSnsUserDAO.checkUserLogin" parameterClass="java.lang.Integer" resultMap="java.lang.Integer" >
 		<![CDATA[
 			SELECT 
-					COUNT(*) 
+					COUNT(*) AS CNT
 			FROM 
 					SNSPROFILE 
 			WHERE 	
 					1=1
-					AND USERID=#userid#
-					
 		]]>
 	</select>
 	<!-- <insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">

@@ -22,6 +22,6 @@ public class EgovSnsUserDAO extends EgovAbstractDAO {
 	@SuppressWarnings("unchecked")
 	public int checkUserLogin(String userid){
 		System.out.println("dao.getUserid() : "+userid);
-		return (Integer) select ("EgovSnsUserDAO.checkUserLogin", userid);
+		return (Integer) select ("EgovSnsUserDAO.checkUserLogin", Integer.parseInt(userid));
 	}
 }
