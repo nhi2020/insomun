@@ -13,8 +13,8 @@
 </head>
 <body>
 <%@ include file="../inc/EgovShopHeader.jsp" %>
-  111<%-- ${sessionScope.userid }<br/>
-  ${sessionScope.nickname }<br/> --%>
-  <%-- ${sessionScope.email } --%>
+  ${sessionScope.userid }<br/>
+  ${sessionScope.nickname }<br/>
+  ${sessionScope.email }
 </body>
 </html>
