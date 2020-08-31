@@ -8,5 +8,5 @@ public interface EgovSnsUserService {
 	
 	public int insertSnsUser(SnsProfileVO snsProfileVo)throws Exception;
 	
-	public int checkUserLogin(String userid)throws Exception;
+	public int checkUserLogin(SnsProfileVO vo)throws Exception;
 }

@@ -11,50 +11,17 @@
 	<typeAlias  alias="Product" type="egovframework.let.shop.product.service.Product"/>
 	
 	<resultMap id="mngProductList" class="egovframework.let.shop.product.service.ProductVO"> <!-- property는 vo값 -->
-		<result property="m_id" column="M_ID" columnIndex="1" jdbcType="String"/>						 <!-- collum 은 db의 컬럼값 -->
 		<result property="p_idx" column="P_IDX" columnIndex="2"/>
-		<result property="product_name" column="PRODUCT_NAME" columnIndex="3" jdbcType="String"/>
-		<result property="price" column="PRICE" columnIndex="4" jdbcType="String"/>
-		<result property="reg_date" column="REG_DATE" columnIndex="5" jdbcType="String"/>
-		<result property="update_date" column="UPDATE_DATE" columnIndex="6" jdbcType="String"/>
-		<result property="main_img" column="MAIN_IMG" columnIndex="7" jdbcType="String"/>
-		<result property="main_path" column="MAIN_PATH" columnIndex="8" jdbcType="String"/>
-		<result property="sub_img" column="SUB_IMG" columnIndex="9" jdbcType="String"/>
-		<result property="d_loc" column="D_LOC" columnIndex="10" jdbcType="String"/>
-		<result property="d_how" column="D_HOW" columnIndex="11" jdbcType="String"/>
-		<result property="d_when" column="D_WHEN" columnIndex="12" jdbcType="String"/>
-		<result property="d_cost" column="D_COST" columnIndex="13" jdbcType="String"/>
-		<result property="product_method" column="PRODUCT_METHOD" columnIndex="14" jdbcType="String"/>
-		<result property="p_sdate" column="P_SDATE" columnIndex="15" jdbcType="String"/>
-		<result property="p_edate" column="P_EDATE" columnIndex="16" jdbcType="String"/>
-		<result property="del_yn" column="DEL_YN" columnIndex="17" jdbcType="String"/>
 	</resultMap>
 	
 	<select id="EgovMngProductDAO.selectMngProductList" parameterClass="ProductVO" resultMap="mngProductList" >
 	<!-- 쿼리문 작성 -->
 		<![CDATA[  
 			SELECT 
-				  M_ID
-				 ,P_IDX
-				 ,PRODUCT_NAME
-				 ,PRICE
-				 ,DATE_FORMAT(REG_DATE, '%Y-%m-%d') AS REG_DATE
-				 ,DATE_FORMAT(UPDATE_DATE, '%Y-%m-%d') AS UPDATE_DATE
-				 ,MAIN_IMG
-				 ,MAIN_PATH
-				 ,SUB_IMG
-				 ,D_LOC
-				 ,D_HOW
-				 ,D_WHEN
-				 ,D_COST
-				 ,PRODUCT_METHOD
-				 ,DATE_FORMAT(P_SDATE, '%Y-%m-%d') AS P_SDATE
-				 ,DATE_FORMAT(P_EDATE, '%Y-%m-%d') AS P_EDATE
-				 ,DEL_YN
+				 P_IDX
 			FROM
 				PRODUCT
 			WHERE 1=1
-			AND DEL_YN = 'N'
 		]]>
 	</select>
 	<!-- <resultMap id="mngMemberList" class="egovframework.let.shop.member.service.MemberVO"> property는 vo값
@@ -161,7 +128,6 @@
 			FROM
 				PRODUCT
 			WHERE 1=1
-			AND DEL_YN = 'N'
 		]]>
 			<isEqual prepend="AND" property="searchCnd" compareValue="0">
 				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>

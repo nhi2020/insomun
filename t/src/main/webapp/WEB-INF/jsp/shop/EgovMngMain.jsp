@@ -37,11 +37,7 @@
 <div class="container text-center">
 	<h2>마켓 컬리</h2>
 		<c:forEach items="${list}" var="result">
-			<a>상품 : ${result.product_name }</a> <p>
-			가격 : ${result.price }<p>
-			${result.p_sdate }<p>
-			${result.p_edate }<p>
-			${result.main_img }
+			<a>상품 : ${result.p_idx }</a> <p>
 		</c:forEach>
 </div>
 	<div id="paging_div">

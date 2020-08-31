@@ -136,7 +136,7 @@ public class EgovUserLoginController {
 	        System.out.println("=================111============ ");
 	        //session.setAttribute("access_Token", access_Token);
 	        System.out.println("=================222============ "+access_Token);
-	        int result2 = snsUserService.checkUserLogin(snsProfileVO.getUserid().trim());
+	        int result2 = snsUserService.checkUserLogin(snsProfileVO);
 	        System.out.println("=================333============ "+result2);
 	        /*if(result2 == 0){
 	        	int result = snsUserService.insertSnsUser(snsProfileVO);
@@ -189,7 +189,7 @@ public class EgovUserLoginController {
 	        session.setAttribute("email",email); //세션 생성
 	        model.addAttribute("result", apiResult);
 	        
-	        int result2 = snsUserService.checkUserLogin(id);
+	        int result2 = snsUserService.checkUserLogin(snsProfileVO);
 	        if(result2 == 0){
 	        	int result = snsUserService.insertSnsUser(snsProfileVO);
 	        	System.out.println("결과 : "+result);
