@@ -16,6 +16,6 @@
 <body>
 <%@ include file="../inc/EgovShopHeader.jsp" %> 
   	<a href="${kakaoUrl}">카카오로그인</a><br/>
-  	<a href="${naverUrl}">네이버로그인</a> 
+  	<a href="${naverUrl}">네이버로그인</a>
 </body>
 </html>

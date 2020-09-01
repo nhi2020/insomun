@@ -16,5 +16,19 @@
   ${sessionScope.userid }<br/>
   ${sessionScope.nickname }<br/>
   ${sessionScope.email }
+  
+ <%--  <c:if test="${sessionscope.userid == null }"> --%>
+	<div class="container">
+		<form name="login" action="/shop/user/EgovUserLoginForm.do">
+			  	<button type="button">login</button>
+		</form>
+	</div>
+  <%-- </c:if> --%>
+  
+  <c:if test="${!sessionscope.userid == null }">
+	  <form name="logout" action="/shop/user/EgovUserLogout.do">
+	  	<button type="button">logout</button>
+	  </form>
+  </c:if>
 </body>
 </html>

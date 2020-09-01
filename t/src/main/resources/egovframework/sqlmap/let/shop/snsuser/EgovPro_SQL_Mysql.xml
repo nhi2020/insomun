@@ -8,18 +8,20 @@
 	<typeAlias  alias="SnsProfile" type="egovframework.let.shop.user.service.SnsProfile"/>
 					
 	<resultMap id="snsProfileList" class="egovframework.let.shop.user.service.SnsProfileVO"> <!-- property는 vo값 -->
-		<result property="userid" column="USERID" columnIndex="1"/>						 <!-- collum 은 db의 컬럼값 -->
-		<result property="snscode" column="SNSCODE" columnIndex="2"/>			 <!--  db의 컬럼 순서 -->
-		<result property="nickname" column="NICKNAME" columnIndex="3"/>
-		<result property="email" column="EMAIL" columnIndex="4"/>
-		<result property="reg_date" column="REG_DATE" columnIndex="5"/>
-		<result property="del_yn" column="DEL_YN" columnIndex="6"/>
+		<result property="sns_idx" column="SNS_IDX" columnIndex="1"/>
+		<result property="userid" column="USERID" columnIndex="2"/>						 <!-- collum 은 db의 컬럼값 -->
+		<result property="snscode" column="SNSCODE" columnIndex="3"/>			 <!--  db의 컬럼 순서 -->
+		<result property="nickname" column="NICKNAME" columnIndex="4"/>
+		<result property="email" column="EMAIL" columnIndex="5"/>
+		<result property="reg_date" column="REG_DATE" columnIndex="6"/>
+		<result property="del_yn" column="DEL_YN" columnIndex="7"/>
 	</resultMap>
 	
 	<select id="EgovMngProDAO.selectMngProList" parameterClass="SnsProfileVO" resultMap="snsProfileList" >
 		<![CDATA[
-			SELECT 
-				   USERID
+			SELECT
+				   SNS_IDX 
+				  ,USERID
 				  ,SNSCODE
 				  ,NICKNAME
 				  ,EMAIL
