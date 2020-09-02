@@ -41,6 +41,24 @@
 	  <input class="form-control mr-sm-2" type="text" placeholder="Search">
 	  <button class="btn btn-success" type="submit">Search</button>
 	</form>
+	
+	<c:choose>
+		<c:when test="${sessionScope.userid == null || sessionScope.userid == ' ' }">
+			<div class="container">
+				<form name="login" action="/shop/user/EgovUserLoginForm.do">
+					  	<button type="button">login</button>
+				</form>
+			</div>
+		</c:when>
+	  
+		 <c:when test="${!sessionScope.userid == null || !sessionScope.userid == ' ' }">
+		 	<div class="container">
+				  <form name="logout" action="/shop/user/EgovUserLogout.do">
+				  		<button type="button">logout</button>
+				  </form>
+			 </div>
+		</c:when>
+</c:choose>
 </nav>
 </body>
 </html>

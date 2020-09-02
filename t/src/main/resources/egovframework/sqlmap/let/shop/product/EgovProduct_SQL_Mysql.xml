@@ -11,7 +11,7 @@
 	<typeAlias  alias="Product" type="egovframework.let.shop.product.service.Product"/>
 	
 	<resultMap id="mngProductList" class="egovframework.let.shop.product.service.ProductVO"> <!-- property는 vo값 -->
-		<result property="p_idx" column="P_IDX" columnIndex="2"/>
+		<result property="p_idx" column="P_IDX" columnIndex="1"/>
 	</resultMap>
 	
 	<select id="EgovMngProductDAO.selectMngProductList" parameterClass="ProductVO" resultMap="mngProductList" >
