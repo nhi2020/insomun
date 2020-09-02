@@ -40,6 +40,7 @@
 			<a>상품 : ${result.p_idx }</a> <p>
 		</c:forEach>
 </div>
+
 	<div id="paging_div">
 		<ul class="paging_align">
 			<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="fn_egov_select_productList" />
