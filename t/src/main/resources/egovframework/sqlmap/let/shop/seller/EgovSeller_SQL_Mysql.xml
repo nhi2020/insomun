@@ -83,16 +83,4 @@
 			(#userid#,#snscode#,#nickname#,#email#,SYSDATE(),'N')
 		]]>
 	</insert>
-	
-	<select id="EgovSnsUserDAO.checkUserLogin" parameterClass="SnsProfileVO" resultClass="java.lang.Integer" >
-		<![CDATA[
-			SELECT 
-					COUNT(*) AS CNT
-			FROM 
-					SNSPROFILE 
-			WHERE 	
-					1=1 AND USERID=#userid#
-		]]>
-	</select>
-	 -->
 </sqlMap>
