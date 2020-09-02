@@ -57,10 +57,6 @@
 			<isEqual prepend="AND" property="searchCnd" compareValue="1">
 				<![CDATA[	SNSCODE LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 			</isEqual>	
-		<![CDATA[			
-			ORDER BY REG_DATE DESC
-			LIMIT #recordCountPerPage# OFFSET #firstIndex#
-		]]>					
 	</select>
 	
 	<insert id="EgovSnsUserDAO.insertSnsUser" parameterClass="SnsProfileVO">
