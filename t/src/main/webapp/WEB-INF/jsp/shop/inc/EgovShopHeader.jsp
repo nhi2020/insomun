@@ -57,7 +57,7 @@
 	<c:choose>
 		<c:when test="${sessionScope.userid eq 'admin' || sessionScope.userid eq 'admin' }">
 			<div class="container">
-				<button type="button" id="btnlogin">login</button>
+				<button type="button" id="#adminpage">admin</button>
 			</div>
 		</c:when>
 	
