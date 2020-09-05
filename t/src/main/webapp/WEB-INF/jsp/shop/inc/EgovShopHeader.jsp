@@ -60,18 +60,13 @@
 				<button type="button" id="btnlogin">login</button>
 			</div>
 		</c:when>
-	  
-	  <c:when test="${sessionScope.userid = null and sessionScope.userid eq ' ' }">
-			<div class="container">
-				<button type="button" id="btnlogin">login</button>
-			</div>
-		</c:when>
-	  
+	
 		 <c:when test="${sessionScope.userid != null and sessionScope.userid ne ' ' }">
 		 	<div class="container">
 				 <button type="button" id="btnlogout">logout</button>
 			 </div>
 		</c:when>
+		
 		<c:otherwise>
 			<button type="button" id="btnlogin">login</button>
 		</c:otherwise>
