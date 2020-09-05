@@ -10,6 +10,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#btnlogin").click(function(){	
+			location.href = "/shop/user/EgovUserLoginForm.do";
+		});
+	});
+	$(document).ready(function(){
+		$("#btnlogout").click(function(){	
+			location.href = "/shop/user/EgovUserLogout.do";
+		});
+	});
+</script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -43,21 +55,26 @@
 	</form>
 	
 	<c:choose>
-		<c:when test="${sessionScope.userid == null || sessionScope.userid == ' ' }">
+		<c:when test="${sessionScope.userid eq 'admin' || sessionScope.userid eq 'admin' }">
 			<div class="container">
-				<form name="login" action="/shop/user/EgovUserLoginForm.do">
-					  	<button type="button">login</button>
-				</form>
+				<button type="button" id="btnlogin">login</button>
 			</div>
 		</c:when>
 	  
-		 <c:when test="${!sessionScope.userid == null || !sessionScope.userid == ' ' }">
+	  <c:when test="${sessionScope.userid = null and sessionScope.userid eq ' ' }">
+			<div class="container">
+				<button type="button" id="btnlogin">login</button>
+			</div>
+		</c:when>
+	  
+		 <c:when test="${sessionScope.userid != null and sessionScope.userid ne ' ' }">
 		 	<div class="container">
-				  <form name="logout" action="/shop/user/EgovUserLogout.do">
-				  		<button type="button">logout</button>
-				  </form>
+				 <button type="button" id="btnlogout">logout</button>
 			 </div>
 		</c:when>
+		<c:otherwise>
+			<button type="button" id="btnlogin">login</button>
+		</c:otherwise>
 </c:choose>
 </nav>
 </body>
