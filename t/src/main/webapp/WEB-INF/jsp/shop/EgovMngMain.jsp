@@ -29,7 +29,13 @@
 		document.frm.action = "<c:url value='/shop/product/EgovMngMain.do'/>";
 		document.frm.submit();
 	}
+	
 //-->
+$(document).ready(function(){
+		$("#btnUpdate").click(function(){	
+			location.href = "/shop/user/EgovProductListUpdate.do";
+		});
+	});
 </script>
 </head>
 <body>
@@ -39,8 +45,10 @@
 		<c:forEach items="${list}" var="result">
 			<a>상품 : ${result.p_idx }</a> <p>
 		</c:forEach>
+	<div>
+		<button id="btnuUpdate">수정</button>
+	</div>
 </div>
-
 	<div id="paging_div">
 		<ul class="paging_align">
 			<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="fn_egov_select_productList" />

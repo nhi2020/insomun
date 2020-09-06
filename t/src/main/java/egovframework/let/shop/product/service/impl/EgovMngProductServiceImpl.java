@@ -49,4 +49,10 @@ public class EgovMngProductServiceImpl extends EgovAbstractServiceImpl implement
 		return cnt;
 	}
 
+	@Override
+	public List<ProductVO> updateMngProduct(ProductVO productVO) throws Exception {
+		List<ProductVO> list = mngProductDAO.updateMngProduct(productVO);
+		return list;
+	}
+
 }
