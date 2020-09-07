@@ -36,8 +36,17 @@ public class Product implements Serializable {
 	private String p_tage;
 	private String p_sdate;
 	private String p_edate;
-	private String p_states;
+	private String p_status;
 	private String p_q;
+	private String a_id;
+
+	public String getA_id() {
+		return a_id;
+	}
+
+	public void setA_id(String a_id) {
+		this.a_id = a_id;
+	}
 
 	public String getS_id() {
 		return s_id;
@@ -119,12 +128,13 @@ public class Product implements Serializable {
 		this.p_edate = p_edate;
 	}
 
-	public String getP_states() {
-		return p_states;
+
+	public String getP_status() {
+		return p_status;
 	}
 
-	public void setP_states(String p_states) {
-		this.p_states = p_states;
+	public void setP_status(String p_status) {
+		this.p_status = p_status;
 	}
 
 	public String getP_q() {

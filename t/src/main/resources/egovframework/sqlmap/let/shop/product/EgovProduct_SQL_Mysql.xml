@@ -47,7 +47,7 @@
 			WHERE 1=1
 		]]>
 	</select>
-	<select id="EgovMngProDAO.selectMngProList" parameterClass="ProVO" resultMap="mngProList" >
+	<!-- <select id="EgovMngProDAO.selectMngProList" parameterClass="ProVO" resultMap="mngProList" >
 		<![CDATA[
 			SELECT 
 				   M_ID2
@@ -73,7 +73,7 @@
 			ORDER BY IDX DESC
 			LIMIT #recordCountPerPage# OFFSET #firstIndex#
 		]]>					
-	</select> -->
+	</select> --> 
 	
 	<select id="EgovMngProductDAO.selectMngProductListCnt" parameterClass="ProductVO" resultClass="java.lang.Integer" >
 		<![CDATA[
