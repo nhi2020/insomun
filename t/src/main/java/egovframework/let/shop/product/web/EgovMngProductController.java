@@ -114,10 +114,11 @@ public class EgovMngProductController {
 		return "shop/EgovMngMain";
 	}
 	@RequestMapping(value="/shop/user/EgovProductUpdate.do")
-	public String egovProductUpdate(ProductVO productVO,  HttpServletRequest request,
+	public String egovProductUpdate(@ModelAttribute ProductVO productVO,  HttpServletRequest request,
 			ModelMap model) throws Exception {
 	    List<ProductVO> list = mngProductService.updateMngProduct(productVO);
-	    model.addAttribute("list",list);
+	    
+	    
 	    return "shop/EgovProductUpdate";
 	}
 

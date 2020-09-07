@@ -38,6 +38,7 @@ public class EgovMngProductServiceImpl extends EgovAbstractServiceImpl implement
      * 
      * @see egovframework.let.cop.bbs.brd.service.EgovBBSManageService#selectBoardArticles(egovframework.let.cop.bbs.brd.service.BoardVO)
      */
+    @Override
     public List<ProductVO> selectMngProductList(ProductVO productVO) throws Exception {
     	List<ProductVO> list = mngProductDAO.selectMngProductList(productVO);
     	return list;

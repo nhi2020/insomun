@@ -68,7 +68,7 @@
 		</c:when>
 		
 		<c:otherwise>
-			<button type="button" id="btnlogin">login</button>
+			<button type="button" id="btnlogin" class="btn btn-info">login</button>
 		</c:otherwise>
 </c:choose>
 </nav>

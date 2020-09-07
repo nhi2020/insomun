@@ -36,6 +36,11 @@ $(document).ready(function(){
 			location.href = "/shop/user/EgovProductListUpdate.do";
 		});
 	});
+$(document).ready(function(){
+	$("#btnInsert").click(function(){	
+		location.href = "##insert";
+	});
+});
 </script>
 </head>
 <body>
@@ -43,16 +48,23 @@ $(document).ready(function(){
 <div class="container text-center">
 	<h2>마켓 컬리</h2>
 		<c:forEach items="${list}" var="result">
-			<a>상품 : ${result.p_idx }</a> <p>
+			<a>순번 : ${result.p_idx }</a> <p>
+			<a>판매자 아이디 : ${result.s_id }</a> <p>
+			<a>상품 이름 : ${result.p_name }</a> <p>
+			<a>상품 가격 : ${result.p_price }</a> <p>
+			
 		</c:forEach>
 	<div>
-		<button id="btnuUpdate">수정</button>
+		<button id="btnUpdate" class="btn btn-primary">수정</button>
+		<button id="btnInsert" class="btn btn-danger">작성</button>
 	</div>
 </div>
-	<div id="paging_div">
-		<ul class="paging_align">
-			<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="fn_egov_select_productList" />
-		</ul>
+	<div class="container">
+		<div id="paging_div">
+			<ul class="paging_align">
+				<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="fn_egov_select_productList" />
+			</ul>
+		</div>
 	</div>
 </body>
 </html>

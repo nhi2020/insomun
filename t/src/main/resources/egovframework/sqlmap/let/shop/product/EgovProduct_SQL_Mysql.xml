@@ -47,33 +47,6 @@
 			WHERE 1=1
 		]]>
 	</select>
-	<!-- <select id="EgovMngProDAO.selectMngProList" parameterClass="ProVO" resultMap="mngProList" >
-		<![CDATA[
-			SELECT 
-				   M_ID2
-				  ,S_EMAIL
-				  ,P_IDX2
-				  ,S_ID
-				  ,J_IDX
-				  ,M_PHONE
-				  ,M_ADDR
-				  ,J_PRO
-			FROM
-				PRO
-			WHERE 1=1
-			AND DEL_YN = 'N'
-		]]>				
-			<isEqual prepend="AND" property="searchCnd" compareValue="0"> prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다.
-				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
-			</isEqual>
-			<isEqual prepend="AND" property="searchCnd" compareValue="1">
-				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
-			</isEqual>	
-		<![CDATA[			
-			ORDER BY IDX DESC
-			LIMIT #recordCountPerPage# OFFSET #firstIndex#
-		]]>					
-	</select> --> 
 	
 	<select id="EgovMngProductDAO.selectMngProductListCnt" parameterClass="ProductVO" resultClass="java.lang.Integer" >
 		<![CDATA[
@@ -102,6 +75,12 @@
 								P_Q = #p_q#
  		]]>
  	</update>
+ 	<insert id="EgovMngProductDAO.insertMngProduct" parameterClass="ProductVO">
+ 		<![CDATA[
+ 					
+ 		]]>
+ 	</insert>
+ 	
 	<!-- <insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
 		<![CDATA[
 			INSERT INTO 테이블명
