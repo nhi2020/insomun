@@ -36,11 +36,11 @@ $(document).ready(function(){
 			location.href = "/shop/user/EgovProductListUpdate.do";
 		});
 	});
-$(document).ready(function(){
+/* $(document).ready(function(){
 	$("#btnInsert").click(function(){	
 		location.href = "##insert";
 	});
-});
+}); */
 </script>
 </head>
 <body>

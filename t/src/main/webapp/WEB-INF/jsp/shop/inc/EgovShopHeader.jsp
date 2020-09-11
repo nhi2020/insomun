@@ -26,7 +26,7 @@
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	<!-- Brand -->
-	<a class="navbar-brand" href="#">Logo</a>
+	<a class="navbar-brand" href="/shop/product/EgovMngMain.do">Logo</a>
 
 	<!-- Links -->
 	<ul class="navbar-nav">
@@ -69,6 +69,8 @@
 		
 		<c:otherwise>
 			<button type="button" id="btnlogin" class="btn btn-info">login</button>
+			<button type="button" id="btnlogout" class="btn btn-info">logout</button>
+			<button type="button" id="btnSignIn" class="btn btn-danger" >회원가입</button>
 		</c:otherwise>
 </c:choose>
 </nav>
