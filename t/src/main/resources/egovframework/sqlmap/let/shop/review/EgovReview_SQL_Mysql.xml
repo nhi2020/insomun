@@ -4,29 +4,33 @@
 <sqlMap namespace="ReviewList">
 
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
-	<typeAlias  alias="SnsProfileVO" type="egovframework.let.shop.user.service.SnsProfileVO"/>
-	<typeAlias  alias="SnsProfile" type="egovframework.let.shop.user.service.SnsProfile"/>
+	<typeAlias  alias="ReviewVO" type="egovframework.let.shop.review.service.ReviewVO"/>
+	<typeAlias  alias="Review" type="egovframework.let.shop.review.service.review"/>
 					
-	<resultMap id="snsProfileList" class="egovframework.let.shop.user.service.SnsProfileVO"> property는 vo값
-		<result property="sns_idx" column="SNS_IDX" columnIndex="1"/>
-		<result property="userid" column="USERID" columnIndex="2"/>						 collum 은 db의 컬럼값
-		<result property="snscode" column="SNSCODE" columnIndex="3"/>			  db의 컬럼 순서
-		<result property="nickname" column="NICKNAME" columnIndex="4"/>
-		<result property="email" column="EMAIL" columnIndex="5"/>
-		<result property="reg_date" column="REG_DATE" columnIndex="6"/>
-		<result property="del_yn" column="DEL_YN" columnIndex="7"/>
+	<resultMap id="ReviewList" class="egovframework.let.shop.review.service.ReviewVO"> <!-- property는 vo값 -->
+		<result property="s_id" column="S_ID" columnIndex="1"/>
+		<result property="sns_idx" column="SNS_IDX" columnIndex="2"/>						 <!-- collum 은 db의 컬럼값 -->
+		<result property="r_idx" column="R_IDX" columnIndex="3"/>			  <!-- db의 컬럼 순서 -->
+		<result property="p_idx" column="P_IDX" columnIndex="4"/>
+		<result property="r_content" column="R_CONTENT" columnIndex="5"/>
+		<result property="r_regdate" column="R_REGDATE" columnIndex="6"/>
+		<result property="r_delyn" column="R_DELYN" columnIndex="7"/>
+		<result property="r_div" column="R_DIV" columnIndex="8"/>
+		<result property="r_score" column="R_SCORE" columnIndex="9"/>
 	</resultMap>
 	
-	<select id="EgovMngProDAO.selectMngProList" parameterClass="SnsProfileVO" resultMap="snsProfileList" >
+	<select id="EgovReviewDAO.selectReviewList" parameterClass="ReviewVO" resultMap="ReviewList" >
 		<![CDATA[
 			SELECT
-				   SNS_IDX 
-				  ,USERID
-				  ,SNSCODE
-				  ,NICKNAME
-				  ,EMAIL
-				  ,REG_DATE
-				  ,DEL_YN
+				   S_ID 
+				  ,SNS_IDX
+				  ,R_IDX
+				  ,P_IDX
+				  ,R_CONTENT
+				  ,R_REGDATE
+				  ,R_DELYN
+				  ,R_DIV
+				  ,R_SCORE
 			FROM
 				SNSPROFILE
 			WHERE 1=1
