@@ -10,13 +10,8 @@
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-	$("#btnlogout").click(function(){	
-		location.href = "shop/main/EgovMain";
-	});
-});
-</script>
+
+
 </head>
 
 <body>
@@ -24,12 +19,13 @@ $(document).ready(function(){
   ${sessionScope.userid }<br/>
   ${sessionScope.nickname }<br/>
   ${sessionScope.email }
+  <h2>메인 화면 입니다.</h2>
+  <c:forEach items="${list}" var="result">
+	${result.userid }
+	${result.nickname}
+	${result.email }
+  </c:forEach>
   
-  
- <%--  <c:if test="${!sessionscope.userid ne null }"> --%>
-	  <form name="logout" action="/shop/user/EgovUserLogout.do">
-	  	<button type="button" id="btnlogout">logout</button>
-	  </form>
-  <%-- </c:if> --%>
+
 </body>
 </html>
