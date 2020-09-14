@@ -5,7 +5,7 @@
 
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias  alias="ReviewVO" type="egovframework.let.shop.review.service.ReviewVO"/>
-	<typeAlias  alias="Review" type="egovframework.let.shop.review.service.review"/>
+	<typeAlias  alias="Review" type="egovframework.let.shop.review.service.Review"/>
 					
 	<resultMap id="ReviewList" class="egovframework.let.shop.review.service.ReviewVO"> <!-- property는 vo값 -->
 		<result property="s_id" column="S_ID" columnIndex="1"/>
