@@ -201,7 +201,9 @@ public class EgovUserLoginController {
 	
 	@RequestMapping(value="/shop/user/EgovUserLogout.do")
 	public String egovUserLogout(HttpSession session) {
-	    session.invalidate();
+		kakao.kakaoLogout((String)session.getAttribute("access_Token"));
+	    session.removeAttribute("access_Token");
+	    session.removeAttribute("userId");
 	    return "shop/main/EgovMain";
 	}
 
