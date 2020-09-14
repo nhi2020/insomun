@@ -69,8 +69,7 @@
 		
 		<c:otherwise>
 			<button type="button" id="btnlogin" class="btn btn-info">login</button>
-			<!-- <button type="button" id="btnlogout" class="btn btn-info">logout</button> -->
-			<a href="https://kauth.kakao.com/oauth/logout?client_id=7e2a4e5240c656b96978c81a1a99fa2a&logout_redirect_uri=http://xn--z92bt9ibqf.net/shop/user/EgovKakaoLogin.do">logout</a>
+			<button type="button" id="btnlogout" class="btn btn-info">logout</button>
 			<button type="button" id="btnSignIn" class="btn btn-danger" >회원가입</button>
 		</c:otherwise>
 </c:choose>
