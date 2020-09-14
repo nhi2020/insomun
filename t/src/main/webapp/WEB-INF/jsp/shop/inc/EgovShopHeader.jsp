@@ -24,9 +24,9 @@
 				location.href = "https://kauth.kakao.com/oauth/logout?client_id=7e2a4e5240c656b96978c81a1a99fa2a&logout_redirect_uri=http://xn--z92bt9ibqf.net/shop/user/EgovUserLogout.do";
 			}else if(snscode=='naver'){
 				//location.href = "https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=7e2a4e5240c656b96978c81a1a99fa2a&client_secret=SiffbMIVyj&access_token="+access_token+"&service_provider=NAVER";
-				winpop=open("https://nid.naver.com/nidlogin.logout");
+				//winpop=open("https://nid.naver.com/nidlogin.logout");
 				location.href ="http://xn--z92bt9ibqf.net/shop/user/EgovUserLogout.do";
-				winpop.self.close();
+				//winpop.self.close();
 			}
 		});
 	});
