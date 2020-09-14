@@ -10,25 +10,26 @@
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#btnlogout").click(function(){	
+		location.href = "shop/main/EgovMain";
+	});
+});
+</script>
 </head>
+
 <body>
 <%@ include file="../inc/EgovShopHeader.jsp" %>
   ${sessionScope.userid }<br/>
   ${sessionScope.nickname }<br/>
   ${sessionScope.email }
   
- <%--  <c:if test="${sessionscope.userid == null }"> --%>
-	<div class="container">
-		<form name="login" action="/shop/user/EgovUserLoginForm.do">
-			  	<button type="button">login</button>
-		</form>
-	</div>
-  <%-- </c:if> --%>
   
-  <c:if test="${!sessionscope.userid == null }">
+ <%--  <c:if test="${!sessionscope.userid ne null }"> --%>
 	  <form name="logout" action="/shop/user/EgovUserLogout.do">
-	  	<button type="button">logout</button>
+	  	<button type="button" id="btnlogout">logout</button>
 	  </form>
-  </c:if>
+  <%-- </c:if> --%>
 </body>
 </html>
