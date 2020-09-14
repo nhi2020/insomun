@@ -92,7 +92,7 @@
 				<div class="btn_detail01"><a href="#LINK" onclick="javascript:goMenuPage('2000000'); return false;" ><img src="<c:url value='/'/>images/header/btn_detailview.gif" width="71" height="17" alt="자세히 보기" title="자세히 보기 링크를 통해 화면으로 이동합니다." /></a></div>
 				<div class="leftcontent01_btn">
 					<ul>
-						<li><a href="shop/main/EgovMain"><img src="<c:url value='/'/>images/header/btn_leftcontent01.gif" width="70" height="87" alt="입소문 마켓" title="자세히 보기 링크를 통해 입소문 마켓화면으로 이동합니다." /></a></li>
+						<li><a href="shop/EgovMngMain"><img src="<c:url value='/'/>images/header/btn_leftcontent01.gif" width="70" height="87" alt="입소문 마켓" title="자세히 보기 링크를 통해 입소문 마켓화면으로 이동합니다." /></a></li>
 					</ul>
 				</div>
 			</div>

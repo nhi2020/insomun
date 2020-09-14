@@ -28,7 +28,10 @@ public class KakaoAPI {
 		String kakaoUrl = "https://kauth.kakao.com/oauth/authorize?client_id=" + K_CLIENT_ID + "&redirect_uri=" + K_REDIRECT_URI + "&response_type=code"; 
 		return kakaoUrl; 
 	}
-	
+	public String logout(){
+		String kakaoLogout = "https://kauth.kakao.com/oauth/logout?client_id=7e2a4e5240c656b96978c81a1a99fa2a&logout_redirect_uri=http://xn--z92bt9ibqf.net/shop/user/EgovKakaoLogin.do";
+		return "";
+	}
     public String getAccessToken(String authorize_code) {
         String access_Token = "";
         String refresh_Token = "";

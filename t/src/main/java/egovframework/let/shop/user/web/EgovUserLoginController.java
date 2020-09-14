@@ -123,7 +123,6 @@ public class EgovUserLoginController {
 	    	snsProfileVO.setSnscode("kakao");
 	    	snsProfileVO.setNickname((String) userInfo.get("nickname"));
 	    	String email=EgovStringUtil.isNullToString((String)userInfo.get("email"));
-	    	
 	    	snsProfileVO.setEmail(email);
 	    	//---------------------
 	        session.setAttribute("userid", userInfo.get("kakaoid"));
@@ -175,10 +174,9 @@ public class EgovUserLoginController {
 	        String email = (String)response_obj.get("email");
 	        //navre 정보 dbd에 담는 로직
 	        snsProfileVO.setSnscode("naver");
-	        snsProfileVO.setEmail((String)jsonObj.get("email"));
-	        snsProfileVO.setNickname((String)jsonObj.get("nickname"));
-	        snsProfileVO.setUserid((String)jsonObj.get("userid"));
-	        
+	        snsProfileVO.setEmail(email);
+	        snsProfileVO.setNickname(name);
+	        snsProfileVO.setUserid(id);
 	        //----------------
 	        //4.파싱 닉네임 세션으로 저장
 	        session.setAttribute("userid",id); //세션 생성
@@ -203,9 +201,6 @@ public class EgovUserLoginController {
 	
 	@RequestMapping(value="/shop/user/EgovUserLogout.do")
 	public String egovUserLogout(HttpSession session) {
-	    /*kakao.kakaoLogout((String)session.getAttribute("access_Token"));
-	    session.removeAttribute("access_Token");
-	    session.removeAttribute("userId");*/
 	    session.invalidate();
 	    return "shop/main/EgovMain";
 	}
