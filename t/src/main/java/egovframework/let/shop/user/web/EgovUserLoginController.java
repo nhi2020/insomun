@@ -1,12 +1,13 @@
 package egovframework.let.shop.user.web;
 
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.annotation.Resource;
-import javax.json.JsonObject;
-import javax.json.stream.JsonParser;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -113,6 +114,7 @@ public class EgovUserLoginController {
 	@RequestMapping(value = "/shop/user/EgovKakaoLogin.do")
 	public String egovUserLogin(@RequestParam("code") String code, SnsProfileVO snsProfileVO, HttpServletRequest request, ModelMap model, HttpSession session)
 			  throws Exception{
+		System.out.println("code : "+code);
 		String access_Token = kakao.getAccessToken(code);
 		HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
 	    System.out.println("login Controller : " + userInfo);
@@ -129,7 +131,7 @@ public class EgovUserLoginController {
 	        session.setAttribute("nickname", userInfo.get("nickname"));
 	        //session.setAttribute("email", userInfo.get("email"));//카카오에서 이메일 못가져옴
 	        session.setAttribute("snscode","kakao"); //세션 생성
-	        //session.setAttribute("access_Token", access_Token);
+	        session.setAttribute("access_Token", access_Token);
 	        int result2 = snsUserService.checkUserLogin(snsProfileVO);
 	        if(result2 == 0){
 	        	String result = snsUserService.insertSnsUser(snsProfileVO);
@@ -149,6 +151,7 @@ public class EgovUserLoginController {
 			  throws Exception{
 	    OAuth2AccessToken oauthToken;
         oauthToken = naver.getAccessToken(session, code, state);
+        
         //로그인 사용자 정보를 읽어온다.
         apiResult = naver.getUserProfile(oauthToken);
         if(apiResult != null){
@@ -183,8 +186,9 @@ public class EgovUserLoginController {
 	        session.setAttribute("nickname",name); //세션 생성
 	        session.setAttribute("snscode","naver"); //세션 생성
 	        session.setAttribute("email",email); //세션 생성
+	        session.setAttribute("access_token", oauthToken.getAccessToken());
 	        model.addAttribute("result", apiResult);
-	        
+	        System.out.println("access_token : "+oauthToken.getAccessToken());
 	        int result2 = snsUserService.checkUserLogin(snsProfileVO);
 	        if(result2 == 0){
 	        	String result = snsUserService.insertSnsUser(snsProfileVO);
@@ -201,9 +205,7 @@ public class EgovUserLoginController {
 	
 	@RequestMapping(value="/shop/user/EgovUserLogout.do")
 	public String egovUserLogout(HttpSession session) {
-		kakao.kakaoLogout((String)session.getAttribute("access_Token"));
-	    session.removeAttribute("access_Token");
-	    session.removeAttribute("userId");
+	    session.invalidate();
 	    return "shop/main/EgovMain";
 	}
 

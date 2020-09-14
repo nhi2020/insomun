@@ -11,6 +11,15 @@
 <title>입소문넷</title>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var snscode='${sessionScope.snscode}';
+		if(snscode!=null && snscode!=''){
+			alert('로그인 상태 입니다.\n로그아웃하고 다시 이용해 주세요.');
+			location.href ="http://xn--z92bt9ibqf.net/shop/product/EgovMngMain.do";
+		}
+	});
+</script>
 </head>
  
 <body>
