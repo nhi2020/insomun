@@ -32,7 +32,7 @@
 				  ,R_DIV
 				  ,R_SCORE
 			FROM
-				SNSPROFILE
+				REVIEW
 			WHERE 1=1
 		]]>			
 			<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
@@ -63,14 +63,14 @@
 			</isEqual>	
 	</select> -->
 	
-	<insert id="EgovSnsUserDAO.insertSnsUser" parameterClass="SnsProfileVO">
+	<!-- <insert id="EgovSnsUserDAO.insertSnsUser" parameterClass="SnsProfileVO">
 		<![CDATA[
 			INSERT INTO SNSPROFILE
 			(USERID, SNSCODE, NICKNAME, EMAIL, REG_DATE, DEL_YN)
 			VALUES
 			(#userid#,#snscode#,#nickname#,#email#,SYSDATE(),'N')
 		]]>
-	</insert>
+	</insert> -->
 	
 	<!-- <insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
 		<![CDATA[

@@ -7,7 +7,7 @@ public class Review {
 	private int p_idx;
 	private String r_content;
 	private String r_regdate;
-	private String r_denyn;
+	private String r_delyn;
 	private int r_div;
 	private int r_score;
 
@@ -60,11 +60,11 @@ public class Review {
 	}
 
 	public String getR_denyn() {
-		return r_denyn;
+		return r_delyn;
 	}
 
 	public void setR_denyn(String r_denyn) {
-		this.r_denyn = r_denyn;
+		this.r_delyn = r_denyn;
 	}
 
 	public int getR_div() {

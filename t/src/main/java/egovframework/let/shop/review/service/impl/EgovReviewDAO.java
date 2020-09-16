@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import egovframework.let.shop.review.service.ReviewVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
-@Repository("ReviewDAO")
+@Repository("EgovReviewDAO")
 public class EgovReviewDAO extends EgovAbstractDAO {
 	
 	@SuppressWarnings("unchecked")
