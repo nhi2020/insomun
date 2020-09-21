@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Buyer">
+
+	<typeAlias alias="BuyerVO" type="egovframework.let.shop.buyer.dto.BuyerVO" /> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias alias="Buyer" type="egovframework.let.shop.buyer.dto.Buyer" />
+
+	<select id="BuyerListCnt" parameterClass="BuyerVO" resultClass="int">
+		SELECT COUNT(*)
+		FROM SNSPROFILE
+
+	</select>
+	<select id="BuyerSelectList" resultClass="BuyerVO">
+		SELECT *
+		FROM SNSPROFILE
+		WHERE 1=1
+		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	USERID LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	SNSCODE LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
+		ORDER BY REG_DATE DESC
+		LIMIT #recordCountPerPage# OFFSET #firstIndex#
+	</select>
+
+
+</sqlMap>
