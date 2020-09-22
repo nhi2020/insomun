@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Seller">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="SellerVO" type="egovframework.let.shop.seller.service.SellerVO"/> <!-- db에서 세터로 받아넣는 -->
+	<!-- <typeAlias  alias="MemberVO" type="egovframework.let.shop.service.MemberVO"/>
+	<typeAlias  alias="S_MemberVO" type="egovframework.let.shop.service.S_MemberVO"/>
+	<typeAlias  alias="ProVO" type="egovframework.let.shop.service.ProVO"/> -->
+	<typeAlias  alias="Seller" type="egovframework.let.shop.seller.service.Seller"/>
+	
+	<resultMap id="sellerList" class="egovframework.let.shop.seller.service.SellerVO"> <!-- property는 vo값 -->
+		<result property="s_id" column="S_ID" columnIndex="1"/>
+		<result property="s_nickname" column="S_NICKNAME" columnIndex="2"/>
+		<result property="s_pass" column="S_PASS" columnIndex="3"/>
+		<result property="s_email" column="S_EMAIL" columnIndex="4"/>
+		<result property="s_photo" column="S_PHOTO" columnIndex="5"/>
+		<result property="s_status" column="S_STATUS" columnIndex="6"/>
+		<result property="s_phone" column="S_PHONE" columnIndex="7"/>
+		<result property="s_addr" column="S_ADDR" columnIndex="8"/>
+		<result property="s_gender" column="S_GENDER" columnIndex="9"/>
+		<result property="s_moddate" column="S_MODDATE" columnIndex="10"/>
+		<result property="s_regdate" column="S_REGDATE" columnIndex="11"/>
+		<result property="s_birth" column="S_BIRTH" columnIndex="12"/>
+	</resultMap>
+	<resultMap id="sellerList2" class="egovframework.let.shop.seller.service.SellerVO"> <!-- property는 vo값 -->
+		<result property="s_id" column="S_ID" columnIndex="1"/>
+	</resultMap>
+	
+	
+	<!-- <select id="EgovSellerDAO.selectSellerList1" parameterClass="SellerVO" resultMap="selleroList2" >
+	쿼리문 작성
+		<![CDATA[  
+			SELECT 
+				 S_ID
+			FROM
+				SELLER
+			WHERE 1=1
+		]]>
+	</select> -->
+	<select id="EgovSellerDAO.selectLoginCheck1" parameterClass="SellerVO" resultClass="java.lang.String">
+	<!-- 쿼리문 작성 -->
+		<![CDATA[  
+			SELECT S_ID
+			FROM SELLER
+			WHERE 1=1
+			AND S_ID = #s_id#
+			AND S_PASS = #s_pass#
+		]]>
+	</select>
+	<!-- <resultMap id="mngMemberList" class="egovframework.let.shop.member.service.MemberVO"> property는 vo값
+		<result property="m_id" column="M_ID" columnIndex="1"/>						 collum 은 db의 컬럼값
+		<result property="m_nickname" column="M_NICKNAME" columnIndex="2"/>			  db의 컬럼 순서
+		<result property="password" column="PASSWORD" columnIndex="3"/>
+		<result property="email" column="EMAIL" columnIndex="4"/>
+		<result property="photo" column="PHOTO" columnIndex="5"/>
+		<result property="you_out" column="YOU_OUT" columnIndex="6"/>
+		<result property="you_stop" column="YOU_STOP" columnIndex="7"/>
+		<result property="phone" column="PHONE" columnIndex="8"/>
+		<result property="addr" column="ADDR" columnIndex="9"/>
+		<result property="del_yn" column="DEL_YN" columnIndex="10"/>
+		<result property="m_idx" column="M_IDX" columnIndex="11"/>
+	</resultMap>
+	
+	<select id="EgovMngMemberDAO.selectMngMemberList" parameterClass="MemberVO" resultMap="mngMemberList" >
+		<![CDATA[
+			SELECT 
+				   M_ID
+				  ,M_NICKNAME
+				  ,PASSWORD
+				  ,EMAIL
+				  ,PHOTO
+				  ,YOU_OUT
+				  ,YOU_STOP
+				  ,PHONE
+				  ,ADDR
+				  ,DEL_YN
+				  ,M_IDX
+			FROM
+				MEMBER
+			WHERE 1=1
+			AND DEL_YN = 'N'
+		]]>		
+	</select>
+	
+	<resultMap id="mngS_MemberList" class="egovframework.let.shop.snsuser.service.S_MemberVO"> property는 vo값
+		<result property="s_email" column="S_EMAIL" columnIndex="1"/>						 collum 은 db의 컬럼값
+		<result property="s_id" column="S_ID" columnIndex="2"/>			  db의 컬럼 순서
+		<result property="s_idx" column="S_IDX" columnIndex="3"/>
+		<result property="s_bitrhday" column="S_BIRTHDAY" columnIndex="4"/>
+		<result property="s_sex" column="S_SEX" columnIndex="5"/>
+	</resultMap>
+	
+	<select id="EgovMngS_MemberDAO.selectMngS_MemberList" parameterClass="S_MemberVO" resultMap="mngS_MemberList" >
+		<![CDATA[
+			SELECT 
+				   S_EMAIL
+				  ,S_ID
+				  ,S_IDX
+				  ,S_BIRTHDAY
+				  ,S_SEX
+			FROM
+				S_MEMBER
+			WHERE 1=1
+			AND DEL_YN = 'N'
+		]]>
+	</select>	
+				
+	<resultMap id="mngProList" class="egovframework.let.shop.service.ProVO"> property는 vo값
+		<result property="m_id2" column="M_ID2" columnIndex="1"/>						 collum 은 db의 컬럼값
+		<result property="s_email" column="S_EMAIL" columnIndex="2"/>			  db의 컬럼 순서
+		<result property="p_idx2" column="P_IDX2" columnIndex="3"/>
+		<result property="s_id" column="S_ID" columnIndex="4"/>
+		<result property="j_idx" column="J_IDX" columnIndex="5"/>
+		<result property="m_phone" column="M_PHONE" columnIndex="6"/>
+		<result property="m_addr" column="M_ADDR" columnIndex="7"/>
+		<result property="j_pro" column="J_PRO" columnIndex="8"/>
+	</resultMap>
+	
+	<select id="EgovMngProDAO.selectMngProList" parameterClass="ProVO" resultMap="mngProList" >
+		<![CDATA[
+			SELECT 
+				   M_ID2
+				  ,S_EMAIL
+				  ,P_IDX2
+				  ,S_ID
+				  ,J_IDX
+				  ,M_PHONE
+				  ,M_ADDR
+				  ,J_PRO
+			FROM
+				PRO
+			WHERE 1=1
+			AND DEL_YN = 'N'
+		]]>				
+			<isEqual prepend="AND" property="searchCnd" compareValue="0"> prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다.
+				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>
+			<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>	
+		<![CDATA[			
+			ORDER BY IDX DESC
+			LIMIT #recordCountPerPage# OFFSET #firstIndex#
+		]]>					
+	</select> -->
+	
+	<!-- <select id="EgovSellerDAO.selectSellerListCnt1" parameterClass="SellerVO" resultClass="java.lang.Integer" >
+		<![CDATA[
+			SELECT
+				COUNT(P_IDX)
+			FROM
+				SELLER
+			WHERE 1=1
+		]]>
+			<isEqual prepend="AND" property="searchCnd" compareValue="0">
+				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>
+			<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>	
+	</select> -->
+	
+	<!-- <insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
+		<![CDATA[
+			INSERT INTO 테이블명
+			(컬럼명, 날짜)
+			VALUES
+			( #변수명#, SYSDATE()  
+			 )			
+		]]>
+	</insert>
+	
+	<update id="EgovMngProductDAO.updateMngProduct" parameterClass="Product">
+ 		<![CDATA[
+			UPDATE 테이블명 SET 
+				컬럼명 = #변수명#,
+				LAST_UPDT_PNTTM = SYSDATE()
+			WHERE 컬럼명 = #변수명#
+ 		]]>
+ 	</update> -->
+</sqlMap>
