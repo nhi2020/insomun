@@ -9,7 +9,8 @@ public class Review {
 	private String r_regdate;
 	private String r_delyn;
 	private int r_div;
-	private int r_score;
+	private int sns_score;
+	private int seller_score;
 
 	public String getS_id() {
 		return s_id;
@@ -59,12 +60,12 @@ public class Review {
 		this.r_regdate = r_regdate;
 	}
 
-	public String getR_denyn() {
+	public String getR_delyn() {
 		return r_delyn;
 	}
 
-	public void setR_denyn(String r_denyn) {
-		this.r_delyn = r_denyn;
+	public void setR_delyn(String r_delyn) {
+		this.r_delyn = r_delyn;
 	}
 
 	public int getR_div() {
@@ -75,11 +76,21 @@ public class Review {
 		this.r_div = r_div;
 	}
 
-	public int getR_score() {
-		return r_score;
+	public int getSns_score() {
+		return sns_score;
 	}
 
-	public void setR_score(int r_score) {
-		this.r_score = r_score;
+	public void setSns_score(int sns_score) {
+		this.sns_score = sns_score;
 	}
+
+	public int getSeller_score() {
+		return seller_score;
+	}
+
+	public void setSeller_score(int seller_score) {
+		this.seller_score = seller_score;
+	}
+
+
 }

@@ -56,7 +56,7 @@ public class EgovReviewController {
 	public String list(ReviewVO reviewvo, HttpServletRequest request, ModelMap model) throws Exception{
 		List<ReviewVO> list = egovReviewService.selectReviewList(reviewvo);
 		model.addAttribute("list", list);
-		return "shop/inc/EgovShopReview";
+		return "/shop/inc/EgovShopReview";
 	}
 	
 }

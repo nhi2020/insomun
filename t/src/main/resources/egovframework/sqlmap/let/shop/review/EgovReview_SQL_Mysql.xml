@@ -16,7 +16,9 @@
 		<result property="r_regdate" column="R_REGDATE" columnIndex="6"/>
 		<result property="r_delyn" column="R_DELYN" columnIndex="7"/>
 		<result property="r_div" column="R_DIV" columnIndex="8"/>
-		<result property="r_score" column="R_SCORE" columnIndex="9"/>
+		<result property="sns_score" column="SNS_SCORE" columnIndex="9"/>
+		<result property="seller_score" column="SELLER_SCORE" columnIndex="10"/>
+		
 	</resultMap>
 	
 	<select id="EgovReviewDAO.selectReviewList" parameterClass="ReviewVO" resultMap="ReviewList" >
@@ -30,7 +32,8 @@
 				  ,R_REGDATE
 				  ,R_DELYN
 				  ,R_DIV
-				  ,R_SCORE
+				  ,SNS_SCORE
+				  ,SELLER_SCORE
 			FROM
 				REVIEW
 			WHERE 1=1
