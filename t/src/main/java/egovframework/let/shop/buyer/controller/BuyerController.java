@@ -1,4 +1,4 @@
-package egovframework.let.shop.buyer.web;
+package egovframework.let.shop.buyer.controller;
 
 import java.util.List;
 
@@ -6,14 +6,14 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import egovframework.com.cmm.ComDefaultVO;
+import egovframework.let.shop.buyer.dto.BuyerVO;
 import egovframework.let.shop.buyer.service.BuyerService;
-import egovframework.let.shop.user.service.SnsProfileVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -53,7 +53,7 @@ public class BuyerController {
 	}
 
 	@RequestMapping(value = "/shop/buyer/BuyerList.do")
-	public String buyerForwardPage(@ModelAttribute("searchVO") SnsProfileVO vo, HttpServletRequest request, ModelMap model) {
+	public String buyerForwardPage(@ModelAttribute("searchVO") BuyerVO vo, HttpServletRequest request, Model model) {
 
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
@@ -71,7 +71,7 @@ public class BuyerController {
 		int totCnt = buyerService.selectListCnt(vo);
 		paginationInfo.setTotalRecordCount(totCnt);
 
-		List<SnsProfileVO> list = buyerService.selectList(vo);
+		List<BuyerVO> list = buyerService.selectList(vo);
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);

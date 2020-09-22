@@ -2,12 +2,11 @@ package egovframework.let.shop.buyer.service;
 
 import java.util.List;
 
-import egovframework.let.shop.user.service.SnsProfileVO;
-
+import egovframework.let.shop.buyer.dto.BuyerVO;
 public interface BuyerService {
 
-	int selectListCnt(SnsProfileVO vo);
+	int selectListCnt(BuyerVO vo);
 
-	List<SnsProfileVO> selectList(SnsProfileVO vo);
+	List<BuyerVO> selectList(BuyerVO vo);
 
 }
