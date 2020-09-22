@@ -8,4 +8,5 @@
 	<sqlMap resource="egovframework/sqlmap/let/shop/product/EgovProduct_SQL_Mysql.xml"/>
 	<sqlMap resource="egovframework/sqlmap/let/shop/snsuser/EgovPro_SQL_Mysql.xml"/>
 	<sqlMap resource="egovframework/sqlmap/let/shop/review/EgovReview_SQL_Mysql.xml"/>
+	<sqlMap resource="egovframework/sqlmap/let/shop/seller/EgovSeller_SQL_Mysql.xml"/>
 </sqlMapConfig>
