@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import egovframework.com.cmm.ComDefaultVO;
@@ -52,7 +53,7 @@ public class BuyerController {
 		return ret;
 	}
 
-	@RequestMapping(value = "/shop/buyer/BuyerList.do")
+	@RequestMapping(value = "/shop/buyer/BuyerList")
 	public String buyerForwardPage(@ModelAttribute("searchVO") BuyerVO vo, HttpServletRequest request, Model model) {
 
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
@@ -78,6 +79,31 @@ public class BuyerController {
 
 		return "shop/buyer/BuyerList";
 
+	}
+
+	@RequestMapping("/shop/buyer/BuyerModifyForm")
+	public String buyerModifyForm(BuyerVO vo, Model model){
+		System.out.println("BuyerModifyForm ()");
+		vo = buyerService.buyerSelect(vo);
+		model.addAttribute("BuyerVO", vo);
+		return "shop/buyer/BuyerModifyForm";
+	}
+
+	@RequestMapping(value= "/shop/buyer/BuyerModifyPro", method=RequestMethod.POST)
+	public String BuyerModifyForm(BuyerVO vo, Model model){
+		System.out.println("BuyerModifyPro ()");
+		System.out.println("vo sns_idx=>" + vo.getSns_idx());
+		int result = buyerService.buyerUpdate(vo);
+		if (result > 0 ){
+			model.addAttribute("msg", "수정 성공");
+		} else {
+			model.addAttribute("msg", "수정 실패");
+		}
+		model.addAttribute("vo");
+		
+		
+		return "forward:BuyerModifyForm.do";
+		
 	}
 
 }

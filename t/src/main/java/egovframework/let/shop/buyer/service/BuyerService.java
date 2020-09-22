@@ -9,4 +9,8 @@ public interface BuyerService {
 
 	List<BuyerVO> selectList(BuyerVO vo);
 
+	BuyerVO buyerSelect(BuyerVO vo);
+
+	int buyerUpdate(BuyerVO vo);
+
 }
