@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="Buyer">
 
@@ -24,6 +24,24 @@
 		ORDER BY REG_DATE DESC
 		LIMIT #recordCountPerPage# OFFSET #firstIndex#
 	</select>
+	
+	<select id="BuyerSelect" resultClass="BuyerVO" parameterClass="BuyerVO">
+		SELECT *
+		FROM SNSPROFILE
+		WHERE sns_idx = #sns_idx#
+	</select>
+	<update id="buyerUpdate" parameterClass="BuyerVO">
+		UPDATE SNSPROFILE
+		SET 
+			userid = #userid#,
+			snscode = #snscode#,
+			nickname = #nickname#,
+			email = #email#,
+			del_yn = #del_yn#
+		WHERE sns_idx = #sns_idx#
+	
+	</update>
+	
 
 
 </sqlMap>

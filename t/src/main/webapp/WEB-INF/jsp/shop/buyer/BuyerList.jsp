@@ -20,7 +20,7 @@ td, tr {
 	<table>
 		<c:forEach items="${list }" var="sns_list">
 			<tr>
-				<td>${sns_list.sns_idx }</td>
+				<td><a href="/shop/buyer/BuyerModifyForm.do?sns_idx=${sns_list.sns_idx }">${sns_list.sns_idx }</a></td>
 				<td>${sns_list.userid }</td>
 				<td>${sns_list.snscode }</td>
 				<td>${sns_list.nickname }</td>
@@ -31,7 +31,7 @@ td, tr {
 		</c:forEach>
 	</table>
 		<div id="paging_div">
-		<ul class="paging_align">
+		<ul class="paging_align">	
 			<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="fn_egov_select_productList" />
 		</ul>
 	</div>

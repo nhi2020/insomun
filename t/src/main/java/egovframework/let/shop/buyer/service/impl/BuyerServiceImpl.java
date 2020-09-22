@@ -29,4 +29,16 @@ public class BuyerServiceImpl extends EgovAbstractServiceImpl implements BuyerSe
 		return list;
 	}
 
+	@Override
+	public BuyerVO buyerSelect(BuyerVO vo) {
+		vo = BuyerDAO.buyerSelect(vo);
+		return vo;
+	}
+
+	@Override
+	public int buyerUpdate(BuyerVO vo) {
+		int result = BuyerDAO.buyerUpdate(vo);
+		return result;
+	}
+
 }
