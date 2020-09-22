@@ -19,12 +19,66 @@
 			location.href ="http://xn--z92bt9ibqf.net/shop/product/EgovMngMain.do";
 		}
 	});
+function chk1() {
+
+	if(document.getElementById("buyer").style.display=="none"){
+		document.getElementById("buyer").style.display="block";
+		document.getElementById("seller1").style.display="none";
+		document.getElementById("seller2").style.display="none";
+		
+	}
+};
+function chk2() {
+
+	if(document.getElementById("seller1").style.display=="none"){
+		document.getElementById("buyer").style.display="none";
+		document.getElementById("seller1").style.display="block";
+		document.getElementById("seller2").style.display="block";
+		
+	}
+};
+	
 </script>
 </head>
  
 <body>
 <%@ include file="../inc/EgovShopHeader.jsp" %> 
-  	<a href="${kakaoUrl}">카카오로그인</a><br/>
-  	<a href="${naverUrl}">네이버로그인</a>
+
+<div class="container" style="text-align:center; margin-top: 20px;">
+<h2>로그인</h2>
+<button  class="btn btn-secondary" onclick="chk1();">구매자</button>
+<button  class="btn btn-secondary" onclick="chk2();">판매자</button>
+</div>
+<div id="buyer" class="container" style="text-align:center; margin-top: 20px; display: block;">
+  	<a href="${kakaoUrl}"><img src="<c:url value='/'/>images/shop/login/kakaologin.png" width=231 height="50"/></a><br/><br/>
+  	<a href="${naverUrl}"><img src="<c:url value='/'/>images/shop/login/naverlogin.PNG" width=231 height="50"/></a>
+  	
+  	
+
+</div>
+  	
+<form action="<c:url value='/shop/seller/EgovsellerLoginPro.do'/>">
+	<div id="seller1" class="container" style="text-align:center; margin-top: 20px; display: none;">
+		
+	    <div>
+	      <!-- <label>아이디</label><p> -->
+	      <input class="form-control" name="id" id="id" type="text" placeholder="아이디" />
+	    </div><br>
+	    <div>
+	     <!--  <label>비밀번호</label><p> -->
+	      <input class="form-control" name="passwd" id="passwd" type="password" placeholder="비밀번호" />
+	    </div><br>
+	    <button class="btn btn-secondary" type="submit" style="width: 100%">로그인</button>
+	 </div><br>
+</form>
+
+<div id="seller2" class="container" style="text-align:center; display: none;">
+	<div class="find_info align_center">
+		<a target="_blank" id="idinquiry" href="<c:url value='/shop/seller/sellercheckFrom.do'/>">아이디 찾기</a> <span class="bar" aria-hidden="true">|</span> 
+		<a target="_blank" id="pwinquiry" href="<c:url value='/shop/seller/sellerIdCheckFrom.do'/>">비밀번호 찾기</a> <span class="bar" aria-hidden="true">|</span> 
+		<a target="_blank" id="join" href="<c:url value='/shop/seller/agreeFrom.do'/>">회원가입</a>
+	</div>
+</div>	   	
+ 
 </body>
 </html>
