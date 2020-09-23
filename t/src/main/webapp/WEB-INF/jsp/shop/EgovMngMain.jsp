@@ -66,6 +66,9 @@ $(document).ready(function(){
 			</ul>
 		</div>
 	</div>
+
+<%--  <%@ include file="./inc/EgovShopReview.jsp" %>  --%>
+
 	<!-- 테스트용 임시 링크 -->
 	<a href="/shop/buyer/BuyerList.do">구매자 관리</a>
 </body>

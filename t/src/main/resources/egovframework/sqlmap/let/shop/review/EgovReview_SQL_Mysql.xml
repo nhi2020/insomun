@@ -45,7 +45,7 @@
 				<![CDATA[	SNSCODE LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 			</isEqual>	
 		<![CDATA[			
-			ORDER BY REG_DATE DESC
+			ORDER BY R_REGDATE DESC
 			LIMIT #recordCountPerPage# OFFSET #firstIndex#
 		]]>					
 	</select>
