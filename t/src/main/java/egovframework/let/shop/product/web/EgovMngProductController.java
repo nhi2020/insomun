@@ -116,8 +116,10 @@ public class EgovMngProductController {
 		model.addAttribute("paginationInfo", paginationInfo);
 			
 //		리뷰 관련  			//
+		
 		/*List<ReviewVO> list2 = reviewService.selectReviewList(vo2);
 		model.addAttribute("list2", list);*/
+		
 //		리뷰 관련  			//		
 		return "shop/EgovMngMain";
 	}
