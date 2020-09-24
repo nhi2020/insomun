@@ -15,38 +15,87 @@
 <title>Insert title here</title>
 </head>
 <script type="text/javascript">
-
+	//수정
+	function updateUserReview(idx){
+		var r_contentVal="r_contentVal"+idx;
+		document.frm.r_content.value=document.getElementById(r_contentVal).value;
+		document.frm.r_idx.value=idx;
+		document.frm.action="updateUserReview.do";
+		document.frm.submit();
+	}
+	//삭제
+	function delUserReview(idx){
+		document.frm.r_idx.value=idx;
+		document.frm.action="delUserReview.do";
+		document.frm.submit();
+	}
+	function displayView(idx){
+		var str="r_view"+idx;
+		var str2="r_view2"+idx;
+		document.getElementById(str).style.display="block";
+		document.getElementById(str2).style.display="none";
+	}
 </script>
 <body>
-<div class="container text-center">
+<!-- <div class="container text-center">
 	<h1>판매자 관리 리뷰입니다.</h1>
 	<button id="#" name="buy">구매자 관리 리뷰입니다.</button>
 	<button id="#" name="Update">수정</button>
 	<button id="#" name="Delete">삭제</button>
-</div>
+</div> -->
+<form name="frm" method="post">
+ 	<input type="hidden" name="r_idx" value=""/>
+ 	<input type="hidden" name="r_content" value=""/>
 <c:forEach items="${list}" var="result">
 <div class="container text-center">
 			<div class="row justify-content-center">
 	<table border="1">
-		<th>판매자아이디</th>
-		<th>구매자 아이디</th>
-		<th>리뷰 번호</th>
-		<th>상품 번호</th>
-		<th>상품 후기</th>
-		<th>후기 등록일자</th>
-		<th>판매자 평점</th>
-		<tr>
-			<td>${result.s_id }</td>
-			<td>${result.sns_idx }</td>
-			<td>${result.r_idx }</td>
-			<td>${result.p_idx }</td>
-			<td>${result.r_content }</td>
-			<td>${result.r_regdate }</td>
-			<td>${result.sns_score }</td>
-		</tr>
+		<thead>
+			<tr>
+				<th>리뷰 번호</th>
+				<th>판매자 이름</th>
+				<th>구매자 이름</th>
+				<th>상품 명</th>
+				<th>리뷰 내용</th>
+				<th>리뷰 등록일자</th>
+				<th>수정</th>
+				<th>삭제</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>${result.r_idx }</td>
+				<td>${result.s_nickname }</td>
+				<td>${result.nickname }</td>
+				<td>${result.p_name }</td>
+				<td>
+					<div id="r_view${result.r_idx}" style="display: none;">
+						<textarea id="r_contentVal${result.r_idx}" name="r_contentVal${result.r_idx}" rows="11" cols="11">
+							${result.r_content }
+						</textarea>
+						<a href="javascript:updateUserReview('${result.r_idx}');">저장</a>
+					</div>
+					<div id="r_view2${result.r_idx}" style="display: block;">
+						${result.r_content }
+					</div>
+				</td>
+				<td>${result.r_regdate }</td>
+				<td>
+					<c:if test="${'1' eq result.sns_idx}">
+						<a href="javascript:displayView('${result.r_idx}');">수정</a>
+					</c:if>
+				</td>
+				<td>
+					<c:if test="${'1' eq result.sns_idx}">
+						<a href="javascript:delUserReview('${result.r_idx}');">삭제</a>
+					</c:if>
+				</td>
+			</tr>
+		</tbody>
 	</table>
 	</div>
 </div>
 </c:forEach> 
+</form>
 </body>
 </html>

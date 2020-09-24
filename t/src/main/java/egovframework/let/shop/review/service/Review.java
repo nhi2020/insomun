@@ -11,6 +11,33 @@ public class Review {
 	private int r_div;
 	private int sns_score;
 	private int seller_score;
+	private String s_nickname;
+	private String nickname;
+	private String p_name;
+	
+	public String getS_nickname() {
+		return s_nickname;
+	}
+
+	public void setS_nickname(String s_nickname) {
+		this.s_nickname = s_nickname;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getP_name() {
+		return p_name;
+	}
+
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
 
 	public String getS_id() {
 		return s_id;
