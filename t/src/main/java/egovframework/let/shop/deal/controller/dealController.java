@@ -1,4 +1,4 @@
-package egovframework.let.shop.review.web;
+package egovframework.let.shop.deal.controller;
 
 import java.util.List;
 
@@ -6,31 +6,25 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import egovframework.com.cmm.ComDefaultVO;
-import egovframework.let.shop.review.service.EgovReviewService;
-import egovframework.let.shop.review.service.ReviewVO;
+import egovframework.let.shop.buyer.dto.BuyerVO;
+import egovframework.let.shop.buyer.service.BuyerService;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
-@Controller("EgovReviewController")
+@Controller
 @SessionAttributes(types = ComDefaultVO.class)
-public class EgovReviewController {
+public class dealController {
 
-	@Resource(name = "EgovReviewService")
-	private EgovReviewService egovReviewService;
+
 	
-	@Resource(name = "propertiesService")
-	protected EgovPropertyService propertyService;
-	/**
-	 * XSS 방지 처리.
-	 *
-	 * @param data
-	 * @return
-	 */
+	
 	protected String unscript(String data) {
 		if (data == null || data.trim().equals("")) {
 			return "";
@@ -55,22 +49,7 @@ public class EgovReviewController {
 
 		return ret;
 	}
-	
-	@RequestMapping(value = "/shop/review/reviewList.do")
-	public String list(ReviewVO reviewvo, HttpServletRequest request, ModelMap model) throws Exception{
-		PaginationInfo paginationInfo = new PaginationInfo();
 
-		paginationInfo.setCurrentPageNo(reviewvo.getPageIndex());
-		paginationInfo.setRecordCountPerPage(reviewvo.getPageUnit());
-		paginationInfo.setPageSize(reviewvo.getPageSize());
 
-		reviewvo.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		reviewvo.setLastIndex(paginationInfo.getLastRecordIndex());
-		reviewvo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-		List<ReviewVO> list = egovReviewService.selectReviewList(reviewvo);
-		model.addAttribute("list", list);
-		model.addAttribute("paginationInfo", paginationInfo);
-		return "/shop/review/EgovShopReview";
-	}
-	
+
 }
