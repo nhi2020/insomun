@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="deal">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="ProductVO" type="egovframework.let.shop.product.service.ProductVO"/> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias  alias="Product" type="egovframework.let.shop.product.service.Product"/>
+	
+	<resultMap id="mngProductList" class="egovframework.let.shop.product.service.ProductVO"> <!-- property는 vo값 -->
+		<result property="p_idx" column="P_IDX" columnIndex="1"/>
+		<result property="s_id" column="S_ID" columnIndex="2"/>
+		<result property="p_name" column="P_NAME" columnIndex="3"/>
+		<result property="p_price" column="P_PRICE" columnIndex="4"/>
+		<result property="p_regdate" column="P_REGDATE" columnIndex="5"/>
+		<result property="p_moddate" column="P_MODDATE" columnIndex="6"/>
+		<result property="p_image" column="P_IMAGE" columnIndex="7"/>
+		<result property="p_content" column="P_CONTENT" columnIndex="8"/>
+		<result property="p_tage" column="P_TAGE" columnIndex="9"/>
+		<result property="p_sdate" column="P_SDATE" columnIndex="10"/>
+		<result property="p_edate" column="P_EDATE" columnIndex="11"/>
+		<result property="p_status" column="P_STATUS" columnIndex="12"/>
+		<result property="a_id" column="A_ID" columnIndex="13"/>
+		<result property="p_q" column="P_Q" columnIndex="14"/>
+	</resultMap>
+	
+	<select id="EgovMngProductDAO.selectMngProductList" parameterClass="ProductVO" resultMap="mngProductList" >
+	<!-- 쿼리문 작성 -->
+		<![CDATA[  
+			SELECT 
+				 P_IDX
+				,S_ID
+				,P_NAME
+				,P_PRICE
+				,P_REGDATE
+				,P_MODDATE
+				,P_IMAGE
+				,P_CONTENT
+				,P_TAGE
+				,P_SDATE
+				,P_EDATE
+				,P_STATUS
+				,A_ID
+				,P_Q
+			FROM
+				PRODUCT
+			WHERE 1=1
+		]]>
+	</select>
+	
+	<select id="EgovMngProductDAO.selectMngProductListCnt" parameterClass="ProductVO" resultClass="java.lang.Integer" >
+		<![CDATA[
+			SELECT
+				COUNT(P_IDX)
+			FROM
+				PRODUCT
+			WHERE 1=1
+		]]>
+			<isEqual prepend="AND" property="searchCnd" compareValue="0">
+				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>
+			<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>	
+	</select>
+	
+	<update id="EgovMngProductDAO.updateMngProduct" parameterClass="ProductVO">
+ 		<![CDATA[
+			UPDATE PRODUCT SET 
+								P_CONTENT = #p_content#,
+								P_Q = #p_q#,
+								LAST_UPDT_PNTTM = SYSDATE()
+			WHERE
+								P_CONTENT = #p_content#,
+								P_Q = #p_q#
+ 		]]>
+ 	</update>
+ 	<insert id="EgovMngProductDAO.insertMngProduct" parameterClass="ProductVO">
+ 		<![CDATA[
+ 					
+ 		]]>
+ 	</insert>
+ 	
+	<!-- <insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
+		<![CDATA[
+			INSERT INTO 테이블명
+			(컬럼명, 날짜)
+			VALUES
+			( #변수명#, SYSDATE()  
+			 )			
+		]]>
+	</insert>
+	
+	<update id="EgovMngProductDAO.updateMngProduct" parameterClass="Product">
+ 		<![CDATA[
+			UPDATE 테이블명 SET 
+				컬럼명 = #변수명#,
+				LAST_UPDT_PNTTM = SYSDATE()
+			WHERE 컬럼명 = #변수명#
+ 		]]>
+ 	</update> -->
+</sqlMap>
