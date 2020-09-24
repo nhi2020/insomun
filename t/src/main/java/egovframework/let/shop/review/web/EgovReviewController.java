@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import egovframework.com.cmm.ComDefaultVO;
 import egovframework.let.shop.review.service.EgovReviewService;
 import egovframework.let.shop.review.service.ReviewVO;
+import egovframework.rte.fdl.property.EgovPropertyService;
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller("EgovReviewController")
 @SessionAttributes(types = ComDefaultVO.class)
@@ -21,6 +23,8 @@ public class EgovReviewController {
 	@Resource(name = "EgovReviewService")
 	private EgovReviewService egovReviewService;
 	
+	@Resource(name = "propertiesService")
+	protected EgovPropertyService propertyService;
 	/**
 	 * XSS 방지 처리.
 	 *
@@ -54,9 +58,19 @@ public class EgovReviewController {
 	
 	@RequestMapping(value = "/shop/review/reviewList.do")
 	public String list(ReviewVO reviewvo, HttpServletRequest request, ModelMap model) throws Exception{
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		paginationInfo.setCurrentPageNo(reviewvo.getPageIndex());
+		paginationInfo.setRecordCountPerPage(reviewvo.getPageUnit());
+		paginationInfo.setPageSize(reviewvo.getPageSize());
+
+		reviewvo.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		reviewvo.setLastIndex(paginationInfo.getLastRecordIndex());
+		reviewvo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 		List<ReviewVO> list = egovReviewService.selectReviewList(reviewvo);
 		model.addAttribute("list", list);
-		return "/shop/inc/EgovShopReview";
+		model.addAttribute("paginationInfo", paginationInfo);
+		return "/shop/review/EgovShopReview";
 	}
 	
 }
