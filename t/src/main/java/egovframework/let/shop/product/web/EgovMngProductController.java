@@ -4,15 +4,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
-import egovframework.com.cmm.ComDefaultVO;
 import egovframework.let.shop.product.service.EgovMngProductService;
 import egovframework.let.shop.product.service.ProductVO;
 import egovframework.let.shop.review.service.EgovReviewService;
@@ -38,7 +35,6 @@ import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
  *      </pre>
  */
 @Controller
-@SessionAttributes(types = ComDefaultVO.class)
 public class EgovMngProductController {
 
 	/**

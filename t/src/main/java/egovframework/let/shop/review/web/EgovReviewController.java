@@ -8,16 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
-import egovframework.com.cmm.ComDefaultVO;
 import egovframework.let.shop.review.service.EgovReviewService;
 import egovframework.let.shop.review.service.ReviewVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller("EgovReviewController")
-@SessionAttributes(types = ComDefaultVO.class)
 public class EgovReviewController {
 
 	@Resource(name = "EgovReviewService")

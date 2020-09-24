@@ -1,10 +1,5 @@
 package egovframework.let.shop.user.web;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
@@ -18,16 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
-import egovframework.com.cmm.ComDefaultVO;
 import egovframework.let.shop.user.service.EgovSnsUserService;
 import egovframework.let.shop.user.service.KakaoAPI;
 import egovframework.let.shop.user.service.NaverAPI;
 import egovframework.let.shop.user.service.SnsProfileVO;
-import egovframework.let.utl.fcc.service.EgovStringUtil;
 import egovframework.rte.fdl.property.EgovPropertyService;
 
 /**
@@ -46,7 +38,7 @@ import egovframework.rte.fdl.property.EgovPropertyService;
  *
  * </pre>
  */
-@Controller@SessionAttributes(types = ComDefaultVO.class)
+@Controller
 public class EgovUserLoginController {
 
 	@Autowired
@@ -124,7 +116,7 @@ public class EgovUserLoginController {
 	    	snsProfileVO.setUserid((String) userInfo.get("kakaoid"));
 	    	snsProfileVO.setSnscode("kakao");
 	    	snsProfileVO.setNickname((String) userInfo.get("nickname"));
-	    	String email=EgovStringUtil.isNullToString((String)userInfo.get("email"));
+	    	String email=(String)userInfo.get("email");
 	    	snsProfileVO.setEmail(email);
 	    	//---------------------
 	        session.setAttribute("userid", userInfo.get("kakaoid"));

@@ -10,16 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
-import egovframework.com.cmm.ComDefaultVO;
 import egovframework.let.shop.buyer.dto.BuyerVO;
 import egovframework.let.shop.buyer.service.BuyerService;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
-@SessionAttributes(types = ComDefaultVO.class)
 public class BuyerController {
 
 	@Resource(name = "BuyerService")
