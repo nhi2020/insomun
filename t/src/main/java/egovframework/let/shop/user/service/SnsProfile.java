@@ -24,12 +24,21 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @SuppressWarnings("serial")
 public class SnsProfile implements Serializable {
 
+	private int sns_idx;
 	private String userid;
 	private String snscode;
 	private String nickname;
 	private String email;
 	private String reg_date;
 	private String del_yn;
+
+	public int getSns_idx() {
+		return sns_idx;
+	}
+
+	public void setSns_idx(int sns_idx) {
+		this.sns_idx = sns_idx;
+	}
 
 	public String getNickname() {
 		return nickname;

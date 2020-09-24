@@ -10,11 +10,24 @@
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+
 </head>
+
 <body>
+<%@ include file="../inc/EgovShopTop.jsp" %>
 <%@ include file="../inc/EgovShopHeader.jsp" %>
+
   ${sessionScope.userid }<br/>
   ${sessionScope.nickname }<br/>
   ${sessionScope.email }
+  <h2>메인 화면 입니다.</h2>
+  <c:forEach items="${list}" var="result">
+	${result.userid }
+	${result.nickname}
+	${result.email }
+  </c:forEach>
+  
+<%@ include file="../inc/EgovShopBottom.jsp" %>
 </body>
 </html>

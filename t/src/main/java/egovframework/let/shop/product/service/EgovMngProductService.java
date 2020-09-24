@@ -25,4 +25,6 @@ public interface EgovMngProductService {
 			throws Exception;
 
 	public int selectMngProductListCnt(ProductVO productVO) throws Exception;
+	
+	public List<ProductVO> updateMngProduct(ProductVO productVO) throws Exception;
 }

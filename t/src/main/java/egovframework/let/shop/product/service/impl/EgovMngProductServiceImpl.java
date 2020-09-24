@@ -38,6 +38,7 @@ public class EgovMngProductServiceImpl extends EgovAbstractServiceImpl implement
      * 
      * @see egovframework.let.cop.bbs.brd.service.EgovBBSManageService#selectBoardArticles(egovframework.let.cop.bbs.brd.service.BoardVO)
      */
+    @Override
     public List<ProductVO> selectMngProductList(ProductVO productVO) throws Exception {
     	List<ProductVO> list = mngProductDAO.selectMngProductList(productVO);
     	return list;
@@ -47,6 +48,12 @@ public class EgovMngProductServiceImpl extends EgovAbstractServiceImpl implement
 	public int selectMngProductListCnt(ProductVO productVO) throws Exception {
 		int cnt = mngProductDAO.selectMngProductListCnt(productVO);
 		return cnt;
+	}
+
+	@Override
+	public List<ProductVO> updateMngProduct(ProductVO productVO) throws Exception {
+		List<ProductVO> list = mngProductDAO.updateMngProduct(productVO);
+		return list;
 	}
 
 }

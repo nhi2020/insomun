@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import egovframework.com.cmm.ComDefaultVO;
 import egovframework.let.shop.product.service.EgovMngProductService;
 import egovframework.let.shop.product.service.ProductVO;
+import egovframework.let.shop.review.service.EgovReviewService;
+import egovframework.let.shop.review.service.ReviewVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -47,6 +50,8 @@ public class EgovMngProductController {
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
 
+	@Resource(name ="EgovReviewService")
+	protected EgovReviewService reviewService;
 	/**
 	 * XSS 방지 처리.
 	 *
@@ -88,7 +93,7 @@ public class EgovMngProductController {
 	 */
 	@RequestMapping(value = "/shop/product/EgovMngMain.do")
 	public String forwardPageWithMenuNo(@ModelAttribute("searchVO") ProductVO vo, HttpServletRequest request,
-			ModelMap model) throws Exception {
+			ModelMap model,ReviewVO vo2) throws Exception {
 
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
@@ -109,8 +114,22 @@ public class EgovMngProductController {
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
-
+			
+//		리뷰 관련  			//
+		
+		/*List<ReviewVO> list2 = reviewService.selectReviewList(vo2);
+		model.addAttribute("list2", list);*/
+		
+//		리뷰 관련  			//		
 		return "shop/EgovMngMain";
+	}
+	@RequestMapping(value="/shop/user/EgovProductUpdate.do")
+	public String egovProductUpdate(@ModelAttribute ProductVO productVO,  HttpServletRequest request,
+			ModelMap model) throws Exception {
+	    List<ProductVO> list = mngProductService.updateMngProduct(productVO);
+	    
+	    
+	    return "shop/EgovProductUpdate";
 	}
 
 }
