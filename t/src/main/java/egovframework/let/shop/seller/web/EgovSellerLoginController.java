@@ -144,7 +144,8 @@ public class EgovSellerLoginController {
 		if (user_name != null && user_name !=""){
 			
 			session.setAttribute("userid", id);
-			request.getSession().setAttribute("user_id", id);
+			session.setAttribute("status", 1);
+			/*request.getSession().setAttribute("user_id", id);*/
 			System.out.println("성공");
 		
 		}else {
@@ -154,6 +155,19 @@ public class EgovSellerLoginController {
 		
 		return "shop/sellerLogin/sellerLoginPro";
 	}
+	
+	@RequestMapping(value="/shop/seller/EgovSellerLogout.do")
+	public String egovSellerLogout(HttpSession session) {
+	    session.invalidate();
+	    return "redirect:/shop/product/EgovMngMain.do";
+	}
+	@RequestMapping(value="/shop/main/EgovMain.do")
+	public String main() {
+	   
+	    return "shop/main/EgovMain.do";
+	}
+	
+	
 	@RequestMapping(value = "/shop/seller/sellercheckFrom.do")
 	public String sellercheck( ModelMap model) throws Exception {
 		

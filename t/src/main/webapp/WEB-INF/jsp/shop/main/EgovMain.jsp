@@ -15,7 +15,9 @@
 </head>
 
 <body>
+<%@ include file="../inc/EgovShopTop.jsp" %>
 <%@ include file="../inc/EgovShopHeader.jsp" %>
+
   ${sessionScope.userid }<br/>
   ${sessionScope.nickname }<br/>
   ${sessionScope.email }
@@ -26,6 +28,6 @@
 	${result.email }
   </c:forEach>
   
-
+<%@ include file="../inc/EgovShopBottom.jsp" %>
 </body>
 </html>

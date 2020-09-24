@@ -30,6 +30,12 @@
 			}
 		});
 	});
+	$(document).ready(function(){
+		$("#sellerlogout").click(function(){
+			alert("누름");
+			location.href = "/shop/seller/EgovSellerLogout.do";
+		});
+	});
 </script>
 </head>
 <body>
@@ -70,9 +76,10 @@
 			</div>
 		</c:when>
 	
-		 <c:when test="${sessionScope.userid != null and sessionScope.userid ne ' ' }">
+		 <c:when test="${sessionScope.userid != null and sessionScope.userid ne ' ' and sessionScope.status == 1 }">
 		 	<div class="container">
 				 <button type="button" id="btnlogout">logout</button>
+				 <button type="button" id="sellerlogout">구매자logout</button>
 			 </div>
 		</c:when>
 		
