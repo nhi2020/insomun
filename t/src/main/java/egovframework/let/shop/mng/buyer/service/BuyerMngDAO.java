@@ -10,5 +10,6 @@ public interface BuyerMngDAO {
 	public List<BuyerMngVO> buyerList(BuyerMngVO vo);
 	public BuyerMngVO buyerSelect(BuyerMngVO vo);
 	public int buyerUpdate(BuyerMngVO vo);
+	public int updateMngBuyerStateChange(BuyerMngVO vo);
 
 }

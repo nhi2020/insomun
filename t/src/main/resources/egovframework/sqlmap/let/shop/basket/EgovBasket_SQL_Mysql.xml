@@ -11,19 +11,23 @@
 		FROM BASKET ba, SNSPROFILE s
 		WHERE ba.sns_idx = s.sns_idx
 		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+			<isNotEqual property="searchWrd" compareValue="">
 			<![CDATA[	
 				s.USERID = #searchWrd# 		
 			]]>
+			</isNotEqual>
 		</isEqual>
 	</select>
 	<select id="BasketMngList" resultClass="BasketBuyerVO">
 		SELECT *
 		FROM BASKET ba, SNSPROFILE s
-		WHERE 1=1
+		WHERE ba.sns_idx = s.sns_idx
 		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
-			<![CDATA[	
-				s.USERID = #searchWrd# 			
-			]]>
+			<isNotEqual property="searchWrd" compareValue="">
+				<![CDATA[	
+					s.USERID = #searchWrd# 			
+				]]>
+			</isNotEqual>
 		</isEqual>
 		ORDER BY ba_reg_date DESC
 		LIMIT #recordCountPerPage# OFFSET #firstIndex#
@@ -41,6 +45,13 @@
 			sns_idx 	= #sns_idx#,
 			P_IDX 		= #p_idx#,
 			S_ID 		= #s_id#,
+			BA_Q 		= #ba_q#
+		WHERE BA_IDX = #ba_idx#
+	</update>
+	
+		<update id="updateMngBasketQty" parameterClass="BasketVO">
+		UPDATE BASKET
+		SET 
 			BA_Q 		= #ba_q#
 		WHERE BA_IDX = #ba_idx#
 	</update>

@@ -66,10 +66,11 @@ public class BuyerMngController {
 		vo.setLastIndex(paginationInfo.getLastRecordIndex());
 		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
-		int totCnt = buyerService.selectListCnt(vo);
+		int totCnt = buyerService.selectListCnt(vo); //
 		paginationInfo.setTotalRecordCount(totCnt);
 
-		List<BuyerMngVO> list = buyerService.selectList(vo);
+		List<BuyerMngVO> list = buyerService.selectList(vo); //
+		
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
@@ -101,6 +102,19 @@ public class BuyerMngController {
 		
 		return "forward:updateMngBuyerForm.do";
 		
+	}
+	@RequestMapping("/shop/mng/buyer/updateMngBuyerStateChange")
+	public String updateMngBuyerStateChange(BuyerMngVO vo,Model model){
+		System.out.println("updateMngBuyerStateChange()");
+		System.out.println("vo sns_idx=>" + vo.getSns_idx());
+		int result = buyerService.updateMngBuyerStateChange(vo);
+		if (result > 0 ){
+			model.addAttribute("msg", "수정 성공");
+		} else {
+			model.addAttribute("msg", "수정 실패");
+		}
+		model.addAttribute("vo");
+		return "redirect:/shop/mng/buyer/listMngBuyer.do";
 	}
 
 }

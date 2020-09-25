@@ -40,4 +40,10 @@ public class BuyerMngServiceImpl extends EgovAbstractServiceImpl implements Buye
 		return result;
 	}
 
+	@Override
+	public int updateMngBuyerStateChange(BuyerMngVO vo) {
+		int result = BuyerDAO.updateMngBuyerStateChange(vo);
+		return result;
+	}
+
 }

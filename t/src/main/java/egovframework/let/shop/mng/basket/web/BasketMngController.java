@@ -1,6 +1,8 @@
 package egovframework.let.shop.mng.basket.web;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import egovframework.com.cmm.ComDefaultVO;
 import egovframework.let.shop.mng.basket.service.BasketMngService;
@@ -61,9 +68,18 @@ public class BasketMngController {
 	// requestmapping
 	// "/shop/basket/Basket***"
 
-	@RequestMapping(value = "/shop/mng/basket/basketList")
-	public String basketList(@ModelAttribute("searchVO") BasketBuyerMngVO vo, HttpServletRequest request, Model model) {
-		logger.info("init");
+	@RequestMapping(value = "/shop/mng/basket/listMngBasket")
+	public String listMngBasket(@ModelAttribute("searchVO") BasketBuyerMngVO vo, HttpServletRequest request, Model model) {
+		logger.info("listMngBasket");
+		Map<String, ?> redirectMap = RequestContextUtils.getInputFlashMap(request);
+		if(redirectMap != null){
+			logger.info("redirectMap is not Null");
+			int pageIndex = 1;
+			pageIndex = (int) redirectMap.get("pageIndex");			
+			logger.info("pageIndex => " + pageIndex);
+			vo.setPageIndex(pageIndex);
+		} 
+		
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
 
@@ -86,25 +102,42 @@ public class BasketMngController {
 		model.addAttribute("paginationInfo", paginationInfo);
 		logger.info("totCnt => " + totCnt);
 		logger.info("list size => " + list.size());
+		logger.info("vo.getPageIndex => " + vo.getPageIndex());
 		
 		return "shop/mng/basket/listMngBasket";
 
 	}
 	
-	@RequestMapping("/shop/mng/basket/updateMngBasket")
-	public String updateMngBasket(BasketBuyerMngVO vo, Model model){
-		logger.info("updateMngBasket");
-		int result = basketService.updateMngBasket(vo);
-		logger.info("result => " + result);
-		return "forward:/shop/mng/basket/basketList.do";
+//	@RequestMapping(value = "/shop/mng/basket/updateMngBasketQty", method=RequestMethod.POST)
+//	public String updateMngBasketQty(BasketMngVO vo, Model model){
+//		logger.info("updateMngBasketQty");
+//		int result = basketService.updateMngBasketQty(vo);
+//		logger.info("result => " + result);
+//		logger.info("vo.getPageIndex => " + vo.getPageIndex());
+//		return "redirect:/shop/mng/basket/listMngBasket.do?pageIndex="+vo.getPageIndex();
+//	}
+//	
+	@RequestMapping(value = "/shop/mng/basket/updateMngBasketQty")
+	@ResponseBody
+	public int updateMngBasketQty(int ba_idx, int ba_q, Model model){
+		BasketMngVO vo = new BasketMngVO();
+		vo.setBa_idx(ba_idx);
+		vo.setBa_q(ba_q);
+		logger.info("updateMngBasketQty");
+		int result = basketService.updateMngBasketQty(vo); 
+		logger.info("result =" + result);
+		return result;
 	}
 	
 	@RequestMapping("/shop/mng/basket/deleteMngBasket")
-	public String deleteMngBasket(BasketMngVO vo, Model model){
-		logger.info("deleteMngBasket");
+	public String deleteMngBasket(RedirectAttributes redirect, int ba_idx, Model model){
+		logger.info("deleteMngBasket ba_idx=> " + ba_idx);
+		BasketMngVO vo = new BasketMngVO();
+		vo.setBa_idx(ba_idx);
 		int result = basketService.deleteMngBasket(vo);
-		logger.info("result => " + result);
-		return "forward:/shop/mng/basket/basketList.do";
+		logger.info("result => " + result);	
+		return "redirect:/shop/mng/basket/listMngBasket.do";
 	}
+
 
 }

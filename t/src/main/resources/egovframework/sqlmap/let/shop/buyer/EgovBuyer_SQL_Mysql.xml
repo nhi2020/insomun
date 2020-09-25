@@ -9,6 +9,10 @@
 	<select id="BuyerListCnt" parameterClass="BuyerVO" resultClass="int">
 		SELECT COUNT(*)
 		FROM SNSPROFILE
+		WHERE 1=1
+		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	USERID LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
 
 	</select>
 	<select id="BuyerSelectList" resultClass="BuyerVO">

@@ -16,6 +16,38 @@
 <%@ include file="../../inc/EgovShopTop.jsp" %>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
 
+<%
+	String context = request.getContextPath();
+%>
+
+<script type="text/javascript">
+
+
+	/* BasketMngController */
+	function updateMngBasketQty(index){
+		console.log("index =>" + index);
+		var vba_idx = document.getElementById("ba_idx"+index).value;
+		var vba_q = document.getElementById("ba_q"+index).value;
+		var jsonData = {
+				ba_idx : vba_idx,
+				ba_q : vba_q
+		}
+		console.log(JSON.stringify(jsonData))
+		console.log("updateMngBasketQty()")
+ 		$.ajax({
+			url:"<%=context%>/shop/mng/basket/updateMngBasketQty.do",
+			data:jsonData,
+			dataType:'text',
+			success:function(data){
+				console.log("result => "+ data)		
+				if(data==1){
+					alert("수량이 수정되었습니다! ")
+				}
+			}
+		})
+	
+	} 
+</script>
 	<table class="table">
 			<tr>
 				<th>장바구니 번호</th>
@@ -31,6 +63,9 @@
 				
 			</tr>
 		<c:forEach items="${list }" var="basketList" varStatus="status">
+		<script type="text/javascript">
+			console.log("pageIndex => " + ${basketList.pageIndex})
+		</script>
 			<tr>
 				<td>${basketList.ba_idx }</td>
 				<td>${basketList.sns_idx }</td>
@@ -38,20 +73,15 @@
 				<td>${basketList.snscode }</td>
 				<td>${basketList.p_idx }</td>
 				<td>${basketList.s_id }</td>
-				<td><input class="form-control form-control-sm" type="text" form="frm${status.index }" name="ba_q" value="${basketList.ba_q }"/></td>
-				<td><input class="btn btn-secondary" type="submit" value="수정" form="frm${status.index }" /></td>
+				<td><input class="form-control form-control-sm" id="ba_q${status.index }" type="text" form="frm${status.index }" name="ba_q" value="${basketList.ba_q }"/></td>
+				<td><input class="btn btn-secondary" type="button" value="수정" form="frm${status.index }" onclick="updateMngBasketQty(${status.index })" /></td>
 				<fmt:formatDate var="dateTempFmt" value="${basketList.ba_reg_date }" pattern="yyyy.MM.dd"/>
 				<td><c:out value="${dateTempFmt}"></c:out></td>
-				<td><input class="btn btn-danger" type="button" value="삭제" form="frm${status.index }" /></td>
+				<td><input class="btn btn-danger" type="button" value="삭제" form="frm${status.index }" onclick="location.href='/shop/mng/basket/deleteMngBasket.do?ba_idx=${basketList.ba_idx}'" /></td>
 			</tr>
-			<form id="frm${status.index }" action="updateMngBasket.do">
-			<input type="hidden" name="ba_idx" value="${basketList.ba_idx }" />
-			<input type="hidden" name="sns_idx" value="${basketList.ba_idx }" />
-			<input type="hidden" name="userid" value="${basketList.ba_idx }" />
-			<input type="hidden" name="snscode" value="${basketList.ba_idx }" />
-			<input type="hidden" name="p_idx" value="${basketList.ba_idx }" />
-			<input type="hidden" name="s_id" value="${basketList.ba_idx }" />
-			<input type="hidden" name="reg_date" value="${basketList.ba_reg_date }" />
+			<form name="frm${status.index }" id="frm${status.index }">
+				<input type="hidden" id="ba_idx${status.index }" name="ba_idx" value="${basketList.ba_idx }" />
+
 			
 			</form>
 		</c:forEach>

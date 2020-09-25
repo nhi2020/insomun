@@ -1,22 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<%@ page import="egovframework.com.cmm.LoginVO"%>
-<%@ include file="../../inc/EgovShopTop.jsp"%>
+<%@ include file="../../inc/EgovShopTop.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="content-language" content="ko">
+<title>입소문넷</title>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+
 </head>
+
 <body>
+<%@ include file="../../inc/EgovShopTop.jsp" %>
+<%@ include file="../../inc/EgovShopHeader.jsp" %>
+
 <c:if test="${msg != null }">${msg }</c:if>
 <c:if test="${msg = null }"> </c:if>
 <form action="/shop/mng/buyer/updateMngBuyerPro.do" method="post">
 <input type="hidden" name="sns_idx" value="${BuyerVO.sns_idx }" />
-<table>
+<table class="table">
 	<tr>
 		<th>회원번호</th>
 		<td>${BuyerVO.sns_idx }</td>
@@ -54,5 +60,6 @@
 </table>
 </form>
 
+<%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>

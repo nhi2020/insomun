@@ -13,4 +13,6 @@ public interface BuyerMngService {
 
 	int buyerUpdate(BuyerMngVO vo);
 
+	int updateMngBuyerStateChange(BuyerMngVO vo);
+
 }

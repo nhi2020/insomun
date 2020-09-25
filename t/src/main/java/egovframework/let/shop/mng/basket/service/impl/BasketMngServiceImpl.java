@@ -38,5 +38,10 @@ public class BasketMngServiceImpl implements BasketMngService {
 		return bd.deleteMngBasket(vo.getBa_idx());
 	}
 
+	@Override
+	public int updateMngBasketQty(BasketMngVO vo) {
+		return bd.updateMngBasketQty(vo);
+	}
+
 
 }

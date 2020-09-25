@@ -14,4 +14,6 @@ public interface BasketMngService {
 	int updateMngBasket(BasketBuyerMngVO vo);
 
 	int deleteMngBasket(BasketMngVO vo);
+
+	int updateMngBasketQty(BasketMngVO vo);
 }

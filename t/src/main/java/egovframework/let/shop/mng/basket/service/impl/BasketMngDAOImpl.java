@@ -51,4 +51,16 @@ public class BasketMngDAOImpl extends EgovAbstractDAO implements BasketMngDAO{
 		return result;
 	}
 
+
+	@Override
+	public int updateMngBasketQty(BasketMngVO vo) {
+		int result = 0;
+		try {
+			result = update("updateMngBasketQty", vo);
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+		}
+		return result;
+	}
+
 }
