@@ -10,5 +10,11 @@
 	<sqlMap resource="egovframework/sqlmap/let/shop/buyer/EgovBuyer_SQL_Mysql.xml"/>
 	<sqlMap resource="egovframework/sqlmap/let/shop/review/EgovReview_SQL_Mysql.xml"/>
 	<sqlMap resource="egovframework/sqlmap/let/shop/seller/EgovSeller_SQL_Mysql.xml"/>
+	<sqlMap resource="egovframework/sqlmap/let/shop/admin/EgovAdmin_SQL_Mysql.xml"/>
+	<sqlMap resource="egovframework/sqlmap/let/shop/basket/EgovBasket_SQL_Mysql.xml"/>
+	<sqlMap resource="egovframework/sqlmap/let/shop/deal/EgovDeal_SQL_Mysql.xml"/>
+	<sqlMap resource="egovframework/sqlmap/let/shop/like/EgovLike_SQL_Mysql.xml"/>
+	<sqlMap resource="egovframework/sqlmap/let/shop/log/EgovLog_SQL_Mysql.xml"/>
+	<sqlMap resource="egovframework/sqlmap/let/shop/notice/EgovNotice_SQL_Mysql.xml"/>
 	<!-- <sqlMap resource="egovframework/sqlmap/let/shop/seller/EgovDeal_SQL_Mysql.xml"/> -->
 </sqlMapConfig>
