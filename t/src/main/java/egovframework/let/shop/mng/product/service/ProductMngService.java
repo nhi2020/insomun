@@ -2,7 +2,7 @@ package egovframework.let.shop.mng.product.service;
 
 import java.util.List;
 
-import egovframework.let.shop.mng.product.service.impl.ProductVO;
+import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
 
 /**
  * 게시물 관리를 위한 서비스 인터페이스  클래스
@@ -23,10 +23,10 @@ import egovframework.let.shop.mng.product.service.impl.ProductVO;
  */
 public interface ProductMngService {
 
-	public List<ProductVO> selectMngProductList(ProductVO productVO)
+	public List<ProductMngVO> selectMngProductList(ProductMngVO productVO)
 			throws Exception;
 
-	public int selectMngProductListCnt(ProductVO productVO) throws Exception;
+	public int selectMngProductListCnt(ProductMngVO productVO) throws Exception;
 	
-	public List<ProductVO> updateMngProduct(ProductVO productVO) throws Exception;
+	public List<ProductMngVO> updateMngProduct(ProductMngVO productVO) throws Exception;
 }

@@ -1,4 +1,4 @@
-package egovframework.let.shop.mng.review.service;
+package egovframework.let.shop.mng.snsprofile.service;
 
 import java.io.Serializable;
 
@@ -23,7 +23,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *  </pre>
  */
 @SuppressWarnings("serial")
-public class ReviewVO extends Review implements Serializable {
+public class SnsProfileMngVO extends SnsProfileMng implements Serializable {
 
     /** 검색시작일 */
     private String searchBgnDe = "";

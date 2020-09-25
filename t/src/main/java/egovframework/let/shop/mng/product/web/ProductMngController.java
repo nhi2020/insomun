@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import egovframework.let.shop.mng.product.service.ProductMngService;
-import egovframework.let.shop.mng.product.service.impl.ProductVO;
+import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
 import egovframework.let.shop.mng.review.service.ReviewMngService;
-import egovframework.let.shop.mng.review.service.ReviewVO;
+import egovframework.let.shop.mng.review.service.ReviewMngVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -88,8 +88,8 @@ public class ProductMngController {
 	 *                Exception
 	 */
 	@RequestMapping(value = "/shop/product/EgovMngMain.do")
-	public String forwardPageWithMenuNo(@ModelAttribute("searchVO") ProductVO vo, HttpServletRequest request,
-			ModelMap model,ReviewVO vo2) throws Exception {
+	public String forwardPageWithMenuNo(@ModelAttribute("searchVO") ProductMngVO vo, HttpServletRequest request,
+			ModelMap model,ReviewMngVO vo2) throws Exception {
 
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
@@ -106,7 +106,7 @@ public class ProductMngController {
 		int totCnt = mngProductService.selectMngProductListCnt(vo);
 		paginationInfo.setTotalRecordCount(totCnt);
 
-		List<ProductVO> list = mngProductService.selectMngProductList(vo);
+		List<ProductMngVO> list = mngProductService.selectMngProductList(vo);
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
@@ -120,9 +120,9 @@ public class ProductMngController {
 		return "shop/EgovMngMain";
 	}
 	@RequestMapping(value="/shop/user/EgovProductUpdate.do")
-	public String egovProductUpdate(@ModelAttribute ProductVO productVO,  HttpServletRequest request,
+	public String egovProductUpdate(@ModelAttribute ProductMngVO productVO,  HttpServletRequest request,
 			ModelMap model) throws Exception {
-	    List<ProductVO> list = mngProductService.updateMngProduct(productVO);
+	    List<ProductMngVO> list = mngProductService.updateMngProduct(productVO);
 	    
 	    
 	    return "shop/EgovProductUpdate";

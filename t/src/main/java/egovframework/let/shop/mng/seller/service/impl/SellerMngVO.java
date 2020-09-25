@@ -1,10 +1,10 @@
-package egovframework.let.shop.mng.product.service.impl;
+package egovframework.let.shop.mng.seller.service.impl;
 
 import java.io.Serializable;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import egovframework.let.shop.mng.product.service.Product;
+import egovframework.let.shop.mng.seller.service.SellerMng;
 
 /**
  * 게시물 관리를 위한 VO 클래스
@@ -25,7 +25,7 @@ import egovframework.let.shop.mng.product.service.Product;
  *  </pre>
  */
 @SuppressWarnings("serial")
-public class ProductVO extends Product implements Serializable {
+public class SellerMngVO extends SellerMng implements Serializable {
 
     /** 검색시작일 */
     private String searchBgnDe = "";

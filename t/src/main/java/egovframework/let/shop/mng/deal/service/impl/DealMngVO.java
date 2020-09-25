@@ -1,5 +1,5 @@
 package egovframework.let.shop.mng.deal.service.impl;
 
-public class DealVO {
+public class DealMngVO {
 
 }

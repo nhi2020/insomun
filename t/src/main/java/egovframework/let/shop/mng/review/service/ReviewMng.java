@@ -1,6 +1,6 @@
 package egovframework.let.shop.mng.review.service;
 
-public class Review {
+public class ReviewMng {
 	private String s_id;
 	private int sns_idx;
 	private int r_idx;

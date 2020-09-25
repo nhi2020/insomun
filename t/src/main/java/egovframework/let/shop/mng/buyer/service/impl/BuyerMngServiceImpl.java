@@ -6,35 +6,36 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import egovframework.let.shop.mng.buyer.service.BuyerMngDAO;
 import egovframework.let.shop.mng.buyer.service.BuyerMngService;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
-@Service("BuyerService")
+@Service("BuyerMngService")
 public class BuyerMngServiceImpl extends EgovAbstractServiceImpl implements BuyerMngService {
 
-	@Resource(name = "BuyerDAO")
-	private BuyerMngDAOImpl BuyerDAO;
+	@Resource(name = "BuyerMngDAO")
+	private BuyerMngDAO BuyerDAO;
 
 	@Override
-	public int selectListCnt(BuyerVO vo) {
+	public int selectListCnt(BuyerMngVO vo) {
 		int cnt = BuyerDAO.buyerListCnt(vo);
 		return cnt;
 	}
 
 	@Override
-	public List<BuyerVO> selectList(BuyerVO vo) {
-		List<BuyerVO> list = BuyerDAO.buyerList(vo);
+	public List<BuyerMngVO> selectList(BuyerMngVO vo) {
+		List<BuyerMngVO> list = BuyerDAO.buyerList(vo);
 		return list;
 	}
 
 	@Override
-	public BuyerVO buyerSelect(BuyerVO vo) {
+	public BuyerMngVO buyerSelect(BuyerMngVO vo) {
 		vo = BuyerDAO.buyerSelect(vo);
 		return vo;
 	}
 
 	@Override
-	public int buyerUpdate(BuyerVO vo) {
+	public int buyerUpdate(BuyerMngVO vo) {
 		int result = BuyerDAO.buyerUpdate(vo);
 		return result;
 	}

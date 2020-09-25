@@ -2,15 +2,15 @@ package egovframework.let.shop.mng.buyer.service;
 
 import java.util.List;
 
-import egovframework.let.shop.mng.buyer.service.impl.BuyerVO;
+import egovframework.let.shop.mng.buyer.service.impl.BuyerMngVO;
 public interface BuyerMngService {
 
-	int selectListCnt(BuyerVO vo);
+	int selectListCnt(BuyerMngVO vo);
 
-	List<BuyerVO> selectList(BuyerVO vo);
+	List<BuyerMngVO> selectList(BuyerMngVO vo);
 
-	BuyerVO buyerSelect(BuyerVO vo);
+	BuyerMngVO buyerSelect(BuyerMngVO vo);
 
-	int buyerUpdate(BuyerVO vo);
+	int buyerUpdate(BuyerMngVO vo);
 
 }

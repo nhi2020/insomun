@@ -1,5 +1,5 @@
 package egovframework.let.shop.mng.notice.service;
 
-public class Notice {
+public class NoticeMng {
 
 }

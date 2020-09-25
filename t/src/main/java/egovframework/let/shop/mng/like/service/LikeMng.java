@@ -1,5 +1,5 @@
 package egovframework.let.shop.mng.like.service;
 
-public class Like {
+public class LikeMng {
 
 }

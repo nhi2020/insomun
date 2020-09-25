@@ -2,7 +2,7 @@ package egovframework.let.shop.mng.buyer.service;
 
 import java.sql.Date;
 
-public class Buyer {
+public class BuyerMng {
 
 	private int sns_idx;
 	private String userid;

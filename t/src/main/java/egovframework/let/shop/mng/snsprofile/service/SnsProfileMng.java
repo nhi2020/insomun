@@ -22,7 +22,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *  </pre>
  */
 @SuppressWarnings("serial")
-public class SnsProfile implements Serializable {
+public class SnsProfileMng implements Serializable {
 
 	private int sns_idx;
 	private String userid;

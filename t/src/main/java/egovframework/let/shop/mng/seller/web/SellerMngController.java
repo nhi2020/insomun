@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import egovframework.let.shop.mng.seller.service.SellerMngService;
-import egovframework.let.shop.mng.seller.service.impl.SellerVO;
+import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 
 /**
@@ -118,14 +118,14 @@ public class SellerMngController {
 		return "shop/sellerLogin/sellerLoginFrom";
 	}
 	@RequestMapping(value = "/shop/seller/EgovsellerLoginPro.do")
-	public String login( @RequestParam("id") String id,  @RequestParam("passwd") String passwd, Model model, HttpServletRequest request,@ModelAttribute("searchVO") SellerVO vo) throws Exception {
+	public String login( @RequestParam("id") String id,  @RequestParam("passwd") String passwd, Model model, HttpServletRequest request,@ModelAttribute("searchVO") SellerMngVO vo) throws Exception {
 		
 		HttpSession session= request.getSession();
 		
 		System.out.println("user_id"+id);
 		System.out.println("password"+passwd);
 		
-		SellerVO sellervo = new SellerVO();
+		SellerMngVO sellervo = new SellerMngVO();
 		sellervo.setS_id(id);
 		sellervo.setS_pass(passwd);
 		

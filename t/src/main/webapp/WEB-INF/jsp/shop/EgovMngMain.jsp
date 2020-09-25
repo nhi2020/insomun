@@ -71,7 +71,7 @@ $(document).ready(function(){
 
 
 	<!-- 테스트용 임시 링크 -->
-	<a href="/shop/buyer/BuyerList.do">구매자 관리</a><br/>
+	<a href="/shop/buyer/snsProfileList.do">구매자 관리</a><br/>
 	<a href="/shop/review/reviewList.do">리뷰 페이지</a>
 </body>
 </html>

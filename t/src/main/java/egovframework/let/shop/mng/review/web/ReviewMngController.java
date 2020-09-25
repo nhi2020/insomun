@@ -10,7 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import egovframework.let.shop.mng.review.service.ReviewMngService;
-import egovframework.let.shop.mng.review.service.ReviewVO;
+import egovframework.let.shop.mng.review.service.ReviewMngVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -54,7 +54,7 @@ public class ReviewMngController {
 	}
 	
 	@RequestMapping(value = "/shop/review/reviewList.do")
-	public String list(ReviewVO reviewvo, HttpServletRequest request, ModelMap model) throws Exception{
+	public String list(ReviewMngVO reviewvo, HttpServletRequest request, ModelMap model) throws Exception{
 		PaginationInfo paginationInfo = new PaginationInfo();
 
 		paginationInfo.setCurrentPageNo(reviewvo.getPageIndex());
@@ -64,7 +64,7 @@ public class ReviewMngController {
 		reviewvo.setFirstIndex(paginationInfo.getFirstRecordIndex());
 		reviewvo.setLastIndex(paginationInfo.getLastRecordIndex());
 		reviewvo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-		List<ReviewVO> list = egovReviewService.selectReviewList(reviewvo);
+		List<ReviewMngVO> list = egovReviewService.selectReviewList(reviewvo);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
 		return "/shop/review/EgovShopReview";

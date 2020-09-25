@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import egovframework.let.shop.mng.buyer.service.BuyerMngService;
-import egovframework.let.shop.mng.buyer.service.impl.BuyerVO;
+import egovframework.let.shop.mng.buyer.service.impl.BuyerMngVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
 public class BuyerMngController {
 
-	@Resource(name = "BuyerService")
+	@Resource(name = "BuyerMngService")
 	private BuyerMngService buyerService;
 
 	@Resource(name = "propertiesService")
@@ -51,7 +51,7 @@ public class BuyerMngController {
 	}
 
 	@RequestMapping(value = "/shop/mng/snsProfile/SnsProfileList")
-	public String buyerForwardPage(@ModelAttribute("searchVO") BuyerVO vo, HttpServletRequest request, Model model) {
+	public String buyerForwardPage(@ModelAttribute("searchVO") BuyerMngVO vo, HttpServletRequest request, Model model) {
 
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
@@ -69,7 +69,7 @@ public class BuyerMngController {
 		int totCnt = buyerService.selectListCnt(vo);
 		paginationInfo.setTotalRecordCount(totCnt);
 
-		List<BuyerVO> list = buyerService.selectList(vo);
+		List<BuyerMngVO> list = buyerService.selectList(vo);
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
@@ -79,7 +79,7 @@ public class BuyerMngController {
 	}
 
 	@RequestMapping("/shop/mng/snsProfile/SnsProfileModifyForm")
-	public String buyerModifyForm(BuyerVO vo, Model model){
+	public String buyerModifyForm(BuyerMngVO vo, Model model){
 		System.out.println("BuyerModifyForm ()");
 		vo = buyerService.buyerSelect(vo);
 		model.addAttribute("BuyerVO", vo);
@@ -87,7 +87,7 @@ public class BuyerMngController {
 	}
 
 	@RequestMapping(value= "/shop/mng/snsProfile/SnsProfileModifyPro", method=RequestMethod.POST)
-	public String BuyerModifyForm(BuyerVO vo, Model model){
+	public String BuyerModifyForm(BuyerMngVO vo, Model model){
 		System.out.println("BuyerModifyPro ()");
 		System.out.println("vo sns_idx=>" + vo.getSns_idx());
 		int result = buyerService.buyerUpdate(vo);

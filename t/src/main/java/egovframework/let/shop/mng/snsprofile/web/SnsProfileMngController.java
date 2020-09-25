@@ -19,7 +19,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import egovframework.let.shop.mng.snsprofile.service.SnsProfileMngSerivce;
 import egovframework.let.shop.mng.snsprofile.service.KakaoAPI;
 import egovframework.let.shop.mng.snsprofile.service.NaverAPI;
-import egovframework.let.shop.mng.snsprofile.service.SnsProfileVO;
+import egovframework.let.shop.mng.snsprofile.service.SnsProfileMngVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 
 /**
@@ -104,7 +104,7 @@ public class SnsProfileMngController {
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/shop/user/EgovKakaoLogin.do")
-	public String egovUserLogin(@RequestParam("code") String code, SnsProfileVO snsProfileVO, HttpServletRequest request, ModelMap model, HttpSession session)
+	public String egovUserLogin(@RequestParam("code") String code, SnsProfileMngVO snsProfileVO, HttpServletRequest request, ModelMap model, HttpSession session)
 			  throws Exception{
 		System.out.println("code : "+code);
 		String access_Token = kakao.getAccessToken(code);
@@ -139,7 +139,7 @@ public class SnsProfileMngController {
 	}
 	
 	@RequestMapping(value = "/shop/user/EgovNaverLogin.do")
-	public String egovUserLogin(@RequestParam("code") String code, @RequestParam("state") String state, SnsProfileVO snsProfileVO, HttpServletRequest request, ModelMap model, HttpSession session)
+	public String egovUserLogin(@RequestParam("code") String code, @RequestParam("state") String state, SnsProfileMngVO snsProfileVO, HttpServletRequest request, ModelMap model, HttpSession session)
 			  throws Exception{
 	    OAuth2AccessToken oauthToken;
         oauthToken = naver.getAccessToken(session, code, state);

@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface ReviewMngService {
 
-	public List<ReviewVO> selectReviewList(ReviewVO reviewVO) throws Exception;
+	public List<ReviewMngVO> selectReviewList(ReviewMngVO reviewVO) throws Exception;
 }

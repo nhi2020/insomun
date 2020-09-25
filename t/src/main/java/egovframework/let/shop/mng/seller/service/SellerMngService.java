@@ -2,7 +2,7 @@ package egovframework.let.shop.mng.seller.service;
 
 import java.util.List;
 
-import egovframework.let.shop.mng.seller.service.impl.SellerVO;
+import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
 
 /**
  * 게시물 관리를 위한 서비스 인터페이스  클래스
@@ -23,9 +23,9 @@ import egovframework.let.shop.mng.seller.service.impl.SellerVO;
  */
 public interface SellerMngService {
 
-	public List<SellerVO> selectSellerList(SellerVO sellerVO) throws Exception;
+	public List<SellerMngVO> selectSellerList(SellerMngVO sellerVO) throws Exception;
 
-	public int selectSellerListCnt(SellerVO sellerVO) throws Exception;
+	public int selectSellerListCnt(SellerMngVO sellerVO) throws Exception;
 	
-	public String selectLoginCheck(SellerVO sellerVO) throws Exception;
+	public String selectLoginCheck(SellerMngVO sellerVO) throws Exception;
 }

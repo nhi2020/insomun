@@ -33,16 +33,16 @@ public class ProductMngDAO extends EgovAbstractDAO {
      * @throws Exception
      */
     @SuppressWarnings("unchecked")
-    public List<ProductVO> selectMngProductList(ProductVO productVO) throws Exception {
-	return (List<ProductVO>) list("EgovMngProductDAO.selectMngProductList", productVO);
+    public List<ProductMngVO> selectMngProductList(ProductMngVO productVO) throws Exception {
+	return (List<ProductMngVO>) list("EgovMngProductDAO.selectMngProductList", productVO);
     }
     
-    public int selectMngProductListCnt(ProductVO productVO) throws Exception {
+    public int selectMngProductListCnt(ProductMngVO productVO) throws Exception {
     	return (Integer)select("EgovMngProductDAO.selectMngProductListCnt", productVO);
     }
     
     @SuppressWarnings("unchecked")
-	public List<ProductVO> updateMngProduct(ProductVO productVO) throws Exception {
-		return (List<ProductVO>) list("EgovMngProductDAO.updateMngProduct", productVO);
+	public List<ProductMngVO> updateMngProduct(ProductMngVO productVO) throws Exception {
+		return (List<ProductMngVO>) list("EgovMngProductDAO.updateMngProduct", productVO);
     }
 }

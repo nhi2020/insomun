@@ -4,11 +4,11 @@
 <sqlMap namespace="ReviewList">
 
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
-	<typeAlias  alias="ReviewVO" type="egovframework.let.shop.mng.review.service.ReviewVO"/>
-	<typeAlias  alias="Review" type="egovframework.let.shop.mng.review.service.Review"/>
+	<typeAlias  alias="ReviewVO" type="egovframework.let.shop.mng.review.service.ReviewMngVO"/>
+	<typeAlias  alias="Review" type="egovframework.let.shop.mng.review.service.ReviewMng"/>
 					
 	
-	<resultMap id="ReviewList" class="egovframework.let.shop.mng.review.service.ReviewVO"> <!-- property는 vo값 -->
+	<resultMap id="ReviewList" class="egovframework.let.shop.mng.review.service.ReviewMngVO"> <!-- property는 vo값 -->
 		<result property="s_id" column="S_ID" columnIndex="1"/>
 		<result property="sns_idx" column="SNS_IDX" columnIndex="2"/>						 <!-- collum 은 db의 컬럼값 -->
 		<result property="r_idx" column="R_IDX" columnIndex="3"/>			  <!-- db의 컬럼 순서 -->

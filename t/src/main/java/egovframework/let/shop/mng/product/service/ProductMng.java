@@ -23,7 +23,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *      </pre>
  */
 @SuppressWarnings("serial")
-public class Product implements Serializable {
+public class ProductMng implements Serializable {
 
 	private int p_idx;
 	private String s_id;

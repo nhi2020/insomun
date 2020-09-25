@@ -1,8 +1,10 @@
-package egovframework.let.shop.mng.snsprofile.service;
+package egovframework.let.shop.mng.product.service.impl;
 
 import java.io.Serializable;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import egovframework.let.shop.mng.product.service.ProductMng;
 
 /**
  * 게시물 관리를 위한 VO 클래스
@@ -23,7 +25,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *  </pre>
  */
 @SuppressWarnings("serial")
-public class SnsProfileVO extends SnsProfile implements Serializable {
+public class ProductMngVO extends ProductMng implements Serializable {
 
     /** 검색시작일 */
     private String searchBgnDe = "";

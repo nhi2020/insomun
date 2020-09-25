@@ -1,5 +1,5 @@
 package egovframework.let.shop.mng.log.service;
 
-public class Log {
+public class LogMng {
 
 }

@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 import egovframework.let.shop.mng.buyer.service.BuyerMngDAO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
-@Repository("BuyerDAO")
+@Repository("BuyerMngDAO")
 public class BuyerMngDAOImpl extends EgovAbstractDAO implements BuyerMngDAO {
 
-	public int buyerListCnt(BuyerVO vo) {
+	public int buyerListCnt(BuyerMngVO vo) {
 		System.out.println("BuyerListCnt");
 		int count = 0;
 		try {
@@ -24,10 +24,10 @@ public class BuyerMngDAOImpl extends EgovAbstractDAO implements BuyerMngDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<BuyerVO> buyerList(BuyerVO vo) {
-		List<BuyerVO> Buyerlist = null;
+	public List<BuyerMngVO> buyerList(BuyerMngVO vo) {
+		List<BuyerMngVO> Buyerlist = null;
 		try {
-			Buyerlist = (List<BuyerVO>) list("BuyerSelectList", vo);
+			Buyerlist = (List<BuyerMngVO>) list("BuyerSelectList", vo);
 
 		} catch (Exception e) {
 			System.out.println("BuyerSelectList Exception " + e.getMessage());
@@ -35,9 +35,9 @@ public class BuyerMngDAOImpl extends EgovAbstractDAO implements BuyerMngDAO {
 		return Buyerlist;
 	}
 
-	public BuyerVO buyerSelect(BuyerVO vo) {
+	public BuyerMngVO buyerSelect(BuyerMngVO vo) {
 		try {
-			vo = (BuyerVO) select("BuyerSelect", vo);
+			vo = (BuyerMngVO) select("BuyerSelect", vo);
 
 		} catch (Exception e) {
 			System.out.println("buyerSelect Exception " + e.getMessage());
@@ -45,7 +45,7 @@ public class BuyerMngDAOImpl extends EgovAbstractDAO implements BuyerMngDAO {
 		return vo;
 	}
 
-	public int buyerUpdate(BuyerVO vo) {
+	public int buyerUpdate(BuyerMngVO vo) {
 		System.out.println("BuyerDAOImpl buyerUpdate");
 		System.out.println("vo sns_idx" + vo.getSns_idx());
 		int result = 0;

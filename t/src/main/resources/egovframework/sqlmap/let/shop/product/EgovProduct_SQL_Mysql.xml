@@ -4,10 +4,10 @@
 <sqlMap namespace="Product">
 
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
-	<typeAlias  alias="ProductVO" type="egovframework.let.shop.mng.product.service.impl.ProductVO"/> <!-- db에서 세터로 받아넣는 -->
-	<typeAlias  alias="Product" type="egovframework.let.shop.mng.product.service.Product"/>
+	<typeAlias  alias="ProductVO" type="egovframework.let.shop.mng.product.service.impl.ProductMngVO"/> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias  alias="Product" type="egovframework.let.shop.mng.product.service.ProductMng"/>
 	
-	<resultMap id="mngProductList" class="egovframework.let.shop.product.service.ProductVO"> <!-- property는 vo값 -->
+	<resultMap id="mngProductList" class="egovframework.let.shop.mng.product.service.impl.ProductMngVO"> <!-- property는 vo값 -->
 		<result property="p_idx" column="P_IDX" columnIndex="1"/>
 		<result property="s_id" column="S_ID" columnIndex="2"/>
 		<result property="p_name" column="P_NAME" columnIndex="3"/>

@@ -32,18 +32,18 @@ public class SellerMngSerivceImpl extends EgovAbstractServiceImpl implements Sel
     @Resource(name = "EgovSellerDAO")
     private SellerMngDAO SellerDAO;
 
-	public List<SellerVO> selectSellerList(SellerVO sellerVO) throws Exception {
+	public List<SellerMngVO> selectSellerList(SellerMngVO sellerVO) throws Exception {
 		System.out.println("들감 1");
 		return null;
 	}
 
-	public int selectSellerListCnt(SellerVO sellerVO) throws Exception {
+	public int selectSellerListCnt(SellerMngVO sellerVO) throws Exception {
 		System.out.println("들감 1");
 		return 0;
 	}
 
 	
-	public String selectLoginCheck(SellerVO sellerVO) throws Exception{
+	public String selectLoginCheck(SellerMngVO sellerVO) throws Exception{
 		System.out.println("들감 1");
 		System.out.println(sellerVO.getS_id());
 		System.out.println(sellerVO.getS_pass());

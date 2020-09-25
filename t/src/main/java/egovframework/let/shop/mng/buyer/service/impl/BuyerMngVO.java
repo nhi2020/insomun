@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import egovframework.let.shop.mng.buyer.service.Buyer;
+import egovframework.let.shop.mng.buyer.service.BuyerMng;
 
 @SuppressWarnings("serial")
-public class BuyerVO extends Buyer implements Serializable {
+public class BuyerMngVO extends BuyerMng implements Serializable {
 
 	/** 검색시작일 */
 	private String searchBgnDe = "";

@@ -33,17 +33,17 @@ public class SellerMngDAO extends EgovAbstractDAO {
      * @throws Exception
      */
     @SuppressWarnings("unchecked")
-    public List<SellerVO> selectSellerList(SellerVO sellerVO) throws Exception {
+    public List<SellerMngVO> selectSellerList(SellerMngVO sellerVO) throws Exception {
     	System.out.println("들감1");
-	return (List<SellerVO>) list("EgovSellerDAO.selectSellerList1", sellerVO);
+	return (List<SellerMngVO>) list("EgovSellerDAO.selectSellerList1", sellerVO);
     }								
 
-    public int selectSellerListCnt(SellerVO sellerVO) throws Exception {
+    public int selectSellerListCnt(SellerMngVO sellerVO) throws Exception {
     	System.out.println("들감2");
     	return (Integer)select("EgovSellerDAO.selectSellerListCnt1", sellerVO);
     }
     
-    public String selectLoginCheck(SellerVO sellerVO) throws Exception {
+    public String selectLoginCheck(SellerMngVO sellerVO) throws Exception {
     	System.out.println("들감2");
     	System.out.println(sellerVO);
     	return (String) select("EgovSellerDAO.selectLoginCheck1",sellerVO);
