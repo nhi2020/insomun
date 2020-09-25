@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import egovframework.let.shop.mng.product.service.EgovMngProductService;
-import egovframework.let.shop.mng.product.service.ProductVO;
+import egovframework.let.shop.mng.product.service.impl.ProductVO;
 import egovframework.let.shop.mng.review.service.EgovReviewService;
 import egovframework.let.shop.mng.review.service.ReviewVO;
 import egovframework.rte.fdl.property.EgovPropertyService;

@@ -3,7 +3,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import egovframework.let.shop.mng.product.service.ProductVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
 /**

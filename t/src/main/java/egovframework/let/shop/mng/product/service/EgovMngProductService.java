@@ -2,6 +2,8 @@ package egovframework.let.shop.mng.product.service;
 
 import java.util.List;
 
+import egovframework.let.shop.mng.product.service.impl.ProductVO;
+
 /**
  * 게시물 관리를 위한 서비스 인터페이스  클래스
  * @author 공통 서비스 개발팀 이삼섭

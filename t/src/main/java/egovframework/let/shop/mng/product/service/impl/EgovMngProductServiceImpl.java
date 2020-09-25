@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import egovframework.let.shop.mng.product.service.EgovMngProductService;
-import egovframework.let.shop.mng.product.service.ProductVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
 /**
