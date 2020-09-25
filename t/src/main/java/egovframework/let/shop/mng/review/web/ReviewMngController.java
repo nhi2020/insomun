@@ -53,7 +53,7 @@ public class ReviewMngController {
 		return ret;
 	}
 	
-	@RequestMapping(value = "/shop/review/reviewList.do")
+	@RequestMapping(value = "/shop/mng/review/reviewList.do")
 	public String list(ReviewMngVO reviewvo, HttpServletRequest request, ModelMap model) throws Exception{
 		PaginationInfo paginationInfo = new PaginationInfo();
 
@@ -67,7 +67,7 @@ public class ReviewMngController {
 		List<ReviewMngVO> list = egovReviewService.selectReviewList(reviewvo);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
-		return "/shop/review/EgovShopReview";
+		return "/shop/mng/review/EgovShopReview";
 	}
 	
 }

@@ -14,7 +14,7 @@
 <body>
 <c:if test="${msg != null }">${msg }</c:if>
 <c:if test="${msg = null }"> </c:if>
-<form action="/shop/buyer/BuyerModifyPro.do" method="post">
+<form action="/shop/mng/buyer/updateMngBuyerPro.do" method="post">
 <input type="hidden" name="sns_idx" value="${BuyerVO.sns_idx }" />
 <table>
 	<tr>
@@ -48,7 +48,7 @@
 	<tr>
 		<td colspan="2">
 			<input type="submit" value="수정" />
-			<input type="button" value="목록으로" onclick="location.href='/shop/buyer/BuyerList.do'"/>
+			<input type="button" value="목록으로" onclick="location.href='/shop/mng/buyer/listMngBuyer.do'"/>
 		</td>
 	</tr>
 </table>

@@ -50,8 +50,8 @@ public class BuyerMngController {
 		return ret;
 	}
 
-	@RequestMapping(value = "/shop/mng/snsProfile/SnsProfileList")
-	public String buyerForwardPage(@ModelAttribute("searchVO") BuyerMngVO vo, HttpServletRequest request, Model model) {
+	@RequestMapping(value = "/shop/mng/buyer/listMngBuyer")
+	public String listMngBuyer(@ModelAttribute("searchVO") BuyerMngVO vo, HttpServletRequest request, Model model) {
 
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
@@ -74,21 +74,21 @@ public class BuyerMngController {
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
 
-		return "shop/mng/snsprofile/snsProfileList";
+		return "shop/mng/buyer/listMngBuyer";
 
 	}
 
-	@RequestMapping("/shop/mng/snsProfile/SnsProfileModifyForm")
-	public String buyerModifyForm(BuyerMngVO vo, Model model){
-		System.out.println("BuyerModifyForm ()");
+	@RequestMapping("/shop/mng/buyer/updateMngBuyerForm")
+	public String updateMngBuyerForm(BuyerMngVO vo, Model model){
+		System.out.println("buyerMngModifyForm ()");
 		vo = buyerService.buyerSelect(vo);
 		model.addAttribute("BuyerVO", vo);
-		return "shop/buyer/snsProfileModifyForm";
+		return "shop/mng/buyer/updateMngBuyerForm";
 	}
 
-	@RequestMapping(value= "/shop/mng/snsProfile/SnsProfileModifyPro", method=RequestMethod.POST)
-	public String BuyerModifyForm(BuyerMngVO vo, Model model){
-		System.out.println("BuyerModifyPro ()");
+	@RequestMapping(value= "/shop/mng/buyer/updateMngBuyerPro", method=RequestMethod.POST)
+	public String updateMngBuyerPro(BuyerMngVO vo, Model model){
+		System.out.println("updateMngBuyerForm ()");
 		System.out.println("vo sns_idx=>" + vo.getSns_idx());
 		int result = buyerService.buyerUpdate(vo);
 		if (result > 0 ){
@@ -99,7 +99,7 @@ public class BuyerMngController {
 		model.addAttribute("vo");
 		
 		
-		return "forward:snsProfileModifyForm.do";
+		return "forward:updateMngBuyerForm.do";
 		
 	}
 

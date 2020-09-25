@@ -20,7 +20,7 @@ td, tr {
 	<table>
 		<c:forEach items="${list }" var="sns_list">
 			<tr>
-				<td><a href="/shop/buyer/BuyerModifyForm.do?sns_idx=${sns_list.sns_idx }">${sns_list.sns_idx }</a></td>
+				<td><a href="/shop/mng/buyer/updateMngBuyerForm.do?sns_idx=${sns_list.sns_idx }">${sns_list.sns_idx }</a></td>
 				<td>${sns_list.userid }</td>
 				<td>${sns_list.snscode }</td>
 				<td>${sns_list.nickname }</td>
