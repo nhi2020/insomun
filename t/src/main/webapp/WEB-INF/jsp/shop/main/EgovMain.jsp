@@ -14,16 +14,32 @@
 </head>
 <body>
 <%@ include file="../inc/EgovShopHeader.jsp" %>
-
-  ${sessionScope.userid }<br/>
-  ${sessionScope.nickname }<br/>
-  ${sessionScope.email }
   <h2>메인 화면 입니다.</h2>
-  <c:forEach items="${list}" var="result">
-	${result.userid }
-	${result.nickname}
-	${result.email }
-  </c:forEach>
+  <!-- 테스트용 임시 링크 -->
+	<div class="container text-center">
+			<div class="row justify-content-center">
+			<table border="1">
+				<thead>
+					<tr>
+						<th><a href="/shop/buyer/snsProfileList.do">구매자 관리</a></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><a href="/shop/review/reviewList.do">리뷰 페이지</a></td>
+					</tr>
+					<tr>
+					<td><a href="/shop/mng/basket/basketList.do">장바구니 관리</a></td>
+					</tr>
+					<!-- <tr>
+					<td><a href="#">### 관리</a></td>
+					<td><a href="#">### 관리</a></td>
+					<td><a href="#">### 관리</a></td>
+					</tr> -->
+				</tbody>
+			</table>
+		</div>
+	</div>
   
 <%@ include file="../inc/EgovShopBottom.jsp" %>
 </body>
