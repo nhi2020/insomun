@@ -46,8 +46,8 @@ public class ProductMngController {
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
 
-	@Resource(name ="EgovReviewService")
-	protected ReviewMngService reviewService;
+	/*@Resource(name ="EgovReviewService")
+	protected ReviewMngService reviewService;*/
 	/**
 	 * XSS 방지 처리.
 	 *

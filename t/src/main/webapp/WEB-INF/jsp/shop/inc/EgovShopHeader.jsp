@@ -33,7 +33,13 @@
 	$(document).ready(function(){
 		$("#sellerlogout").click(function(){
 			alert("누름");
-			location.href = "/shop/seller/EgovSellerLogout.do";
+			location.href = "/shop/mng/seller/sellerLogout.do";
+		});
+	});
+	$(document).ready(function(){
+		$("#adminlogout").click(function(){
+			alert("누름");
+			location.href = "/shop/mng/seller/adminLogout.do";
 		});
 	});
 </script>
@@ -41,27 +47,12 @@
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	<!-- Brand -->
-	<a class="navbar-brand" href="/shop/product/EgovMngMain.do">Logo</a>
+	<a class="navbar-brand" href="/shop/mng/main/EgovMain.do">Logo</a>
 
 	<!-- Links -->
 	<ul class="navbar-nav">
 	  <li class="nav-item">
-	    <a class="nav-link" href="#">Link 1</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" href="#">Link 2</a>
-	  </li>
-	
-	  <!-- Dropdown -->
-	  <li class="nav-item dropdown">
-	    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-	      Dropdown link
-	    </a>
-	    <div class="dropdown-menu">
-	      <a class="dropdown-item" href="#">Link 1</a>
-	      <a class="dropdown-item" href="#">Link 2</a>
-	      <a class="dropdown-item" href="#">Link 3</a>
-	    </div>
+	    <a class="nav-link" href="#">상품게시판</a>
 	  </li>
 	</ul>
 	<form class="form-inline" action="/action_page.php">
@@ -70,25 +61,65 @@
 	</form>
 	
 	<c:choose>
-		<c:when test="${sessionScope.userid eq 'admin'}">
-			<div class="container">
-				<button type="button" id="#adminpage">admin</button>
-			</div>
-		</c:when>
-	
-		 <c:when test="${sessionScope.userid != null and sessionScope.userid ne ' ' and sessionScope.status == 1 }">
-		 	<div class="container">
-				 <button type="button" id="btnlogout">logout</button>
-				 <button type="button" id="sellerlogout">구매자logout</button>
-			 </div>
+		 <c:when test="${sessionScope.userid != null and sessionScope.userid ne ' '}">
+		 		<c:if test="${sessionScope.status == 1 }">
+				 <button type="button" id="btnlogout" id="userlogout">사용자 logout</button>
+				 <!-- Dropdown -->
+	 				 <ul class="navbar-nav" >
+	 					 <li class="nav-item dropdown">
+	 					   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+	    				  	마이페이지
+	  					  </a>
+	  					  <div class="dropdown-menu">
+	   						   <a class="dropdown-item" href="#">Link 1</a>
+	    					   <a class="dropdown-item" href="#">Link 2</a>
+	     					   <a class="dropdown-item" href="#">Link 3</a>
+	   					 </div>
+					  </li>
+	  				</ul>
+				 </c:if>
+				 <c:if test="${sessionScope.status == 2 }">
+				 <button class="btn btn-info" type="button" id="sellerlogout">판매자logout</button>
+				  <!-- Dropdown -->
+	 				 <ul class="navbar-nav" >
+	 					 <li class="nav-item dropdown">
+	 					   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+	    				  	마이페이지
+	  					  </a>
+	  					  <div class="dropdown-menu">
+	   						   <a class="dropdown-item" href="#">Link 1</a>
+	    					   <a class="dropdown-item" href="#">Link 2</a>
+	     					   <a class="dropdown-item" href="#">Link 3</a>
+	   					 </div>
+					  </li>
+	  				</ul>
+				 </c:if>
+				 <c:if test="${sessionScope.status == 0 }">
+				 <button class="btn btn-info" type="button" id="adminlogout">운영자logout</button>
+				  <!-- Dropdown -->
+	 				 <ul class="navbar-nav" >
+	 					 <li class="nav-item dropdown">
+	 					   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+	    				  	마이페이지
+	  					  </a>
+	  					  <div class="dropdown-menu">
+	   						   <a class="dropdown-item" href="#">후기 관리 페이지</a>
+	    					   <a class="dropdown-item" href="#">상품관리 페이지</a>
+	     					   <a class="dropdown-item" href="#">관리자 관리 페이지</a>
+	     					   <a class="dropdown-item" href="#">구매자 관리 페이지</a>
+	     					   <a class="dropdown-item" href="#">판매자 관리 페이지</a>
+	   					 </div>
+					  </li>
+	  				</ul>
+				 </c:if>
 		</c:when>
 		
 		<c:otherwise>
 			<button type="button" id="btnlogin" class="btn btn-info">login</button>
-			<button type="button" id="btnlogout" class="btn btn-info">logout</button>
-			<button type="button" id="btnSignIn" class="btn btn-danger" >회원가입</button>
+			<!-- <button type="button" id="btnSignIn" class="btn btn-danger" >회원가입</button> -->
 		</c:otherwise>
 </c:choose>
+	  
 </nav>
 </body>
 </html>

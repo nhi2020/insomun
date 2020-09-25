@@ -2,4 +2,29 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="Admin">
+	<typeAlias  alias="AdminVO" type="egovframework.let.shop.mng.admin.service.impl.AdminVO"/>
+	
+	<select id="AdminDAO.selectLoginCheck" parameterClass="AdminVO" resultClass="java.lang.String">
+	<!-- 쿼리문 작성 -->
+		<![CDATA[  
+			SELECT A_ID
+			FROM ADMIN
+			WHERE 1=1
+			AND A_ID = #a_id#
+			AND A_PASS = #a_pass#
+		]]>
+	</select>
+	
+	<select id="AdminDAO.selectListLoginCheck" parameterClass="AdminVO" resultClass="AdminVO">
+	<!-- 쿼리문 작성 -->
+		<![CDATA[  
+			SELECT *
+			FROM ADMIN
+			WHERE 1=1
+			AND A_ID = #a_id#
+			AND A_PASS = #a_pass#
+		]]>
+	</select>
+
+	
 </sqlMap>
