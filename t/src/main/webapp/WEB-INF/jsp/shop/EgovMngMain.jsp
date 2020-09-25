@@ -72,7 +72,7 @@ $(document).ready(function(){
 
 	<!-- 테스트용 임시 링크 -->
 	<a href="/shop/mng/buyer/listMngBuyer.do">구매자 관리</a><br/>
-	<a href="/shop/mng/basket/basketList.do">장바구니 관리</a><br/>
+	<a href="/shop/mng/basket/listMngBasket.do">장바구니 관리</a><br/>
 	<a href="/shop/mng/review/reviewList.do">리뷰 페이지</a>
 </body>
 </html>
