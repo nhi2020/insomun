@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,7 +54,7 @@ public class ReviewUserController {
 		return ret;
 	}
 	
-	@RequestMapping(value = "/shop/mng/review/reviewList.do")
+	@RequestMapping(value = "/shop/user/review/reviewList.do")
 	public String list(ReviewUserVO reviewvo, HttpServletRequest request, ModelMap model) throws Exception{
 		PaginationInfo paginationInfo = new PaginationInfo();
 
@@ -70,4 +71,9 @@ public class ReviewUserController {
 		return "/shop/user/review/EgovShopReview";
 	}
 	
+	@RequestMapping(value ="/shop/user/review/delUserReview.do")
+	public String delUserReview(ReviewUserVO reviewVO) throws Exception{
+		egovReviewService.delUserReview(reviewVO);
+		return "forward:/shop/user/review/reviewList.do";
+	}
 }

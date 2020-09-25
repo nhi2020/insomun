@@ -24,4 +24,10 @@ public class ReviewUserServiceImpl extends EgovAbstractServiceImpl implements Re
 		return list;
 	}
 
+	@Override
+	public List<ReviewUserVO> delUserReview(ReviewUserVO reviewVO) throws Exception {
+		List<ReviewUserVO> list = egovReviewDAO.delUserReview(reviewVO);
+		return list;
+	}
+
 }

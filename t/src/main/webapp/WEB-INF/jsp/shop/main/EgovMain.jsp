@@ -26,7 +26,7 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td><a href="/shop/review/reviewList.do">리뷰 페이지</a></td>
+						<td><a href="/shop/user/review/reviewList.do">리뷰 페이지</a></td>
 					</tr>
 					<tr>
 					<td><a href="/shop/mng/basket/basketList.do">장바구니 관리</a></td>
