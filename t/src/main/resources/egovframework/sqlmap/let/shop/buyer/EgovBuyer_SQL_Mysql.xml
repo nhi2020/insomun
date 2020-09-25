@@ -3,8 +3,8 @@
 
 <sqlMap namespace="Buyer">
 
-	<typeAlias alias="BuyerVO" type="egovframework.let.shop.buyer.dto.BuyerVO" /> <!-- db에서 세터로 받아넣는 -->
-	<typeAlias alias="Buyer" type="egovframework.let.shop.buyer.dto.Buyer" />
+	<typeAlias alias="BuyerVO" type="egovframework.let.shop.mng.buyer.service.impl.BuyerVO" /> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias alias="Buyer" type="egovframework.let.shop.mng.buyer.service.Buyer" />
 
 	<select id="BuyerListCnt" parameterClass="BuyerVO" resultClass="int">
 		SELECT COUNT(*)

@@ -4,10 +4,10 @@
 <sqlMap namespace="SnsProfile">
 
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
-	<typeAlias  alias="SnsProfileVO" type="egovframework.let.shop.user.service.SnsProfileVO"/>
-	<typeAlias  alias="SnsProfile" type="egovframework.let.shop.user.service.SnsProfile"/>
+	<typeAlias  alias="SnsProfileVO" type="egovframework.let.shop.mng.snsprofile.service.SnsProfileVO"/>
+	<typeAlias  alias="SnsProfile" type="egovframework.let.shop.mng.snsprofile.service.SnsProfile"/>
 					
-	<resultMap id="snsProfileList" class="egovframework.let.shop.user.service.SnsProfileVO"> <!-- property는 vo값 -->
+	<resultMap id="snsProfileList" class="egovframework.let.shop.mng.snsprofile.service.SnsProfileVO"> <!-- property는 vo값 -->
 		<result property="sns_idx" column="SNS_IDX" columnIndex="1"/>
 		<result property="userid" column="USERID" columnIndex="2"/>						 <!-- collum 은 db의 컬럼값 -->
 		<result property="snscode" column="SNSCODE" columnIndex="3"/>			 <!--  db의 컬럼 순서 -->
