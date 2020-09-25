@@ -71,8 +71,8 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		
 		System.out.println("나옴"+user_name);
 		
-		System.out.println("list"+list.get(0).getA_id());
-		System.out.println("list2"+list.get(0).getA_email());
+//		System.out.println("list"+list.get(0).getA_id());
+//		System.out.println("list2"+list.get(0).getA_email());
 		
 		
 		if (user_name != null){
@@ -81,7 +81,7 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 			/*request.getSession().setAttribute("user_id", id);*/
 			System.out.println("성공");
 			model.addAttribute("chk",1);
-		}else{
+		}else {
 			System.out.println("실패");
 			model.addAttribute("msg","사용자 올바르지 않음");
 			model.addAttribute("chk",0);	
