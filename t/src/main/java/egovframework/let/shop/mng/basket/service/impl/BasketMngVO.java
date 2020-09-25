@@ -7,7 +7,15 @@ public class BasketMngVO {
 	private int ba_idx;
 	private int sns_idx;
 	private int p_idx;
-	private String s_idx;
+	private String s_id;
+	public String getS_id() {
+		return s_id;
+	}
+
+	public void setS_id(String s_id) {
+		this.s_id = s_id;
+	}
+
 	private int ba_q;
 	private Date ba_reg_date;
 
@@ -33,14 +41,6 @@ public class BasketMngVO {
 
 	public void setP_idx(int p_idx) {
 		this.p_idx = p_idx;
-	}
-
-	public String getS_idx() {
-		return s_idx;
-	}
-
-	public void setS_idx(String s_idx) {
-		this.s_idx = s_idx;
 	}
 
 	public int getBa_q() {
