@@ -71,8 +71,26 @@ $(document).ready(function(){
 
 
 	<!-- 테스트용 임시 링크 -->
-	<a href="/shop/mng/buyer/listMngBuyer.do">구매자 관리</a><br/>
+	<div class="container text-center">
+			<div class="row justify-content-center">
+			<table border="1">
+				<thead>
+					<tr>
+						<th><a href="/shop/buyer/snsProfileList.do">구매자 관리</a></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><a href="/shop/review/reviewList.do">리뷰 페이지</a></td>
+						<td><a href="/shop/mng/basket/basketList.do">장바구니 관리</a></td>
+						<!-- <td><a href="#"> 페이지</a></td> -->
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- <a href="/shop/mng/buyer/listMngBuyer.do">구매자 관리</a><br/>
 	<a href="/shop/mng/basket/basketList.do">장바구니 관리</a><br/>
-	<a href="/shop/mng/review/reviewList.do">리뷰 페이지</a>
+	<a href="/shop/mng/review/reviewList.do">리뷰 페이지</a> -->
 </body>
 </html>
