@@ -3,9 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
-<%@ include file="../../inc/EgovShopTop.jsp" %>
-<script type="text/javascript">
-	alert("test");
-	alert("${msg}");
-	location.href="<c:url value='../product/EgovMngMain.do'/>";
+<%@ include file="../../../inc/EgovShopTop.jsp" %>
+<script type="text/javascript">	
+
+	if(${chk} == 0){
+		alert("test");
+		alert("${msg}");
+		location.href='/shop/mng/admin/EgovMngAdminLoginForm.do';
+	}else{
+		location.href='/shop/mng/main/EgovMain.do';
+	}
 </script>

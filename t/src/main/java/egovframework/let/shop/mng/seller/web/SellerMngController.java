@@ -38,7 +38,7 @@ public class SellerMngController {
 	/**
 	 * EgovBBSManageService
 	 */
-	@Resource(name = "EgovSellerService")
+	@Resource(name = "SellerMngService")
 	private SellerMngService SellerService;
 
 	@Resource(name = "propertiesService")
@@ -83,40 +83,13 @@ public class SellerMngController {
 	 * @exception Exception
 	 *                Exception
 	 */
+	
 	/*@RequestMapping(value = "/shop/seller/EgovsellerLoginFrom.do")
-	public String forwardPageWithMenuNo(@ModelAttribute("searchVO") SellerVO vo, HttpServletRequest request,
-			ModelMap model) throws Exception {
-		
-		System.out.println("왔나?");
-		vo.setPageUnit(propertyService.getInt("pageUnit"));
-		vo.setPageSize(propertyService.getInt("pageSize"));
-
-		PaginationInfo paginationInfo = new PaginationInfo();
-
-		paginationInfo.setCurrentPageNo(vo.getPageIndex());
-		paginationInfo.setRecordCountPerPage(vo.getPageUnit());
-		paginationInfo.setPageSize(vo.getPageSize());
-
-		vo.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		vo.setLastIndex(paginationInfo.getLastRecordIndex());
-		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-		int totCnt = SellerService.selectSellerListCnt(vo);
-		paginationInfo.setTotalRecordCount(totCnt);
-														
-		List<SellerVO> list = SellerService.selectSellerList(vo);
-		model.addAttribute("totCnt", totCnt);
-		model.addAttribute("list", list);
-		model.addAttribute("paginationInfo", paginationInfo);
-
-		return "shop/sellerLogin/sellerLoginFrom";
-	}*/
-	
-	
-	@RequestMapping(value = "/shop/seller/EgovsellerLoginFrom.do")
 	public String login( ModelMap model) throws Exception {
 		
 		return "shop/sellerLogin/sellerLoginFrom";
-	}
+	}*/
+	
 	@RequestMapping(value = "/shop/seller/EgovsellerLoginPro.do")
 	public String login( @RequestParam("id") String id,  @RequestParam("passwd") String passwd, Model model, HttpServletRequest request,@ModelAttribute("searchVO") SellerMngVO vo) throws Exception {
 		
@@ -136,68 +109,75 @@ public class SellerMngController {
 		if (user_name != null && user_name !=""){
 			
 			session.setAttribute("userid", id);
-			session.setAttribute("status", 1);
+			session.setAttribute("status", 2);
 			/*request.getSession().setAttribute("user_id", id);*/
-			System.out.println("성공");
+			model.addAttribute("msg","성공");
+			model.addAttribute("chk",1);
 		
 		}else {
-			request.getSession().setAttribute("user_id", "");
+			System.out.println("오류 남");
 			model.addAttribute("msg","사용자 올바르지 않음");
+			model.addAttribute("chk",0);
 		}
 		
-		return "shop/sellerLogin/sellerLoginPro";
+		return "shop/mng/seller/sellerLogin/sellerLoginPro";
 	}
 	
-	@RequestMapping(value="/shop/seller/EgovSellerLogout.do")
+	
+	
+	
+	@RequestMapping(value="/shop/mng/seller/sellerLogout.do")
 	public String egovSellerLogout(HttpSession session) {
 	    session.invalidate();
-	    return "redirect:/shop/product/EgovMngMain.do";
-	}
-	@RequestMapping(value="/shop/main/EgovMain.do")
-	public String main() {
-	   
-	    return "shop/main/EgovMain.do";
+	    return "redirect:/shop/mng/main/EgovMain.do";
 	}
 	
 	
-	@RequestMapping(value = "/shop/seller/sellercheckFrom.do")
-	public String sellercheck( ModelMap model) throws Exception {
-		
-		return "shop/sellerFind/sellercheckFrom";
-	}
-	@RequestMapping(value = "/shop/seller/EgovsellerFindId.do")
-	public String sellerfindid( ModelMap model) throws Exception {
-		
-		return "shop/sellerFind/sellerFindId";
-	}
-	@RequestMapping(value = "/shop/seller/EgovsellerFindPassword.do")
-	public String sellerfindpasswrod( ModelMap model) throws Exception {
-		
-		return "shop/sellerFind/sellerFindPassword";
-	}
-	@RequestMapping(value = "/shop/seller/sellerIdCheckFrom.do")
-	public String selleridcheck( ModelMap model) throws Exception {
-		
-		return "shop/sellerFind/sellerIdCheckFrom";
-	}	
-	@RequestMapping(value = "/shop/seller/sellerIdCheckFrom2.do")
-	public String sellercheck2( ModelMap model) throws Exception {
-		
-		return "shop/sellerFind/sellercheckFrom2";
-	}
-	@RequestMapping(value = "/shop/seller/sellerFindPassword.do")
-	public String sellerfindpassword( ModelMap model) throws Exception {
-		
-		return "shop/sellerFind/sellerFindPassword";
-	}
-	@RequestMapping(value = "/shop/seller/agreeFrom.do")
-	public String selleragreeform( ModelMap model) throws Exception {
-		
-		return "shop/sellerInsert/agreeFrom";
-	}
-	@RequestMapping(value = "/shop/seller/sellerInsertFrom.do")
-	public String sellerainsertform( ModelMap model) throws Exception {
-		
-		return "shop/sellerInsert/sellerInsertFrom";
-	}	
+//	@RequestMapping(value="/shop/main/EgovMain.do")
+//	public String main() {
+//	   
+//	    return "shop/main/EgovMain.do";
+//	}
+	
+	
+//	@RequestMapping(value = "/shop/seller/sellercheckFrom.do")
+//	public String sellercheck( ModelMap model) throws Exception {
+//		
+//		return "shop/sellerFind/sellercheckFrom";
+//	}
+//	@RequestMapping(value = "/shop/seller/EgovsellerFindId.do")
+//	public String sellerfindid( ModelMap model) throws Exception {
+//		
+//		return "shop/sellerFind/sellerFindId";
+//	}
+//	@RequestMapping(value = "/shop/seller/EgovsellerFindPassword.do")
+//	public String sellerfindpasswrod( ModelMap model) throws Exception {
+//		
+//		return "shop/sellerFind/sellerFindPassword";
+//	}
+//	@RequestMapping(value = "/shop/seller/sellerIdCheckFrom.do")
+//	public String selleridcheck( ModelMap model) throws Exception {
+//		
+//		return "shop/sellerFind/sellerIdCheckFrom";
+//	}	
+//	@RequestMapping(value = "/shop/seller/sellerIdCheckFrom2.do")
+//	public String sellercheck2( ModelMap model) throws Exception {
+//		
+//		return "shop/sellerFind/sellercheckFrom2";
+//	}
+//	@RequestMapping(value = "/shop/seller/sellerFindPassword.do")
+//	public String sellerfindpassword( ModelMap model) throws Exception {
+//		
+//		return "shop/sellerFind/sellerFindPassword";
+//	}
+//	@RequestMapping(value = "/shop/seller/agreeFrom.do")
+//	public String selleragreeform( ModelMap model) throws Exception {
+//		
+//		return "shop/sellerInsert/agreeFrom";
+//	}
+//	@RequestMapping(value = "/shop/seller/sellerInsertFrom.do")
+//	public String sellerainsertform( ModelMap model) throws Exception {
+//		
+//		return "shop/sellerInsert/sellerInsertFrom";
+//	}	
 }

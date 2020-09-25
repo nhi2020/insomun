@@ -15,7 +15,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
-<%@ include file="../../inc/EgovShopTop.jsp" %>
+<%@ include file="../../../inc/EgovShopTop.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,14 +24,11 @@
 <title>입소문넷</title>
 <script type="text/javascript">
 function check() {
-	location.href = "<c:url value='/shop/seller/sellerInsertFrom.do'/>";
+	location.href = "<c:url value='/shop/seller/sellerIdCheckFrom2.do'/>";
 }
 </script>
 </head>
 <body>
-<%@ include file="../../inc/EgovShopHeader.jsp" %>
-<div>
-	<button class="btn btn-secondary" onclick="check();">다음</button>
-</div>
+<%@ include file="../../../inc/EgovShopHeader.jsp" %>
 </body>
 </html>

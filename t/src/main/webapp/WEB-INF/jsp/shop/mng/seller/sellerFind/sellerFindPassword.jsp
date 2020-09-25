@@ -15,7 +15,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
-<%@ include file="../../inc/EgovShopTop.jsp" %>
+<%@ include file="../../../inc/EgovShopTop.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,7 +29,7 @@ function check() {
 </script>
 </head>
 <body>
-<%@ include file="../../inc/EgovShopHeader.jsp" %>
+<%@ include file="../../../inc/EgovShopHeader.jsp" %>
 <form id="fm" name="fm" action="/user2/help/pwInquiry.nhn?m=actionInputPasswd" method="post">
             <input type="hidden" id="encNewPasswd" name="encNewPasswd" value="">
             <input type="hidden" id="encNm" name="encNm" value="">
