@@ -8,7 +8,7 @@ import egovframework.let.shop.mng.review.service.ReviewMngVO;
 import egovframework.let.shop.user.review.service.ReviewUserVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
-@Repository("EgovReviewDAO")
+@Repository("EgovReviewUserDAO")
 public class ReviewUserDAO extends EgovAbstractDAO {
 	
 	@SuppressWarnings("unchecked")

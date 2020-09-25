@@ -12,10 +12,10 @@ import egovframework.let.shop.user.review.service.ReviewUserService;
 import egovframework.let.shop.user.review.service.ReviewUserVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
-@Service("EgovReviewService")
+@Service("EgovReviewUserService")
 public class ReviewUserServiceImpl extends EgovAbstractServiceImpl implements ReviewUserService {
 
-	@Resource(name="ReviewUserDAO")
+	@Resource(name="EgovReviewUserDAO")
 	private ReviewUserDAO egovReviewDAO;
 	
 	@Override

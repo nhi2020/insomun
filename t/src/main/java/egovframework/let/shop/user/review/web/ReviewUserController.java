@@ -9,17 +9,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import egovframework.let.shop.mng.review.service.ReviewMngService;
-import egovframework.let.shop.mng.review.service.ReviewMngVO;
 import egovframework.let.shop.user.review.service.ReviewUserService;
 import egovframework.let.shop.user.review.service.ReviewUserVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
-@Controller("EgovReviewController")
+@Controller
 public class ReviewUserController {
 
-	@Resource(name = "EgovReviewService")
+	@Resource(name = "EgovReviewUserService")
 	private ReviewUserService egovReviewService;
 	
 	@Resource(name = "propertiesService")
