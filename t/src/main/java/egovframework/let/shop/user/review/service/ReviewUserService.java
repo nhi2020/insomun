@@ -7,6 +7,9 @@ public interface ReviewUserService {
 	//리뷰 전체출력
 	public List<ReviewUserVO> selectReviewList(ReviewUserVO reviewVO) throws Exception;
 	
-	//리뷰 삭제
-	public List<ReviewUserVO> delUserReview(ReviewUserVO reviewVO) throws Exception;
+	//사용자가 작성한 본인 리뷰 삭제
+	public int delUserReview(ReviewUserVO reviewVO) throws Exception;
+	
+	//사용자가 작성한 본인 리뷰 업데이트
+	public int updateUserReview(ReviewUserVO reviewVO) throws Exception;
 }

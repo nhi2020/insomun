@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,7 +52,7 @@ public class ReviewUserController {
 
 		return ret;
 	}
-	
+	//리뷰 후기 전체보기 , 페이징 처리
 	@RequestMapping(value = "/shop/user/review/reviewList.do")
 	public String list(ReviewUserVO reviewvo, HttpServletRequest request, ModelMap model) throws Exception{
 		PaginationInfo paginationInfo = new PaginationInfo();
@@ -70,10 +69,30 @@ public class ReviewUserController {
 		model.addAttribute("paginationInfo", paginationInfo);
 		return "/shop/user/review/EgovShopReview";
 	}
+	//마이바티스,아이바티스에서는 업데이트할때 결과값을 int(0 , 1) 로 받아주기때문에
+	//int 로 받아주어야한다. (0은 실패 1은 성공)
 	
+	//사용자가 작성한 후기 삭제
 	@RequestMapping(value ="/shop/user/review/delUserReview.do")
 	public String delUserReview(ReviewUserVO reviewVO) throws Exception{
-		egovReviewService.delUserReview(reviewVO);
+		
+		int result = egovReviewService.delUserReview(reviewVO);
+		if (result == 0) {
+			System.out.println("후기 삭제 실패");
+		}else{
+			System.out.println("후기 삭제 성공");
+		}
+		return "forward:/shop/user/review/reviewList.do";
+	}
+	//사용자가 작성한 후기 수정
+	@RequestMapping(value ="/shop/user/review/updateUserReview.do")
+	public String updateUserReview(ReviewUserVO reviewVO) throws Exception{
+		int result = egovReviewService.updateUserReview(reviewVO);
+		if (result == 0) {
+			System.out.println("후기 수정 실패");
+		}else{
+			System.out.println("후기 수정 성공");
+		}
 		return "forward:/shop/user/review/reviewList.do";
 	}
 }

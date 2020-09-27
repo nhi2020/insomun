@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import egovframework.let.shop.mng.review.service.ReviewMngVO;
 import egovframework.let.shop.user.review.service.ReviewUserVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
@@ -17,10 +16,13 @@ public class ReviewUserDAO extends EgovAbstractDAO {
 		return (List<ReviewUserVO>) list("EgovReviewDAO.selectReviewList",reviewvo);
 	}
 	//사용자가 작성한 후기 삭제
-	@SuppressWarnings("unchecked")
-	public List<ReviewUserVO> delUserReview(ReviewUserVO reviewVO) throws Exception{
-		return (List<ReviewUserVO>) list("EgovReviewDAO.delUserReview",reviewVO);
-		
+	public int delUserReview(ReviewUserVO reviewVO) throws Exception{
+		int result = update("EgovReviewDAO.delUserReview",reviewVO);
+		return result;
 	}
-	
+	//사용자가 작성한 후기 수정
+	public int updateUserReview(ReviewUserVO reviewVO) throws Exception{
+		int result = update("EgovReviewDAO.updateUserReview", reviewVO);
+		return result;
+	}
 }

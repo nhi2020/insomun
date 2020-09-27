@@ -26,7 +26,7 @@
 	//삭제
 	function delUserReview(idx){
 		document.frm.r_idx.value=idx;
-		document.frm.action="delUserReview.do";
+		document.frm.action="/shop/user/review/delUserReview.do";
 		document.frm.submit();
 	}
 	function displayView(idx){
