@@ -76,7 +76,7 @@ $(document).ready(function(){
 			<table border="1">
 				<thead>
 					<tr>
-						<th><a href="/shop/buyer/snsProfileList.do">구매자 관리</a></th>
+						<th><a href="/shop/buyer/listMngBuyer.do">구매자 관리</a></th>
 					</tr>
 				</thead>
 				<tbody>

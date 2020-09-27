@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.let.shop.mng.buyer.service.BuyerMngService;
 import egovframework.let.shop.mng.buyer.service.impl.BuyerMngVO;
@@ -51,8 +53,10 @@ public class BuyerMngController {
 	}
 
 	@RequestMapping(value = "/shop/mng/buyer/listMngBuyer")
-	public String listMngBuyer(@ModelAttribute("searchVO") BuyerMngVO vo, HttpServletRequest request, Model model) {
-
+	public String listMngBuyer(@ModelAttribute("searchVO") BuyerMngVO vo, HttpServletRequest request, Model model, 
+			@RequestParam(value = "pageIndex", required=false, defaultValue="1") int pageIndex) {
+		vo.setPageIndex(pageIndex);
+		System.out.println("listMngBuyer pageIndex => " + vo.getPageIndex());
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
 
@@ -70,7 +74,7 @@ public class BuyerMngController {
 		paginationInfo.setTotalRecordCount(totCnt);
 
 		List<BuyerMngVO> list = buyerService.selectList(vo); //
-		
+
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
@@ -80,41 +84,43 @@ public class BuyerMngController {
 	}
 
 	@RequestMapping("/shop/mng/buyer/updateMngBuyerForm")
-	public String updateMngBuyerForm(BuyerMngVO vo, Model model){
+	public String updateMngBuyerForm(BuyerMngVO vo, Model model) {
 		System.out.println("buyerMngModifyForm ()");
 		vo = buyerService.buyerSelect(vo);
 		model.addAttribute("BuyerVO", vo);
 		return "shop/mng/buyer/updateMngBuyerForm";
 	}
 
-	@RequestMapping(value= "/shop/mng/buyer/updateMngBuyerPro", method=RequestMethod.POST)
-	public String updateMngBuyerPro(BuyerMngVO vo, Model model){
+	@RequestMapping(value = "/shop/mng/buyer/updateMngBuyerPro", method = RequestMethod.POST)
+	public String updateMngBuyerPro(BuyerMngVO vo, Model model) {
 		System.out.println("updateMngBuyerForm ()");
 		System.out.println("vo sns_idx=>" + vo.getSns_idx());
 		int result = buyerService.buyerUpdate(vo);
-		if (result > 0 ){
+		if (result > 0) {
 			model.addAttribute("msg", "수정 성공");
 		} else {
 			model.addAttribute("msg", "수정 실패");
 		}
 		model.addAttribute("vo");
-		
-		
+
 		return "forward:updateMngBuyerForm.do";
-		
+
 	}
+
 	@RequestMapping("/shop/mng/buyer/updateMngBuyerStateChange")
-	public String updateMngBuyerStateChange(BuyerMngVO vo,Model model){
+	public String updateMngBuyerStateChange(BuyerMngVO vo, Model model) {
 		System.out.println("updateMngBuyerStateChange()");
+
 		System.out.println("vo sns_idx=>" + vo.getSns_idx());
+		System.out.println("vo pageIndex=>" + vo.getPageIndex());
 		int result = buyerService.updateMngBuyerStateChange(vo);
-		if (result > 0 ){
+		if (result > 0) {
 			model.addAttribute("msg", "수정 성공");
 		} else {
 			model.addAttribute("msg", "수정 실패");
 		}
-		model.addAttribute("vo");
-		return "redirect:/shop/mng/buyer/listMngBuyer.do";
+		String pageIndex = Integer.toString(vo.getPageIndex());
+		return "redirect:/shop/mng/buyer/listMngBuyer.do?pageIndex=" + pageIndex;
 	}
 
 }

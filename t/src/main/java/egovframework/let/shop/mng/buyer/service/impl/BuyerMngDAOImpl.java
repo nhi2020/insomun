@@ -64,7 +64,7 @@ public class BuyerMngDAOImpl extends EgovAbstractDAO implements BuyerMngDAO {
 		System.out.println("vo sns_idx" + vo.getSns_idx());
 		int result = 0;
 		try {
-			result = update("updateMngBuyerStateChange", vo);
+			result = update("updateMngBuyerStateChange", vo.getSns_idx());
 
 		} catch (Exception e) {
 			System.out.println("updateMngBuyerStateChange Exception " + e.getMessage());
