@@ -15,6 +15,19 @@
 <title>Insert title here</title>
 </head>
 <script type="text/javascript">
+	//삭제
+	function delUserReview(idx){
+		document.frm.r_idx.value=idx;
+		document.frm.action="/shop/user/review/delUserReview.do";
+		document.frm.submit();
+	}
+	//본인이쓴 id 만 수정 삭제할수있게 보여준다.
+	function displayView(idx){
+		var str="r_view"+idx;
+		var str2="r_view2"+idx;
+		document.getElementById(str).style.display="block";
+		document.getElementById(str2).style.display="none";
+	}
 	//수정
 	function updateUserReview(idx){
 		var r_contentVal="r_contentVal"+idx;
@@ -23,29 +36,27 @@
 		document.frm.action="updateUserReview.do";
 		document.frm.submit();
 	}
-	//삭제
-	function delUserReview(idx){
+	//상품에 첫 후기작성
+	/* function productRivew(idx){
+		var r_mainContent = "r_mainContent"+idx;
+		document.frm.r_mainContent.value=document.getElementById(r_mainContent).value;
 		document.frm.r_idx.value=idx;
-		document.frm.action="/shop/user/review/delUserReview.do";
+		document.frm.action="mainReviewUpdate.do";
 		document.frm.submit();
-	}
-	function displayView(idx){
-		var str="r_view"+idx;
-		var str2="r_view2"+idx;
-		document.getElementById(str).style.display="block";
-		document.getElementById(str2).style.display="none";
-	}
+	} */
 </script>
 <body>
-<!-- <div class="container text-center">
-	<h1>판매자 관리 리뷰입니다.</h1>
-	<button id="#" name="buy">구매자 관리 리뷰입니다.</button>
-	<button id="#" name="Update">수정</button>
-	<button id="#" name="Delete">삭제</button>
-</div> -->
-<form name="frm" method="post">
+
+<form action="/shop/user/review/updateUserReview.do" name="frm" method="post">
  	<input type="hidden" name="r_idx" value=""/>
  	<input type="hidden" name="r_content" value=""/>
+ 	<input type="hidden" name="r_mainContent" value=""/>
+ <div class="container text-center">
+			<div class="row justify-content-center">
+				<input type="text" id="mainReview" name="rivew0" value="리뷰를 작성하세요."><p>
+				<input type="submit" value="확인">
+			</div>
+</div>
 <c:forEach items="${list}" var="result">
 <div class="container text-center">
 			<div class="row justify-content-center">
@@ -97,5 +108,10 @@
 </div>
 </c:forEach> 
 </form>
+<%-- <div id="r_view0${result.r_idx}">
+					<textarea id="r_mainContent${result.r_idx}" name="r_mainContent${result.r_idx}" rows="11" cols="11"></textarea>
+					<a href="javascript:productRivew('${result.r.idx }');">저장</a>
+					<!-- 메인 후기글, 구매자 평점,  -->
+				</div> --%>
 </body>
 </html>

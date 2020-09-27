@@ -12,4 +12,7 @@ public interface ReviewUserService {
 	
 	//사용자가 작성한 본인 리뷰 업데이트
 	public int updateUserReview(ReviewUserVO reviewVO) throws Exception;
+	
+	//상품상세에대한 리뷰
+	public List<ReviewUserVO> insertMainUserReview(ReviewUserVO reviewVO) throws Exception;
 }

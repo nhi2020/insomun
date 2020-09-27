@@ -6,8 +6,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import egovframework.let.shop.mng.review.service.ReviewMngService;
-import egovframework.let.shop.mng.review.service.ReviewMngVO;
 import egovframework.let.shop.user.review.service.ReviewUserService;
 import egovframework.let.shop.user.review.service.ReviewUserVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
@@ -37,6 +35,12 @@ public class ReviewUserServiceImpl extends EgovAbstractServiceImpl implements Re
 	public int updateUserReview(ReviewUserVO reviewVO) throws Exception {
 		int result = egovReviewDAO.updateUserReview(reviewVO);
 		return result;
+	}
+
+	@Override
+	public List<ReviewUserVO> insertMainUserReview(ReviewUserVO reviewVO) throws Exception {
+		List<ReviewUserVO> list = egovReviewDAO.insertMainUserReview(reviewVO);
+		return list;
 	}
 
 }

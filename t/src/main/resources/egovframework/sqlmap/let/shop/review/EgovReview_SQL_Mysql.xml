@@ -125,6 +125,16 @@
 	 		]]>
 	</update>
 	
+	<insert id="EgovReviewDAO.insertMainUserReview" parameterClass="ReviewVO">
+		<![CDATA[
+			INSERT INTO REVIEW
+			(R_CONTENT, R_REGDATE, R_DELYN, SNS_SCORE)
+			VALUES
+			( #r_content#, SYSDATE(), 'N', 3
+			 )			
+		]]>
+	</insert>
+	
 
 	<!-- <select id="EgovMngProDAO.selectMngProListCnt" parameterClass="SnsProfileVO" resultClass="java.lang.Integer" >
 		<![CDATA[

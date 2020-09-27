@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import egovframework.let.shop.user.review.service.ReviewUserService;
 import egovframework.let.shop.user.review.service.ReviewUserVO;
@@ -93,6 +94,12 @@ public class ReviewUserController {
 		}else{
 			System.out.println("후기 수정 성공");
 		}
+		return "forward:/shop/user/review/reviewList.do";
+	}
+	//상품상세애대한 리뷰 작성
+	@RequestMapping(value = "/shop/user/review/updateUserReview.do", method = RequestMethod.POST)
+	public String list(ReviewUserVO reviewVO) throws Exception {
+		
 		return "forward:/shop/user/review/reviewList.do";
 	}
 }
