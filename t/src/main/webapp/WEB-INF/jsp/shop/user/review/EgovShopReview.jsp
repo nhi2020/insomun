@@ -51,7 +51,7 @@
  	<input type="hidden" name="r_idx" value=""/>
  	<input type="hidden" name="r_content" value=""/>
  	<input type="hidden" name="r_mainContent" value=""/>
- <div class="container text-center">
+<div class="container text-center">
 			<div class="row justify-content-center">
 				<input type="text" id="mainReview" name="rivew0" value="리뷰를 작성하세요."><p>
 				<input type="submit" value="확인">
