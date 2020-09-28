@@ -13,6 +13,6 @@
 		
 		
 	}else{
-		location.href='/shop/mng/main/EgovMain.do';
+		location.href='/shop/user/main/EgovUserMain.do';
 	}
 </script>

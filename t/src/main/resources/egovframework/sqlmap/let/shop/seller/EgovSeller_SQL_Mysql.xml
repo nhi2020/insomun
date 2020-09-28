@@ -4,13 +4,13 @@
 <sqlMap namespace="Seller">
 
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
-	<typeAlias  alias="SellerVO" type="egovframework.let.shop.mng.seller.service.impl.SellerMngVO"/> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias  alias="SellerVO" type="egovframework.let.shop.user.seller.service.impl.SellerUserVO"/> <!-- db에서 세터로 받아넣는 -->
 	<!-- <typeAlias  alias="MemberVO" type="egovframework.let.shop.service.MemberVO"/>
 	<typeAlias  alias="S_MemberVO" type="egovframework.let.shop.service.S_MemberVO"/>
 	<typeAlias  alias="ProVO" type="egovframework.let.shop.service.ProVO"/> -->
-	<typeAlias  alias="Seller" type="egovframework.let.shop.mng.seller.service.SellerMng"/>
+	<typeAlias  alias="Seller" type="egovframework.let.shop.user.seller.service.SellerUser"/>
 	
-	<resultMap id="sellerList" class="egovframework.let.shop.mng.seller.service.impl.SellerMngVO"> <!-- property는 vo값 -->
+	<resultMap id="sellerList" class="egovframework.let.shop.user.seller.service.impl.SellerUserVO"> <!-- property는 vo값 -->
 		<result property="s_id" column="S_ID" columnIndex="1"/>
 		<result property="s_nickname" column="S_NICKNAME" columnIndex="2"/>
 		<result property="s_pass" column="S_PASS" columnIndex="3"/>
@@ -24,7 +24,7 @@
 		<result property="s_regdate" column="S_REGDATE" columnIndex="11"/>
 		<result property="s_birth" column="S_BIRTH" columnIndex="12"/>
 	</resultMap>
-	<resultMap id="sellerList2" class="egovframework.let.shop.mng.seller.service.impl.SellerMngVO"> <!-- property는 vo값 -->
+	<resultMap id="sellerList2" class="egovframework.let.shop.user.seller.service.impl.SellerUserVO"> <!-- property는 vo값 -->
 		<result property="s_id" column="S_ID" columnIndex="1"/>
 	</resultMap>
 	

@@ -34,7 +34,7 @@
 </head>
 <body>
 <%@ include file="../../../inc/EgovShopHeader.jsp" %>
-<form action="<c:url value='/shop/seller/EgovsellerLoginPro.do'/>">
+<form action="<c:url value='/shop/user/seller/EgovsellerLoginPro.do'/>">
 	<div class="container" style="text-align:center; margin-top: 20px">
 		<h2>로그인</h2>
 	    <div>

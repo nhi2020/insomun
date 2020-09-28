@@ -8,7 +8,8 @@
 		
 		
 	}else{
-		location.href='/shop/mng/main/EgovMain.do';
+		alert("test");
+		location.href='/shop/user/main/EgovUserMain.do';
 	}
 
 </script>

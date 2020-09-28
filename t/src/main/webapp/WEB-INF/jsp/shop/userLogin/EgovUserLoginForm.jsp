@@ -57,7 +57,7 @@ function chk2() {
 
 </div>
   	
-<form action="<c:url value='/shop/seller/EgovsellerLoginPro.do'/>">
+<form action="<c:url value='/shop/user/seller/EgovsellerLoginPro.do'/>">
 	<div id="seller1" class="container" style="text-align:center; margin-top: 20px; display: none;">
 		
 	    <div>

@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class MainControllor {
+public class MngMainControllor {
 	
-	
+	/*
 	protected String unscript(String data) {
 		if (data == null || data.trim().equals("")) {
 			return "";
@@ -32,11 +32,11 @@ public class MainControllor {
 		return ret;
 	}
 	
-	@RequestMapping(value="/shop/mng/main/EgovMain.do")
+	@RequestMapping(value="/shop/mng/main/EgovMngMain.do")
 	public String main() {
 	   
 	    return "shop/main/EgovMain";
-	}
+	}*/
 
 
 }

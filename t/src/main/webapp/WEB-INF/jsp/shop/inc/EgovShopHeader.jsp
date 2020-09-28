@@ -32,13 +32,13 @@
 	});
 	$(document).ready(function(){
 		$("#sellerlogout").click(function(){
-			alert("누름");
-			location.href = "/shop/mng/seller/sellerLogout.do";
+			alert("판매자");
+			location.href = "/shop/user/seller/sellerLogout.do";
 		});
 	});
 	$(document).ready(function(){
 		$("#adminlogout").click(function(){
-			alert("누름");
+			alert("관리자");
 			location.href = "/shop/mng/seller/adminLogout.do";
 		});
 	});
@@ -47,7 +47,7 @@
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	<!-- Brand -->
-	<a class="navbar-brand" href="/shop/mng/main/EgovMain.do">Logo</a>
+	<a class="navbar-brand" href="/shop/user/main/EgovUserMain.do">Logo</a>
 
 	<!-- Links -->
 	<ul class="navbar-nav">
