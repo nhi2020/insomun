@@ -37,81 +37,73 @@
 		document.frm.submit();
 	}
 	//상품에 첫 후기작성
-	/* function productRivew(idx){
-		var r_mainContent = "r_mainContent"+idx;
-		document.frm.r_mainContent.value=document.getElementById(r_mainContent).value;
-		document.frm.r_idx.value=idx;
-		document.frm.action="mainReviewUpdate.do";
-		document.frm.submit();
-	} */
+	
 </script>
 <body>
-
-<form action="/shop/user/review/updateUserReview.do" name="frm" method="post">
+<form action="/shop/user/review/insertUserReview.do" name="frm2" method="post">
+	<div class="container text-center">
+			<div class="row justify-content-center">
+			<input type="hidden" id="s_id" name="s_id" value="shong1">
+			<input type="hidden" id="sns_idx" name="sns_idx" value="1">
+			<input type="hidden" id="p_idx" name="p_idx" value="1">
+			<input type="hidden" id="r_div" name="r_div" value="1">
+			<textarea rows="5" cols="80" name="r_content" id="r_content"></textarea>
+			
+			<input type="submit" value="확인">
+			</div>
+	</div>
+</form>
+<form name="frm" method="post">
  	<input type="hidden" name="r_idx" value=""/>
  	<input type="hidden" name="r_content" value=""/>
- 	<input type="hidden" name="r_mainContent" value=""/>
-<div class="container text-center">
-			<div class="row justify-content-center">
-				<input type="text" id="mainReview" name="rivew0" value="리뷰를 작성하세요."><p>
-				<input type="submit" value="확인">
-			</div>
-</div>
 <c:forEach items="${list}" var="result">
 <div class="container text-center">
 			<div class="row justify-content-center">
-	<table border="1">
-		<thead>
-			<tr>
-				<th>리뷰 번호</th>
-				<th>판매자 이름</th>
-				<th>구매자 이름</th>
-				<th>상품 명</th>
-				<th>리뷰 내용</th>
-				<th>리뷰 등록일자</th>
-				<th>수정</th>
-				<th>삭제</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>${result.r_idx }</td>
-				<td>${result.s_nickname }</td>
-				<td>${result.nickname }</td>
-				<td>${result.p_name }</td>
-				<td>
-					<div id="r_view${result.r_idx}" style="display: none;">
-						<textarea id="r_contentVal${result.r_idx}" name="r_contentVal${result.r_idx}" rows="11" cols="11">
+		<table border="1">
+			<thead>
+				<tr>
+					<th>판매자 이름</th>
+					<th>구매자 이름</th>
+					<th>상품 명</th>
+					<th>리뷰 내용</th>
+					<th>리뷰 등록일자</th>
+					<th>수정</th>
+					<th>삭제</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>${result.s_nickname }</td>
+					<td>${result.nickname }</td>
+					<td>${result.p_name }</td>
+					<td>
+						<div id="r_view${result.r_idx}" style="display: none;">
+							<textarea id="r_contentVal${result.r_idx}" name="r_contentVal${result.r_idx}" rows="5" cols="40">
+								${result.r_content }
+							</textarea>
+							<a href="javascript:updateUserReview('${result.r_idx}');">저장</a>
+						</div>
+						<div id="r_view2${result.r_idx}" style="display: block;">
 							${result.r_content }
-						</textarea>
-						<a href="javascript:updateUserReview('${result.r_idx}');">저장</a>
-					</div>
-					<div id="r_view2${result.r_idx}" style="display: block;">
-						${result.r_content }
-					</div>
-				</td>
-				<td>${result.r_regdate }</td>
-				<td>
-					<c:if test="${'1' eq result.sns_idx}">
-						<a href="javascript:displayView('${result.r_idx}');">수정</a>
-					</c:if>
-				</td>
-				<td>
-					<c:if test="${'1' eq result.sns_idx}">
-						<a href="javascript:delUserReview('${result.r_idx}');">삭제</a>
-					</c:if>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+						</div>
+					</td>
+					<td>${result.r_regdate }</td>
+					<td>
+						<c:if test="${'1' eq result.sns_idx}">
+							<a href="javascript:displayView('${result.r_idx}');">수정</a>
+						</c:if>
+					</td>
+					<td>
+						<c:if test="${'1' eq result.sns_idx}">
+							<a href="javascript:delUserReview('${result.r_idx}');">삭제</a>
+						</c:if>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
 </c:forEach> 
 </form>
-<%-- <div id="r_view0${result.r_idx}">
-					<textarea id="r_mainContent${result.r_idx}" name="r_mainContent${result.r_idx}" rows="11" cols="11"></textarea>
-					<a href="javascript:productRivew('${result.r.idx }');">저장</a>
-					<!-- 메인 후기글, 구매자 평점,  -->
-				</div> --%>
 </body>
 </html>

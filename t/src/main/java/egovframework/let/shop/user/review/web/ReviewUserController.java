@@ -55,17 +55,18 @@ public class ReviewUserController {
 	}
 	//리뷰 후기 전체보기 , 페이징 처리
 	@RequestMapping(value = "/shop/user/review/reviewList.do")
-	public String list(ReviewUserVO reviewvo, HttpServletRequest request, ModelMap model) throws Exception{
+	public String selectReviewList(ReviewUserVO vo, ModelMap model) throws Exception{
 		PaginationInfo paginationInfo = new PaginationInfo();
 
-		paginationInfo.setCurrentPageNo(reviewvo.getPageIndex());
-		paginationInfo.setRecordCountPerPage(reviewvo.getPageUnit());
-		paginationInfo.setPageSize(reviewvo.getPageSize());
+		paginationInfo.setCurrentPageNo(vo.getPageIndex());
+		paginationInfo.setRecordCountPerPage(vo.getPageUnit());
+		paginationInfo.setPageSize(vo.getPageSize());
 
-		reviewvo.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		reviewvo.setLastIndex(paginationInfo.getLastRecordIndex());
-		reviewvo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-		List<ReviewUserVO> list = egovReviewService.selectReviewList(reviewvo);
+		vo.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		vo.setLastIndex(paginationInfo.getLastRecordIndex());
+		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		//vo.setP_idx(1);
+		List<ReviewUserVO> list = egovReviewService.selectReviewList(vo);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
 		return "/shop/user/review/EgovShopReview";
@@ -94,12 +95,20 @@ public class ReviewUserController {
 		}else{
 			System.out.println("후기 수정 성공");
 		}
-		return "forward:/shop/user/review/reviewList.do";
+		return "redirect:/shop/user/review/reviewList.do";
 	}
 	//상품상세애대한 리뷰 작성
-	@RequestMapping(value = "/shop/user/review/updateUserReview.do", method = RequestMethod.POST)
-	public String list(ReviewUserVO reviewVO) throws Exception {
+	@RequestMapping(value = "/shop/user/review/insertUserReview.do", method = RequestMethod.POST)
+	public String list(ReviewUserVO reviewVO, ModelMap model) throws Exception {
+		System.out.println("---------------------------mainReview insert Start");
+		//String r_content = request.getParameter("r_content");
 		
-		return "forward:/shop/user/review/reviewList.do";
+		//reviewVO.setR_content(r_content);
+		
+		//model.addAttribute(reviewVO);
+		
+		egovReviewService.insertMainUserReview(reviewVO);
+		
+		return "redirect:/shop/user/review/reviewList.do?p_idx="+reviewVO.getP_idx();
 	}
 }
