@@ -14,5 +14,5 @@ public interface ReviewUserService {
 	public int updateUserReview(ReviewUserVO reviewVO) throws Exception;
 	
 	//상품상세에대한 리뷰
-	public List<ReviewUserVO> insertMainUserReview(ReviewUserVO reviewVO) throws Exception;
+	public int insertMainUserReview(ReviewUserVO reviewVO) throws Exception;
 }

@@ -101,11 +101,6 @@ public class ReviewUserController {
 	@RequestMapping(value = "/shop/user/review/insertUserReview.do", method = RequestMethod.POST)
 	public String list(ReviewUserVO reviewVO, ModelMap model) throws Exception {
 		System.out.println("---------------------------mainReview insert Start");
-		//String r_content = request.getParameter("r_content");
-		
-		//reviewVO.setR_content(r_content);
-		
-		//model.addAttribute(reviewVO);
 		
 		egovReviewService.insertMainUserReview(reviewVO);
 		
