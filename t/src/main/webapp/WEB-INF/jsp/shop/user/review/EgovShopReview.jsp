@@ -38,6 +38,7 @@
 	}
 	//상품에 첫 후기작성
 	
+	//--------------------------
 </script>
 <body>
 <form action="/shop/user/review/insertUserReview.do" name="frm2" method="post">
@@ -48,7 +49,6 @@
 			<input type="hidden" id="p_idx" name="p_idx" value="1">
 			<input type="hidden" id="r_div" name="r_div" value="1">
 			<textarea rows="5" cols="80" name="r_content" id="r_content"></textarea>
-			
 			<input type="submit" value="확인">
 			</div>
 	</div>
