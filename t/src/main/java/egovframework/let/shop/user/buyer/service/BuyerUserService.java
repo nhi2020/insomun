@@ -7,4 +7,6 @@ public interface BuyerUserService {
 
 	BuyerUserVO selectUserBuyer(BuyerUserVO vo);
 
+	int updateUserBuyer(BuyerUserVO vo);
+
 }
