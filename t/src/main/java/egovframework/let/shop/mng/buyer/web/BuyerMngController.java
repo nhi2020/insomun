@@ -80,7 +80,7 @@ public class BuyerMngController {
 		model.addAttribute("paginationInfo", paginationInfo);
 
 		return "shop/mng/buyer/listMngBuyer";
-
+	
 	}
 
 	@RequestMapping("/shop/mng/buyer/updateMngBuyerForm")

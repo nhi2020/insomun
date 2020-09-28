@@ -47,8 +47,18 @@
 		})
 	
 	} 
+	
+	/* linkPage */
+	function linkPage(pageIndex){
+		document.forms["frmPage"]["pageIndex"].value=pageIndex;
+		document.forms["frmPage"].submit();
+		return true;
+	}
 </script>
-	<table class="table">
+<div class="container">
+	<div class="row">
+
+	<table class="table mx-auto">
 			<tr>
 				<th>장바구니 번호</th>
 				<th>고객번호</th>
@@ -64,7 +74,7 @@
 			</tr>
 		<c:forEach items="${list }" var="basketList" varStatus="status">
 		<script type="text/javascript">
-			console.log("pageIndex => " + ${basketList.pageIndex})
+			console.log("pageIndex => " + ${basketList.pageIndex });
 		</script>
 			<tr>
 				<td>${basketList.ba_idx }</td>
@@ -88,14 +98,22 @@
 	</table>
 	<form action="/shop/mng/basket/listMngBasket.do">
 	<input type="hidden" name="searchCnd" value="0"/>
-	<input type="text" name="searchWrd" /> <input class="btn btn-primary" type="submit" value="아이디 검색" />
+	<input type="text" name="searchWrd" value="${searchVO.searchWrd }" /> <input class="btn btn-primary" type="submit" value="아이디 검색" />
 	
 	</form>
 		<div id="paging_div">
-		<ul class="paging_align">	
-			<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="fn_egov_select_productList" />
-		</ul>
+		<form name="frmPage" id="frmPage" action="/shop/mng/basket/listMngBasket.do">
+			<ul class="paging_align">	
+				<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="linkPage" />
+			</ul>
+			<input type="hidden" name="searchCnd" value="0"/>
+			<input type="hidden" name="pageIndex" />
+			<input type="hidden" name="searchWrd" value="${searchVO.searchWrd }" />
+		</form>
 	</div>
+	
+		</div>
+</div>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>
