@@ -121,6 +121,7 @@ public class SnsProfileMngController {
 	    	//---------------------
 	        session.setAttribute("userid", userInfo.get("kakaoid"));
 	        session.setAttribute("nickname", userInfo.get("nickname"));
+	        session.setAttribute("nickname", userInfo.get("email"));
 	        //session.setAttribute("email", userInfo.get("email"));//카카오에서 이메일 못가져옴
 	        session.setAttribute("snscode","kakao"); //세션 생성
 	        session.setAttribute("access_Token", access_Token);

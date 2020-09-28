@@ -49,6 +49,16 @@
 			AND S_PASS = #s_pass#
 		]]>
 	</select>
+	<select id="EgovSellerDAO.selectLoginListCheck" parameterClass="SellerVO" resultClass="SellerVO">
+	<!-- 쿼리문 작성 -->
+		<![CDATA[  
+			SELECT *
+			FROM SELLER
+			WHERE 1=1
+			AND S_ID = #s_id#
+			AND S_PASS = #s_pass#
+		]]>
+	</select>
 	<!-- <resultMap id="mngMemberList" class="egovframework.let.shop.member.service.MemberVO"> property는 vo값
 		<result property="m_id" column="M_ID" columnIndex="1"/>						 collum 은 db의 컬럼값
 		<result property="m_nickname" column="M_NICKNAME" columnIndex="2"/>			  db의 컬럼 순서

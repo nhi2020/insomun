@@ -75,7 +75,9 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		
 		
 		if (user_name != null){
-			session.setAttribute("userid", id);
+			session.setAttribute("A_ID", adminvo.getA_id());
+			session.setAttribute("A_EMAIL", adminvo.getA_email());
+			session.setAttribute("A_NAME", adminvo.getA_name());
 			session.setAttribute("status", 0);
 			/*request.getSession().setAttribute("user_id", id);*/
 			System.out.println("성공");

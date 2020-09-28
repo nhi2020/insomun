@@ -16,7 +16,7 @@
 		var snscode='${sessionScope.snscode}';
 		if(snscode!=null && snscode!=''){
 			alert('로그인 상태 입니다.\n로그아웃하고 다시 이용해 주세요.');
-			location.href ="http://xn--z92bt9ibqf.net/shop/product/EgovMngMain.do";
+			location.href ="http://xn--z92bt9ibqf.net/shop/product/EgovMngMain.do";	
 		}
 	});
 function chk1() {
@@ -76,7 +76,7 @@ function chk2() {
 	<div class="find_info align_center">
 		<a target="_blank" id="idinquiry" href="<c:url value='/shop/seller/sellercheckFrom.do'/>">아이디 찾기</a> <span class="bar" aria-hidden="true">|</span> 
 		<a target="_blank" id="pwinquiry" href="<c:url value='/shop/seller/sellerIdCheckFrom.do'/>">비밀번호 찾기</a> <span class="bar" aria-hidden="true">|</span> 
-		<a target="_blank" id="join" href="<c:url value='/shop/seller/agreeFrom.do'/>">회원가입</a>
+		<a target="_blank" id="join" href="<c:url value='/shop/user/seller/sellerAgree.do'/>">회원가입</a>
 	</div>
 </div>	   	
  

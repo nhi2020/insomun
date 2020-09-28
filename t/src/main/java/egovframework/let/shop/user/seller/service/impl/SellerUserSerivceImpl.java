@@ -6,7 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-
+import egovframework.let.shop.mng.admin.service.impl.AdminVO;
 import egovframework.let.shop.user.seller.service.SellerUserService;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
@@ -23,7 +23,17 @@ public class SellerUserSerivceImpl extends EgovAbstractServiceImpl implements Se
 		System.out.println(sellerVO.getS_id());
 		System.out.println(sellerVO.getS_pass());
 		
+		
+		
 		return SellerDAO.selectLoginCheck(sellerVO);
+	}
+
+
+
+	@Override
+	public List<SellerUserVO> selectListLoginCheck(SellerUserVO sellervo) throws Exception {
+			System.out.println("list impl");
+		return (List<SellerUserVO>) SellerDAO.selectLoginCheck2(sellervo);
 	}
 	
 

@@ -52,7 +52,7 @@
 	<div class="find_info align_center">
 		<a target="_blank" id="idinquiry" href="<c:url value='/shop/seller/sellercheckFrom.do'/>">아이디 찾기</a> <span class="bar" aria-hidden="true">|</span> 
 		<a target="_blank" id="pwinquiry" href="<c:url value='/shop/seller/sellerIdCheckFrom.do'/>">비밀번호 찾기</a> <span class="bar" aria-hidden="true">|</span> 
-		<a target="_blank" id="join" href="<c:url value='/shop/seller/agreeFrom.do'/>">회원가입</a>
+		<a target="_blank" id="join" href="<c:url value='/shop/user/seller/sellerinsert.do'/>">회원가입</a>
 	</div>
 </div>	 
 	 

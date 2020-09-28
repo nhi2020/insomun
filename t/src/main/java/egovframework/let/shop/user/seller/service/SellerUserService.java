@@ -15,4 +15,6 @@ public interface SellerUserService {
 	public String selectLoginCheck(SellerMngVO sellerVO) throws Exception;*/
 
 	public String selectLoginCheck(SellerUserVO sellervo)throws Exception;
+
+	public List<SellerUserVO> selectListLoginCheck(SellerUserVO sellervo)throws Exception;
 }

@@ -59,9 +59,13 @@
 	  <input class="form-control mr-sm-2" type="text" placeholder="Search">
 	  <button class="btn btn-success" type="submit">Search</button>
 	</form>
-	
+		<ul class="navbar-nav">
+			<li class="nav-item dropdown">사용자  ${sessionScope.userid }</li>
+			<li class="nav-item dropdown">판매자 ${sessionScope.S_ID }</li>
+			<li class="nav-item dropdown">관리자 ${sessionScope.A_ID }</li>
+		</ul>
 	<c:choose>
-		 <c:when test="${sessionScope.userid != null and sessionScope.userid ne ' '}">
+		 <c:when test="${(sessionScope.userid != null and sessionScope.userid ne ' ')or(sessionScope.S_ID != null and sessionScope.S_ID ne ' ')or(sessionScope.A_ID != null and sessionScope.A_ID ne ' ')}">
 		 		<c:if test="${sessionScope.status == 1 }">
 				 <button type="button" id="btnlogout" id="userlogout">사용자 logout</button>
 				 <!-- Dropdown -->
@@ -112,8 +116,8 @@
 					  </li>
 	  				</ul>
 				 </c:if>
-		</c:when>
-		
+			</c:when>
+	
 		<c:otherwise>
 			<button type="button" id="btnlogin" class="btn btn-info">login</button>
 			<!-- <button type="button" id="btnSignIn" class="btn btn-danger" >회원가입</button> -->
