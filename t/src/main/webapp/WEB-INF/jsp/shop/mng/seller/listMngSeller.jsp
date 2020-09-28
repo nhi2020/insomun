@@ -29,34 +29,30 @@
 					<th>닉네임</th>
 					<th>이메일</th>
 					<th>판매자 사진</th>
-					<th>판매자 상태여부</th>
 					<th>핸드폰 번호</th>
 					<th>주소</th>
 					<th>성별</th>
 					<th>수정일</th>
 					<th>등록일</th>
 					<th>생년월일</th>
-					<th>계좌번호</th>
+					<th>판매자 상태여부</th>			
 				</tr>
 				
 				
 				
 				<c:forEach items="${list }" var="s_list" varStatus="status">
 					<tr>
-						<td>${s_list.s_id }</td>
+						<td><a href="/shop/mng/seller/updateMngSellerPro.do?s_id=${s_list.s_id }">${s_list.s_id }</a></td>
 						<td>${s_list.s_nickname }</td>
 						<td>${s_list.s_email }</td>
 						<td>${s_list.s_photo }</td>
-						<td>${s_list.s_status }</td>
 						<td>${s_list.s_phone }</td>
 						<td>${s_list.s_addr }</td>
 						<td>${s_list.s_gender }</td>
 						<td>${s_list.s_moddate }</td>
 						<td>${s_list.s_regdate }</td>
 						<td>${s_list.s_birth }</td>
-						<td>${s_list.s_account }</td>
-						<td><input type="submit" value="전환"
-							form="frm${status.index }" /></td>
+						<td>${s_list.s_status }</td>
 					</tr>
 				</c:forEach>
 			</table>

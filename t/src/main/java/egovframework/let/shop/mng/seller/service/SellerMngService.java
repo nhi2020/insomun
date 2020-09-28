@@ -10,4 +10,6 @@ public interface SellerMngService {
 
 	List<SellerMngVO> selectSellerMngList(SellerMngVO vo);
 
+	SellerMngVO sellerSelect(SellerMngVO vo);
+
 }

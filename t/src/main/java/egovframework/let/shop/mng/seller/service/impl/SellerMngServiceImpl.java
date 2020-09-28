@@ -29,4 +29,10 @@ public class SellerMngServiceImpl extends EgovAbstractServiceImpl implements Sel
 		return list;
 	}
 
+	@Override
+	public SellerMngVO sellerSelect(SellerMngVO vo) {
+		vo = SellerDAO.sellerSelect(vo);
+		return vo;
+	}
+
 }

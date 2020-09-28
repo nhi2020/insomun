@@ -8,6 +8,6 @@ public interface SellerMngDAO {
 
 	public int selectSellerMngListCnt(SellerMngVO vo);
 	public List<SellerMngVO> selectSellerMngList(SellerMngVO vo);
-
+	public SellerMngVO sellerSelect(SellerMngVO vo);
 
 }

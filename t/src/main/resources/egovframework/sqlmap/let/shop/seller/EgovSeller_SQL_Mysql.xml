@@ -219,4 +219,10 @@
 		ORDER BY S_REGDATE DESC
 		LIMIT #recordCountPerPage# OFFSET #firstIndex#
 	</select>
+	
+	<select id="sellerSelect" resultClass="SellerMngVO" parameterClass="SellerMngVO">
+		SELECT *
+		FROM SELLER
+		WHERE s_id = #s_id#
+	</select>
 </sqlMap>

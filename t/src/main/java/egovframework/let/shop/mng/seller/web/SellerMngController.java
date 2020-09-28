@@ -81,7 +81,13 @@ public class SellerMngController {
 		return "shop/mng/seller/listMngSeller";
 	}
 	
-	
+	@RequestMapping("/shop/mng/seller/updateMngSellerPro")
+	public String updateMngSellerFrom(SellerMngVO vo, Model model) {
+		System.out.println("updateMngSellerFrom()");
+		vo = sellerService.sellerSelect(vo);
+		model.addAttribute("SellerVO", vo);
+		return "shop/mng/seller/updateMngSellerForm";
+	}
 	
 	
 	
