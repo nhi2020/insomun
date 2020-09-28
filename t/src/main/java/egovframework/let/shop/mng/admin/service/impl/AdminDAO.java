@@ -15,6 +15,7 @@ public class AdminDAO extends EgovAbstractDAO{
 		return (String) select("AdminDAO.selectLoginCheck",adminvo);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<AdminVO> selectListLoginCheck(AdminVO adminvo) {
 		
 		return (List<AdminVO>) list("AdminDAO.selectListLoginCheck",adminvo);

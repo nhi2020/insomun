@@ -1,5 +1,7 @@
 package egovframework.let.shop.user.seller.web;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import egovframework.let.shop.mng.admin.service.impl.AdminVO;
 import egovframework.let.shop.user.seller.service.SellerUserService;
 import egovframework.let.shop.user.seller.service.impl.SellerUserVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
@@ -85,12 +88,17 @@ public class SellerUserController {
 		sellervo.setS_pass(passwd);
 		
 		String user_name = (String)SellerService.selectLoginCheck(sellervo);
+		List<SellerUserVO> list = SellerService.selectListLoginCheck(sellervo);
 		System.out.println("나옴"+user_name);
 		
-		
+		System.out.println("s_id"+sellervo.getS_id());
 		if (user_name != null && user_name !=""){
 			
-			session.setAttribute("userid", id);
+			session.setAttribute("S_ID", sellervo.getS_id());
+			session.setAttribute("S_NICKNAME",sellervo.getS_nickname() );
+			session.setAttribute("S_EMAIL", sellervo.getS_email());
+			session.setAttribute("S_ADDR", sellervo.getS_addr());
+			session.setAttribute("S_GENDER",sellervo.getS_gender());
 			session.setAttribute("status", 2);
 			/*request.getSession().setAttribute("user_id", id);*/
 			model.addAttribute("msg","성공");
@@ -112,5 +120,15 @@ public class SellerUserController {
 	public String egovSellerLogout(HttpSession session) {
 	    session.invalidate();
 	    return "redirect:/shop/user/main/EgovUserMain.do";
+	}
+	@RequestMapping(value="/shop/user/seller/sellerAgree.do")
+	public String sellerinsert(){
+		System.out.println("회원가입");
+		
+		return "/shop/user/seller/sellerinsert/sellerAgreeForm";
+	}
+	@RequestMapping(value="/shop/user/seller/sellerinsert.do")
+	public String sellerUserinsert(){
+		return "/shop/user/seller/sellerinsert/sellerForm";
 	}
 }

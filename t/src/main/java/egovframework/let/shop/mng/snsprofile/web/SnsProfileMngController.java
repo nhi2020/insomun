@@ -121,6 +121,7 @@ public class SnsProfileMngController {
 	    	//---------------------
 	        session.setAttribute("userid", userInfo.get("kakaoid"));
 	        session.setAttribute("nickname", userInfo.get("nickname"));
+	        session.setAttribute("nickname", userInfo.get("email"));
 	        //session.setAttribute("email", userInfo.get("email"));//카카오에서 이메일 못가져옴
 	        session.setAttribute("snscode","kakao"); //세션 생성
 	        session.setAttribute("access_Token", access_Token);
@@ -174,7 +175,7 @@ public class SnsProfileMngController {
 	        snsProfileVO.setUserid(id);
 	        //----------------
 	        //4.파싱 닉네임 세션으로 저장
-	        session.setAttribute("userid",id); //세션 생성
+	        session.setAttribute("sns_idx",id); //세션 생성
 	        session.setAttribute("nickname",name); //세션 생성
 	        session.setAttribute("snscode","naver"); //세션 생성
 	        session.setAttribute("email",email); //세션 생성

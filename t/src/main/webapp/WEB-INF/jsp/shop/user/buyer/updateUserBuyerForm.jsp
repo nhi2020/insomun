@@ -19,52 +19,35 @@
 	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row">
-			<div class="col-sm">
-				<p>
-					<button class="btn btn-primary"
-						onclick="location.href='/shop/user/buyer/updateUserBuyerForm.do'">정보수정
-					</button>
-				</p>
-				<p>
-					<button class="btn btn-primary">장바구니</button>
-				</p>
-				<p>
-					<button class="btn btn-primary">거래현황</button>
-				</p>
-				<p>
-
-					<button class="btn btn-primary">거래후기</button>
-				</p>
-				<p>
-
-					<button class="btn btn-primary">거래내역</button>
-				</p>
-				<p>
-					<button class="btn btn-primary">찜한상품</button>
-				</p>
-			</div>
-			<div class="col-9">
-				<table class="table mx-auto">
+			<form class="mx-auto" action="/shop/user/buyer/updateUserBuyerPro.do" method="post">
+			<input type="hidden" name="sns_idx" value="${BuyerVO.sns_idx }" />
+				<table class="table">
 					<tr>
-						<td>SNS IDX</td>
-						<td>${BuyerVO.sns_idx }</td>
-					</tr>
-					<tr>
-						<td>USERID</td>
+						<th>사용자 ID</th>
 						<td>${BuyerVO.userid }</td>
 					</tr>
 					<tr>
-						<td>SNSCODE</td>
+						<th>SNS 종류</th>
 						<td>${BuyerVO.snscode }</td>
 					</tr>
 					<tr>
-						<td>NICKNAME</td>
-						<td>${BuyerVO.nickname }</td>
+						<th>닉네임</th>
+						<td><input type="text" name="nickname"
+							value="${BuyerVO.nickname }" /></td>
 					</tr>
+					<tr>
+						<th>이메일</th>
+						<td><input type="text" name="email" value="${BuyerVO.email }" /></td>
+					</tr>
+					<tr>
+						<th>가입일</th>
+						<td>${BuyerVO.reg_date }</td>
+					</tr>
+					<tr><td colspan="2"><input type="submit" value="수정" /></td></tr>
 				</table>
-			</div>
+			</form>
 		</div>
 	</div>
 

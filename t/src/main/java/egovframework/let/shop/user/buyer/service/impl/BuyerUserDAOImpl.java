@@ -19,6 +19,17 @@ public class BuyerUserDAOImpl extends EgovAbstractDAO implements BuyerUserDAO{
 		}
 		return vo;
 	}
+
+	@Override
+	public int updateUserBuyer(BuyerUserVO vo) {
+		int result = 0;
+		try {
+			result = update("updateUserBuyer", vo);
+		} catch (Exception e) {
+			System.out.println("BuyerUserDAOImpl updateUserBuyer Exception : " + e.getMessage());
+		}
+		return result;
+	}
 	
 
 }

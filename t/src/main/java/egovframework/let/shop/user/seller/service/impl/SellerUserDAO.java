@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-
+import egovframework.let.shop.mng.admin.service.impl.AdminVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
 @Repository("SellerUserDAO")
@@ -32,5 +32,11 @@ public class SellerUserDAO extends EgovAbstractDAO {
 		System.out.println("들감2");
     	System.out.println(sellerVO);
     	return (String) select("EgovSellerDAO.selectLoginCheck1",sellerVO);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<SellerUserVO> selectLoginCheck2(SellerUserVO sellervo) {
+		System.out.println("list dao");
+		return (List<SellerUserVO>) list("EgovSellerDAO.selectLoginListCheck",sellervo);
 	}
 }
