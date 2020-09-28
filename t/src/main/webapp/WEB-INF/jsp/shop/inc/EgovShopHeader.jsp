@@ -42,6 +42,14 @@
 			location.href = "/shop/mng/seller/adminLogout.do";
 		});
 	});
+	$(document).ready(function(){
+		$("#userlogout").click(function(){
+			alert("구매자");
+			location.href = "/shop/user/EgovUserLogout.do";
+		});
+	});
+	
+	
 </script>
 </head>
 <body>
@@ -61,10 +69,11 @@
 	</form>
 		
 	<c:choose>
-		 <c:when test="${(sessionScope.sns_idx != null and sessionScope.sns_idx ne ' ')or(sessionScope.S_ID != null and sessionScope.S_ID ne ' ')or(sessionScope.A_ID != null and sessionScope.A_ID ne ' ')}">
+		 <c:when test="${(sessionScope.sns_idx != null)or(sessionScope.S_ID != null and sessionScope.S_ID ne ' ')or(sessionScope.A_ID != null and sessionScope.A_ID ne ' ')}">
 		 
 		 		<c:if test="${sessionScope.status == 1 }">
-				 <button type="button" id="btnlogout" id="userlogout">사용자 logout</button>
+				 <!-- <button type="button" id="btnlogout" id="userlogout">사용자 logout</button> -->
+				 <button  class="btn btn-info" type="button" id="userlogout">사용자 logout</button>
 				 <!-- Dropdown -->
 	 				 <ul class="navbar-nav" >
 	 					 <li class="nav-item dropdown">
