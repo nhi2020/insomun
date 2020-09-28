@@ -175,7 +175,7 @@ public class SnsProfileMngController {
 	        snsProfileVO.setUserid(id);
 	        //----------------
 	        //4.파싱 닉네임 세션으로 저장
-	        session.setAttribute("userid",id); //세션 생성
+	        session.setAttribute("sns_idx",id); //세션 생성
 	        session.setAttribute("nickname",name); //세션 생성
 	        session.setAttribute("snscode","naver"); //세션 생성
 	        session.setAttribute("email",email); //세션 생성

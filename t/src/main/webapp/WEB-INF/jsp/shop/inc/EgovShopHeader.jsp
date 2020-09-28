@@ -59,17 +59,10 @@
 	  <input class="form-control mr-sm-2" type="text" placeholder="Search">
 	  <button class="btn btn-success" type="submit">Search</button>
 	</form>
-		<ul class="navbar-nav">
-			<li class="nav-item dropdown">사용자  ${sessionScope.userid }</li>
-			<li class="nav-item dropdown">판매자 ${sessionScope.S_ID }</li>
-			<li class="nav-item dropdown">관리자 ${sessionScope.A_ID }</li>
-		</ul>
+		
 	<c:choose>
-<<<<<<< HEAD
-		 <c:when test="${(sessionScope.userid != null and sessionScope.userid ne ' ')or(sessionScope.S_ID != null and sessionScope.S_ID ne ' ')or(sessionScope.A_ID != null and sessionScope.A_ID ne ' ')}">
-=======
-		 <c:when test="${sessionScope.sns_idx != null and sessionScope.userid ne ' '}">
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
+		 <c:when test="${(sessionScope.sns_idx != null and sessionScope.sns_idx ne ' ')or(sessionScope.S_ID != null and sessionScope.S_ID ne ' ')or(sessionScope.A_ID != null and sessionScope.A_ID ne ' ')}">
+		 
 		 		<c:if test="${sessionScope.status == 1 }">
 				 <button type="button" id="btnlogout" id="userlogout">사용자 logout</button>
 				 <!-- Dropdown -->
