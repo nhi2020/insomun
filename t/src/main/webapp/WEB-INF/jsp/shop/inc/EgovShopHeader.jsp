@@ -65,17 +65,21 @@
 			<li class="nav-item dropdown">관리자 ${sessionScope.A_ID }</li>
 		</ul>
 	<c:choose>
+<<<<<<< HEAD
 		 <c:when test="${(sessionScope.userid != null and sessionScope.userid ne ' ')or(sessionScope.S_ID != null and sessionScope.S_ID ne ' ')or(sessionScope.A_ID != null and sessionScope.A_ID ne ' ')}">
+=======
+		 <c:when test="${sessionScope.sns_idx != null and sessionScope.userid ne ' '}">
+>>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 		 		<c:if test="${sessionScope.status == 1 }">
 				 <button type="button" id="btnlogout" id="userlogout">사용자 logout</button>
 				 <!-- Dropdown -->
 	 				 <ul class="navbar-nav" >
 	 					 <li class="nav-item dropdown">
 	 					   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-	    				  	마이페이지
+	    				  	회원 메뉴
 	  					  </a>
 	  					  <div class="dropdown-menu">
-	   						   <a class="dropdown-item" href="#">Link 1</a>
+	   						   <a class="dropdown-item" href="/shop/user/buyer/selectUserBuyer.do">마이 페이지</a>
 	    					   <a class="dropdown-item" href="#">Link 2</a>
 	     					   <a class="dropdown-item" href="#">Link 3</a>
 	   					 </div>

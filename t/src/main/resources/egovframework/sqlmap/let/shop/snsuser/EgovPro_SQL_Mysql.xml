@@ -5,6 +5,7 @@
 
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias  alias="SnsProfileVO" type="egovframework.let.shop.mng.snsprofile.service.SnsProfileMngVO"/>
+	<typeAlias  alias="SnsProfileUserVO" type="egovframework.let.shop.user.snsprofile.service.SnsProfileUserVO"/>
 	<typeAlias  alias="SnsProfile" type="egovframework.let.shop.mng.snsprofile.service.SnsProfileMng"/>
 					
 	<resultMap id="snsProfileList" class="egovframework.let.shop.mng.snsprofile.service.SnsProfileMngVO"> <!-- property는 vo값 -->
@@ -77,6 +78,12 @@
 			WHERE 	
 					1=1 AND USERID=#userid#
 		]]>
+	</select>
+	
+	<select id="selectUserSnsprofile" parameterClass="SnsProfileUserVO" resultClass="SnsProfileUserVO">
+		SELECT 	*
+		FROM 	SNSPROFILE
+		WHERE 	sns_idx = #sns_idx#
 	</select>
 	<!-- <insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
 		<![CDATA[
