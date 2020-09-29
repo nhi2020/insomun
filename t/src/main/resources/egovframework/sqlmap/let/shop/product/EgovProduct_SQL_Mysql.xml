@@ -95,9 +95,25 @@
 								P_Q = #p_q#
  		]]>
  	</update> -->
- 	<insert id="EgovMngProductDAO.insertMngProduct" parameterClass="ProductVO">
+ 	<insert id="EgovMngProductDAO.insertMngProductForm" parameterClass="ProductVO" >
+ 	<selectKey resultClass="int" keyProperty="p_idx">
+ 		SELECT 
+			CASE 
+				WHEN 
+					MAX(P_IDX) IS NULL 
+				THEN 
+					1 
+				ELSE
+					MAX(P_IDX)+1 
+				END
+		FROM
+			PRODUCT
+ 	</selectKey>
  		<![CDATA[
- 					
+ 			INSERT INTO PRODUCT
+			(P_IDX,S_ID, P_NAME, P_PRICE, P_REGDATE, P_MODDATE, P_IMAGE, P_CONTENT, P_TAGE, P_SDATE, P_EDATE, P_STATUS, P_Q)
+			VALUES
+			(#p_idx#, #s_id#, #p_name#, #p_price#, SYSDATE(), SYSDATE(), #p_image#, #p_content#, #p_tage#, SYSDATE(), SYSDATE(), 'N', #p_q#)				
  		]]>
  	</insert>
  	
