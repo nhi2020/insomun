@@ -28,7 +28,7 @@
 	     </tr>
     <c:forEach items="${list }" var="admin_list" varStatus="status">
 	    <tr>
-	       <td>${admin_list.a_id }</td>
+	       <td><a href="/shop/mng/admin/adminControl/updateMngAdminControl.do?a_id=${admin_list.a_id }">${admin_list.a_id }</a></td>
 	       <td>${admin_list.a_email }</td>
 	       <td>${admin_list.a_name }</td>
 	       <td>${admin_list.a_moddate }</td>
@@ -37,7 +37,6 @@
 		  </tr>
 	    </c:forEach> 
 	   </table>
-	  
 	  </div>
 	</div>
 </body>
