@@ -236,4 +236,28 @@
 			s_addr = #s_addr#
 		WHERE s_id = #s_id#	
 	</update>
+	
+	<select id="selectSellerUserListCnt" parameterClass="SellerMngVO" resultClass="int">
+		SELECT COUNT(*)
+		FROM SELLER
+		WHERE 1=1
+		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	S_ID LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
+
+	</select>
+ 	
+ 	<select id="selectSellerUserList" resultClass="SellerMngVO">
+		SELECT *
+		FROM SELLER
+		WHERE 1=1
+		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	S_ID LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	SNSCODE LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
+		ORDER BY S_REGDATE DESC
+		LIMIT #recordCountPerPage# OFFSET #firstIndex#
+	</select>
 </sqlMap>
