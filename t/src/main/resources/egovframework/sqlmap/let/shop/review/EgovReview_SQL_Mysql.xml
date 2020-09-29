@@ -6,12 +6,14 @@
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias  alias="ReviewVO" type="egovframework.let.shop.user.review.service.ReviewUserVO"/>
 	<typeAlias  alias="Review" type="egovframework.let.shop.user.review.service.ReviewUser"/>
+	<typeAlias  alias="ReviewMngVO" type="egovframework.let.shop.mng.review.service.ReviewMngVO"/>
+	<typeAlias  alias="ReviewMng" type="egovframework.let.shop.mng.review.service.ReviewMng"/>
 					
 	
 	<resultMap id="ReviewList" class="egovframework.let.shop.user.review.service.ReviewUserVO"> <!-- property는 vo값 -->
 		<result property="s_id" column="S_ID" columnIndex="1"/>
-		<result property="sns_idx" column="SNS_IDX" columnIndex="2"/>						 <!-- collum 은 db의 컬럼값 -->
-		<result property="r_idx" column="R_IDX" columnIndex="3"/>			  <!-- db의 컬럼 순서 -->
+		<result property="sns_idx" column="SNS_IDX" columnIndex="2"/>							<!-- collum 은 db의 컬럼값 -->
+		<result property="r_idx" column="R_IDX" columnIndex="3"/>			  					<!-- db의 컬럼 순서 -->
 		<result property="p_idx" column="P_IDX" columnIndex="4"/>
 		<result property="r_content" column="R_CONTENT" columnIndex="5"/>
 		<result property="r_regdate" column="R_REGDATE" columnIndex="6"/>
@@ -154,6 +156,53 @@
 		]]>
 	</insert>
 	
+	
+<!-- 관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용 -->
+<resultMap id="MngReviewList" class="egovframework.let.shop.mng.review.service.ReviewMngVO"> 
+		<result property="r_idx" column="R_IDX" columnIndex="1"/>
+		<result property="nickname" column="NICKNAME" columnIndex="2"/>						 
+		<result property="r_content" column="R_CONTENT" columnIndex="3"/>			  
+		<result property="r_regdate" column="R_REGDATE" columnIndex="4"/>
+		<result property="r_delyn" column="R_DELYN" columnIndex="5"/>
+	</resultMap>
+
+<select id="EgovMngReviewDAO.selectMngProList" parameterClass="ReviewMngVO" resultMap="MngReviewList" >
+		<![CDATA[
+	SELECT
+		  R_IDX
+		, NICKNAME
+		, R_CONTENT
+		, R_REGDATE
+		, R_DELYN
+	FROM(
+		SELECT
+			  A.R_IDX
+			, A.R_CONTENT
+			, A.R_REGDATE
+			, A.R_DELYN
+			, B.NICKNAME
+		FROM
+			REVIEW A, SNSPROFILE B
+		WHERE 
+			1 = 1
+		AND 
+			A.R_IDX = B.sns_idx
+	)A
+		]]>
+		<!-- <isEqual prepend="AND" property="searchCnd" compareValue="0"> prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다.
+				<![CDATA[	R_IDX LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>
+			<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	R_CONTENT LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>	
+			<isEqual prepend="AND" property="searchCnd" compareValue="2">
+				<![CDATA[	R_REGDATE LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>
+		<![CDATA[			
+			ORDER BY R_REGDATE DESC
+			LIMIT #recordCountPerPage# OFFSET #firstIndex#
+		]]> -->
+</select>
 
 	<!-- <select id="EgovMngProDAO.selectMngProListCnt" parameterClass="SnsProfileVO" resultClass="java.lang.Integer" >
 		<![CDATA[
