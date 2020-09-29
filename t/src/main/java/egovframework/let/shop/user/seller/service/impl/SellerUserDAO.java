@@ -12,23 +12,6 @@ import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 @Repository("SellerUserDAO")
 public class SellerUserDAO extends EgovAbstractDAO {
 
-/*
-    @SuppressWarnings("unchecked")
-    public List<SellerMngVO> selectSellerList(SellerMngVO sellerVO) throws Exception {
-    	System.out.println("들감1");
-	return (List<SellerMngVO>) list("EgovSellerDAO.selectSellerList1", sellerVO);
-    }								
-
-    public int selectSellerListCnt(SellerMngVO sellerVO) throws Exception {
-    	System.out.println("들감2");
-    	return (Integer)select("EgovSellerDAO.selectSellerListCnt1", sellerVO);
-    }
-    
-    public String selectLoginCheck(SellerMngVO sellerVO) throws Exception {
-    	System.out.println("들감2");
-    	System.out.println(sellerVO);
-    	return (String) select("EgovSellerDAO.selectLoginCheck1",sellerVO);
-    }*/
 
 	public String selectLoginCheck(SellerUserVO sellerVO) throws Exception{
 		System.out.println("들감2");
@@ -41,20 +24,15 @@ public class SellerUserDAO extends EgovAbstractDAO {
 		System.out.println("list dao");
 		return (List<SellerUserVO>) list("EgovSellerDAO.selectLoginListCheck",sellervo);
 	}
-<<<<<<< HEAD
+
 
 	public SellerUserVO sellerinsertPro(SellerUserVO vo) {
 		 
 		return (SellerUserVO) insert("EgovSellerDAO.sellerinsertPro",vo);
 	}
 
-	public int sellerSearchIdPro(SellerUserVO vo) {
-		
-		return (int) select("EgovSellerDAO.sellerSearchIdPro",vo);
-	}
 
-	
-=======
+
 	
 	public int selectSellerUserListCnt(SellerMngVO vo) {
 		System.out.println("selectSellerUserListCnt");
@@ -76,5 +54,12 @@ public class SellerUserDAO extends EgovAbstractDAO {
 		}
 		return SelectSellerUserList;
 	}
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
+
+	public SellerUserVO sellerSearchIdPro(SellerUserVO vo) {
+		
+		return (SellerUserVO) select("EgovSellerDAO.sellerSearchIdPro",vo);
+	}
+
+
+
 }

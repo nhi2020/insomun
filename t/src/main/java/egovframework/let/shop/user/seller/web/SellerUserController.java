@@ -165,15 +165,10 @@ public class SellerUserController {
 	}
 	@RequestMapping(value="/shop/user/seller/sellerSearchIdPro.do")
 	public String sellerSearchIdPro(SellerUserVO vo){
-		
-		try {
-			int result = SellerService.sellerSearchIdPro(vo);
-			System.out.println("result:"+result);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+			
+			vo = SellerService.sellerSearchIdPro(vo);
+			
+			System.out.println("vo"+vo);
 		
 		return "/shop/user/seller/sellerFind/sellerSearchId";
 	}

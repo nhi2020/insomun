@@ -70,7 +70,7 @@
 			value(#s_id#,#s_nickname#,#s_pass#,#s_email#,1,#s_phone#,#s_addr#,#s_gender#,now(),#s_birth#,#s_account#)
 		]]>
 	</insert>
-	<select id="EgovSellerDAO.sellerSearchIdPro"  parameterClass="SellerVO" resultClass="java.lang.Integer">
+	<select id="EgovSellerDAO.sellerSearchIdPro"  parameterClass="SellerVO" resultClass="SellerVO">
 		<![CDATA[  
 			SELECT S_ID
 			FROM SELLER
