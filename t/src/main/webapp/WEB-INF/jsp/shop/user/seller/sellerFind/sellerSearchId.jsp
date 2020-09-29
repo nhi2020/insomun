@@ -17,7 +17,7 @@
 <body>
 <%@ include file="../../../inc/EgovShopHeader.jsp" %>
 
-<form action="">
+<form action="/shop/user/seller/sellerSearchIdPro.do">
 	<div>
 		<p>아이디를 입력하시요.
 		<input type="text" name=s_id>	

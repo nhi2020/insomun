@@ -20,5 +20,7 @@ public interface SellerUserService {
 
 	public SellerUserVO sellerinsertPro(SellerUserVO vo);
 
+	public int sellerSearchIdPro(SellerUserVO vo)throws Exception;
+
 	
 }

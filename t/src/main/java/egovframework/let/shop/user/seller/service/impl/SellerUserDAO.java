@@ -45,5 +45,10 @@ public class SellerUserDAO extends EgovAbstractDAO {
 		return (SellerUserVO) insert("EgovSellerDAO.sellerinsertPro",vo);
 	}
 
+	public int sellerSearchIdPro(SellerUserVO vo) {
+		
+		return (int) select("EgovSellerDAO.sellerSearchIdPro",vo);
+	}
+
 	
 }

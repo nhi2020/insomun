@@ -46,6 +46,14 @@ public class SellerUserSerivceImpl extends EgovAbstractServiceImpl implements Se
 
 
 
+	@Override
+	public int sellerSearchIdPro(SellerUserVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SellerDAO.sellerSearchIdPro(vo);
+	}
+
+
+
 	
 	
 

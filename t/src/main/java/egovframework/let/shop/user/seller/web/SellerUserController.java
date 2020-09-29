@@ -95,11 +95,11 @@ public class SellerUserController {
 		System.out.println("s_id"+sellervo.getS_id());
 		if (user_name != null && user_name !=""){
 			session.setAttribute("user", list.get(0));// ${sessionScope.user.s_id}  list말고 vo로 받았어야함/
-			session.setAttribute("S_ID", sellervo.getS_id());
-			session.setAttribute("S_NICKNAME",sellervo.getS_nickname() );
-			session.setAttribute("S_EMAIL", sellervo.getS_email());
-			session.setAttribute("S_ADDR", sellervo.getS_addr());
-			session.setAttribute("S_GENDER",sellervo.getS_gender());
+			session.setAttribute("S_ID", list.get(0).getS_id());
+			session.setAttribute("S_NICKNAME",list.get(0).getS_nickname() );
+			session.setAttribute("S_EMAIL", list.get(0).getS_email());
+			session.setAttribute("S_ADDR", list.get(0).getS_addr());
+			session.setAttribute("S_GENDER",list.get(0).getS_gender());
 			session.setAttribute("status", 2);
 			/*request.getSession().setAttribute("user_id", id);*/
 			model.addAttribute("msg","성공");
@@ -159,6 +159,20 @@ public class SellerUserController {
 	@RequestMapping(value="/shop/user/seller/sellerSearchId.do")
 	public String sellerSearchId(){
 		System.out.println("아이디");
+		return "/shop/user/seller/sellerFind/sellerSearchId";
+	}
+	@RequestMapping(value="/shop/user/seller/sellerSearchIdPro.do")
+	public String sellerSearchIdPro(SellerUserVO vo){
+		
+		try {
+			int result = SellerService.sellerSearchIdPro(vo);
+			System.out.println("result:"+result);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return "/shop/user/seller/sellerFind/sellerSearchId";
 	}
 }
