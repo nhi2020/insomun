@@ -26,8 +26,8 @@ public class ReviewUserDAO extends EgovAbstractDAO {
 		return result;
 	}
 	//상품상세에대한 리뷰
-	@SuppressWarnings("unchecked")
-	public List<ReviewUserVO> insertMainUserReview(ReviewUserVO reviewVO) throws Exception{
-		return (List<ReviewUserVO>) insert("EgovReviewDAO.insertMainUserReview",reviewVO);
+	public int insertMainUserReview(ReviewUserVO reviewVO) throws Exception{
+		int result = (Integer) insert("EgovReviewDAO.insertMainUserReview",reviewVO);
+		return result;
 	}
 }

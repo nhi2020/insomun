@@ -32,22 +32,30 @@
 	});
 	$(document).ready(function(){
 		$("#sellerlogout").click(function(){
-			alert("누름");
-			location.href = "/shop/mng/seller/sellerLogout.do";
+			alert("판매자");
+			location.href = "/shop/user/seller/sellerLogout.do";
 		});
 	});
 	$(document).ready(function(){
 		$("#adminlogout").click(function(){
-			alert("누름");
+			alert("관리자");
 			location.href = "/shop/mng/seller/adminLogout.do";
 		});
 	});
+	$(document).ready(function(){
+		$("#userlogout").click(function(){
+			alert("구매자");
+			location.href = "/shop/user/EgovUserLogout.do";
+		});
+	});
+	
+	
 </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	<!-- Brand -->
-	<a class="navbar-brand" href="/shop/mng/main/EgovMain.do">Logo</a>
+	<a class="navbar-brand" href="/shop/user/main/EgovUserMain.do">Logo</a>
 
 	<!-- Links -->
 	<ul class="navbar-nav">
@@ -59,19 +67,21 @@
 	  <input class="form-control mr-sm-2" type="text" placeholder="Search">
 	  <button class="btn btn-success" type="submit">Search</button>
 	</form>
-	
+		
 	<c:choose>
-		 <c:when test="${sessionScope.userid != null and sessionScope.userid ne ' '}">
+		 <c:when test="${(sessionScope.sns_idx != null)or(sessionScope.S_ID != null and sessionScope.S_ID ne ' ')or(sessionScope.A_ID != null and sessionScope.A_ID ne ' ')}">
+		 
 		 		<c:if test="${sessionScope.status == 1 }">
-				 <button type="button" id="btnlogout" id="userlogout">사용자 logout</button>
+				 <!-- <button type="button" id="btnlogout" id="userlogout">사용자 logout</button> -->
+				 <button  class="btn btn-info" type="button" id="userlogout">사용자 logout</button>
 				 <!-- Dropdown -->
 	 				 <ul class="navbar-nav" >
 	 					 <li class="nav-item dropdown">
 	 					   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-	    				  	마이페이지
+	    				  	회원 메뉴
 	  					  </a>
 	  					  <div class="dropdown-menu">
-	   						   <a class="dropdown-item" href="#">Link 1</a>
+	   						   <a class="dropdown-item" href="/shop/user/buyer/selectUserBuyer.do">마이 페이지</a>
 	    					   <a class="dropdown-item" href="#">Link 2</a>
 	     					   <a class="dropdown-item" href="#">Link 3</a>
 	   					 </div>
@@ -112,8 +122,8 @@
 					  </li>
 	  				</ul>
 				 </c:if>
-		</c:when>
-		
+			</c:when>
+	
 		<c:otherwise>
 			<button type="button" id="btnlogin" class="btn btn-info">login</button>
 			<!-- <button type="button" id="btnSignIn" class="btn btn-danger" >회원가입</button> -->

@@ -4,13 +4,18 @@
 <sqlMap namespace="Seller">
 
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
-	<typeAlias  alias="SellerVO" type="egovframework.let.shop.mng.seller.service.impl.SellerMngVO"/> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias  alias="SellerVO" type="egovframework.let.shop.user.seller.service.impl.SellerUserVO"/> <!-- db에서 세터로 받아넣는 -->
 	<!-- <typeAlias  alias="MemberVO" type="egovframework.let.shop.service.MemberVO"/>
 	<typeAlias  alias="S_MemberVO" type="egovframework.let.shop.service.S_MemberVO"/>
 	<typeAlias  alias="ProVO" type="egovframework.let.shop.service.ProVO"/> -->
-	<typeAlias  alias="Seller" type="egovframework.let.shop.mng.seller.service.SellerMng"/>
+	<typeAlias  alias="Seller" type="egovframework.let.shop.user.seller.service.SellerUser"/>
+	<typeAlias alias="SellerMngVO" type="egovframework.let.shop.mng.seller.service.impl.SellerMngVO" /> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias alias="SellerMng" type="egovframework.let.shop.mng.seller.service.SellerMng" />
 	
-	<resultMap id="sellerList" class="egovframework.let.shop.mng.seller.service.impl.SellerMngVO"> <!-- property는 vo값 -->
+	
+	
+	
+	<resultMap id="sellerList" class="egovframework.let.shop.user.seller.service.impl.SellerUserVO"> <!-- property는 vo값 -->
 		<result property="s_id" column="S_ID" columnIndex="1"/>
 		<result property="s_nickname" column="S_NICKNAME" columnIndex="2"/>
 		<result property="s_pass" column="S_PASS" columnIndex="3"/>
@@ -24,7 +29,7 @@
 		<result property="s_regdate" column="S_REGDATE" columnIndex="11"/>
 		<result property="s_birth" column="S_BIRTH" columnIndex="12"/>
 	</resultMap>
-	<resultMap id="sellerList2" class="egovframework.let.shop.mng.seller.service.impl.SellerMngVO"> <!-- property는 vo값 -->
+	<resultMap id="sellerList2" class="egovframework.let.shop.user.seller.service.impl.SellerUserVO"> <!-- property는 vo값 -->
 		<result property="s_id" column="S_ID" columnIndex="1"/>
 	</resultMap>
 	
@@ -43,6 +48,16 @@
 	<!-- 쿼리문 작성 -->
 		<![CDATA[  
 			SELECT S_ID
+			FROM SELLER
+			WHERE 1=1
+			AND S_ID = #s_id#
+			AND S_PASS = #s_pass#
+		]]>
+	</select>
+	<select id="EgovSellerDAO.selectLoginListCheck" parameterClass="SellerVO" resultClass="SellerVO">
+	<!-- 쿼리문 작성 -->
+		<![CDATA[  
+			SELECT *
 			FROM SELLER
 			WHERE 1=1
 			AND S_ID = #s_id#
@@ -180,4 +195,34 @@
 			WHERE 컬럼명 = #변수명#
  		]]>
  	</update> -->
+ 	
+ 	<select id="selectSellerMngListCnt" parameterClass="SellerMngVO" resultClass="int">
+		SELECT COUNT(*)
+		FROM SELLER
+		WHERE 1=1
+		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	S_ID LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
+
+	</select>
+ 	
+ 	<select id="selectSellerMngList" resultClass="SellerMngVO">
+		SELECT *
+		FROM SELLER
+		WHERE 1=1
+		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	S_ID LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	SNSCODE LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
+		ORDER BY S_REGDATE DESC
+		LIMIT #recordCountPerPage# OFFSET #firstIndex#
+	</select>
+	
+	<select id="sellerSelect" resultClass="SellerMngVO" parameterClass="SellerMngVO">
+		SELECT *
+		FROM SELLER
+		WHERE s_id = #s_id#
+	</select>
 </sqlMap>

@@ -4,6 +4,7 @@
 <sqlMap namespace="Buyer">
 
 	<typeAlias alias="BuyerVO" type="egovframework.let.shop.mng.buyer.service.impl.BuyerMngVO" /> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias alias="BuyerUserVO" type="egovframework.let.shop.user.buyer.service.impl.BuyerUserVO" /> <!-- db에서 세터로 받아넣는 -->
 	<typeAlias alias="Buyer" type="egovframework.let.shop.mng.buyer.service.BuyerMng" />
 
 	<select id="BuyerListCnt" parameterClass="BuyerVO" resultClass="int">
@@ -34,6 +35,13 @@
 		FROM SNSPROFILE
 		WHERE sns_idx = #sns_idx#
 	</select>
+	
+	<select id="selectUserBuyer" resultClass="BuyerUserVO" parameterClass="BuyerUserVO">
+		SELECT *
+		FROM SNSPROFILE
+		WHERE sns_idx = #sns_idx#
+	</select>
+	
 	<update id="buyerUpdate" parameterClass="BuyerVO">
 		UPDATE SNSPROFILE
 		SET 
@@ -42,6 +50,14 @@
 			nickname = #nickname#,
 			email = #email#,
 			del_yn = #del_yn#
+		WHERE sns_idx = #sns_idx#
+	</update>
+	
+	<update id="updateUserBuyer" parameterClass="BuyerUserVO">
+		UPDATE SNSPROFILE
+		SET 
+			nickname = #nickname#,
+			email = #email#
 		WHERE sns_idx = #sns_idx#
 	</update>
 	

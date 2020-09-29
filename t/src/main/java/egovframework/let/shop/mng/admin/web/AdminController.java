@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import egovframework.let.shop.mng.admin.service.AdminService;
 import egovframework.let.shop.mng.admin.service.impl.AdminVO;
-import egovframework.let.shop.mng.seller.service.SellerMngService;
-import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
+
 
 @Controller
 public class AdminController {
@@ -76,7 +75,9 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		
 		
 		if (user_name != null){
-			session.setAttribute("userid", id);
+			session.setAttribute("A_ID", adminvo.getA_id());
+			session.setAttribute("A_EMAIL", adminvo.getA_email());
+			session.setAttribute("A_NAME", adminvo.getA_name());
 			session.setAttribute("status", 0);
 			/*request.getSession().setAttribute("user_id", id);*/
 			System.out.println("성공");
@@ -94,6 +95,6 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 	@RequestMapping(value="/shop/mng/seller/adminLogout.do")
 	public String adminLogout(HttpSession session) {
 	    session.invalidate();
-	    return "redirect:/shop/mng/main/EgovMain.do";
+	    return "redirect:/shop/user/main/EgovMain.do";
 	}
 }

@@ -18,15 +18,14 @@
 <%@ include file="../../inc/EgovShopTop.jsp" %>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
 
-  ${sessionScope.userid }<br/>
-  ${sessionScope.nickname }<br/>
-  ${sessionScope.email }
-  <h2>메인 화면 입니다.</h2>
-  <c:forEach items="${list}" var="result">
-	${result.userid }
-	${result.nickname}
-	${result.email }
-  </c:forEach>
+<div class="container">
+	<div class="row">
+		<form action="loginUserSnsprofileTestPro.do">
+			<p>sns_idx : <input type="text" name="sns_idx"/></p>
+			<p><input type="submit" value="로그인"></p>
+		</form>
+	</div>
+</div>
   
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>

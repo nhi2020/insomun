@@ -23,7 +23,7 @@
 		<result property="s_nickname" column="S_NICKNAME" columnIndex="12"/>
 		<result property="p_name" column="P_NAME" columnIndex="13"/>
 	</resultMap>
-	
+
 	<select id="EgovReviewDAO.selectReviewList" parameterClass="ReviewVO" resultMap="ReviewList" >
 		<![CDATA[
 			SELECT
@@ -93,7 +93,14 @@
 				WHERE 1=1
 				AND A.P_IDX=B.P_IDX
 			) A WHERE 1=1
-		]]>			
+		]]>	
+			<isNotNull property="p_idx">
+				<isNotEmpty property="p_idx">
+					<isNotEqual prepend="AND" property="p_idx" compareValue="0">
+						<![CDATA[	P_IDX = #p_idx# 		]]>
+					</isNotEqual>
+				</isNotEmpty>	
+			</isNotNull>	
 			<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
 				<![CDATA[	NICKNAME LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 			</isEqual>
@@ -126,12 +133,24 @@
 	</update>
 	
 	<insert id="EgovReviewDAO.insertMainUserReview" parameterClass="ReviewVO">
+	<selectKey resultClass="int" keyProperty="r_idx">
+		SELECT 
+			CASE 
+				WHEN 
+					MAX(R_IDX) IS NULL 
+				THEN 
+					1 
+				ELSE
+					MAX(R_IDX)+1 
+				END
+		FROM
+			REVIEW
+	</selectKey>
 		<![CDATA[
 			INSERT INTO REVIEW
-			(R_CONTENT, R_REGDATE, R_DELYN, SNS_SCORE)
+			(S_ID, SNS_IDX, R_IDX, P_IDX, R_CONTENT, R_REGDATE, R_DELYN, R_DIV, SNS_SCORE, SELLER_SCORE)
 			VALUES
-			( #r_content#, SYSDATE(), 'N', 3
-			 )			
+			( #s_id#, #sns_idx# , #r_idx#, #p_idx#, #r_content#, SYSDATE(), 'N', #r_div#, 3 ,1)			
 		]]>
 	</insert>
 	

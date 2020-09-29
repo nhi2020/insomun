@@ -4,12 +4,12 @@ import java.util.List;
 
 import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
 
-
 public interface SellerMngService {
 
-	public List<SellerMngVO> selectSellerList(SellerMngVO sellerVO) throws Exception;
+	int selectSellerMngListCnt(SellerMngVO vo);
 
-	public int selectSellerListCnt(SellerMngVO sellerVO) throws Exception;
-	
-	public String selectLoginCheck(SellerMngVO sellerVO) throws Exception;
+	List<SellerMngVO> selectSellerMngList(SellerMngVO vo);
+
+	SellerMngVO sellerSelect(SellerMngVO vo);
+
 }

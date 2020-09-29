@@ -38,9 +38,9 @@ public class ReviewUserServiceImpl extends EgovAbstractServiceImpl implements Re
 	}
 
 	@Override
-	public List<ReviewUserVO> insertMainUserReview(ReviewUserVO reviewVO) throws Exception {
-		List<ReviewUserVO> list = egovReviewDAO.insertMainUserReview(reviewVO);
-		return list;
+	public int insertMainUserReview(ReviewUserVO reviewVO) throws Exception {
+		int reuslt = egovReviewDAO.insertMainUserReview(reviewVO);
+		return reuslt;
 	}
 
 }

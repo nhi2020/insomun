@@ -1,31 +1,9 @@
 package egovframework.let.shop.mng.seller.service;
 
-import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
+public class SellerMng {
 
-/**
- * 게시물에 대한 데이터 처리 모델 클래스
- * @author 공통 서비스 개발팀 이삼섭
- * @since 2009.03.06
- * @version 1.0
- * @see
- *  
- * <pre>
- * << 개정이력(Modification Information) >>
- * 
- *   수정일      수정자          수정내용
- *  -------    --------    ---------------------------
- *  2009.03.06  이삼섭          최초 생성
- *  2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성 
- *  
- *  </pre>
- */
-@SuppressWarnings("serial")
-public class SellerMng implements Serializable {
-
-	private int p_idx;
 	private String s_id;
 	private String s_nickname;
 	private String s_pass;
@@ -38,14 +16,7 @@ public class SellerMng implements Serializable {
 	private Date s_moddate;
 	private Date s_regdate;
 	private Date s_birth;
-	
-	
-	public int getP_idx() {
-		return p_idx;
-	}
-	public void setP_idx(int p_idx) {
-		this.p_idx = p_idx;
-	}
+	private String s_account;
 	public String getS_id() {
 		return s_id;
 	}
@@ -118,7 +89,12 @@ public class SellerMng implements Serializable {
 	public void setS_birth(Date s_birth) {
 		this.s_birth = s_birth;
 	}
+	public String getS_account() {
+		return s_account;
+	}
+	public void setS_account(String s_account) {
+		this.s_account = s_account;
+	}
+
 	
-
-
 }
