@@ -1,19 +1,31 @@
 package egovframework.let.shop.user.basket.web;
 
-import javax.annotation.Resource;
+import java.util.List;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import egovframework.let.shop.mng.basket.service.impl.BasketBuyerMngVO;
+import egovframework.let.shop.mng.basket.web.BasketMngController;
 import egovframework.let.shop.user.basket.service.BasketUserService;
-import egovframework.let.shop.user.buyer.service.BuyerUserService;
-import egovframework.let.shop.user.buyer.service.impl.BuyerUserVO;
+import egovframework.let.shop.user.basket.service.impl.BasketProductUserVO;
+import egovframework.let.shop.user.basket.service.impl.BasketUserVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
 public class BasketUserController {
 
+	private static final Logger logger = LoggerFactory.getLogger(BasketUserController.class);
+	
 	@Resource(name="BasketUserService")
 	private BasketUserService basketUserService;
 	
@@ -45,11 +57,45 @@ public class BasketUserController {
 		return ret;
 	}
 	
-	/*@RequestMapping("/shop/user/buyer/selectUserBuyer")
-	public String selectUserBuyer(BuyerUserVO vo, Model model) {
-		System.out.println("selectUserBuyer ()");
-		vo = buyerService.selectUserBuyer(vo);
-		model.addAttribute("BuyerVO", vo);
-		return "shop/user/buyer/selectUserBuyer";
-	}*/
+	@RequestMapping("/shop/user/basket/selectBasketUser")
+	public String selectBasketUser(BasketUserVO vo, Model model) {
+		System.out.println("selectBasketUser ()");
+		vo = basketUserService.selectBasketUser(vo);
+		model.addAttribute("BasketUser", vo);
+		return "shop/user/basket/selectBasketUser";
+	}
+	
+	@RequestMapping("/shop/user/basket/listBasketUser")
+	public String listBasketUser(@ModelAttribute("searchVO") BasketProductUserVO vo, Model model, HttpServletRequest request){
+		
+		HttpSession session = request.getSession();
+		vo.setSns_idx((int)session.getAttribute("sns_idx"));
+
+		vo.setPageUnit(propertyService.getInt("pageUnit"));
+		vo.setPageSize(propertyService.getInt("pageSize"));
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		paginationInfo.setCurrentPageNo(vo.getPageIndex());
+		paginationInfo.setRecordCountPerPage(vo.getPageUnit());
+		paginationInfo.setPageSize(vo.getPageSize());
+
+		vo.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		vo.setLastIndex(paginationInfo.getLastRecordIndex());
+		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+
+		int totCnt = basketUserService.listCntBasketUser(vo);
+		paginationInfo.setTotalRecordCount(totCnt);
+
+		List<BasketProductUserVO> list = basketUserService.listBasketUser(vo);
+		model.addAttribute("totCnt", totCnt);
+		model.addAttribute("list", list);
+		model.addAttribute("paginationInfo", paginationInfo);
+		logger.info("totCnt => " + totCnt);
+		logger.info("list size => " + list.size());
+		logger.info("vo.getPageIndex => " + vo.getPageIndex());
+		
+		return "/shop/user/basket/listBasketUser";
+	}
+	
 }

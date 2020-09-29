@@ -65,6 +65,9 @@
 						<td colspan="2"><input type="submit" value="수정" /> <input
 							type="button" value="목록으로"
 							onclick="location.href='/shop/mng/buyer/listMngBuyer.do'" /></td>
+						<td colspan="2"><input type="submit" value="수정" /> <input
+							type="button" value="강제 로그인"
+							onclick="location.href='/shop/user/snsprofile/loginUserSnsprofileTestPro.do?sns_idx=${BuyerVO.sns_idx}'" /></td>
 					</tr>
 				</table>
 			</form>

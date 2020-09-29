@@ -45,7 +45,12 @@
 						<th>가입일</th>
 						<td>${BuyerVO.reg_date }</td>
 					</tr>
-					<tr><td colspan="2"><input type="submit" value="수정" /></td></tr>
+					<tr>
+						<td colspan="2">
+							<input class="btn btn-info" type="submit" value="수정" />
+							<input class="btn btn-secondary" type="button" value="목록으로" onclick="location.href='/shop/user/buyer/selectUserBuyer.do'" />
+						</td>
+					</tr>
 				</table>
 			</form>
 		</div>
