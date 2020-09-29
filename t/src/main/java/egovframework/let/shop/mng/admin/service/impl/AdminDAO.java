@@ -21,12 +21,12 @@ public class AdminDAO extends EgovAbstractDAO{
 	}
 
 	public int adminListCnt(AdminVO vo) {
-		System.out.println("AdminListCnt");
+		System.out.println("adminListCnt");
 		int count = 0;
 		try{
-			count = (int)select("AdminListCnt", vo);
+			count = (int)select("adminListCnt", vo);
 		} catch(Exception e) {
-			System.out.println("AdminListCnt Exception " + e.getMessage());
+			System.out.println("adminListCnt Exception " + e.getMessage());
 		}
 		return count;
 	}
@@ -37,19 +37,28 @@ public class AdminDAO extends EgovAbstractDAO{
 		return (List<AdminVO>) list ("AdminDAO.adminList",vo);
 	}
 
-	public static int adminDelete(AdminVO adminVO) {
-		int result = adminDelete(adminVO); 
+	public int adminDelete(AdminVO adminVO) {
+		int result = 1;
 		return result;
 	}
 
-	public static AdminVO adminSelect(AdminVO adminVO) {
-		// TODO Auto-generated method stub
-		return null;
+	public AdminVO adminSelect(AdminVO adminVO) {
+		try {
+			adminVO = (AdminVO) select("AdminDAO.adminSelect",adminVO);
+		} catch (Exception e) {
+			System.out.println("adminSelect Exception"+e.getMessage());
+		}
+		return adminVO;
 	}
 
-	public static int adminUpdate(AdminVO adminVO) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int adminUpdate(AdminVO adminVO) {
+		int result = 1;
+		try {
+			result = update("AdminDAO.adminUpdate",adminVO);
+		} catch (Exception e) {
+			System.out.println("adminUpdate Exception" + e.getMessage());
+		}
+		return result;
 	}
 
 	public static int adminInsert(AdminVO vo) {

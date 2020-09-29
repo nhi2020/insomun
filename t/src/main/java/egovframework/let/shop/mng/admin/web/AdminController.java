@@ -83,9 +83,7 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		
 		
 		if (user_name != null){
-			session.setAttribute("A_ID", list.get(0).getA_id());
-			session.setAttribute("A_EMAIL", list.get(0).getA_email());
-			session.setAttribute("A_NAME", list.get(0).getA_name());
+			session.setAttribute("userid", id);
 			session.setAttribute("status", 0);
 			/*request.getSession().setAttribute("user_id", id);*/
 			System.out.println("성공");
@@ -106,7 +104,7 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 	    return "redirect:/shop/mng/main/EgovMain.do";
 	}
 	
-	@RequestMapping(value = "/shop/mng/admin/listMngAdminControl")
+	@RequestMapping(value = "/shop/mng/admin/adminControl/listMngAdminControl")
 	public String EgovMngListAdminControl(@ModelAttribute("searchVO")AdminVO vo, HttpServletRequest request, Model model,
 		   @RequestParam(value="pageIndex", required=false, defaultValue="1") int pageIndex) {
 		vo.setPageIndex(pageIndex);
@@ -134,7 +132,7 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		model.addAttribute("paginationInfo", paginationInfo);
 		System.out.println("pagecount");
 		
-		return "/shop/mng/admin/listMngAdminControl";
+		return "/shop/mng/admin/adminControl/listMngAdminControl";
 		
 	}
 	
@@ -146,16 +144,17 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		}else {
 			System.out.println("삭제 성공");
 		}
-		return "shop/mng/admin/delMngAdminControl";
+		return "shop/mng/admin/adminControl/delMngAdminControl";
 		
 	}
 	
-	@RequestMapping("/shop/mng/admin/updateMngAdminControlForm.do")
+	@RequestMapping("/shop/mng/admin/adminControl/updateMngAdminControl")
 	public String updateMngAdminControlForm(AdminVO adminVO, Model model)  {
 		System.out.println("AdminMngModifyForm()");
 		adminVO = adminService.adminSelect(adminVO);
+		System.out.println("adminVO"+adminVO);
 		model.addAttribute("AdminVO", adminVO);
-		return "shop/mng/admin/updateMngAdminControlForm";
+		return "shop/mng/admin/adminControl/updateMngAdminControl";
 		
 	}
 	
@@ -168,8 +167,8 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		} else {
 			model.addAttribute("msg", "수정 실패");
 		}
-		model.addAttribute("adminVO");
-		return "shop/mng/admin/EgovUpMngAdminControlForm";
+		model.addAttribute("adminVO", adminVO);
+		return "forward:updateMngAdminControl.do";
 		
 	}
 	
