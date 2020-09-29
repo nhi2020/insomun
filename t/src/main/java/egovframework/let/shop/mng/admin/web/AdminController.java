@@ -10,17 +10,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import egovframework.let.shop.mng.admin.service.AdminService;
 import egovframework.let.shop.mng.admin.service.impl.AdminVO;
-
+import egovframework.let.shop.mng.buyer.service.impl.BuyerMngVO;
+import egovframework.let.shop.mng.seller.service.SellerMngService;
+import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
+import egovframework.rte.fdl.property.EgovPropertyService;
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
 public class AdminController {
 
 	@Resource(name="AdminService")
 	private AdminService adminService;
+	
+    @Resource(name = "propertiesService")
+	protected EgovPropertyService propertyService;
 	
 	protected String unscript(String data) {
 		if (data == null || data.trim().equals("")) {
@@ -75,9 +83,7 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		
 		
 		if (user_name != null){
-			session.setAttribute("A_ID", adminvo.getA_id());
-			session.setAttribute("A_EMAIL", adminvo.getA_email());
-			session.setAttribute("A_NAME", adminvo.getA_name());
+			session.setAttribute("userid", id);
 			session.setAttribute("status", 0);
 			/*request.getSession().setAttribute("user_id", id);*/
 			System.out.println("성공");
@@ -95,6 +101,94 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 	@RequestMapping(value="/shop/mng/seller/adminLogout.do")
 	public String adminLogout(HttpSession session) {
 	    session.invalidate();
-	    return "redirect:/shop/user/main/EgovMain.do";
+	    return "redirect:/shop/mng/main/EgovMain.do";
 	}
+	
+	@RequestMapping(value = "/shop/mng/admin/listMngAdminControl")
+	public String EgovMngListAdminControl(@ModelAttribute("searchVO")AdminVO vo, HttpServletRequest request, Model model,
+		   @RequestParam(value="pageIndex", required=false, defaultValue="1") int pageIndex) {
+		vo.setPageIndex(pageIndex);
+		System.out.println("listAdminControl pageIndex => " + vo.getPageIndex());
+		vo.setPageUnit(propertyService.getInt("pageUnit"));
+		vo.setPageSize(propertyService.getInt("pageSize"));
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		paginationInfo.setCurrentPageNo(vo.getPageIndex());
+		paginationInfo.setRecordCountPerPage(vo.getPageUnit());
+		paginationInfo.setPageSize(vo.getPageSize());
+
+		vo.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		vo.setLastIndex(paginationInfo.getLastRecordIndex());
+		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		
+		int totCnt = adminService.selectListCnt(vo); //
+		paginationInfo.setTotalRecordCount(totCnt);
+
+		List<AdminVO> list = adminService.selectList(vo); //
+
+		model.addAttribute("totCnt", totCnt);
+		model.addAttribute("list", list);
+		model.addAttribute("paginationInfo", paginationInfo);
+		System.out.println("pagecount");
+		
+		return "/shop/mng/admin/listMngAdminControl";
+		
+	}
+	
+	@RequestMapping("/shop/mng/admin/delMngAdminControl.do")
+	public String EgovDelMngAdminControl(AdminVO adminVO) throws Exception {
+		int result = adminService.delAdminControl(adminVO);
+		if (result ==0 ) {
+			System.out.println("삭제 실패");
+		}else {
+			System.out.println("삭제 성공");
+		}
+		return "shop/mng/admin/delMngAdminControl";
+		
+	}
+	
+	@RequestMapping("/shop/mng/admin/updateMngAdminControlForm.do")
+	public String updateMngAdminControlForm(AdminVO adminVO, Model model)  {
+		System.out.println("AdminMngModifyForm()");
+		adminVO = adminService.adminSelect(adminVO);
+		model.addAttribute("AdminVO", adminVO);
+		return "shop/mng/admin/updateMngAdminControlForm";
+		
+	}
+	
+	@RequestMapping(value = "/shop/mng/admin/updateMngAdminControlPro.do")
+	public String updateMngAdminControlPro(AdminVO adminVO, Model model) {
+		System.out.println("updateMngAdminForm()");
+		int result = adminService.adminUpdate(adminVO);
+		if(result > 0) {
+			model.addAttribute("msg", "수정 성공");
+		} else {
+			model.addAttribute("msg", "수정 실패");
+		}
+		model.addAttribute("adminVO");
+		return "shop/mng/admin/EgovUpMngAdminControlForm";
+		
+	}
+	
+	@RequestMapping(value = "/shop/mng/admin/insertMngAdminControlForm.do")
+	public String insertMngAdminForm(AdminVO vo, Model model) {
+		return "/shop/mng/admin/insertMngAdminControlForm";
+	}
+	
+	@RequestMapping(value = "/shop/mng/admin/insertMngAdminControlPro.do", method = RequestMethod.POST)
+	public String insertMngAdminPro(AdminVO vo, Model model) {
+		int result = adminService.insertMngAdminControl(vo);
+		if(result==0) {
+			model.addAttribute("msg", "등록 성공!");
+		}else {
+			model.addAttribute("msg", "등록 실패");
+		}
+		return "/shop/mng/admin/insertMngAdminControlForm";
+		
+	}
+	
+	
+	
+			
 }
