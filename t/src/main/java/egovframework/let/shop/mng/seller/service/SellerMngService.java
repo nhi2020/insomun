@@ -12,4 +12,6 @@ public interface SellerMngService {
 
 	SellerMngVO sellerSelect(SellerMngVO vo);
 
+	int sellerUpdate(SellerMngVO vo);
+
 }

@@ -73,13 +73,14 @@
 	<update id="EgovMngProductDAO.updateMngProductPro" parameterClass="ProductVO" >
 	UPDATE PRODUCT
 		SET 
+			P_NAME = #p_name#,
 			P_PRICE = #p_price#,
 			P_CONTENT = #p_content#,
 			P_TAGE = #p_tage#,
 			P_Q = #p_q#,
 			P_SDATE = #p_sdate#,
-			P_EDATE = #p_sdate#,
-			P_MODDATE = #p_sdate#
+			P_EDATE = #p_edate#,
+			P_MODDATE = #p_moddate#
 		WHERE P_IDX = #p_idx#
 	</update>
 

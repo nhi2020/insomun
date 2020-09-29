@@ -142,6 +142,7 @@ public class ProductMngController {
 	@RequestMapping(value ="/shop/product/EgovProductUpdatePro.do", method = RequestMethod.POST)
 	public String egovProductUpdatePro(ProductMngVO vo, Model model) throws Exception{
 		int result = mngProductService.updateMngProductPro(vo);
+		System.out.println("vo pname => " + vo.getP_name());
 		if (result > 0) {
 			model.addAttribute("msg", "수정 성공");
 		} else {
@@ -149,7 +150,7 @@ public class ProductMngController {
 		}
 		model.addAttribute("vo");
 
-		return "redirect:EgovProductUpdateForm.do";
+		return "forward:/shop/product/EgovProductUpdateForm.do";
 
 	}
 	
