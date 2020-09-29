@@ -28,7 +28,7 @@ public class ProductMng implements Serializable {
 	private int p_idx;
 	private String s_id;
 	private String p_name;
-	private String p_price;
+	private int p_price;
 	private String p_regdate;
 	private String p_moddate;
 	private String p_image;
@@ -64,11 +64,11 @@ public class ProductMng implements Serializable {
 		this.p_name = p_name;
 	}
 
-	public String getP_price() {
+	public int getP_price() {
 		return p_price;
 	}
 
-	public void setP_price(String p_price) {
+	public void setP_price(int p_price) {
 		this.p_price = p_price;
 	}
 

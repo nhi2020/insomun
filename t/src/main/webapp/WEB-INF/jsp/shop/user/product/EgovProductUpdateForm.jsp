@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ include file="../../inc/EgovShopTop.jsp" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,22 +18,22 @@
 <%@ include file="../../inc/EgovShopTop.jsp" %>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
 <h2>수정 페이지</h2>
-<c:if test="${msg != null }">
+
+	<c:if test="${msg != null }">
 	<p>${msg }</p>
 	</c:if>
 	<c:if test="${msg = null }">
 	</c:if>
+	
  <div class="container-fluid">
 	<div class="container text-center">
 	    <div class="row">
+			<form action="/shop/product/EgovProductUpdatePro.do" method="post">
 	    <input type="hidden" name="p_idx" value="${ProductVO.p_idx }" />
-	    
-			<div>
-			<form>
-					<table class="table">
 					<img src="./images/main/photo/${ProductVO.p_image}" width="270" height="385"/>
+						<p>
+					<table class="table">
 					<tr>
-						<p/>
 						<th>상품명</th>
 						<td><input type="text" name="p_name" value="${ProductVO.p_name }"/>
 						</td>
@@ -67,7 +67,7 @@
 						<td><input type="date" name="p_moddate" value="${ProductVO.p_moddate }"/></td>
 					</tr>
 					<tr>
-						<td colspan="2"><br/><input type="button" value="수정완료" onclick="location.href='/shop/product/EgovMngProductlist.do'"> &nbsp;
+						<td colspan="2"><br/><input type="submit" value="수정완료" > &nbsp;
 					<input type="button" value="삭제"></td>
 					</tr>
 				</table>

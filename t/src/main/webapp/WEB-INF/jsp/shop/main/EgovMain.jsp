@@ -37,6 +37,9 @@
 					<tr>
 					<td><a href="/shop/mng/seller/listMngSeller.do">판매자 관리</a></td>
 					</tr>
+					<tr>
+					<td><a href="/shop/product/EgovMngProductlist.do">상품 관리</a></td>
+					</tr>
 					<!-- <tr>
 					<td><a href="#">### 관리</a></td>
 					<td><a href="#">### 관리</a></td>
