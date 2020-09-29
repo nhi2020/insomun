@@ -13,5 +13,7 @@ public interface DealMngService {
 	DealMngVO selectMngDealBuyerDetail(DealMngVO vo);
 
 	int updateMngDealBuyerDetail(DealMngVO vo);
+
+	int updateMngDealBuyerCancel(DealMngVO vo);
 	
 }

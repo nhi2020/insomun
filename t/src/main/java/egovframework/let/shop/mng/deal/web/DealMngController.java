@@ -92,7 +92,6 @@ public class DealMngController {
 		return "shop/mng/deal/dealBuyerMngDetail";	
 	}
 	
-/*	@RequestMapping(value="/shop/mng/deal/dealBuyerMngIng.do?d_idx=${dealMngVO.d_idx}")*/
 	@RequestMapping(value="/shop/mng/deal/dealBuyerMngIng.do")
 	public String updateMngDealBuyerDetail(HttpServletRequest request, DealMngVO vo, Model model) {
 		System.out.println("DealMngController updateMngDealBuyerDetail Start...");
@@ -106,4 +105,16 @@ public class DealMngController {
 		return "redirect:/shop/mng/deal/dealBuyerList.do?d_idx=" + d_idx;	
 	}
 
+	@RequestMapping(value="/shop/mng/deal/dealBuyerMngCancel.do")
+	public String updateMngDealBuyerCancel(HttpServletRequest request, DealMngVO vo, Model model) {
+		System.out.println("DealMngController updateMngDealBuyerCancel Start...");
+		int result = dealMngService.updateMngDealBuyerCancel(vo);
+		if (result > 0) {
+			model.addAttribute("msg", "수정 성공");
+		} else {
+			model.addAttribute("msg", "수정 실패");
+		}
+		int d_idx = vo.getD_idx();
+		return "redirect:/shop/mng/deal/dealBuyerList.do?d_idx=" + d_idx;	
+	}
 	}
