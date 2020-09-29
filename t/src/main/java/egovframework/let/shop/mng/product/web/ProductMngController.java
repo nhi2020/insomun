@@ -1,15 +1,19 @@
 package egovframework.let.shop.mng.product.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import egovframework.let.shop.mng.buyer.service.impl.BuyerMngVO;
 import egovframework.let.shop.mng.product.service.ProductMngService;
 import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
 import egovframework.let.shop.mng.review.service.ReviewMngService;
@@ -45,6 +49,7 @@ public class ProductMngController {
 
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
+	
 
 	/*@Resource(name ="EgovReviewService")
 	protected ReviewMngService reviewService;*/
@@ -87,10 +92,10 @@ public class ProductMngController {
 	 * @exception Exception
 	 *                Exception
 	 */
-	@RequestMapping(value = "/shop/product/EgovMngMain.do")
+	@RequestMapping(value = "/shop/product/EgovMngProductlist.do")
 	public String forwardPageWithMenuNo(@ModelAttribute("searchVO") ProductMngVO vo, HttpServletRequest request,
 			ModelMap model,ReviewMngVO vo2) throws Exception {
-
+		System.out.println("test");
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
 
@@ -107,6 +112,7 @@ public class ProductMngController {
 		paginationInfo.setTotalRecordCount(totCnt);
 
 		List<ProductMngVO> list = mngProductService.selectMngProductList(vo);
+		System.out.println("test"+list.get(0).getS_id());
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
@@ -117,15 +123,38 @@ public class ProductMngController {
 		model.addAttribute("list2", list);*/
 		
 //		리뷰 관련  			//		
-		return "shop/EgovMngMain";
+		return "/shop/user/product/EgovMngProductlist";
 	}
-	@RequestMapping(value="/shop/user/EgovProductUpdate.do")
-	public String egovProductUpdate(@ModelAttribute ProductMngVO productVO,  HttpServletRequest request,
+	@RequestMapping(value="/shop/product/EgovProductUpdateForm.do")
+	public String egovProductUpdateForm(ProductMngVO vo,  HttpServletRequest request,
 			ModelMap model) throws Exception {
-	    List<ProductMngVO> list = mngProductService.updateMngProduct(productVO);
-	    
-	    
-	    return "shop/EgovProductUpdate";
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`");
+		System.out.println("EgovProductUpdateForm"+vo);
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`");
+		System.out.println("vo.getP_IDX => " + vo.getP_idx());
+	    vo = mngProductService.selectMngProductForm(vo);
+	    System.out.println("EgovProductUpdateForm"+vo);
+	    List<ProductMngVO> list = new ArrayList<ProductMngVO>();
+	    model.addAttribute("ProductVO",vo);
+	    return "/shop/user/product/EgovProductUpdateForm";
 	}
+	
+	@RequestMapping(value ="/shop/product/EgovProductUpdatePro.do", method = RequestMethod.POST)
+	public String egovProductUpdatePro(ProductMngVO vo, Model model) throws Exception{
+		int result = mngProductService.updateMngProductPro(vo);
+		if (result > 0) {
+			model.addAttribute("msg", "수정 성공");
+		} else {
+			model.addAttribute("msg", "수정 실패");
+		}
+		model.addAttribute("vo");
+
+		return "redirect:EgovProductUpdateForm.do";
+
+	}
+	
+	
+	
+	
 
 }
