@@ -1,5 +1,16 @@
 package egovframework.let.shop.mng.deal.service;
 
-public interface DealMngDAO {
+import java.util.List;
 
+import egovframework.let.shop.mng.deal.service.impl.DealMngVO;
+
+public interface DealMngDAO {
+	
+	int selectListCnt(DealMngVO vo);
+
+	List<DealMngVO> selectList(DealMngVO vo);
+	
+	DealMngVO selectMngDealBuyerDetail(DealMngVO vo);
+
+	int updateMngDealBuyerDetail(DealMngVO vo);
 }
