@@ -4,10 +4,11 @@ import java.io.Serializable;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import egovframework.let.shop.user.basket.service.BasketProductUser;
 import egovframework.let.shop.user.basket.service.BasketUser;
 
 @SuppressWarnings("serial")
-public class BasketUserVO extends BasketUser implements Serializable {
+public class BasketProductUserVO extends BasketProductUser implements Serializable {
 
 	/** 검색시작일 */
 	private String searchBgnDe = "";

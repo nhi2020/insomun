@@ -5,6 +5,8 @@
 
 	<typeAlias alias="BasketVO" type="egovframework.let.shop.mng.basket.service.impl.BasketMngVO" /> <!-- db에서 세터로 받아넣는 -->
 	<typeAlias alias="BasketBuyerVO" type="egovframework.let.shop.mng.basket.service.impl.BasketBuyerMngVO" /> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias alias="BasketUserVO" type="egovframework.let.shop.user.basket.service.impl.BasketUserVO" /> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias alias="BasketProductUserVO" type="egovframework.let.shop.user.basket.service.impl.BasketProductUserVO" /> <!-- db에서 세터로 받아넣는 -->
 
 	<select id="BasketMngListCnt" parameterClass="BasketBuyerVO" resultClass="int">
 		SELECT COUNT(*)
@@ -32,13 +34,35 @@
 		ORDER BY ba_reg_date DESC
 		LIMIT #recordCountPerPage# OFFSET #firstIndex#
 	</select>
+	<select id="listCntBasketUser" parameterClass="BasketProductUserVO" resultClass="int">
+		SELECT 		COUNT(*)
+		FROM 		BASKET
+		WHERE 		sns_idx 	=	#sns_idx#
+
+	</select>
+	<select id="listBasketUser" resultClass="BasketProductUserVO">
+		SELECT 		*
+		FROM 		BASKET ba, PRODUCT p
+		WHERE 		ba.p_idx = p.p_idx
+		AND			sns_idx 	=	#sns_idx#
+		
+		ORDER BY 	ba.ba_reg_date 
+					DESC
+					
+		LIMIT 		#recordCountPerPage# 
+		OFFSET 		#firstIndex#
+	</select>
 	<!-- 
 	<select id="BasketSelect" resultClass="BasketVO" parameterClass="BasketVO">
 		SELECT *
 		FROM SNSPROFILE
 		WHERE sns_idx = #sns_idx#
 	</select> -->
-	
+	<select id="selectBasketUser" parameterClass="BasketUserVO" resultClass="BasketUserVO">
+		SELECT *
+		FROM BASKET
+		WHERE BA_IDX = #ba_idx#
+	</select>
 	<update id="updateMngBasket" parameterClass="BasketVO">
 		UPDATE BASKET
 		SET 

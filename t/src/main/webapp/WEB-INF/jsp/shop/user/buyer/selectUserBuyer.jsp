@@ -21,31 +21,21 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm">
-				<p>
-					<button class="btn btn-primary"
-						onclick="location.href='/shop/user/buyer/updateUserBuyerForm.do'">정보수정
-					</button>
-				</p>
-				<p>
-					<button class="btn btn-primary">장바구니</button>
-				</p>
-				<p>
-					<button class="btn btn-primary">거래현황</button>
-				</p>
-				<p>
-
-					<button class="btn btn-primary">거래후기</button>
-				</p>
-				<p>
-
-					<button class="btn btn-primary">거래내역</button>
-				</p>
-				<p>
-					<button class="btn btn-primary">찜한상품</button>
-				</p>
+			<div class="mx-auto p-2">
+				<button class="btn btn-primary"
+					onclick="location.href='/shop/user/buyer/updateUserBuyerForm.do'">
+												정보수정</button>
+				<button class="btn btn-primary"
+						onclick="location.href='/shop/user/basket/listBasketUser.do'">
+												장바구니</button>
+				<button class="btn btn-primary">거래현황</button>
+				<button class="btn btn-primary">거래후기</button>
+				<button class="btn btn-primary">거래내역</button>
+				<button class="btn btn-primary">찜한상품</button>
 			</div>
-			<div class="col-9">
+		</div>
+		<div class="row px-md-5">
+			<div class="col-3 mx-auto">
 				<table class="table mx-auto">
 					<tr>
 						<td>SNS IDX</td>

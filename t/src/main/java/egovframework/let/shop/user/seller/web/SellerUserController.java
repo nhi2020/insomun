@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import egovframework.let.shop.mng.admin.service.impl.AdminVO;
+import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
 import egovframework.let.shop.user.seller.service.SellerUserService;
 import egovframework.let.shop.user.seller.service.impl.SellerUserVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
 public class SellerUserController {
@@ -174,5 +176,46 @@ public class SellerUserController {
 		
 		
 		return "/shop/user/seller/sellerFind/sellerSearchId";
+	}
+	
+	
+	
+	@RequestMapping("/shop/user/seller/sellerUserMain")
+	public String sellerUserMain(@ModelAttribute("searchVO") SellerMngVO vo, HttpServletRequest request, 
+			Model model, @RequestParam(value = "pageIndex", required=false, defaultValue="1") int pageIndex) {
+		
+		HttpSession session = request.getSession();
+		String s_id = (String) session.getAttribute("S_ID");
+		
+		System.out.println("session" + session);
+		
+		System.out.println("sellerUserMain()");
+		vo.setPageIndex(pageIndex);
+		System.out.println("sellerUserMain pageIndex => " + vo.getPageIndex());
+		vo.setPageUnit(propertyService.getInt("pageUnit"));
+		vo.setPageSize(propertyService.getInt("pageSize"));
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		paginationInfo.setCurrentPageNo(vo.getPageIndex());
+		paginationInfo.setRecordCountPerPage(vo.getPageUnit());
+		paginationInfo.setPageSize(vo.getPageSize());
+
+		vo.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		vo.setLastIndex(paginationInfo.getLastRecordIndex());
+		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+
+		int totCnt = SellerService.selectSellerUserListCnt(vo); //
+		paginationInfo.setTotalRecordCount(totCnt);
+
+		List<SellerMngVO> list = SellerService.selectSellerUserList(vo); //
+		
+		System.out.println("s_id" + s_id);
+		
+		model.addAttribute("s_id", s_id);
+		model.addAttribute("totCnt", totCnt);
+		model.addAttribute("list", list);
+		model.addAttribute("paginationInfo", paginationInfo);
+		return "shop/user/seller/sellerUserMain";
 	}
 }
