@@ -71,8 +71,8 @@ function updateUserBasketQty(index){
 						<ui:pagination paginationInfo="${paginationInfo}" type="text"
 							jsFunction="linkPage" />
 					</ul>
-					<input type="hidden" name="searchCnd" value="0" /> <input
-						type="hidden" name="pageIndex" value="${searchVO.pageIndex }"/> <input type="hidden"
+					<input type="hidden" name="searchCnd" value="0" /> <input id="pageIndex"
+						type="hidden" name="pageIndex" value=/> <input type="hidden"
 						name="searchWrd" value="${searchVO.searchWrd }" />
 				</form>
 			</div>
