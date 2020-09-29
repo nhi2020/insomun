@@ -42,7 +42,7 @@
 				
 				<c:forEach items="${list }" var="s_list" varStatus="status">
 					<tr>
-						<td><a href="/shop/mng/seller/updateMngSellerPro.do?s_id=${s_list.s_id }">${s_list.s_id }</a></td>
+						<td><a href="/shop/mng/seller/updateMngSellerForm.do?s_id=${s_list.s_id }">${s_list.s_id }</a></td>
 						<td>${s_list.s_nickname }</td>
 						<td>${s_list.s_email }</td>
 						<td>${s_list.s_photo }</td>

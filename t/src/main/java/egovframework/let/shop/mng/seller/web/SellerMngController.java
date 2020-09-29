@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import egovframework.let.shop.mng.buyer.service.impl.BuyerMngVO;
@@ -81,12 +82,27 @@ public class SellerMngController {
 		return "shop/mng/seller/listMngSeller";
 	}
 	
-	@RequestMapping("/shop/mng/seller/updateMngSellerPro")
+	@RequestMapping("/shop/mng/seller/updateMngSellerForm")
 	public String updateMngSellerFrom(SellerMngVO vo, Model model) {
 		System.out.println("updateMngSellerFrom()");
 		vo = sellerService.sellerSelect(vo);
 		model.addAttribute("SellerVO", vo);
 		return "shop/mng/seller/updateMngSellerForm";
+	}
+	
+	@RequestMapping(value = "/shop/mng/seller/updateMngSellerPro", method = RequestMethod.POST)
+	public String updateMngSellerPro(SellerMngVO vo, Model model) {
+		System.out.println("updateMngSellerPro()");
+		System.out.println("vo.getS_nickname() ->" + vo.getS_nickname());
+		int result = sellerService.sellerUpdate(vo);
+		if(result > 0) {
+			model.addAttribute("msg", "수정 성공");
+		}else {
+			model.addAttribute("msg", "수정 실패");
+		}
+		model.addAttribute("vo");
+		
+		return "forward:updateMngSellerForm.do";
 	}
 	
 	

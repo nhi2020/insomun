@@ -28,12 +28,12 @@
 	<div class="container">
 		<div class="row">
 			<form class="mx-auto" action="/shop/mng/seller/updateMngSellerPro.do" method="post">
+				<input type="hidden" name="s_id" value="${SellerVO.s_id }" />
 				<table class="table">
 				
 					<tr>
 						<th>회원아이디</th>
-						<td><input type="text" name="s_id"
-							value="${SellerVO.s_id }" /></td>
+						<td>${SellerVO.s_id }</td>
 					</tr>
 			
 					<tr> 

@@ -225,4 +225,15 @@
 		FROM SELLER
 		WHERE s_id = #s_id#
 	</select>
+	
+	<update id="sellerUpdate" parameterClass="SellerMngVO">
+		UPDATE SELLER
+		SET
+			s_nickname = #s_nickname#,
+			s_email = #s_email#,
+			s_status = #s_status#,
+			s_phone = #s_phone#,
+			s_addr = #s_addr#
+		WHERE s_id = #s_id#	
+	</update>
 </sqlMap>
