@@ -1,6 +1,6 @@
 package egovframework.let.shop.mng.buyer.service;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class BuyerMng {
 

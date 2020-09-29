@@ -9,6 +9,11 @@
 	<typeAlias  alias="S_MemberVO" type="egovframework.let.shop.service.S_MemberVO"/>
 	<typeAlias  alias="ProVO" type="egovframework.let.shop.service.ProVO"/> -->
 	<typeAlias  alias="Seller" type="egovframework.let.shop.user.seller.service.SellerUser"/>
+	<typeAlias alias="SellerMngVO" type="egovframework.let.shop.mng.seller.service.impl.SellerMngVO" /> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias alias="SellerMng" type="egovframework.let.shop.mng.seller.service.SellerMng" />
+	
+	
+	
 	
 	<resultMap id="sellerList" class="egovframework.let.shop.user.seller.service.impl.SellerUserVO"> <!-- property는 vo값 -->
 		<result property="s_id" column="S_ID" columnIndex="1"/>
@@ -196,4 +201,45 @@
 			WHERE 컬럼명 = #변수명#
  		]]>
  	</update> -->
+ 	
+ 	<select id="selectSellerMngListCnt" parameterClass="SellerMngVO" resultClass="int">
+		SELECT COUNT(*)
+		FROM SELLER
+		WHERE 1=1
+		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	S_ID LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
+
+	</select>
+ 	
+ 	<select id="selectSellerMngList" resultClass="SellerMngVO">
+		SELECT *
+		FROM SELLER
+		WHERE 1=1
+		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	S_ID LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	SNSCODE LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
+		ORDER BY S_REGDATE DESC
+		LIMIT #recordCountPerPage# OFFSET #firstIndex#
+	</select>
+	
+	<select id="sellerSelect" resultClass="SellerMngVO" parameterClass="SellerMngVO">
+		SELECT *
+		FROM SELLER
+		WHERE s_id = #s_id#
+	</select>
+	
+	<update id="sellerUpdate" parameterClass="SellerMngVO">
+		UPDATE SELLER
+		SET
+			s_nickname = #s_nickname#,
+			s_email = #s_email#,
+			s_status = #s_status#,
+			s_phone = #s_phone#,
+			s_addr = #s_addr#
+		WHERE s_id = #s_id#	
+	</update>
 </sqlMap>

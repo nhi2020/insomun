@@ -25,6 +25,23 @@
 			AND A_PASS = #a_pass#
 		]]>
 	</select>
-
+    <select id="AdminDAO.adminListCnt" resultClass="AdminVO">
+       <![CDATA[
+         SELECT COUNT(*)
+         FROM ADMIN
+       ]]>
+    </select>
+    <select id="AdminDAO.adminList" resultClass="AdminVO">
+      <![CDATA[
+         SELECT 
+         A_ID,
+         A_EMAIL,
+         A_NAME,
+         A_MODDATE,
+         A_REGDATE
+         FROM ADMIN
+         WHERE 1=1
+      ]]>
+    </select>
 	
 </sqlMap>

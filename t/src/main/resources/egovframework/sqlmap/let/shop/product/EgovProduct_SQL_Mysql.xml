@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="Product">
 
@@ -64,17 +64,37 @@
 			</isEqual>	
 	</select>
 	
-	<update id="EgovMngProductDAO.updateMngProduct" parameterClass="ProductVO">
+	<select id="EgovMngProductDAO.selectMngProductForm"  parameterClass="ProductVO" resultClass="ProductVO">
+	SELECT *
+	FROM PRODUCT
+	WHERE P_IDX = #p_idx#
+	</select>
+	
+	<update id="EgovMngProductDAO.updateMngProductPro" parameterClass="ProductVO" >
+	UPDATE PRODUCT
+		SET 
+			P_NAME = #p_name#,
+			P_PRICE = #p_price#,
+			P_CONTENT = #p_content#,
+			P_TAGE = #p_tage#,
+			P_Q = #p_q#,
+			P_SDATE = #p_sdate#,
+			P_EDATE = #p_edate#,
+			P_MODDATE = #p_moddate#
+		WHERE P_IDX = #p_idx#
+	</update>
+
+	<!-- <update id="EgovMngProductDAO.selectMngProductForm" parameterClass="ProductVO">
  		<![CDATA[
 			UPDATE PRODUCT SET 
 								P_CONTENT = #p_content#,
 								P_Q = #p_q#,
-								LAST_UPDT_PNTTM = SYSDATE()
+								P_NAME = #p_name#
 			WHERE
 								P_CONTENT = #p_content#,
 								P_Q = #p_q#
  		]]>
- 	</update>
+ 	</update> -->
  	<insert id="EgovMngProductDAO.insertMngProduct" parameterClass="ProductVO">
  		<![CDATA[
  					

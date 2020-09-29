@@ -41,8 +41,22 @@ public class ProductMngDAO extends EgovAbstractDAO {
     	return (Integer)select("EgovMngProductDAO.selectMngProductListCnt", productVO);
     }
     
-    @SuppressWarnings("unchecked")
-	public List<ProductMngVO> updateMngProduct(ProductMngVO productVO) throws Exception {
-		return (List<ProductMngVO>) list("EgovMngProductDAO.updateMngProduct", productVO);
+   public ProductMngVO selectMngProductForm(ProductMngVO vo) {
+	   try {
+		vo = (ProductMngVO) select("EgovMngProductDAO.selectMngProductForm", vo);
+	} catch (Exception e) {
+		System.out.println("selectMngProductForm Exception " + e.getMessage());
+	}
+	   return vo;
+   }
+    public int updateMngProductPro(ProductMngVO vo) {
+    	int result = 0;
+    	try {
+			result = update("EgovMngProductDAO.updateMngProductPro", vo);
+		} catch (Exception e) {
+			System.out.println("updateMngProductPro Exception " + e.getMessage());
+		}
+    	return result;
     }
+    
 }

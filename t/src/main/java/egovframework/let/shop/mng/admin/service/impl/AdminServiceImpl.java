@@ -27,4 +27,40 @@ public class AdminServiceImpl implements AdminService {
 		return (List<AdminVO>) adminDAO.selectListLoginCheck(adminvo);
 	}
 
+	@Override
+	public int selectListCnt(AdminVO vo) {
+		int cnt = adminDAO.adminListCnt(vo);
+		return cnt;
+	}
+
+	@Override
+	public List<AdminVO> selectList(AdminVO vo) {
+		List<AdminVO> list = adminDAO.selectList(vo);
+		return list;
+	}
+
+	@Override
+	public int delAdminControl(AdminVO adminVO) {
+		int result = AdminDAO.adminDelete(adminVO);
+		return result;
+	}
+
+	@Override
+	public AdminVO adminSelect(AdminVO adminVO) {
+		adminVO = AdminDAO.adminSelect(adminVO);
+		return adminVO;
+	}
+
+	@Override
+	public int adminUpdate(AdminVO adminVO) {
+		int result = AdminDAO.adminUpdate(adminVO);
+		return result;
+	}
+
+	@Override
+	public int insertMngAdminControl(AdminVO vo) {
+		int result = AdminDAO.adminInsert(vo);
+		return result;
+	}
+
 }

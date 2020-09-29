@@ -27,6 +27,8 @@ public interface ProductMngService {
 			throws Exception;
 
 	public int selectMngProductListCnt(ProductMngVO productVO) throws Exception;
-	
-	public List<ProductMngVO> updateMngProduct(ProductMngVO productVO) throws Exception;
+
+	public ProductMngVO selectMngProductForm(ProductMngVO vo) throws Exception;
+
+	public int updateMngProductPro(ProductMngVO vo);
 }

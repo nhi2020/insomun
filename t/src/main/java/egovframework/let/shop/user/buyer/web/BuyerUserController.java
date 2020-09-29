@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import egovframework.let.shop.mng.buyer.service.impl.BuyerMngVO;
 import egovframework.let.shop.user.buyer.service.BuyerUserService;
@@ -56,4 +57,30 @@ public class BuyerUserController {
 		model.addAttribute("BuyerVO", vo);
 		return "shop/user/buyer/selectUserBuyer";
 	}
+	
+	@RequestMapping("/shop/user/buyer/updateUserBuyerForm")
+	public String updateUserBuyerForm(BuyerUserVO vo,Model model, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		int sessionSns_idx = (int) session.getAttribute("sns_idx");
+		vo.setSns_idx(sessionSns_idx);
+		vo = buyerService.selectUserBuyer(vo);
+		System.out.println("vo.getNickName => " + vo.getNickname());
+		model.addAttribute("BuyerVO", vo);
+		return "shop/user/buyer/updateUserBuyerForm";
+	}
+	
+	@RequestMapping(value = "/shop/user/buyer/updateUserBuyerPro", method=RequestMethod.POST)
+	public String updateUserBuyerPro(BuyerUserVO vo, Model model){
+		System.out.println("BuyerUserController updateUserBuyerPro");
+		int result = buyerService.updateUserBuyer(vo);
+		if (result > 0) {
+			System.out.println("result > 0");
+		} else {
+			System.out.println("result => " + result);
+		}
+		model.addAttribute("BuyerVO",vo);
+		return "redirect:/shop/user/buyer/updateUserBuyerForm.do";
+	}
+	
+	
 }

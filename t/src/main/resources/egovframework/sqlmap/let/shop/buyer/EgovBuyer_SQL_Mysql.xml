@@ -53,6 +53,14 @@
 		WHERE sns_idx = #sns_idx#
 	</update>
 	
+	<update id="updateUserBuyer" parameterClass="BuyerUserVO">
+		UPDATE SNSPROFILE
+		SET 
+			nickname = #nickname#,
+			email = #email#
+		WHERE sns_idx = #sns_idx#
+	</update>
+	
 	<update id="updateMngBuyerStateChange" parameterClass="int">
 	UPDATE SNSPROFILE
 	SET del_yn = 

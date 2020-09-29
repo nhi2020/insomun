@@ -19,5 +19,11 @@ public class BuyerUserServiceImpl implements BuyerUserService{
 		return bd.selectUserBuyer(vo);
 	}
 
+	@Override
+	public int updateUserBuyer(BuyerUserVO vo) {
+		// TODO Auto-generated method stub
+		return bd.updateUserBuyer(vo);
+	}
+
 
 }

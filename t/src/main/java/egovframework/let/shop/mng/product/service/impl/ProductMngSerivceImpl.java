@@ -50,9 +50,15 @@ public class ProductMngSerivceImpl extends EgovAbstractServiceImpl implements Pr
 	}
 
 	@Override
-	public List<ProductMngVO> updateMngProduct(ProductMngVO productVO) throws Exception {
-		List<ProductMngVO> list = mngProductDAO.updateMngProduct(productVO);
-		return list;
+	public ProductMngVO selectMngProductForm(ProductMngVO vo) throws Exception {
+		vo = mngProductDAO.selectMngProductForm(vo);
+		return vo;
+	}
+
+	@Override
+	public int updateMngProductPro(ProductMngVO vo) {
+		int result = mngProductDAO.updateMngProductPro(vo);
+		return result;
 	}
 
 }
