@@ -39,4 +39,11 @@ public class SellerUserDAO extends EgovAbstractDAO {
 		System.out.println("list dao");
 		return (List<SellerUserVO>) list("EgovSellerDAO.selectLoginListCheck",sellervo);
 	}
+
+	public SellerUserVO sellerinsertPro(SellerUserVO vo) {
+		 
+		return (SellerUserVO) insert("EgovSellerDAO.sellerinsertPro",vo);
+	}
+
+	
 }

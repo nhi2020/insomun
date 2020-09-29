@@ -17,4 +17,8 @@ public interface SellerUserService {
 	public String selectLoginCheck(SellerUserVO sellervo)throws Exception;
 
 	public List<SellerUserVO> selectListLoginCheck(SellerUserVO sellervo)throws Exception;
+
+	public SellerUserVO sellerinsertPro(SellerUserVO vo);
+
+	
 }

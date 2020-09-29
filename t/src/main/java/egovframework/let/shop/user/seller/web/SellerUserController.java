@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import egovframework.let.shop.mng.admin.service.impl.AdminVO;
@@ -93,7 +94,7 @@ public class SellerUserController {
 		
 		System.out.println("s_id"+sellervo.getS_id());
 		if (user_name != null && user_name !=""){
-			
+			session.setAttribute("user", list.get(0));// ${sessionScope.user.s_id}  list말고 vo로 받았어야함/
 			session.setAttribute("S_ID", sellervo.getS_id());
 			session.setAttribute("S_NICKNAME",sellervo.getS_nickname() );
 			session.setAttribute("S_EMAIL", sellervo.getS_email());
@@ -129,6 +130,35 @@ public class SellerUserController {
 	}
 	@RequestMapping(value="/shop/user/seller/sellerinsert.do")
 	public String sellerUserinsert(){
-		return "/shop/user/seller/sellerinsert/sellerForm";
+		System.out.println("회원가입2");
+		return "/shop/user/seller/sellerinsert/sellerinsertForm";
+	}
+	@RequestMapping(value="/shop/user/seller/sellerinsertPro.do", method = RequestMethod.POST )
+	public String sellerinsertPro(SellerUserVO vo, Model model ){
+		System.out.println("회원가입3");
+		
+		vo = SellerService.sellerinsertPro(vo);
+		
+		return "redirect:/shop/user/EgovUserLoginForm.do";
+	}
+	@RequestMapping(value="/shop/user/seller/sellerIdAgreeFrom.do")
+	public String sellerIdAgreeFrom(){
+		System.out.println("아이디 찾기 ");
+		return "/shop/user/seller/sellerFind/sellerIdAgreeFrom";
+	}
+	@RequestMapping(value="/shop/user/seller/sellerFindId.do")
+	public String sellerFindId(){
+		System.out.println("아이디 찾기2 ");
+		return "/shop/user/seller/sellerFind/sellerFindId";
+	}
+	@RequestMapping(value="/shop/user/seller/sellerFindPass.do")
+	public String sellerFindPass(){
+		System.out.println("비번 ");
+		return "/shop/user/seller/sellerFind/sellerFindPass";
+	}
+	@RequestMapping(value="/shop/user/seller/sellerSearchId.do")
+	public String sellerSearchId(){
+		System.out.println("아이디");
+		return "/shop/user/seller/sellerFind/sellerSearchId";
 	}
 }

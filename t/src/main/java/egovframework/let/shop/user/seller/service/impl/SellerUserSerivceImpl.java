@@ -35,6 +35,18 @@ public class SellerUserSerivceImpl extends EgovAbstractServiceImpl implements Se
 			System.out.println("list impl");
 		return (List<SellerUserVO>) SellerDAO.selectLoginCheck2(sellervo);
 	}
+
+
+
+	@Override
+	public SellerUserVO sellerinsertPro(SellerUserVO vo) {
+		// TODO Auto-generated method stub
+		return SellerDAO.sellerinsertPro(vo);
+	}
+
+
+
+	
 	
 
 }

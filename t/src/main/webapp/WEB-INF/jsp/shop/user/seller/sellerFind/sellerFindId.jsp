@@ -23,15 +23,30 @@
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
 <script type="text/javascript">
-function check() {
-	location.href = "<c:url value='/shop/seller/sellerInsertFrom.do'/>";
+function login() {
+	location.href = "<c:url value='/shop/user/EgovUserLoginForm.do'/>";
+}
+function passwd() {
+	location.href = "<c:url value='/shop/user/seller/sellerFindPass.do'/>";
 }
 </script>
 </head>
 <body>
 <%@ include file="../../../inc/EgovShopHeader.jsp" %>
-<div>
-	<button class="btn btn-secondary" onclick="check();">다음</button>
+<div class="container" style="text-align:center">
+		<div class="box6" >
+			<strong>
+			<label for="select0" class="label_rd">nwos1412</label>
+			</strong>
+			<span>가입 : 2013.05.20</span>
+			<input type=hidden name="nv_id0" value="nwos1412">
+			
+		</div>
+		<!-- 버튼 영역 -->
+		<div class="btn_area">
+			<a href="#" onclick="login();" class="btn_login2"><span class="blind">로그인하기</span></a>
+			<a href="#" onclick="passwd();" class="btn_findpw"><span class="blind">비밀번호 찾기</span></a>
+		</div>
 </div>
 </body>
 </html>

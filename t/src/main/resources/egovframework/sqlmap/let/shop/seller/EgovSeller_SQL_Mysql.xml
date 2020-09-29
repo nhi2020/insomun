@@ -59,6 +59,12 @@
 			AND S_PASS = #s_pass#
 		]]>
 	</select>
+	<insert id="EgovSellerDAO.sellerinsertPro" parameterClass="SellerVO">
+		<![CDATA[  
+			INSERT INTO SELLER(S_ID, S_NICKNAME,S_PASS,S_EMAIL,S_STATUS,S_PHONE,S_ADDR,S_GENDER,S_REGDATE,S_BIRTH,S_ACCOUNT)
+			value(#s_id#,#s_nickname#,#s_pass#,#s_email#,1,#s_phone#,#s_addr#,#s_gender#,now(),#s_birth#,#s_account#)
+		]]>
+	</insert>
 	<!-- <resultMap id="mngMemberList" class="egovframework.let.shop.member.service.MemberVO"> property는 vo값
 		<result property="m_id" column="M_ID" columnIndex="1"/>						 collum 은 db의 컬럼값
 		<result property="m_nickname" column="M_NICKNAME" columnIndex="2"/>			  db의 컬럼 순서

@@ -24,7 +24,7 @@
 <title>입소문넷</title>
 <script type="text/javascript">
 function login() {
-	location.href = "<c:url value='/shop/seller/EgovsellerLoginFrom.do'/>";
+	location.href = "<c:url value='/shop/user/EgovUserLoginForm.do'/>";
 }
 function passwd() {
 	location.href = "<c:url value='/shop/seller/EgovsellerFindPassword.do'/>";

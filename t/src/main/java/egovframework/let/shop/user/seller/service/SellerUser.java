@@ -16,11 +16,38 @@ public class SellerUser implements Serializable {
 	private String s_phone;
 	private String s_addr;
 	private String s_gender;
-	private Date s_moddate;
-	private Date s_regdate;
-	private Date s_birth;
+	private String s_moddate;
+	private String s_regdate;
+	private String s_birth;
+	private String s_account;
 	
 	
+	
+	
+	public String getS_moddate() {
+		return s_moddate;
+	}
+	public void setS_moddate(String s_moddate) {
+		this.s_moddate = s_moddate;
+	}
+	public String getS_regdate() {
+		return s_regdate;
+	}
+	public void setS_regdate(String s_regdate) {
+		this.s_regdate = s_regdate;
+	}
+	public String getS_birth() {
+		return s_birth;
+	}
+	public void setS_birth(String s_birth) {
+		this.s_birth = s_birth;
+	}
+	public String getS_account() {
+		return s_account;
+	}
+	public void setS_account(String s_account) {
+		this.s_account = s_account;
+	}
 	public int getP_idx() {
 		return p_idx;
 	}
@@ -80,24 +107,6 @@ public class SellerUser implements Serializable {
 	}
 	public void setS_gender(String s_gender) {
 		this.s_gender = s_gender;
-	}
-	public Date getS_moddate() {
-		return s_moddate;
-	}
-	public void setS_moddate(Date s_moddate) {
-		this.s_moddate = s_moddate;
-	}
-	public Date getS_regdate() {
-		return s_regdate;
-	}
-	public void setS_regdate(Date s_regdate) {
-		this.s_regdate = s_regdate;
-	}
-	public Date getS_birth() {
-		return s_birth;
-	}
-	public void setS_birth(Date s_birth) {
-		this.s_birth = s_birth;
 	}
 	
 
