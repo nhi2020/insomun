@@ -1,17 +1,29 @@
 package egovframework.let.shop.mng.review.service;
 
 public class ReviewMng {
-	private int r_idx;
+	private String r_idx;
 	private String nickname;
 	private String r_regdate;
 	private String r_delyn;
 	private String r_content;
+	
+	
 
-	public int getR_idx() {
+	/*public int getR_idx() {
 		return r_idx;
 	}
 
 	public void setR_idx(int r_idx) {
+		this.r_idx = r_idx;
+	}
+*/
+	
+
+	public String getR_idx() {
+		return r_idx;
+	}
+
+	public void setR_idx(String r_idx) {
 		this.r_idx = r_idx;
 	}
 

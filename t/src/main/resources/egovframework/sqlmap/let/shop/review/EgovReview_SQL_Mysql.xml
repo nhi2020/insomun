@@ -189,7 +189,14 @@
 			A.R_IDX = B.sns_idx
 	)A
 		]]>
-		<!-- <isEqual prepend="AND" property="searchCnd" compareValue="0"> prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다.
+		<isNotNull property="r_idx">
+				<isNotEmpty property="r_idx">
+					<isNotEqual prepend="AND" property="r_idx" compareValue="0">
+						<![CDATA[	R_IDX = #r_idx# 		]]>
+					</isNotEqual>
+				</isNotEmpty>	
+			</isNotNull>	
+		 <isEqual prepend="AND" property="searchCnd" compareValue="0"> prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다.
 				<![CDATA[	R_IDX LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 			</isEqual>
 			<isEqual prepend="AND" property="searchCnd" compareValue="1">
@@ -199,11 +206,18 @@
 				<![CDATA[	R_REGDATE LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 			</isEqual>
 		<![CDATA[			
-			ORDER BY R_REGDATE DESC
+			ORDER BY R_IDX DESC
 			LIMIT #recordCountPerPage# OFFSET #firstIndex#
-		]]> -->
+		]]>
 </select>
 
+<update id="EgovMngReviewDAO.updateMngUserReview" parameterClass="ReviewMngVO">
+	 		<![CDATA[
+				UPDATE REVIEW SET 
+					R_DELYN = 'Y'
+				WHERE R_IDX = #r_idx#
+	 		]]>
+	</update>
 	<!-- <select id="EgovMngProDAO.selectMngProListCnt" parameterClass="SnsProfileVO" resultClass="java.lang.Integer" >
 		<![CDATA[
 			SELECT 

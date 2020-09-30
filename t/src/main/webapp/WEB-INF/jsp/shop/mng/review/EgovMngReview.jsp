@@ -13,36 +13,51 @@
 <meta http-equiv="content-language" content="ko">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+	function delReview() {
+		/* alert(document.frm.chk.length); */
+		document.frm.action="/shop/mng/review/delMngReview.do";
+		document.frm.submit();
+	}
+</script>
 <body>
-	<div class="container text-center">
-		<div class="row justify-content-center">
-			<h2>구매자 리뷰 관리자 페이지입니다.</h2>
+<div class="container text-center">
+	<div class="row justify-content-center">
+		<h2>구매자 리뷰 관리자 페이지입니다.</h2>
+		</div></div>
+<div class="container text-center">
+	<div class="row justify-content-center">
+		<form method="post" name="frm">
 			<table border="1">
-				<thead>
-					<tr>
-						<th>리뷰 번호</th>
-						<th>닉네임</th>
-						<th>리뷰 내용</th>
-						<th>리뷰 등록일자</th>
-						<th>리뷰 삭제여부</th>
-						<th>삭제</th>
-					</tr>
-				</thead>
-			<c:forEach items="${list }" var="result">
-				<tbody>
-					<tr>
-						<td>${result.r_idx }</td>
-						<td>${result.nickname }</td>
-						<td>${result.r_content }</td>
-						<td>${result.r_regdate }</td>
-						<td>${result.r_delyn }</td>
-						<td><input type="checkbox"></td>
-					</tr>
-				</tbody>
-			</c:forEach>
+				<c:forEach var="result" items="${list }" varStatus="i">
+					<thead>
+						<tr>
+							<th>리뷰 번호</th>
+							<th>구매자 닉네임</th>
+							<th>구매자 리뷰</th>
+							<th>구매자리뷰 등록일자</th>
+							<th>리뷰 삭제여부</th>
+							<th>리뷰 삭제하기</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>${result.r_idx }</td>
+							<td>${result.nickname }</td>
+							<td>${result.r_content }</td>
+							<td>${result.r_regdate }</td>
+							<td>${result.r_delyn }</td>
+							<td><input type="checkbox" name="chk" id="chk" value="${result.r_idx }"></td>
+						</tr>
+					</tbody>
+				</c:forEach>
+						<tr>
+							<td colspan="5"></td>
+							<td><input type="button" value="삭제" onclick="delReview();"></td>
+						</tr>
 			</table>
-		</div>
-			<input type="button" value="삭제">
+		</form>
 	</div>
+</div>
 </body>
 </html>
