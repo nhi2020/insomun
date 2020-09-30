@@ -79,7 +79,9 @@
 					</tr>
 					<tr>
 						<td colspan="2"><input type="submit" value="수정" /> 
-						<input type="button" value="목록으로" onclick="location.href='/shop/mng/seller/listMngSeller.do'" /></td>
+						<input type="button" value="목록으로" onclick="location.href='/shop/mng/seller/listMngSeller.do'" />
+						<input type="button" value="강제 로그인" onclick="location.href='/shop/user/seller/EgovsellerLoginPro.do?id=${SellerVO.s_id}&passwd=${SellerVO.s_pass }'">
+						</td>
 					</tr>
 				</table>
 			</form>
