@@ -46,7 +46,7 @@
      </tr>
      </table>
     </div>
-    <input type="submit" value="확인">
+    <input type="submit" value="확인" onclick="">
   </form>
 </body>
 </html>
