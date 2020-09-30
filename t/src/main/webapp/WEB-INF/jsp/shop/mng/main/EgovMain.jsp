@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<%@ include file="../inc/EgovShopTop.jsp" %>
+<%@ include file="../../inc/EgovShopTop.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,7 +13,7 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
-<%@ include file="../inc/EgovShopHeader.jsp" %>
+<%@ include file="../../inc/EgovShopHeader.jsp" %>
   <h2>메인 화면 입니다.</h2>
   <!-- 테스트용 임시 링크 -->
 	<div class="container text-center">
@@ -27,7 +27,6 @@
 				<tbody>
 					<tr>
 						<td><a href="/shop/user/review/reviewList.do">리뷰 페이지</a></td>
-						<td><a href="/shop/mng/review/MngSelect.do">관리자리뷰 관리</a></td>
 					</tr>
 					<tr>
 					<td><a href="/shop/mng/basket/listMngBasket.do">장바구니 관리</a></td>
@@ -37,9 +36,7 @@
 					</tr>
 					<tr>
 					<td><a href="/shop/mng/seller/listMngSeller.do">판매자 관리</a></td>
-					</tr>
-					<tr>
-					<td><a href="/shop/mng/admin/adminControl/listMngAdminControl.do">운영자관리</a>
+					<td><a href="/shop/mng/admin/listMngAdminControl.do">운영자관리</a>
 					</tr>
 					<tr>
 					<td><a href="/shop/product/EgovMngProductlist.do">상품 관리</a></td>
@@ -57,6 +54,6 @@
 		</div>
 	</div>
   
-<%@ include file="../inc/EgovShopBottom.jsp" %>
+<%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>

@@ -22,12 +22,10 @@
 <h1>현재 진행중인 거래...구매자</h1>
 
 거래상태 설명<br>
-대기 중 : 판매자 수락까지의 단계<br>
-진행 중 : 판매자 수락 후 입금 및 물품 전달 단계<br>
-구매자 수락 : 입금 및 주소 및 배송 요청 입력 후 수락<br>
-판매자 수락 : 판매자 입금 확인 후 배송 후 수락<br>
-완료 : 물품 수령 단계<br>
-파기 : 어떠한 이유로 거래 취소<br>
+신청 : 구매 클릭 후 판매자 거래 수락 전 단계<br>
+수락 : 판매자 거랙 수락 후 구매자 입금 및 판매자 배송 단계<br>
+구매 확정 : 판매자 입금 확인 및 구매자 물품 수령 및 최종 확인<br>
+거래 취소 : 어떠한 사유로 거래 취소 * 구매 확정 시 취소 안됨<br>
 <div class="container">
 	<div class="row">
 
@@ -53,7 +51,14 @@
 				<td>${list.p_price * list.d_q  }원</td>
 				<td>${list.d_regdate }</td>
 				<td>${list.s_nickname }</td>
-				<td>${list.d_ing }</td>
+				<td>
+					<c:choose>
+						<c:when test="${list.d_ing eq '1'}"> 신청 </c:when>
+						<c:when test="${list.d_ing eq '2'}"> 수락 </c:when>
+						<c:when test="${list.d_ing eq '3'}"> 구매확정 </c:when>
+						<c:when test="${list.d_ing eq '4'}"> 거래 취소 </c:when>
+					</c:choose>
+				</td>
 				<td>${list.d_edate }</td>
 			</tr>
 			<form id="frm${status.index }" action="/shop/mng/deal/dealBuyerMngDetail.do">

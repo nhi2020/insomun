@@ -58,5 +58,15 @@ public class ProductMngDAO extends EgovAbstractDAO {
 		}
     	return result;
     }
+
+	public int insertMngProductPro(ProductMngVO vo) {
+		int result = 0;
+		try {
+			result = (int) insert("EgovMngProductDAO.insertMngProductForm", vo);		
+		} catch (Exception e) {
+			System.out.println("insertMngProductPro : " + e.getMessage());
+		}
+		return result;
+	}
     
 }

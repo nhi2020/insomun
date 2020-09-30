@@ -42,4 +42,11 @@ public class DealMngServiceImpl implements DealMngService {
 		return result;
 	}
 
+	@Override
+	public int updateMngDealBuyerCancel(DealMngVO vo) {
+		System.out.println("DealMngServiceImpl updateMngDealBuyerCancel Start...");
+		int result = dealMngDAO.updateMngDealBuyerCancel(vo);
+		return result;
+	}
+
 }

@@ -151,11 +151,16 @@ SELECT
 	<update id="updateMngDealBuyerDetail" parameterClass="DealMngVO">
 		UPDATE DEAL
 		SET
-			D_ING = '진행(구매자)'
+			D_ING = #d_ing#
 		WHERE D_IDX = #d_idx#
 	</update>
 
-
+	<update id="updateMngDealBuyerCancel" parameterClass="DealMngVO">
+		UPDATE DEAL
+		SET
+			D_ING = '5'
+		WHERE D_IDX = #d_idx#
+	</update>
 
 
 

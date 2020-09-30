@@ -10,8 +10,6 @@
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-
-
 </head>
 
 <body>
@@ -29,7 +27,16 @@
 		<div class="row">
 			<form class="mx-auto" action="/shop/mng/seller/updateMngSellerPro.do" method="post">
 				<input type="hidden" name="s_id" value="${SellerVO.s_id }" />
-				<table class="table">
+
+					<img src="<c:url value='/'/>images/shop/seller/${SellerVO.s_photo }" width="400" height="400"/>
+					
+					<p>
+					
+					<input type="button" value="사진변경"/>
+					
+					<p>
+					
+				<table class="table">				
 				
 					<tr>
 						<th>회원아이디</th>
@@ -47,8 +54,20 @@
 					</tr>
 					<tr>
 						<th>상태</th>
-						<td><input type="text" name="s_status"
-							value="${SellerVO.s_status }" /></td>
+						<c:choose>
+							<c:when test="${SellerVO.s_status eq 'Y'}">
+								<td>활동중인 계정</td>
+							</c:when>
+							<c:when test="${SellerVO.s_status eq 'N'}">
+								<td>탈퇴된 계정</td>
+							</c:when>
+						</c:choose>	
+					</tr>
+					<tr>
+						<th></th>
+						<td><input type="radio" name="s_status" value="Y"/>활동중인 계정
+							<input type="radio" name="s_status" value="N"/>탈퇴된 계정
+						</td>
 					</tr>
 					<tr>
 						<th>핸드폰 번호</th>
@@ -62,7 +81,7 @@
 					</tr>
 					<tr>
 						<th>성별</th>
-						<td>${SellerVO.s_birth }</td>
+						<td>${SellerVO.s_gender }</td>
 					</tr>
 					<tr>
 						<th>등록일</th>
@@ -70,7 +89,9 @@
 					</tr>
 					<tr>
 						<td colspan="2"><input type="submit" value="수정" /> 
-						<input type="button" value="목록으로" onclick="location.href='/shop/mng/seller/listMngSeller.do'" /></td>
+						<input type="button" value="목록으로" onclick="location.href='/shop/mng/seller/listMngSeller.do'" />
+						<input type="button" value="강제 로그인" onclick="location.href='/shop/user/seller/EgovsellerLoginPro.do?id=${SellerVO.s_id}&passwd=${SellerVO.s_pass }'">
+						</td>
 					</tr>
 				</table>
 			</form>
