@@ -25,6 +25,7 @@
 	         <th>이름</th>
 	         <th>수정일</th>
 	         <th>등록일</th>
+	         <th>삭제</th>
 	     </tr>
     <c:forEach items="${list }" var="admin_list" varStatus="status">
 	    <tr>
@@ -33,10 +34,12 @@
 	       <td>${admin_list.a_name }</td>
 	       <td>${admin_list.a_moddate }</td>
 	       <td>${admin_list.a_regdate }</td>
-	     <td><input type="reset" value="삭제" /></td>
+	     <td><input type="checkbox"></td>
 		  </tr>
 	    </c:forEach> 
 	   </table>
+	   <input type="reset" value="삭제" />
+	   <input type="button" value="등록" onclick="location.href=/shop/mng/admin/adminControl/insertMngControlForm.do">
 	  </div>
 	</div>
 </body>

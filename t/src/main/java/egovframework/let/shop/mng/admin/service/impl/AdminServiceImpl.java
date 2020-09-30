@@ -58,9 +58,12 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int insertMngAdminControl(AdminVO vo) {
-		int result = AdminDAO.adminInsert(vo);
+	public int adminInsert(AdminVO vo) {
+		int result = adminDAO.adminInsert(vo);
 		return result;
 	}
+
+	
+	
 
 }

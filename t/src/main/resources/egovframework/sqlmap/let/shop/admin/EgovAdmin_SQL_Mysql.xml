@@ -62,5 +62,14 @@
             A_MODDATE = SYSDATE()
        WHERE A_ID=#a_id#
     </update>
+    
+   <insert id="AdminDAO.adminInsert" parameterClass="AdminVO">
+		<![CDATA[
+			INSERT INTO ADMIN
+			(A_ID, A_PASS, A_EMAIL, A_NAME, A_REGDATE)
+			VALUES
+			( #a_id#, #a_pass#, #a_email#, #a_name#, #a_regdate#)			
+		]]>
+	</insert>
 	
 </sqlMap>

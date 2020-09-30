@@ -158,7 +158,7 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		
 	}
 	
-	@RequestMapping(value = "/shop/mng/admin/updateMngAdminControlPro.do")
+	@RequestMapping(value = "/shop/mng/admin/adminControl/updateMngAdminControlPro.do")
 	public String updateMngAdminControlPro(AdminVO adminVO, Model model) {
 		System.out.println("updateMngAdminForm()");
 		int result = adminService.adminUpdate(adminVO);
@@ -172,20 +172,20 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		
 	}
 	
-	@RequestMapping(value = "/shop/mng/admin/insertMngAdminControlForm.do")
+	@RequestMapping(value = "/shop/mng/admin/adminControl/insertMngAdminControlForm.do")
 	public String insertMngAdminForm(AdminVO vo, Model model) {
-		return "/shop/mng/admin/insertMngAdminControlForm";
+		return "/shop/mng/admin/adminControl/insertMngAdminControlForm";
 	}
 	
-	@RequestMapping(value = "/shop/mng/admin/insertMngAdminControlPro.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/shop/mng/admin/adminControl/insertMngAdminControlPro.do", method = RequestMethod.POST)
 	public String insertMngAdminPro(AdminVO vo, Model model) {
-		int result = adminService.insertMngAdminControl(vo);
+		int result = adminService.adminInsert(vo);
 		if(result==0) {
 			model.addAttribute("msg", "등록 성공!");
 		}else {
 			model.addAttribute("msg", "등록 실패");
 		}
-		return "/shop/mng/admin/insertMngAdminControlForm";
+		return "/shop/mng/admin/adminControl/insertMngAdminControlForm";
 		
 	}
 	

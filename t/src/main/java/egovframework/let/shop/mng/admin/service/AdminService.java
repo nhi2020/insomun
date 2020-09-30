@@ -22,5 +22,6 @@ public interface AdminService {
 
 	public int adminUpdate(AdminVO adminVO);
 
-	public int insertMngAdminControl(AdminVO vo);
+
+	public int adminInsert(AdminVO vo);
 }

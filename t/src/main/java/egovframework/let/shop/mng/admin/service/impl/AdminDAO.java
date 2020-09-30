@@ -61,9 +61,14 @@ public class AdminDAO extends EgovAbstractDAO{
 		return result;
 	}
 
-	public static int adminInsert(AdminVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int adminInsert(AdminVO vo) {
+		int result = 0;
+		try {
+			result = (int) insert("AdminDAO.adminInsert",vo);
+		} catch (Exception e) {
+			System.out.println("adminInsert Exception" + e.getMessage());
+		}
+		return result;
 	}
 
 	
