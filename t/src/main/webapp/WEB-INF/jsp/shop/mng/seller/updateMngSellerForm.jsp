@@ -62,7 +62,7 @@
 					</tr>
 					<tr>
 						<th>성별</th>
-						<td>${SellerVO.s_birth }</td>
+						<td>${SellerVO.s_gender }</td>
 					</tr>
 					<tr>
 						<th>등록일</th>
