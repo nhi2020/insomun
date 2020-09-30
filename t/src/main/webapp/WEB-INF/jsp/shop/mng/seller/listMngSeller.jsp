@@ -55,7 +55,14 @@
 						<td>${s_list.s_moddate }</td>
 						<td>${s_list.s_regdate }</td>
 						<td>${s_list.s_birth }</td>
-						<td>${s_list.s_status }</td>
+						<c:choose>
+							<c:when test="${s_list.s_status eq 'Y'}">
+								<td>활동중인 계정</td>
+							</c:when>
+							<c:when test="${s_list.s_status eq 'N'}">
+								<td>탈퇴된 계정</td>
+							</c:when>
+						</c:choose>	
 					</tr>
 				</c:forEach>
 			</table>

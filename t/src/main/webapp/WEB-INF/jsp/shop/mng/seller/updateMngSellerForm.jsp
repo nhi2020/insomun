@@ -10,8 +10,6 @@
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-
-
 </head>
 
 <body>
@@ -56,8 +54,20 @@
 					</tr>
 					<tr>
 						<th>상태</th>
-						<td><input type="text" name="s_status"
-							value="${SellerVO.s_status }" /></td>
+						<c:choose>
+							<c:when test="${SellerVO.s_status eq 'Y'}">
+								<td>활동중인 계정</td>
+							</c:when>
+							<c:when test="${SellerVO.s_status eq 'N'}">
+								<td>탈퇴된 계정</td>
+							</c:when>
+						</c:choose>	
+					</tr>
+					<tr>
+						<th></th>
+						<td><input type="radio" name="s_status" value="Y"/>활동중인 계정
+							<input type="radio" name="s_status" value="N"/>탈퇴된 계정
+						</td>
 					</tr>
 					<tr>
 						<th>핸드폰 번호</th>
