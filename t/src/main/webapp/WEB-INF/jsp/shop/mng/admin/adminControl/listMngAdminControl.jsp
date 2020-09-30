@@ -39,7 +39,7 @@
 	    </c:forEach> 
 	   </table>
 	   <input type="reset" value="삭제" />
-	   <input type="button" value="등록" onclick="location.href=/shop/mng/admin/adminControl/insertMngControlForm.do">
+	   <input type="submit" value="등록" onclick="location.href='/shop/mng/admin/adminControl/insertMngAdminControlForm.do'">
 	  </div>
 	</div>
 </body>

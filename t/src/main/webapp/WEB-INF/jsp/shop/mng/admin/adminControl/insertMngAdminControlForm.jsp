@@ -17,14 +17,36 @@
 	</c:if>
 	<c:if test="${msg = null }">
 	</c:if>
-  <form action="/shop/mng/admin/adminControl/insertMngControlPro.do" name="frm2" method="post">
+  <form action="/shop/mng/admin/adminControl/insertMngAdminControlPro.do" name="frm2" method="post">
     <div class= "row justify-content-center">
-      <input type="text" value="${AdminVO.a_id }">
-      <input type="text" value="${AdminVO.a_pass }">
-      <input type="text" value="${AdminVO.a_email }">
-      <input type="text" value="${AdminVO.a_name }">
-      <input type="submit" value="확인">
+     <table>
+     <tr>
+       <th>아이디</th>
+       <td>
+       <input type="text" name = "a_id" value="${AdminVO.a_id }">
+       </td>
+     </tr>
+     <tr>
+        <th>비밀번호</th>
+        <td>
+        <input type="text" name = "a_pass" value="${AdminVO.a_pass }">
+        </td>
+     </tr>
+      <tr>
+         <th>이메일</th>
+         <td>
+         <input type="text" name = "a_email" value="${AdminVO.a_email }">
+         </td>
+     </tr>
+     <tr>
+         <th>이름</th>
+         <td>
+         <input type="text" name = "a_name" value="${AdminVO.a_name }">
+         </td>
+     </tr>
+     </table>
     </div>
+    <input type="submit" value="확인">
   </form>
 </body>
 </html>

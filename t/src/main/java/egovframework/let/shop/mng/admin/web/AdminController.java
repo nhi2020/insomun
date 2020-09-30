@@ -172,12 +172,12 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		
 	}
 	
-	@RequestMapping(value = "/shop/mng/admin/adminControl/insertMngAdminControlForm.do")
-	public String insertMngAdminForm(AdminVO vo, Model model) {
+	@RequestMapping(value = "/shop/mng/admin/adminControl/insertMngAdminControlForm")
+	public String insertMngAdminForm() {
 		return "/shop/mng/admin/adminControl/insertMngAdminControlForm";
 	}
 	
-	@RequestMapping(value = "/shop/mng/admin/adminControl/insertMngAdminControlPro.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/shop/mng/admin/adminControl/insertMngAdminControlPro", method = RequestMethod.POST)
 	public String insertMngAdminPro(AdminVO vo, Model model) {
 		int result = adminService.adminInsert(vo);
 		if(result==0) {
@@ -185,7 +185,7 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		}else {
 			model.addAttribute("msg", "등록 실패");
 		}
-		return "/shop/mng/admin/adminControl/insertMngAdminControlForm";
+		return "forward:insertMngAdminControlForm.do";
 		
 	}
 	
