@@ -29,7 +29,16 @@
 		<div class="row">
 			<form class="mx-auto" action="/shop/mng/seller/updateMngSellerPro.do" method="post">
 				<input type="hidden" name="s_id" value="${SellerVO.s_id }" />
-				<table class="table">
+
+					<img src="<c:url value='/'/>images/shop/seller/${SellerVO.s_photo }" width="400" height="400"/>
+					
+					<p>
+					
+					<input type="button" value="사진변경"/>
+					
+					<p>
+					
+				<table class="table">				
 				
 					<tr>
 						<th>회원아이디</th>
