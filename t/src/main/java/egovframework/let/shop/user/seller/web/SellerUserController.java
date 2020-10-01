@@ -164,10 +164,14 @@ public class SellerUserController {
 		return "/shop/user/seller/sellerFind/sellerSearchId";
 	}
 	@RequestMapping(value="/shop/user/seller/sellerSearchIdPro.do")
-	public String sellerSearchIdPro(SellerUserVO vo){
+	public String sellerSearchIdPro(SellerUserVO vo,Model model){
 			
 			vo = SellerService.sellerSearchIdPro(vo);
-			
+			if(vo==null){
+				model.addAttribute("msg","아이디 없음");
+				model.addAttribute("chk",1);
+				return "/shop/user/seller/sellerSearchIdPro";
+			}
 			System.out.println("vo"+vo);
 		
 		return "/shop/user/seller/sellerFind/sellerSearchId";

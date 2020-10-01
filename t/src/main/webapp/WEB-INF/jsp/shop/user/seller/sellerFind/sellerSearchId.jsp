@@ -11,15 +11,15 @@
 <title>입소문넷</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
-<script type="text/javascript">
-alert("${msg}");
-</script>
-
 </head>
 
 <body>
 <%@ include file="../../../inc/EgovShopHeader.jsp" %>
+<c:if test="${msg != null }">
 
+	</c:if>
+	<c:if test="${msg = null }">
+	</c:if>
 <form action="/shop/user/seller/sellerSearchIdPro.do">
 	<div>
 		<p>아이디를 입력하시요.
