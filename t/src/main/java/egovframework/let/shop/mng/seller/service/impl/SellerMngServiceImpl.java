@@ -41,4 +41,10 @@ public class SellerMngServiceImpl extends EgovAbstractServiceImpl implements Sel
 		return result;
 	}
 
+	@Override
+	public int updateMngSellerStateChange(SellerMngVO vo) {
+		int result = SellerDAO.updateMngSellerStateChange(vo);
+		return 0;
+	}
+
 }

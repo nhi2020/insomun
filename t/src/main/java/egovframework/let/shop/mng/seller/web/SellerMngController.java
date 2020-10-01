@@ -105,29 +105,20 @@ public class SellerMngController {
 		return "forward:updateMngSellerForm.do";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@RequestMapping("/shop/mng/seller/updateMngSellerStateChange")
+	public String updateMngSellerStateChange(SellerMngVO vo, Model model) {
+		System.out.println("updateMngSellerStateChange()");
+		
+		int result = sellerService.updateMngSellerStateChange(vo);
+		if(result > 0) {
+			model.addAttribute("msg", "수정성공");
+		} else {
+			model.addAttribute("msg", "수정 실패");
+		}
+		String pageIndex = Integer.toString(vo.getPageIndex());
+		return "redirect:/shop/mng/seller/listMngSeller.do?pageIndex=" + pageIndex;
+	}
+
 	
 	
 }

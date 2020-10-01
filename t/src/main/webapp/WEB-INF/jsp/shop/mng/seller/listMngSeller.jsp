@@ -35,7 +35,8 @@
 					<th>수정일</th>
 					<th>등록일</th>
 					<th>생년월일</th>
-					<th>판매자 상태여부</th>			
+					<th>판매자 상태여부</th>	
+					<th>상태 변경</th>		
 				</tr>
 				
 				
@@ -63,13 +64,18 @@
 								<td>탈퇴된 계정</td>
 							</c:when>
 						</c:choose>	
+						<td><input type="submit" value="전환" form="frm${status.index }"></td>
 					</tr>
 				</c:forEach>
 			</table>
-
-
 			
-			
+			<c:forEach items="${list }" var="s_list" varStatus="status">
+				<form id="frm${status.index }" action="updateMngSellerStateChange.do">
+					<input type="hidden" name="s_id" value="${s_list.s_id }">
+					<input type="hidden" name="pageIndex" value="${paginationInfo.currentPageNo }">
+				</form>
+			</c:forEach>
+
 			
 			<div id="paging_div">
 				<ul class="paging_align">

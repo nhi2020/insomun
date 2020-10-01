@@ -247,6 +247,8 @@
 			s_email = #s_email#,
 			s_status = #s_status#,
 			s_phone = #s_phone#,
+			s_account_n = #s_account_n#,
+			s_account = #s_account#,
 			s_addr = #s_addr#
 		WHERE s_id = #s_id#	
 	</update>
@@ -274,4 +276,15 @@
 		ORDER BY S_REGDATE DESC
 		LIMIT #recordCountPerPage# OFFSET #firstIndex#
 	</select>
+	
+	<update id="updateMngSellerStateChange" parameterClass="java.lang.String">
+		UPDATE SELLER
+		SET s_status = 
+						CASE
+						WHEN s_status = 'Y'
+							THEN 'N'
+							ELSE 'Y'
+						END
+		WHERE s_id = #s_id#
+	</update>
 </sqlMap>
