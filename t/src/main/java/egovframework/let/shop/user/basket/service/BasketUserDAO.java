@@ -13,4 +13,6 @@ public interface BasketUserDAO {
 
 	int listCntBasketUser(BasketProductUserVO vo);
 
+	int insertBasketUserPro(BasketUserVO vo);
+
 }

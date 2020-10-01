@@ -13,4 +13,6 @@ public interface BasketUserService {
 	
 	int listCntBasketUser(BasketProductUserVO vo);
 
+	int insertBasketUserPro(BasketUserVO vo);
+
 }

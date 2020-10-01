@@ -9,6 +9,14 @@ public class BasketUser {
 	private String s_id;
 	private int ba_q;
 	private Date ba_reg_date;
+	private int p_idx;
+	
+	public int getP_idx() {
+		return p_idx;
+	}
+	public void setP_idx(int p_idx) {
+		this.p_idx = p_idx;
+	}
 	public int getBa_idx() {
 		return ba_idx;
 	}

@@ -43,6 +43,20 @@ public class BasketUserDAOImpl extends EgovAbstractDAO implements BasketUserDAO 
 		}
 		return cnt;
 	}
+
+	@Override
+	public int insertBasketUserPro(BasketUserVO vo) {
+		int result = 0;
+		
+		try {
+			result = (int) insert("insertBasketUserPro", vo);
+		} catch (Exception e) {
+			System.out.println("BasketUserDAOImpl insertBasketUserPro Exception : " + e.getMessage() );
+			System.out.println("result => " + result);
+		}
+		
+		return result;
+	}
 	
 
 }

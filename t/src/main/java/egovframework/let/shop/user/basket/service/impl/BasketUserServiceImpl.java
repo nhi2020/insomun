@@ -34,4 +34,10 @@ public class BasketUserServiceImpl implements BasketUserService {
 		return bd.listCntBasketUser(vo);
 	}
 
+	@Override
+	public int insertBasketUserPro(BasketUserVO vo) {
+
+		return bd.insertBasketUserPro(vo);
+	}
+
 }

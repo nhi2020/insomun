@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import egovframework.let.shop.mng.basket.service.impl.BasketBuyerMngVO;
 import egovframework.let.shop.mng.basket.web.BasketMngController;
@@ -25,13 +26,13 @@ import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 public class BasketUserController {
 
 	private static final Logger logger = LoggerFactory.getLogger(BasketUserController.class);
-	
-	@Resource(name="BasketUserService")
+
+	@Resource(name = "BasketUserService")
 	private BasketUserService basketUserService;
-	
+
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
-	
+
 	protected String unscript(String data) {
 		if (data == null || data.trim().equals("")) {
 			return "";
@@ -56,7 +57,7 @@ public class BasketUserController {
 
 		return ret;
 	}
-	
+
 	@RequestMapping("/shop/user/basket/selectBasketUser")
 	public String selectBasketUser(BasketUserVO vo, Model model) {
 		System.out.println("selectBasketUser ()");
@@ -64,12 +65,13 @@ public class BasketUserController {
 		model.addAttribute("BasketUser", vo);
 		return "shop/user/basket/selectBasketUser";
 	}
-	
+
 	@RequestMapping("/shop/user/basket/listBasketUser")
-	public String listBasketUser(@ModelAttribute("searchVO") BasketProductUserVO vo, Model model, HttpServletRequest request){
-		
+	public String listBasketUser(@ModelAttribute("searchVO") BasketProductUserVO vo, Model model,
+			HttpServletRequest request) {
+
 		HttpSession session = request.getSession();
-		vo.setSns_idx((int)session.getAttribute("sns_idx"));
+		vo.setSns_idx((int) session.getAttribute("sns_idx"));
 
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
@@ -94,8 +96,34 @@ public class BasketUserController {
 		logger.info("totCnt => " + totCnt);
 		logger.info("list size => " + list.size());
 		logger.info("vo.getPageIndex => " + vo.getPageIndex());
-		
+
 		return "/shop/user/basket/listBasketUser";
 	}
-	
+
+	@RequestMapping("/shop/user/basket/insertBasketUserForm")
+	public String insertBasketUserForm(BasketUserVO vo, Model model) {
+		System.out.println("BasketUserController insertBasketUserForm()");
+		return "/shop/user/basket/insertBasketUserForm";
+	}
+
+	@RequestMapping(value = "/shop/user/basket/insertBasketUserPro", method = RequestMethod.POST)
+	public String insertBasketUserPro(@ModelAttribute("BasketVO") BasketUserVO vo, Model model,
+			HttpServletRequest request) {
+
+		System.out.println("BasketUserController insertBasketUserPro()");
+
+		System.out.println("vo.getP_idx => " + vo.getP_idx());
+		System.out.println("vo.getBa_q => " + vo.getBa_q());
+		System.out.println("vo.getS_id => " + vo.getS_id());
+
+		HttpSession session = request.getSession();
+		vo.setSns_idx((int) session.getAttribute("sns_idx"));
+		System.out.println("vo.getSns_idx => " + vo.getSns_idx());
+
+		int result = basketUserService.insertBasketUserPro(vo);
+		System.out.println("result => " + result);
+
+		return "redirect:/shop/user/basket/insertBasketUserForm.do";
+	}
+
 }
