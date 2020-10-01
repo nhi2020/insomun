@@ -11,9 +11,35 @@
 <title>입소문넷</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript">
-function addDashes(f)
-{
-    f.value = f.value.slice(0,3)+"-"+f.value.slice(3,7)+"-"+f.value.slice(7,13);
+function inputPhoneNumber(obj) {
+
+
+
+    var number = obj.value.replace(/[^0-9]/g, "");
+    var phone = "";
+
+
+
+    if(number.length < 4) {
+        return number;
+    } else if(number.length < 7) {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3);
+    } else if(number.length < 11) {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3, 3);
+        phone += "-";
+        phone += number.substr(6);
+    } else {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3, 4);
+        phone += "-";
+        phone += number.substr(7);
+    }
+    obj.value = phone;
 }
 </script>
 
@@ -80,7 +106,7 @@ function addDashes(f)
 					</tr>
 					<tr>
 						<th>핸드폰 번호</th>
-						<td><input type="text" maxlength="13" onBlur='addDashes(this)'  name="s_phone" value="${SellerVO.s_phone }" />
+						<td><input type="text" maxlength="13" onKeyup="inputPhoneNumber(this);" name="s_phone" value="${SellerVO.s_phone }" />
                      	 </td>
 							
 							
