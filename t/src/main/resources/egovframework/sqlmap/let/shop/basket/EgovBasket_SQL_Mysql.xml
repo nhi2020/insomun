@@ -84,17 +84,17 @@
 	delete from BASKET
 	where BA_IDX = #ba_idx#
 	</delete>
-
+	
 	<insert id="insertBasketUserPro" parameterClass="BasketUserVO">
 	INSERT INTO BASKET
 	VALUES (
-			(	SELECT 	MAX(BA_IDX)+1
-				FROM 	BASKET b),
+			(SELECT MAX(BA_IDX)+1
+			FROM BASKET b),
 			#sns_idx#,
 			#p_idx#,
 			#s_id#,
 			#ba_q#,
 			now()
-			)
+	)
 	</insert>
 </sqlMap>

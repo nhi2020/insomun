@@ -36,8 +36,9 @@ public class BasketUserServiceImpl implements BasketUserService {
 
 	@Override
 	public int insertBasketUserPro(BasketUserVO vo) {
-
+		// TODO Auto-generated method stub
 		return bd.insertBasketUserPro(vo);
 	}
+
 
 }

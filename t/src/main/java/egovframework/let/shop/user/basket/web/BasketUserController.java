@@ -99,31 +99,29 @@ public class BasketUserController {
 
 		return "/shop/user/basket/listBasketUser";
 	}
-
+	
 	@RequestMapping("/shop/user/basket/insertBasketUserForm")
-	public String insertBasketUserForm(BasketUserVO vo, Model model) {
+	public String insertBasketUserForm(HttpServletRequest request, Model model, BasketUserVO vo ){
 		System.out.println("BasketUserController insertBasketUserForm()");
 		return "/shop/user/basket/insertBasketUserForm";
+		
 	}
 
-	@RequestMapping(value = "/shop/user/basket/insertBasketUserPro", method = RequestMethod.POST)
-	public String insertBasketUserPro(@ModelAttribute("BasketVO") BasketUserVO vo, Model model,
-			HttpServletRequest request) {
-
+	@RequestMapping("/shop/user/basket/insertBasketUserPro")
+	public String insertBasketUserPro(HttpServletRequest request, Model model, BasketUserVO vo){
 		System.out.println("BasketUserController insertBasketUserPro()");
-
-		System.out.println("vo.getP_idx => " + vo.getP_idx());
-		System.out.println("vo.getBa_q => " + vo.getBa_q());
-		System.out.println("vo.getS_id => " + vo.getS_id());
-
 		HttpSession session = request.getSession();
-		vo.setSns_idx((int) session.getAttribute("sns_idx"));
-		System.out.println("vo.getSns_idx => " + vo.getSns_idx());
-
+		int userSnsIdx = (int) session.getAttribute("sns_idx");
+		System.out.println("userSnsIdx" + userSnsIdx);
+		vo.setSns_idx(userSnsIdx);
+		
+		// DB Insert
+		
 		int result = basketUserService.insertBasketUserPro(vo);
 		System.out.println("result => " + result);
-
-		return "redirect:/shop/user/basket/insertBasketUserForm.do";
+		
+		return "redirect:/shop/user/basket/listBasketUser.do";
 	}
+	
 
 }

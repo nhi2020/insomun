@@ -18,28 +18,34 @@
 	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 
-	${msg }
-	<form action="/shop/user/basket/insertBasketUserPro.do" method="post">
+	<div class="container">
+		<div class="row">
 
-		<table class="table">
-			<tr>
-				<th>상품번호</th>
-				<td><input type="text" name="p_idx" /></td>
-			</tr>
-			<tr>
-				<th>판매자 아이디</th>
-				<td><input type="text" name="s_id" /></td>
-			</tr>
-			<tr>
-				<th>상품 수량</th>
-				<td><input type="text" name="ba_q" /></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" value="확인" /></td>
-			</tr>
-		</table>
-	</form>
+			<form class="mx-auto"
+				action="/shop/user/basket/insertBasketUserPro.do">
+				<table class="table">
+					<tr>
+						<th>상품 번호</th>
+						<td><input type="text" name="p_idx" /></td>
+					</tr>
+					<tr>
+						<th>구매 수량</th>
+						<td><input type="text" name="ba_q" /></td>
+					</tr>
+					<tr>
+						<th>판매자 아이디</th>
+						<td><input type="text" name="s_id" /></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input class="btn btn-secondary"
+							type="submit" value="확인" /></td>
+					</tr>
+				</table>
 
+			</form>
+
+		</div>
+	</div>
 
 	<%@ include file="../../inc/EgovShopBottom.jsp"%>
 </body>
