@@ -27,6 +27,7 @@
 				<tbody>
 					<tr>
 						<td><a href="/shop/user/review/reviewList.do">리뷰 페이지</a></td>
+						<td><a href="/shop/mng/review/MngSelect.do">관리자리뷰 관리</a></td>
 					</tr>
 					<tr>
 					<td><a href="/shop/mng/basket/listMngBasket.do">장바구니 관리</a></td>
@@ -36,7 +37,9 @@
 					</tr>
 					<tr>
 					<td><a href="/shop/mng/seller/listMngSeller.do">판매자 관리</a></td>
-					<td><a href="/shop/mng/admin/listMngAdminControl.do">운영자관리</a>
+					</tr>
+					<tr>
+					<td><a href="/shop/mng/admin/adminControl/listMngAdminControl.do">운영자관리</a>
 					</tr>
 					<tr>
 					<td><a href="/shop/product/EgovMngProductlist.do">상품 관리</a></td>

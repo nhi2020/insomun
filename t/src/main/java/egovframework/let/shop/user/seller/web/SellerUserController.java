@@ -184,7 +184,7 @@ public class SellerUserController {
 			Model model, @RequestParam(value = "pageIndex", required=false, defaultValue="1") int pageIndex) {
 		
 		HttpSession session = request.getSession();
-		String s_id = (String) session.getAttribute("S_ID");
+		String s_nickname = (String) session.getAttribute("S_NICKNAME");
 		
 		System.out.println("session" + session);
 		
@@ -209,9 +209,9 @@ public class SellerUserController {
 
 		List<SellerMngVO> list = SellerService.selectSellerUserList(vo); //
 		
-		System.out.println("s_id" + s_id);
+		System.out.println("s_nickname" + s_nickname);
 		
-		model.addAttribute("s_id", s_id);
+		model.addAttribute("s_nickname", s_nickname);
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);

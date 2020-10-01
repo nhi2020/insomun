@@ -41,26 +41,29 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int delAdminControl(AdminVO adminVO) {
-		int result = AdminDAO.adminDelete(adminVO);
+		int result = adminDAO.adminDelete(adminVO);
 		return result;
 	}
 
 	@Override
 	public AdminVO adminSelect(AdminVO adminVO) {
-		adminVO = AdminDAO.adminSelect(adminVO);
+		adminVO = adminDAO.adminSelect(adminVO);
 		return adminVO;
 	}
 
 	@Override
 	public int adminUpdate(AdminVO adminVO) {
-		int result = AdminDAO.adminUpdate(adminVO);
+		int result = adminDAO.adminUpdate(adminVO);
 		return result;
 	}
 
 	@Override
-	public int insertMngAdminControl(AdminVO vo) {
-		int result = AdminDAO.adminInsert(vo);
+	public int adminInsert(AdminVO vo) {
+		int result = adminDAO.adminInsert(vo);
 		return result;
 	}
+
+	
+	
 
 }

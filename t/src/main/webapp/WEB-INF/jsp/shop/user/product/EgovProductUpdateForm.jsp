@@ -44,7 +44,8 @@
 					</tr>
 					<tr>
 						<th>제품 내용</th>
-						<td><input type="text" name="p_content" value="${ProductVO.p_content }"/></td>
+						<td>
+						<textarea rows="5" cols="50" name="p_content" id="p_content">${ProductVO.p_content } </textarea></td>
 					</tr>
 					<tr>
 						<th>해시태그</th>

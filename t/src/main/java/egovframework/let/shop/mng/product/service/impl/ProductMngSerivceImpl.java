@@ -61,4 +61,10 @@ public class ProductMngSerivceImpl extends EgovAbstractServiceImpl implements Pr
 		return result;
 	}
 
+	@Override
+	public int insertMngProductPro(ProductMngVO vo) {
+		int result = mngProductDAO.insertMngProductPro(vo);
+		return result;
+	}
+
 }

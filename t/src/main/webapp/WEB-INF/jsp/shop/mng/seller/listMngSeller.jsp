@@ -45,14 +45,24 @@
 						<td><a href="/shop/mng/seller/updateMngSellerForm.do?s_id=${s_list.s_id }">${s_list.s_id }</a></td>
 						<td>${s_list.s_nickname }</td>
 						<td>${s_list.s_email }</td>
-						<td>${s_list.s_photo }</td>
+						<td>
+						<img src="<c:url value='/'/>images/shop/seller/${s_list.s_photo }" width="70" height="50"/>
+						<%-- <img alt="회원 사진" src="../../../images/shop/seller/${s_list.s_photo }" width="70" height="50"> --%>
+						 </td>
 						<td>${s_list.s_phone }</td>
 						<td>${s_list.s_addr }</td>
 						<td>${s_list.s_gender }</td>
 						<td>${s_list.s_moddate }</td>
 						<td>${s_list.s_regdate }</td>
 						<td>${s_list.s_birth }</td>
-						<td>${s_list.s_status }</td>
+						<c:choose>
+							<c:when test="${s_list.s_status eq 'Y'}">
+								<td>활동중인 계정</td>
+							</c:when>
+							<c:when test="${s_list.s_status eq 'N'}">
+								<td>탈퇴된 계정</td>
+							</c:when>
+						</c:choose>	
 					</tr>
 				</c:forEach>
 			</table>

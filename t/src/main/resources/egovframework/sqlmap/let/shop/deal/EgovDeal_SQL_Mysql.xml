@@ -2,4 +2,166 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="Deal">
+
+	<typeAlias alias="egovMap"
+		type="egovframework.rte.psl.dataaccess.util.EgovMap" />
+	<typeAlias alias="DealMngVO"
+		type="egovframework.let.shop.mng.deal.service.impl.DealMngVO" /> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias alias="DealMng"
+		type="egovframework.let.shop.mng.deal.service.DealMng" />
+
+	<select id="ListCntDealMng" parameterClass="DealMngVO"
+		resultClass="int">
+		SELECT COUNT(*)
+		FROM DEAL
+		WHERE 1=1
+	</select>
+
+<!--  	<resultMap id="ListDealMng" class="egovframework.let.shop.mng.deal.service.impl.DealMngVO"> 	property는 vo값
+		<result property="s_id" column="S_ID" columnIndex="1" />					DEAL 판매자 아이디
+		<result property="sns_idx" column="sns_idx" columnIndex="2" />				DEAL 구매자 아이디
+		<result property="d_idx" column="D_IDX" columnIndex="3" />					DEAL 거래 번호
+		<result property="p_idx" column="P_IDX" columnIndex="4" />					DEAL 상품번호
+		<result property="d_ing" column="D_ING" columnIndex="5" />					DEAL 거래 진행 상태
+		<result property="d_q" column="D_Q" columnIndex="6" />						DEAL 거래 수량
+		<result property="d_regdate" column="D_REGDATE" columnIndex="7" />			DEAL 거래 등록일
+		<result property="d_edate" column="D_EDATE" columnIndex="8" />				DEAL 거래 수락일
+		<result property="d_request" column="D_REQUEST" columnIndex="9" />			DEAL 배송 요청사항
+		<result property="p_name" column="P_NAME" columnIndex="10" />				PRODUCT 상품명
+		<result property="p_price" column="P_PRICE" columnIndex="11" />				PRODUCT 가격
+		<result property="s_nickname" column="S_NICKNAME" columnIndex="12" />		SELLER 판매자 닉네임
+		<result property="s_phone" column="S_PHONE" columnIndex="13" />				SELLER 판매자 폰번호
+		<result property="s_account" column="S_ACCOUNT" columnIndex="14" />			SELLER 판매자 계좌번호
+		<result property="nickname" column="nickname" columnIndex="15" />			SNSPROFILE 구매자 닉네임
+		<result property="sns_score" column="SNS_SCORE" columnIndex="16" />			REVIEW 구매자 리뷰 평점
+		<result property="seller_score" column="SELLER_SCORE" columnIndex="17" />	REVIEW 판매자 리뷰 평점
+	</resultMap>-->
+
+	<select id="ListDealMng" parameterClass="DealMngVO" resultClass="DealMngVO">
+	<![CDATA[  
+SELECT
+		rn,
+		P_IDX,
+		P_NAME,
+		D_Q,
+		P_PRICE,
+		D_REGDATE,
+		S_NICKNAME,
+		D_ING,
+		D_EDATE,
+		D_IDX,
+		S_ID
+	FROM
+	(SELECT
+		rn,
+		A.P_IDX,
+		A.P_NAME,
+		A.D_Q,
+		A.P_PRICE,
+		A.D_REGDATE,
+		B.S_NICKNAME,
+		A.D_ING,
+		A.D_EDATE,
+		A.D_IDX,
+		A.S_ID
+	FROM
+		(SELECT
+			@ROWNUM:=@ROWNUM+1 AS rn,
+			A.P_IDX,
+			B.P_NAME,
+			A.D_Q,
+			B.P_PRICE,
+			A.D_REGDATE,
+			A.D_ING,
+			A.D_EDATE,
+			A.D_IDX,
+			A.S_ID
+		FROM DEAL A, PRODUCT B, (SELECT @ROWNUM:=0) R
+		WHERE 1 = 1
+		AND A.P_IDX = B.P_IDX) A, SELLER B
+	WHERE 1 = 1
+	AND A.S_ID = B.S_ID) A
+	]]>
+	</select>
+<!-- HeidiSQL에서는 rownum을 사용할 때 아래 예시와 같이 사용한다.
+SELECT
+	@ROWNUM:=@ROWNUM+1 AS ROWNUM
+	, NAME
+	, SUBJECT
+	, SCORE
+FROM 
+	SCORES, (SELECT @ROWNUM:=0) R -->
+
+
+	<select id="selectMngDealBuyerDetail" parameterClass="DealMngVO" resultClass="DealMngVO">
+SELECT
+		D_ING,
+		D_REQUEST,
+		P_NAME,
+		P_IDX,
+		S_ID,
+		S_PHONE,
+		S_ACCOUNT,
+		S_NICKNAME,
+		SELLER_SCORE,
+		D_IDX
+	FROM
+		(SELECT
+			A.D_ING,
+			A.D_REQUEST,
+			A.P_NAME,
+			A.P_IDX,
+			A.S_ID,
+			A.S_PHONE,
+			A.S_ACCOUNT,
+			A.S_NICKNAME,
+			B.SELLER_SCORE,
+			A.D_IDX
+		FROM
+			(SELECT
+				A.D_ING,
+				A.D_REQUEST,
+				A.P_NAME,
+				A.P_IDX,
+				A.S_ID,
+				B.S_PHONE,
+				B.S_ACCOUNT,
+				B.S_NICKNAME,
+				A.D_IDX
+			FROM
+				(SELECT
+					A.D_ING,
+					A.D_REQUEST,
+					B.P_NAME,
+					A.P_IDX,
+					A.S_ID,
+					A.D_IDX
+				FROM
+					DEAL A, PRODUCT B
+					WHERE 1 = 1
+					AND A.P_IDX = B.P_IDX) A, SELLER B
+				WHERE 1 = 1
+				AND A.S_ID = B.S_ID) A, REVIEW B
+			WHERE 1 = 1
+			AND A.P_IDX = B.P_IDX) A
+			WHERE D_IDX = #d_idx#
+	</select>
+
+
+	<update id="updateMngDealBuyerDetail" parameterClass="DealMngVO">
+		UPDATE DEAL
+		SET
+			D_ING = #d_ing#
+		WHERE D_IDX = #d_idx#
+	</update>
+
+	<update id="updateMngDealBuyerCancel" parameterClass="DealMngVO">
+		UPDATE DEAL
+		SET
+			D_ING = '5'
+		WHERE D_IDX = #d_idx#
+	</update>
+
+
+
 </sqlMap>

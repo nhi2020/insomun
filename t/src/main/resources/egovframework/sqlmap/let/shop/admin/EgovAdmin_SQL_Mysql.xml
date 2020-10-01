@@ -43,5 +43,33 @@
          WHERE 1=1
       ]]>
     </select>
+    <select id="AdminDAO.adminSelect" parameterClass="AdminVO" resultClass="AdminVO">
+       SELECT 
+       A_ID,
+       A_PASS,
+       A_EMAIL,
+       A_NAME
+       FROM ADMIN
+       WHERE A_ID=#a_id#
+    </select>
+    <update id="AdminDAO.adminUpdate"  parameterClass="AdminVO">
+       UPDATE ADMIN
+          SET
+            A_ID = #a_id#,
+            A_PASS = #a_pass#,
+            A_EMAIL = #a_email#,
+            A_NAME = #a_name#,
+            A_MODDATE = SYSDATE()
+       WHERE A_ID=#a_id#
+    </update>
+    
+   <insert id="AdminDAO.adminInsert" parameterClass="AdminVO">
+		<![CDATA[
+			INSERT INTO ADMIN
+			(A_ID, A_PASS, A_EMAIL, A_NAME, A_REGDATE)
+			VALUES
+			( #a_id#, #a_pass#, #a_email#, #a_name#, SYSDATE())			
+		]]>
+	</insert>
 	
 </sqlMap>
