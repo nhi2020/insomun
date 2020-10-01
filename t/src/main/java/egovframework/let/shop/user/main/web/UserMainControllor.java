@@ -1,10 +1,28 @@
 package egovframework.let.shop.user.main.web;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import egovframework.let.shop.user.main.service.UserMainService;
+import egovframework.let.shop.user.main.service.impl.UserMainVO;
+import egovframework.rte.fdl.property.EgovPropertyService;
 
 @Controller
 public class UserMainControllor {
+	
+	
+	@Resource(name = "UserMainService")
+	private UserMainService MainService;
+
+	@Resource(name = "propertiesService")
+	protected EgovPropertyService propertyService;
 	
 	
 	protected String unscript(String data) {
@@ -33,8 +51,38 @@ public class UserMainControllor {
 	}
 	
 	@RequestMapping(value="/shop/user/main/EgovUserMain.do")
-	public String main() {
-	   
+	public String main(Model model,UserMainVO vo) {
+		System.out.println("UserMainControllor");
+		/*int count = MainService.selectCount();
+		System.out.println("count"+count);
+		
+		@SuppressWarnings("unused")
+		List<Integer> list2 = new ArrayList<>();
+		Random r = new Random();
+		int nums[] = new int[3];
+		for(int i= 0; i<3; i++){
+			int num = r.nextInt(count)+1;
+			System.out.println("num"+num);
+			nums[i]=num;
+			 for (int j = 0; j < i; j++) {
+                 if (nums[j] == num) {
+                     i--;
+                     break;
+                 }
+             }
+         }  
+		for (int i = 0; i < nums.length; i++) {
+             list2.set(i, nums[i]);
+         }
+		vo.setCount1(list2);
+		
+		System.out.println(vo.getCount1().get(0));*/
+		/*@SuppressWarnings("unused")
+		List<UserMainVO> list3= MainService.selectMainList2(list2);*/
+		List<UserMainVO> list = MainService.selectMainList(vo);
+		
+		System.out.println("list"+ list);
+		model.addAttribute("list",list);
 	    return "shop/main/EgovMain";
 	}
 

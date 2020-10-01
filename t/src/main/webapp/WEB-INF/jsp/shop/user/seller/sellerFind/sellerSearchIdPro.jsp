@@ -7,12 +7,8 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 
-if(${chk}==1){
 	alert("${msg}");
-	location.href='/shop/user/seller/sellerSearchIdPro.do';
-}else{
-	
-};
+	location.href='/shop/user/seller/sellerSearchId.do';
 
 
 </script>

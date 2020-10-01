@@ -168,13 +168,14 @@ public class SellerUserController {
 			
 			vo = SellerService.sellerSearchIdPro(vo);
 			if(vo==null){
+				System.out.println("null");
 				model.addAttribute("msg","아이디 없음");
 				model.addAttribute("chk",1);
-				return "/shop/user/seller/sellerSearchIdPro";
+				return "/shop/user/seller/sellerFind/sellerSearchIdPro";
 			}
 			System.out.println("vo"+vo);
 		
-		return "/shop/user/seller/sellerFind/sellerSearchId";
+		return "/shop/user/seller/sellerFind/sellerPassAgreeForm";
 	}
 	
 	
@@ -216,5 +217,13 @@ public class SellerUserController {
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
 		return "shop/user/seller/sellerUserMain";
+	}
+	
+	
+	@RequestMapping(value="/shop/user/seller/sellerPassResetForm.do")
+	public String sellerPassResetForm(){
+			
+		
+		return "/shop/user/seller/sellerFind/sellerPassResetForm";
 	}
 }
