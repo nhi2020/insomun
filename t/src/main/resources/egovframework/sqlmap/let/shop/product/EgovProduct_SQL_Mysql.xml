@@ -112,7 +112,12 @@
  	<delete id="EgovMngProductDAO.deleteMngProduct" parameterClass="ProductMngVO">
  	UPDATE PRODUCT
 		SET 
-			P_STATUS = 'Y'
+			P_STATUS = 
+				CASE 
+					WHEN P_STATUS = 'Y'
+						THEN 'N'
+						ELSE 'Y'
+					END
 		WHERE P_IDX = #p_idx#
  	</delete>
  

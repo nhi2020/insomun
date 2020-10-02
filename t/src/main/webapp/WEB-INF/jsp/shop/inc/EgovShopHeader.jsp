@@ -114,7 +114,7 @@
 	  					  </a>
 	  					  <div class="dropdown-menu">
 	   						   <a class="dropdown-item" href="#">후기 관리 페이지</a>
-	    					   <a class="dropdown-item" href="#">상품관리 페이지</a>
+	    					   <a class="dropdown-item" href="/shop/mng/product/EgovMngProductlist.do">상품관리 페이지</a>
 	     					   <a class="dropdown-item" href="#">관리자 관리 페이지</a>
 	     					   <a class="dropdown-item" href="#">구매자 관리 페이지</a>
 	     					   <a class="dropdown-item" href="#">판매자 관리 페이지</a>

@@ -12,26 +12,13 @@
 <title>상품 관리 운영자 페이지입니다</title>
 
 </head>
-<script type="text/javascript">
-	function delMngProduct() {
-		var check = confirm("정말 삭제하시겠습니까?");
-		if(check == true) {
-			location.href="/shop/mng/product/EgovMngProductDelete.do";
-		}else{
-		   location.href="/shop/mng/product/EgovMngProductlist.do";
-		}
-
-}	
-</script>
 <body>
 	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 
-
-
-<form action="check" name="frm">
+<form action="/shop/mng/product/EgovMngProductDelete.do" name="frm">
 <input type="button" value="등록" onclick="location.href='/shop/mng/product/EgovMngProductInsertForm.do'"> &nbsp;
-<input type="button" value="삭제" onclick="delMngProduct();">
+<input type="submit" value="삭제">
  <div class="container-fluid">
 	<div class="container text-center">
 	    <div class="row">

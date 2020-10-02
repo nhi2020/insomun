@@ -174,8 +174,11 @@ public class ProductMngController {
 	
 	@RequestMapping(value = "/shop/mng/product/EgovMngProductDelete") 
 	public String EgovMngProductDelete(ProductMngVO vo, HttpServletRequest request)throws Exception {
+		
 		String[] check = request.getParameterValues("check");
+		System.out.println("EgovMngProductDelete:");
 		for (int i = 0; i < check.length; i++) {
+			System.out.println("chk : " +check[i]);
 			vo.setP_idx(check[i]);
 			mngProductService.deleteMngProduct(vo);
 		}

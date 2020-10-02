@@ -31,7 +31,7 @@
 				
 				<p>
 					
-					<span><input type="checkbox" name="check">판매자 아이디: ${product_list.s_id }</span>
+					<input type="checkbox" name="check">
 					<br/><span >가격: ${product_list.p_price }</span>
 					<br/><span >상태: ${product_list.p_status }</span>
 					<br/><span >재고 수량: ${product_list.p_q }</span>
