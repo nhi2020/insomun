@@ -14,12 +14,13 @@
 </head>
 <script type="text/javascript">
 	function delMngProduct() {
-		
 		var check = confirm("정말 삭제하시겠습니까?");
-		if(chk) {
-			document.check.action="/shop/mng/product/EgovMngProductDelete.do";
-		document.check.submit();
-	}
+		if(check == true) {
+			location.href="/shop/mng/product/EgovMngProductDelete.do";
+		}else{
+		   location.href="/shop/mng/product/EgovMngProductlist.do";
+		}
+
 }	
 </script>
 <body>
@@ -28,12 +29,9 @@
 
 
 
-<form name="check">
+<form action="check" name="frm">
 <input type="button" value="등록" onclick="location.href='/shop/mng/product/EgovMngProductInsertForm.do'"> &nbsp;
 <input type="button" value="삭제" onclick="delMngProduct();">
-</form>
-
-	
  <div class="container-fluid">
 	<div class="container text-center">
 	    <div class="row">
@@ -45,15 +43,16 @@
 				<p>
 					
 					<span><input type="checkbox" name="check" id="check" value="${product_list.p_idx }">
-					<c:if test="${product.list.p_status eq 'Y'}">
-							삭제
-						</c:if>
-						<c:if test="${product.list.p_status eq 'N'}">
-							복구
-						</c:if>
+					
 					판매자 아이디: ${product_list.s_id }</span>
 					<br/><span >가격: ${product_list.p_price }</span>
 					<br/><span >상태: ${product_list.p_status }</span>
+					<c:if  test="${product.list.p_status eq 'Y'}" >
+							삭제
+					</c:if>
+					<c:if test="${product.list.p_status eq 'N'}">
+							복구
+					</c:if>
 					<br/><span >재고 수량: ${product_list.p_q }</span>
 					<br/><span >업데이트된 날짜: ${product_list.p_moddate }</span>
 					<input type="button" value="수정" onclick="location.href='/shop/mng/product/EgovMngProductUpdateForm.do?p_idx=${product_list.p_idx}'" >
@@ -64,6 +63,7 @@
 		</div>
 	</div>
 </div>
+</form>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>
