@@ -4,10 +4,12 @@
 <sqlMap namespace="Product">
 
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
-	<typeAlias  alias="ProductVO" type="egovframework.let.shop.mng.product.service.impl.ProductMngVO"/> <!-- db에서 세터로 받아넣는 -->
-	<typeAlias  alias="Product" type="egovframework.let.shop.mng.product.service.ProductMng"/>
+	<typeAlias  alias="ProductMngVO" type="egovframework.let.shop.mng.product.service.impl.ProductMngVO"/> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias  alias="ProductMng" type="egovframework.let.shop.mng.product.service.ProductMng"/>
+	<typeAlias alias="ProductUserVO" type="egovframework.let.shop.user.product.service.impl.ProductUserVO"/>
+	<typeAlias alias="ProductUser" type="egovframework.let.shop.user.product.service.ProductUser"/>
 	
-	<resultMap id="mngProductList" class="egovframework.let.shop.mng.product.service.impl.ProductMngVO"> <!-- property는 vo값 -->
+	<resultMap id="ProductList" class="egovframework.let.shop.mng.product.service.impl.ProductMngVO"> <!-- property는 vo값 -->
 		<result property="p_idx" column="P_IDX" columnIndex="1"/>
 		<result property="s_id" column="S_ID" columnIndex="2"/>
 		<result property="p_name" column="P_NAME" columnIndex="3"/>
@@ -24,7 +26,7 @@
 		<result property="p_q" column="P_Q" columnIndex="14"/>
 	</resultMap>
 	
-	<select id="EgovMngProductDAO.selectMngProductList" parameterClass="ProductVO" resultMap="mngProductList" >
+	<select id="EgovMngProductDAO.selectMngProductList" parameterClass="ProductMngVO" resultMap="ProductList" >
 	<!-- 쿼리문 작성 -->
 		<![CDATA[  
 			SELECT 
@@ -48,7 +50,7 @@
 		]]>
 	</select>
 	
-	<select id="EgovMngProductDAO.selectMngProductListCnt" parameterClass="ProductVO" resultClass="java.lang.Integer" >
+	<select id="EgovMngProductDAO.selectMngProductListCnt" parameterClass="ProductMngVO" resultClass="java.lang.Integer" >
 		<![CDATA[
 			SELECT
 				COUNT(P_IDX)
@@ -64,13 +66,13 @@
 			</isEqual>	
 	</select>
 	
-	<select id="EgovMngProductDAO.selectMngProductForm"  parameterClass="ProductVO" resultClass="ProductVO">
+	<select id="EgovMngProductDAO.selectMngProductForm"  parameterClass="ProductMngVO" resultClass="ProductMngVO">
 	SELECT *
 	FROM PRODUCT
 	WHERE P_IDX = #p_idx#
 	</select>
 	
-	<update id="EgovMngProductDAO.updateMngProductPro" parameterClass="ProductVO" >
+	<update id="EgovMngProductDAO.updateMngProductPro" parameterClass="ProductMngVO" >
 	UPDATE PRODUCT
 		SET 
 			P_NAME = #p_name#,
@@ -84,18 +86,8 @@
 		WHERE P_IDX = #p_idx#
 	</update>
 
-	<!-- <update id="EgovMngProductDAO.selectMngProductForm" parameterClass="ProductVO">
- 		<![CDATA[
-			UPDATE PRODUCT SET 
-								P_CONTENT = #p_content#,
-								P_Q = #p_q#,
-								P_NAME = #p_name#
-			WHERE
-								P_CONTENT = #p_content#,
-								P_Q = #p_q#
- 		]]>
- 	</update> -->
- 	<insert id="EgovMngProductDAO.insertMngProductForm" parameterClass="ProductVO" >
+	
+ 	<insert id="EgovMngProductDAO.insertMngProductForm" parameterClass="ProductMngVO" >
  	<selectKey resultClass="int" keyProperty="p_idx">
  		SELECT 
 			CASE 
@@ -117,13 +109,110 @@
  		]]>
  	</insert>
  	
- 	<delete id="EgovMngProductDAO.deleteMngProduct" parameterClass="ProductVO">
+ 	<delete id="EgovMngProductDAO.deleteMngProduct" parameterClass="ProductMngVO">
  	UPDATE PRODUCT
 		SET 
 			P_STATUS = 'Y'
 		WHERE P_IDX = #p_idx#
  	</delete>
+ 
+ <!-- 판매자 및 구매자용/판매자 및 구매자용/판매자 및 구매자용/판매자 및 구매자용 -->
+ 
+ 	<select id="EgovUserProductDAO.selectUserProductList" parameterClass="ProductUserVO" resultMap="ProductList" >
+	<!-- 쿼리문 작성 -->
+		<![CDATA[  
+			SELECT 
+				 P_IDX
+				,S_ID
+				,P_NAME
+				,P_PRICE
+				,P_REGDATE
+				,P_MODDATE
+				,P_IMAGE
+				,P_CONTENT
+				,P_TAGE
+				,P_SDATE
+				,P_EDATE
+				,P_STATUS
+				,A_ID
+				,P_Q
+			FROM
+				PRODUCT
+			WHERE 1=1
+		]]>
+	</select>
+	
+	<select id="EgovUserProductDAO.selectUserProductListCnt" parameterClass="ProductUserVO" resultClass="java.lang.Integer" >
+		<![CDATA[
+			SELECT
+				COUNT(P_IDX)
+			FROM
+				PRODUCT
+			WHERE 1=1
+		]]>
+			<isEqual prepend="AND" property="searchCnd" compareValue="0">
+				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>
+			<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>	
+	</select>
+	
+	<select id="EgovUserProductDAO.selectUserProductForm"  parameterClass="ProductUserVO" resultClass="ProductUserVO">
+	SELECT *
+	FROM PRODUCT
+	WHERE P_IDX = #p_idx#
+	</select>
+	
+	<update id="EgovUserProductDAO.updateUserProductPro" parameterClass="ProductUserVO" >
+	UPDATE PRODUCT
+		SET 
+			P_NAME = #p_name#,
+			P_PRICE = #p_price#,
+			P_CONTENT = #p_content#,
+			P_TAGE = #p_tage#,
+			P_Q = #p_q#,
+			P_SDATE = #p_sdate#,
+			P_EDATE = #p_edate#,
+			P_MODDATE = #p_moddate#
+		WHERE P_IDX = #p_idx#
+	</update>
+	
+	<insert id="EgovUserProductDAO.insertUserProductForm" parameterClass="ProductUserVO" >
+ 	<selectKey resultClass="int" keyProperty="p_idx">
+ 		SELECT 
+			CASE 
+				WHEN 
+					MAX(P_IDX) IS NULL 
+				THEN 
+					1 
+				ELSE
+					MAX(P_IDX)+1 
+				END
+		FROM
+			PRODUCT
+ 	</selectKey>
+ 		<![CDATA[
+ 			INSERT INTO PRODUCT
+			(P_IDX,S_ID, P_NAME, P_PRICE, P_REGDATE, P_MODDATE, P_IMAGE, P_CONTENT, P_TAGE, P_SDATE, P_EDATE, P_STATUS, P_Q)
+			VALUES
+			(#p_idx#, #s_id#, #p_name#, #p_price#, SYSDATE(), SYSDATE(), #p_image#, #p_content#, #p_tage#, SYSDATE(), SYSDATE(), 'N', #p_q#)				
+ 		]]>
+ 	</insert>
+
+	<!-- <update id="EgovMngProductDAO.selectMngProductForm" parameterClass="ProductVO">
+ 		<![CDATA[
+			UPDATE PRODUCT SET 
+								P_CONTENT = #p_content#,
+								P_Q = #p_q#,
+								P_NAME = #p_name#
+			WHERE
+								P_CONTENT = #p_content#,
+								P_Q = #p_q#
+ 		]]>
+ 	</update> -->
  	
+ 
 	<!-- <insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
 		<![CDATA[
 			INSERT INTO 테이블명
@@ -140,6 +229,17 @@
 				컬럼명 = #변수명#,
 				LAST_UPDT_PNTTM = SYSDATE()
 			WHERE 컬럼명 = #변수명#
+ 		]]>
+ 	</update> -->
+ 	<!-- <update id="EgovMngProductDAO.selectMngProductForm" parameterClass="ProductVO">
+ 		<![CDATA[
+			UPDATE PRODUCT SET 
+								P_CONTENT = #p_content#,
+								P_Q = #p_q#,
+								P_NAME = #p_name#
+			WHERE
+								P_CONTENT = #p_content#,
+								P_Q = #p_q#
  		]]>
  	</update> -->
 </sqlMap>

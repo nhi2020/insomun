@@ -18,7 +18,7 @@
   <div class="container-fluid">
 	<div class="container text-center">
 	    <div class="row">
-			<form action="/shop/product/EgovProductInsertPro.do" method="post">
+			<form action="/shop/user/product/EgovUserProductInsertPro.do" method="post">
 				 	<img src="./images/main/photo/${ProductVO.p_image}" width="270" height="385"/>
 						<p>
 					<table class="table">
@@ -91,14 +91,8 @@
 					</tr>  
 					<tr> 
 						<td colspan="2"><br/>
-						<input type="submit" value="등록완료" onclick="" /> &nbsp;
-						<input type="submit" value="삭제" />
-						
-						</td>
-					</tr>
-					<tr>
-						<td>
-						<input type="submit" value="목록" />
+						<input type="submit" value="등록완료" onclick="" /> &nbsp;	
+						<input type="button" value="이전으로" onclick="location.href='/shop/user/product/EgovUserProductlist.do'"/>		
 						</td>
 					</tr>
 				</table>

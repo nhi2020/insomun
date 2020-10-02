@@ -166,7 +166,7 @@ public class ProductUserController {
 		int result = userProductService.insertUserProductPro(vo);
 		System.out.println("result => " + result);
 		
-		return "redirect:/shop/user/product/EgovUserMngProductlist.do";
+		return "redirect:/shop/user/product/EgovUserProductInsertForm.do";
 	}
 	
 	

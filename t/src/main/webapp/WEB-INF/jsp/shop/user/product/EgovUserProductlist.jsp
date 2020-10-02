@@ -17,7 +17,7 @@
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 	
 
-	<input type="submit" value="등록" onclick="location.href='/shop/user/product/EgovProductInsertForm.do'"> &nbsp;
+	<input type="submit" value="등록" onclick="location.href='/shop/user/product/EgovUserProductInsertForm.do'"> &nbsp;
 	<input type="submit" value="삭제">
 
 	

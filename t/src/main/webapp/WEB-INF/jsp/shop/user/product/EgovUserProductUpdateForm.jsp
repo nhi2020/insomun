@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
+<%@ page import="egovframework.let.shop.mng.product.service.impl.ProductMngVO" %>
 <%@ include file="../../inc/EgovShopTop.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -28,7 +29,7 @@
  <div class="container-fluid">
 	<div class="container text-center">
 	    <div class="row">
-			<form action="/shop/product/EgovProductUpdatePro.do" method="post">
+			<form action="/shop/user/product/EgovUserProductUpdatePro.do" method="post">
 	    <input type="hidden" name="p_idx" value="${ProductVO.p_idx }" />
 					<img src="./images/main/photo/${ProductVO.p_image}" width="270" height="385"/>
 						<p>
@@ -68,8 +69,9 @@
 						<td><input type="date" name="p_moddate" value="${ProductVO.p_moddate }"/></td>
 					</tr>
 					<tr>
-						<td colspan="2"><br/><input type="submit" value="수정완료" > &nbsp;
-					<input type="button" value="삭제"></td>
+						<td colspan="2"><br/>
+					<input type="submit" value="수정완료" > &nbsp;
+					<input type="button" value="이전으로" onclick="location.href='/shop/user/product/EgovUserProductlist.do'"/>
 					</tr>
 				</table>
 					<%-- <c:if test=""></c:if> --%>

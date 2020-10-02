@@ -39,7 +39,7 @@ public class ProductUserDAO extends EgovAbstractDAO {
     }
     
     public int selectUserProductListCnt(ProductUserVO productVO) throws Exception {
-    	return (Integer)select("EgovMngProductDAO.selectUserProductListCnt", productVO);
+    	return (Integer)select("EgovUserProductDAO.selectUserProductListCnt", productVO);
     }
     
    public ProductUserVO selectUserProductForm(ProductUserVO vo) {
