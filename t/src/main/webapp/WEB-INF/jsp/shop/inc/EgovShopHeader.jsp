@@ -63,8 +63,8 @@
 	    <a class="nav-link" href="/shop/mng/product/EgovMngProductlist.do">상품게시판</a>
 	  </li>
 	</ul>
-	<form class="form-inline" action="/action_page.php">
-	  <input class="form-control mr-sm-2" type="text" placeholder="Search">
+	<form class="form-inline" action="/shop/user/main/EgovUserMainSearch.do">
+	  <input class="form-control mr-sm-2" id="keyword" name="keyword" type="text" placeholder="Search">
 	  <button class="btn btn-success" type="submit">Search</button>
 	</form>
 		

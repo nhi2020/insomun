@@ -36,6 +36,14 @@
 				PRODUCT
 			WHERE 1=1
 			AND P_IDX=#count#
+			]]>
+	</select>
+
+	<select id="UserMainDAO.MainSearch" parameterClass="UserMainVO" resultClass="UserMainVO">
+		<![CDATA[  
+			SELECT * FROM 
+			PRODUCT 
+			WHERE p_name LIKE CONCAT('%',#keyword#,'%') OR s_id LIKE CONCAT('%',#keyword#,'%') OR P_CONTENT LIKE CONCAT('%',#keyword#,'%') OR P_TAGE LIKE CONCAT('%',#keyword#,'%')
 		]]>
 	</select>
 	

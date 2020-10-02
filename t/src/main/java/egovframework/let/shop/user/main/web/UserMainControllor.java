@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import egovframework.let.shop.user.main.service.UserMainService;
 import egovframework.let.shop.user.main.service.impl.UserMainVO;
@@ -84,6 +85,23 @@ public class UserMainControllor {
 		System.out.println("list"+ list);
 		model.addAttribute("list",list);
 	    return "shop/main/EgovMain";
+	}
+	@RequestMapping(value="/shop/user/main/EgovUserMainSearch.do")
+	public String EgovUserMainSearch(@RequestParam("keyword") String keyword,UserMainVO vo,Model model){
+		System.out.println("keyword"+keyword);
+		int i=0;
+		vo.setKeyword(keyword);
+		List<UserMainVO> list = MainService.MainSearch(vo);
+		for(i=0;i<list.size();i++){
+			i=i+1;
+			
+		}
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!" + i);
+		System.out.println("list"+list);
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("list2",list);
+		
+		return "shop/main/mainSearch";
 	}
 
 
