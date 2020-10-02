@@ -11,6 +11,8 @@ public interface UserMainService {
 
 	int selectCount();
 
+	List<UserMainVO> MainSearch(UserMainVO vo);
+
 	/*List<UserMainVO> selectMainList2(List<Integer> list2);*/
 
 }

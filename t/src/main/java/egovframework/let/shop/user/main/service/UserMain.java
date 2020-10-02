@@ -42,7 +42,17 @@ public class UserMain implements Serializable {
 	private String a_id;
 	private int count;
 	List<Integer> count1;
+	private String keyword;
 	
+	
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 
 	public List<Integer> getCount1() {
 		return count1;

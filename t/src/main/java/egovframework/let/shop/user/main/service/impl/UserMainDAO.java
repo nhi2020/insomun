@@ -35,6 +35,12 @@ public class UserMainDAO extends EgovAbstractDAO{
 		return count;
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<UserMainVO> MainSearch(UserMainVO vo) {
+		
+		return (List<UserMainVO>) list("UserMainDAO.MainSearch",vo);
+	}
+
 /*	@SuppressWarnings("unchecked")
 	public List<UserMainVO> selectMainList2(List<Integer> list2) {
 		List<UserMainVO> list = null;

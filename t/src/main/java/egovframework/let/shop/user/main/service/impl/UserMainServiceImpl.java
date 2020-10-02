@@ -37,4 +37,16 @@ public class UserMainServiceImpl extends EgovAbstractServiceImpl  implements Use
 		List<UserMainVO> list = MainDAO.selectMainList2(list2);
 		return null;
 	}*/
+
+	/*@Override
+	public List<UserMainVO> MainSearch(String keyword) {
+		List<UserMainVO> list = MainDAO.MainSearch(keyword);
+		return list;
+	}
+*/
+	@Override
+	public List<UserMainVO> MainSearch(UserMainVO vo) {
+		List<UserMainVO> list = MainDAO.MainSearch(vo);
+		return list;
+	}
 }
