@@ -117,6 +117,13 @@
  		]]>
  	</insert>
  	
+ 	<delete id="EgovMngProductDAO.deleteMngProduct" parameterClass="ProductVO">
+ 	UPDATE PRODUCT
+		SET 
+			P_STATUS = 'Y'
+		WHERE P_IDX = #p_idx#
+ 	</delete>
+ 	
 	<!-- <insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
 		<![CDATA[
 			INSERT INTO 테이블명

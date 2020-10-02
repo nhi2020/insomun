@@ -67,4 +67,10 @@ public class ProductMngSerivceImpl extends EgovAbstractServiceImpl implements Pr
 		return result;
 	}
 
+	@Override
+	public int deleteMngProduct(ProductMngVO vo) throws Exception {
+		int result = mngProductDAO.deleteMngProduct(vo);
+		return result;
+	}
+
 }

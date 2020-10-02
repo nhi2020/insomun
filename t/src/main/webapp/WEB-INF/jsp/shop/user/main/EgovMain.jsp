@@ -34,6 +34,9 @@
 					<tr>
 					<td><a href="/shop/user/snsprofile/loginUserSnsprofileTestForm.do">구매자 로그인 테스트</a></td>
 					</tr>
+					<tr>
+					<td><a href="/shop/user/product/EgovMngProductlist.do">상품 관리</a></td>
+					</tr>
 					<!-- <tr>
 					<td><a href="#">### 관리</a></td>
 					<td><a href="#">### 관리</a></td>

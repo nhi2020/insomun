@@ -60,13 +60,12 @@ public class ProductMngDAO extends EgovAbstractDAO {
     }
 
 	public int insertMngProductPro(ProductMngVO vo) {
-		int result = 0;
-		try {
-			result = (int) insert("EgovMngProductDAO.insertMngProductForm", vo);		
-		} catch (Exception e) {
-			System.out.println("insertMngProductPro : " + e.getMessage());
-		}
+		int result =(Integer) insert("EgovMngProductDAO.insertMngProductForm", vo);		
 		return result;
+	}
+	
+	public int deleteMngProduct(ProductMngVO vo) throws Exception{
+		return update("EgovMngProductDAO.deleteMngProduct", vo);
 	}
     
 }

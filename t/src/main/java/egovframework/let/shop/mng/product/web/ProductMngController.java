@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import egovframework.let.shop.mng.buyer.service.impl.BuyerMngVO;
 import egovframework.let.shop.mng.product.service.ProductMngService;
 import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
-import egovframework.let.shop.mng.review.service.ReviewMngService;
 import egovframework.let.shop.mng.review.service.ReviewMngVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -93,7 +91,7 @@ public class ProductMngController {
 	 * @exception Exception
 	 *                Exception
 	 */
-	@RequestMapping(value = "/shop/product/EgovMngProductlist")
+	@RequestMapping(value = "/shop/mng/product/EgovMngProductlist")
 	public String forwardPageWithMenuNo(@ModelAttribute("searchVO") ProductMngVO vo, HttpServletRequest request,
 			ModelMap model,ReviewMngVO vo2) throws Exception {
 		System.out.println("test");
@@ -124,25 +122,25 @@ public class ProductMngController {
 		model.addAttribute("list2", list);*/
 		
 //		리뷰 관련  			//		
-		return "/shop/user/product/EgovMngProductlist";
+		return "/shop/mng/product/EgovMngProductlist";
 	}
 //수정 형식 작성
-	@RequestMapping(value="/shop/product/EgovProductUpdateForm")
-	public String egovProductUpdateForm(ProductMngVO vo,  HttpServletRequest request,
+	@RequestMapping(value="/shop/mng/product/EgovMngProductUpdateForm")
+	public String egovMngProductUpdateForm(ProductMngVO vo,  HttpServletRequest request,
 			ModelMap model) throws Exception {
 		
-		System.out.println("EgovProductUpdateForm"+vo);
+		System.out.println("EgovMngProductUpdateForm"+vo);
 		
 		System.out.println("vo.getP_IDX => " + vo.getP_idx());
 	    vo = mngProductService.selectMngProductForm(vo);
-	    System.out.println("EgovProductUpdateForm"+vo);
+	    System.out.println("EgovMngProductUpdateForm"+vo);
 	    List<ProductMngVO> list = new ArrayList<ProductMngVO>();
 	    model.addAttribute("ProductVO",vo);
-	    return "/shop/user/product/EgovProductUpdateForm";
+	    return "/shop/mng/product/EgovMngProductUpdateForm";
 	}
 //수정하기 가능하도록	
-	@RequestMapping(value ="/shop/product/EgovProductUpdatePro", method = RequestMethod.POST)
-	public String egovProductUpdatePro(ProductMngVO vo, Model model) throws Exception{
+	@RequestMapping(value ="/shop/mng/product/EgovMngProductUpdatePro", method = RequestMethod.POST)
+	public String egovMngProductUpdatePro(ProductMngVO vo, Model model) throws Exception{
 		int result = mngProductService.updateMngProductPro(vo);
 		System.out.println("vo pname => " + vo.getP_name());
 		if (result > 0) {
@@ -152,27 +150,36 @@ public class ProductMngController {
 		}
 		model.addAttribute("vo");
 
-		return "forward:/shop/product/EgovProductUpdateForm.do";
+		return "forward:/shop/mng/product/EgovMngProductUpdateForm.do";
 
 	}
 	
-	@RequestMapping(value = "/shop/product/EgovProductInsertForm")
-	public String EgovProductInsertForm() {
-		return "/shop/user/product/EgovProductInsertForm";
+	@RequestMapping(value = "/shop/mng/product/EgovMngProductInsertForm")
+	public String EgovMngProductInsertForm() {
+		return "/shop/mng/product/EgovMngProductInsertForm";
 	}
 	
-	@RequestMapping(value = "/shop/product/EgovProductInsertPro", method = RequestMethod.POST)
-	public String EgovProductInsertPro(ProductMngVO vo,Model model, HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/shop/mng/product/EgovMngProductInsertPro", method = RequestMethod.POST)
+	public String EgovMngProductInsertPro(ProductMngVO vo,Model model, HttpServletRequest request) throws Exception {
 		System.out.println("INSERT");
 		HttpSession session = request.getSession();
 		String s_id = (String) session.getAttribute("S_ID");
 		System.out.println("s_id"+s_id);
 		System.out.println("INSERT");
 		vo.setS_id(s_id);
-		int result = mngProductService.insertMngProductPro(vo);
-		System.out.println("result => " + result);
+		mngProductService.insertMngProductPro(vo);
 		
-		return "redirect:/shop/product/EgovMngProductlist.do";
+		return "redirect:/shop/mng/product/EgovMngProductInsertForm.do";
+	}
+	
+	@RequestMapping(value = "/shop/mng/product/EgovMngProductDelete") 
+	public String EgovMngProductDelete(ProductMngVO vo, HttpServletRequest request)throws Exception {
+		String[] check = request.getParameterValues("check");
+		for (int i = 0; i < check.length; i++) {
+			vo.setP_idx(check[i]);
+			mngProductService.deleteMngProduct(vo);
+		}
+		return "redirect:/shop/mng/product/EgovMngProductlist.do";
 	}
 	
 	

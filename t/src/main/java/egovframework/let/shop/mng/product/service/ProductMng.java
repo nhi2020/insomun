@@ -25,7 +25,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @SuppressWarnings("serial")
 public class ProductMng implements Serializable {
 
-	private int p_idx;
+	private String p_idx;
 	private String s_id;
 	private String p_name;
 	private int p_price;
@@ -39,6 +39,14 @@ public class ProductMng implements Serializable {
 	private String p_status;
 	private String p_q;
 	private String a_id;
+	
+	public String getP_idx() {
+		return p_idx;
+	}
+
+	public void setP_idx(String p_idx) {
+		this.p_idx = p_idx;
+	}
 
 	public String getA_id() {
 		return a_id;
@@ -145,13 +153,7 @@ public class ProductMng implements Serializable {
 		this.p_q = p_q;
 	}
 
-	public int getP_idx() {
-		return p_idx;
-	}
 
-	public void setP_idx(int p_idx) {
-		this.p_idx = p_idx;
-	}
 
 	/**
 	 * toString 메소드를 대치한다.

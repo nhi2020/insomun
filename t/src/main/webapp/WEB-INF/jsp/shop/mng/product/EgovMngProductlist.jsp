@@ -3,22 +3,35 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ include file="../../inc/EgovShopTop.jsp" %>
+<%@ page import="egovframework.let.shop.mng.product.service.impl.ProductMngVO" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
-<title>입소문넷</title>
+<title>상품 관리 운영자 페이지입니다</title>
 
 </head>
-
+<script type="text/javascript">
+	function delMngProduct() {
+		
+		var check = confirm("정말 삭제하시겠습니까?");
+		if(chk) {
+			document.check.action="/shop/mng/product/EgovMngProductDelete.do";
+		document.check.submit();
+	}
+}	
+</script>
 <body>
 	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
-	
 
-	<input type="submit" value="등록" onclick="location.href='/shop/product/EgovProductInsertForm.do'"> &nbsp;
-	<input type="submit" value="삭제">
+
+
+<form name="check">
+<input type="button" value="등록" onclick="location.href='/shop/mng/product/EgovMngProductInsertForm.do'"> &nbsp;
+<input type="button" value="삭제" onclick="delMngProduct();">
+</form>
 
 	
  <div class="container-fluid">
@@ -31,16 +44,22 @@
 				
 				<p>
 					
-					<span><input type="checkbox" name="check">판매자 아이디: ${product_list.s_id }</span>
+					<span><input type="checkbox" name="check" id="check" value="${product_list.p_idx }">
+					<c:if test="${product.list.p_status eq 'Y'}">
+							삭제
+						</c:if>
+						<c:if test="${product.list.p_status eq 'N'}">
+							복구
+						</c:if>
+					판매자 아이디: ${product_list.s_id }</span>
 					<br/><span >가격: ${product_list.p_price }</span>
 					<br/><span >상태: ${product_list.p_status }</span>
 					<br/><span >재고 수량: ${product_list.p_q }</span>
 					<br/><span >업데이트된 날짜: ${product_list.p_moddate }</span>
-					<input type="button" value="수정" onclick="location.href='/shop/product/EgovProductUpdateForm.do?p_idx=${product_list.p_idx}'" >
+					<input type="button" value="수정" onclick="location.href='/shop/mng/product/EgovMngProductUpdateForm.do?p_idx=${product_list.p_idx}'" >
 					<%-- <c:if test=""></c:if> --%>
 				</p>				
 			</div>
-			
 			</c:forEach>
 		</div>
 	</div>
