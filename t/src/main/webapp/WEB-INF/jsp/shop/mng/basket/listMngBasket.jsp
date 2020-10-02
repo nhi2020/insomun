@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
+<%@ include file="../../inc/EgovShopTop.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,6 @@
 </head>
 
 <body>
-<%@ include file="../../inc/EgovShopTop.jsp" %>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
 
 <%

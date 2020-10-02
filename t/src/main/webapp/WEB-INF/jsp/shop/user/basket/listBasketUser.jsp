@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ include file="../../inc/EgovShopTop.jsp"%>
+
 <!DOCTYPE html PUBLIC>
 <html>
 <head>
@@ -16,7 +17,6 @@
 </head>
 
 <body>
-	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 	<script type="text/javascript">
 function updateUserBasketQty(index){

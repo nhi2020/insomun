@@ -55,8 +55,10 @@ public class BuyerMngController {
 	@RequestMapping(value = "/shop/mng/buyer/listMngBuyer")
 	public String listMngBuyer(@ModelAttribute("searchVO") BuyerMngVO vo, HttpServletRequest request, Model model, 
 			@RequestParam(value = "pageIndex", required=false, defaultValue="1") int pageIndex) {
-		vo.setPageIndex(pageIndex);
 		System.out.println("listMngBuyer pageIndex => " + vo.getPageIndex());
+		System.out.println("listMngBuyer searchWrd => " + vo.getSearchWrd());
+		System.out.println("listMngBuyer searchCnd => " + vo.getSearchCnd());
+		vo.setPageIndex(pageIndex);
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
 

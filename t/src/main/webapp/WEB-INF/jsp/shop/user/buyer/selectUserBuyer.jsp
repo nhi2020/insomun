@@ -16,7 +16,6 @@
 </head>
 
 <body>
-	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 
 	<div class="container-fluid">
