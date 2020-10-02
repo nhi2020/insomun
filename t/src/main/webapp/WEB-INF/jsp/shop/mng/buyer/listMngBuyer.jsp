@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
+<%@ include file="../../inc/EgovShopTop.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,6 @@
 </head>
 
 <body>
-	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 
 	<div class="container">
@@ -32,6 +32,7 @@
 					<th>등록일자</th>
 					<th>상태</th>
 					<th>상태 변경</th>
+					<th>로그인</th>
 				</tr>
 				<c:forEach items="${list }" var="sns_list" varStatus="status">
 					<tr>
@@ -45,6 +46,7 @@
 						<td>${sns_list.del_yn }</td>
 						<td><input type="submit" value="전환"
 							form="frm${status.index }" /></td>
+						<td><input class="btn btn-secondary" type="button" value="로그인" onclick="location.href='/shop/user/snsprofile/loginUserSnsprofileTestPro.do?sns_idx=${sns_list.sns_idx}'" /></td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -55,6 +57,18 @@
 						value="${paginationInfo.currentPageNo }">
 				</form>
 			</c:forEach>
+			<form action="/shop/mng/buyer/listMngBuyer.do">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="아이디"
+						aria-label="Username" aria-describedby="basic-addon1"
+						name="searchWrd">
+					<div class="input-group-append">
+						<input class="btn btn-secondary" type="submit" value="검색" />
+					</div>
+				</div>
+			<input type="hidden" name="pageIndex" value="${searchVO.pageIndex }" />
+			<input type="hidden" name="searchCnd" value="0" />
+			</form>
 			<div id="paging_div">
 				<ul class="paging_align">
 					<ui:pagination paginationInfo="${paginationInfo}" type="image"
