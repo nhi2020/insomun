@@ -77,6 +77,11 @@
 		})
 		
 		function fn_idChk(){
+			if($("#s_id").val()==""){
+				alert("아이디를 입력해주세요.");
+				$("#s_id").focus();
+				return false;
+			}
 			$.ajax({
 				url : "/shop/user/seller/sellerIdChk.do",
 				type : "post",
