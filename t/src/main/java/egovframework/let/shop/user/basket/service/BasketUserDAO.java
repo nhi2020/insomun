@@ -15,4 +15,6 @@ public interface BasketUserDAO {
 
 	int insertBasketUserPro(BasketUserVO vo);
 
+	int updateBasketUserQty(BasketUserVO vo);
+
 }

@@ -123,5 +123,12 @@ public class BasketUserController {
 		return "redirect:/shop/user/basket/listBasketUser.do";
 	}
 	
+	@RequestMapping("/shop/user/basket/updateBasketUserQty")
+	public String updateBasketUserQty(HttpServletRequest request, Model model, BasketUserVO vo){
+		System.out.println("BasketUserController updateBasketUserQty()");
+		int result = basketUserService.updateBasketUserQty(vo);
+		System.out.println("result => " + result);
+		return "redirect:/shop/user/basket/listBasketUser.do";
+	}
 
 }

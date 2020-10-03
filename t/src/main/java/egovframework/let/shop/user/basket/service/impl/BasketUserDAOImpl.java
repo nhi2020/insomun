@@ -58,6 +58,17 @@ public class BasketUserDAOImpl extends EgovAbstractDAO implements BasketUserDAO 
 		return result;
 	}
 
+	@Override
+	public int updateBasketUserQty(BasketUserVO vo) {
+		int result = 0;
+		try {
+			result = update("updateBasketUserQty", vo);
+		} catch (Exception e) {
+			System.out.println("BasketUserDAOImpl updateBasketUserQty Exception : " + e.getMessage());
+		}
+		return result;
+	}
+
 	
 
 }

@@ -15,4 +15,6 @@ public interface BasketUserService {
 
 	int insertBasketUserPro(BasketUserVO vo);
 
+	int updateBasketUserQty(BasketUserVO vo);
+
 }
