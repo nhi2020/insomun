@@ -13,6 +13,7 @@
 			FROM
 				PRODUCT
 			WHERE 1=1
+			order by rand() limit 8
 			
 		]]>
 	</select>

@@ -26,9 +26,9 @@ public class SellerUserDAO extends EgovAbstractDAO {
 	}
 
 
-	public SellerUserVO sellerinsertPro(SellerUserVO vo) {
+	public String sellerinsertPro(SellerUserVO vo) {
 		 
-		return (SellerUserVO) insert("EgovSellerDAO.sellerinsertPro",vo);
+		return (String) insert("EgovSellerDAO.sellerinsertPro",vo);
 	}
 
 
@@ -45,6 +45,7 @@ public class SellerUserDAO extends EgovAbstractDAO {
 		return count;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SellerMngVO> selectSellerUserList(SellerMngVO vo) {
 		List<SellerMngVO> SelectSellerUserList = null;
 		try {
@@ -58,6 +59,11 @@ public class SellerUserDAO extends EgovAbstractDAO {
 	public SellerUserVO sellerSearchIdPro(SellerUserVO vo) {
 		
 		return (SellerUserVO) select("EgovSellerDAO.sellerSearchIdPro",vo);
+	}
+
+	public int sellerIdChk(SellerUserVO vo) {
+		int result = (int) select("EgovSellerDAO.sellerIdChk",vo);
+		return result;
 	}
 
 

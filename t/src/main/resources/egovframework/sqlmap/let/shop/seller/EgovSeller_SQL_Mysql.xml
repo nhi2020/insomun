@@ -65,15 +65,38 @@
 		]]>
 	</select>
 	<insert id="EgovSellerDAO.sellerinsertPro" parameterClass="SellerVO">
+	<selectKey resultClass="java.lang.String" keyProperty="s_idx">
+		SELECT 
+			CASE 
+				WHEN 
+					MAX(S_IDX) IS NULL 
+				THEN 
+					1 
+				ELSE
+					MAX(S_IDX)+1 
+				END
+		FROM
+			SELLER
+	</selectKey>
 		<![CDATA[  
-			INSERT INTO SELLER(S_ID, S_NICKNAME,S_PASS,S_EMAIL,S_STATUS,S_PHONE,S_ADDR,S_GENDER,S_REGDATE,S_BIRTH,S_ACCOUNT)
-			value(#s_id#,#s_nickname#,#s_pass#,#s_email#,1,#s_phone#,#s_addr#,#s_gender#,now(),#s_birth#,#s_account#)
+			INSERT INTO SELLER(S_ID,S_IDX, S_NICKNAME,S_PASS,S_EMAIL,S_STATUS,S_PHONE,S_ADDR,S_GENDER,S_REGDATE,S_BIRTH,S_ACCOUNT)
+			value(#s_id#,#s_idx#,#s_nickname#,#s_pass#,#s_email#,1,#s_phone#,#s_addr#,#s_gender#,now(),#s_birth#,#s_account#)
 		]]>
 	</insert>
 	<select id="EgovSellerDAO.sellerSearchIdPro"  parameterClass="SellerVO" resultClass="SellerVO">
 		<![CDATA[  
 			SELECT S_ID
 			FROM SELLER
+			WHERE 1=1
+			AND S_ID = #s_id#
+		]]>
+	</select>
+	<select id="EgovSellerDAO.sellerIdChk"  parameterClass="SellerVO" resultClass="int">
+		<![CDATA[  
+			SELECT
+				COUNT(*)
+			FROM
+				SELLER
 			WHERE 1=1
 			AND S_ID = #s_id#
 		]]>

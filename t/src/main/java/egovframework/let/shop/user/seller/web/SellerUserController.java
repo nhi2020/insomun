@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import egovframework.let.shop.mng.admin.service.impl.AdminVO;
 import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
@@ -138,9 +139,8 @@ public class SellerUserController {
 	@RequestMapping(value="/shop/user/seller/sellerinsertPro.do", method = RequestMethod.POST )
 	public String sellerinsertPro(SellerUserVO vo, Model model ){
 		System.out.println("회원가입3");
-		
-		vo = SellerService.sellerinsertPro(vo);
-		
+		String result = SellerService.sellerinsertPro(vo);
+	
 		return "redirect:/shop/user/EgovUserLoginForm.do";
 	}
 	@RequestMapping(value="/shop/user/seller/sellerIdAgreeFrom.do")
@@ -225,5 +225,15 @@ public class SellerUserController {
 			
 		
 		return "/shop/user/seller/sellerFind/sellerPassResetForm";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/shop/user/seller/sellerIdChk.do",method = RequestMethod.POST)
+	public int sellerIdChk(SellerUserVO vo){
+			
+		int result = SellerService.sellerIdChk(vo);
+		
+		return result;
 	}
 }

@@ -40,7 +40,7 @@ public class SellerUserSerivceImpl extends EgovAbstractServiceImpl implements Se
 
 
 	@Override
-	public SellerUserVO sellerinsertPro(SellerUserVO vo) {
+	public String sellerinsertPro(SellerUserVO vo) {
 		// TODO Auto-generated method stub
 		return SellerDAO.sellerinsertPro(vo);
 	}
@@ -70,6 +70,14 @@ public class SellerUserSerivceImpl extends EgovAbstractServiceImpl implements Se
 	public SellerUserVO sellerSearchIdPro(SellerUserVO vo) {
 		
 		return SellerDAO.sellerSearchIdPro(vo);
+	}
+
+
+
+	@Override
+	public int sellerIdChk(SellerUserVO vo) {
+		int result = SellerDAO.sellerIdChk(vo);
+		return result;
 	}
 
 

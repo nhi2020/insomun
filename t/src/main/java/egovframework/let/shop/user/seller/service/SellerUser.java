@@ -20,10 +20,19 @@ public class SellerUser implements Serializable {
 	private String s_regdate;
 	private String s_birth;
 	private String s_account;
+	private String s_idx;
 	
 	
 	
 	
+	
+
+	public String getS_idx() {
+		return s_idx;
+	}
+	public void setS_idx(String s_idx) {
+		this.s_idx = s_idx;
+	}
 	public String getS_moddate() {
 		return s_moddate;
 	}

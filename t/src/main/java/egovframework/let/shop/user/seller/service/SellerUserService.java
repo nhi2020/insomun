@@ -18,13 +18,15 @@ public interface SellerUserService {
 
 	public List<SellerUserVO> selectListLoginCheck(SellerUserVO sellervo)throws Exception;
 
-	public SellerUserVO sellerinsertPro(SellerUserVO vo);
+	public String sellerinsertPro(SellerUserVO vo);
 
 	public int selectSellerUserListCnt(SellerMngVO vo);
 
 	public List<SellerMngVO> selectSellerUserList(SellerMngVO vo);
 
 	public SellerUserVO sellerSearchIdPro(SellerUserVO vo);
+
+	public int sellerIdChk(SellerUserVO vo);
 
 
 }
