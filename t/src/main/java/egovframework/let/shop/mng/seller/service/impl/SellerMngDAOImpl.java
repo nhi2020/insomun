@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import egovframework.let.shop.mng.seller.service.SellerMngDAO;
+import egovframework.let.shop.user.seller.service.impl.SellerUserVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
 @Repository("SellerMngDAO")
@@ -68,7 +69,17 @@ public class SellerMngDAOImpl extends EgovAbstractDAO implements SellerMngDAO {
 			System.out.println("updateMngSellerStateChange Exception" + e.getMessage());
 		}
 		return result;
-	}
+	}/*
 
+	@Override
+	public SellerMngVO InsertMngSellerPro(SellerMngVO vo) {
+		return (SellerMngVO) insert("SellerMngDAO.InsertMngSellerPro",vo);	}
+*/
+
+/*	@Override
+	public int InsertMngSellerPro(SellerMngVO vo) {
+		int result =(Integer) insert("SellerMngDAO.InsertMngSellerPro", vo);	
+		return result;
+	}*/
 
 }
