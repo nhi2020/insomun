@@ -15,4 +15,5 @@ public interface SellerMngService {
 	int sellerUpdate(SellerMngVO vo);
 
 	int updateMngSellerStateChange(SellerMngVO vo);
+
 }

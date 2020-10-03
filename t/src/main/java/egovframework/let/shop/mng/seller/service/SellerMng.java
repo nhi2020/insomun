@@ -5,6 +5,7 @@ import java.sql.Date;
 public class SellerMng {
 
 	private String s_id;
+	private String s_idx;
 	private String s_nickname;
 	private String s_pass;
 	private String s_email;
@@ -23,6 +24,12 @@ public class SellerMng {
 	}
 	public void setS_id(String s_id) {
 		this.s_id = s_id;
+	}
+	public String getS_idx() {
+		return s_idx;
+	}
+	public void setS_idx(String s_idx) {
+		this.s_idx = s_idx;
 	}
 	public String getS_nickname() {
 		return s_nickname;

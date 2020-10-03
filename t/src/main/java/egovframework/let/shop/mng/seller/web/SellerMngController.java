@@ -118,7 +118,5 @@ public class SellerMngController {
 		String pageIndex = Integer.toString(vo.getPageIndex());
 		return "redirect:/shop/mng/seller/listMngSeller.do?pageIndex=" + pageIndex;
 	}
-
-	
 	
 }
