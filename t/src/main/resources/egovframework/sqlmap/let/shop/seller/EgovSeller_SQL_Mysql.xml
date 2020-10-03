@@ -310,4 +310,32 @@
 						END
 		WHERE s_id = #s_id#
 	</update>
+	<!-- 
+		<insert id="SellerMngDAO.InsertMngSellerPro" parameterClass="SellerMngVO">
+		<![CDATA[  
+			INSERT INTO SELLER(S_ID, S_IDX, S_NICKNAME,S_PASS,S_EMAIL,S_STATUS,S_PHONE,S_ADDR,S_GENDER,S_MODDATE,S_REGDATE,S_BIRTH,S_ACCOUNT,S_ACCOUNT_N)
+			value(#s_id#,99,#s_nickname#,#s_pass#,#s_email#,#s_status#,#s_phone#,#s_addr#,#s_gender#,now(),now(),#s_birth#,#s_account#,#s_account_n#)
+		]]>
+	</insert>
+	 -->
+	 
+	<!--  <insert id="SellerMngDAO.InsertMngSellerPro" parameterClass="SellerMngVO" >
+ 	<selectKey resultClass="int" keyProperty="p_idx">
+ 		SELECT 
+			CASE 
+				WHEN 
+					MAX(S_IDX) IS NULL 
+				THEN 
+					1 
+				ELSE
+					MAX(S_IDX)+1 
+				END
+		FROM
+			PRODUCT
+ 	</selectKey>
+ 		<![CDATA[
+ 			INSERT INTO SELLER(S_ID, S_IDX, S_NICKNAME,S_PASS,S_EMAIL,S_STATUS,S_PHONE,S_ADDR,S_GENDER,S_MODDATE,S_REGDATE,S_BIRTH,S_ACCOUNT,S_ACCOUNT_N)
+			value(#s_id#,#p_idx#,#s_nickname#,#s_pass#,#s_email#,#s_status#,#s_phone#,#s_addr#,#s_gender#,now(),now(),#s_birth#,#s_account#,#s_account_n#)
+			]]>
+ 	</insert> -->
 </sqlMap>

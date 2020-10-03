@@ -29,6 +29,7 @@
 <div class="container">
 		<div class="row">
 
+ <input type="button" value="등록" onclick="location.href='/shop/mng/seller/InsertMngSellerForm.do'"> 
 			<table class="table mx-auto">
 				<tr>
 					<th>체크박스</th>

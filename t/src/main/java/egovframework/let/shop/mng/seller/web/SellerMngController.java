@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import egovframework.let.shop.mng.buyer.service.impl.BuyerMngVO;
+import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
 import egovframework.let.shop.mng.seller.service.SellerMngService;
 import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
@@ -119,4 +121,16 @@ public class SellerMngController {
 		return "redirect:/shop/mng/seller/listMngSeller.do?pageIndex=" + pageIndex;
 	}
 	
+	@RequestMapping("/shop/mng/seller/InsertMngSellerForm.do")
+	public String InsertMngSellerForm() {
+		return "/shop/mng/seller/InsertMngSellerForm";
+	}/*
+	@RequestMapping(value = "/shop/mng/seller/InsertMngSellerPro", method = RequestMethod.POST)
+	public String InsertMngSellerPro(SellerMngVO vo,Model model, HttpServletRequest request) throws Exception {
+		System.out.println("INSERT");
+		String s_idx = (String) request.getAttribute("s_idx");
+		vo.setS_idx(s_idx); 
+		sellerService.InsertMngSellerPro(vo);
+		return "redirect:/shop/mng/seller/listMngSeller.do";
+	}*/
 }
