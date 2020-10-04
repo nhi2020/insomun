@@ -18,6 +18,15 @@
 			})
 			
 			$("#submit").on("click", function(){
+				//이메일 정규식
+				var emailAdd1 = document.getElementById('email1').value; 
+	               var emailAdd2 = document.getElementById('email2').value;
+
+	               var emailAddress = emailAdd1 + "@" + emailAdd2;
+	               var eregExp = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+	              
+	               var pregExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+
 				if($("#s_id").val()==""){
 					alert("아이디를 입력해주세요.");
 					$("#s_id").focus();
@@ -43,21 +52,43 @@
 					$("#s_nickname").focus();
 					return false;
 				}
-				if($("#s_addr").val()==""){
-					alert("주소을 입력해주세요.");
-					$("#s_addr").focus();
+				if($("#sample6_address").val()==""){
+					alert("주소를 입력해주세요.");
+					$("#sample6_address").focus();
 					return false;
 				}
-				if($("#s_email").val()==""){
+				if($("#sample6_detailAddress").val()==""){
+					alert("상세주소를 입력해주세요.");
+					$("#sample6_detailAddress").focus();
+					return false;
+				}
+				if($("#email1").val()==""){
 					alert("이메일을 입력해주세요.");
-					$("#s_email").focus();
+					$("#email1").focus();
 					return false;
 				}
+				if($("#email2").val()==""){
+					alert("이메일을 입력해주세요.");
+					$("#email2").focus();
+					return false;
+					}
+				if ( !emailAddress.match(eregExp) ) {
+	            	   alert("이메일형식이 맞지 않습니다.");
+	            	   $("#email2").focus();
+	            	 return false;
+	               } 
+				
 				if($("#s_phone").val()==""){
 					alert("핸드폰 번호을 입력해주세요.");
 					$("#s_phone").focus();
 					return false;
 				}
+				if(!pregExp.test($("input[id='s_phone']").val())) {            
+					alert("핸드폰 번호을 형식에 맞게.");
+					$("#s_phone").focus();
+		            return false;
+				}
+
 				if($("#s_birth").val()==""){
 					alert("생년월일을 입력해주세요.");
 					$("#s_birth").focus();
@@ -73,6 +104,7 @@
 					alert("중복된 아이디입니다.");
 					return false;
 				}
+			
 			});
 		})
 		
@@ -101,37 +133,79 @@
 			})
 		}
 	</script>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- <script>
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+        }
+    }).open();
+</script> -->
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+             
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+              /*   document.getElementById('sample6_postcode').value = data.zonecode; */
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
+
 </head>
 <body>
+
+
 <div>
 	<div class="container">
 		<div class="row justify-content-center">
 		
 		<!-- <form action="/shop/user/EgovUserLoginForm.do" name="frm" method="post"> -->
 			<form action="/shop/user/seller/sellerinsertPro.do" name="frm" method="post">
+			<input type="hidden" value="" name="s_addr">
 					<h2>회원가입 </h2>
 					<div class="form-group">
 							<!-- <label for="id">아이디</label> --><div>
-							<input type="text" id="s_id" class="form-control" name="s_id" placeholder="아이디">
-							<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
+							<input type="text" id="s_id" name="s_id" placeholder="아이디">
+							<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button><br>
 							
-							<input type="password" class="form-control" id="s_pass" name="s_pass" placeholder="비밀번호">
-							<input type="password" class="form-control" id="s_pass2" name="s_pass2" placeholder="비밀번호재확인">
-							<input type="text" id="s_nickname" class="form-control" name="s_nickname" placeholder="닉네임">
-							 <input type="text" id="s_addr" name="s_addr" placeholder="주소">
-							<input type="text" class="form-control" id="s_email" name="s_email" placeholder="이메일">
-							<input type="text" class="form-control" id="s_phone" name="s_phone" placeholder="핸드폰 번호">
-							<input type="date" class="form-control" id="s_birth" name="s_birth" placeholder="생년월일">
-							<input type="text" class="form-control" id="s_account" name="s_account" placeholder="계좌번호">
+							<input type="password"  id="s_pass" name="s_pass" placeholder="비밀번호"><br>
+							<input type="password"  id="s_pass2" name="s_pas2s" placeholder="비밀번호 재확인"><br>
+							<input type="text"  name="s_nickname" placeholder="닉네임"><br>
+							<!-- <input type="text" id="s_addr" name="s_addr" placeholder="주소"> -->
+							<input type="text" id="sample6_address" name="addr1" placeholder="주소" readonly>
+							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+							<input type="text" id="sample6_detailAddress" name="addr2" placeholder="상세주소"><br>
+							<input type='text' id='email1' name="email1"/> @ <input type='text' id='email2' name="email2"/><br>
+							<input type="text"  id="s_phone" name="s_phone" placeholder="01X-XXXX-XXXX"><br>
+							<input type="date"  id="s_birth" name="s_birth" placeholder="생년월일"><br>
+							<input type="text"  id="s_account" name="s_account" placeholder="계좌번호"><br>
 					<label class="form-check-label" for="gender"> 
-							<input type="radio" class="form-check-input" id="s_gender" name="s_gender" value="남자" checked="checked">남
+							<input type="radio" class="form-check-input" id="s_gender" name="s_gender" value="남자" checked="checked">남&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" class="form-check-input" id="s_gender" name="s_gender" value="여자">여
 						</label>
 					</div>
 					<div class="form-check-inline">
-					<label class="form-check-label" for="gender"> 
-						<input type="radio" class="form-check-input" id="s_gender" name="s_gender" value="여자">여
-					</label> 
-					
 						<input class="btn btn-success" type="submit" id="submit" value="회원가입">
 					</div>
 				</div>
