@@ -17,6 +17,7 @@ import egovframework.let.shop.mng.buyer.service.impl.BuyerMngVO;
 import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
 import egovframework.let.shop.mng.seller.service.SellerMngService;
 import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
+import egovframework.let.shop.user.seller.service.impl.SellerUserVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -124,13 +125,17 @@ public class SellerMngController {
 	@RequestMapping("/shop/mng/seller/InsertMngSellerForm.do")
 	public String InsertMngSellerForm() {
 		return "/shop/mng/seller/InsertMngSellerForm";
-	}/*
-	@RequestMapping(value = "/shop/mng/seller/InsertMngSellerPro", method = RequestMethod.POST)
-	public String InsertMngSellerPro(SellerMngVO vo,Model model, HttpServletRequest request) throws Exception {
-		System.out.println("INSERT");
-		String s_idx = (String) request.getAttribute("s_idx");
-		vo.setS_idx(s_idx); 
-		sellerService.InsertMngSellerPro(vo);
+	}
+	
+	@RequestMapping(value="/shop/mng/seller/InsertMngSellerPro.do", method = RequestMethod.POST )
+	public String InsertMngSellerPro(SellerMngVO vo, Model model ){
+		String addr1 =vo.getAddr1();
+		String addr2 =vo.getAddr2();
+		String S_addr= addr1 + addr2; 
+		System.out.println("S_ADDR" + S_addr);
+		vo.setS_addr(S_addr);
+		String result = sellerService.InsertMngSellerPro(vo);
+	
 		return "redirect:/shop/mng/seller/listMngSeller.do";
-	}*/
+	}
 }

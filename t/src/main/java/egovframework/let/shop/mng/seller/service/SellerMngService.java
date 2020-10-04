@@ -15,9 +15,7 @@ public interface SellerMngService {
 	int sellerUpdate(SellerMngVO vo);
 
 	int updateMngSellerStateChange(SellerMngVO vo);
-/*
-	SellerMngVO InsertMngSellerPro(SellerMngVO vo);*/
+	
+	String InsertMngSellerPro(SellerMngVO vo);
 
-	/*int InsertMngSellerPro(SellerMngVO vo);
-*/
 }

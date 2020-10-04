@@ -44,19 +44,12 @@ public class SellerMngServiceImpl extends EgovAbstractServiceImpl implements Sel
 	@Override
 	public int updateMngSellerStateChange(SellerMngVO vo) {
 		int result = SellerDAO.updateMngSellerStateChange(vo);
-		return 0;
+		return result;
 	}
-/*
+	
 	@Override
-	public SellerMngVO InsertMngSellerPro(SellerMngVO vo) {
+	public String InsertMngSellerPro(SellerMngVO vo) {
 		return SellerDAO.InsertMngSellerPro(vo);
 	}
-*/
-/*
-	@Override
-	public int InsertMngSellerPro(SellerMngVO vo) {
-		int result = SellerDAO.InsertMngSellerPro(vo);
-		return result;
-	}*/
 
 }

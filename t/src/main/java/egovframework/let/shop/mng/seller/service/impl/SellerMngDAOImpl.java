@@ -69,17 +69,10 @@ public class SellerMngDAOImpl extends EgovAbstractDAO implements SellerMngDAO {
 			System.out.println("updateMngSellerStateChange Exception" + e.getMessage());
 		}
 		return result;
-	}/*
+	}
 
 	@Override
-	public SellerMngVO InsertMngSellerPro(SellerMngVO vo) {
-		return (SellerMngVO) insert("SellerMngDAO.InsertMngSellerPro",vo);	}
-*/
-
-/*	@Override
-	public int InsertMngSellerPro(SellerMngVO vo) {
-		int result =(Integer) insert("SellerMngDAO.InsertMngSellerPro", vo);	
-		return result;
-	}*/
-
+	public String InsertMngSellerPro(SellerMngVO vo) {
+		return (String) insert("InsertMngSellerPro", vo);
+	}
 }
