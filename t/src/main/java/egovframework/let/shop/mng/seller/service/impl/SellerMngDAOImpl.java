@@ -75,4 +75,9 @@ public class SellerMngDAOImpl extends EgovAbstractDAO implements SellerMngDAO {
 	public String InsertMngSellerPro(SellerMngVO vo) {
 		return (String) insert("InsertMngSellerPro", vo);
 	}
+
+/*	@Override
+	public int delMngSeller(SellerMngVO vo) {
+		return update("ck.ckupdateMngSellerStateChange",vo); 
+	}*/
 }

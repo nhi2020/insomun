@@ -18,4 +18,6 @@ public interface SellerMngService {
 	
 	String InsertMngSellerPro(SellerMngVO vo);
 
+	/*int delMngSeller(SellerMngVO vo);*/
+
 }

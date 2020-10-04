@@ -240,7 +240,6 @@
 		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
 				<![CDATA[	S_ID LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 		</isEqual>
-
 	</select>
  	
  	<select id="selectSellerMngList" resultClass="SellerMngVO">
@@ -330,4 +329,12 @@
 			value(#s_id#,#s_idx#,#s_nickname#,#s_pass#,#s_email#,'m.jpg','Y',#s_phone#,#s_addr#,#s_gender#,now(),#s_birth#,#s_account#,#s_account_n#)
 		]]>
 	</insert>
+	
+<!-- 	<update id="ck.ckupdateMngSellerStateChange" parameterClass="SellerMngVO">
+	 		<![CDATA[
+				UPDATE SELLER SET 
+					S_STATUS = 'Y'
+				WHERE S_IDX = #{s_idx} 
+	 		]]>
+	</update> -->
 </sqlMap>

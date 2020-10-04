@@ -70,7 +70,7 @@
 				
 				<c:forEach items="${list }" var="s_list" varStatus="status">
 					<tr>
-						<td><input type="checkbox" name="chk" id="chk" value="${s_list.s_id }"></td>
+						<td><input type="checkbox" name="chk" id="chk" value="${s_list.s_idx }"></td>
 						<td>${s_list.s_idx }</td>
 						<td><a href="/shop/mng/seller/updateMngSellerForm.do?s_id=${s_list.s_id }">${s_list.s_id }</a></td>
 						<td>${s_list.s_nickname }</td>

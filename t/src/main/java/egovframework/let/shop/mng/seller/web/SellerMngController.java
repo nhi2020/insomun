@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import egovframework.let.shop.mng.buyer.service.impl.BuyerMngVO;
 import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
+import egovframework.let.shop.mng.review.service.ReviewMngVO;
 import egovframework.let.shop.mng.seller.service.SellerMngService;
 import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
 import egovframework.let.shop.user.seller.service.impl.SellerUserVO;
@@ -138,4 +139,16 @@ public class SellerMngController {
 	
 		return "redirect:/shop/mng/seller/listMngSeller.do";
 	}
+	
+	/*@RequestMapping(name = "/shop/mng/seller/delMngSeller.do")
+	public String delMngSeller(SellerMngVO mngVO, HttpServletRequest request) throws Exception{
+		String[] chk = request.getParameterValues("chk");
+		for (int j = 0; j < chk.length; j++) {
+			System.out.println("chk : " +chk[j]);
+			mngVO.setS_idx(chk[j]);
+			sellerService.delMngSeller(mngVO);
+		}
+		
+		return "redirect:/shop/mng/seller/listMngSeller.do";
+	}	*/
 }
