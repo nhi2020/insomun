@@ -25,6 +25,9 @@ public class SellerUser implements Serializable {
 	private String addr2;
 	private String email2;
 	private String email1;
+	private String s_account_n;
+	
+	
 	
 	
 	
@@ -32,6 +35,12 @@ public class SellerUser implements Serializable {
 	
 	
 
+	public String getS_account_n() {
+		return s_account_n;
+	}
+	public void setS_account_n(String s_account_n) {
+		this.s_account_n = s_account_n;
+	}
 	public String getEmail2() {
 		return email2;
 	}

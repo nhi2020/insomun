@@ -79,8 +79,8 @@
 			SELLER
 	</selectKey>
 		<![CDATA[  
-			INSERT INTO SELLER(S_ID,S_IDX, S_NICKNAME,S_PASS,S_EMAIL,S_STATUS,S_PHONE,S_ADDR,S_GENDER,S_REGDATE,S_BIRTH,S_ACCOUNT)
-			value(#s_id#,#s_idx#,#s_nickname#,#s_pass#,#s_email#,'Y',#s_phone#,#s_addr#,#s_gender#,now(),#s_birth#,#s_account#)
+			INSERT INTO SELLER(S_ID,S_IDX, S_NICKNAME,S_PASS,S_EMAIL,S_STATUS,S_PHONE,S_ADDR,S_GENDER,S_REGDATE,S_BIRTH,S_ACCOUNT,S_ACCOUNT_N)
+			value(#s_id#,#s_idx#,#s_nickname#,#s_pass#,#s_email#,'Y',#s_phone#,#s_addr#,#s_gender#,now(),#s_birth#,#s_account#,#s_account_n#)
 		]]>
 	</insert>
 	<select id="EgovSellerDAO.sellerSearchIdPro"  parameterClass="SellerVO" resultClass="SellerVO">

@@ -139,6 +139,7 @@ public class SellerUserController {
 	@RequestMapping(value="/shop/user/seller/sellerinsertPro.do", method = RequestMethod.POST )
 	public String sellerinsertPro(SellerUserVO vo, Model model ){
 		System.out.println("회원가입3");
+		System.out.println("은행선택"+vo.getS_account_n());
 		String addr1 =vo.getAddr1();
 		String addr2 =vo.getAddr2();
 		String S_addr= addr1 + addr2; 

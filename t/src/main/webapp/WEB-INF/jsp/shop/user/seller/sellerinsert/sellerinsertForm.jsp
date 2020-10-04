@@ -199,6 +199,15 @@
 							<input type='text' id='email1' name="email1"/> @ <input type='text' id='email2' name="email2"/><br>
 							<input type="text"  id="s_phone" name="s_phone" placeholder="01X-XXXX-XXXX"><br>
 							<input type="date"  id="s_birth" name="s_birth" placeholder="생년월일"><br>
+							<select name="s_account_n">
+								<option value="null">은행선택</option>
+								<option value="신한은행(구)">신한은행(구)</option>
+								<option value="신한은행(신)">신한은행(신)</option>
+								<option value="국민은행">국민은행</option>
+								<option value="우리은행">우리은행</option>
+								<option value="기업은행">기업은행</option>
+								<option value="하나은행">하나은행</option>
+							</select><br>
 							<input type="text"  id="s_account" name="s_account" placeholder="계좌번호"><br>
 					<label class="form-check-label" for="gender"> 
 							<input type="radio" class="form-check-input" id="s_gender" name="s_gender" value="남자" checked="checked">남&nbsp;&nbsp;&nbsp;&nbsp;
