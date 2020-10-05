@@ -30,9 +30,9 @@ public interface ProductMngService {
 
 	public ProductMngVO selectMngProductForm(ProductMngVO vo) throws Exception;
 
-	public int updateMngProductPro(ProductMngVO vo);
+	public int updateMngProductPro(ProductMngVO vo)throws Exception;
 
-	public int insertMngProductPro(ProductMngVO vo);
+	public int insertMngProductPro(ProductMngVO vo)throws Exception;
 	
 	public int deleteMngProduct(ProductMngVO vo) throws Exception;
 }

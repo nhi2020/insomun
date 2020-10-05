@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
-<title>입소문넷</title>
+<title>유저용 상품 관리 페이지입니다</title>
 
 </head>
 
@@ -17,26 +17,29 @@
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 	
 
-	<input type="submit" value="등록" onclick="location.href='/shop/user/product/EgovUserProductInsertForm.do'"> &nbsp;
-	<input type="submit" value="삭제">
-
+	
+	
+	
+<form action="/shop/user/product/EgovUserProductDelete.do">
+<input type="button" value="등록" onclick="location.href='/shop/user/product/EgovUserProductInsertForm.do'"> &nbsp;
+<input type="submit" value="삭제">
 	
  <div class="container-fluid">
 	<div class="container text-center">
 	    <div class="row">
-	  		<c:forEach var="product_list" items="${list}">
+	  		<c:forEach var="productuser_list" items="${list}">
 			<div class="col-3">
 					
-					<img src="./images/main/photo/${product_list.p_image}" width="270" height="385"/>
-				
-				<p>
+					<img src="./images/main/photo/${productuser_list.p_image}" width="270" height="270"/>
 					
-					<input type="checkbox" name="check">
-					<br/><span >가격: ${product_list.p_price }</span>
-					<br/><span >상태: ${product_list.p_status }</span>
-					<br/><span >재고 수량: ${product_list.p_q }</span>
-					<br/><span >업데이트된 날짜: ${product_list.p_moddate }</span>
-					<input type="button" value="수정" onclick="location.href='/shop/user/product/EgovUserProductUpdateForm.do?p_idx=${product_list.p_idx}'" >
+					<span >
+					<input type="checkbox" name="check" id="check" value="${productuser_list.p_idx }">
+					상품명: ${productuser_list.p_name }</span>
+					<br/><span >가격: ${productuser_list.p_price }</span>
+					<br/><span >상태: ${productuser_list.p_status }</span>
+					<br/><span >재고 수량: ${productuser_list.p_q }</span>
+					<br/><span >업데이트된 날짜: ${productuser_list.p_moddate }</span>
+					<input type="button" value="수정" onclick="location.href='/shop/user/product/EgovUserProductUpdateForm.do?p_idx=${productuser_list.p_idx}'" >
 					<%-- <c:if test=""></c:if> --%>
 				</p>				
 			</div>

@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
-<title>등록 페이지</title>
+<title>운영자 상품 등록 페이지</title>
 </head>
 
 <body>
@@ -21,68 +21,75 @@
 	<div class="container text-center">
 	    <div class="row">
 			<form action="/shop/mng/product/EgovMngProductInsertPro.do" method="post">
-				 	<img src="./images/main/photo/${ProductVO.p_image}" width="270" height="385"/>
+				 	<img src="./images/main/photo/" width="270" height="385"/> 
 						<p>
 					<table class="table">
-						<input type="hidden" name="s_id"  value="${ProductVO.s_id }  "/>
-					 <tr>
-						<th>상품명</th>
+					<input type="hidden" name="p_idx" id="p_idx" >
+					<input type="hidden" name="a_id" id="a_id">
+					<tr>
+						<th>판매자 아이디</th>				
 						<td>
-						<input type="text" name="p_name"value="${ProductVO.p_name } "/>
+						<input type="text" name="s_id" id="s_id"/>
+						</td>
+					</tr>	
+					 <tr>
+						<th>상품명</th>				
+						<td>
+						<input type="text" name="p_name" id="p_name"/>
 						</td>
 					</tr>
 					<tr>
 						<th>가격</th>
 						<td>
-						<input type="text" name="p_price" value="${ProductVO.p_price }"/>
+						<input type="text" name="p_price" id="p_price" />
 						</td>
 					</tr>
 				 	<tr>
 						<th>등록날짜</th>
 						<td>
-						<input type="date" name="p_regdate"  value="${ProductVO.p_regdate }"/>
+						<input type="date" name="p_regdate" id="p_regdate" />
 						</td>
 					</tr>
 					<tr>
  					<th>업데이트된 날짜</th>
 						<td>
-						<input type="date" name="p_moddate"  value="${ProductVO.p_moddate }"/>
+						<input type="date" name="p_moddate" id="p_moddate" />
 						</td>
 					</tr>
 						<tr>
 						<th>제품 내용</th>
 						<td>
-						<textarea rows="5" cols="50" name="p_content" id="p_content">${ProductVO.p_content } </textarea>
+						<textarea rows="5" cols="50" name="p_content" id="p_content"></textarea>
 						</td>
 					</tr>
 					<tr>
 						<th>해시태그</th>
 						<td>
-						<input type="text" name="p_tage" value="${ProductVO.p_tage }"/>
+						<input type="text" name="p_tage" id="p_tage"/>
 						</td>
 					</tr>
 					<tr>
 						<th>판매시작일</th>
 						<td>
-						<input type="date" name="p_sdate"  value="${ProductVO.p_sdate } "/>
+						<input type="date" name="p_sdate" id="p_sdate" />
 						</td>
 					</tr>
 					<tr>
 						<th>판매종료일</th>
 						<td>
-						<input type="date" name="p_edate" value="${ProductVO.p_edate }" />
+						<input type="date" name="p_edate"  id="p_edate" />
 						</td>
 					</tr>
 					<tr>
 						<th>상태</th>
 						<td>
-						<input type="text" name="p_status" value="${ProductVO.p_status }"/>
+						<input type="text" name="p_status" id="p_status" />
 						</td>
 					</tr>
 					<tr>
 						<th>재고 수량</th>
 						<td>
-						<input type="text" name="p_q"  value="${ProductVO.p_q }"/>
+						<input type="text" name="p_q" id="p_q" />
 						</td>
 					</tr>  
 					<tr> 

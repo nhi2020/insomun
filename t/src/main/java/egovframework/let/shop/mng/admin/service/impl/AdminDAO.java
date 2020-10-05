@@ -39,6 +39,11 @@ public class AdminDAO extends EgovAbstractDAO{
 
 	public int adminDelete(AdminVO adminVO) {
 		int result = 1;
+		try {
+			result = delete("AdminDAO.adminDelete",adminVO);
+		} catch (Exception e) {
+			System.out.println();
+		}
 		return result;
 	}
 
@@ -70,6 +75,7 @@ public class AdminDAO extends EgovAbstractDAO{
 		}
 		return result;
 	}
+   
 
 	
 

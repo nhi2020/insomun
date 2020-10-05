@@ -300,7 +300,7 @@
 		<isEqual prepend="AND" property="searchCnd" compareValue="1">
 				<![CDATA[	SNSCODE LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 		</isEqual>
-		ORDER BY S_REGDATE DESC
+		ORDER BY S_IDX DESC
 		LIMIT #recordCountPerPage# OFFSET #firstIndex#
 	</select>
 	
@@ -378,11 +378,15 @@
 		]]>
 	</insert>
 	
-<!-- 	<update id="ck.ckupdateMngSellerStateChange" parameterClass="SellerMngVO">
-	 		<![CDATA[
-				UPDATE SELLER SET 
-					S_STATUS = 'Y'
-				WHERE S_IDX = #{s_idx} 
-	 		]]>
-	</update> -->
+   	<update id="ck.ckupdateMngSellerStateChange" parameterClass="SellerMngVO">
+	 		UPDATE SELLER
+		SET 
+			S_STATUS = 
+				CASE 
+					WHEN S_STATUS = 'Y'
+						THEN 'N'
+						ELSE 'Y'
+					END
+		WHERE S_IDX = #s_idx#
+	</update>   
 </sqlMap>

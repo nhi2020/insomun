@@ -16,12 +16,11 @@ public interface AdminService {
 
 	public List<AdminVO> selectList(AdminVO vo);
 
-	public int delAdminControl(AdminVO adminVO);
-
 	public AdminVO adminSelect(AdminVO adminVO);
 
 	public int adminUpdate(AdminVO adminVO);
 
-
 	public int adminInsert(AdminVO vo);
+
+	public int adminDelete(AdminVO adminVO);
 }

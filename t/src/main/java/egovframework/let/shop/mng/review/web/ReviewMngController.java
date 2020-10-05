@@ -33,7 +33,17 @@ public class ReviewMngController {
 			mngVO.setR_idx(chk[j]);
 			reviewMngService.delMngReview(mngVO);
 		}
-		
+		return "redirect:/shop/mng/review/MngSelect.do";
+	}
+	
+	@RequestMapping(value = "/shop/mng/review/reMngReview.do")
+	public String reMngReview(ReviewMngVO vo, HttpServletRequest request) throws Exception{
+		String [] rechk = request.getParameterValues("rechk");
+		for (int i = 0; i < rechk.length; i++) {
+			System.out.println("rechk222-->" + rechk[i]);
+			vo.setR_idx(rechk[i]);
+			reviewMngService.reMngReview(vo);
+		}
 		return "redirect:/shop/mng/review/MngSelect.do";
 	}
 }

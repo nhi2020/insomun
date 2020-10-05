@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
-<title>입소문넷</title>
+<title>판매자 수정 페이지</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 
@@ -30,43 +30,43 @@
 	<div class="container text-center">
 	    <div class="row">
 			<form action="/shop/user/product/EgovUserProductUpdatePro.do" method="post">
-	    <input type="hidden" name="p_idx" value="${ProductVO.p_idx }" />
-					<img src="./images/main/photo/${ProductVO.p_image}" width="270" height="385"/>
+	    <input type="hidden" name="p_idx" value="${ProductUserVO.p_idx }" />
+					<img src="./images/main/photo/${ProductUserVO.p_image}" width="270" height="385"/>
 						<p>
 					<table class="table">
 					<tr>
 						<th>상품명</th>
-						<td><input type="text" name="p_name" value="${ProductVO.p_name }"/>
+						<td><input type="text" name="p_name" value="${ProductUserVO.p_name }"/>
 						</td>
 					</tr>
 					<tr>
 						<th>가격</th>
-						<td><input type="text" name="p_price" value="${ProductVO.p_price }"/></td>
+						<td><input type="text" name="p_price" value="${ProductUserVO.p_price }"/></td>
 					</tr>
 					<tr>
 						<th>제품 내용</th>
 						<td>
-						<textarea rows="5" cols="50" name="p_content" id="p_content">${ProductVO.p_content } </textarea></td>
+						<textarea rows="5" cols="50" name="p_content" id="p_content">${ProductUserVO.p_content } </textarea></td>
 					</tr>
 					<tr>
 						<th>해시태그</th>
-						<td><input type="text" name="p_tage" value="${ProductVO.p_tage }"/></td>
+						<td><input type="text" name="p_tage" value="${ProductUserVO.p_tage }"/></td>
 					</tr>
 					<tr>
 						<th>재고 수량</th>
-						<td><input type="text" name="p_q" value="${ProductVO.p_q }"/></td>
+						<td><input type="text" name="p_q" value="${ProductUserVO.p_q }"/></td>
 					</tr>
 					<tr>
 						<th>판매시작일</th>
-						<td><input type="date" name="p_sdate" value="${ProductVO.p_sdate }"/></td>
+						<td><input type="date" name="p_sdate" value="${ProductUserVO.p_sdate }"/></td>
 					</tr>
 					<tr>
 						<th>판매종료일</th>
-						<td><input type="date" name="p_edate" value="${ProductVO.p_edate }"/></td>
+						<td><input type="date" name="p_edate" value="${ProductUserVO.p_edate }"/></td>
 					</tr>
 					<tr>
 						<th>업데이트된 날짜</th>
-						<td><input type="date" name="p_moddate" value="${ProductVO.p_moddate }"/></td>
+						<td><input type="date" name="p_moddate" value="${ProductUserVO.p_moddate }"/></td>
 					</tr>
 					<tr>
 						<td colspan="2"><br/>

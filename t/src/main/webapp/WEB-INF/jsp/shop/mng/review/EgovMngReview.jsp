@@ -19,8 +19,14 @@
 		document.frm.action="/shop/mng/review/delMngReview.do";
 		document.frm.submit();
 	}
+	function reReview() {
+		document.frm.action="/shop/mng/review/reMngReview.do";
+		document.frm.submit();
+	}
 </script>
 <body>
+<%@ include file="../../inc/EgovShopTop.jsp"%>
+	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 <div class="container text-center">
 	<div class="row justify-content-center">
 		<h2>구매자 리뷰 관리자 페이지입니다.</h2>
@@ -29,7 +35,6 @@
 	<div class="row justify-content-center">
 		<form method="post" name="frm">
 			<table border="1">
-				<c:forEach var="result" items="${list }" varStatus="i">
 					<thead>
 						<tr>
 							<th>리뷰 번호</th>
@@ -38,8 +43,10 @@
 							<th>구매자리뷰 등록일자</th>
 							<th>리뷰 삭제여부</th>
 							<th>리뷰 삭제하기</th>
+							<th>리뷰 복구하기</th>
 						</tr>
-					</thead>
+					</thead> 
+				<c:forEach var="result" items="${list }" varStatus="i">
 					<tbody>
 						<tr>
 							<td>${result.r_idx }</td>
@@ -48,16 +55,19 @@
 							<td>${result.r_regdate }</td>
 							<td>${result.r_delyn }</td>
 							<td><input type="checkbox" name="chk" id="chk" value="${result.r_idx }"></td>
+							<td><input type="checkbox" name="rechk" id="rechk" value="${result.r_idx }"></td>
 						</tr>
 					</tbody>
 				</c:forEach>
 						<tr>
 							<td colspan="5"></td>
 							<td><input type="button" value="삭제" onclick="delReview();"></td>
+							<td><input type="button" value="복구" onclick="reReview();"></td>
 						</tr>
 			</table>
 		</form>
 	</div>
 </div>
+<%@ include file="../../inc/EgovShopBottom.jsp"%>
 </body>
 </html>
