@@ -1,13 +1,20 @@
 package egovframework.let.shop.mng.main.web;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import egovframework.let.shop.mng.admin.service.AdminService;
 
 @Controller
 public class MngMainControllor {
 	
-	/*
-	protected String unscript(String data) {
+	@Resource(name = "AdminService")
+	private AdminService adminService;
+	
+	
+	/*protected String unscript(String data) {
 		if (data == null || data.trim().equals("")) {
 			return "";
 		}
@@ -30,13 +37,18 @@ public class MngMainControllor {
 		ret = ret.replaceAll("</(F|f)(O|o)(R|r)(M|m)", "&lt;form");
 
 		return ret;
-	}
+	}*/
 	
-	@RequestMapping(value="/shop/mng/main/EgovMngMain.do")
+/*	@RequestMapping(value="/shop/mng/main/EgovMngMain.do")
 	public String main() {
 	   
 	    return "shop/main/EgovMain";
 	}*/
-
+	
+	@RequestMapping(value="/shop/mng/admin/adminMainForm")
+	public String adminMainForm() {
+		
+		return "/shop/mng/admin/adminMainForm";
+	}
 
 }

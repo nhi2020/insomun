@@ -188,8 +188,5 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		return "forward:insertMngAdminControlForm.do";
 		
 	}
-	
-	
-	
-			
+		
 }
