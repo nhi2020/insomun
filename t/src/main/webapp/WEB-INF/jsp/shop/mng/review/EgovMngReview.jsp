@@ -19,6 +19,10 @@
 		document.frm.action="/shop/mng/review/delMngReview.do";
 		document.frm.submit();
 	}
+	function reReview() {
+		document.frm.action="/shop/mng/review/reMngReview.do";
+		document.frm.submit();
+	}
 </script>
 <body>
 <div class="container text-center">
@@ -38,6 +42,7 @@
 							<th>구매자리뷰 등록일자</th>
 							<th>리뷰 삭제여부</th>
 							<th>리뷰 삭제하기</th>
+							<th>리뷰 복구하기</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -48,12 +53,14 @@
 							<td>${result.r_regdate }</td>
 							<td>${result.r_delyn }</td>
 							<td><input type="checkbox" name="chk" id="chk" value="${result.r_idx }"></td>
+							<td><input type="checkbox" name="rechk" id="rechk" value="${result.r_idx }"></td>
 						</tr>
 					</tbody>
 				</c:forEach>
 						<tr>
 							<td colspan="5"></td>
 							<td><input type="button" value="삭제" onclick="delReview();"></td>
+							<td><input type="button" value="복구" onclick="reReview();"></td>
 						</tr>
 			</table>
 		</form>

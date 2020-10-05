@@ -27,5 +27,11 @@ public class ReviewMngServiceImpl extends EgovAbstractServiceImpl implements Rev
 		int result = reviewMngDAO.delMngReview(vo);
 		return result;
 	}
+
+	@Override
+	public int reMngReview(ReviewMngVO vo) throws Exception {
+		int result = reviewMngDAO.reMngReview(vo);
+		return result;
+	}
 	
 }
