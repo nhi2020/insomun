@@ -1,4 +1,4 @@
-package egovframework.let.shop.mng.snsprofile.service;
+package egovframework.let.shop.user.snsprofile.service;
 
 
 import org.springframework.stereotype.Service;

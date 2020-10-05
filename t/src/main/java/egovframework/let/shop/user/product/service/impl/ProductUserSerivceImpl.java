@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
 import egovframework.let.shop.user.product.service.ProductUserService;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
@@ -56,15 +57,27 @@ public class ProductUserSerivceImpl extends EgovAbstractServiceImpl implements P
 	}
 
 	@Override
-	public int updateUserProductPro(ProductUserVO vo) {
+	public int updateUserProductPro(ProductUserVO vo) throws Exception {
 		int result = userProductDAO.updateUserProductPro(vo);
 		return result;
 	}
 
 	@Override
-	public int insertUserProductPro(ProductUserVO vo) {
-		int result = userProductDAO.insertUserProductPro(vo);
+	public String insertUserProductPro(ProductUserVO vo) throws Exception {
+		String result = userProductDAO.insertUserProductPro(vo);
 		return result;
+	}
+
+	@Override
+	public int deleteUserProduct(ProductUserVO vo) throws Exception {
+		int result = userProductDAO.deleteUserProduct(vo);
+		return result;
+	}
+
+	@Override
+	public ProductUserVO selectBuyerProduct(ProductUserVO vo) throws Exception {
+		vo = userProductDAO.selectBuyerProduct(vo);
+		return vo;
 	}
 
 }

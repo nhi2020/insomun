@@ -42,32 +42,24 @@ public class ProductUserDAO extends EgovAbstractDAO {
     	return (Integer)select("EgovUserProductDAO.selectUserProductListCnt", productVO);
     }
     
-   public ProductUserVO selectUserProductForm(ProductUserVO vo) {
-	   try {
-		vo = (ProductUserVO) select("EgovUserProductDAO.selectUserProductForm", vo);
-	} catch (Exception e) {
-		System.out.println("selectUserProductForm Exception " + e.getMessage());
-	}
-	   return vo;
+   public ProductUserVO selectUserProductForm(ProductUserVO vo) throws Exception {
+	   return (ProductUserVO) select("EgovUserProductDAO.selectUserProductForm", vo);
    }
-    public int updateUserProductPro(ProductUserVO vo) {
-    	int result = 0;
-    	try {
-			result = update("EgovUserProductDAO.updateUserProductPro", vo);
-		} catch (Exception e) {
-			System.out.println("updateUserProductPro Exception " + e.getMessage());
-		}
+    public int updateUserProductPro(ProductUserVO vo) throws Exception {
+    	int result = update("EgovUserProductDAO.updateUserProductPro", vo);
     	return result;
     }
 
-	public int insertUserProductPro(ProductUserVO vo) {
-		int result = 0;
-		try {
-			result = (int) insert("EgovUserProductDAO.insertUserProductForm", vo);		
-		} catch (Exception e) {
-			System.out.println("insertUserProductPro : " + e.getMessage());
-		}
+	public String insertUserProductPro(ProductUserVO vo) throws Exception {
+		String result = (String) insert("EgovUserProductDAO.insertUserProductPro", vo);
 		return result;
+	}
+	public int deleteUserProduct(ProductUserVO vo) throws Exception{
+		return update("EgovUserProductDAO.deleteUserProduct", vo);
+	}
+	
+	public ProductUserVO selectBuyerProduct(ProductUserVO vo) throws Exception{
+		return (ProductUserVO) select("EgovBuyerProductDAO.selectBuyerProduct",vo);
 	}
     
 }

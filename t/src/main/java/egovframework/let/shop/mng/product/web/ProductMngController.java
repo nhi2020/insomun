@@ -135,7 +135,7 @@ public class ProductMngController {
 	    vo = mngProductService.selectMngProductForm(vo);
 	    System.out.println("EgovMngProductUpdateForm"+vo);
 	    List<ProductMngVO> list = new ArrayList<ProductMngVO>();
-	    model.addAttribute("ProductVO",vo);
+	    model.addAttribute("ProductMngVO",vo);
 	    return "/shop/mng/product/EgovMngProductUpdateForm";
 	}
 //수정하기 가능하도록	
@@ -163,10 +163,10 @@ public class ProductMngController {
 	public String EgovMngProductInsertPro(ProductMngVO vo,Model model, HttpServletRequest request) throws Exception {
 		System.out.println("INSERT");
 		HttpSession session = request.getSession();
-		String s_id = (String) session.getAttribute("S_ID");
-		System.out.println("s_id"+s_id);
+		String a_id = (String) session.getAttribute("A_ID");
+		System.out.println("a_id"+a_id);
 		System.out.println("INSERT");
-		vo.setS_id(s_id);
+		vo.setS_id(a_id);
 		mngProductService.insertMngProductPro(vo);
 		
 		return "redirect:/shop/mng/product/EgovMngProductInsertForm.do";
@@ -184,6 +184,33 @@ public class ProductMngController {
 		}
 		return "redirect:/shop/mng/product/EgovMngProductlist.do";
 	}
+	
+	
+
+/*    // xml에 설정된 리소스 참조
+    // bean의 id가 uploadPath인 태그를 참조
+    @Resource(name="uploadPath")
+    String uploadPath;
+
+    // 업로드 흐름 : 업로드 버튼클릭 => 임시디렉토리에 업로드=> 지정된 디렉토리에 저장 => 파일정보가 file에 저장
+    @RequestMapping(value="/upload/uploadForm", method=RequestMethod.GET)
+    public void uplodaForm(){
+        // upload/uploadForm.jsp(업로드 페이지)로 포워딩
+    }
+
+    @RequestMapping(value = "/fileupload",method = RequestMethod.POST)
+    public void upload(MultipartFile uploadfile){
+        logger.info("upload() POST 호출");
+        logger.info("파일 이름: {}", uploadfile.getOriginalFilename());
+        logger.info("파일 크기: {}", uploadfile.getSize());
+
+        saveFile(uploadfile);
+
+    }
+
+        return mav; // uploadResult.jsp(결과화면)로 포워딩
+    }
+}*/
 	
 	
 	

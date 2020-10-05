@@ -20,7 +20,6 @@ public interface AdminService {
 
 	public int adminUpdate(AdminVO adminVO);
 
-
 	public int adminInsert(AdminVO vo);
 
 	public int adminDelete(AdminVO adminVO);

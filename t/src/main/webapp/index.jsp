@@ -1,3 +1,4 @@
+
 `<%--
   Class Name : index.jsp
   Description : 최초화면으로 메인화면으로 이동한다.
@@ -16,4 +17,5 @@
 <%--
 <jsp:forward page="/cmm/main/mainPage.do"/>
 --%>
-<script type="text/javaScript">document.location.href="<c:url value='/shop/user/EgovUserLoginForm.do'/>"</script> 
+ <script type="text/javaScript">document.location.href="<c:url value='/shop/user/EgovUserLoginForm.do'/>"</script> 
+<!-- <script type="text/javaScript">document.location.href="<c:url value='/shop/mng/admin/adminMainForm.do'/>"</script>  -->

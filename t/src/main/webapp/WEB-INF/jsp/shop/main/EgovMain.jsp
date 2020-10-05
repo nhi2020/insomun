@@ -47,7 +47,7 @@
 						href="/shop/mng/admin/adminControl/listMngAdminControl.do">운영자관리</a>
 				</tr>
 				<tr>
-					<td><a href="/shop/mng/product/EgovMngProductlist.do">상품 관리</a></td>
+					<td><a href="/shop/user/product/EgovUserProductlist.do">상품 관리</a></td>
 				</tr>
 				<tr>
 					<td><a href="/shop/user/seller/sellerUserMain.do">판매자 페이지</a></td>

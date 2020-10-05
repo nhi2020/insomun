@@ -56,13 +56,13 @@ public class ProductMngSerivceImpl extends EgovAbstractServiceImpl implements Pr
 	}
 
 	@Override
-	public int updateMngProductPro(ProductMngVO vo) {
+	public int updateMngProductPro(ProductMngVO vo)throws Exception {
 		int result = mngProductDAO.updateMngProductPro(vo);
 		return result;
 	}
 
 	@Override
-	public int insertMngProductPro(ProductMngVO vo) {
+	public int insertMngProductPro(ProductMngVO vo)throws Exception {
 		int result = mngProductDAO.insertMngProductPro(vo);
 		return result;
 	}

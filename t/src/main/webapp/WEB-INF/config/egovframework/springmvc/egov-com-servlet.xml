@@ -15,6 +15,11 @@
     </context:component-scan>
 
     <!-- 서블릿컨네이너상의 exception에 대한 오류 페이지를 연결하는 mvc 설정 -->
+    
+    
+    
+    
+    
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="defaultErrorView" value="cmm/error/egovError"/>
         <property name="exceptionMappings">
@@ -26,6 +31,19 @@
             </props>
         </property>
     </bean>
+    <!-- Gmail -->
+ 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	    <property name="host" value="smtp.gmail.com" />
+	    <property name="port" value="587" />
+	    <property name="username" value="edc30039@gmail.com" />
+	    <property name="password" value="wnddkd!123" />
+	    <property name="javaMailProperties">
+	    <props>
+	      <prop key="mail.smtp.auth">true</prop>
+	      <prop key="mail.smtp.starttls.enable">true</prop>
+	    </props>
+	    </property>
+  	</bean>
 
     <!-- 화면처리용 JSP 파일명의  prefix, suffix 처리에 대한 mvc 설정  -->
     <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1"
@@ -48,7 +66,12 @@
 
     <!-- Annotation 을 사용하지 않는 경우에 대한 MVC 처리 설정 -->
     <!-- <mvc:view-controller path="/cmmn/validator.do" view-name="cmmn/validator"/> -->
-     
+<!--      <mvc:interceptors>
+     	<mvc:interceptor>
+     		<mvc:mapping path="/shop/mng/*.do"/>
+     		<bean />
+     	</mvc:interceptor>
+     </mvc:interceptors> -->
     <mvc:annotation-driven/>
 
 </beans>

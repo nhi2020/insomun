@@ -28,5 +28,13 @@ public interface SellerUserService {
 
 	public int sellerIdChk(SellerUserVO vo);
 
+	public int sellerNameEmailChk(SellerUserVO vo);
+
+	public int sellerAgreeNum(SellerUserVO vo);
+
+	public int sellerCertificationNumberchk(SellerUserVO vo);
+
+	public String sellerFindId(SellerUserVO vo);
+
 
 }

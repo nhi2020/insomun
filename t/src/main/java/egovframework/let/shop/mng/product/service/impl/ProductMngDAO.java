@@ -60,8 +60,7 @@ public class ProductMngDAO extends EgovAbstractDAO {
     }
 
 	public int insertMngProductPro(ProductMngVO vo) {
-		int result =(Integer) insert("EgovMngProductDAO.insertMngProductForm", vo);		
-		return result;
+		return update("EgovMngProductDAO.insertMngProductPro",vo);
 	}
 	
 	public int deleteMngProduct(ProductMngVO vo) throws Exception{

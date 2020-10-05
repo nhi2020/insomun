@@ -46,7 +46,7 @@
 						<td>${sns_list.del_yn }</td>
 						<td><input type="submit" value="전환"
 							form="frm${status.index }" /></td>
-						<td><input class="btn btn-secondary" type="button" value="로그인" onclick="location.href='/shop/user/snsprofile/loginUserSnsprofileTestPro.do?sns_idx=${sns_list.sns_idx}'" /></td>
+						<td><input class="btn btn-secondary" type="button" value="로그인" onclick="location.href='/shop/mng/snsprofile/loginMngSnsprofilePro.do?sns_idx=${sns_list.sns_idx}'" /></td>
 					</tr>
 				</c:forEach>
 			</table>
