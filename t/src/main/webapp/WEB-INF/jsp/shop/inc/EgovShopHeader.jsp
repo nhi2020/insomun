@@ -60,7 +60,7 @@
 	<!-- Links -->
 	<ul class="navbar-nav">
 	  <li class="nav-item">
-	    <a class="nav-link" href="/shop/mng/product/EgovMngProductlist.do">상품게시판</a>
+	    <a class="nav-link" href="/shop/user/product/EgovUserProductlist.do">상품게시판</a>
 	  </li>
 	</ul>
 	<form class="form-inline" action="/shop/user/main/EgovUserMainSearch.do">
