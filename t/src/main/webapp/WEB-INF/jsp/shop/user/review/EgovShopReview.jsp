@@ -61,14 +61,18 @@
 	<div class="row justify-content-center">
 		<div class="modal-body">
 		<table border="1">
-          <c:choose>
-          	<c:when test="${result.r_div eq '1'}">
-          		<p>구매자 : ${result.nickname}
-          	</c:when>
-          	<c:otherwise>
-          		${result.s_nickname}
-          	</c:otherwise>
-          </c:choose>
+		          <c:choose>
+		          	<c:when test="${result.r_div eq '1'}">
+		          	<tr>
+		          		<td>	
+		          			<p>구매자 : ${result.nickname}
+		          		</p>
+		          	<tr>
+		          	</c:when>
+		          	<c:otherwise>
+		          		${result.s_nickname}
+		          	</c:otherwise>
+		          </c:choose>
           	</table>
 	        <div id="r_view${result.r_idx}" style="display: none;">
 				<textarea id="r_contentVal${result.r_idx}" name="r_contentVal${result.r_idx}" rows="5" cols="40">
