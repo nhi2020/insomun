@@ -135,7 +135,7 @@ public class ProductMngController {
 	    vo = mngProductService.selectMngProductForm(vo);
 	    System.out.println("EgovMngProductUpdateForm"+vo);
 	    List<ProductMngVO> list = new ArrayList<ProductMngVO>();
-	    model.addAttribute("ProductVO",vo);
+	    model.addAttribute("ProductMngVO",vo);
 	    return "/shop/mng/product/EgovMngProductUpdateForm";
 	}
 //수정하기 가능하도록	
@@ -163,10 +163,10 @@ public class ProductMngController {
 	public String EgovMngProductInsertPro(ProductMngVO vo,Model model, HttpServletRequest request) throws Exception {
 		System.out.println("INSERT");
 		HttpSession session = request.getSession();
-		String s_id = (String) session.getAttribute("S_ID");
-		System.out.println("s_id"+s_id);
+		String a_id = (String) session.getAttribute("A_ID");
+		System.out.println("a_id"+a_id);
 		System.out.println("INSERT");
-		vo.setS_id(s_id);
+		vo.setS_id(a_id);
 		mngProductService.insertMngProductPro(vo);
 		
 		return "redirect:/shop/mng/product/EgovMngProductInsertForm.do";

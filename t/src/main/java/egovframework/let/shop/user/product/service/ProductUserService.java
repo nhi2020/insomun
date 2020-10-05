@@ -2,6 +2,7 @@ package egovframework.let.shop.user.product.service;
 
 import java.util.List;
 
+import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
 import egovframework.let.shop.user.product.service.impl.ProductUserVO;
 
 /**
@@ -30,7 +31,9 @@ public interface ProductUserService {
 
 	public ProductUserVO selectUserProductForm(ProductUserVO vo) throws Exception;
 
-	public int updateUserProductPro(ProductUserVO vo);
+	public int updateUserProductPro(ProductUserVO vo) throws Exception;
 
-	public int insertUserProductPro(ProductUserVO vo);
+	public String insertUserProductPro(ProductUserVO vo) throws Exception;
+	
+	public int deleteUserProduct(ProductUserVO vo) throws Exception;
 }

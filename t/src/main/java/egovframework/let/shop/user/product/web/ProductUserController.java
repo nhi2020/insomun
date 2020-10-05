@@ -133,7 +133,7 @@ public class ProductUserController {
 	    vo = userProductService.selectUserProductForm(vo);
 	    System.out.println("EgovUserProductUpdateForm"+vo);
 	    List<ProductUserVO> list = new ArrayList<ProductUserVO>();
-	    model.addAttribute("ProductVO",vo);
+	    model.addAttribute("ProductUserVO",vo);
 	    return "/shop/user/product/EgovUserProductUpdateForm";
 	}
 //수정하기 가능하도록	
@@ -163,10 +163,24 @@ public class ProductUserController {
 		HttpSession session = request.getSession();
 		String s_id = (String) session.getAttribute("S_ID");
 		vo.setS_id(s_id);
-		int result = userProductService.insertUserProductPro(vo);
+		String result = userProductService.insertUserProductPro(vo);
+		System.out.println("EgovUserProductInsertPro");
 		System.out.println("result => " + result);
 		
 		return "redirect:/shop/user/product/EgovUserProductInsertForm.do";
+	}
+	
+	@RequestMapping(value = "/shop/user/product/EgovUserProductDelete") 
+	public String EgovUserProductDelete(ProductUserVO vo, HttpServletRequest request)throws Exception {
+		
+		String[] check = request.getParameterValues("check");
+		System.out.println("EgovUserProductDelete:");
+		for (int i = 0; i < check.length; i++) {
+			System.out.println("chk : " +check[i]);
+			vo.setP_idx(check[i]);
+			userProductService.deleteUserProduct(vo);
+		}
+		return "redirect:/shop/user/product/EgovUserProductlist.do";
 	}
 	
 	

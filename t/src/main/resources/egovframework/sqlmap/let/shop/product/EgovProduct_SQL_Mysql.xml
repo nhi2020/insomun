@@ -87,8 +87,8 @@
 	</update>
 
 	
- 	<insert id="EgovMngProductDAO.insertMngProductForm" parameterClass="ProductMngVO" >
- 	<selectKey resultClass="int" keyProperty="p_idx">
+ 	<insert id="EgovMngProductDAO.insertMngProductPro" parameterClass="ProductMngVO" >
+ 	<selectKey resultClass="java.lang.String" keyProperty="p_idx">
  		SELECT 
 			CASE 
 				WHEN 
@@ -103,9 +103,9 @@
  	</selectKey>
  		<![CDATA[
  			INSERT INTO PRODUCT
-			(P_IDX,S_ID, P_NAME, P_PRICE, P_REGDATE, P_MODDATE, P_IMAGE, P_CONTENT, P_TAGE, P_SDATE, P_EDATE, P_STATUS, P_Q)
+			(P_IDX,S_ID, P_NAME, P_PRICE, P_REGDATE, P_MODDATE, P_IMAGE, P_CONTENT, P_TAGE, P_SDATE, P_EDATE, P_STATUS, P_Q, A_ID)
 			VALUES
-			(#p_idx#, #s_id#, #p_name#, #p_price#, SYSDATE(), SYSDATE(), #p_image#, #p_content#, #p_tage#, SYSDATE(), SYSDATE(), 'N', #p_q#)				
+			(#p_idx#, #s_id#, #p_name#, #p_price#, SYSDATE(), SYSDATE(), #p_image#, #p_content#, #p_tage#, SYSDATE(), SYSDATE(), 'N', #p_q#, #a_id#)				
  		]]>
  	</insert>
  	
@@ -123,7 +123,23 @@
  
  <!-- 판매자 및 구매자용/판매자 및 구매자용/판매자 및 구매자용/판매자 및 구매자용 -->
  
- 	<select id="EgovUserProductDAO.selectUserProductList" parameterClass="ProductUserVO" resultMap="ProductList" >
+ <resultMap id="ProductUserList" class="egovframework.let.shop.user.product.service.impl.ProductUserVO"> <!-- property는 vo값 -->
+		<result property="p_idx" column="P_IDX" columnIndex="1"/>
+		<result property="s_id" column="S_ID" columnIndex="2"/>
+		<result property="p_name" column="P_NAME" columnIndex="3"/>
+		<result property="p_price" column="P_PRICE" columnIndex="4"/>
+		<result property="p_regdate" column="P_REGDATE" columnIndex="5"/>
+		<result property="p_moddate" column="P_MODDATE" columnIndex="6"/>
+		<result property="p_image" column="P_IMAGE" columnIndex="7"/>
+		<result property="p_content" column="P_CONTENT" columnIndex="8"/>
+		<result property="p_tage" column="P_TAGE" columnIndex="9"/>
+		<result property="p_sdate" column="P_SDATE" columnIndex="10"/>
+		<result property="p_edate" column="P_EDATE" columnIndex="11"/>
+		<result property="p_status" column="P_STATUS" columnIndex="12"/>
+		<result property="p_q" column="P_Q" columnIndex="13"/>
+	</resultMap>
+ 
+ 	<select id="EgovUserProductDAO.selectUserProductList" parameterClass="ProductUserVO" resultMap="ProductUserList" >
 	<!-- 쿼리문 작성 -->
 		<![CDATA[  
 			SELECT 
@@ -139,7 +155,6 @@
 				,P_SDATE
 				,P_EDATE
 				,P_STATUS
-				,A_ID
 				,P_Q
 			FROM
 				PRODUCT
@@ -183,8 +198,8 @@
 		WHERE P_IDX = #p_idx#
 	</update>
 	
-	<insert id="EgovUserProductDAO.insertUserProductForm" parameterClass="ProductUserVO" >
- 	<selectKey resultClass="int" keyProperty="p_idx">
+	<insert id="EgovUserProductDAO.insertUserProductPro" parameterClass="ProductUserVO" >
+ 	<selectKey resultClass="java.lang.String" keyProperty="p_idx">
  		SELECT 
 			CASE 
 				WHEN 
@@ -199,11 +214,24 @@
  	</selectKey>
  		<![CDATA[
  			INSERT INTO PRODUCT
-			(P_IDX,S_ID, P_NAME, P_PRICE, P_REGDATE, P_MODDATE, P_IMAGE, P_CONTENT, P_TAGE, P_SDATE, P_EDATE, P_STATUS, P_Q)
+			(P_IDX, S_ID, P_NAME, P_PRICE, P_REGDATE, P_MODDATE, P_IMAGE, P_CONTENT, P_TAGE, P_SDATE, P_EDATE, P_STATUS, P_Q)
 			VALUES
 			(#p_idx#, #s_id#, #p_name#, #p_price#, SYSDATE(), SYSDATE(), #p_image#, #p_content#, #p_tage#, SYSDATE(), SYSDATE(), 'N', #p_q#)				
  		]]>
  	</insert>
+ 	
+ 	<delete id="EgovUserProductDAO.deleteUserProduct" parameterClass="ProductUserVO">
+ 	UPDATE PRODUCT
+		SET 
+			P_STATUS = 
+				CASE 
+					WHEN P_STATUS = 'Y'
+						THEN 'N'
+						ELSE 'Y'
+					END
+		WHERE P_IDX = #p_idx#
+ 	</delete>
+
 
 	<!-- <update id="EgovMngProductDAO.selectMngProductForm" parameterClass="ProductVO">
  		<![CDATA[
