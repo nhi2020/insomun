@@ -36,5 +36,7 @@ public interface SellerUserService {
 
 	public String sellerFindId(SellerUserVO vo);
 
+	public int sellerRePass(SellerUserVO vo);
+
 
 }

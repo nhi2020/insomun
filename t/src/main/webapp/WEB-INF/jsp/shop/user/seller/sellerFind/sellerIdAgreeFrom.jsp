@@ -11,7 +11,9 @@
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
 <script type="text/javascript">
-/* function check() {
+function check() {
+	var s_name = $("#s_name").val();
+	var s_email = $("#s_email").val();
 	if($("#s_name").val()==""){
 		alert("아이디를 입력해주세요.");
 		$("#s_name").focus();
@@ -35,7 +37,7 @@
 		success : function(data){
 			if(data == 1){
 				alert("인증되었습니다.");
-				
+				location.href="/shop/user/seller/sellerFindId.do?s_name=${s_name}&s_email=${s_email}";
 			}else if(data == 0){
 				alert("인증번호가 틀립니다.");
 			}
@@ -44,9 +46,9 @@
 	
 	
 
-}; */
+};
 
-$(document).ready(function(){
+/* $(document).ready(function(){
 	// 취소
 	$(".cencle").on("click", function(){
 		location.href = "/";
@@ -85,7 +87,7 @@ $(document).ready(function(){
     		}
     	})
 	});
-});
+}); */
 
 function email(){
 	if($("#s_name").val()==""){
@@ -119,7 +121,7 @@ function email(){
 </head>
 <body>
 <%@ include file="../../../inc/EgovShopHeader.jsp" %>
-<form action="/shop/user/seller/sellerFindId.do">
+<!-- <form action="/shop/user/seller/sellerFindId.do"> -->
 <div class="container"	style="text-align:center;">
 	<div class="container" style="text-align:left;margin-left: 300px">
 	
@@ -141,10 +143,10 @@ function email(){
 			</dd>	
 		</dl>
 	</div>
-	<!-- <button class="btn btn-secondary" type="submit" onclick="check();">다음</button> -->
-	<input class="btn btn-success" type="submit" id="submit" value="다음">		
+	<button class="btn btn-secondary" type="submit" onclick="check();">다음</button>
+	<!--  <input class="btn btn-success" type="submit" id="submit" value="다음">	-->	
 
 </div>
-</form>
+<!-- </form> -->
 </body>
 </html>

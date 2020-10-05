@@ -86,6 +86,11 @@ public class SellerUserDAO extends EgovAbstractDAO {
 		return result;
 	}
 
+	public int sellerRePass(SellerUserVO vo) {
+		// TODO Auto-generated method stub
+		return (int) update("EgovSellerDAO.sellerRePass",vo);
+	}
+
 
 
 }

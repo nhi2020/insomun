@@ -12,14 +12,58 @@
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
 <script type="text/javascript">
-function check() {
+$(document).ready(function(){
+			// 취소
+			$(".cencle").on("click", function(){
+				location.href = "/";
+			})
+			
+			$("#submit").on("click", function(){
+
+
+				if($("#s_pass").val()==""){
+					alert("비밀번호를 입력해주세요.");
+					$("#s_pass").focus();
+					return false;
+				}
+				if($("#s_pass2").val()==""){
+					alert("비밀번호재확인를 입력해주세요.");
+					$("#s_pass2").focus();
+					return false;
+				}
+				if($("#s_pass").val() != $("#s_pass2").val()){
+					alert("비밀번호가 일치하지 않습니다.");
+					$("#s_pass").focus();
+					return false;
+				}
+				
+				$.ajax({
+					url : "/shop/user/seller/sellerRePass.do",
+					type : "post",
+					dataType : "json",
+					data : {"s_id" : $("#s_id").val(),"s_pass" : $("#s_pass").val()},
+					success : function(data){
+						if(data == 1){
+							alert("인증되었습니다.");
+							alert("비밀번호가 재설정되었습니다.");
+							
+						}else if(data == 0){
+							alert("실패");
+							return false;
+						}
+					}
+				})
+	});
+})
+/* function check() {
 	location.href = "<c:url value='/shop/user/EgovUserLoginForm.do'/>";
-}
+} */
 </script>
 </head>
 <body>
 <%@ include file="../../../inc/EgovShopHeader.jsp" %>
-<form id="fm" name="fm" action="/user2/help/pwInquiry.nhn?m=actionInputPasswd" method="post">			
+<form id="fm" name="fm" action="/shop/user/EgovUserLoginForm.do" method="post">	
+			<input id="s_id" name="s_id" type="hidden"value="${s_id }"> 		
 			<div class="section section_find">
 					<dl class="n_id">
 					<dt>아이디 : ${s_id }</dt>
@@ -29,9 +73,8 @@ function check() {
 						<label id="lb_new_pw" for="new_pw" style="">새 비밀번호 확인</label>					
 						<input id="s_pass2" name="s_pass2" type="password">
 
-				<div class="btn_area">
-					<a href="#" id="changeSubmit" onclick="check();" class="btn_confirm2"><span class="blind">확인</span></a>
-				</div>
+					<input class="btn btn-success" type="submit" id="submit" value="확인">
+				
 			</div>
 </form>
 </body>

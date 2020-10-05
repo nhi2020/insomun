@@ -14,6 +14,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -169,9 +170,11 @@ public class SellerUserController {
 		return "/shop/user/seller/sellerFind/sellerIdAgreeFrom";
 	}
 	@RequestMapping(value="/shop/user/seller/sellerFindId.do")
-	public String sellerFindId(SellerUserVO vo, Model model){
+	public String sellerFindId(SellerUserVO vo, Model model, @RequestParam("s_name") String s_name,  @RequestParam("s_email") String s_email){
 		System.out.println("아이디 찾기2 ");
+		
 		System.out.println("test"+vo.getS_name());
+		System.out.println("testtest"+s_name);
 		String name = SellerService.sellerFindId(vo);
 		model.addAttribute("s_id",name);
 		return "/shop/user/seller/sellerFind/sellerFindId";
@@ -300,10 +303,20 @@ public class SellerUserController {
 	
 	@ResponseBody
 	@RequestMapping(value="/shop/user/seller/sellerCertificationNumberchk.do",method = RequestMethod.POST)
-	public int sellerCertificationNumberchk(SellerUserVO vo){
+	public int sellerCertificationNumberchk(SellerUserVO vo, Model model){
 			
 		int result = SellerService.sellerCertificationNumberchk(vo);
+		model.addAttribute("s_email",vo.getS_email());
+		model.addAttribute("s_name",vo.getS_name());
 		
+		return result;
+	}
+	
+	@RequestMapping(value="/shop/user/seller/sellerRePass.do")
+	public int sellerRePass(SellerUserVO vo){
+			System.out.println("비밀번호 재설정"+vo.getS_id()+vo.getS_pass());
+			int result=SellerService.sellerRePass(vo);
+			System.out.println("test"+result);
 		return result;
 	}
 	

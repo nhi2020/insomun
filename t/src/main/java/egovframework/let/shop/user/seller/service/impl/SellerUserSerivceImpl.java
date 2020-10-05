@@ -114,4 +114,12 @@ public class SellerUserSerivceImpl extends EgovAbstractServiceImpl implements Se
 
 
 
+	@Override
+	public int sellerRePass(SellerUserVO vo) {
+		// TODO Auto-generated method stub
+		return SellerDAO.sellerRePass(vo);
+	}
+
+
+
 }
