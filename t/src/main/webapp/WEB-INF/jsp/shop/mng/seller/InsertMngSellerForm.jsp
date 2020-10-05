@@ -168,7 +168,7 @@ function fn_idChk(){
         }).open();
     }
 </script>
-<style type="text/css">
+<!-- <style type="text/css">
 .preView { width: 330px; height: 200px; text-align: center; border:1px solid silver; }
 </style>
 <script type="text/javascript">
@@ -225,7 +225,7 @@ function fileUploadPreview(thisObj, preViewer) {
             tmpImage.src = "file://" + thisObj.value;
         }
     }
-}
+} -->
 
 </script>
 </head>
@@ -244,14 +244,14 @@ function fileUploadPreview(thisObj, preViewer) {
 					
 				<table class="table">		
 						
-					<tr>
+			<!-- 		<tr>
   						 <td colspan="4"><div id="preView" class="preView" style="text-align: center;"></div></td>
  					</tr>
  					
   					<tr>
    						 <td colspan="4" style="text-align: right;">
          				 <input type="file" name="file_name" onchange="fileUploadPreview(this, 'preView')" ></td>
-         			</tr>
+         			</tr> -->
 				
 					<tr>
 						<th>회원아이디</th>
