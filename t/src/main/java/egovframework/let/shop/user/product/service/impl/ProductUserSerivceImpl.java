@@ -74,4 +74,10 @@ public class ProductUserSerivceImpl extends EgovAbstractServiceImpl implements P
 		return result;
 	}
 
+	@Override
+	public ProductUserVO selectBuyerProduct(ProductUserVO vo) throws Exception {
+		vo = userProductDAO.selectBuyerProduct(vo);
+		return vo;
+	}
+
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
 /**
@@ -57,6 +56,10 @@ public class ProductUserDAO extends EgovAbstractDAO {
 	}
 	public int deleteUserProduct(ProductUserVO vo) throws Exception{
 		return update("EgovUserProductDAO.deleteUserProduct", vo);
+	}
+	
+	public ProductUserVO selectBuyerProduct(ProductUserVO vo) throws Exception{
+		return (ProductUserVO) select("EgovBuyerProductDAO.selectBuyerProduct",vo);
 	}
     
 }

@@ -36,4 +36,6 @@ public interface ProductUserService {
 	public String insertUserProductPro(ProductUserVO vo) throws Exception;
 	
 	public int deleteUserProduct(ProductUserVO vo) throws Exception;
+	
+	public ProductUserVO selectBuyerProduct(ProductUserVO vo) throws Exception;
 }

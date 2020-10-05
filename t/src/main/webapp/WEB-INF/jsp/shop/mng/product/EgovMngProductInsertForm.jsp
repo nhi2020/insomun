@@ -20,8 +20,9 @@
   <div class="container-fluid">
 	<div class="container text-center">
 	    <div class="row">
-			<form action="/shop/mng/product/EgovMngProductInsertPro.do" method="post">
-				 	<img src="./images/main/photo/" width="270" height="385"/> 
+			<form action="/shop/mng/product/EgovMngProductInsertPro.do" method="post" enctype="multipart/form-data">
+				 	<img src="./images/main/photo/" width="270" height="270"/> 
+				 	<br/><input type="file", name="uploadfile" placeholder="파일 업로드" /><br/>
 						<p>
 					<table class="table">
 					<input type="hidden" name="p_idx" id="p_idx" >

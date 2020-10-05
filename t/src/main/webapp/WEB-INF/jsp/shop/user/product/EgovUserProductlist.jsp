@@ -21,16 +21,18 @@
 	
 	
 <form action="/shop/user/product/EgovUserProductDelete.do">
+<c:if test="${sessionScope.status == 2 }">
 <input type="button" value="등록" onclick="location.href='/shop/user/product/EgovUserProductInsertForm.do'"> &nbsp;
 <input type="submit" value="삭제">
-	
+</c:if>
+<input type="submit" value="거래하기" onclick="">
  <div class="container-fluid">
 	<div class="container text-center">
 	    <div class="row">
 	  		<c:forEach var="productuser_list" items="${list}">
 			<div class="col-3">
 					
-					<img src="./images/main/photo/${productuser_list.p_image}" width="270" height="270"/>
+					<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }"><img src="./images/main/photo/${productuser_list.p_image}" width="270" height="270"></a>
 					
 					<span >
 					<input type="checkbox" name="check" id="check" value="${productuser_list.p_idx }">
@@ -39,8 +41,10 @@
 					<br/><span >상태: ${productuser_list.p_status }</span>
 					<br/><span >재고 수량: ${productuser_list.p_q }</span>
 					<br/><span >업데이트된 날짜: ${productuser_list.p_moddate }</span>
+					<c:if test="${sessionScope.status == 2 }">
 					<input type="button" value="수정" onclick="location.href='/shop/user/product/EgovUserProductUpdateForm.do?p_idx=${productuser_list.p_idx}'" >
-					<%-- <c:if test=""></c:if> --%>
+					</c:if>
+
 				</p>				
 			</div>
 			

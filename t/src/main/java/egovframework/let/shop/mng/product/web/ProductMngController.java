@@ -186,6 +186,33 @@ public class ProductMngController {
 	}
 	
 	
+
+/*    // xml에 설정된 리소스 참조
+    // bean의 id가 uploadPath인 태그를 참조
+    @Resource(name="uploadPath")
+    String uploadPath;
+
+    // 업로드 흐름 : 업로드 버튼클릭 => 임시디렉토리에 업로드=> 지정된 디렉토리에 저장 => 파일정보가 file에 저장
+    @RequestMapping(value="/upload/uploadForm", method=RequestMethod.GET)
+    public void uplodaForm(){
+        // upload/uploadForm.jsp(업로드 페이지)로 포워딩
+    }
+
+    @RequestMapping(value = "/fileupload",method = RequestMethod.POST)
+    public void upload(MultipartFile uploadfile){
+        logger.info("upload() POST 호출");
+        logger.info("파일 이름: {}", uploadfile.getOriginalFilename());
+        logger.info("파일 크기: {}", uploadfile.getSize());
+
+        saveFile(uploadfile);
+
+    }
+
+        return mav; // uploadResult.jsp(결과화면)로 포워딩
+    }
+}*/
+	
+	
 	
 	
 

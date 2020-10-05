@@ -183,8 +183,13 @@ public class ProductUserController {
 		return "redirect:/shop/user/product/EgovUserProductlist.do";
 	}
 	
-	
-	
-	
+	@RequestMapping(value = "/shop/user/product/EgovBuyerProductForm")
+	public String EgovBuyerProduct(ProductUserVO vo, ModelMap model) throws Exception {
+		 vo = userProductService.selectBuyerProduct(vo);
+		    System.out.println("EgovBuyerProduct"+vo);
+		    model.addAttribute("ProductUserVO",vo);
+		    return "/shop/user/product/EgovBuyerProductForm";
+	}
+
 
 }

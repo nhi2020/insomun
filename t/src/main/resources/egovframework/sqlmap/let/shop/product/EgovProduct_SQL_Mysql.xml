@@ -231,6 +231,12 @@
 					END
 		WHERE P_IDX = #p_idx#
  	</delete>
+ 	
+ 	<select id="EgovBuyerProductDAO.selectBuyerProduct" parameterClass="ProductUserVO" resultMap="ProductUserList">
+ 		SELECT *
+		FROM PRODUCT
+		WHERE P_IDX = #p_idx#
+ 	</select>
 
 
 	<!-- <update id="EgovMngProductDAO.selectMngProductForm" parameterClass="ProductVO">
