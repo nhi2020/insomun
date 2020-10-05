@@ -27,20 +27,18 @@ function login() {
 	location.href = "<c:url value='/shop/user/EgovUserLoginForm.do'/>";
 }
 function passwd() {
-	location.href = "<c:url value='/shop/user/seller/sellerFindPass.do'/>";
+	location.href = "<c:url value='/shop/user/seller/sellerFindPass.do?s_id=${s_id}'/>";
 }
 </script>
 </head>
 <body>
 <%@ include file="../../../inc/EgovShopHeader.jsp" %>
+<form>
 <div class="container" style="text-align:center">
 		<div class="box6" >
-			<strong>
-			<label for="select0" class="label_rd">nwos1412</label>
-			</strong>
-			<span>가입 : 2013.05.20</span>
-			<input type=hidden name="nv_id0" value="nwos1412">
-			
+			가입한 아이디는 : 
+			<span id="s_id" name="s_id"> ${s_id }</span>
+			입니다.
 		</div>
 		<!-- 버튼 영역 -->
 		<div class="btn_area">
@@ -48,5 +46,6 @@ function passwd() {
 			<a href="#" onclick="passwd();" class="btn_findpw"><span class="blind">비밀번호 찾기</span></a>
 		</div>
 </div>
+</form>
 </body>
 </html>

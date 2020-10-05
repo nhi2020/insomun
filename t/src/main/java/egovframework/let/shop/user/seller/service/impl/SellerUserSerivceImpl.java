@@ -82,4 +82,36 @@ public class SellerUserSerivceImpl extends EgovAbstractServiceImpl implements Se
 
 
 
+	@Override
+	public int sellerNameEmailChk(SellerUserVO vo) {
+		int result = SellerDAO.sellerNameEmailChk(vo);
+		return result;
+	}
+
+
+
+	@Override
+	public int sellerAgreeNum(SellerUserVO vo) {
+		// TODO Auto-generated method stub
+		return SellerDAO.sellerAgreeNum(vo);
+	}
+
+
+
+	@Override
+	public int sellerCertificationNumberchk(SellerUserVO vo) {
+		// TODO Auto-generated method stub
+		return  SellerDAO.sellerCertificationNumberchk(vo);
+	}
+
+
+
+	@Override
+	public String sellerFindId(SellerUserVO vo) {
+		// TODO Auto-generated method stub
+		return SellerDAO.sellerFindId(vo);
+	}
+
+
+
 }

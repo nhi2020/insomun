@@ -26,15 +26,22 @@ public class SellerUser implements Serializable {
 	private String email2;
 	private String email1;
 	private String s_account_n;
-	
-	
-	
-	
-	
-	
-	
+	private String s_name;
+	private int s_agreenum;
 	
 
+	public int getS_agreenum() {
+		return s_agreenum;
+	}
+	public void setS_agreenum(int s_agreenum) {
+		this.s_agreenum = s_agreenum;
+	}
+	public String getS_name() {
+		return s_name;
+	}
+	public void setS_name(String s_name) {
+		this.s_name = s_name;
+	}
 	public String getS_account_n() {
 		return s_account_n;
 	}
