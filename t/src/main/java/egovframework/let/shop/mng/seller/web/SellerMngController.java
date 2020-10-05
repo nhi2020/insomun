@@ -140,8 +140,8 @@ public class SellerMngController {
 		return "redirect:/shop/mng/seller/listMngSeller.do";
 	}
 	
-	/*@RequestMapping(name = "/shop/mng/seller/delMngSeller.do")
-	public String delMngSeller(SellerMngVO mngVO, HttpServletRequest request) throws Exception{
+	@RequestMapping(value = "/shop/mng/seller/delMngSeller.do")
+	public String delMngSeller(SellerMngVO mngVO, HttpServletRequest request) {
 		String[] chk = request.getParameterValues("chk");
 		for (int j = 0; j < chk.length; j++) {
 			System.out.println("chk : " +chk[j]);
@@ -150,5 +150,5 @@ public class SellerMngController {
 		}
 		
 		return "redirect:/shop/mng/seller/listMngSeller.do";
-	}	*/
+	}	
 }
