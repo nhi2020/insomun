@@ -160,34 +160,79 @@
 <!-- 관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용 -->
 <resultMap id="MngReviewList" class="egovframework.let.shop.mng.review.service.ReviewMngVO"> 
 		<result property="r_idx" column="R_IDX" columnIndex="1"/>
-		<result property="nickname" column="NICKNAME" columnIndex="2"/>						 
-		<result property="r_content" column="R_CONTENT" columnIndex="3"/>			  
-		<result property="r_regdate" column="R_REGDATE" columnIndex="4"/>
-		<result property="r_delyn" column="R_DELYN" columnIndex="5"/>
+		<result property="p_idx" column="P_IDX" columnIndex="2"/>
+		<result property="p_name" column="P_NAME" columnIndex="3"/>
+		<result property="s_nickname" column="S_NICKNAME" columnIndex="4"/>
+		<result property="sns_idx" column="SNS_IDX" columnIndex="5"/>
+		<result property="r_content" column="R_CONTENT" columnIndex="6"/>			  
+		<result property="r_regdate" column="R_REGDATE" columnIndex="7"/>
+		<result property="r_delyn" column="R_DELYN" columnIndex="8"/>
+		<result property="r_div" column="R_DIV" columnIndex="9"/>
+		<result property="nickname" column="NICKNAME" columnIndex="10"/>						 
 	</resultMap>
 
 <select id="EgovMngReviewDAO.selectMngProList" parameterClass="ReviewMngVO" resultMap="MngReviewList" >
 		<![CDATA[
 	SELECT
 		  R_IDX
-		, NICKNAME
+		, P_IDX
+		, P_NAME
+		, S_NICKNAME
+		, SNS_IDX
 		, R_CONTENT
 		, R_REGDATE
 		, R_DELYN
+		, R_DIV
+		, NICKNAME
 	FROM(
 		SELECT
-			  A.R_IDX
+		     A.R_IDX
+			, A.P_IDX
+			, A.P_NAME
+			, A.S_NICKNAME
+			, A.SNS_IDX
 			, A.R_CONTENT
 			, A.R_REGDATE
 			, A.R_DELYN
+			, A.R_DIV
 			, B.NICKNAME
-		FROM
-			REVIEW A, SNSPROFILE B
-		WHERE 
-			1 = 1
-		AND 
-			A.R_IDX = B.sns_idx
-	)A
+		FROM(
+			SELECT
+				  A.R_IDX
+				, A.P_IDX
+				, A.SNS_IDX
+				, A.R_REGDATE
+				, A.R_DIV
+				, A.R_CONTENT
+				, A.R_DELYN
+				, A.P_NAME
+				, B.S_NICKNAME
+				FROM(
+					SELECT
+						  A.R_IDX
+						, A.P_IDX
+						, A.SNS_IDX
+						, A.R_REGDATE
+						, A.R_DIV
+						, A.S_ID
+						, A.R_CONTENT
+						, A.R_DELYN
+						, B.P_NAME
+					FROM
+						REVIEW A, PRODUCT B
+					WHERE
+					 	1 = 1
+					AND A.P_IDX = B.P_IDX
+				)A, SELLER B
+			WHERE 
+				1 = 1
+			AND A.S_ID = B.S_ID
+		)A, SNSPROFILE B
+	WHERE
+		1 =  1
+	AND
+	A.SNS_IDX = B.SNS_IDX
+)A
 		]]>
 		<isNotNull property="r_idx">
 				<isNotEmpty property="r_idx">
@@ -196,7 +241,7 @@
 					</isNotEqual>
 				</isNotEmpty>	
 			</isNotNull>	
-		 <isEqual prepend="AND" property="searchCnd" compareValue="0"> prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다.
+		 <isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
 				<![CDATA[	R_IDX LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 			</isEqual>
 			<isEqual prepend="AND" property="searchCnd" compareValue="1">

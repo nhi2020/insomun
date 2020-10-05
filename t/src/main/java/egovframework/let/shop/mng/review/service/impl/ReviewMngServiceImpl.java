@@ -15,23 +15,28 @@ public class ReviewMngServiceImpl extends EgovAbstractServiceImpl implements Rev
 
 	@Resource(name = "EgovReviewMngDAO")
 	private ReviewMngDAO reviewMngDAO;
-	
+	//관리자 리뷰 페이지의 전체 댓글 출력
 	@Override
 	public List<ReviewMngVO> selectMngList(ReviewMngVO reviewVO) throws Exception {
 		List<ReviewMngVO> list = reviewMngDAO.selectMngList(reviewVO);
 		return list;
 	}
-
+	//관리자 리뷰에서의 댓글 삭제
 	@Override
 	public int delMngReview(ReviewMngVO vo) throws Exception {
 		int result = reviewMngDAO.delMngReview(vo);
 		return result;
 	}
-
+	//관리자 리뷰에서의 댓글 복구
 	@Override
 	public int reMngReview(ReviewMngVO vo) throws Exception {
 		int result = reviewMngDAO.reMngReview(vo);
 		return result;
 	}
-	
+	//관리자 판매자 리뷰에서의 댓글 출력
+	@Override
+	public List<ReviewMngVO> selectSellerList(ReviewMngVO vo) throws Exception {
+		List<ReviewMngVO> list = reviewMngDAO.selectSellerList(vo);
+		return list;
+	}
 }

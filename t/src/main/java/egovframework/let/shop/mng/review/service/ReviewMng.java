@@ -2,22 +2,55 @@ package egovframework.let.shop.mng.review.service;
 
 public class ReviewMng {
 	private String r_idx;
-	private String nickname;
+	private String p_idx;
+	private String p_name;
+	private String s_nickname;
+	private int sns_idx;
+	private String r_content;
 	private String r_regdate;
 	private String r_delyn;
-	private String r_content;
-	
-	
+	private String nickname;
+	private String r_div;
 
-	/*public int getR_idx() {
-		return r_idx;
+	public String getR_div() {
+		return r_div;
 	}
 
-	public void setR_idx(int r_idx) {
-		this.r_idx = r_idx;
+	public void setR_div(String r_div) {
+		this.r_div = r_div;
 	}
-*/
-	
+
+	public String getP_idx() {
+		return p_idx;
+	}
+
+	public void setP_idx(String p_idx) {
+		this.p_idx = p_idx;
+	}
+
+	public String getP_name() {
+		return p_name;
+	}
+
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+
+	public String getS_nickname() {
+		return s_nickname;
+	}
+
+	public void setS_nickname(String s_nickname) {
+		this.s_nickname = s_nickname;
+	}
+
+	public int getSns_idx() {
+		return sns_idx;
+	}
+
+	public void setSns_idx(int sns_idx) {
+		this.sns_idx = sns_idx;
+	}
 
 	public String getR_idx() {
 		return r_idx;

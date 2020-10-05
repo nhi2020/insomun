@@ -34,7 +34,7 @@
 					<td><a href="/shop/mng/review/MngSelect.do">관리자판매자 리뷰 관리</a></td>
 				</tr>
 				<tr>
-					<td><a href="/shop/mng/review/UserSelect.do">관리자구매자 리뷰 관리</a></td>
+					<td><a href="/shop/mng/review/MngUserSelect.do">관리자구매자 리뷰 관리</a></td>
 				</tr>
 				<tr>
 					<td><a href="/shop/mng/basket/listMngBasket.do">장바구니 관리</a></td>
