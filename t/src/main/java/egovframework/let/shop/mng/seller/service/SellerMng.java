@@ -2,6 +2,8 @@ package egovframework.let.shop.mng.seller.service;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class SellerMng {
 
 	private String s_id;
@@ -10,6 +12,7 @@ public class SellerMng {
 	private String s_pass;
 	private String s_email;
 	private String s_photo;
+	private MultipartFile file_name;
 	private String s_status;
 	private String s_phone;
 	private String s_addr;
@@ -53,6 +56,12 @@ public class SellerMng {
 	}
 	public String getS_photo() {
 		return s_photo;
+	}
+	public MultipartFile getFile_name() {
+		return file_name;
+	}
+	public void setFile_name(MultipartFile file_name) {
+		this.file_name = file_name;
 	}
 	public void setS_photo(String s_photo) {
 		this.s_photo = s_photo;
