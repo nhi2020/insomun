@@ -252,7 +252,7 @@
 		<isEqual prepend="AND" property="searchCnd" compareValue="1">
 				<![CDATA[	SNSCODE LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 		</isEqual>
-		ORDER BY S_REGDATE DESC
+		ORDER BY S_IDX DESC
 		LIMIT #recordCountPerPage# OFFSET #firstIndex#
 	</select>
 	
