@@ -25,6 +25,8 @@
 	}
 </script>
 <body>
+<%@ include file="../../inc/EgovShopTop.jsp"%>
+	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 <div class="container text-center">
 	<div class="row justify-content-center">
 		<h2>구매자 리뷰 관리자 페이지입니다.</h2>
@@ -66,5 +68,6 @@
 		</form>
 	</div>
 </div>
+<%@ include file="../../inc/EgovShopBottom.jsp"%>
 </body>
 </html>
