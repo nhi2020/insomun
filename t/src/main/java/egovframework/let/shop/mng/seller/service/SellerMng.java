@@ -13,6 +13,8 @@ public class SellerMng {
 	private String s_status;
 	private String s_phone;
 	private String s_addr;
+	private String addr1;
+	private String addr2;
 	private String s_gender;
 	private Date s_moddate;
 	private Date s_regdate;
@@ -69,6 +71,18 @@ public class SellerMng {
 	}
 	public String getS_addr() {
 		return s_addr;
+	}
+	public String getAddr1() {
+		return addr1;
+	}
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
+	}
+	public String getAddr2() {
+		return addr2;
+	}
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
 	}
 	public void setS_addr(String s_addr) {
 		this.s_addr = s_addr;

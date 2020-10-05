@@ -136,15 +136,21 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		
 	}
 	
-	@RequestMapping("/shop/mng/admin/delMngAdminControl.do")
+	@RequestMapping("/shop/mng/admin/adminControl/delMngAdminControl")
 	public String EgovDelMngAdminControl(AdminVO adminVO) throws Exception {
-		int result = adminService.delAdminControl(adminVO);
-		if (result ==0 ) {
-			System.out.println("삭제 실패");
-		}else {
-			System.out.println("삭제 성공");
-		}
-		return "shop/mng/admin/adminControl/delMngAdminControl";
+			int result = adminService.adminDelete(adminVO);
+			System.out.println("a_id: "+adminVO.getA_id());
+			if (result == 0 ) {
+				System.out.println("삭제 실패");
+				System.out.println("result"+result);
+				System.out.println("a_id: "+adminVO.getA_id());
+			}else {
+				System.out.println("삭제 성공");
+				System.out.println("result"+result);
+
+			}
+		
+		return "redirect:/shop/mng/admin/adminControl/listMngAdminControl.do";
 		
 	}
 	
@@ -168,6 +174,7 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 			model.addAttribute("msg", "수정 실패");
 		}
 		model.addAttribute("adminVO", adminVO);
+		
 		return "forward:updateMngAdminControl.do";
 		
 	}

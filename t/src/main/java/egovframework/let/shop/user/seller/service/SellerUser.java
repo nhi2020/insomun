@@ -21,12 +21,50 @@ public class SellerUser implements Serializable {
 	private String s_birth;
 	private String s_account;
 	private String s_idx;
+	private String addr1;
+	private String addr2;
+	private String email2;
+	private String email1;
+	private String s_account_n;
+	
+	
+	
 	
 	
 	
 	
 	
 
+	public String getS_account_n() {
+		return s_account_n;
+	}
+	public void setS_account_n(String s_account_n) {
+		this.s_account_n = s_account_n;
+	}
+	public String getEmail2() {
+		return email2;
+	}
+	public void setEmail2(String email2) {
+		this.email2 = email2;
+	}
+	public String getEmail1() {
+		return email1;
+	}
+	public void setEmail1(String email1) {
+		this.email1 = email1;
+	}
+	public String getAddr1() {
+		return addr1;
+	}
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
+	}
+	public String getAddr2() {
+		return addr2;
+	}
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
+	}
 	public String getS_idx() {
 		return s_idx;
 	}

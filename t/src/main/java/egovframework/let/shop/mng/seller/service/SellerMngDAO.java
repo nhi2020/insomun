@@ -10,7 +10,7 @@ public interface SellerMngDAO {
 	public List<SellerMngVO> selectSellerMngList(SellerMngVO vo);
 	public SellerMngVO sellerSelect(SellerMngVO vo);
 	public int sellerUpdate(SellerMngVO vo);
-	public int updateMngSellerStateChange(SellerMngVO vo);/*
-	public SellerMngVO InsertMngSellerPro(SellerMngVO vo);*/
-	/*public int InsertMngSellerPro(SellerMngVO vo);*/
+	public int updateMngSellerStateChange(SellerMngVO vo);
+	public String InsertMngSellerPro(SellerMngVO vo);
+	public int delMngSeller(SellerMngVO vo);
 }

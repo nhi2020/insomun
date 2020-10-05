@@ -30,4 +30,5 @@ public class ReviewUserDAO extends EgovAbstractDAO {
 		int result = (Integer) insert("EgovReviewDAO.insertMainUserReview",reviewVO);
 		return result;
 	}
+	
 }

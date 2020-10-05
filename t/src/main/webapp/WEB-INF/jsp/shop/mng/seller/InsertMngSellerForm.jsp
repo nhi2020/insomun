@@ -41,8 +41,133 @@ function inputPhoneNumber(obj) {
     }
     obj.value = phone;
 }
-</script>
 
+$(document).ready(function(){
+	// 취소
+	$(".cencle").on("click", function(){
+		location.href = "/";
+	})
+	
+	$("#submit").on("click", function(){
+		//이메일 정규식
+		if($("#s_id").val()==""){
+			alert("아이디를 입력해주세요.");
+			$("#s_id").focus();
+			return false;
+		}
+		if($("#s_pass").val()==""){
+			alert("비밀번호를 입력해주세요.");
+			$("#s_pass").focus();
+			return false;
+		}
+		if($("#s_pass2").val()==""){
+			alert("비밀번호재확인를 입력해주세요.");
+			$("#s_pass2").focus();
+			return false;
+		}
+		if($("#s_pass").val() != $("#s_pass2").val()){
+			alert("비밀번호가 일치하지 않습니다.");
+			$("#s_pass").focus();
+			return false;
+		}
+		if($("#s_nickname").val()==""){
+			alert("성명을 입력해주세요.");
+			$("#s_nickname").focus();
+			return false;
+		}
+		if($("#sample6_address").val()==""){
+			alert("주소를 입력해주세요.");
+			$("#sample6_address").focus();
+			return false;
+		}
+		if($("#sample6_detailAddress").val()==""){
+			alert("상세주소를 입력해주세요.");
+			$("#sample6_detailAddress").focus();
+			return false;
+		}
+		if($("#s_email").val()==""){
+			alert("이메일을 입력해주세요.");
+			$("#s_email").focus();
+			return false;
+		}
+		if($("#s_phone").val()==""){
+			alert("핸드폰 번호을 입력해주세요.");
+			$("#s_phone").focus();
+			return false;
+		}
+		if($("#s_birth").val()==""){
+			alert("생년월일을 입력해주세요.");
+			$("#s_birth").focus();
+			return false;
+		}
+		var idChkVal = $("#idChk").val();
+		if(idChkVal == "N"){
+			alert("중복확인 버튼을 눌러주세요.");
+			return false;
+		}else if(idChkVal == "Y"){
+			$("#regForm").submit();
+		}else if(idChkVal == "D"){
+			alert("중복된 아이디입니다.");
+			return false;
+		}
+	
+	});
+})
+
+function fn_idChk(){
+	if($("#s_id").val()==""){
+		alert("아이디를 입력해주세요.");
+		$("#s_id").focus();
+		return false;
+	}
+	$.ajax({
+		url : "/shop/user/seller/sellerIdChk.do",
+		type : "post",
+		dataType : "json",
+		data : {"s_id" : $("#s_id").val()},
+		success : function(data){
+			if(data == 1){
+				alert("중복된 아이디입니다.");
+				$("#idChk").attr("value", "D");
+				$("#s_id").focus();
+				
+			}else if(data == 0){
+				$("#idChk").attr("value", "Y");
+				alert("사용가능한 아이디입니다.");
+			}
+		}
+	})
+}	
+</script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+             
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+              /*   document.getElementById('sample6_postcode').value = data.zonecode; */
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
 </head>
 
 <body>
@@ -52,8 +177,7 @@ function inputPhoneNumber(obj) {
 <div class="container">
 		<div class="row">
 			<form class="mx-auto" action="/shop/mng/seller/InsertMngSellerPro.do" method="post">
-			 	<input type="hidden" name="s_idx" value="${SellerVO.s_id }">
-
+					<input type="hidden" value="" name="s_addr">
 					<img src="<c:url value='/'/>images/shop/seller/${SellerVO.s_photo }" width="400" height="400"/>
 					
 					<p>
@@ -66,50 +190,53 @@ function inputPhoneNumber(obj) {
 				
 					<tr>
 						<th>회원아이디</th>
-						<td><input type="text" name="s_id"
-							value="${SellerVO.s_id }" /></td>
+						<td><input type="text" name="s_id" id="s_id" placeholder="아이디">
+						<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button></td>
 					</tr>
 			
 					<tr> 
 						<th>닉네임</th>
-						<td><input type="text" name="s_nickname"
-							value="${SellerVO.s_nickname }" /></td>
+						<td><input type="text" name="s_nickname" placeholder="닉네임"></td>
 					</tr>
 					<tr> 
 						<th>비밀번호</th>
-						<td><input type="password" name="s_pass"
-							value="${SellerVO.s_pass }" /></td>
+						<td><input type="password" id="s_pass" name="s_pass" placeholder="비밀번호"></td>
+					</tr>
+					<tr> 
+						<th>비밀번호 재확인</th>
+						<td><input type="password" id="s_pass2" name="s_pas2s" placeholder="비밀번호 재확인"></td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td><input type="email" name="s_email" value="${SellerVO.s_email }" /></td>
-					</tr>
-					<tr>
-						<th>상태</th>
-						<td> <input type="radio" name="s_status" value="${SellerVO.s_status }">활동중인 계정
-						 <input type="radio" name="s_status" value="${SellerVO.s_status }">탈퇴된 계정
-						</td>
+						<td><input type="email" id="s_email" name="s_email" placeholder="이메일"></td>
 					</tr>
 				
 					<tr>
 						<th>핸드폰 번호</th>
-						<td><input type="text" maxlength="13" onKeyup="inputPhoneNumber(this);" name="s_phone" value="${SellerVO.s_phone }" />
+						<td><input type="text" maxlength="13" onKeyup="inputPhoneNumber(this);" id="s_phone" name="s_phone" placeholder="01X-XXXX-XXXX">
                      	 </td>						
 					</tr>
 					
 					<tr>
 						<th>주소</th>
-						<td><input type="text" name="s_addr" value="${SellerVO.s_addr }" /></td>
+						<td><input type="text" id="sample6_address" name="addr1" placeholder="주소" readonly>
+							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
 					</tr>
+					
+					<tr>
+						<th>상세주소</th>
+						<td><input type="text" id="sample6_detailAddress" name="addr2" placeholder="상세주소"></td>
+					</tr>
+					
 					<tr>
 						<th>성별</th>
-						<td> <input type="radio" name="s_gender" value="${SellerVO.s_gender }">여자
-						 <input type="radio" name="s_gender" value="${SellerVO.s_gender }">남자
+						<td>&nbsp;&nbsp; <input type="radio" class="form-check-input" id="s_gender" name="s_gender" value="여자" checked="checked" />여자 &nbsp;&nbsp;&nbsp;&nbsp;
+						 <input type="radio" class="form-check-input" id="s_gender" name="s_gender" value="남자" >남자
 						</td>
 					</tr>
 					<tr>
 						<th>생일</th>
-						<td><input type="date" name="s_birth" value="${SellerVO.s_birth }" /></td>
+						<td><input type="date" id="s_birth" name="s_birth" placeholder="생년월일"></td>
 					</tr>
 					<tr>
 						<th>은행</th>
@@ -131,14 +258,10 @@ function inputPhoneNumber(obj) {
 					</tr>
 					<tr>
 						<th>계좌 번호</th>
-						<td><input type="text" name="s_account" value="${SellerVO.s_account }" /></td>
+						<td><input type="text" name="s_account" id="s_account" placeholder="계좌번호"></td>
 					</tr>
 					<tr>
-						<th>등록일</th>
-						<td><input type="date" name="s_regdate" value="${SellerVO.s_regdate }" /></td>
-					</tr>
-					<tr>
-						<td colspan="2"><input type="submit" value="등록" /> 
+						<td colspan="2"><input type="submit" id="submit" value="등록" /> 
 						<input type="button" value="목록으로" onclick="location.href='/shop/mng/seller/listMngSeller.do'" />
 						</td>
 					</tr>

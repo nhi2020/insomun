@@ -71,5 +71,11 @@
 			( #a_id#, #a_pass#, #a_email#, #a_name#, SYSDATE())			
 		]]>
 	</insert>
-	
+	<delete id="AdminDAO.adminDelete" parameterClass="AdminVO">
+	   <![CDATA[
+	     DELETE  
+	     FROM ADMIN
+	     WHERE A_ID = #a_id#
+	   ]]>
+	</delete>
 </sqlMap>

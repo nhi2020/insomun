@@ -14,15 +14,9 @@
 	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js"
 	charset="utf-8"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<!-- <style type="text/css">
-#test{
-width: 1260px;
-height: 834px;
-	background-image: url('<c:url value='/images/shop/main/main.jpg'/>');
-	background-repeat : no-repeat;
-	background-size: 100% 100%;
-}
-</style> -->
+
+<script type="text/javascript">
+</script>
 </head>
 <body>
 	<%@ include file="../inc/EgovShopHeader.jsp"%>
@@ -37,7 +31,10 @@ height: 834px;
 					<td><a href="/shop/user/review/reviewList.do">리뷰 페이지</a></td>
 				</tr>
 				<tr>
-					<td><a href="/shop/mng/review/MngSelect.do">관리자리뷰 관리</a></td>
+					<td><a href="/shop/mng/review/MngSelect.do">관리자판매자 리뷰 관리</a></td>
+				</tr>
+				<tr>
+					<td><a href="/shop/mng/review/UserSelect.do">관리자구매자 리뷰 관리</a></td>
 				</tr>
 				<tr>
 					<td><a href="/shop/mng/basket/listMngBasket.do">장바구니 관리</a></td>

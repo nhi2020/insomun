@@ -139,6 +139,17 @@ public class SellerUserController {
 	@RequestMapping(value="/shop/user/seller/sellerinsertPro.do", method = RequestMethod.POST )
 	public String sellerinsertPro(SellerUserVO vo, Model model ){
 		System.out.println("회원가입3");
+		System.out.println("은행선택"+vo.getS_account_n());
+		String addr1 =vo.getAddr1();
+		String addr2 =vo.getAddr2();
+		String S_addr= addr1 + addr2; 
+		System.out.println("S_ADDR" + S_addr);
+		String email1 =vo.getEmail1();
+		String email2 =vo.getEmail2();
+		String s_email = email1+"@"+email2;
+		System.out.println("s_email"+s_email);
+		vo.setS_addr(S_addr);
+		vo.setS_email(s_email);
 		String result = SellerService.sellerinsertPro(vo);
 	
 		return "redirect:/shop/user/EgovUserLoginForm.do";

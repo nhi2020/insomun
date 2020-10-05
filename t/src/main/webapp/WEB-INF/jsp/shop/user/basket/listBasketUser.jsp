@@ -33,7 +33,6 @@ function updateUserBasketQty(index){
 					<th>상품번호</th>
 					<th>상품이름</th>
 					<th>상품가격</th>
-					<th>판매자 아이디</th>
 					<th>상품수량</th>
 					<th>수정</th>
 					<th>삭제</th>
@@ -47,7 +46,6 @@ function updateUserBasketQty(index){
 						<td>${basketList.p_idx }</td>
 						<td>${basketList.p_name }</td>
 						<td>${basketList.p_price }</td>
-						<td>${basketList.ba_q }</td>
 						<td><input class="form-control form-control-sm"
 							id="ba_q${status.index }" type="text" form="frm${status.index }"
 							name="ba_q" value="${basketList.ba_q }" /></td>
@@ -58,7 +56,7 @@ function updateUserBasketQty(index){
 							form="frm${status.index }"
 							onclick="location.href='/shop/user/basket/deleteUserBasket.do?ba_idx=${basketList.ba_idx}'" /></td>
 					</tr>
-					<form name="frm${status.index }" id="frm${status.index }">
+					<form action="/shop/user/basket/updateBasketUserQty.do" name="frm${status.index }" id="frm${status.index }">
 						<input type="hidden" id="ba_idx${status.index }" name="ba_idx"
 							value="${basketList.ba_idx }" />
 					</form>

@@ -28,8 +28,26 @@
 
 <div class="container">
 		<div class="row">
-
- <input type="button" value="등록" onclick="location.href='/shop/mng/seller/InsertMngSellerForm.do'"> 
+			
+			
+			<form action="/shop/mng/seller/listMngSeller.do">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="아이디"
+						aria-label="Username" aria-describedby="basic-addon1"
+						name="searchWrd">
+					<div class="input-group-append">
+						<input class="btn btn-secondary" type="submit" value="검색" />
+					</div>
+				</div>
+			<input type="hidden" name="pageIndex" value="${searchVO.pageIndex }" />
+			<input type="hidden" name="searchCnd" value="0" />
+			</form>
+			
+			
+ <input type="button" value="회원등록" onclick="location.href='/shop/mng/seller/InsertMngSellerForm.do'"> 
+ <input type="button" value="(체크박스)전환" onclick="delReview();">
+ 
+				<form name="frm" id="frm">
 			<table class="table mx-auto">
 				<tr>
 					<th>체크박스</th>
@@ -50,10 +68,9 @@
 				</tr>
 				
 				
-				
 				<c:forEach items="${list }" var="s_list" varStatus="status">
 					<tr>
-						<td><input type="checkbox" name="chk" id="chk" value="${s_list.s_id }"></td>
+						<td><input type="checkbox" name="chk" id="chk" value="${s_list.s_idx }"></td>
 						<td>${s_list.s_idx }</td>
 						<td><a href="/shop/mng/seller/updateMngSellerForm.do?s_id=${s_list.s_id }">${s_list.s_id }</a></td>
 						<td>${s_list.s_nickname }</td>
@@ -82,37 +99,16 @@
 						</tr>
 				</c:forEach>
 						<tr>
-						<td><input type="button" value="삭제" onclick="delReview();"></td>
+						<td></td>
 						</tr>
 			</table>
-			
+			</form>
 			<c:forEach items="${list }" var="s_list" varStatus="status">
 				<form id="frm${status.index }" action="updateMngSellerStateChange.do">
 					<input type="hidden" name="s_id" value="${s_list.s_id }">
 					<input type="hidden" name="pageIndex" value="${paginationInfo.currentPageNo }">
 				</form>
-			</c:forEach>
-
-			
-			
-			
-			
-			<form action="/shop/mng/seller/listMngSeller.do">
-				<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="아이디"
-						aria-label="Username" aria-describedby="basic-addon1"
-						name="searchWrd">
-					<div class="input-group-append">
-						<input class="btn btn-secondary" type="submit" value="검색" />
-					</div>
-				</div>
-			<input type="hidden" name="pageIndex" value="${searchVO.pageIndex }" />
-			<input type="hidden" name="searchCnd" value="0" />
-			</form>
-			
-			
-			
-			
+			</c:forEach>		
 			
 			<div id="paging_div">
 				<ul class="paging_align">

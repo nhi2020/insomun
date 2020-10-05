@@ -39,11 +39,6 @@ public class AdminServiceImpl implements AdminService {
 		return list;
 	}
 
-	@Override
-	public int delAdminControl(AdminVO adminVO) {
-		int result = adminDAO.adminDelete(adminVO);
-		return result;
-	}
 
 	@Override
 	public AdminVO adminSelect(AdminVO adminVO) {
@@ -60,6 +55,12 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int adminInsert(AdminVO vo) {
 		int result = adminDAO.adminInsert(vo);
+		return result;
+	}
+
+	@Override
+	public int adminDelete(AdminVO adminVO) {
+		int result = adminDAO.adminDelete(adminVO);
 		return result;
 	}
 
