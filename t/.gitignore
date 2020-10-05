@@ -3,6 +3,7 @@ target/**/
 MANIFEST
 /MANIFEST.MF
 **/MANIFEST.MF
+src/main/webapp/META-INF/MANIFEST.MF
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/eclipse,java,windows
