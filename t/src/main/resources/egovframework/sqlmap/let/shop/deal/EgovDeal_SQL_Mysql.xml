@@ -50,38 +50,65 @@ SELECT
 		D_ING,
 		D_EDATE,
 		D_IDX,
-		S_ID
+		S_ID,
+		sns_idx,
+		userid,
+		nickname
 	FROM
 	(SELECT
-		rn,
-		A.P_IDX,
-		A.P_NAME,
-		A.D_Q,
-		A.P_PRICE,
-		A.D_REGDATE,
-		B.S_NICKNAME,
-		A.D_ING,
-		A.D_EDATE,
-		A.D_IDX,
-		A.S_ID
-	FROM
-		(SELECT
-			@ROWNUM:=@ROWNUM+1 AS rn,
+			rn,
 			A.P_IDX,
-			B.P_NAME,
+			A.P_NAME,
 			A.D_Q,
-			B.P_PRICE,
+			A.P_PRICE,
 			A.D_REGDATE,
+			A.S_NICKNAME,
 			A.D_ING,
 			A.D_EDATE,
 			A.D_IDX,
-			A.S_ID
-		FROM DEAL A, PRODUCT B, (SELECT @ROWNUM:=0) R
+			A.S_ID,
+			A.sns_idx,
+			B.userid,
+			B.nickname
+		FROM
+		(SELECT
+			rn,
+			A.P_IDX,
+			A.P_NAME,
+			A.D_Q,
+			A.P_PRICE,
+			A.D_REGDATE,
+			B.S_NICKNAME,
+			A.D_ING,
+			A.D_EDATE,
+			A.D_IDX,
+			A.S_ID,
+			A.sns_idx
+		FROM
+			(SELECT
+				@ROWNUM:=@ROWNUM+1 AS rn,
+				A.P_IDX,
+				B.P_NAME,
+				A.D_Q,
+				B.P_PRICE,
+				A.D_REGDATE,
+				A.D_ING,
+				A.D_EDATE,
+				A.D_IDX,
+				A.S_ID,
+				A.sns_idx
+			FROM DEAL A, PRODUCT B, (SELECT @ROWNUM:=0) R
+			WHERE 1 = 1
+			AND A.P_IDX = B.P_IDX) A, SELLER B
 		WHERE 1 = 1
-		AND A.P_IDX = B.P_IDX) A, SELLER B
+		AND A.S_ID = B.S_ID) A, SNSPROFILE B
 	WHERE 1 = 1
-	AND A.S_ID = B.S_ID) A
+	AND A.sns_idx = B.sns_idx) A
 	]]>
+	<![CDATA[			
+			ORDER BY RN DESC
+			LIMIT #recordCountPerPage# OFFSET #firstIndex#
+		]]>		
 	</select>
 <!-- HeidiSQL에서는 rownum을 사용할 때 아래 예시와 같이 사용한다.
 SELECT
@@ -93,32 +120,19 @@ FROM
 	SCORES, (SELECT @ROWNUM:=0) R -->
 
 
-	<select id="selectMngDealBuyerDetail" parameterClass="DealMngVO" resultClass="DealMngVO">
+	<select id="selectDealMngBuyerDetail" parameterClass="DealMngVO" resultClass="DealMngVO">
 SELECT
-		D_ING,
-		D_REQUEST,
-		P_NAME,
-		P_IDX,
-		S_ID,
-		S_PHONE,
-		S_ACCOUNT,
-		S_NICKNAME,
-		SELLER_SCORE,
-		D_IDX
-	FROM
-		(SELECT
-			A.D_ING,
-			A.D_REQUEST,
-			A.P_NAME,
-			A.P_IDX,
-			A.S_ID,
-			A.S_PHONE,
-			A.S_ACCOUNT,
-			A.S_NICKNAME,
-			B.SELLER_SCORE,
-			A.D_IDX
+			D_ING,
+			D_REQUEST,
+			P_NAME,
+			P_IDX,
+			S_ID,
+			S_PHONE,
+			S_ACCOUNT,
+			S_NICKNAME,
+			D_IDX
 		FROM
-			(SELECT
+		(SELECT
 				A.D_ING,
 				A.D_REQUEST,
 				A.P_NAME,
@@ -137,31 +151,78 @@ SELECT
 					A.S_ID,
 					A.D_IDX
 				FROM
-					DEAL A, PRODUCT B
+				(SELECT
+					D_ING,
+					D_REQUEST,
+					P_IDX,
+					S_ID,
+					D_IDX
+					FROM DEAL
+				WHERE D_IDX = #d_idx#
+				 ) A, PRODUCT B
 					WHERE 1 = 1
 					AND A.P_IDX = B.P_IDX) A, SELLER B
 				WHERE 1 = 1
-				AND A.S_ID = B.S_ID) A, REVIEW B
-			WHERE 1 = 1
-			AND A.P_IDX = B.P_IDX) A
-			WHERE D_IDX = #d_idx#
+				AND A.S_ID = B.S_ID) A
 	</select>
 
 
-	<update id="updateMngDealBuyerDetail" parameterClass="DealMngVO">
+
+	<select id="selectDealMngBuyerScore" parameterClass="DealMngVO" resultClass="DealMngVO">
+	SELECT 
+	<!-- 미정 --> 
+	</select>
+	
+	
+	<update id="updateDealMngIng" parameterClass="DealMngVO">
 		UPDATE DEAL
 		SET
 			D_ING = #d_ing#
 		WHERE D_IDX = #d_idx#
 	</update>
 
-	<update id="updateMngDealBuyerCancel" parameterClass="DealMngVO">
+	<update id="updateDealMngBuyerCancel" parameterClass="DealMngVO">
 		UPDATE DEAL
 		SET
 			D_ING = '5'
 		WHERE D_IDX = #d_idx#
 	</update>
 
-
+	<select id="selectDealMngSellerDetail" parameterClass="DealMngVO" resultClass="DealMngVO">
+	SELECT
+		A.sns_idx,
+		A.D_IDX,
+		A.P_IDX,
+		A.D_ING,
+		A.D_REQUEST,
+		A.D_Q,
+		A.P_NAME,
+		A.P_PRICE,
+		B.nickname
+	FROM
+		(SELECT
+			A.sns_idx,
+			A.D_IDX,
+			A.P_IDX,
+			A.D_ING,
+			A.D_REQUEST,
+			A.D_Q,
+			B.P_NAME,
+			B.P_PRICE
+		FROM
+			(SELECT
+				sns_idx,
+				D_IDX,
+				P_IDX,
+				D_ING,
+				D_REQUEST,
+				D_Q
+			FROM DEAL
+				WHERE D_IDX = #d_idx#) A, PRODUCT B
+		WHERE A.P_IDX = B.P_IDX) A, SNSPROFILE B
+	WHERE A.sns_idx = B.sns_idx
+	</select>
+	
+	
 
 </sqlMap>

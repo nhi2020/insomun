@@ -53,6 +53,8 @@
 					<td><a href="/shop/user/seller/sellerUserMain.do">판매자 페이지</a></td>
 				</tr>
 				<tr>
+					<td><a href="/shop/mng/deal/dealMngBuyerList.do">운영자 거래관리</a></td>
+				</tr>
 					<td><a href="#">### 관리</a></td>
 				<tr>
 					<td><a href="#">### 관리</a></td>

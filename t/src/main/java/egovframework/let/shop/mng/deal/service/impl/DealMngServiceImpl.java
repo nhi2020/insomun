@@ -17,36 +17,86 @@ public class DealMngServiceImpl implements DealMngService {
 	private DealMngDAO dealMngDAO;
 	
 	@Override
-	public int selectListCnt(DealMngVO vo) {
-		int cnt = dealMngDAO.selectListCnt(vo);
+	public int selectListCntDealMng(DealMngVO vo) {
+		int cnt = dealMngDAO.selectListCntDealMng(vo);
 		return cnt;
 	}
 
 	@Override
-	public List<DealMngVO> selectList(DealMngVO vo) {
-		List<DealMngVO> list = dealMngDAO.selectList(vo);
+	public List<DealMngVO> selectListDealMng(DealMngVO vo) {
+		List<DealMngVO> list = dealMngDAO.selectListDealMng(vo);
 		return list;
 	}
 
 	@Override
-	public DealMngVO selectMngDealBuyerDetail(DealMngVO vo) {
-		System.out.println("DealMngServiceImpl selectMngDealBuyerdetail Start...");
-		vo = dealMngDAO.selectMngDealBuyerDetail(vo);
+	public DealMngVO selectDealMngBuyerDetail(DealMngVO vo) {
+		System.out.println("DealMngServiceImpl selectDealMngBuyerDetail Start...");
+		vo = dealMngDAO.selectDealMngBuyerDetail(vo);
+		return vo;
+	}
+
+
+	@Override
+	public DealMngVO selectDealMngBuyerScore(DealMngVO vo) {
+		System.out.println("DealMngServiceImpl selectDealMngBuyerScore Start...");
+		vo = dealMngDAO.selectDealMngBuyerScore(vo);
+		return vo;
+	}
+	
+	@Override
+	public int updateDealMngBuyerDetail(DealMngVO vo) {
+		System.out.println("DealMngServiceImpl updateDealMngBuyerDetail Start...");
+		vo.setD_ing("2");
+		int result = dealMngDAO.updateDealMngIng(vo);
+		return result;
+	}
+
+	@Override
+	public int updateDealMngBuyerCancel(DealMngVO vo) {
+		System.out.println("DealMngServiceImpl updateDealMngBuyerCancel Start...");
+		vo.setD_ing("5");
+		int result = dealMngDAO.updateDealMngIng(vo);
+		return result;
+	}
+
+	@Override
+	public int updateDealMngBuyerComplete(DealMngVO vo) {
+		System.out.println("DealMngServiceImpl updateDealMngBuyerComplete Start...");
+		vo.setD_ing("4");
+		int result = dealMngDAO.updateDealMngIng(vo);
+		return result;
+	}
+
+	@Override
+	public DealMngVO selectDealMngSellerDetail(DealMngVO vo) {
+		System.out.println("DealMngServiceImpl selectDealMngSellerDetail Start...");
+		vo = dealMngDAO.selectDealMngSellerDetail(vo);
 		return vo;
 	}
 
 	@Override
-	public int updateMngDealBuyerDetail(DealMngVO vo) {
-		System.out.println("DealMngServiceImpl updateMngDealBuyerDetail Start...");
-		int result = dealMngDAO.updateMngDealBuyerDetail(vo);
+	public int updateDealMngSellerAccept(DealMngVO vo) {
+		System.out.println("DealMngServiceImpl updateDealMngBuyerCancel Start...");
+		vo.setD_ing("2");
+		int result = dealMngDAO.updateDealMngIng(vo);
 		return result;
 	}
 
 	@Override
-	public int updateMngDealBuyerCancel(DealMngVO vo) {
-		System.out.println("DealMngServiceImpl updateMngDealBuyerCancel Start...");
-		int result = dealMngDAO.updateMngDealBuyerCancel(vo);
+	public int updateDealMngSellerCancel(DealMngVO vo) {
+		System.out.println("DealMngServiceImpl updateDealMngBuyerCancel Start...");
+		vo.setD_ing("6");
+		int result = dealMngDAO.updateDealMngIng(vo);
 		return result;
 	}
+
+	@Override
+	public int updateDealMngSellerDeliver(DealMngVO vo) {
+		System.out.println("DealMngServiceImpl updateDealMngSellerDeliver Start...");
+		vo.setD_ing("3");
+		int result = dealMngDAO.updateDealMngIng(vo);
+		return result;
+	}
+
 
 }
