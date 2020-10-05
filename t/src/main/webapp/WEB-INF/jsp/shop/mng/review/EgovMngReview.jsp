@@ -33,7 +33,6 @@
 	<div class="row justify-content-center">
 		<form method="post" name="frm">
 			<table border="1">
-				<c:forEach var="result" items="${list }" varStatus="i">
 					<thead>
 						<tr>
 							<th>리뷰 번호</th>
@@ -45,6 +44,7 @@
 							<th>리뷰 복구하기</th>
 						</tr>
 					</thead>
+				<c:forEach var="result" items="${list }" varStatus="i">
 					<tbody>
 						<tr>
 							<td>${result.r_idx }</td>
