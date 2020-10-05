@@ -101,6 +101,63 @@
 			AND S_ID = #s_id#
 		]]>
 	</select>
+	
+	<select id="EgovSellerDAO.sellerNameEmailChk"  parameterClass="SellerVO" resultClass="int">
+		<![CDATA[  
+			SELECT
+				COUNT(*)
+			FROM
+				SELLER
+			WHERE 1=1
+			AND S_NAME = #s_name#
+			AND S_EMAIL = #s_email#
+		]]>
+	</select>
+		
+	<update id="EgovSellerDAO.sellerAgreeNum" parameterClass="SellerVO">
+ 		<![CDATA[
+			UPDATE SELLER SET 
+				S_AGREENUM = #s_agreenum#
+			WHERE 1=1
+			AND S_NAME = #s_name#
+			AND S_EMAIL = #s_email#
+ 		]]>
+ 	</update>
+ 	
+	<select id="EgovSellerDAO.sellerCertificationNumberchk"  parameterClass="SellerVO" resultClass="int">
+		<![CDATA[  
+			SELECT
+				COUNT(*)
+			FROM
+				SELLER
+			WHERE 1=1
+			AND S_NAME = #s_name#
+			AND S_EMAIL = #s_email#
+			AND S_AGREENUM = #s_agreenum#
+		]]>
+	</select>
+
+	<select id="EgovSellerDAO.sellerFindId"  parameterClass="SellerVO" resultClass="java.lang.String">
+		<![CDATA[  
+			SELECT
+				S_ID
+			FROM
+				SELLER
+			WHERE 1=1
+			AND S_NAME = #s_name#
+			AND S_EMAIL = #s_email#
+			AND S_AGREENUM = #s_agreenum#
+		]]>
+	</select>
+
+	<update id="EgovSellerDAO.sellerRePass" parameterClass="SellerVO">
+ 		<![CDATA[
+			UPDATE SELLER SET 
+				S_PASS = #s_pass#
+			WHERE 1=1
+			AND S_ID = #s_id#
+ 		]]>
+ 	</update>
 	<!-- <resultMap id="mngMemberList" class="egovframework.let.shop.member.service.MemberVO"> property는 vo값
 		<result property="m_id" column="M_ID" columnIndex="1"/>						 collum 은 db의 컬럼값
 		<result property="m_nickname" column="M_NICKNAME" columnIndex="2"/>			  db의 컬럼 순서

@@ -55,7 +55,7 @@ public class AdminController {
 		return ret;
 	}
 	
-	@RequestMapping(value="/shop/mng/admin/EgovMngAdminLoginForm.do")
+	@RequestMapping(value="/shop/mng/admin/AdminLogin.do")
 	public String EgovMngAdminLoginForm() {
 	   
 	    return "/shop/mng/admin/adminLogin/EgovMngAdminLoginForm";
@@ -83,7 +83,9 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		
 		
 		if (user_name != null){
-			session.setAttribute("userid", id);
+			session.setAttribute("A_ID", list.get(0).getA_id());
+			session.setAttribute("A_EMAIL", list.get(0).getA_email());
+			session.setAttribute("A_NAME", list.get(0).getA_name());
 			session.setAttribute("status", 0);
 			/*request.getSession().setAttribute("user_id", id);*/
 			System.out.println("성공");
@@ -91,7 +93,8 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		}else {
 			System.out.println("실패");
 			model.addAttribute("msg","사용자 올바르지 않음");
-			model.addAttribute("chk",0);	
+			model.addAttribute("chk",0);
+			return "/shop/mng/admin/AdminLogin.do";
 		}
 		
 		return "/shop/mng/admin/adminLogin/EgovMngAdminLoginPro";
@@ -100,8 +103,9 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 	
 	@RequestMapping(value="/shop/mng/seller/adminLogout.do")
 	public String adminLogout(HttpSession session) {
+		System.out.println("관리자 로그아웃");
 	    session.invalidate();
-	    return "redirect:/shop/mng/main/EgovMain.do";
+	    return "redirect:/shop/user/main/EgovUserMain.do";
 	}
 	
 	@RequestMapping(value = "/shop/mng/admin/adminControl/listMngAdminControl")
@@ -195,8 +199,5 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		return "forward:insertMngAdminControlForm.do";
 		
 	}
-	
-	
-	
-			
+		
 }

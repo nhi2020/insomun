@@ -38,18 +38,20 @@
 					<thead>
 						<tr>
 							<th>리뷰 번호</th>
+							<th>상품 이름</th>
 							<th>구매자 닉네임</th>
 							<th>구매자 리뷰</th>
 							<th>구매자리뷰 등록일자</th>
-							<th>리뷰 삭제여부</th>
-							<th>리뷰 삭제하기</th>
-							<th>리뷰 복구하기</th>
+							<th>리뷰 삭제 여부</th>
+							<th>리뷰 삭제 하기</th>
+							<th>리뷰 복구 하기</th>
 						</tr>
 					</thead> 
 				<c:forEach var="result" items="${list }" varStatus="i">
 					<tbody>
 						<tr>
 							<td>${result.r_idx }</td>
+							<td>${result.p_name }</td>
 							<td>${result.nickname }</td>
 							<td>${result.r_content }</td>
 							<td>${result.r_regdate }</td>
@@ -60,7 +62,7 @@
 					</tbody>
 				</c:forEach>
 						<tr>
-							<td colspan="5"></td>
+							<td colspan="6"></td>
 							<td><input type="button" value="삭제" onclick="delReview();"></td>
 							<td><input type="button" value="복구" onclick="reReview();"></td>
 						</tr>

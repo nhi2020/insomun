@@ -9,14 +9,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
-<title>상품 관리 운영자 페이지입니다</title>
+<title>운영자 상품 관리 페이지입니다</title>
 
 </head>
 <body>
 	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 
-<form action="/shop/mng/product/EgovMngProductDelete.do" name="frm">
+
+<form action="/shop/mng/product/EgovMngProductDelete.do">
 <input type="button" value="등록" onclick="location.href='/shop/mng/product/EgovMngProductInsertForm.do'"> &nbsp;
 <input type="submit" value="삭제">
  <div class="container-fluid">
@@ -25,21 +26,14 @@
 	  		<c:forEach var="product_list" items="${list}">
 			<div class="col-3">
 					
-					<img src="./images/main/photo/${product_list.p_image}" width="270" height="385"/>
-				
-				<p>
+					<img src="./images/main/photo/${product_list.p_image}" width="270" height="270"/>
 					
-					<span><input type="checkbox" name="check" id="check" value="${product_list.p_idx }">
-					
+					<span>
+					<input type="checkbox" name="check" id="check" value="${product_list.p_idx }">
 					판매자 아이디: ${product_list.s_id }</span>
+					<br/><span >상품명: ${productuser_list.p_name }</span>
 					<br/><span >가격: ${product_list.p_price }</span>
 					<br/><span >상태: ${product_list.p_status }</span>
-					<c:if  test="${product.list.p_status eq 'Y'}" >
-							삭제
-					</c:if>
-					<c:if test="${product.list.p_status eq 'N'}">
-							복구
-					</c:if>
 					<br/><span >재고 수량: ${product_list.p_q }</span>
 					<br/><span >업데이트된 날짜: ${product_list.p_moddate }</span>
 					<input type="button" value="수정" onclick="location.href='/shop/mng/product/EgovMngProductUpdateForm.do?p_idx=${product_list.p_idx}'" >

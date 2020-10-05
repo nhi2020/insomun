@@ -66,6 +66,31 @@ public class SellerUserDAO extends EgovAbstractDAO {
 		return result;
 	}
 
+	public int sellerNameEmailChk(SellerUserVO vo) {
+		int result = (int) select("EgovSellerDAO.sellerNameEmailChk",vo);
+		return result;
+	}
+
+	public int sellerAgreeNum(SellerUserVO vo) {
+		
+		return update("EgovSellerDAO.sellerAgreeNum",vo);
+	}
+
+	public int sellerCertificationNumberchk(SellerUserVO vo) {
+		// TODO Auto-generated method stub
+		return (int) select("EgovSellerDAO.sellerCertificationNumberchk",vo);
+	}
+
+	public String sellerFindId(SellerUserVO vo) {
+		String result = (String) select("EgovSellerDAO.sellerFindId",vo);
+		return result;
+	}
+
+	public int sellerRePass(SellerUserVO vo) {
+		// TODO Auto-generated method stub
+		return (int) update("EgovSellerDAO.sellerRePass",vo);
+	}
+
 
 
 }

@@ -44,22 +44,54 @@
 <form action="/shop/user/review/insertUserReview.do" name="frm2" method="post">
 	<div class="container text-center">
 			<div class="row justify-content-center">
-			<input type="hidden" id="s_id" name="s_id" value="shong1">
+			<input type="hidden" id="s_id" name="s_id" value="shong1">	<!-- 상품 상세페이지가 나오면  EL표기법으로 값가져오기. -->
 			<input type="hidden" id="sns_idx" name="sns_idx" value="1">
 			<input type="hidden" id="p_idx" name="p_idx" value="1">
 			<input type="hidden" id="r_div" name="r_div" value="1">
 			<textarea rows="5" cols="80" name="r_content" id="r_content"></textarea>
 			<input type="submit" value="확인">
-			</div>
-	</div>
+			</div>														<!-- 시간남으면 상품 사진까지 올릴수있도록 -->
+	</div>																<!-- 추가해보기 -->
 </form>
 <form name="frm" method="post">
  	<input type="hidden" name="r_idx" value=""/>
  	<input type="hidden" name="r_content" value=""/>
 <c:forEach items="${list}" var="result">
 <div class="container text-center">
-			<div class="row justify-content-center">
+	<div class="row justify-content-center">
+		<div class="modal-body">
 		<table border="1">
+		          <c:choose>
+		          	<c:when test="${result.r_div eq '1'}">
+		          	<tr>
+		          		<td>	
+		          			<p>구매자 : ${result.nickname}
+		          		</p>
+		          	<tr>
+		          	</c:when>
+		          	<c:otherwise>
+		          		${result.s_nickname}
+		          	</c:otherwise>
+		          </c:choose>
+          	</table>
+	        <div id="r_view${result.r_idx}" style="display: none;">
+				<textarea id="r_contentVal${result.r_idx}" name="r_contentVal${result.r_idx}" rows="5" cols="40">
+					${result.r_content }
+				</textarea>
+				<a href="javascript:updateUserReview('${result.r_idx}');">저장</a>
+			</div>
+			<div id="r_view2${result.r_idx}" style="display: block;">
+				${result.r_content }
+			</div>
+			<c:if test="${'1' eq result.sns_idx}">
+				<a href="javascript:displayView('${result.r_idx}');">수정</a>
+			</c:if>
+			<c:if test="${'1' eq result.sns_idx}">
+				<a href="javascript:delUserReview('${result.r_idx}');">삭제</a>
+			</c:if>
+        </div>
+        
+		<%-- <table border="1">
 			<thead>
 				<tr>
 					<th>판매자 이름</th>
@@ -100,7 +132,7 @@
 					</td>
 				</tr>
 			</tbody>
-		</table>
+		</table> --%>
 	</div>
 </div>
 </c:forEach> 

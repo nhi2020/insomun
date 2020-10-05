@@ -1,13 +1,20 @@
 package egovframework.let.shop.user.seller.web;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Resource;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +39,9 @@ public class SellerUserController {
 
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
+	
+	@Autowired
+	private JavaMailSender mailSender;
 
 	/**
 	 * XSS 방지 처리.
@@ -160,13 +170,20 @@ public class SellerUserController {
 		return "/shop/user/seller/sellerFind/sellerIdAgreeFrom";
 	}
 	@RequestMapping(value="/shop/user/seller/sellerFindId.do")
-	public String sellerFindId(){
+	public String sellerFindId(SellerUserVO vo, Model model, @RequestParam("s_name") String s_name,  @RequestParam("s_email") String s_email){
 		System.out.println("아이디 찾기2 ");
+		
+		System.out.println("test"+vo.getS_name());
+		System.out.println("testtest"+s_name);
+		String name = SellerService.sellerFindId(vo);
+		model.addAttribute("s_id",name);
 		return "/shop/user/seller/sellerFind/sellerFindId";
 	}
 	@RequestMapping(value="/shop/user/seller/sellerFindPass.do")
-	public String sellerFindPass(){
-		System.out.println("비번 ");
+	public String sellerFindPass(Model model,SellerUserVO vo){
+		
+		System.out.println("비번 "+vo.getS_id());
+		model.addAttribute("s_id",vo.getS_id());
 		return "/shop/user/seller/sellerFind/sellerFindPass";
 	}
 	@RequestMapping(value="/shop/user/seller/sellerSearchId.do")
@@ -247,4 +264,60 @@ public class SellerUserController {
 		
 		return result;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/shop/user/seller/sellerCertificationNumber.do",method = RequestMethod.POST)
+	public int sellerCertificationNumber(SellerUserVO vo, Model model) throws MessagingException {
+		int result = 0;
+		System.out.println("testNmae"+vo.getS_name());
+		System.out.println("testEmail"+vo.getS_email());
+		result = SellerService.sellerNameEmailChk(vo);
+		if(result == 1){
+			
+			String setfrom = "edc30039@gmail.com";
+			String tomail = vo.getS_email(); // 받는 사람 이메일
+			String title = "입소문넷 인증번호"; // 제목
+			
+			int random = (int)((Math.random()*(999999-100000))+1);
+			System.out.println("random"+random);
+			vo.setS_agreenum(random);
+			int AgreeNum = SellerService.sellerAgreeNum(vo);
+			String content = "인증번호는 : "+random; // 내용
+			try {
+				MimeMessage message = mailSender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message,true, "UTF-8");
+				
+				messageHelper.setFrom(setfrom); // 보내는사람 생략하면 정상작동을 안함
+				messageHelper.setTo(tomail); // 받는사람 이메일
+				messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+				messageHelper.setText(content); // 메일 내용
+
+				mailSender.send(message);
+			} catch (Exception e) {
+				System.out.println("오류");
+				System.out.println(e);
+			}
+		}
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/shop/user/seller/sellerCertificationNumberchk.do",method = RequestMethod.POST)
+	public int sellerCertificationNumberchk(SellerUserVO vo, Model model){
+			
+		int result = SellerService.sellerCertificationNumberchk(vo);
+		model.addAttribute("s_email",vo.getS_email());
+		model.addAttribute("s_name",vo.getS_name());
+		
+		return result;
+	}
+	
+	@RequestMapping(value="/shop/user/seller/sellerRePass.do")
+	public int sellerRePass(SellerUserVO vo){
+			System.out.println("비밀번호 재설정"+vo.getS_id()+vo.getS_pass());
+			int result=SellerService.sellerRePass(vo);
+			System.out.println("test"+result);
+		return result;
+	}
+	
 }
