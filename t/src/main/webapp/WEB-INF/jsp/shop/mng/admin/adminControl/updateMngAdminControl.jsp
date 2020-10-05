@@ -36,8 +36,7 @@
             <td><input type="text" name="a_name" value="${AdminVO.a_name }"></td>
         </tr>
         <tr>
-            <td colspan="2"><br/><input type="submit" value="수정완료">&nbsp;
-            <input type="button" value="삭제"></td>
+            <td colspan="2"><br/><input type="submit" value="수정완료">&nbsp;</td>
       </table>
       <input type="hidden" name="p_moddate" value="${AdminVO.a_moddate }">
       </form>

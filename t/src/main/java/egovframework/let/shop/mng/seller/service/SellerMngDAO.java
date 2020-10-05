@@ -12,5 +12,5 @@ public interface SellerMngDAO {
 	public int sellerUpdate(SellerMngVO vo);
 	public int updateMngSellerStateChange(SellerMngVO vo);
 	public String InsertMngSellerPro(SellerMngVO vo);
-	/*public int delMngSeller(SellerMngVO vo);*/
+	public int delMngSeller(SellerMngVO vo);
 }

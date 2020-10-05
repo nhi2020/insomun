@@ -218,6 +218,14 @@
 				WHERE R_IDX = #r_idx#
 	 		]]>
 	</update>
+	
+<update id="EgovMngReviewDAO.reUpdateMngUserReview" parameterClass="ReviewMngVO">
+	 		<![CDATA[
+				UPDATE REVIEW SET 
+					R_DELYN = 'N'
+				WHERE R_IDX = #r_idx#
+	 		]]>
+	</update>
 	<!-- <select id="EgovMngProDAO.selectMngProListCnt" parameterClass="SnsProfileVO" resultClass="java.lang.Integer" >
 		<![CDATA[
 			SELECT 

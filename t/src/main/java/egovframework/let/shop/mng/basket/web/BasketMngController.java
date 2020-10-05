@@ -70,7 +70,7 @@ public class BasketMngController {
 
 	@RequestMapping(value = "/shop/mng/basket/listMngBasket")
 	public String listMngBasket(@ModelAttribute("searchVO") BasketBuyerMngVO vo, HttpServletRequest request, Model model) {
-		logger.info("listMngBasket");
+		/*logger.info("listMngBasket");
 		Map<String, ?> redirectMap = RequestContextUtils.getInputFlashMap(request);
 		if(redirectMap != null){
 			logger.info("redirectMap is not Null");
@@ -78,7 +78,7 @@ public class BasketMngController {
 			pageIndex = (int) redirectMap.get("pageIndex");			
 			logger.info("pageIndex => " + pageIndex);
 			vo.setPageIndex(pageIndex);
-		} 
+		} */
 		
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));

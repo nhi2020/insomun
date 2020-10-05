@@ -47,6 +47,7 @@
  <input type="button" value="회원등록" onclick="location.href='/shop/mng/seller/InsertMngSellerForm.do'"> 
  <input type="button" value="(체크박스)전환" onclick="delReview();">
  
+				<form name="frm" id="frm">
 			<table class="table mx-auto">
 				<tr>
 					<th>체크박스</th>
@@ -65,7 +66,6 @@
 					<th>상태 변경</th>		
 					<th>강제 로그인</th>
 				</tr>
-				
 				
 				
 				<c:forEach items="${list }" var="s_list" varStatus="status">
@@ -102,7 +102,7 @@
 						<td></td>
 						</tr>
 			</table>
-			
+			</form>
 			<c:forEach items="${list }" var="s_list" varStatus="status">
 				<form id="frm${status.index }" action="updateMngSellerStateChange.do">
 					<input type="hidden" name="s_id" value="${s_list.s_id }">
