@@ -14,7 +14,15 @@
 <body>
   <%@ include file="../../../inc/EgovShopTop.jsp" %>
   <%@ include file="../../../inc/EgovShopHeader.jsp" %>
+    <c:if test="${msg != null }">
+	<p>${msg }</p>
+	</c:if>
+	<c:if test="${msg = null }">
+	</c:if>
 	
+   <form action="/shop/mng/admin/adminControl/delMngAdminControl.do" name="frm"">
+    
+  
 	<div class="container">
 	  <div class="row">
 	  
@@ -27,20 +35,21 @@
 	         <th>등록일</th>
 	         <th>삭제</th>
 	     </tr>
-    <c:forEach items="${list }" var="admin_list" varStatus="status">
+       <c:forEach items="${list }" var="admin_list" varStatus="loop">
 	    <tr>
 	       <td><a href="/shop/mng/admin/adminControl/updateMngAdminControl.do?a_id=${admin_list.a_id }">${admin_list.a_id }</a></td>
 	       <td>${admin_list.a_email }</td>
 	       <td>${admin_list.a_name }</td>
 	       <td>${admin_list.a_moddate }</td>
 	       <td>${admin_list.a_regdate }</td>
-	     <td><input type="checkbox"></td>
+	     <td><input type="checkbox" name="a_id" value="${admin_list.a_id }"></td>
 		  </tr>
 	    </c:forEach> 
 	   </table>
-	   <input type="reset" value="삭제" />
+	   <input type="submit" value="삭제"/>
 	   <input type="submit" value="등록" onclick="location.href='/shop/mng/admin/adminControl/insertMngAdminControlForm.do'">
 	  </div>
 	</div>
+   </form>
 </body>
 </html>
