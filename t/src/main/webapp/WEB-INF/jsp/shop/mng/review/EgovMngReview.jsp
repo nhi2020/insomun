@@ -43,7 +43,7 @@
 							<th>리뷰 삭제하기</th>
 							<th>리뷰 복구하기</th>
 						</tr>
-					</thead>
+					</thead> 
 				<c:forEach var="result" items="${list }" varStatus="i">
 					<tbody>
 						<tr>
