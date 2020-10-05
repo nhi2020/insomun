@@ -46,10 +46,12 @@
 		  </tr>
 	    </c:forEach> 
 	   </table>
-	   <input type="submit" value="삭제"/>
-	   <input type="submit" value="등록" onclick="location.href='/shop/mng/admin/adminControl/insertMngAdminControlForm.do'">
 	  </div>
 	</div>
-   </form>
+	 <input type="submit" value="삭제"/>
+ </form> 
+	  
+	   <input type="submit" value="등록" onclick="location.href='/shop/mng/admin/adminControl/insertMngAdminControlForm.do'">
+  
 </body>
 </html>

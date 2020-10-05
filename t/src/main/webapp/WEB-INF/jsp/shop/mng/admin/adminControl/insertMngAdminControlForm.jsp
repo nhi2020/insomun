@@ -47,6 +47,8 @@
      </table>
     </div>
     <input type="submit" value="확인" onclick="">
+   
   </form>
+   <input type="submit" value="목록으로" onclick="location.href='/shop/mng/admin/adminControl/listMngAdminControl.do'">
 </body>
 </html>
