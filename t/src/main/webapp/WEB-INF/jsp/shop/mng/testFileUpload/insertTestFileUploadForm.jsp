@@ -16,7 +16,7 @@
 
 <body>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
-<form action="/shop/mng/testFileUpload/inserttestFileUploadPro.do" method="post" enctype="multipart/form-data">
+<form action="/shop/mng/testFileUpload/insertTestFileUploadPro.do" method="post" enctype="multipart/form-data">
 <div class="container">
 	<div class="row">
 		<table>
