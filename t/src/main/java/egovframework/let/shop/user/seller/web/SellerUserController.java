@@ -207,47 +207,6 @@ public class SellerUserController {
 	}
 	
 	
-	
-	@RequestMapping("/shop/user/seller/sellerUserMain")
-	public String sellerUserMain(@ModelAttribute("searchVO") SellerMngVO vo, HttpServletRequest request, 
-			Model model, @RequestParam(value = "pageIndex", required=false, defaultValue="1") int pageIndex) {
-		
-		HttpSession session = request.getSession();
-		String s_nickname = (String) session.getAttribute("S_NICKNAME");
-		
-		System.out.println("session" + session);
-		
-		System.out.println("sellerUserMain()");
-		vo.setPageIndex(pageIndex);
-		System.out.println("sellerUserMain pageIndex => " + vo.getPageIndex());
-		vo.setPageUnit(propertyService.getInt("pageUnit"));
-		vo.setPageSize(propertyService.getInt("pageSize"));
-
-		PaginationInfo paginationInfo = new PaginationInfo();
-
-		paginationInfo.setCurrentPageNo(vo.getPageIndex());
-		paginationInfo.setRecordCountPerPage(vo.getPageUnit());
-		paginationInfo.setPageSize(vo.getPageSize());
-
-		vo.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		vo.setLastIndex(paginationInfo.getLastRecordIndex());
-		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-
-		int totCnt = SellerService.selectSellerUserListCnt(vo); //
-		paginationInfo.setTotalRecordCount(totCnt);
-
-		List<SellerMngVO> list = SellerService.selectSellerUserList(vo); //
-		
-		System.out.println("s_nickname" + s_nickname);
-		
-		model.addAttribute("s_nickname", s_nickname);
-		model.addAttribute("totCnt", totCnt);
-		model.addAttribute("list", list);
-		model.addAttribute("paginationInfo", paginationInfo);
-		return "shop/user/seller/sellerUserMain";
-	}
-	
-	
 	@RequestMapping(value="/shop/user/seller/sellerPassResetForm.do")
 	public String sellerPassResetForm(){
 			
@@ -319,5 +278,19 @@ public class SellerUserController {
 			System.out.println("test"+result);
 		return result;
 	}
+	
+	  @RequestMapping("/shop/user/seller/selectUserSeller")
+	  public String selectUserSeller(SellerUserVO vo, Model model, HttpServletRequest request) {
+		  HttpSession session = request.getSession();
+		  String sessionS_id = (String) session.getAttribute("S_ID");
+	      System.out.println("s_id->" + sessionS_id);
+	      String s_nickname = (String) session.getAttribute("S_NICKNAME");
+	      System.out.println("s_nickname->" + s_nickname);
+	      vo.setS_id(sessionS_id);
+	      vo.setS_nickname(s_nickname);
+	      vo = SellerService.selectUserSeller(vo);
+	      model.addAttribute("SellerVO", vo);
+	      return "shop/user/seller/selectUserSeller";
+	   }
 	
 }

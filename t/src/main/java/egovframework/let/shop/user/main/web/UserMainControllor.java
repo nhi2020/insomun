@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import egovframework.let.shop.user.main.service.UserMainService;
 import egovframework.let.shop.user.main.service.impl.UserMainVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
 public class UserMainControllor {
@@ -86,23 +87,7 @@ public class UserMainControllor {
 		model.addAttribute("list",list);
 	    return "shop/main/EgovMain";
 	}
-	@RequestMapping(value="/shop/user/main/EgovUserMainSearch.do")
-	public String EgovUserMainSearch(@RequestParam("keyword") String keyword,UserMainVO vo,Model model){
-		System.out.println("keyword"+keyword);
-		int i=0;
-		vo.setKeyword(keyword);
-		List<UserMainVO> list = MainService.MainSearch(vo);
-		for(i=0;i<list.size();i++){
-			i=i+1;
-			
-		}
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!" + i);
-		System.out.println("list"+list);
-		model.addAttribute("keyword",keyword);
-		model.addAttribute("list2",list);
-		
-		return "shop/main/mainSearch";
-	}
+	
 
 
 }

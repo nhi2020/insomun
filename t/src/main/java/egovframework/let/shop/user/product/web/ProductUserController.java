@@ -94,7 +94,8 @@ public class ProductUserController {
 	@RequestMapping(value = "/shop/user/product/EgovUserProductlist")
 	public String forwardPageWithMenuNo(@ModelAttribute("searchVO") ProductUserVO vo, HttpServletRequest request,
 			ModelMap model,ReviewUserVO vo2) throws Exception {
-		System.out.println("test");
+		System.out.println("test"+vo.getSearchCnd());
+		System.out.println("test"+vo.getSearchWrd());
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
 
@@ -112,6 +113,7 @@ public class ProductUserController {
 
 		List<ProductUserVO> list = userProductService.selectUserProductList(vo);
 		System.out.println("test"+list.get(0).getS_id());
+		System.out.println("totCnt"+ totCnt);
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
