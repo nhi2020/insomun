@@ -87,37 +87,7 @@ public class UserMainControllor {
 		model.addAttribute("list",list);
 	    return "shop/main/EgovMain";
 	}
-	@RequestMapping(value="/shop/user/main/EgovUserMainSearch.do")
-	public String EgovUserMainSearch(UserMainVO vo,Model model){
-		System.out.println("keyword"+vo.getSearchWrd());
-		
-		vo.setPageUnit(propertyService.getInt("pageUnit"));
-		vo.setPageSize(propertyService.getInt("pageSize"));
-
-		PaginationInfo paginationInfo = new PaginationInfo();
-
-		paginationInfo.setCurrentPageNo(vo.getPageIndex());
-		paginationInfo.setRecordCountPerPage(vo.getPageUnit());
-		paginationInfo.setPageSize(vo.getPageSize());
-
-		vo.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		vo.setLastIndex(paginationInfo.getLastRecordIndex());
-		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-		int totCnt = propertyService.selectUserProductListCnt(vo);
-		paginationInfo.setTotalRecordCount(totCnt);
-		int i;
-		List<UserMainVO> list = MainService.MainSearch(vo);
-		for(i=0;i<list.size();i++){
-			i=i+1;
-			
-		}
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!" + i);
-		System.out.println("list"+list);
-		model.addAttribute("keyword",vo.getSearchWrd());
-		model.addAttribute("list2",list);
-		
-		return "shop/main/EgovMain";
-	}
+	
 
 
 }
