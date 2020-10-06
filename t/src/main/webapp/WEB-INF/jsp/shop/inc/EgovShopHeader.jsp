@@ -98,7 +98,7 @@
 	    				  	마이페이지
 	  					  </a>
 	  					  <div class="dropdown-menu">
-	   						   <a class="dropdown-item" href="#">Link 1</a>
+	   						   <a class="dropdown-item" href="/shop/user/seller/selectUserSeller.do">마이 페이지</a>
 	    					   <a class="dropdown-item" href="#">Link 2</a>
 	     					   <a class="dropdown-item" href="#">Link 3</a>
 	   					 </div>

@@ -54,18 +54,6 @@ public class SellerUserSerivceImpl extends EgovAbstractServiceImpl implements Se
 	}
 
 
-
-	@Override
-	public List<SellerMngVO> selectSellerUserList(SellerMngVO vo) {
-		List<SellerMngVO> list = SellerDAO.selectSellerUserList(vo);
-		return list;
-	
-	
-
-	}
-
-
-
 	@Override
 	public SellerUserVO sellerSearchIdPro(SellerUserVO vo) {
 		
@@ -119,6 +107,13 @@ public class SellerUserSerivceImpl extends EgovAbstractServiceImpl implements Se
 		// TODO Auto-generated method stub
 		return SellerDAO.sellerRePass(vo);
 	}
+
+
+
+	 @Override
+	   public SellerUserVO selectUserSeller(SellerUserVO vo) {
+	     return SellerDAO.selectUserSeller(vo);
+	   }
 
 
 
