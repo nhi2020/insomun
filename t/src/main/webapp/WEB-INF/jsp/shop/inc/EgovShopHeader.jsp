@@ -63,8 +63,9 @@
 	    <a class="nav-link" href="/shop/user/product/EgovUserProductlist.do">상품게시판</a>
 	  </li>
 	</ul>
-	<form class="form-inline" action="/shop/user/main/EgovUserMainSearch.do">
-	  <input class="form-control mr-sm-2" id="keyword" name="keyword" type="text" placeholder="Search">
+	<form class="form-inline" action="/shop/user/product/EgovUserProductlist.do">
+	  <input type="hidden" id="searchCnd" name="searchCnd" value="0">
+	  <input class="form-control mr-sm-2" id="searchWrd" name="searchWrd" type="text" placeholder="Search">
 	  <button class="btn btn-success" type="submit">Search</button>
 	</form>
 		

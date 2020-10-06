@@ -59,10 +59,10 @@
 			WHERE 1=1
 		]]>
 			<isEqual prepend="AND" property="searchCnd" compareValue="0">
-				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%') 		]]>
 			</isEqual>
 			<isEqual prepend="AND" property="searchCnd" compareValue="1">
-				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%')  		]]>
 			</isEqual>	
 	</select>
 	
@@ -160,6 +160,10 @@
 				PRODUCT
 			WHERE 1=1
 		]]>
+			<isEqual prepend="AND" property="searchCnd" compareValue="0">
+				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%') 		]]>
+			</isEqual>
+		
 	</select>
 	
 	<select id="EgovUserProductDAO.selectUserProductListCnt" parameterClass="ProductUserVO" resultClass="java.lang.Integer" >
@@ -171,7 +175,7 @@
 			WHERE 1=1
 		]]>
 			<isEqual prepend="AND" property="searchCnd" compareValue="0">
-				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%') 		]]>
 			</isEqual>
 			<isEqual prepend="AND" property="searchCnd" compareValue="1">
 				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
