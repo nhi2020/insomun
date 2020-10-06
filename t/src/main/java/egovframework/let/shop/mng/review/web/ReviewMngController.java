@@ -32,7 +32,7 @@ public class ReviewMngController {
 	}
 
 	// 관리자 리뷰에서의 댓글 삭제
-	@RequestMapping(name = "/shop/mng/review/delMngReview.do")
+	@RequestMapping(value = "/shop/mng/review/delMngReview.do")
 	public String delMngReview(ReviewMngVO mngVO, HttpServletRequest request) throws Exception {
 		String[] chk = request.getParameterValues("chk");
 		for (int j = 0; j < chk.length; j++) {

@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<%@ include file="../../inc/EgovShopTop.jsp" %>
+<%@ include file="../../inc/EgovShopTop.jsp"%>
+<%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,24 +17,38 @@
 </head>
 
 <body>
-<%@ include file="../../inc/EgovShopHeader.jsp" %>
-<form action="/shop/mng/testFileUpload/insertTestFileUploadPro.do" method="post" enctype="multipart/form-data">
-<div class="container">
-	<div class="row">
+	<%@ include file="../../inc/EgovShopHeader.jsp"%>
+	<div class="container">
+		<div class="row">
+			<form action="/shop/mng/testFileUpload/insertTestFileUploadPro.do"
+				method="post" enctype="multipart/form-data">
+				<table>
+					<tr>
+						<th>파일 업로드</th>
+						<td><input type="file" name="file"></td>
+						<td><input type="submit" value="업로드"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="row">
 		<table>
-			<tr>
-				<th>파일 업로드</th>
-				<td><input type="file" name="file"></td>
-				<td><input type="submit" value="업로드"></td>
-			</tr>
+		<c:forEach var="filelist" items="${list }">
+		<tr>
+			<td><img src="<c:url value='/'/>file/${filelist.stored_file_name}"/></td>
+			<td>${filelist.tfile_idx }</td>
+			<td>${filelist.original_file_name }</td>
+			<td>${filelist.stored_file_name }</td>
+		</tr>		
+		
+		</c:forEach>
 		</table>
+		</div>
 	</div>
-</div>
-</form>
 
 
 
-  
-<%@ include file="../../inc/EgovShopBottom.jsp" %>
+
+	<%@ include file="../../inc/EgovShopBottom.jsp"%>
 </body>
 </html>

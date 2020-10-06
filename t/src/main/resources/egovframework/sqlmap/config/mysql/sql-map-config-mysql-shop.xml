@@ -17,5 +17,6 @@
 	<sqlMap resource="egovframework/sqlmap/let/shop/log/EgovLog_SQL_Mysql.xml"/>
 	<sqlMap resource="egovframework/sqlmap/let/shop/notice/EgovNotice_SQL_Mysql.xml"/>
 	<sqlMap resource="egovframework/sqlmap/let/shop/main/EgovMain_SQL_Mysql.xml"/>
+	<sqlMap resource="egovframework/sqlmap/let/shop/test/EgovTest_SQL_Mysql.xml"/>
 	<!-- <sqlMap resource="egovframework/sqlmap/let/shop/seller/EgovDeal_SQL_Mysql.xml"/> -->
 </sqlMapConfig>

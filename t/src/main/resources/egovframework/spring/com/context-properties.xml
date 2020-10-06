@@ -10,7 +10,7 @@
                 <entry key="pageSize" value="10"/>
                 <entry key="posblAtchFileSize" value="5242880"/>
                 <!-- <entry key="Globals.fileStorePath" value="/edc30039/tomcat/webapps/ROOT/file/"/> -->
-                <entry key="Globals.fileStorePath" value="C:\개발프로그랜util\egovframework\3.7\eGovFrameDev-3.7.0-64bit\workspace\t\src\main\webapp\file\"/>
+                <entry key="Globals.fileStorePath" value="C:\Users\user\git\insomun\t\src\main\webapp\file\"/>
                 <entry key="Globals.addedOptions" value="false"/>
             </map>
         </property>
