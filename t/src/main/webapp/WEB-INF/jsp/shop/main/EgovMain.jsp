@@ -58,9 +58,8 @@
 				<tr>
 					<td><a href="/shop/user/deal/dealUserSellerList.do">판매자 거래관리</a></td>
 				</tr>
-					<td><a href="#">### 관리</a></td>
 				<tr>
-					<td><a href="#">### 관리</a></td>
+					<td><a href="/shop/mng/testFileUpload/insertTestFileUploadForm.do">파일 업로드 테스트</a></td>
 				</tr>
 				<tr>
 					<td><a href="#">### 관리</a></td>

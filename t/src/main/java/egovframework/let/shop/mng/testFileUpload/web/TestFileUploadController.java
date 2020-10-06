@@ -131,6 +131,12 @@ public class TestFileUploadController {
 		// UUID를 스트링으로 변환해 원래 이름 앞에 붙여준다.
 		String savedName = uid.toString() + "_" + originalName;
 		
+		String[] invalidName = {"\\\\","/",":","\"","<",">","\\[","\\]"}; // 윈도우 파일명으로 사용할수 없는 문자
+
+		for(int i=0;i<invalidName.length;i++)
+			savedName = savedName.replaceAll(invalidName[i], "_"); // 언더바로 치환
+
+
 		// 저장될 파일 경로를 지정.
 		File target = new File(uploadPath, savedName);
 		
