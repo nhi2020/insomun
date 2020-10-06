@@ -17,4 +17,6 @@ public interface BasketUserDAO {
 
 	int updateBasketUserQty(BasketUserVO vo);
 
+	int deleteBasketUser(BasketUserVO vo);
+
 }

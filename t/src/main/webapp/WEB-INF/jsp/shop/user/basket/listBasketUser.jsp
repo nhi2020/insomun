@@ -54,7 +54,7 @@ function updateUserBasketQty(index){
 							onclick="updateUserBasketQty(${status.index })" /></td>
 						<td><input class="btn btn-danger" type="button" value="삭제"
 							form="frm${status.index }"
-							onclick="location.href='/shop/user/basket/deleteUserBasket.do?ba_idx=${basketList.ba_idx}'" /></td>
+							onclick="location.href='/shop/user/basket/deleteBasketUser.do?ba_idx=${basketList.ba_idx}'" /></td>
 					</tr>
 					<form action="/shop/user/basket/updateBasketUserQty.do" name="frm${status.index }" id="frm${status.index }">
 						<input type="hidden" id="ba_idx${status.index }" name="ba_idx"
