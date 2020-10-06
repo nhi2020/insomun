@@ -6,13 +6,19 @@ import egovframework.let.shop.mng.deal.service.impl.DealMngVO;
 
 public interface DealMngDAO {
 	
-	int selectListCnt(DealMngVO vo);
+	int selectListCntDealMng(DealMngVO vo);
 
-	List<DealMngVO> selectList(DealMngVO vo);
+	List<DealMngVO> selectListDealMng(DealMngVO vo);
 	
-	DealMngVO selectMngDealBuyerDetail(DealMngVO vo);
+	DealMngVO selectDealMngBuyerDetail(DealMngVO vo);
 
-	int updateMngDealBuyerDetail(DealMngVO vo);
+	DealMngVO selectDealMngBuyerScore(DealMngVO vo);
+
+	int updateDealMngIng(DealMngVO vo);
 	
-	int updateMngDealBuyerCancel(DealMngVO vo);
+	int updateDealMngBuyerCancel(DealMngVO vo);
+
+	DealMngVO selectDealMngSellerDetail(DealMngVO vo);
+	
+	int updateDealMngBuyerD_edate(DealMngVO vo);
 }

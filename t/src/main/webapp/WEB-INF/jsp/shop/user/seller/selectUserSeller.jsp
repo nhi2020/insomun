@@ -49,19 +49,17 @@ background: rgba(0, 0, 255, 0.1);
 	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 	
-	<h5 style="color: grey; text-align: center; margin-top: 50px">입소문넷 회원 ${s_nickname}님 안녕하세요!</h5>
+	<h5 style="color: grey; text-align: center; margin-top: 50px">입소문넷 회원 ${SellerVO.s_nickname}님 안녕하세요!</h5>
 	
 	<div class="w-auto p-3">
 
 	
 	<div id="nav">
         <div class="menu-item" id="item8"><input type="button" onclick="location.href=''" value="정보수정"></div>
-        <div class="menu-item" id="item9"><input type="button" onclick="location.href=''" value="장바구니"></div>
-        <div class="menu-item" id="item10"><input type="button" onclick="location.href='/shop/user/deal/dealUserSellerList.do'" value="진행중인 거래"></div>
+        <div class="menu-item" id="item10"><input type="button" onclick="location.href=''" value="진행중인 거래"></div>
         <div class="menu-item" id="item10"><input type="button" onclick="location.href=''" value="거래추가"></div>
         <div class="menu-item" id="item10"><input type="button" onclick="location.href=''" value="거래후기"></div>
         <div class="menu-item" id="item10"><input type="button" onclick="location.href=''" value="거래내역"></div>
-        <div class="menu-item" id="item10"><input type="button" onclick="location.href=''" value="찜한상품"></div>
 
     </div>
     
