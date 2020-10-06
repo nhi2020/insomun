@@ -20,7 +20,6 @@
 
   
   <h2>상품 상세 페이지</h2>
-  
  <div class="container-fluid">
 	<div class="container text-center">
 	    <div class="row">
@@ -87,7 +86,7 @@
 			</div>
 		</div>
 	</div>
-  
+
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>
