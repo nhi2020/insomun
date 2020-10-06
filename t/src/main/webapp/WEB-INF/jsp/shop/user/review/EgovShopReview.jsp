@@ -41,6 +41,7 @@
 	//--------------------------
 </script>
 <body>
+<hr>
 <p class="h-25"/>
 <form action="/shop/user/review/insertUserReview.do" name="frm2" method="post">
 	<div class="container text-center">
@@ -65,9 +66,11 @@
 			<p class="font-weight-bold">
 				<c:choose>
 		          	<c:when test="${result.r_div eq '1'}">
+		          	<span class="font-weight-normal" style="color: red">판매자</span><br>
 		          		${result.nickname}&nbsp;<span class="font-weight-normal">${result.r_regdate}</span>
 		          	</c:when>
 			       	<c:otherwise>
+			       	<span class="font-weight-normal" style="color: red">구매자</span><br>
 			       		${result.s_nickname}&nbsp;<span class="font-weight-normal">${result.r_regdate}</span>
 			       	</c:otherwise>
 		        </c:choose>
@@ -81,16 +84,20 @@
 			</div>
 			<div class="float-right">
 				<c:if test="${'1' eq result.sns_idx}">
-					<a href="javascript:displayView('${result.r_idx}');">수정</a>
+					<a href="javascript:displayView('${result.r_idx}');"><span style="color: gray;">수정</span></a>
 				</c:if>
 				<c:if test="${'1' eq result.sns_idx}">
-					<a href="javascript:delUserReview('${result.r_idx}');">삭제</a>
+					<a href="javascript:delUserReview('${result.r_idx}');"><span style="color: gray;">삭제</span></a>
 				</c:if>
 			</div>
 		</div>
 	</div>
 </div>
 </c:forEach>
+		<ul class="paging_align">
+						<ui:pagination paginationInfo="${paginationInfo}" type="text"
+							jsFunction="linkPage" />
+					</ul>
 </form>
 </body>
 </html>
