@@ -59,10 +59,10 @@
 			WHERE 1=1
 		]]>
 			<isEqual prepend="AND" property="searchCnd" compareValue="0">
-				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%') 		]]>
 			</isEqual>
 			<isEqual prepend="AND" property="searchCnd" compareValue="1">
-				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%')  		]]>
 			</isEqual>	
 	</select>
 	
@@ -160,6 +160,10 @@
 				PRODUCT
 			WHERE 1=1
 		]]>
+			<isEqual prepend="AND" property="searchCnd" compareValue="0">
+				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%') 		]]>
+			</isEqual>
+		
 	</select>
 	
 	<select id="EgovUserProductDAO.selectUserProductListCnt" parameterClass="ProductUserVO" resultClass="java.lang.Integer" >
@@ -171,7 +175,7 @@
 			WHERE 1=1
 		]]>
 			<isEqual prepend="AND" property="searchCnd" compareValue="0">
-				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%') 		]]>
 			</isEqual>
 			<isEqual prepend="AND" property="searchCnd" compareValue="1">
 				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
@@ -232,10 +236,28 @@
 		WHERE P_IDX = #p_idx#
  	</delete>
  	
- 	<select id="EgovBuyerProductDAO.selectBuyerProduct" parameterClass="ProductUserVO" resultMap="ProductUserList">
- 		SELECT *
-		FROM PRODUCT
-		WHERE P_IDX = #p_idx#
+ 	<select id="EgovBuyerProductDAO.selectBuyerProduct" parameterClass="ProductUserVO" resultClass="ProductUserVO">
+ 	SELECT 
+ 		 A.P_IDX
+		, A.P_NAME
+		, A.P_IMAGE
+		, A.P_PRICE
+		, A.P_CONTENT
+		, A.P_TAGE
+		, A.P_Q
+		, A.P_SDATE
+		, A.P_EDATE
+		, A.P_MODDATE
+		, A.S_ID
+		, B.S_ID
+	FROM 
+		PRODUCT A, SELLER B
+	WHERE 
+		1 = 1
+	AND 
+		A.S_ID = B.S_ID
+	AND 
+		A.P_IDX = #p_idx#
  	</select>
 
 

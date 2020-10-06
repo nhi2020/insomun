@@ -72,47 +72,45 @@
 
 </div> -->
 
-	<div class="container text-center" style="position: relative;">
+   <div class="container text-center" style="position: relative;">
 
-		<img src="<c:url value='/images/shop/main/main.jpg'/>" width=800
-			height="450">
-		<div
-			style="left: 350px; width: 450px; bottom: 140px; font-size: 1.8em; font-weight: bold; position: absolute;">
-			<h1>입소문넷</h1>
-			믿음직한 농산품 직거래 입소문넷 입니다.
+      <img src="<c:url value='/images/shop/main/main.jpg'/>" width=800
+         height="450">
+      <div
+         style="left: 350px; width: 450px; bottom: 140px; font-size: 1.8em; font-weight: bold; position: absolute;">
+         <h1>입소문넷</h1>
+         믿음직한 농산품 직거래 입소문넷 입니다.
 
-		</div>
-	</div>
-
-
+      </div>
+   </div>
 
 
-	<div class="container-fluid">
-		<div class="container text-center">
-			<h3>추천 상품</h3>
-			<div class="row">
-				<c:forEach var="product_list" items="${list}">
-					<div class="col-3">
-
-						<img src="./images/main/photo/${product_list.p_image}" width="270"
-							height="385" />
-
-						<p>
-
-							<span>판매자 아이디: ${product_list.s_id }</span> <br /> <span>가격:
-								${product_list.p_price }</span> <br /> <span>상태:
-								${product_list.p_status }</span> <br /> <span>재고 수량:
-								${product_list.p_q }</span> <br /> <span>업데이트된 날짜:
-								${product_list.p_moddate }</span>
-						</p>
-					</div>
-
-				</c:forEach>
-			</div>
-		</div>
-	</div>
 
 
+   <div class="container-fluid">
+      <div class="container text-center">
+         <h3>추천 상품</h3>
+         <div class="row">
+            <c:forEach var="product_list" items="${list}">
+               <div class="col-3">
+
+                  <img src="./images/main/photo/${product_list.p_image}" width="270"
+                     height="385" />
+
+                  <p>
+
+                     <span>판매자 아이디: ${product_list.s_id }</span> <br /> <span>가격:
+                        ${product_list.p_price }</span> <br /> <span>상태:
+                        ${product_list.p_status }</span> <br /> <span>재고 수량:
+                        ${product_list.p_q }</span> <br /> <span>업데이트된 날짜:
+                        ${product_list.p_moddate }</span>
+                  </p>
+               </div>
+
+            </c:forEach>
+         </div>
+      </div>
+   </div>
 
 
 
@@ -122,6 +120,8 @@
 
 
 
-	<%@ include file="../inc/EgovShopBottom.jsp"%>
+
+
+   <%@ include file="../inc/EgovShopBottom.jsp"%>
 </body>
 </html>
