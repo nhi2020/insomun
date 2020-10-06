@@ -57,7 +57,7 @@ background: rgba(0, 0, 255, 0.1);
 	<div id="nav">
         <div class="menu-item" id="item8"><input type="button" onclick="location.href=''" value="정보수정"></div>
         <div class="menu-item" id="item9"><input type="button" onclick="location.href=''" value="장바구니"></div>
-        <div class="menu-item" id="item10"><input type="button" onclick="location.href=''" value="진행중인 거래"></div>
+        <div class="menu-item" id="item10"><input type="button" onclick="location.href='/shop/user/deal/dealUserSellerList.do'" value="진행중인 거래"></div>
         <div class="menu-item" id="item10"><input type="button" onclick="location.href=''" value="거래추가"></div>
         <div class="menu-item" id="item10"><input type="button" onclick="location.href=''" value="거래후기"></div>
         <div class="menu-item" id="item10"><input type="button" onclick="location.href=''" value="거래내역"></div>

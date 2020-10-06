@@ -102,6 +102,19 @@ public class DealMngDAOImpl extends EgovAbstractDAO implements DealMngDAO {
 		return vo;
 	}
 
+	@Override
+	public int updateDealMngBuyerD_edate(DealMngVO vo) {
+		System.out.println("DealMngDAOImpl updateDealMngBuyerD_edate Start...");
+		int result = 0;
+		try {
+			result = update("updateDealMngBuyerD_edate", vo);
+			
+		} catch (Exception e) {
+			System.out.println("updateDealMngBuyerD_edate Exception -> " + e.getMessage());
+		}
+		return result;
+	}
+
 
 
 }

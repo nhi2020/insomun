@@ -27,4 +27,6 @@ public interface DealMngService {
 	int updateDealMngSellerCancel(DealMngVO vo);
 
 	int updateDealMngSellerDeliver(DealMngVO vo);
+	
+	int updateDealMngBuyerD_edate(DealMngVO vo);
 }

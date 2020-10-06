@@ -98,5 +98,12 @@ public class DealMngServiceImpl implements DealMngService {
 		return result;
 	}
 
+	@Override
+	public int updateDealMngBuyerD_edate(DealMngVO vo) {
+		System.out.println("DealMngServiceImpl updateDealMngBuyerD_edate Start...");
+		int result = dealMngDAO.updateDealMngBuyerD_edate(vo);
+		return result;
+	}
+
 
 }

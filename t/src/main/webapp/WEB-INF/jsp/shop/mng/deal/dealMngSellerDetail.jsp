@@ -37,7 +37,7 @@
 	    	<br><button type="button" class="btn btn-warning"  onclick="location.href='/shop/mng/deal/dealMngSellerAccept.do?d_idx=${dealMngVO.d_idx}'"><i class="fa fa-bars">수락</i></button>
 	    	<button type="button" class="btn btn-warning"  onclick="location.href='/shop/mng/deal/dealMngSellerCancel.do?d_idx=${dealMngVO.d_idx}'"><i class="fa fa-bars">거래 파기</i></button>
 	    	<button type="button" class="btn btn-warning"  onclick="location.href='/shop/mng/deal/dealMngSellerDeliver.do?d_idx=${dealMngVO.d_idx}'"><i class="fa fa-bars">배송 시작</i></button>
-	    	<br><button type="button" class="btn btn-warning"  onclick="location.href='/shop/mng/deal/dealMngBuyerList.do'"><i class="fa fa-bars">목록</i></button>
+	    	<br><button type="button" class="btn btn-warning"  onclick="location.href='/shop/mng/deal/dealMngList.do'"><i class="fa fa-bars">목록</i></button>
 </div>
 </body>
 </html>

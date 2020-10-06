@@ -29,7 +29,7 @@
 거래 취소 : 어떠한 사유로 거래 취소 * 구매 확정 시 취소 안됨<br>
 <div class="container">
 	<div class="row">
-		<form class="mx-auto" action="/shop/mng/deal/dealMngBuyerList.do">
+		<form class="mx-auto" action="/shop/mng/deal/dealMngList.do">
 
 
 	<table class="table mx-auto">
@@ -77,7 +77,7 @@
 		</c:forEach>
 	</table>
 	</form>
-			<form action="/shop/mng/deal/dealMngBuyerlist.do">
+			<form action="/shop/mng/deal/dealMnglist.do">
 				<div class="input-group mb-3">
 					<input type="text" class="form-control" placeholder="구매자, 판매자"
 						aria-label="Username" aria-describedby="basic-addon1" name="searchWrd">

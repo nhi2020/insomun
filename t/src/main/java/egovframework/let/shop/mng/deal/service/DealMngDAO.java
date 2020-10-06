@@ -19,4 +19,6 @@ public interface DealMngDAO {
 	int updateDealMngBuyerCancel(DealMngVO vo);
 
 	DealMngVO selectDealMngSellerDetail(DealMngVO vo);
+	
+	int updateDealMngBuyerD_edate(DealMngVO vo);
 }

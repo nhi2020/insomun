@@ -55,7 +55,8 @@ public class DealUserController {
 		return ret;
 	}
 
-	@RequestMapping(value = "/shop/user/deal/dealBuyerList.do")
+	// 구매자
+	@RequestMapping(value = "/shop/user/deal/dealUserBuyerList.do")
 	public String listDealUserBuyer(@ModelAttribute("searchVO") DealUserVO vo, HttpServletRequest request, Model model, 
 			@RequestParam(value = "pageIndex", required=false, defaultValue="1") int pageIndex) {
 		vo.setPageIndex(pageIndex);
@@ -73,15 +74,15 @@ public class DealUserController {
 		vo.setLastIndex(paginationInfo.getLastRecordIndex());
 		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
-		int totCnt = dealUserService.selectListCntDealUser(vo); //
+		int totCnt = dealUserService.selectListCntDealUserBuyer(vo); //
 		paginationInfo.setTotalRecordCount(totCnt);
 
-		List<DealUserVO> list = dealUserService.selectListDealUser(vo); //
+		List<DealUserVO> list = dealUserService.selectListDealUserBuyer(vo); //
 		model.addAttribute("totCnt", totCnt);
-		model.addAttribute("deallist", list);
+		model.addAttribute("dealUserlist", list);
 		model.addAttribute("paginationInfo", paginationInfo);
 
-		return "shop/user/deal/dealBuyerList";
+		return "/shop/user/deal/dealUserBuyerList";
 
 	}
 	@RequestMapping(value="/shop/user/deal/dealUserBuyerDetail.do")
@@ -89,7 +90,7 @@ public class DealUserController {
 		System.out.println("DealUserController selectDealUserBuyerDetail Start...");
 		vo = dealUserService.selectDealUserBuyerDetail(vo);
 		model.addAttribute("dealUserVO", vo);
-		return "shop/user/deal/dealUserBuyerDetail";	
+		return "/shop/user/deal/dealUserBuyerDetail";	
 	}
 	
 	@RequestMapping(value="/shop/user/deal/dealUserBuyerIng.do")
@@ -117,4 +118,100 @@ public class DealUserController {
 		int d_idx = vo.getD_idx();
 		return "redirect:/shop/user/deal/dealUserBuyerList.do?d_idx=" + d_idx;	
 	}
+	@RequestMapping(value="/shop/user/deal/dealUserBuyerComplete.do")
+	public String updateDealUserBuyerComplete(HttpServletRequest request, DealUserVO vo, Model model) {
+		System.out.println("DealUserController updateDealUserBuyerComplete Start...");
+		int result = dealUserService.updateDealUserBuyerComplete(vo);
+		int result1 = dealUserService.updateDealUserBuyerD_edate(vo);
+		if (result > 0) {
+			model.addAttribute("msg", "수정 성공");
+		} else {
+			model.addAttribute("msg", "수정 실패");
+		}
+		int d_idx = vo.getD_idx();
+		return "redirect:/shop/user/deal/dealUserBuyerDetail.do?d_idx=" + d_idx;
+	}
+	
+	// 판매자
+	@RequestMapping(value = "/shop/user/deal/dealUserSellerList.do")
+	public String listDealUserSeller(@ModelAttribute("searchVO") DealUserVO vo, HttpServletRequest request, Model model, 
+			@RequestParam(value = "pageIndex", required=false, defaultValue="1") int pageIndex) {
+		vo.setPageIndex(pageIndex);
+		System.out.println("listUserSeller pageIndex => " + vo.getPageIndex());
+		vo.setPageUnit(propertyService.getInt("pageUnit"));
+		vo.setPageSize(propertyService.getInt("pageSize"));
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		paginationInfo.setCurrentPageNo(vo.getPageIndex());
+		paginationInfo.setRecordCountPerPage(vo.getPageUnit());
+		paginationInfo.setPageSize(vo.getPageSize());
+
+		vo.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		vo.setLastIndex(paginationInfo.getLastRecordIndex());
+		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+
+		int totCnt = dealUserService.selectListCntDealUserSeller(vo); //
+		paginationInfo.setTotalRecordCount(totCnt);
+
+		List<DealUserVO> list = dealUserService.selectListDealUserSeller(vo); //
+		model.addAttribute("totCnt", totCnt);
+		model.addAttribute("dealUserlist", list);
+		model.addAttribute("paginationInfo", paginationInfo);
+
+		return "/shop/user/deal/dealUserSellerList";
+	}	
+	
+	
+	
+	
+	@RequestMapping(value="/shop/user/deal/dealUserSellerDetail.do")
+	public String selectDealUserSellerDetail(HttpServletRequest request, DealUserVO vo, Model model) {
+		System.out.println("DealMngController selectDealUserSellerDetail Start...");
+		vo = dealUserService.selectDealUserSellerDetail(vo);
+		/*vo = dealMngService.selectDealMngBuyerScore(vo);*/
+		
+		model.addAttribute("dealUserVO", vo);
+		return "/shop/user/deal/dealUserSellerDetail";	
+	}
+	
+	@RequestMapping(value="/shop/user/deal/dealUserSellerAccept.do")
+	public String updateDealUserSellerAccept(HttpServletRequest request, DealUserVO vo, Model model) {
+		System.out.println("DealUserController updateDealUserSellerAccept Start...");
+		int result = dealUserService.updateDealUserSellerAccept(vo);
+		if (result > 0) {
+			model.addAttribute("msg", "수정 성공");
+		} else {
+			model.addAttribute("msg", "수정 실패");
+		}
+		int d_idx = vo.getD_idx();
+		return "forward:/shop/user/deal/dealUserSellerDetail.do";
+	}
+	
+	@RequestMapping(value="/shop/user/deal/dealUserSellerCancel.do")
+	public String updateDealUserSellerCancel(HttpServletRequest request, DealUserVO vo, Model model) {
+		System.out.println("DealUserController updateDealUserSellerCancel Start...");
+		int result = dealUserService.updateDealUserSellerCancel(vo);
+		if (result > 0) {
+			model.addAttribute("msg", "수정 성공");
+		} else {
+			model.addAttribute("msg", "수정 실패");
+		}
+		int d_idx = vo.getD_idx();
+		return "forward:/shop/user/deal/dealUserSellerDetail.do";
+	}
+
+	@RequestMapping(value="/shop/user/deal/dealUserSellerDeliver.do")
+	public String updateDealUserSellerDeliver(HttpServletRequest request, DealUserVO vo, Model model) {
+		System.out.println("DealUserController updateDealUserSellerDeliver Start...");
+		int result = dealUserService.updateDealUserSellerDeliver(vo);
+		if (result > 0) {
+			model.addAttribute("msg", "수정 성공");
+		} else {
+			model.addAttribute("msg", "수정 실패");
+		}
+		int d_idx = vo.getD_idx();
+		return "forward:/shop/user/deal/dealUserSellerDetail.do";
+	}
+
 }

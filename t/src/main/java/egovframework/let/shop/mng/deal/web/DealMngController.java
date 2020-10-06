@@ -55,11 +55,11 @@ public class DealMngController {
 		return ret;
 	}
 
-	@RequestMapping(value = "/shop/mng/deal/dealMngBuyerList.do")
+	@RequestMapping(value = "/shop/mng/deal/dealMngList.do")
 	public String listDealMngBuyer(@ModelAttribute("searchVO") DealMngVO vo, HttpServletRequest request, Model model, 
 			@RequestParam(value = "pageIndex", required=false, defaultValue="1") int pageIndex) {
 		vo.setPageIndex(pageIndex);
-		System.out.println("listMngBuyer pageIndex => " + vo.getPageIndex());
+		System.out.println("listMng pageIndex => " + vo.getPageIndex());
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
 
@@ -81,7 +81,7 @@ public class DealMngController {
 		model.addAttribute("deallist", list);
 		model.addAttribute("paginationInfo", paginationInfo);
 
-		return "/shop/mng/deal/dealMngBuyerList";
+		return "/shop/mng/deal/dealMngList";
 
 	}
 	@RequestMapping(value="/shop/mng/deal/dealMngBuyerDetail.do")
@@ -124,6 +124,7 @@ public class DealMngController {
 	public String updateDealMngBuyerComplete(HttpServletRequest request, DealMngVO vo, Model model) {
 		System.out.println("DealMngController updateDealMngBuyerComplete Start...");
 		int result = dealMngService.updateDealMngBuyerComplete(vo);
+		int result1 = dealMngService.updateDealMngBuyerD_edate(vo);
 		if (result > 0) {
 			model.addAttribute("msg", "수정 성공");
 		} else {
