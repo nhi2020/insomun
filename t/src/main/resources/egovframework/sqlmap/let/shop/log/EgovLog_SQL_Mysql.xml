@@ -2,4 +2,49 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="Log">
+
+	<typeAlias alias="egovMap" 	 type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="LogMngVO"  type="egovframework.let.shop.mng.log.service.impl.LogMngVO"/> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias alias="LogMng" 	 type="egovframework.let.shop.mng.log.service.LogMng"/>
+	
+	<resultMap id="LogList" class="LogMngVO"> <!-- property는 vo값 -->
+		<result property="log_idx" 	column="LOG_IDX"  columnIndex="1"/>
+		<result property="s_id" 	column="S_ID" 	  columnIndex="2"/>
+		<result property="sns_idx" 	column="SNS_IDX"  columnIndex="3"/>
+		<result property="a_id" 	column="A_ID" 	  columnIndex="4"/>
+		<result property="log_ip" 	column="LOG_IP"   columnIndex="5"/>
+		<result property="log_date" column="LOG_DATE" columnIndex="6"/>
+	</resultMap>
+	
+	<select id="EgovMngLogDAO.selectMngLogList" parameterClass="LogMngVO" resultMap="LogList" >
+	<!-- 쿼리문 작성 -->
+		<![CDATA[  
+			SELECT 
+				 LOG_IDX
+				,S_ID
+				,SNS_IDX
+				,A_ID
+				,LOG_IP
+				,LOG_DATE
+			FROM
+				LOG
+			WHERE 1=1
+		]]>
+	</select>
+	
+	<select id="EgovMngLogDAO.selectMngLogListCnt" parameterClass="LogMngVO" resultClass="java.lang.Integer" >
+		<![CDATA[
+			SELECT
+				COUNT(LOG_IDX)
+			FROM
+				LOG
+			WHERE 1=1
+		]]>
+			<isEqual prepend="AND" property="searchCnd" compareValue="0">
+				<![CDATA[	COMPANY_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>
+			<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	LOG_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>	
+	</select>
 </sqlMap>

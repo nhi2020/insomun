@@ -20,8 +20,6 @@
 
 	<div class="container">
 		<div class="row">
-
-
 			<table class="table mx-auto">
 				<tr>
 					<th>SNS 번호</th>
