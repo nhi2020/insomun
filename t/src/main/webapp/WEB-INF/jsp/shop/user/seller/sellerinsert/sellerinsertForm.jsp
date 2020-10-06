@@ -12,6 +12,10 @@
 <title>입소문넷</title>
 <script type="text/javascript">
 		$(document).ready(function(){
+			 $("#s_id").blur(function() {
+		            idFlag = false;
+		            fn_idChk("first");
+		        });
 			// 취소
 			$(".cencle").on("click", function(){
 				location.href = "/";
@@ -30,6 +34,11 @@
 				if($("#s_id").val()==""){
 					alert("아이디를 입력해주세요.");
 					$("#s_id").focus();
+					return false;
+				}
+				if($("#s_name").val()==""){
+					alert("이름을 입력해주세요.");
+					$("#s_name").focus();
 					return false;
 				}
 				if($("#s_pass").val()==""){
@@ -109,11 +118,21 @@
 		})
 		
 		function fn_idChk(){
-			if($("#s_id").val()==""){
+			if(idFlag) return true;
+			var oMsg = $("#idMsg");
+	        var oInput = $("#id");
+
+	        if ( $("#s_id").val() == "") {
+	            showErrorMsg(oMsg,"필수 정보입니다.");
+	            setFocusToInputObject(oInput);
+	            return false;
+	        }
+			/* if($("#s_id").val()==""){
 				alert("아이디를 입력해주세요.");
 				$("#s_id").focus();
 				return false;
-			}
+			} */
+			idFlag = false;
 			$.ajax({
 				url : "/shop/user/seller/sellerIdChk.do",
 				type : "post",
@@ -121,17 +140,31 @@
 				data : {"s_id" : $("#s_id").val()},
 				success : function(data){
 					if(data == 1){
-						alert("중복된 아이디입니다.");
+						showErrorMsg(oMsg, "이미 사용중이거나 탈퇴한 아이디입니다.");
 						$("#idChk").attr("value", "D");
-						$("#s_id").focus();
-						
+						/* $("#s_id").focus(); */
 					}else if(data == 0){
+						  showSuccessMsg(oMsg, "멋진 아이디네요!");
 						$("#idChk").attr("value", "Y");
-						alert("사용가능한 아이디입니다.");
+						
+						
 					}
+					
 				}
 			})
+			return true;
 		}
+		
+		 function showSuccessMsg(obj, msg) {
+		        obj.attr("class", "error_next_box green");
+		        obj.html(msg);
+		        obj.show();
+		    }
+		 function showErrorMsg(obj, msg) {
+		        obj.attr("class", "error_next_box");
+		        obj.html(msg);
+		        obj.show();
+		    }
 	</script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- <script>
@@ -186,19 +219,46 @@
 					<h2>회원가입 </h2>
 					<div class="form-group">
 							<!-- <label for="id">아이디</label> --><div>
-							<input type="text" id="s_id" name="s_id" placeholder="아이디">
-							<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button><br>
-							
+							<div class="join_row">
+							<input type="text" id="s_id" name="s_id" placeholder="아이디"><br>
+							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
+							</div>
+							<!-- <button class="idChk" type="hidden" id="idChk" onclick="fn_idChk();" value="N">중복확인</button><br> -->
+							<div class="join_row">
+							<input type="text" id="s_name" name="s_name" placeholder="이름"><br>
+							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
+							</div>
+							<div class="join_row">
 							<input type="password"  id="s_pass" name="s_pass" placeholder="비밀번호"><br>
+							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
+							</div>
+							<div class="join_row">
 							<input type="password"  id="s_pass2" name="s_pas2s" placeholder="비밀번호 재확인"><br>
+							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
+							</div>
+							<div class="join_row">
 							<input type="text"  name="s_nickname" placeholder="닉네임"><br>
-							<!-- <input type="text" id="s_addr" name="s_addr" placeholder="주소"> -->
+							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
+							</div>
+							<div class="join_row">
 							<input type="text" id="sample6_address" name="addr1" placeholder="주소" readonly>
 							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 							<input type="text" id="sample6_detailAddress" name="addr2" placeholder="상세주소"><br>
-							<input type='text' id='email1' name="email1"/> @ <input type='text' id='email2' name="email2"/><br>
+							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
+							</div>
+							<div class="join_row">
+							<input type='text' id='email1' name="email1"/> @ <input type='text' id='email2' name="email2"/>
+							<button class="idChk" type="button" id="idChk" onclick="fn_emChk();" value="N">이메일 중복확인</button><br>
+							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
+							</div>
+							<div class="join_row">
 							<input type="text"  id="s_phone" name="s_phone" placeholder="01X-XXXX-XXXX"><br>
+							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
+							</div>
+							<div class="join_row">
 							<input type="date"  id="s_birth" name="s_birth" placeholder="생년월일"><br>
+							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
+							</div>
 							<select name="s_account_n">
 								<option value="null">은행선택</option>
 								<option value="신한은행(구)">신한은행(구)</option>
@@ -209,11 +269,12 @@
 								<option value="하나은행">하나은행</option>
 							</select><br>
 							<input type="text"  id="s_account" name="s_account" placeholder="계좌번호"><br>
-					<label class="form-check-label" for="gender"> 
+							<label class="form-check-label" for="gender"> 
 							<input type="radio" class="form-check-input" id="s_gender" name="s_gender" value="남자" checked="checked">남&nbsp;&nbsp;&nbsp;&nbsp;
 							<input type="radio" class="form-check-input" id="s_gender" name="s_gender" value="여자">여
 						</label>
 					</div>
+					<input type="file"  id="S_PHOTO" name="S_PHOTO"><br>
 					<div class="form-check-inline">
 						<input class="btn btn-success" type="submit" id="submit" value="회원가입">
 					</div>
