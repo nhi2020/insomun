@@ -3,6 +3,7 @@ package egovframework.let.shop.mng.seller.service;
 import java.util.List;
 
 import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
+import egovframework.let.shop.mng.testFileUpload.service.TestFileUpload;
 
 public interface SellerMngDAO {
 

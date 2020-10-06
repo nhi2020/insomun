@@ -1,6 +1,9 @@
 package egovframework.let.shop.mng.seller.web;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -8,16 +11,21 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import egovframework.let.shop.mng.buyer.service.impl.BuyerMngVO;
 import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
 import egovframework.let.shop.mng.review.service.ReviewMngVO;
 import egovframework.let.shop.mng.seller.service.SellerMngService;
 import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
+import egovframework.let.shop.mng.testFileUpload.service.TestFileUploadService;
+import egovframework.let.shop.mng.testFileUpload.service.impl.TestFileUploadVO;
 import egovframework.let.shop.user.seller.service.impl.SellerUserVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -28,8 +36,14 @@ public class SellerMngController {
 	@Resource(name = "SellerMngService")
 	private SellerMngService sellerService;
 	
+	@Resource(name = "TestFileUploadService")
+	TestFileUploadService testFileUploadService;
+	
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
+	
+	@Resource(name = "multipartResolver")
+	CommonsMultipartResolver multipartResolver;
 
 	protected String unscript(String data) {
 		if (data == null || data.trim().equals("")) {
@@ -129,12 +143,17 @@ public class SellerMngController {
 	}
 	
 	@RequestMapping(value="/shop/mng/seller/InsertMngSellerPro.do", method = RequestMethod.POST )
-	public String InsertMngSellerPro(SellerMngVO vo, Model model ){
+	public String InsertMngSellerPro(HttpServletRequest request, MultipartFile file, SellerMngVO vo, Model model, String path) throws IOException{
 		String addr1 =vo.getAddr1();
 		String addr2 =vo.getAddr2();
 		String S_addr= addr1 + addr2; 
 		System.out.println("S_ADDR" + S_addr);
 		vo.setS_addr(S_addr);
+		
+		String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
+		String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
+		vo.setS_photo(savedName);
+		
 		String result = sellerService.InsertMngSellerPro(vo);
 	
 		return "redirect:/shop/mng/seller/listMngSeller.do";
@@ -151,4 +170,38 @@ public class SellerMngController {
 		
 		return "redirect:/shop/mng/seller/listMngSeller.do";
 	}	
+	
+/*	@RequestMapping(value = "/shop/mng/seller/InsertImgMngSellerPro.do", method = RequestMethod.POST)
+	public String InsertImgMngSellerPro(HttpServletRequest request, MultipartFile file, SellerMngVO vo, String path, Model model) throws IOException {
+		String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
+		String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
+		vo.setOriginal_file_name(file.getOriginalFilename());
+		vo.setStored_file_name(savedName);
+		vo.setFile_size(file.getSize());
+		
+		int result = sellerService.insertImgFileUpload(vo);
+		
+		model.addAttribute("msg", result);
+		model.addAttribute("savedName", savedName);
+		
+		return "redirect:/shop/mng/seller/InsertImgMngSellerPro.do";
+	}*/
+	
+	private String uploadFile(String originalName, byte[] fileData, String uploadPath) throws IOException {
+		UUID uid = UUID.randomUUID();
+		File fileDirectory = new File(uploadPath);
+		if(!fileDirectory.exists()) {
+			fileDirectory.mkdirs();
+			System.out.println("the directory for uploading : " + uploadPath);
+		}
+		String savedName = uid.toString() + "-" + originalName;
+		String[] invalidName = {"\\\\","/",":","\"","<",">","\\[","\\]"};
+		for(int i = 0; i < invalidName.length; i++)
+			savedName = savedName.replaceAll(invalidName[i], "_");
+		
+		File target = new File(uploadPath, savedName);
+		
+		FileCopyUtils.copy(fileData, target);
+		return savedName;
+	}
 }

@@ -24,6 +24,9 @@ public class SellerMng {
 	private Date s_birth;
 	private String s_account_n;
 	private String s_account;
+	
+	
+	
 	public String getS_id() {
 		return s_id;
 	}
@@ -132,6 +135,4 @@ public class SellerMng {
 	public void setS_account(String s_account) {
 		this.s_account = s_account;
 	}
-
-	
 }
