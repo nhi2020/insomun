@@ -27,26 +27,14 @@
 		$("#s_agreenum").focus();
 		return false;
 	}
-	$.ajax({
-		url : "/shop/user/seller/sellerCertificationNumberchk.do",
-		type : "post",
-		dataType : "json",
-		data : {"s_name" : $("#s_name").val(),"s_email" : $("#s_email").val(),"s_agreenum" : $("#s_agreenum").val()},
-		success : function(data){
-			if(data == 1){
-				alert("인증되었습니다.");
-				
-			}else if(data == 0){
-				alert("인증번호가 틀립니다.");
-			}
-		}
-	})
-	
-	
+	if($("#idChk").val()=="N"){
+		alert("인증확인 해주세요.");
+		$("#s_agreenum").focus();
+		return false;
+	}
 
 }; */
-
-$(document).ready(function(){
+ $(document).ready(function(){
 	// 취소
 	$(".cencle").on("click", function(){
 		location.href = "/";
@@ -69,21 +57,11 @@ $(document).ready(function(){
        		$("#s_agreenum").focus();
        		return false;
        	}
-    	$.ajax({
-    		url : "/shop/user/seller/sellerCertificationNumberchk.do",
-    		type : "post",
-    		dataType : "json",
-    		data : {"s_name" : $("#s_name").val(),"s_email" : $("#s_email").val(),"s_agreenum" : $("#s_agreenum").val()},
-    		success : function(data){
-    			if(data == 1){
-    				alert("인증되었습니다.");
-    				
-    			}else if(data == 0){
-    				alert("인증번호가 틀립니다.");
-    				return false;
-    			}
-    		}
-    	})
+       	if($("#idChk").val()=="N"){
+    		alert("인증확인 해주세요.");
+    		$("#s_agreenum").focus();
+    		return false;
+    	}
 	});
 });
 
@@ -106,11 +84,33 @@ function email(){
 		success : function(data){
 			if(data == 1){
 				alert("이메일 전송되었습니다..");
+				$("#btnEmailAuthNo").attr("value", "Y");
 				$("#s_agreenum").focus();
 				
 			}else if(data == 0){
+				alert("실패.");
+			}
+		}
+	})
+}
+function fn_idChk(){
+	if($("#s_agreenum").val()==""){
+		alert("인증번호를 입력해주세요.");
+		$("#s_agreenum").focus();
+		return false;
+	}
+	$.ajax({
+		url : "/shop/user/seller/sellerCertificationNumberchk.do",
+		type : "post",
+		dataType : "json",
+		data : {"s_name" : $("#s_name").val(),"s_email" : $("#s_email").val(),"s_agreenum" : $("#s_agreenum").val()},
+		success : function(data){
+			if(data == 1){
+				alert("인증되었습니다.");
 				$("#idChk").attr("value", "Y");
-				alert("사용가능한 아이디입니다.");
+			}else if(data == 0){
+				alert("인증번호가 틀립니다.");
+				$("#s_agreenum").focus();
 			}
 		}
 	})
@@ -130,19 +130,20 @@ function email(){
 			<dt><label for="email" class="label_txt">이메일 주소</label></dt>
 			<dd>
 				<input type="text" id="s_email" name="s_email" maxlength="100" class="input_txt" style="width:217px">
-				<a href="#" id="btnEmailAuthNo" name="btnEmailAuthNo" onClick="email();" class="btn_ct"><span class="blind">인증번호 받기</span></a>
+				<button class="btn btn-secondary" type="button" id="btnEmailAuthNo" name="btnEmailAuthNo" onClick="email();" value="N">인증번호 받기</button>
 			</dd>
 			<dt><label for="t_ct1" class="blind">인증번호 입력</label></dt>
 			<dd class="ct">
 				<span class="input_box2">
 				<span id="span_emailAuthNo" >인증번호 6자리 숫자 입력</span>
 				<input type="text" id="s_agreenum" name="s_agreenum" maxlength="6" style="width:217px">
+				<button class="btn btn-secondary" type="button" id="idChk" onclick="fn_idChk();" value="N">인증확인</button><br>
 				</span>								
 			</dd>	
 		</dl>
 	</div>
 	<!-- <button class="btn btn-secondary" type="submit" onclick="check();">다음</button> -->
-	<input class="btn btn-success" type="submit" id="submit" value="다음">		
+	<input class="btn btn-success" type="submit" id="submit" value="다음">
 
 </div>
 </form>

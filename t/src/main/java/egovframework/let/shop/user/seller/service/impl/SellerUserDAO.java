@@ -86,6 +86,20 @@ public class SellerUserDAO extends EgovAbstractDAO {
 		return result;
 	}
 
+	public int sellerRePass(SellerUserVO vo) {
+		// TODO Auto-generated method stub
+		return (int) update("EgovSellerDAO.sellerRePass",vo);
+	}
+
+	 public SellerUserVO selectUserSeller(SellerUserVO vo) {
+	      try {
+	         vo = (SellerUserVO) select("selectUserSeller", vo);
+	      } catch (Exception e) {
+	         System.out.println("SellerUserDAO selectUserSeller Exception : " + e.getMessage());
+	      }
+	      return vo;
+	   }
+
 
 
 }

@@ -31,9 +31,10 @@
 	    <div class="row">
 	  		<c:forEach var="productuser_list" items="${list}">
 			<div class="col-3">
-					
-					<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }"><img src="./images/main/photo/${productuser_list.p_image}" width="270" height="270"></a>
-					
+					<c:if test="${sessionScope.status == 1 }">
+					<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
+					</c:if>
+					<img src="./images/main/photo/${productuser_list.p_image}" width="270" height="270"></a>
 					<span >
 					<input type="checkbox" name="check" id="check" value="${productuser_list.p_idx }">
 					상품명: ${productuser_list.p_name }</span>

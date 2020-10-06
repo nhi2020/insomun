@@ -25,55 +25,68 @@
 	    <div class="row">
 			<form action="" >
 	    <input type="hidden" name="p_idx" value="${ProductUserVO.p_idx }" />
-					<img src="./images/main/photo/${ProductUserVO.p_image}" width="270" height="385"/>
+					<img src="./images/main/photo/${ProductUserVO.p_image}" width="270" height="385" class="float-left"/>
 						<p>
 					<table class="table">
 					<tr>
 						<th>상품명</th>
-						<td><input type="text" name="p_name" value="${ProductUserVO.p_name }"/>
+						<td>${ProductUserVO.p_name}
 						</td>
 					</tr>
 					<tr>
 						<th>가격</th>
-						<td><input type="text" name="p_price" value="${ProductUserVO.p_price }"/></td>
+						<td>${ProductUserVO.p_price }</td>
+						<!-- <th class="dropdown">
+  					<button class="dropbtn">Dropdown</button>
+  					<div class="dropdown-content">
+  					<div class="dropdown">Dropdown</div>
+    				<a>1</a>
+    				<a>2</a>
+    				<a>3</a>
+  </div>
+</div> -->
 					</tr>
 					<tr>
 						<th>제품 내용</th>
-						<td>
-						<textarea rows="5" cols="50" name="p_content" id="p_content">${ProductUserVO.p_content } </textarea></td>
+						<td>${ProductUserVO.p_content }</td>
 					</tr>
 					<tr>
 						<th>해시태그</th>
-						<td><input type="text" name="p_tage" value="${ProductUserVO.p_tage }"/></td>
+						<td>${ProductUserVO.p_tage }</td>
 					</tr>
 					<tr>
 						<th>재고 수량</th>
-						<td><input type="text" name="p_q" value="${ProductUserVO.p_q }"/></td>
+						<td>${ProductUserVO.p_q }</td>
 					</tr>
 					<tr>
 						<th>판매시작일</th>
-						<td><input type="date" name="p_sdate" value="${ProductUserVO.p_sdate }"/></td>
+						<td>${ProductUserVO.p_sdate }</td>
 					</tr>
 					<tr>
 						<th>판매종료일</th>
-						<td><input type="date" name="p_edate" value="${ProductUserVO.p_edate }"/></td>
+						<td>${ProductUserVO.p_edate }</td>
 					</tr>
 					<tr>
 						<th>업데이트된 날짜</th>
-						<td><input type="date" name="p_moddate" value="${ProductUserVO.p_moddate }"/></td>
-					</tr>
-					<tr>
-						<td colspan="2"><br/>
-					<input type="button" value="목록" onclick="location.href='/shop/user/product/EgovUserProductlist.do'"/>
+						<td>${ProductUserVO.p_moddate }</td>
 					</tr>
 				</table>
+				
+				<p/>
+				<p/>
+				<input type="submit" value="장바구니" onclick=""/>
+				<input type="submit" value="찜하기" onclick=""/>
+				<input type="submit" value="바로구매" onclick=""/>
+				
+				<p/>
+				<input type="button" value="목록" onclick="location.href='/shop/user/product/EgovUserProductlist.do'"/>
 					<%-- <c:if test=""></c:if> --%>
 				</p>
 				</form>				
 			</div>
 		</div>
 	</div>
-  
+
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>

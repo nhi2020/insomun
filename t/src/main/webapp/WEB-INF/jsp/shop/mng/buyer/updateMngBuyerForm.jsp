@@ -26,7 +26,7 @@
 	</c:if>
 	<div class="container">
 		<div class="row">
-			<form class="mx-auto" action="/shop/mng/buyer/updateMngBuyerPro.do" method="post">
+			<form class="mx-auto" action="/shop/mng/buyer/dealMngBuyerList.do" method="post">
 				<input type="hidden" name="sns_idx" value="${BuyerVO.sns_idx }" />
 				<table class="table">
 					<tr>

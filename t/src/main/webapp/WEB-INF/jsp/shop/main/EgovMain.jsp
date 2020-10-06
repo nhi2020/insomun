@@ -50,6 +50,14 @@
 					<td><a href="/shop/user/seller/sellerUserMain.do">판매자 페이지</a></td>
 				</tr>
 				<tr>
+					<td><a href="/shop/mng/deal/dealMngList.do">운영자 거래관리</a></td>
+				</tr>
+				<tr>
+					<td><a href="/shop/user/deal/dealUserBuyerList.do">구매자 거래관리</a></td>
+				</tr>
+				<tr>
+					<td><a href="/shop/user/deal/dealUserSellerList.do">판매자 거래관리</a></td>
+				</tr>
 					<td><a href="#">### 관리</a></td>
 				<tr>
 					<td><a href="#">### 관리</a></td>

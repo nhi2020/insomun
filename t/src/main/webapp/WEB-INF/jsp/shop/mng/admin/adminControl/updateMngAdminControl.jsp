@@ -39,8 +39,9 @@
             <td colspan="2"><br/><input type="submit" value="수정완료">&nbsp;</td>
       </table>
       <input type="hidden" name="p_moddate" value="${AdminVO.a_moddate }">
+     
       </form>
-      
+       <input type="submit" value="목록으로" onclick="location.href='/shop/mng/admin/adminControl/listMngAdminControl.do'">
     </div>
    </div>
 </body>

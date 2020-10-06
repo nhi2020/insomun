@@ -22,8 +22,6 @@ public interface SellerUserService {
 
 	public int selectSellerUserListCnt(SellerMngVO vo);
 
-	public List<SellerMngVO> selectSellerUserList(SellerMngVO vo);
-
 	public SellerUserVO sellerSearchIdPro(SellerUserVO vo);
 
 	public int sellerIdChk(SellerUserVO vo);
@@ -35,6 +33,10 @@ public interface SellerUserService {
 	public int sellerCertificationNumberchk(SellerUserVO vo);
 
 	public String sellerFindId(SellerUserVO vo);
+
+	public int sellerRePass(SellerUserVO vo);
+
+	public SellerUserVO selectUserSeller(SellerUserVO vo);
 
 
 }

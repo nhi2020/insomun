@@ -14,6 +14,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -169,9 +170,11 @@ public class SellerUserController {
 		return "/shop/user/seller/sellerFind/sellerIdAgreeFrom";
 	}
 	@RequestMapping(value="/shop/user/seller/sellerFindId.do")
-	public String sellerFindId(SellerUserVO vo, Model model){
+	public String sellerFindId(SellerUserVO vo, Model model, @RequestParam("s_name") String s_name,  @RequestParam("s_email") String s_email){
 		System.out.println("아이디 찾기2 ");
+		
 		System.out.println("test"+vo.getS_name());
+		System.out.println("testtest"+s_name);
 		String name = SellerService.sellerFindId(vo);
 		model.addAttribute("s_id",name);
 		return "/shop/user/seller/sellerFind/sellerFindId";
@@ -199,49 +202,9 @@ public class SellerUserController {
 				return "/shop/user/seller/sellerFind/sellerSearchIdPro";
 			}
 			System.out.println("vo"+vo);
+			model.addAttribute("s_id",vo.getS_id());
 		
 		return "/shop/user/seller/sellerFind/sellerPassAgreeForm";
-	}
-	
-	
-	
-	@RequestMapping("/shop/user/seller/sellerUserMain")
-	public String sellerUserMain(@ModelAttribute("searchVO") SellerMngVO vo, HttpServletRequest request, 
-			Model model, @RequestParam(value = "pageIndex", required=false, defaultValue="1") int pageIndex) {
-		
-		HttpSession session = request.getSession();
-		String s_nickname = (String) session.getAttribute("S_NICKNAME");
-		
-		System.out.println("session" + session);
-		
-		System.out.println("sellerUserMain()");
-		vo.setPageIndex(pageIndex);
-		System.out.println("sellerUserMain pageIndex => " + vo.getPageIndex());
-		vo.setPageUnit(propertyService.getInt("pageUnit"));
-		vo.setPageSize(propertyService.getInt("pageSize"));
-
-		PaginationInfo paginationInfo = new PaginationInfo();
-
-		paginationInfo.setCurrentPageNo(vo.getPageIndex());
-		paginationInfo.setRecordCountPerPage(vo.getPageUnit());
-		paginationInfo.setPageSize(vo.getPageSize());
-
-		vo.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		vo.setLastIndex(paginationInfo.getLastRecordIndex());
-		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-
-		int totCnt = SellerService.selectSellerUserListCnt(vo); //
-		paginationInfo.setTotalRecordCount(totCnt);
-
-		List<SellerMngVO> list = SellerService.selectSellerUserList(vo); //
-		
-		System.out.println("s_nickname" + s_nickname);
-		
-		model.addAttribute("s_nickname", s_nickname);
-		model.addAttribute("totCnt", totCnt);
-		model.addAttribute("list", list);
-		model.addAttribute("paginationInfo", paginationInfo);
-		return "shop/user/seller/sellerUserMain";
 	}
 	
 	
@@ -300,11 +263,35 @@ public class SellerUserController {
 	
 	@ResponseBody
 	@RequestMapping(value="/shop/user/seller/sellerCertificationNumberchk.do",method = RequestMethod.POST)
-	public int sellerCertificationNumberchk(SellerUserVO vo){
+	public int sellerCertificationNumberchk(SellerUserVO vo, Model model){
 			
 		int result = SellerService.sellerCertificationNumberchk(vo);
+		model.addAttribute("s_email",vo.getS_email());
+		model.addAttribute("s_name",vo.getS_name());
 		
 		return result;
 	}
+	
+	@RequestMapping(value="/shop/user/seller/sellerRePass.do")
+	public int sellerRePass(SellerUserVO vo){
+			System.out.println("비밀번호 재설정"+vo.getS_id()+vo.getS_pass());
+			int result=SellerService.sellerRePass(vo);
+			System.out.println("test"+result);
+		return result;
+	}
+	
+	  @RequestMapping("/shop/user/seller/selectUserSeller")
+	  public String selectUserSeller(SellerUserVO vo, Model model, HttpServletRequest request) {
+		  HttpSession session = request.getSession();
+		  String sessionS_id = (String) session.getAttribute("S_ID");
+	      System.out.println("s_id->" + sessionS_id);
+	      String s_nickname = (String) session.getAttribute("S_NICKNAME");
+	      System.out.println("s_nickname->" + s_nickname);
+	      vo.setS_id(sessionS_id);
+	      vo.setS_nickname(s_nickname);
+	      vo = SellerService.selectUserSeller(vo);
+	      model.addAttribute("SellerVO", vo);
+	      return "shop/user/seller/selectUserSeller";
+	   }
 	
 }

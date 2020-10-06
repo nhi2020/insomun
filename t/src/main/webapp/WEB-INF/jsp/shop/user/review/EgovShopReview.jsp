@@ -41,97 +41,63 @@
 	//--------------------------
 </script>
 <body>
+<hr>
+<p class="h-25"/>
 <form action="/shop/user/review/insertUserReview.do" name="frm2" method="post">
 	<div class="container text-center">
-			<div class="row justify-content-center">
+		<div class="row justify-content-center">
 			<input type="hidden" id="s_id" name="s_id" value="shong1">	<!-- 상품 상세페이지가 나오면  EL표기법으로 값가져오기. -->
 			<input type="hidden" id="sns_idx" name="sns_idx" value="1">
 			<input type="hidden" id="p_idx" name="p_idx" value="1">
 			<input type="hidden" id="r_div" name="r_div" value="1">
-			<textarea rows="5" cols="80" name="r_content" id="r_content"></textarea>
-			<input type="submit" value="확인">
-			</div>														<!-- 시간남으면 상품 사진까지 올릴수있도록 -->
+			<textarea rows="3" cols="80" name="r_content" id="r_content"></textarea>
+			<input type="submit" value="저장" class="btn btn-primary">
+		</div>														<!-- 시간남으면 상품 사진까지 올릴수있도록 -->
 	</div>																<!-- 추가해보기 -->
 </form>
+<p class="h-25"/>
 <form name="frm" method="post">
  	<input type="hidden" name="r_idx" value=""/>
  	<input type="hidden" name="r_content" value=""/>
 <c:forEach items="${list}" var="result">
-<div class="container text-center">
+<div class="container">
 	<div class="row justify-content-center">
-		<div class="modal-body">
-		<table border="1">
-          <c:choose>
-          	<c:when test="${result.r_div eq '1'}">
-          		<p>구매자 : ${result.nickname}
-          	</c:when>
-          	<c:otherwise>
-          		${result.s_nickname}
-          	</c:otherwise>
-          </c:choose>
-          	</table>
-	        <div id="r_view${result.r_idx}" style="display: none;">
-				<textarea id="r_contentVal${result.r_idx}" name="r_contentVal${result.r_idx}" rows="5" cols="40">
-					${result.r_content }
-				</textarea>
+		<div class="col-md-8 border border-1 p-3">
+			<p class="font-weight-bold">
+				<c:choose>
+		          	<c:when test="${result.r_div eq '1'}">
+		          	<span class="font-weight-normal" style="color: red">판매자</span><br>
+		          		${result.nickname}&nbsp;<span class="font-weight-normal">${result.r_regdate}</span>
+		          	</c:when>
+			       	<c:otherwise>
+			       	<span class="font-weight-normal" style="color: red">구매자</span><br>
+			       		${result.s_nickname}&nbsp;<span class="font-weight-normal">${result.r_regdate}</span>
+			       	</c:otherwise>
+		        </c:choose>
+	        </p>
+			<div id="r_view${result.r_idx}" style="display: none;">
+				<textarea id="r_contentVal${result.r_idx}" name="r_contentVal${result.r_idx}" rows="5" cols="70">${result.r_content }</textarea>
 				<a href="javascript:updateUserReview('${result.r_idx}');">저장</a>
 			</div>
 			<div id="r_view2${result.r_idx}" style="display: block;">
-				${result.r_content }
+				<pre>${result.r_content}</pre>
 			</div>
-			<c:if test="${'1' eq result.sns_idx}">
-				<a href="javascript:displayView('${result.r_idx}');">수정</a>
-			</c:if>
-			<c:if test="${'1' eq result.sns_idx}">
-				<a href="javascript:delUserReview('${result.r_idx}');">삭제</a>
-			</c:if>
-        </div>
-        
-		<%-- <table border="1">
-			<thead>
-				<tr>
-					<th>판매자 이름</th>
-					<th>구매자 이름</th>
-					<th>상품 명</th>
-					<th>리뷰 내용</th>
-					<th>리뷰 등록일자</th>
-					<th>수정</th>
-					<th>삭제</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>${result.s_nickname }</td>
-					<td>${result.nickname }</td>
-					<td>${result.p_name }</td>
-					<td>
-						<div id="r_view${result.r_idx}" style="display: none;">
-							<textarea id="r_contentVal${result.r_idx}" name="r_contentVal${result.r_idx}" rows="5" cols="40">
-								${result.r_content }
-							</textarea>
-							<a href="javascript:updateUserReview('${result.r_idx}');">저장</a>
-						</div>
-						<div id="r_view2${result.r_idx}" style="display: block;">
-							${result.r_content }
-						</div>
-					</td>
-					<td>${result.r_regdate }</td>
-					<td>
-						<c:if test="${'1' eq result.sns_idx}">
-							<a href="javascript:displayView('${result.r_idx}');">수정</a>
-						</c:if>
-					</td>
-					<td>
-						<c:if test="${'1' eq result.sns_idx}">
-							<a href="javascript:delUserReview('${result.r_idx}');">삭제</a>
-						</c:if>
-					</td>
-				</tr>
-			</tbody>
-		</table> --%>
+			<div class="float-right">
+				<c:if test="${'1' eq result.sns_idx}">
+					<a href="javascript:displayView('${result.r_idx}');"><span style="color: gray;">수정</span></a>
+				</c:if>
+				<c:if test="${'1' eq result.sns_idx}">
+					<a href="javascript:delUserReview('${result.r_idx}');"><span style="color: gray;">삭제</span></a>
+				</c:if>
+			</div>
+		</div>
 	</div>
 </div>
-</c:forEach> 
+</c:forEach>
+		<ul class="paging_align">
+						<ui:pagination paginationInfo="${paginationInfo}" type="text"
+							jsFunction="linkPage" />
+					</ul>
 </form>
 </body>
 </html>

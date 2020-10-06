@@ -55,11 +55,11 @@ public class DealMngController {
 		return ret;
 	}
 
-	@RequestMapping(value = "/shop/mng/deal/dealBuyerList.do")
-	public String listMngBuyer(@ModelAttribute("searchVO") DealMngVO vo, HttpServletRequest request, Model model, 
+	@RequestMapping(value = "/shop/mng/deal/dealMngList.do")
+	public String listDealMngBuyer(@ModelAttribute("searchVO") DealMngVO vo, HttpServletRequest request, Model model, 
 			@RequestParam(value = "pageIndex", required=false, defaultValue="1") int pageIndex) {
 		vo.setPageIndex(pageIndex);
-		System.out.println("listMngBuyer pageIndex => " + vo.getPageIndex());
+		System.out.println("listMng pageIndex => " + vo.getPageIndex());
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
 
@@ -73,48 +73,115 @@ public class DealMngController {
 		vo.setLastIndex(paginationInfo.getLastRecordIndex());
 		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
-		int totCnt = dealMngService.selectListCnt(vo); //
+		int totCnt = dealMngService.selectListCntDealMng(vo); //
 		paginationInfo.setTotalRecordCount(totCnt);
 
-		List<DealMngVO> list = dealMngService.selectList(vo); //
+		List<DealMngVO> list = dealMngService.selectListDealMng(vo); //
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("deallist", list);
 		model.addAttribute("paginationInfo", paginationInfo);
 
-		return "shop/mng/deal/dealBuyerMngList";
+		return "/shop/mng/deal/dealMngList";
 
 	}
-	@RequestMapping(value="/shop/mng/deal/dealBuyerMngDetail.do")
-	public String selectMngDealBuyerDetail(HttpServletRequest request, DealMngVO vo, Model model) {
-		System.out.println("DealMngController selectMngDealBuyerDetail Start...");
-		vo = dealMngService.selectMngDealBuyerDetail(vo);
+	@RequestMapping(value="/shop/mng/deal/dealMngBuyerDetail.do")
+	public String selectDealMngBuyerDetail(HttpServletRequest request, DealMngVO vo, Model model) {
+		System.out.println("DealMngController selectDealMngBuyerDetail Start...");
+		vo = dealMngService.selectDealMngBuyerDetail(vo);
+		/*vo = dealMngService.selectDealMngBuyerScore(vo);*/
+		
 		model.addAttribute("dealMngVO", vo);
-		return "shop/mng/deal/dealBuyerMngDetail";	
+		return "shop/mng/deal/dealMngBuyerDetail";	
 	}
 	
-	@RequestMapping(value="/shop/mng/deal/dealBuyerMngIng.do")
-	public String updateMngDealBuyerDetail(HttpServletRequest request, DealMngVO vo, Model model) {
-		System.out.println("DealMngController updateMngDealBuyerDetail Start...");
-		int result = dealMngService.updateMngDealBuyerDetail(vo);
+	@RequestMapping(value="/shop/mng/deal/dealMngBuyerIng.do")
+	public String updateDealMngBuyerDetail(HttpServletRequest request, DealMngVO vo, Model model) {
+		System.out.println("DealMngController updateDealMngBuyerDetail Start...");
+		int result = dealMngService.updateDealMngBuyerDetail(vo);
 		if (result > 0) {
 			model.addAttribute("msg", "수정 성공");
 		} else {
 			model.addAttribute("msg", "수정 실패");
 		}
 		int d_idx = vo.getD_idx();
-		return "redirect:/shop/mng/deal/dealBuyerList.do?d_idx=" + d_idx;	
+		return "redirect:/shop/mng/deal/dealMngBuyerList.do?d_idx=" + d_idx;	
 	}
 
-	@RequestMapping(value="/shop/mng/deal/dealBuyerMngCancel.do")
-	public String updateMngDealBuyerCancel(HttpServletRequest request, DealMngVO vo, Model model) {
-		System.out.println("DealMngController updateMngDealBuyerCancel Start...");
-		int result = dealMngService.updateMngDealBuyerCancel(vo);
+	@RequestMapping(value="/shop/mng/deal/dealMngBuyerCancel.do")
+	public String updateDealMngBuyerCancel(HttpServletRequest request, DealMngVO vo, Model model) {
+		System.out.println("DealMngController updateDealMngBuyerCancel Start...");
+		int result = dealMngService.updateDealMngBuyerCancel(vo);
 		if (result > 0) {
 			model.addAttribute("msg", "수정 성공");
 		} else {
 			model.addAttribute("msg", "수정 실패");
 		}
 		int d_idx = vo.getD_idx();
-		return "redirect:/shop/mng/deal/dealBuyerList.do?d_idx=" + d_idx;	
+		return "forward:/shop/mng/deal/dealMngBuyerDetail.do";
 	}
+
+	@RequestMapping(value="/shop/mng/deal/dealMngBuyerComplete.do")
+	public String updateDealMngBuyerComplete(HttpServletRequest request, DealMngVO vo, Model model) {
+		System.out.println("DealMngController updateDealMngBuyerComplete Start...");
+		int result = dealMngService.updateDealMngBuyerComplete(vo);
+		int result1 = dealMngService.updateDealMngBuyerD_edate(vo);
+		if (result > 0) {
+			model.addAttribute("msg", "수정 성공");
+		} else {
+			model.addAttribute("msg", "수정 실패");
+		}
+		int d_idx = vo.getD_idx();
+		return "redirect:/shop/mng/deal/dealMngBuyerDetail.do?d_idx=" + d_idx;
 	}
+	
+	@RequestMapping(value="/shop/mng/deal/dealMngSellerDetail.do")
+	public String selectDealMngSellerDetail(HttpServletRequest request, DealMngVO vo, Model model) {
+		System.out.println("DealMngController selectDealMngSellerDetail Start...");
+		vo = dealMngService.selectDealMngSellerDetail(vo);
+		/*vo = dealMngService.selectDealMngBuyerScore(vo);*/
+		
+		model.addAttribute("dealMngVO", vo);
+		return "/shop/mng/deal/dealMngSellerDetail";	
+	}
+	
+	@RequestMapping(value="/shop/mng/deal/dealMngSellerAccept.do")
+	public String updateDealMngSellerAccept(HttpServletRequest request, DealMngVO vo, Model model) {
+		System.out.println("DealMngController updateDealMngSellerAccept Start...");
+		int result = dealMngService.updateDealMngSellerAccept(vo);
+		if (result > 0) {
+			model.addAttribute("msg", "수정 성공");
+		} else {
+			model.addAttribute("msg", "수정 실패");
+		}
+		int d_idx = vo.getD_idx();
+		return "forward:/shop/mng/deal/dealMngSellerDetail.do";
+	}
+	
+	@RequestMapping(value="/shop/mng/deal/dealMngSellerCancel.do")
+	public String updateDealMngSellerCancel(HttpServletRequest request, DealMngVO vo, Model model) {
+		System.out.println("DealMngController updateDealMngSellerCancel Start...");
+		int result = dealMngService.updateDealMngSellerCancel(vo);
+		if (result > 0) {
+			model.addAttribute("msg", "수정 성공");
+		} else {
+			model.addAttribute("msg", "수정 실패");
+		}
+		int d_idx = vo.getD_idx();
+		return "forward:/shop/mng/deal/dealMngSellerDetail.do";
+	}
+
+	@RequestMapping(value="/shop/mng/deal/dealMngSellerDeliver.do")
+	public String updateDealMngSellerDeliver(HttpServletRequest request, DealMngVO vo, Model model) {
+		System.out.println("DealMngController updateDealMngSellerDeliver Start...");
+		int result = dealMngService.updateDealMngSellerDeliver(vo);
+		if (result > 0) {
+			model.addAttribute("msg", "수정 성공");
+		} else {
+			model.addAttribute("msg", "수정 실패");
+		}
+		int d_idx = vo.getD_idx();
+		return "forward:/shop/mng/deal/dealMngSellerDetail.do";
+	}
+	
+		
+}

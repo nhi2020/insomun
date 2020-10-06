@@ -10,6 +10,7 @@
 	<typeAlias  alias="ProVO" type="egovframework.let.shop.service.ProVO"/> -->
 	<typeAlias  alias="Seller" type="egovframework.let.shop.user.seller.service.SellerUser"/>
 	<typeAlias alias="SellerMngVO" type="egovframework.let.shop.mng.seller.service.impl.SellerMngVO" /> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias alias="SellerUserVO" type="egovframework.let.shop.user.seller.service.impl.SellerUserVO" /> <!-- db에서 세터로 받아넣는 -->
 	<typeAlias alias="SellerMng" type="egovframework.let.shop.mng.seller.service.SellerMng" />
 	
 	
@@ -149,6 +150,15 @@
 			AND S_AGREENUM = #s_agreenum#
 		]]>
 	</select>
+
+	<update id="EgovSellerDAO.sellerRePass" parameterClass="SellerVO">
+ 		<![CDATA[
+			UPDATE SELLER SET 
+				S_PASS = #s_pass#
+			WHERE 1=1
+			AND S_ID = #s_id#
+ 		]]>
+ 	</update>
 	<!-- <resultMap id="mngMemberList" class="egovframework.let.shop.member.service.MemberVO"> property는 vo값
 		<result property="m_id" column="M_ID" columnIndex="1"/>						 collum 은 db의 컬럼값
 		<result property="m_nickname" column="M_NICKNAME" columnIndex="2"/>			  db의 컬럼 순서
@@ -332,20 +342,6 @@
 		</isEqual>
 
 	</select>
- 	
- 	<select id="selectSellerUserList" resultClass="SellerMngVO">
-		SELECT *
-		FROM SELLER
-		WHERE 1=1
-		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
-				<![CDATA[	S_ID LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
-		</isEqual>
-		<isEqual prepend="AND" property="searchCnd" compareValue="1">
-				<![CDATA[	SNSCODE LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
-		</isEqual>
-		ORDER BY S_REGDATE DESC
-		LIMIT #recordCountPerPage# OFFSET #firstIndex#
-	</select>
 	
 	<update id="updateMngSellerStateChange" parameterClass="java.lang.String">
 		UPDATE SELLER
@@ -388,5 +384,11 @@
 						ELSE 'Y'
 					END
 		WHERE S_IDX = #s_idx#
-	</update>   
+	</update>  
+	  
+	 <select id="selectUserSeller" resultClass="SellerUserVO" parameterClass="SellerUserVO">
+      SELECT *
+      FROM SELLER
+      WHERE s_id = #s_id#
+   </select> 
 </sqlMap>

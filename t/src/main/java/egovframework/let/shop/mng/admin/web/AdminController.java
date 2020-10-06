@@ -94,10 +94,10 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 			System.out.println("실패");
 			model.addAttribute("msg","사용자 올바르지 않음");
 			model.addAttribute("chk",0);
-			return "/shop/mng/admin/AdminLogin.do";
+			return "redirect:/shop/mng/admin/AdminLogin.do";
 		}
 		
-		return "/shop/mng/admin/adminLogin/EgovMngAdminLoginPro";
+		return "redirect:/shop/mng/admin/adminMainForm.do";
 	}
 	
 	
