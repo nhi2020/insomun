@@ -166,7 +166,7 @@ public class ProductMngController {
 		String a_id = (String) session.getAttribute("A_ID");
 		System.out.println("a_id"+a_id);
 		System.out.println("INSERT");
-		vo.setS_id(a_id);
+		vo.setA_id(a_id);
 		mngProductService.insertMngProductPro(vo);
 		
 		return "redirect:/shop/mng/product/EgovMngProductInsertForm.do";

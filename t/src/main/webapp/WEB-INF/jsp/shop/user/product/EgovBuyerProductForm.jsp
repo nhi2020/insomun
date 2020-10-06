@@ -77,7 +77,6 @@
 				<input type="submit" value="장바구니" onclick=""/>
 				<input type="submit" value="찜하기" onclick=""/>
 				<input type="submit" value="바로구매" onclick=""/>
-				
 				<p/>
 				<input type="button" value="목록" onclick="location.href='/shop/user/product/EgovUserProductlist.do'"/>
 					<%-- <c:if test=""></c:if> --%>
