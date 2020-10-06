@@ -149,10 +149,13 @@
 			REVIEW
 	</selectKey>
 		<![CDATA[
-			INSERT INTO REVIEW
-			(S_ID, SNS_IDX, R_IDX, P_IDX, R_CONTENT, R_REGDATE, R_DELYN, R_DIV, SNS_SCORE, SELLER_SCORE)
+			INSERT INTO REVIEW(
+				S_ID, SNS_IDX, R_IDX, P_IDX, R_CONTENT, R_REGDATE, R_DELYN, R_DIV, SNS_SCORE, SELLER_SCORE
+				)
 			VALUES
-			( #s_id#, #sns_idx# , #r_idx#, #p_idx#, #r_content#, SYSDATE(), 'N', #r_div#, 3 ,1)			
+			(
+				#s_id#, #sns_idx# , #r_idx#, #p_idx#, #r_content#, SYSDATE(), 'N', #r_div#, 3 ,1
+				)			
 		]]>
 	</insert>
 	
@@ -271,6 +274,8 @@
 				WHERE R_IDX = #r_idx#
 	 		]]>
 	</update>
+	
+	
 	<!-- <select id="EgovMngProDAO.selectMngProListCnt" parameterClass="SnsProfileVO" resultClass="java.lang.Integer" >
 		<![CDATA[
 			SELECT 
