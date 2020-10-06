@@ -57,27 +57,34 @@
 						value="${paginationInfo.currentPageNo }">
 				</form>
 			</c:forEach>
-			<form action="/shop/mng/buyer/listMngBuyer.do">
+			<form name="frmPage" action="/shop/mng/buyer/listMngBuyer.do">
 				<div class="input-group mb-3">
 					<input type="text" class="form-control" placeholder="아이디"
 						aria-label="Username" aria-describedby="basic-addon1"
-						name="searchWrd">
+						name="searchWrd" value="${searchVO.searchWrd }"> 
 					<div class="input-group-append">
 						<input class="btn btn-secondary" type="submit" value="검색" />
 					</div>
 				</div>
-			<input type="hidden" name="pageIndex" value="${searchVO.pageIndex }" />
-			<input type="hidden" name="searchCnd" value="0" />
+			 <input type="hidden" name="pageIndex" value="1" />
+				<input type="hidden" name="searchCnd" value="0" />
 			</form>
 			<div id="paging_div">
 				<ul class="paging_align">
 					<ui:pagination paginationInfo="${paginationInfo}" type="image"
-						jsFunction="fn_egov_select_productList" />
+						jsFunction="linkPage" />
 				</ul>
 			</div>
 		</div>
 	</div>
 </body>
+<script>
+function linkPage(pageIndex){
+	document.forms["frmPage"]["pageIndex"].value=pageIndex;
+	document.forms["frmPage"].submit();
+	return true;
+}
+</script>
 <%@ include file="../../inc/EgovShopBottom.jsp"%>
 </body>
 </html>

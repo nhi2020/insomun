@@ -19,4 +19,7 @@ public interface BasketUserDAO {
 
 	int deleteBasketUser(BasketUserVO vo);
 
+	int insertBasketUserCnt(BasketUserVO vo);
+
+	BasketUserVO selectByP_IdxBasketUser(BasketUserVO vo);
 }

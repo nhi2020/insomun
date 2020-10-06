@@ -115,16 +115,35 @@ public class BasketUserController {
 	@RequestMapping("/shop/user/basket/insertBasketUserPro")
 	public String insertBasketUserPro(HttpServletRequest request, Model model, BasketUserVO vo){
 		System.out.println("BasketUserController insertBasketUserPro()");
+		int result = 0;
+		// 세션 확인 
 		HttpSession session = request.getSession();
 		int userSnsIdx = (int) session.getAttribute("sns_idx");
-		System.out.println("userSnsIdx" + userSnsIdx);
-		System.out.println("p_idx" + vo.getP_idx());
+		System.out.println("userSnsIdx => " + userSnsIdx);
+		System.out.println("p_idx => " + vo.getP_idx());
+		System.out.println("vo.getBa_idx() => " + vo.getBa_idx());
+		// ID와 수량 입력
 		vo.setSns_idx(userSnsIdx);
 		vo.setBa_q(1);
+
+		System.out.println("basketUserService.selectByP_IdxBasketUser()");
+		vo = basketUserService.selectByP_IdxBasketUser(vo);
+		System.out.println("vo.getBa_idx() => " + vo.getBa_idx());
+		if(vo.getBa_idx() == 0){
+			System.out.println("THE ITEM IS IN THE CART ALREADY");
+			vo.setBa_q(vo.getBa_q()+1);
+			result = basketUserService.updateBasketUserQty(vo);
+		} else {
+			
+			System.out.println("THE ITEM IS NOT IN THE CART ALREADY");
+			result = basketUserService.insertBasketUserPro(vo);
+		}
 		// DB Insert
 		
-		int result = basketUserService.insertBasketUserPro(vo);
 		System.out.println("result => " + result);
+		System.out.println("vo.getBa_idx()" + vo.getBa_idx());
+		System.out.println("vo.getBa_q()" + vo.getBa_q());
+		System.out.println("vo.getP_idx()" + vo.getP_idx());
 		
 		return "redirect:/shop/user/basket/listBasketUser.do";
 	}
