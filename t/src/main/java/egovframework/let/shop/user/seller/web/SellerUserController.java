@@ -202,6 +202,7 @@ public class SellerUserController {
 				return "/shop/user/seller/sellerFind/sellerSearchIdPro";
 			}
 			System.out.println("vo"+vo);
+			model.addAttribute("s_id",vo.getS_id());
 		
 		return "/shop/user/seller/sellerFind/sellerPassAgreeForm";
 	}
