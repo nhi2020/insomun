@@ -25,6 +25,7 @@
 	    <div class="row">
 			<form name="frm" action="" >
 	    <input type="hidden" name="p_idx" value="${ProductUserVO.p_idx }" />
+	    <input type="hidden" name="s_id" value="${ProductUserVO.s_id }" />
 					<img src="./images/main/photo/${ProductUserVO.p_image}" width="270" height="385" class="float-left"/>
 						<p>
 					<table class="table">

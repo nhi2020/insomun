@@ -33,9 +33,7 @@ public class BasketUserController {
 
 	@Resource(name = "BasketUserService")
 	private BasketUserService basketUserService;
-	
-	@Resource(name = "EgovUserProductService")
-	private ProductUserService userProductService;
+
 
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
@@ -123,16 +121,6 @@ public class BasketUserController {
 		System.out.println("p_idx" + vo.getP_idx());
 		vo.setSns_idx(userSnsIdx);
 		vo.setBa_q(1);
-		ProductUserVO productVO = new ProductUserVO();
-		productVO.setP_idx(Integer.toString(vo.getP_idx()));
-		String s_id = "";
-		try {
-			s_id = userProductService.selectUserProductForm(productVO).getS_id();
-			vo.setS_id(s_id);
-		} catch (Exception e) {
-			System.out.println("BasketUserController insertBasketUserPro Exception : " + e.getMessage());
-		}
-		
 		// DB Insert
 		
 		int result = basketUserService.insertBasketUserPro(vo);
