@@ -23,7 +23,7 @@
  <div class="container-fluid">
 	<div class="container text-center">
 	    <div class="row">
-			<form action="" >
+			<form name="frm" action="" >
 	    <input type="hidden" name="p_idx" value="${ProductUserVO.p_idx }" />
 					<img src="./images/main/photo/${ProductUserVO.p_image}" width="270" height="385" class="float-left"/>
 						<p>
@@ -74,7 +74,7 @@
 				
 				<p/>
 				<p/>
-				<input type="submit" value="장바구니" onclick=""/>
+				<input type="submit" value="장바구니" onclick="goBasket(${ProductUserVO.p_idx}); return false;"/>
 				<input type="submit" value="찜하기" onclick=""/>
 				<input type="submit" value="바로구매" onclick=""/>
 				<p/>
@@ -85,7 +85,13 @@
 			</div>
 		</div>
 	</div>
+<script type="text/javascript">
+	function goBasket(p_idx) {
+		document.frm.action = "/shop/user/basket/insertBasketUserPro.do";
+		document.frm.submit();
+	}
 
+</script>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>

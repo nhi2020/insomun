@@ -13,12 +13,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import egovframework.let.shop.mng.basket.service.impl.BasketBuyerMngVO;
 import egovframework.let.shop.mng.basket.web.BasketMngController;
 import egovframework.let.shop.user.basket.service.BasketUserService;
 import egovframework.let.shop.user.basket.service.impl.BasketProductUserVO;
 import egovframework.let.shop.user.basket.service.impl.BasketUserVO;
+import egovframework.let.shop.user.product.service.ProductUserService;
+import egovframework.let.shop.user.product.service.impl.ProductUserVO;
+import egovframework.let.shop.user.seller.service.SellerUserService;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -29,6 +33,9 @@ public class BasketUserController {
 
 	@Resource(name = "BasketUserService")
 	private BasketUserService basketUserService;
+	
+	@Resource(name = "EgovUserProductService")
+	private ProductUserService userProductService;
 
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
@@ -113,7 +120,18 @@ public class BasketUserController {
 		HttpSession session = request.getSession();
 		int userSnsIdx = (int) session.getAttribute("sns_idx");
 		System.out.println("userSnsIdx" + userSnsIdx);
+		System.out.println("p_idx" + vo.getP_idx());
 		vo.setSns_idx(userSnsIdx);
+		vo.setBa_q(1);
+		ProductUserVO productVO = new ProductUserVO();
+		productVO.setP_idx(Integer.toString(vo.getP_idx()));
+		String s_id = "";
+		try {
+			s_id = userProductService.selectUserProductForm(productVO).getS_id();
+			vo.setS_id(s_id);
+		} catch (Exception e) {
+			System.out.println("BasketUserController insertBasketUserPro Exception : " + e.getMessage());
+		}
 		
 		// DB Insert
 		
@@ -131,4 +149,12 @@ public class BasketUserController {
 		return "redirect:/shop/user/basket/listBasketUser.do";
 	}
 
+	
+	@RequestMapping("/shop/user/basket/deleteBasketUser")
+	public String deleteBasketUser(HttpServletRequest request, Model model, BasketUserVO vo){
+		System.out.println("BasketUserController deleteBasketUser()");
+		int result = basketUserService.deleteBasketUser(vo);
+		System.out.println("result => " + result);
+		return "redirect:/shop/user/basket/listBasketUser.do";
+	}
 }

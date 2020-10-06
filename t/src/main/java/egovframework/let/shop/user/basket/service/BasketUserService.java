@@ -17,4 +17,6 @@ public interface BasketUserService {
 
 	int updateBasketUserQty(BasketUserVO vo);
 
+	int deleteBasketUser(BasketUserVO vo);
+
 }

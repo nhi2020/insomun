@@ -69,6 +69,17 @@ public class BasketUserDAOImpl extends EgovAbstractDAO implements BasketUserDAO 
 		return result;
 	}
 
+	@Override
+	public int deleteBasketUser(BasketUserVO vo) {
+		int result = 0;
+		try {
+			result = delete("deleteBasketUser", vo);
+		} catch (Exception e) {
+			System.out.println("BasketUserDAOImpl deleteBasketUser Exception : " + e.getMessage());
+		}
+		return result;
+	}
+
 	
 
 }
