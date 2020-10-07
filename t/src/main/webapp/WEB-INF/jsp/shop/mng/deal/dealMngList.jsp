@@ -29,8 +29,8 @@
 거래 취소 : 어떠한 사유로 거래 취소 * 구매 확정 시 취소 안됨<br>
 <div class="container">
 	<div class="row">
-		<form class="mx-auto" action="/shop/mng/deal/dealMngList.do">
 
+		<form class="mx-auto" action="/shop/mng/deal/dealMngList.do">
 
 	<table class="table mx-auto">
 			<tr>
@@ -58,8 +58,7 @@
 				<td>${list.d_regdate }</td>
 				<td>${list.nickname }
 					<c:choose><c:when test="${list.nickname eq null}"> ${list.sns_idx }</c:when></c:choose></td>				
-				<td>${list.s_nickname }
-				<c:choose><c:when test="${list.s_nickname eq null}"> ${list.s_id } </c:when></c:choose></td>
+				<td>${list.s_nickname }</td>
 				<td>
 					<c:choose>
 						<c:when test="${list.d_ing eq '1'}"> 신청 </c:when>
@@ -77,12 +76,15 @@
 		</c:forEach>
 	</table>
 	</form>
-			<form action="/shop/mng/deal/dealMnglist.do">
+			<form action="/shop/mng/deal/dealMngList.do">
 				<div class="input-group mb-3">
 					<input type="text" class="form-control" placeholder="구매자, 판매자"
 						aria-label="Username" aria-describedby="basic-addon1" name="searchWrd">
 					<div class="input-group-append">
 						<input class="btn btn-secondary" type="submit" value="검색" />
+					</div>
+					<div class="input-group-append">
+						<button type="button" class="btn btn-secondary" onclick="location.href='/shop/mng/deal/dealMngList.do'"><i class="fa fa-bars">목록으로</i></button>
 					</div>
 				</div>
 			<input type="hidden" name="pageIndex" value="${searchVO.pageIndex }" />

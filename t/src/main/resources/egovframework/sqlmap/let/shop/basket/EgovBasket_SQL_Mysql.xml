@@ -116,4 +116,12 @@
 		now()
 		)
 	</insert>
+	
+	<select id="selectByP_IdxBasketUser" parameterClass="BasketUserVO" resultClass="BasketUserVO">
+	SELECT *
+	FROM BASKET
+	WHERE P_IDX = #p_idx#
+	</select>
+	
+	
 </sqlMap>

@@ -54,8 +54,7 @@
 				<td>${list.d_q }</td>
 				<td>${list.p_price * list.d_q  }원</td>
 				<td>${list.d_regdate }</td>
-				<td>${list.s_nickname }
-				<c:choose><c:when test="${list.s_nickname eq null}"> ${list.s_id } </c:when></c:choose></td>
+				<td>${list.s_nickname }</td>
 				<td>
 					<c:choose>
 						<c:when test="${list.d_ing eq '1'}"> 신청 </c:when>
@@ -67,16 +66,19 @@
 					</c:choose>
 				</td>
 				<td>${list.d_edate }</td>
+		</form>
 			</tr>
-				<input type="hidden" name="d_idx" value="${list.d_idx }">
 		</c:forEach>
 	</table>
-			<form action="/shop/user/deal/dealUserBuyerlist.do">
+			<form action="/shop/user/deal/dealUserBuyerList.do">
 				<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="구매자, 판매자"
+					<input type="text" class="form-control" placeholder="판매자"
 						aria-label="Username" aria-describedby="basic-addon1" name="searchWrd">
 					<div class="input-group-append">
 						<input class="btn btn-secondary" type="submit" value="검색" />
+					</div>
+					<div class="input-group-append">
+						<button type="button" class="btn btn-secondary" onclick="location.href='/shop/user/deal/dealUserBuyerList.do'"><i class="fa fa-bars">목록으로</i></button>
 					</div>
 				</div>
 			<input type="hidden" name="pageIndex" value="${searchVO.pageIndex }" />

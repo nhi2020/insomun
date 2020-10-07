@@ -168,66 +168,7 @@ function fn_idChk(){
         }).open();
     }
 </script>
-<!-- <style type="text/css">
-.preView { width: 330px; height: 200px; text-align: center; border:1px solid silver; }
-</style>
-<script type="text/javascript">
-function fileUploadPreview(thisObj, preViewer) {
-        alert(!/(\.gif|\.jpg|\.jpeg|\.png)$/i.test(thisObj.value));
-    if(!/(\.gif|\.jpg|\.jpeg|\.png)$/i.test(thisObj.value)) {
-        alert("이미지 형식의 파일을 선택하십시오");
-        return;
-    }
 
-    preViewer = (typeof(preViewer) == "object") ? preViewer : document.getElementById(preViewer);
-    var ua = window.navigator.userAgent;
-
-    if (ua.indexOf("MSIE") > -1) {
-        var img_path = "";
-        if (thisObj.value.indexOf("\\fakepath\\") < 0) {
-            img_path = thisObj.value;
-        } else {
-            thisObj.select();
-            var selectionRange = document.selection.createRange();
-            img_path = selectionRange.text.toString();
-            thisObj.blur();
-        }
-        preViewer.style.filter =
-
-               "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='fi" +
-
-               "le://" + img_path + "', sizingMethod='scale')";
-      } else {
-        preViewer.innerHTML = "";
-        var W = preViewer.offsetWidth;
-        var H = preViewer.offsetHeight;
-        var tmpImage = document.createElement("img");
-        preViewer.appendChild(tmpImage);
-
-        tmpImage.onerror = function () {
-            return preViewer.innerHTML = "";
-        }
-
-        tmpImage.onload = function () {
-            if (this.width > W) {
-                this.height = this.height / (this.width / W);
-                this.width = W;
-            }
-            if (this.height > H) {
-                this.width = this.width / (this.height / H);
-                this.height = H;
-            }
-        }
-        if (ua.indexOf("Firefox/3") > -1) {
-            var picData = thisObj.files.item(0).getAsDataURL();
-            tmpImage.src = picData;
-        } else {
-            tmpImage.src = "file://" + thisObj.value;
-        }
-    }
-} -->
-
-</script>
 </head>
 
 <body>
@@ -236,23 +177,22 @@ function fileUploadPreview(thisObj, preViewer) {
 
 <div class="container">
 		<div class="row">
-			<form class="mx-auto" action="/shop/mng/seller/InsertMngSellerPro.do" method="post">
+			
+			
+			
+			<form class="mx-auto" action="/shop/mng/seller/InsertMngSellerPro.do" method="post" enctype="multipart/form-data">
 					<input type="hidden" value="" name="s_addr">
-					
-					
-					<%-- <img src="<c:url value='/'/>images/shop/seller/${SellerVO.s_photo }" width="400" height="400"/> --%>
 					
 				<table class="table">		
 						
-			<!-- 		<tr>
+		<tr>
   						 <td colspan="4"><div id="preView" class="preView" style="text-align: center;"></div></td>
  					</tr>
- 					
-  					<tr>
-   						 <td colspan="4" style="text-align: right;">
-         				 <input type="file" name="file_name" onchange="fileUploadPreview(this, 'preView')" ></td>
-         			</tr> -->
-				
+ 									
+					<tr>
+						<th>파일업로드</th>
+						<td><input type="file" name="file"></td>
+					</tr>
 					<tr>
 						<th>회원아이디</th>
 						<td><input type="text" name="s_id" id="s_id" placeholder="아이디">

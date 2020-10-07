@@ -17,11 +17,33 @@
 
 <body>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 	<div class="container">
 		<div class="row">
-
-
 			<table class="table mx-auto">
 				<tr>
 					<th>SNS 번호</th>
@@ -57,27 +79,33 @@
 						value="${paginationInfo.currentPageNo }">
 				</form>
 			</c:forEach>
-			<form action="/shop/mng/buyer/listMngBuyer.do">
+			<form name="frmPage" action="/shop/mng/buyer/listMngBuyer.do">
 				<div class="input-group mb-3">
 					<input type="text" class="form-control" placeholder="아이디"
 						aria-label="Username" aria-describedby="basic-addon1"
-						name="searchWrd">
+						name="searchWrd" value="${searchVO.searchWrd }"> 
 					<div class="input-group-append">
 						<input class="btn btn-secondary" type="submit" value="검색" />
 					</div>
 				</div>
-			<input type="hidden" name="pageIndex" value="${searchVO.pageIndex }" />
-			<input type="hidden" name="searchCnd" value="0" />
+			 <input type="hidden" name="pageIndex" value="1" />
+				<input type="hidden" name="searchCnd" value="0" />
 			</form>
 			<div id="paging_div">
 				<ul class="paging_align">
 					<ui:pagination paginationInfo="${paginationInfo}" type="image"
-						jsFunction="fn_egov_select_productList" />
+						jsFunction="linkPage" />
 				</ul>
 			</div>
 		</div>
 	</div>
 </body>
-<%@ include file="../../inc/EgovShopBottom.jsp"%>
+<script>
+function linkPage(pageIndex){
+	document.forms["frmPage"]["pageIndex"].value=pageIndex;
+	document.forms["frmPage"].submit();
+	return true;
+}
+</script>
 </body>
 </html>

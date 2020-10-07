@@ -21,12 +21,14 @@
 	<div class="container text-center">
 	    <div class="row">
 			<form action="/shop/mng/product/EgovMngProductInsertPro.do" method="post" enctype="multipart/form-data">
-				 	<img src="./images/main/photo/" width="270" height="270"/> 
-				 	<br/><input type="file", name="uploadfile" placeholder="파일 업로드" /><br/>
 						<p>
-					<table class="table">
-					<input type="hidden" name="p_idx" id="p_idx" >
 					<input type="hidden" name="a_id" id="a_id">
+					<input type="hidden" name="p_idx" id="p_idx" >
+					<table class="table">
+					<tr>
+						<th>파일업로드</th>
+						<td><input type="file" name="file"></td>
+					</tr>
 					<tr>
 						<th>판매자 아이디</th>				
 						<td>
@@ -45,19 +47,7 @@
 						<input type="text" name="p_price" id="p_price" />
 						</td>
 					</tr>
-				 	<tr>
-						<th>등록날짜</th>
-						<td>
-						<input type="date" name="p_regdate" id="p_regdate" />
-						</td>
-					</tr>
 					<tr>
- 					<th>업데이트된 날짜</th>
-						<td>
-						<input type="date" name="p_moddate" id="p_moddate" />
-						</td>
-					</tr>
-						<tr>
 						<th>제품 내용</th>
 						<td>
 						<textarea rows="5" cols="50" name="p_content" id="p_content"></textarea>

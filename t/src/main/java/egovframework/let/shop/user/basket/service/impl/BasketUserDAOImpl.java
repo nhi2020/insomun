@@ -63,6 +63,7 @@ public class BasketUserDAOImpl extends EgovAbstractDAO implements BasketUserDAO 
 		int result = 0;
 		try {
 			result = update("updateBasketUserQty", vo);
+			result = 1;
 		} catch (Exception e) {
 			System.out.println("BasketUserDAOImpl updateBasketUserQty Exception : " + e.getMessage());
 		}
@@ -79,6 +80,28 @@ public class BasketUserDAOImpl extends EgovAbstractDAO implements BasketUserDAO 
 		}
 		return result;
 	}
+
+	@Override
+	public int insertBasketUserCnt(BasketUserVO vo) {
+		int cnt = 0;
+		try {
+			cnt = (int) select("insertBasketUserCnt", vo);
+		} catch (Exception e) {
+			System.out.println("BasketUserDAOImpl insertBasketUserCnt Exception : " + e.getMessage());
+		}
+		return cnt;
+	}
+
+	@Override
+	public BasketUserVO selectByP_IdxBasketUser(BasketUserVO vo) {
+		try {
+			vo = (BasketUserVO) select("selectByP_IdxBasketUser", vo);
+		} catch (Exception e) {
+			System.out.println("BasketUserDAOImpl selectByP_IdxBasketUser Exception : " + e.getMessage());
+		}
+		return vo;
+	}
+
 
 	
 
