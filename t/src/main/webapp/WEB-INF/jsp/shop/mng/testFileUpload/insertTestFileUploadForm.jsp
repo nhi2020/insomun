@@ -35,10 +35,11 @@
 		<table>
 		<c:forEach var="filelist" items="${list }">
 		<tr>
-			<td><img src="<c:url value='/'/>file/${filelist.stored_file_name}"/></td>
+			<td><img src="<c:url value='/'/>file/${filelist.stored_file_name}" width="200" height="150" /></td>
 			<td>${filelist.tfile_idx }</td>
 			<td>${filelist.original_file_name }</td>
 			<td>${filelist.stored_file_name }</td>
+			<td><button class="btn btn-danger" onclick="delFile(${filelist.tfile_idx })"></button></td>
 		</tr>		
 		
 		</c:forEach>
@@ -46,7 +47,17 @@
 		</div>
 	</div>
 
-
+	<form name="frmDel" action="/shop/mng/testFileUpload/deleteTestFileUpload.do">
+	<input type="hidden" name="tfile_idx" value="0"/>
+	</form>
+	
+	<script type="text/javascript">
+	function delFile(idx){
+		alert("delFile idx : " + idx);
+		document.frmDel.tfile_idx.value = idx;
+		document.frmDel.submit();
+	}
+	</script>
 
 
 	<%@ include file="../../inc/EgovShopBottom.jsp"%>
