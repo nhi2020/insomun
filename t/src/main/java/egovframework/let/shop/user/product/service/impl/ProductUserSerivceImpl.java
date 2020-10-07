@@ -63,8 +63,8 @@ public class ProductUserSerivceImpl extends EgovAbstractServiceImpl implements P
 	}
 
 	@Override
-	public String insertUserProductPro(ProductUserVO vo) throws Exception {
-		String result = userProductDAO.insertUserProductPro(vo);
+	public int insertUserProductPro(ProductUserVO vo) throws Exception {
+		int result = userProductDAO.insertUserProductPro(vo);
 		return result;
 	}
 

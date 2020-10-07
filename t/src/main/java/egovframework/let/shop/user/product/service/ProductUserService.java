@@ -33,7 +33,7 @@ public interface ProductUserService {
 
 	public int updateUserProductPro(ProductUserVO vo) throws Exception;
 
-	public String insertUserProductPro(ProductUserVO vo) throws Exception;
+	public int insertUserProductPro(ProductUserVO vo) throws Exception;
 	
 	public int deleteUserProduct(ProductUserVO vo) throws Exception;
 	
