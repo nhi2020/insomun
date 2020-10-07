@@ -150,15 +150,49 @@
 	</selectKey>
 		<![CDATA[
 			INSERT INTO REVIEW(
-				S_ID, SNS_IDX, R_IDX, P_IDX, R_CONTENT, R_REGDATE, R_DELYN, R_DIV, SNS_SCORE, SELLER_SCORE
-				)
+				  S_ID
+				, SNS_IDX
+				, R_IDX
+				, P_IDX
+				, R_CONTENT
+				, R_REGDATE
+				, R_DELYN
+				, R_DIV
+				, SNS_SCORE
+				, SELLER_SCORE)
 			VALUES
 			(
-				#s_id#, #sns_idx# , #r_idx#, #p_idx#, #r_content#, SYSDATE(), 'N', #r_div#, 3 ,1
-				)			
+				  #s_id#
+				, #sns_idx# 
+				, #r_idx#, #p_idx#
+				, #r_content#
+				, SYSDATE()
+				, 'N'
+				, #r_div#
+				, 3 
+				, 1
+			)			
 		]]>
 	</insert>
-	
+	<insert id="EgovReviewDAO.insertUserPicReview" parameterClass="ReviewVO">
+		<isNotEmpty property="ORIGINAL_PIC_NAME">
+			<![CDATA[
+					INSERT INTO REVIEW(
+						   ORIGINAL_PIC_NAME
+						 , STORED_PIC_NAME
+						 , PIC_SIZE
+						 , WHERE_IS_PIC
+						 )
+					VALUES
+					(
+						  #original_pic_name#
+						, #stored_pic_name#
+						, #pic_name#
+						, #where_is_pic#
+					)			
+				]]>
+		</isNotEmpty>
+	</insert>
 	
 <!-- 관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용 -->
 <resultMap id="MngReviewList" class="egovframework.let.shop.mng.review.service.ReviewMngVO"> 

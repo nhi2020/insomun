@@ -14,31 +14,13 @@ public class ReviewUser {
 	private String s_nickname;
 	private String nickname;
 	private String p_name;
+
+	private String original_pic_name;
+	private String stored_pic_name;
+	private long pic_size;
+	private String where_is_pic;
+
 	
-	public String getS_nickname() {
-		return s_nickname;
-	}
-
-	public void setS_nickname(String s_nickname) {
-		this.s_nickname = s_nickname;
-	}
-
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
-	public String getP_name() {
-		return p_name;
-	}
-
-	public void setP_name(String p_name) {
-		this.p_name = p_name;
-	}
-
 	public String getS_id() {
 		return s_id;
 	}
@@ -119,5 +101,60 @@ public class ReviewUser {
 		this.seller_score = seller_score;
 	}
 
+	public String getS_nickname() {
+		return s_nickname;
+	}
+
+	public void setS_nickname(String s_nickname) {
+		this.s_nickname = s_nickname;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getP_name() {
+		return p_name;
+	}
+
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+
+	public String getOriginal_pic_name() {
+		return original_pic_name;
+	}
+
+	public void setOriginal_pic_name(String original_pic_name) {
+		this.original_pic_name = original_pic_name;
+	}
+
+	public String getStored_pic_name() {
+		return stored_pic_name;
+	}
+
+	public void setStored_pic_name(String stored_pic_name) {
+		this.stored_pic_name = stored_pic_name;
+	}
+
+	public long getPic_size() {
+		return pic_size;
+	}
+
+	public void setPic_size(long pic_size) {
+		this.pic_size = pic_size;
+	}
+
+	public String getWhere_is_pic() {
+		return where_is_pic;
+	}
+
+	public void setWhere_is_pic(String where_is_pic) {
+		this.where_is_pic = where_is_pic;
+	}
 
 }

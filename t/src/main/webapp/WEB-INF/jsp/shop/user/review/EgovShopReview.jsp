@@ -51,6 +51,7 @@
 			<input type="hidden" id="p_idx" name="p_idx" value="1">
 			<input type="hidden" id="r_div" name="r_div" value="1">
 			<textarea rows="3" cols="80" name="r_content" id="r_content"></textarea>
+			<input type="file" name="file" id="file">
 			<input type="submit" value="저장" class="btn btn-primary">
 		</div>														<!-- 시간남으면 상품 사진까지 올릴수있도록 -->
 	</div>																<!-- 추가해보기 -->
