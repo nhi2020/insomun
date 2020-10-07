@@ -100,6 +100,18 @@ public class SellerUserDAO extends EgovAbstractDAO {
 	      return vo;
 	   }
 
+	public int sellerNicknameChk(SellerUserVO vo) {
+		
+		
+		
+		return (int) select("EgovSellerDAO.sellerNicknameChk",vo);
+	}
+
+	public int sellerEmailChk(SellerUserVO vo) {
+		// TODO Auto-generated method stub
+		return (int) select("EgovSellerDAO.sellerEmailChk",vo);
+	}
+
 
 
 }
