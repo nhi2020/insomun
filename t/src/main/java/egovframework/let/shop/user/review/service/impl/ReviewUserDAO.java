@@ -30,9 +30,9 @@ public class ReviewUserDAO extends EgovAbstractDAO {
 		int result = (Integer) insert("EgovReviewDAO.insertMainUserReview",reviewVO);
 		return result;
 	}
-	//상품 후기사진 올리기
+	/*//상품 후기사진 올리기
 	public int insertPicReview(ReviewUserVO reviewVO) throws Exception{
 		int result = (Integer) insert("EgovReviewDAO.insertUserPicReview", reviewVO);
 		return result;
-	}
+	}*/
 }

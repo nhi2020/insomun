@@ -133,7 +133,11 @@
 				WHERE R_IDX = #r_idx#
 	 		]]>
 	</update>
-	
+	<!-- <insert id="EgovReviewDAO.tfileTest" parameterClass="ReviewVO">
+		<![CDATA[
+			INSERT INTO
+		]]>
+	</insert> -->
 	<insert id="EgovReviewDAO.insertMainUserReview" parameterClass="ReviewVO">
 	<selectKey resultClass="int" keyProperty="r_idx">
 		SELECT 
@@ -159,7 +163,8 @@
 				, R_DELYN
 				, R_DIV
 				, SNS_SCORE
-				, SELLER_SCORE)
+				, SELLER_SCORE
+				)
 			VALUES
 			(
 				  #s_id#
@@ -173,25 +178,6 @@
 				, 1
 			)			
 		]]>
-	</insert>
-	<insert id="EgovReviewDAO.insertUserPicReview" parameterClass="ReviewVO">
-		<isNotEmpty property="ORIGINAL_PIC_NAME">
-			<![CDATA[
-					INSERT INTO REVIEW(
-						   ORIGINAL_PIC_NAME
-						 , STORED_PIC_NAME
-						 , PIC_SIZE
-						 , WHERE_IS_PIC
-						 )
-					VALUES
-					(
-						  #original_pic_name#
-						, #stored_pic_name#
-						, #pic_name#
-						, #where_is_pic#
-					)			
-				]]>
-		</isNotEmpty>
 	</insert>
 	
 <!-- 관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용 -->

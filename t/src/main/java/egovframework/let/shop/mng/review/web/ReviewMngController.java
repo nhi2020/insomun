@@ -19,10 +19,10 @@ public class ReviewMngController {
 	private ReviewMngService reviewMngService;
 
 	//구매자, 판매자 선택 화면
-	@RequestMapping(value ="/shop/mng/review.do")
+	/*@RequestMapping(value ="/shop/mng/review.do")
 	public String mngView() throws Exception{
 		return "/shop/mng/review/adminPage";
-	}
+	}*/
 	// 관리자 리뷰 페이지의 전체 댓글 출력
 	@RequestMapping(value = "/shop/mng/review/MngSelect.do")
 	public String selectMngList(ReviewMngVO mngVO, ModelMap model) throws Exception {

@@ -43,7 +43,7 @@
 <body>
 <hr>
 <p class="h-25"/>
-<form action="/shop/user/review/insertUserReview.do" name="frm2" method="post">
+<form action="/shop/user/review/insertUserReview.do" name="frm2" method="post" enctype="multipart/form-data">
 	<div class="container text-center">
 		<div class="row justify-content-center">
 			<input type="hidden" id="s_id" name="s_id" value="shong1">	<!-- 상품 상세페이지가 나오면  EL표기법으로 값가져오기. -->

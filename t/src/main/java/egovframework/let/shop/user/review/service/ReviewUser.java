@@ -15,12 +15,43 @@ public class ReviewUser {
 	private String nickname;
 	private String p_name;
 
-	private String original_pic_name;
-	private String stored_pic_name;
-	private long pic_size;
-	private String where_is_pic;
+	private String tfile_idx;
+	private String original_file_name;
+	private long stored_file_name;
+	private String file_size;
 
-	
+	public String getTfile_idx() {
+		return tfile_idx;
+	}
+
+	public void setTfile_idx(String tfile_idx) {
+		this.tfile_idx = tfile_idx;
+	}
+
+	public String getOriginal_file_name() {
+		return original_file_name;
+	}
+
+	public void setOriginal_file_name(String original_file_name) {
+		this.original_file_name = original_file_name;
+	}
+
+	public long getStored_file_name() {
+		return stored_file_name;
+	}
+
+	public void setStored_file_name(long stored_file_name) {
+		this.stored_file_name = stored_file_name;
+	}
+
+	public String getFile_size() {
+		return file_size;
+	}
+
+	public void setFile_size(String file_size) {
+		this.file_size = file_size;
+	}
+
 	public String getS_id() {
 		return s_id;
 	}
@@ -123,38 +154,6 @@ public class ReviewUser {
 
 	public void setP_name(String p_name) {
 		this.p_name = p_name;
-	}
-
-	public String getOriginal_pic_name() {
-		return original_pic_name;
-	}
-
-	public void setOriginal_pic_name(String original_pic_name) {
-		this.original_pic_name = original_pic_name;
-	}
-
-	public String getStored_pic_name() {
-		return stored_pic_name;
-	}
-
-	public void setStored_pic_name(String stored_pic_name) {
-		this.stored_pic_name = stored_pic_name;
-	}
-
-	public long getPic_size() {
-		return pic_size;
-	}
-
-	public void setPic_size(long pic_size) {
-		this.pic_size = pic_size;
-	}
-
-	public String getWhere_is_pic() {
-		return where_is_pic;
-	}
-
-	public void setWhere_is_pic(String where_is_pic) {
-		this.where_is_pic = where_is_pic;
 	}
 
 }

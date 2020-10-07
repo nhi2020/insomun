@@ -42,11 +42,11 @@ public class ReviewUserServiceImpl extends EgovAbstractServiceImpl implements Re
 		int reuslt = egovReviewDAO.insertMainUserReview(reviewVO);
 		return reuslt;
 	}
-	//상품 후기사진 올리기
+	/*//상품 후기사진 올리기
 	@Override
 	public int insertPicReview(ReviewUserVO reviewCO) throws Exception {
 		int result = egovReviewDAO.insertPicReview(reviewCO);
 		return result ;
-	}
+	}*/
 
 }
