@@ -55,7 +55,7 @@ public class DealMngController {
 		return ret;
 	}
 
-	@RequestMapping(value = "/shop/mng/deal/dealMngList.do")
+	@RequestMapping(value = "/shop/mng/deal/dealMngList")
 	public String listDealMngBuyer(@ModelAttribute("searchVO") DealMngVO vo, HttpServletRequest request, Model model, 
 			@RequestParam(value = "pageIndex", required=false, defaultValue="1") int pageIndex) {
 		vo.setPageIndex(pageIndex);

@@ -76,7 +76,7 @@
 						<td>${s_list.s_nickname }</td>
 						<td>${s_list.s_email }</td>
 						<td>
-						<img src="<c:url value='/'/>images/shop/seller/${s_list.s_photo }" width="70" height="50"/>
+						<img src="<c:url value='/'/>file/${s_list.s_photo}" width="70" height="50"/>
 						<%-- <img alt="회원 사진" src="../../../images/shop/seller/${s_list.s_photo }" width="70" height="50"> --%>
 						 </td>
 						<td>${s_list.s_phone }</td>

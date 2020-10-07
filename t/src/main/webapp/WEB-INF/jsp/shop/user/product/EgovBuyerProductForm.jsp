@@ -28,9 +28,15 @@
  <div class="container-fluid">
 	<div class="container text-center">
 	    <div class="row">
+<<<<<<< HEAD
 			<form name="frm" method="post">
 				<input type="hidden" name="s_id" value="${ProductUserVO.s_id }"/>
 		    	<input type="hidden" name="p_idx" value="${ProductUserVO.p_idx }" />
+=======
+			<form name="frm" action="" >
+	    <input type="hidden" name="p_idx" value="${ProductUserVO.p_idx }" />
+	    <input type="hidden" name="s_id" value="${ProductUserVO.s_id }" />
+>>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 					<img src="./images/main/photo/${ProductUserVO.p_image}" width="270" height="385" class="float-left"/>
 						<p>
 					<table class="table">
@@ -80,10 +86,14 @@
 				
 				<p/>
 				<p/>
+<<<<<<< HEAD
 				<input type="submit" value="장바구니" onclick=""/>
 				<input type="submit" value="찜하기" onclick="likeUserInsert();"/>
+=======
+				<input type="submit" value="장바구니" onclick="goBasket(${ProductUserVO.p_idx}); return false;"/>
+				<input type="submit" value="찜하기" onclick=""/>
+>>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 				<input type="submit" value="바로구매" onclick=""/>
-				
 				<p/>
 				<input type="button" value="목록" onclick="location.href='/shop/user/product/EgovUserProductlist.do'"/>
 					<%-- <c:if test=""></c:if> --%>
@@ -92,7 +102,13 @@
 			</div>
 		</div>
 	</div>
+<script type="text/javascript">
+	function goBasket(p_idx) {
+		document.frm.action = "/shop/user/basket/insertBasketUserPro.do";
+		document.frm.submit();
+	}
 
+</script>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>

@@ -4,12 +4,12 @@ import java.util.Date;
 
 public class BasketUser {
 
-	private int ba_idx;
-	private int sns_idx;
+	private int ba_idx = 0;
+	private int sns_idx = 0;
 	private String s_id;
-	private int ba_q;
+	private int ba_q = 0;
 	private Date ba_reg_date;
-	private int p_idx;
+	private int p_idx = 0;
 	
 	public int getP_idx() {
 		return p_idx;

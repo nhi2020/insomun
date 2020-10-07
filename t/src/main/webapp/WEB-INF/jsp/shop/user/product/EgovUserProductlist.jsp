@@ -25,15 +25,16 @@
 <input type="button" value="등록" onclick="location.href='/shop/user/product/EgovUserProductInsertForm.do'"> &nbsp;
 <input type="submit" value="삭제">
 </c:if>
+<c:if test="${sessionScope.status == 1 }">
 <input type="submit" value="거래하기" onclick="">
+</c:if>
  <div class="container-fluid">
 	<div class="container text-center">
 	    <div class="row">
 	  		<c:forEach var="productuser_list" items="${list}">
 			<div class="col-3">
-					<c:if test="${sessionScope.status == 1 }">
+					
 					<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
-					</c:if>
 					<img src="./images/main/photo/${productuser_list.p_image}" width="270" height="270"></a>
 					<span >
 					<input type="checkbox" name="check" id="check" value="${productuser_list.p_idx }">

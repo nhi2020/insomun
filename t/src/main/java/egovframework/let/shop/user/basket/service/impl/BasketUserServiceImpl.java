@@ -46,5 +46,24 @@ public class BasketUserServiceImpl implements BasketUserService {
 		return bd.updateBasketUserQty(vo);
 	}
 
+	@Override
+	public int deleteBasketUser(BasketUserVO vo) {
+		// TODO Auto-generated method stub
+		return bd.deleteBasketUser(vo);
+	}
+
+	@Override
+	public int insertBasketUserCnt(BasketUserVO vo) {
+		// TODO Auto-generated method stub
+		return bd.insertBasketUserCnt(vo);
+	}
+
+	@Override
+	public BasketUserVO selectByP_IdxBasketUser(BasketUserVO vo) {
+		// TODO Auto-generated method stub
+		return bd.selectByP_IdxBasketUser(vo);
+	}
+
+
 
 }

@@ -13,12 +13,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import egovframework.let.shop.mng.basket.service.impl.BasketBuyerMngVO;
 import egovframework.let.shop.mng.basket.web.BasketMngController;
 import egovframework.let.shop.user.basket.service.BasketUserService;
 import egovframework.let.shop.user.basket.service.impl.BasketProductUserVO;
 import egovframework.let.shop.user.basket.service.impl.BasketUserVO;
+import egovframework.let.shop.user.product.service.ProductUserService;
+import egovframework.let.shop.user.product.service.impl.ProductUserVO;
+import egovframework.let.shop.user.seller.service.SellerUserService;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -29,6 +33,7 @@ public class BasketUserController {
 
 	@Resource(name = "BasketUserService")
 	private BasketUserService basketUserService;
+
 
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
@@ -110,15 +115,35 @@ public class BasketUserController {
 	@RequestMapping("/shop/user/basket/insertBasketUserPro")
 	public String insertBasketUserPro(HttpServletRequest request, Model model, BasketUserVO vo){
 		System.out.println("BasketUserController insertBasketUserPro()");
+		int result = 0;
+		// 세션 확인 
 		HttpSession session = request.getSession();
 		int userSnsIdx = (int) session.getAttribute("sns_idx");
-		System.out.println("userSnsIdx" + userSnsIdx);
+		System.out.println("userSnsIdx => " + userSnsIdx);
+		System.out.println("p_idx => " + vo.getP_idx());
+		System.out.println("vo.getBa_idx() => " + vo.getBa_idx());
+		// ID와 수량 입력
 		vo.setSns_idx(userSnsIdx);
-		
+		vo.setBa_q(1);
+
+		System.out.println("basketUserService.selectByP_IdxBasketUser()");
+		vo = basketUserService.selectByP_IdxBasketUser(vo);
+		System.out.println("vo.getBa_idx() => " + vo.getBa_idx());
+		if(vo.getBa_idx() == 0){
+			System.out.println("THE ITEM IS IN THE CART ALREADY");
+			vo.setBa_q(vo.getBa_q()+1);
+			result = basketUserService.updateBasketUserQty(vo);
+		} else {
+			
+			System.out.println("THE ITEM IS NOT IN THE CART ALREADY");
+			result = basketUserService.insertBasketUserPro(vo);
+		}
 		// DB Insert
 		
-		int result = basketUserService.insertBasketUserPro(vo);
 		System.out.println("result => " + result);
+		System.out.println("vo.getBa_idx()" + vo.getBa_idx());
+		System.out.println("vo.getBa_q()" + vo.getBa_q());
+		System.out.println("vo.getP_idx()" + vo.getP_idx());
 		
 		return "redirect:/shop/user/basket/listBasketUser.do";
 	}
@@ -131,4 +156,12 @@ public class BasketUserController {
 		return "redirect:/shop/user/basket/listBasketUser.do";
 	}
 
+	
+	@RequestMapping("/shop/user/basket/deleteBasketUser")
+	public String deleteBasketUser(HttpServletRequest request, Model model, BasketUserVO vo){
+		System.out.println("BasketUserController deleteBasketUser()");
+		int result = basketUserService.deleteBasketUser(vo);
+		System.out.println("result => " + result);
+		return "redirect:/shop/user/basket/listBasketUser.do";
+	}
 }

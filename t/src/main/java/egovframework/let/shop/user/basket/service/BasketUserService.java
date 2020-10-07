@@ -17,4 +17,10 @@ public interface BasketUserService {
 
 	int updateBasketUserQty(BasketUserVO vo);
 
+	int deleteBasketUser(BasketUserVO vo);
+
+	int insertBasketUserCnt(BasketUserVO vo);
+
+	BasketUserVO selectByP_IdxBasketUser(BasketUserVO vo);
+
 }
