@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.let.shop.mng.buyer.service.impl.BuyerMngVO;
 import egovframework.let.shop.user.buyer.service.BuyerUserService;
@@ -70,15 +71,16 @@ public class BuyerUserController {
 	}
 	
 	@RequestMapping(value = "/shop/user/buyer/updateUserBuyerPro", method=RequestMethod.POST)
-	public String updateUserBuyerPro(BuyerUserVO vo, Model model){
+	public String updateUserBuyerPro(BuyerUserVO vo, Model model, RedirectAttributes redirect){
 		System.out.println("BuyerUserController updateUserBuyerPro");
 		int result = buyerService.updateUserBuyer(vo);
 		if (result > 0) {
 			System.out.println("result > 0");
+			System.out.println("result => " + result);
 		} else {
 			System.out.println("result => " + result);
 		}
-		model.addAttribute("BuyerVO",vo);
+		redirect.addFlashAttribute("result", result);
 		return "redirect:/shop/user/buyer/updateUserBuyerForm.do";
 	}
 	
