@@ -47,6 +47,9 @@
 				<tr>
 					<td><a href="/shop/user/seller/sellerUserMain.do">판매자 페이지</a></td>
 				</tr>
+				<tr>
+					<td><a href="/shop/mng/log/EgovMngLogList.do">로그 페이지</a></td>
+				</tr>
 				<!-- <tr>
 					<td><a href="#">### 관리</a></td>
 				<tr>
