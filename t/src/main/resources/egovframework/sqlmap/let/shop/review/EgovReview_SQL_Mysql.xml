@@ -164,6 +164,7 @@
 				, R_DIV
 				, SNS_SCORE
 				, SELLER_SCORE
+				, TFILE_IDX
 				)
 			VALUES
 			(
@@ -176,12 +177,51 @@
 				, #r_div#
 				, 3 
 				, 1
+				, #tfile_idx#
 			)			
 		]]>
 	</insert>
 	
+	<select id="EgovReviewDAO.selectFileMax" resultClass="java.lang.Integer" >
+		<![CDATA[
+			SELECT 
+				ifnull(MAX(TFILE_IDX),1) AS TFILE_IDX
+			FROM
+				TFILE
+			WHERE 1=1
+		]]>				
+	</select>
+	
+	<insert id="EgovReviewDAO.insertFileUserReview" parameterClass="ReviewVO">
+	<selectKey resultClass="int" keyProperty="tfile_idx">
+		SELECT 
+			CASE 
+				WHEN 
+					MAX(TFILE_IDX) IS NULL 
+				THEN 
+					1 
+				ELSE
+					MAX(TFILE_IDX)+1 
+				END
+		FROM
+			TFILE
+	</selectKey>
+		<![CDATA[
+			INSERT INTO TFILE(
+				  TFILE_IDX
+				, ORIGINAL_FILE_NAME
+				, STORED_FILE_NAME
+				, FILE_SIZE
+			VALUES(
+				 #tfile_idx#
+				,#original_file_name#
+				,#stored_file_name#
+				,#file_size#
+			)
+		]]>
+	</insert>
 <!-- 관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용 -->
-<resultMap id="MngReviewList" class="egovframework.let.shop.mng.review.service.ReviewMngVO"> 
+	<resultMap id="MngReviewList" class="egovframework.let.shop.mng.review.service.ReviewMngVO"> 
 		<result property="r_idx" column="R_IDX" columnIndex="1"/>
 		<result property="p_idx" column="P_IDX" columnIndex="2"/>
 		<result property="p_name" column="P_NAME" columnIndex="3"/>
@@ -279,7 +319,7 @@
 		]]>
 </select>
 
-<update id="EgovMngReviewDAO.updateMngUserReview" parameterClass="ReviewMngVO">
+	<update id="EgovMngReviewDAO.updateMngUserReview" parameterClass="ReviewMngVO">
 	 		<![CDATA[
 				UPDATE REVIEW SET 
 					R_DELYN = 'Y'
@@ -287,7 +327,7 @@
 	 		]]>
 	</update>
 	
-<update id="EgovMngReviewDAO.reUpdateMngUserReview" parameterClass="ReviewMngVO">
+	<update id="EgovMngReviewDAO.reUpdateMngUserReview" parameterClass="ReviewMngVO">
 	 		<![CDATA[
 				UPDATE REVIEW SET 
 					R_DELYN = 'N'
