@@ -29,18 +29,17 @@
 					<c:forEach var="product_list" items="${list}">
 						<div class="col-3">
 
-							<img src="./images/main/photo/${product_list.p_image}"
-								width="270" height="270" /> <span> <input
-								type="checkbox" name="check" id="check"
-								value="${product_list.p_idx }"> 판매자 아이디:
+							<img src="<c:url value='/'/>file/${product_list.p_image}" width="270" height="270" /> 
+							<span> <input type="checkbox" name="check" id="check" value="${product_list.p_idx }"> 판매자 아이디:
 								${product_list.s_id }
-							</span> <br /> <span>상품명: ${productuser_list.p_name }</span> <br /> <span>가격:
-								${product_list.p_price }</span> <br /> <span>상태:
-								${product_list.p_status }</span> <br /> <span>재고 수량:
-								${product_list.p_q }</span> <br /> <span>업데이트된 날짜:
-								${product_list.p_moddate }</span> <input type="button" value="수정"
-								onclick="location.href='/shop/mng/product/EgovMngProductUpdateForm.do?p_idx=${product_list.p_idx}'">
-							<%-- <c:if test=""></c:if> --%>
+							</span> <br /> 
+							<span>상품명: ${productuser_list.p_name }</span> <br /> 
+							<span>가격: ${product_list.p_price }</span> <br /> 
+							<span>상태: ${product_list.p_status }</span> <br /> 
+							<span>재고 수량: ${product_list.p_q }</span> <br /> 
+							<span>업데이트된 날짜: ${product_list.p_moddate }</span> 
+							<input type="button" value="수정"
+							onclick="location.href='/shop/mng/product/EgovMngProductUpdateForm.do?p_idx=${product_list.p_idx}'">
 							</p>
 						</div>
 					</c:forEach>
