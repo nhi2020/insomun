@@ -102,6 +102,26 @@
 			AND S_ID = #s_id#
 		]]>
 	</select>
+	<select id="EgovSellerDAO.sellerNicknameChk"  parameterClass="SellerVO" resultClass="int">
+		<![CDATA[  
+			SELECT
+				COUNT(*)
+			FROM
+				SELLER
+			WHERE 1=1
+			AND S_NICKNAME = #s_nickname#
+		]]>
+	</select>
+	<select id="EgovSellerDAO.sellerEmailChk"  parameterClass="SellerVO" resultClass="int">
+		<![CDATA[  
+			SELECT
+				COUNT(*)
+			FROM
+				SELLER
+			WHERE 1=1
+			AND S_EMAIL = #s_email#
+		]]>
+	</select>
 	
 	<select id="EgovSellerDAO.sellerNameEmailChk"  parameterClass="SellerVO" resultClass="int">
 		<![CDATA[  

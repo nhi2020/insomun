@@ -226,6 +226,29 @@ public class SellerUserController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value="/shop/user/seller/sellerNicknameChk.do",method = RequestMethod.POST)
+	public int sellerNicknameChk(SellerUserVO vo){
+				
+		int result = SellerService.sellerNicknameChk(vo);
+			System.out.println("test"+result);
+		return result;
+	}
+	@ResponseBody
+	@RequestMapping(value="/shop/user/seller/sellerEmailChk.do",method = RequestMethod.POST)
+	public int sellerEmailChk(SellerUserVO vo){
+		String email1 =vo.getEmail1();
+		String email2 =vo.getEmail2();
+		String s_email = email1+"@"+email2;
+		System.out.println("s_email"+s_email);
+		vo.setS_email(s_email);
+				
+		int result = SellerService.sellerEmailChk(vo);
+			System.out.println("test"+result);
+		return result;
+	}
+		
+	
+	@ResponseBody
 	@RequestMapping(value="/shop/user/seller/sellerCertificationNumber.do",method = RequestMethod.POST)
 	public int sellerCertificationNumber(SellerUserVO vo, Model model) throws MessagingException {
 		int result = 0;
