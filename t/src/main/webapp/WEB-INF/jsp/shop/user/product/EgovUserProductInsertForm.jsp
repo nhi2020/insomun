@@ -18,10 +18,14 @@
   <div class="container-fluid">
 	<div class="container text-center">
 	    <div class="row">
-			<form action="/shop/user/product/EgovUserProductInsertPro.do" method="post">
-				 	<img src="./images/main/photo/" width="270" height="385"/>
-						<p>
+			<form action="/shop/user/product/EgovUserProductInsertPro.do" method="post" enctype="multipart/form-data">
+				 	
 					<table class="table">
+					<tr>
+						<th>파일업로드</th>
+						<td><input type="file" name="file"></td>
+					</tr>
+					<tr>
 					 <tr>
 						<th>상품명</th>
 						<td>
@@ -34,19 +38,7 @@
 						<input type="text" name="p_price" id="p_price"/>
 						</td>
 					</tr>
-				 	<tr>
-						<th>등록날짜</th>
-						<td>
-						<input type="date" name="p_regdate" id="p_regdate" />
-						</td>
-					</tr>
 					<tr>
- 					<th>업데이트된 날짜</th>
-						<td>
-						<input type="date" name="p_moddate" id="p_moddate" />
-						</td>
-					</tr>
-						<tr>
 						<th>제품 내용</th>
 						<td>
 						<textarea rows="5" cols="50" name="p_content" id="p_content"></textarea>
