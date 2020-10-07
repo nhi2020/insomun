@@ -406,5 +406,5 @@
 					END
 		WHERE S_IDX = #s_idx#
 	</update>  
-	 
+
 </sqlMap>

@@ -21,4 +21,5 @@ public interface SellerMngService {
 
 	int delMngSeller(SellerMngVO vo);
 
+
 }

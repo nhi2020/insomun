@@ -59,5 +59,4 @@ public class SellerMngServiceImpl extends EgovAbstractServiceImpl implements Sel
 		return result;
 	}
 
-
 }
