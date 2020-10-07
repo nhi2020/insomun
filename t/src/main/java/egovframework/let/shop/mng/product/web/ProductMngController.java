@@ -1,7 +1,9 @@
 package egovframework.let.shop.mng.product.web;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -10,9 +12,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import egovframework.let.shop.mng.product.service.ProductMngService;
 import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
@@ -48,6 +53,10 @@ public class ProductMngController {
 
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
+	
+	// 파일 처리를 위한 멀티파트 리졸버
+	@Resource(name = "multipartResolver")
+	CommonsMultipartResolver multipartResolver;
 	
 
 	/*@Resource(name ="EgovReviewService")
@@ -160,18 +169,55 @@ public class ProductMngController {
 	}
 	
 	@RequestMapping(value = "/shop/mng/product/EgovMngProductInsertPro", method = RequestMethod.POST)
-	public String EgovMngProductInsertPro(ProductMngVO vo,Model model, HttpServletRequest request) throws Exception {
+	public String EgovMngProductInsertPro(ProductMngVO vo,Model model, HttpServletRequest request, MultipartFile file, String path) throws Exception {
 		System.out.println("INSERT");
 		HttpSession session = request.getSession();
 		String a_id = (String) session.getAttribute("A_ID");
 		System.out.println("a_id"+a_id);
 		System.out.println("INSERT");
 		vo.setA_id(a_id);
+		
+		//
+		String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
+		//String uploadPath = propertyService.getString("Globals.fileStorePath");
+		String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
+		vo.setP_image(savedName);
+		//
+		
 		mngProductService.insertMngProductPro(vo);
 		
 		return "redirect:/shop/mng/product/EgovMngProductInsertForm.do";
 	}
-	
+
+	private String uploadFile(String originalFilename, byte[] fileData, String uploadPath) throws Exception {
+		// 랜덤으로 UUID를 생성해 파일 앞에 붙여줄 예정.
+				UUID uid = UUID.randomUUID();
+				System.out.println("uploadPath => " + uploadPath);
+				
+				// 업로드 경로를 확인하고, 경로에 폴더가 존재하지 않을 경우 생성해준다. 
+				File fileDiretory = new File(uploadPath);
+				if (!fileDiretory.exists()) {
+					fileDiretory.mkdirs();
+					System.out.println("the directory for uploading : " + uploadPath);
+				}
+				
+				// UUID를 스트링으로 변환해 원래 이름 앞에 붙여준다.
+				String savedName = uid.toString() + "_" + originalFilename;
+				
+				String[] invalidName = {"\\\\","/",":","\"","<",">","\\[","\\]"}; // 윈도우 파일명으로 사용할수 없는 문자
+
+				for(int i=0;i<invalidName.length;i++)
+					savedName = savedName.replaceAll(invalidName[i], "_"); // 언더바로 치환
+
+
+				// 저장될 파일 경로를 지정.
+				File target = new File(uploadPath, savedName);
+				
+				// FileCopyUtils로 경로에 저장해 복사한다.
+				FileCopyUtils.copy(fileData, target);
+				return savedName;
+			}
+
 	@RequestMapping(value = "/shop/mng/product/EgovMngProductDelete") 
 	public String EgovMngProductDelete(ProductMngVO vo, HttpServletRequest request)throws Exception {
 		
