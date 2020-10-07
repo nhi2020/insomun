@@ -10,7 +10,12 @@
 <meta http-equiv="content-language" content="ko">
 <title>상세페이지</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-
+<script type="text/javascript">
+	function likeUserInsert(){
+		document.frm.action="/shop/user/product/LikeUserInsert.do";
+		document.frm.submit();
+	}
+</script>
 
 </head>
 
@@ -23,8 +28,9 @@
  <div class="container-fluid">
 	<div class="container text-center">
 	    <div class="row">
-			<form action="" >
-	    <input type="hidden" name="p_idx" value="${ProductUserVO.p_idx }" />
+			<form name="frm" method="post">
+				<input type="hidden" name="s_id" value="${ProductUserVO.s_id }"/>
+		    	<input type="hidden" name="p_idx" value="${ProductUserVO.p_idx }" />
 					<img src="./images/main/photo/${ProductUserVO.p_image}" width="270" height="385" class="float-left"/>
 						<p>
 					<table class="table">
@@ -75,7 +81,7 @@
 				<p/>
 				<p/>
 				<input type="submit" value="장바구니" onclick=""/>
-				<input type="submit" value="찜하기" onclick=""/>
+				<input type="submit" value="찜하기" onclick="likeUserInsert();"/>
 				<input type="submit" value="바로구매" onclick=""/>
 				
 				<p/>
