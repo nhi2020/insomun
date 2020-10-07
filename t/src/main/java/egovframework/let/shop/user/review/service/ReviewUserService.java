@@ -15,4 +15,7 @@ public interface ReviewUserService {
 	
 	//상품상세에대한 리뷰
 	public int insertMainUserReview(ReviewUserVO reviewVO) throws Exception;
+	
+	//구매자 상품사진 리뷰
+	public int insertPicReview(ReviewUserVO reviewCO) throws Exception;
 }
