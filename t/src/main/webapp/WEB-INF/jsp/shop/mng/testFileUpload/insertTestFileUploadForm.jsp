@@ -33,29 +33,28 @@
 		</div>
 		<div class="row">
 		<table>
-		<c:forEach var="filelist" items="${list }">
+		<c:forEach var="filelist" items="${list }" varStatus="status">
 		<tr>
 			<td><img src="<c:url value='/'/>file/${filelist.stored_file_name}" width="200" height="150" /></td>
 			<td>${filelist.tfile_idx }</td>
 			<td>${filelist.original_file_name }</td>
 			<td>${filelist.stored_file_name }</td>
-			<td><button class="btn btn-danger" onclick="delFile(${filelist.tfile_idx })"></button></td>
+			<td><button class="btn btn-danger" onclick="delFile(${status.index})"></button></td>
 		</tr>		
-		
+		<form id="frmDel${status.index}" name="frmDel${status.index}" action="/shop/mng/testFileUpload/deleteTestFileUpload.do">
+			<input type="hidden" name="tfile_idx" value="${filelist.tfile_idx }"/>
+			<input type="hidden" name="stored_file_name" value="${filelist.stored_file_name }"/>
+		</form>
 		</c:forEach>
 		</table>
 		</div>
 	</div>
 
-	<form name="frmDel" action="/shop/mng/testFileUpload/deleteTestFileUpload.do">
-	<input type="hidden" name="tfile_idx" value="0"/>
-	</form>
+
 	
 	<script type="text/javascript">
 	function delFile(idx){
-		alert("delFile idx : " + idx);
-		document.frmDel.tfile_idx.value = idx;
-		document.frmDel.submit();
+		document.getElementById("frmDel" + idx).submit();
 	}
 	</script>
 

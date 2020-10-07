@@ -127,11 +127,12 @@ public class TestFileUploadController {
 		String deleteFile = uploadPath + vo.getStored_file_name();
 		logger.info("deleteFile : " + deleteFile);
 		int delResult = deleteFile(deleteFile);
-		logger.info("deleteFile Result => " + delResult);
 		
 		// DB 반영
 		int dbResult = testFileUploadService.deleteTestFileUpload(vo);
 		
+		logger.info("delResult => " + delResult);
+		logger.info("dbResult => " + dbResult);
 		redirect.addFlashAttribute("delResult", delResult);
 		redirect.addFlashAttribute("dbResult", dbResult);
 
