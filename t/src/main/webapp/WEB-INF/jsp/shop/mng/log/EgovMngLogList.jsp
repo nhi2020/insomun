@@ -15,27 +15,27 @@
 <body>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 	<form action="/shop/mng/log/EgovMngLogList.do">
-	<table border="soild">
-		<tr>
-			<th>등록 번호</th>
-			<th>판매자 아이디</th>
-			<th>구매자 아이디</th>
-			<th>운영자 아이디</th>
-			<th>IP 주소</th>
-			<th>등록일</th>
-		</tr>
-		<c:forEach items="${list }" var="log_list" varStatus="status">
+		<table border="soild">
 			<tr>
-				<td>${log_list.log_idx }</td>
-				<td>${log_list.s_id }</td>
-				<td>${log_list.sns_idx }</td>
-				<td>${log_list.a_id }</td>
-				<td>${log_list.log_ip }</td>
-				<td>${log_list.log_date }</td>
+				<th>등록 번호</th>
+				<th>판매자 아이디</th>
+				<th>구매자 아이디</th>
+				<th>운영자 아이디</th>
+				<th>IP 주소</th>
+				<th>등록일</th>
 			</tr>
-		</c:forEach>
+			<c:forEach items="${list }" var="log_list" varStatus="status">
+				<tr>
+					<td>${log_list.log_idx }</td>
+					<td>${log_list.s_id }</td>
+					<td>${log_list.sns_idx }</td>
+					<td>${log_list.a_id }</td>
+					<td>${log_list.log_ip }</td>
+					<td>${log_list.log_date }</td>
+				</tr>
+			</c:forEach>
 		</table>
-		</form>
+	</form>
 	<%@ include file="../../inc/EgovShopBottom.jsp"%>
 </body>
 </html>
