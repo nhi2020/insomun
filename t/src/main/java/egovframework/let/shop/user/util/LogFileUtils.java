@@ -19,10 +19,9 @@ import egovframework.let.shop.user.review.service.ReviewUserVO;
 @Component("logFileUtils")
 public class LogFileUtils {
 
-   public List<ReviewUserVO> parseInsertFileInfo(HttpServletRequest request, String path) throws Exception {
-	   String url=this.getClass().getResource("").getPath();
-	      String rootPath=url.substring(1,url.indexOf(".metadata"))+path;
-      System.out.println("url :" + url);
+   public List<ReviewUserVO> parseInsertFileInfo(HttpServletRequest request) throws Exception {
+	  String rootPath=request.getSession().getServletContext().getRealPath("/upload/");
+      System.out.println("url :" + rootPath);
       MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
       Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
       MultipartFile multipartFile = null;

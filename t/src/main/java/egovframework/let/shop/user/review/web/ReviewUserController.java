@@ -124,7 +124,7 @@ public class ReviewUserController {
 	public String list(ReviewUserVO reviewVO, ModelMap model, HttpServletRequest request) throws Exception {
 		System.out.println("---------------------------mainReview insert Start");
 		
-		logFileUtils.parseInsertFileInfo(request,"t\\src\\main\\webapp\\WEB-INF\\jsp\\shop\\user\\upload\\");
+		List<ReviewUserVO> vo=logFileUtils.parseInsertFileInfo(request);
 		
 		/*egovReviewService.insertMainUserReview(reviewVO);*/
 		
