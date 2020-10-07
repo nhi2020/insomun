@@ -127,15 +127,14 @@ public class BasketUserController {
 		vo.setBa_q(1);
 
 		System.out.println("basketUserService.selectByP_IdxBasketUser()");
-		vo = basketUserService.selectByP_IdxBasketUser(vo);
-		System.out.println("vo.getBa_idx() => " + vo.getBa_idx());
-		if(vo.getBa_idx() == 0){
+		BasketUserVO voChk = basketUserService.selectByP_IdxBasketUser(vo);
+				
+		if(voChk != null){
 			System.out.println("THE ITEM IS IN THE CART ALREADY");
 			vo.setBa_q(vo.getBa_q()+1);
 			result = basketUserService.updateBasketUserQty(vo);
 		} else {
-			
-			System.out.println("THE ITEM IS NOT IN THE CART ALREADY");
+			System.out.println("THE ITEM IS NOT IN THE CART YET");
 			result = basketUserService.insertBasketUserPro(vo);
 		}
 		// DB Insert
