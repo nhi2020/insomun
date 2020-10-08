@@ -11,7 +11,5 @@ public interface TestFileUploadService {
 	int selectTestFileUploadCnt(TestFileUploadVO vo);
 
 	List<TestFileUploadVO> listTestFileUpload(TestFileUploadVO vo);
-
-	int deleteTestFileUpload(TestFileUploadVO vo);
 	
 }

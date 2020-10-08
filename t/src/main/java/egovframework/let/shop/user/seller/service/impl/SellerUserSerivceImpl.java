@@ -117,28 +117,4 @@ public class SellerUserSerivceImpl extends EgovAbstractServiceImpl implements Se
 
 
 
-	@Override
-	public int sellerNicknameChk(SellerUserVO vo) {
-		
-		return SellerDAO.sellerNicknameChk(vo);
-	}
-
-
-
-	@Override
-	public int sellerEmailChk(SellerUserVO vo) {
-		// TODO Auto-generated method stub
-		return SellerDAO.sellerEmailChk(vo);
-	}
-
-
-
-	@Override
-	public void updateAgreenum(SellerUserVO vo) {
-		SellerDAO.updateAgreenum(vo);
-		
-	}
-
-
-
 }

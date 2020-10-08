@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<%@ include file="../../inc/EgovShopTop.jsp"%>
+	<%@ include file="../../inc/EgovShopTop.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,32 +20,13 @@
 
 
 	<c:if test="${msg != null }">
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$("#updateModal").modal('show')
-
-			})
-		</script>
-		<!-- Modal -->
-		<div class="modal fade" id="updateModal" tabindex="-1"
-			aria-labelledby="updateModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-body">개인 정보가 수정되었습니다.</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
+	<p>${msg }</p>
 	</c:if>
 	<c:if test="${msg = null }">
 	</c:if>
 	<div class="container">
 		<div class="row">
-			<form class="mx-auto" action="/shop/mng/buyer/updateMngBuyerPro.do"
-				method="post">
+			<form class="mx-auto" action="/shop/mng/buyer/dealMngBuyerList.do" method="post">
 				<input type="hidden" name="sns_idx" value="${BuyerVO.sns_idx }" />
 				<table class="table">
 					<tr>
@@ -81,12 +62,10 @@
 							value="${BuyerVO.del_yn }" /></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input class="btn btn-info" type="submit"
-							value="수정" /> <input class="btn btn-secondary" type="button"
-							value="목록으로"
-							onclick="location.href='/shop/mng/buyer/listMngBuyer.do'" /> <input
-							class="btn btn-secondary" type="button" value="강제 로그인"
-							onclick="location.href='/shop/user/snsprofile/loginUserSnsprofileTestPro.do?sns_idx=${BuyerVO.sns_idx}'" />
+						<td colspan="2">
+							<input class="btn btn-info" type="submit" value="수정" /> 
+							<input class="btn btn-secondary" type="button" value="목록으로"	 onclick="location.href='/shop/mng/buyer/listMngBuyer.do'" />
+							<input class="btn btn-secondary" type="button" value="강제 로그인" onclick="location.href='/shop/user/snsprofile/loginUserSnsprofileTestPro.do?sns_idx=${BuyerVO.sns_idx}'" />
 						</td>
 					</tr>
 				</table>

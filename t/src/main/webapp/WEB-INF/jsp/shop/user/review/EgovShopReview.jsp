@@ -43,7 +43,7 @@
 <body>
 <hr>
 <p class="h-25"/>
-<form action="/shop/user/review/insertUserReview.do" name="frm2" method="post" enctype="multipart/form-data">
+<form action="/shop/user/review/insertUserReview.do" name="frm2" method="post">
 	<div class="container text-center">
 		<div class="row justify-content-center">
 			<input type="hidden" id="s_id" name="s_id" value="shong1">	<!-- 상품 상세페이지가 나오면  EL표기법으로 값가져오기. -->
@@ -51,23 +51,6 @@
 			<input type="hidden" id="p_idx" name="p_idx" value="1">
 			<input type="hidden" id="r_div" name="r_div" value="1">
 			<textarea rows="3" cols="80" name="r_content" id="r_content"></textarea>
-			<input type="file" name="file" id="file">
-			<c:choose>
-				<c:when test="${list.r_div eq 0 }"> <!-- 구매자 -->
-					<input type="radio" name="sns_score" id="radio1" value="1"><p>1점</p>
-					<input type="radio" name="sns_score" id="radio2" value="2"><p>2점</p>
-					<input type="radio" name="sns_score" id="radio3" value="3"><p>3점</p>
-					<input type="radio" name="sns_score" id="radio4" value="4"><p>4점</p>
-					<input type="radio" name="sns_score" id="radio5" value="5"><p>5점</p>
-				</c:when>
-				<c:otherwise>		<!-- 판매자 -->
-					<input type="radio" name="seller_score" id="radio1" value="1"><p>1점</p>
-					<input type="radio" name="seller_score" id="radio2" value="2"><p>2점</p>
-					<input type="radio" name="seller_score" id="radio3" value="3"><p>3점</p>
-					<input type="radio" name="seller_score" id="radio4" value="4"><p>4점</p>
-					<input type="radio" name="seller_score" id="radio5" value="5"><p>5점</p>
-				</c:otherwise>
-			</c:choose>
 			<input type="submit" value="저장" class="btn btn-primary">
 		</div>														<!-- 시간남으면 상품 사진까지 올릴수있도록 -->
 	</div>																<!-- 추가해보기 -->
@@ -84,11 +67,11 @@
 				<c:choose>
 		          	<c:when test="${result.r_div eq '1'}">
 		          	<span class="font-weight-normal" style="color: red">판매자</span><br>
-		          		${result.nickname}&nbsp;<span class="font-weight-normal">${result.r_regdate}&nbsp;${result.sns_score}</span>
+		          		${result.nickname}&nbsp;<span class="font-weight-normal">${result.r_regdate}</span>
 		          	</c:when>
 			       	<c:otherwise>
 			       	<span class="font-weight-normal" style="color: red">구매자</span><br>
-			       		${result.s_nickname}&nbsp;<span class="font-weight-normal">${result.r_regdate}&nbsp;${result.seller_score}</span>
+			       		${result.s_nickname}&nbsp;<span class="font-weight-normal">${result.r_regdate}</span>
 			       	</c:otherwise>
 		        </c:choose>
 	        </p>

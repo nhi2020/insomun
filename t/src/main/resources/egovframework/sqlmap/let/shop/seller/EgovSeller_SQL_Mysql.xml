@@ -80,8 +80,8 @@
 			SELLER
 	</selectKey>
 		<![CDATA[  
-			INSERT INTO SELLER(S_ID,S_IDX, S_NICKNAME,S_PASS,S_EMAIL,S_PHOTO,S_STATUS,S_PHONE,S_ADDR,S_GENDER,S_REGDATE,S_BIRTH,S_ACCOUNT,S_ACCOUNT_N)
-			value(#s_id#,#s_idx#,#s_nickname#,#s_pass#,#s_email#,#s_photo#,'Y',#s_phone#,#s_addr#,#s_gender#,now(),#s_birth#,#s_account#,'NULL')
+			INSERT INTO SELLER(S_ID,S_IDX, S_NICKNAME,S_PASS,S_EMAIL,S_STATUS,S_PHONE,S_ADDR,S_GENDER,S_REGDATE,S_BIRTH,S_ACCOUNT,S_ACCOUNT_N)
+			value(#s_id#,#s_idx#,#s_nickname#,#s_pass#,#s_email#,'Y',#s_phone#,#s_addr#,#s_gender#,now(),#s_birth#,#s_account#,#s_account_n#)
 		]]>
 	</insert>
 	<select id="EgovSellerDAO.sellerSearchIdPro"  parameterClass="SellerVO" resultClass="SellerVO">
@@ -102,26 +102,6 @@
 			AND S_ID = #s_id#
 		]]>
 	</select>
-	<select id="EgovSellerDAO.sellerNicknameChk"  parameterClass="SellerVO" resultClass="int">
-		<![CDATA[  
-			SELECT
-				COUNT(*)
-			FROM
-				SELLER
-			WHERE 1=1
-			AND S_NICKNAME = #s_nickname#
-		]]>
-	</select>
-	<select id="EgovSellerDAO.sellerEmailChk"  parameterClass="SellerVO" resultClass="int">
-		<![CDATA[  
-			SELECT
-				COUNT(*)
-			FROM
-				SELLER
-			WHERE 1=1
-			AND S_EMAIL = #s_email#
-		]]>
-	</select>
 	
 	<select id="EgovSellerDAO.sellerNameEmailChk"  parameterClass="SellerVO" resultClass="int">
 		<![CDATA[  
@@ -139,15 +119,6 @@
  		<![CDATA[
 			UPDATE SELLER SET 
 				S_AGREENUM = #s_agreenum#
-			WHERE 1=1
-			AND S_NAME = #s_name#
-			AND S_EMAIL = #s_email#
- 		]]>
- 	</update>
- 	<update id="EgovSellerDAO.updateAgreenum" parameterClass="SellerVO">
- 		<![CDATA[
-			UPDATE SELLER SET 
-				S_AGREENUM = 0
 			WHERE 1=1
 			AND S_NAME = #s_name#
 			AND S_EMAIL = #s_email#
@@ -354,7 +325,6 @@
 		SET
 			s_nickname = #s_nickname#,
 			s_email = #s_email#,
-			s_photo = #s_photo#,
 			s_status = #s_status#,
 			s_phone = #s_phone#,
 			s_account_n = #s_account_n#,
@@ -415,5 +385,5 @@
 					END
 		WHERE S_IDX = #s_idx#
 	</update>  
-
+	 
 </sqlMap>
