@@ -133,11 +133,7 @@
 				WHERE R_IDX = #r_idx#
 	 		]]>
 	</update>
-	<!-- <insert id="EgovReviewDAO.tfileTest" parameterClass="ReviewVO">
-		<![CDATA[
-			INSERT INTO
-		]]>
-	</insert> -->
+	
 	<insert id="EgovReviewDAO.insertMainUserReview" parameterClass="ReviewVO">
 	<selectKey resultClass="int" keyProperty="r_idx">
 		SELECT 
@@ -164,7 +160,6 @@
 				, R_DIV
 				, SNS_SCORE
 				, SELLER_SCORE
-				, TFILE_IDX
 				)
 			VALUES
 			(
@@ -175,14 +170,13 @@
 				, SYSDATE()
 				, 'N'
 				, #r_div#
-				, 3 
+				, #sns_score# 
 				, 1
-				, #tfile_idx#
 			)			
 		]]>
 	</insert>
 	
-	<select id="EgovReviewDAO.selectFileMax" resultClass="java.lang.Integer" >
+	<!-- <select id="EgovReviewDAO.selectFileMax" resultClass="java.lang.Integer" >
 		<![CDATA[
 			SELECT 
 				ifnull(MAX(TFILE_IDX),1) AS TFILE_IDX
@@ -193,33 +187,35 @@
 	</select>
 	
 	<insert id="EgovReviewDAO.insertFileUserReview" parameterClass="ReviewVO">
-	<selectKey resultClass="int" keyProperty="tfile_idx">
-		SELECT 
-			CASE 
-				WHEN 
-					MAX(TFILE_IDX) IS NULL 
-				THEN 
-					1 
-				ELSE
-					MAX(TFILE_IDX)+1 
-				END
-		FROM
-			TFILE
-	</selectKey>
-		<![CDATA[
-			INSERT INTO TFILE(
-				  TFILE_IDX
-				, ORIGINAL_FILE_NAME
-				, STORED_FILE_NAME
-				, FILE_SIZE
-			VALUES(
-				 #tfile_idx#
-				,#original_file_name#
-				,#stored_file_name#
-				,#file_size#
-			)
-		]]>
-	</insert>
+		<selectKey resultClass="int" keyProperty="tfile_idx">
+			SELECT 
+				CASE 
+					WHEN 
+						MAX(TFILE_IDX) IS NULL 
+					THEN 
+						1 
+					ELSE
+						MAX(TFILE_IDX)+1 
+					END
+			FROM
+				TFILE
+		</selectKey>
+			<isNotEmpty>
+				<![CDATA[
+					INSERT INTO TFILE(
+						  TFILE_IDX
+						, ORIGINAL_FILE_NAME
+						, STORED_FILE_NAME
+						, FILE_SIZE
+					VALUES(
+						 #tfile_idx#
+						,#original_file_name#
+						,#stored_file_name#
+						,#file_size#
+					)
+				]]>
+			</isNotEmpty>
+	</insert> -->
 <!-- 관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용 -->
 	<resultMap id="MngReviewList" class="egovframework.let.shop.mng.review.service.ReviewMngVO"> 
 		<result property="r_idx" column="R_IDX" columnIndex="1"/>

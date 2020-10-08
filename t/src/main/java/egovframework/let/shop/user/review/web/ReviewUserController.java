@@ -103,31 +103,18 @@ public class ReviewUserController {
 		}
 		return "redirect:/shop/user/review/reviewList.do";
 	}
-	/*//상품상세애대한 리뷰 작성
+	
+	//상품상세애대한 리뷰 작성
 	@RequestMapping(value = "/shop/user/review/insertUserReview.do", method = RequestMethod.POST)
 	public String list(ReviewUserVO reviewVO, ModelMap model, HttpServletRequest request) throws Exception {
 		System.out.println("---------------------------mainReview insert Start");
 		
-		logFileUtils.parseInsertFileInfo(request,"t\\src\\main\\webapp\\WEB-INF\\jsp\\shop\\user\\upload\\");
+		List<ReviewUserVO> vo=logFileUtils.parseInsertFileInfo(request);
+		/*egovReviewService.insertPicReview(request);*/
+		
 		
 		egovReviewService.insertMainUserReview(reviewVO);
 		
 		return "redirect:/shop/user/review/reviewList.do?p_idx="+reviewVO.getP_idx();
-	}*/
-	
-	@RequestMapping(value = "/shop/mng/review.do")
-	public String list2(ReviewUserVO reviewVO, ModelMap model, HttpServletRequest request) throws Exception {
-		
-		return "/shop/mng/review/adminPage";
-	}
-	@RequestMapping(value ="/shop/mng/review2.do")
-	public String list(ReviewUserVO reviewVO, ModelMap model, HttpServletRequest request) throws Exception {
-		System.out.println("---------------------------mainReview insert Start");
-		
-		List<ReviewUserVO> vo=logFileUtils.parseInsertFileInfo(request);
-		
-		/*egovReviewService.insertMainUserReview(reviewVO);*/
-		
-		return "/shop/mng/review/adminPage";
 	}
 }
