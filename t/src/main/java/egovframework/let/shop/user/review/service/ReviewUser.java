@@ -14,42 +14,29 @@ public class ReviewUser {
 	private String s_nickname;
 	private String nickname;
 	private String p_name;
-
-	private String tfile_idx;
-	private String original_file_name;
-	private long stored_file_name;
-	private String file_size;
-
-	public String getTfile_idx() {
-		return tfile_idx;
+	
+	public String getS_nickname() {
+		return s_nickname;
 	}
 
-	public void setTfile_idx(String tfile_idx) {
-		this.tfile_idx = tfile_idx;
+	public void setS_nickname(String s_nickname) {
+		this.s_nickname = s_nickname;
 	}
 
-	public String getOriginal_file_name() {
-		return original_file_name;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setOriginal_file_name(String original_file_name) {
-		this.original_file_name = original_file_name;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
-	public long getStored_file_name() {
-		return stored_file_name;
+	public String getP_name() {
+		return p_name;
 	}
 
-	public void setStored_file_name(long stored_file_name) {
-		this.stored_file_name = stored_file_name;
-	}
-
-	public String getFile_size() {
-		return file_size;
-	}
-
-	public void setFile_size(String file_size) {
-		this.file_size = file_size;
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
 	}
 
 	public String getS_id() {
@@ -132,28 +119,5 @@ public class ReviewUser {
 		this.seller_score = seller_score;
 	}
 
-	public String getS_nickname() {
-		return s_nickname;
-	}
-
-	public void setS_nickname(String s_nickname) {
-		this.s_nickname = s_nickname;
-	}
-
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
-	public String getP_name() {
-		return p_name;
-	}
-
-	public void setP_name(String p_name) {
-		this.p_name = p_name;
-	}
 
 }

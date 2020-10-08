@@ -21,19 +21,19 @@
 
 	<form action="/shop/mng/product/EgovMngProductDelete.do">
 		<input type="button" value="등록"
-			onclick="location.href='/shop/mng/product/EgovMngProductInsertForm.do'">&nbsp; 
-		<input type="submit" value="삭제">
+			onclick="location.href='/shop/mng/product/EgovMngProductInsertForm.do'">
+		&nbsp; <input type="submit" value="삭제">
 		<div class="container-fluid">
 			<div class="container text-center">
 				<div class="row">
 					<c:forEach var="product_list" items="${list}">
 						<div class="col-3">
+
 							<img src="<c:url value='/'/>file/${product_list.p_image}" width="270" height="270" /> 
-							<span> 
-							<input type="checkbox" name="check" id="check" value="${product_list.p_idx }"> 
-							판매자 아이디: ${product_list.s_id }
+							<span> <input type="checkbox" name="check" id="check" value="${product_list.p_idx }"> 판매자 아이디:
+								${product_list.s_id }
 							</span> <br /> 
-							<span>상품명: ${product_list.p_name }</span> <br /> 
+							<span>상품명: ${productuser_list.p_name }</span> <br /> 
 							<span>가격: ${product_list.p_price }</span> <br /> 
 							<span>상태: ${product_list.p_status }</span> <br /> 
 							<span>재고 수량: ${product_list.p_q }</span> <br /> 

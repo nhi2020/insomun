@@ -19,35 +19,12 @@
 <body>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 	<script type="text/javascript">
-	
 function updateUserBasketQty(index){
+	alert("updateUserBasketQty");
 	document.forms["frm"+index].submit();
 }
 
 </script>
-
-	<!-- result 값을 이용한 modal -->
-	<c:if test="${result == 1 }">
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$("#updateModal").modal('show')
-			
-			})
-		</script>
-		<!-- Modal -->
-		<div class="modal fade" id="updateModal" tabindex="-1"
-			aria-labelledby="updateModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-body">수량이 수정되었습니다.</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</c:if>
 	<input type="hidden" name="pageIndex" value="${searchVO.pageIndex }">
 	<div class="container">
 		<div class="row">
@@ -79,8 +56,7 @@ function updateUserBasketQty(index){
 							form="frm${status.index }"
 							onclick="location.href='/shop/user/basket/deleteBasketUser.do?ba_idx=${basketList.ba_idx}'" /></td>
 					</tr>
-					<form action="/shop/user/basket/updateBasketUserQty.do"
-						name="frm${status.index }" id="frm${status.index }">
+					<form action="/shop/user/basket/updateBasketUserQty.do" name="frm${status.index }" id="frm${status.index }">
 						<input type="hidden" id="ba_idx${status.index }" name="ba_idx"
 							value="${basketList.ba_idx }" />
 					</form>
@@ -93,9 +69,9 @@ function updateUserBasketQty(index){
 						<ui:pagination paginationInfo="${paginationInfo}" type="text"
 							jsFunction="linkPage" />
 					</ul>
-					<input type="hidden" name="searchCnd" value="0" /> <input
-						id="pageIndex" type="hidden" name="pageIndex" value= /> <input
-						type="hidden" name="searchWrd" value="${searchVO.searchWrd }" />
+					<input type="hidden" name="searchCnd" value="0" /> <input id="pageIndex"
+						type="hidden" name="pageIndex" value=/> <input type="hidden"
+						name="searchWrd" value="${searchVO.searchWrd }" />
 				</form>
 			</div>
 
@@ -105,7 +81,6 @@ function updateUserBasketQty(index){
 		function linkPage(pageNo){
 			document.forms["frmPage"].submit();
 		}
-		
 	</script>
 	<%@ include file="../../inc/EgovShopBottom.jsp"%>
 </body>

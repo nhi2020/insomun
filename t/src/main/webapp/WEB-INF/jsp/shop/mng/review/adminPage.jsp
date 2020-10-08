@@ -26,10 +26,6 @@
 					<td><a href="/shop/mng/review/MngUserSelect.do">관리자 리뷰</a></td>
 				</tr>
 		</table>
-		<form action="/shop/mng/review2.do" name="frm2" method="post" enctype="multipart/form-data"><br><br><p>
-		<input type="file" name="file" id="file">
-		<input type="submit" value="전송">
-		</form>
 	</div>
 </div>
 </body>

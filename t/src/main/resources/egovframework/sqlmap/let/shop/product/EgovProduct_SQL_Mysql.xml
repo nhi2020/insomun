@@ -81,7 +81,7 @@
 			P_TAGE = #p_tage#,
 			P_Q = #p_q#,
 			P_SDATE = #p_sdate#,
-			P_EDATE = #p_edate#,
+			P_EDATE = #p_sdate#,
 			P_MODDATE = #p_moddate#
 		WHERE P_IDX = #p_idx#
 	</update>
@@ -93,7 +93,7 @@
 			(P_IDX,S_ID, P_NAME, P_PRICE, P_REGDATE, P_MODDATE, P_IMAGE, P_CONTENT, P_TAGE, P_SDATE, P_EDATE, P_STATUS, P_Q, A_ID)
 			VALUES
 			((select max(P_IDX)+1
-			 FROM PRODUCT p), #s_id#, #p_name#, #p_price#, SYSDATE(), SYSDATE(), #p_image#, #p_content#, #p_tage#, #p_sdate#, #p_edate#, #p_status#, #p_q#, #a_id#)				
+			 FROM PRODUCT p), #s_id#, #p_name#, #p_price#, SYSDATE(), SYSDATE(), #p_image#, #p_content#, #p_tage#, #p_sdate#, #p_sdate#, #p_status#, #p_q#, #a_id#)				
  		]]>
  	</insert>
  	
@@ -191,12 +191,24 @@
 	</update>
 	
 	<insert id="EgovUserProductDAO.insertUserProductPro" parameterClass="ProductUserVO" >
+ 	<selectKey resultClass="java.lang.String" keyProperty="p_idx">
+ 		SELECT 
+			CASE 
+				WHEN 
+					MAX(P_IDX) IS NULL 
+				THEN 
+					1 
+				ELSE
+					MAX(P_IDX)+1 
+				END
+		FROM
+			PRODUCT
+ 	</selectKey>
  		<![CDATA[
  			INSERT INTO PRODUCT
 			(P_IDX, S_ID, P_NAME, P_PRICE, P_REGDATE, P_MODDATE, P_IMAGE, P_CONTENT, P_TAGE, P_SDATE, P_EDATE, P_STATUS, P_Q)
 			VALUES
-			((select max(P_IDX)+1
-			 FROM PRODUCT p), #s_id#, #p_name#, #p_price#, SYSDATE(), SYSDATE(), #p_image#, #p_content#, #p_tage#, #p_sdate#, #p_edate#, #p_status#, #p_q#)	
+			(#p_idx#, #s_id#, #p_name#, #p_price#, SYSDATE(), SYSDATE(), #p_image#, #p_content#, #p_tage#, SYSDATE(), SYSDATE(), 'N', #p_q#)				
  		]]>
  	</insert>
  	

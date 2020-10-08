@@ -1,6 +1,5 @@
 package egovframework.let.shop.user.basket.web;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -13,11 +12,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import egovframework.let.shop.mng.basket.service.impl.BasketBuyerMngVO;
+import egovframework.let.shop.mng.basket.web.BasketMngController;
 import egovframework.let.shop.user.basket.service.BasketUserService;
 import egovframework.let.shop.user.basket.service.impl.BasketProductUserVO;
 import egovframework.let.shop.user.basket.service.impl.BasketUserVO;
+import egovframework.let.shop.user.product.service.ProductUserService;
+import egovframework.let.shop.user.product.service.impl.ProductUserVO;
+import egovframework.let.shop.user.seller.service.SellerUserService;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -68,16 +73,10 @@ public class BasketUserController {
 
 	@RequestMapping("/shop/user/basket/listBasketUser")
 	public String listBasketUser(@ModelAttribute("searchVO") BasketProductUserVO vo, Model model,
-			HttpServletRequest request, @ModelAttribute("result") String result) {
+			HttpServletRequest request) {
 
 		HttpSession session = request.getSession();
-		try {
-			vo.setSns_idx((int) session.getAttribute("sns_idx"));
-			
-		} catch (NullPointerException e) {
-			System.out.println("BasketUserController listBasketUser Exception : " + e.getMessage() );
-			return "redirect:/";
-		}
+		vo.setSns_idx((int) session.getAttribute("sns_idx"));
 
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
@@ -119,13 +118,7 @@ public class BasketUserController {
 		int result = 0;
 		// 세션 확인 
 		HttpSession session = request.getSession();
-		int userSnsIdx = 0;
-		try {
-			userSnsIdx = (int) session.getAttribute("sns_idx");
-		} catch (NullPointerException e) {
-			System.out.println("");
-			return "redirect:/shop/user/EgovUserLoginForm.do";
-		}
+		int userSnsIdx = (int) session.getAttribute("sns_idx");
 		System.out.println("userSnsIdx => " + userSnsIdx);
 		System.out.println("p_idx => " + vo.getP_idx());
 		System.out.println("vo.getBa_idx() => " + vo.getBa_idx());
@@ -138,8 +131,8 @@ public class BasketUserController {
 				
 		if(voChk != null){
 			System.out.println("THE ITEM IS IN THE CART ALREADY");
-			voChk.setBa_q(voChk.getBa_q()+1);
-			result = basketUserService.updateBasketUserQty(voChk);
+			vo.setBa_q(vo.getBa_q()+1);
+			result = basketUserService.updateBasketUserQty(vo);
 		} else {
 			System.out.println("THE ITEM IS NOT IN THE CART YET");
 			result = basketUserService.insertBasketUserPro(vo);
@@ -147,16 +140,18 @@ public class BasketUserController {
 		// DB Insert
 		
 		System.out.println("result => " + result);
+		System.out.println("vo.getBa_idx()" + vo.getBa_idx());
+		System.out.println("vo.getBa_q()" + vo.getBa_q());
+		System.out.println("vo.getP_idx()" + vo.getP_idx());
 		
 		return "redirect:/shop/user/basket/listBasketUser.do";
 	}
 	
 	@RequestMapping("/shop/user/basket/updateBasketUserQty")
-	public String updateBasketUserQty(HttpServletRequest request, RedirectAttributes redirect, BasketUserVO vo){
+	public String updateBasketUserQty(HttpServletRequest request, Model model, BasketUserVO vo){
 		System.out.println("BasketUserController updateBasketUserQty()");
 		int result = basketUserService.updateBasketUserQty(vo);
 		System.out.println("result => " + result);
-		redirect.addFlashAttribute("result", result);
 		return "redirect:/shop/user/basket/listBasketUser.do";
 	}
 
@@ -168,5 +163,4 @@ public class BasketUserController {
 		System.out.println("result => " + result);
 		return "redirect:/shop/user/basket/listBasketUser.do";
 	}
-
 }

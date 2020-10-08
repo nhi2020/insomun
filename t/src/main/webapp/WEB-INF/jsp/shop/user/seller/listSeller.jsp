@@ -11,6 +11,7 @@
 <title>입소문넷</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
+
 </head>
 
 <body>

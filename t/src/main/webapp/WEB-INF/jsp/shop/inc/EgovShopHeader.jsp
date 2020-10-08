@@ -65,7 +65,7 @@
 	</ul> -->
 	<form class="form-inline" action="/shop/user/product/EgovUserProductlist.do">
 	  <input type="hidden" id="searchCnd" name="searchCnd" value="0">
-	  <input class="form-control mr-sm-2" id="searchWrd" name="searchWrd" type="text" placeholder="Search"3>
+	  <input class="form-control mr-sm-2" id="searchWrd" name="searchWrd" type="text" placeholder="Search">
 	  <button class="btn btn-success" type="submit">Search</button>
 	</form>
 		

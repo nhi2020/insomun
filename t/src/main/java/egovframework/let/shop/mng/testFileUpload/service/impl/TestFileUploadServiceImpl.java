@@ -33,11 +33,5 @@ public class TestFileUploadServiceImpl implements TestFileUploadService {
 		return testFileUploadDAO.listTestFileUpload(vo);
 	}
 
-	@Override
-	public int deleteTestFileUpload(TestFileUploadVO vo) {
-		// TODO Auto-generated method stub
-		return testFileUploadDAO.deleteTestFileUpload(vo);
-	}
-
 
 }
