@@ -207,13 +207,48 @@ reader.readAsDataURL(input.files[0]);
 }
 }
 </script>
+<style type="text/css">
+label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #fff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #6c757d;
+  cursor: pointer;
+  border: 1px solid #6c757d;
+  border-radius: .25em;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
 
+label:hover {
+  background-color: #5a5a5a;
+}
+
+label:active {
+  background-color: #5a5a5a;
+}
+
+input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+</style>
 </head>
 
 <body>
 	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 <p><p><p><p><p>
+
 <div class="container">
 		<div class="row">
 					
@@ -227,7 +262,8 @@ reader.readAsDataURL(input.files[0]);
 					</tr>
 					<tr>
 						<th>파일업로드</th>	
-						<td><input type='file' name="file" onchange="readURL(this);" /></td>    
+						<td><label for="ex_file">업로드</label>
+							<input type='file' name="file" id="ex_file" onchange="readURL(this);" /></td>    
 					</tr>
 					<tr>
 						<th>회원아이디</th>
@@ -261,7 +297,7 @@ reader.readAsDataURL(input.files[0]);
 					<tr>
 						<th>주소</th>
 						<td><input type="text" id="sample6_address" name="addr1" placeholder="주소" readonly>
-							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
+							<input type="button" class="btn btn-secondary" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
 					</tr>
 					
 					<tr>
@@ -302,8 +338,8 @@ reader.readAsDataURL(input.files[0]);
 						<td><input type="text" name="s_account" id="s_account" placeholder="계좌번호"></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="submit" id="submit" value="등록" /> 
-						<input type="button" value="목록으로" onclick="location.href='/shop/mng/seller/listMngSeller.do'" />
+						<td colspan="2"><input class="btn btn-secondary" type="submit" id="submit" value="등록" /> 
+						<input type="button" class="btn btn-secondary" value="목록으로" onclick="location.href='/shop/mng/seller/listMngSeller.do'" />
 						</td>
 					</tr>
 				</table>

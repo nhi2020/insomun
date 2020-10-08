@@ -26,6 +26,52 @@
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 
 
+<!-- result 값을 이용한 modal -->
+	<c:if test="${result == 1}">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#updateModal").modal('show')
+			
+			})
+		</script>
+		<!-- Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1"
+			aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">전환되었습니다.</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:if>
+	<!-- result 값을 이용한 modal -->
+	<c:if test="${result1 != '' && result1 != null}">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#updateModal").modal('show')
+			
+			})
+		</script>
+		<!-- Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1"
+			aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">등록되었습니다.</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:if>
+
+
 <div class="container">
 		<div class="row">
 			
@@ -36,7 +82,7 @@
 						aria-label="Username" aria-describedby="basic-addon1"
 						name="searchWrd">
 					<div class="input-group-append">
-						<input class="btn btn-secondary" type="submit" value="검색" />
+						<input class="btn btn-secondary" type="submit" value="검색"/>
 					</div>
 				</div>
 			<input type="hidden" name="pageIndex" value="${searchVO.pageIndex }" />
@@ -44,10 +90,10 @@
 			</form>
 			
 			
- <input type="button" value="회원등록" onclick="location.href='/shop/mng/seller/InsertMngSellerForm.do'"> 
- <input type="button" value="(체크박스)전환" onclick="delReview();">
- 
+ 			
 				<form name="frm" id="frm">
+ <input type="button"  class="btn btn-secondary" value="회원등록" onclick="location.href='/shop/mng/seller/InsertMngSellerForm.do'"> 
+ <input type="button"  class="btn btn-secondary" value="(체크박스)전환" onclick="delReview();">
 			<table class="table mx-auto">
 				<tr>
 					<th>체크박스</th>
@@ -94,8 +140,8 @@
 								<td>탈퇴된 계정</td>
 							</c:when>
 						</c:choose>	
-						<td><input type="submit" value="전환" form="frm${status.index }"></td>
-						<td><input type="button" value="강제로그인" onclick="location.href='/shop/user/seller/EgovsellerLoginPro.do?id=${s_list.s_id}&passwd=${s_list.s_pass }'" /></td>
+						<td><input type="submit"  class="btn btn-secondary" value="전환" form="frm${status.index }"></td>
+						<td><input type="button"  class="btn btn-secondary" value="강제로그인" onclick="location.href='/shop/user/seller/EgovsellerLoginPro.do?id=${s_list.s_id}&passwd=${s_list.s_pass }'" /></td>
 						</tr>
 				</c:forEach>
 						<tr>
