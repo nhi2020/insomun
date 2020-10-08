@@ -14,7 +14,6 @@
 </head>
 
 <body>
-<%@ include file="../../inc/EgovShopTop.jsp" %>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
 
 <form action="<c:url value='/shop/mng/admin/adminMainForm.do'/>">

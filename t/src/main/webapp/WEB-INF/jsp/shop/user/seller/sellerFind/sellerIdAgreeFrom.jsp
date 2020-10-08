@@ -96,13 +96,34 @@ function email(){
 				$("#s_agreenum").focus();
 				
 			}else if(data == 0){
-				alert("실패.");
+				alert("일치하는 정보가 없습니다.");
+				$("#btnEmailAuthNo").attr("value", "N");
 			}
 		}
 	})
 }
 function fn_idChk(){
+	if($("#s_name").val()==""){
+		alert("이름을 입력해주세요.");
+		$("#s_name").focus();
+		return false;
+	}
+	if($("#s_email").val()==""){
+		alert("이메일을 입력해주세요.");
+		$("#s_email").focus();
+		return false;
+	}
+	if($("#btnEmailAuthNo").val()=="N"){
+		alert("인증번호를 받으세요");
+		$("#btnEmailAuthNo").focus();
+		return false;
+	}
 	if($("#s_agreenum").val()==""){
+		alert("인증번호를 입력해주세요.");
+		$("#s_agreenum").focus();
+		return false;
+	}
+	if($("#s_agreenum").val()==0){
 		alert("인증번호를 입력해주세요.");
 		$("#s_agreenum").focus();
 		return false;

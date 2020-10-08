@@ -58,11 +58,11 @@
 	<a class="navbar-brand" href="/shop/user/main/EgovUserMain.do">Logo</a>
 
 	<!-- Links -->
-	<ul class="navbar-nav">
+	<!-- <ul class="navbar-nav">
 	  <li class="nav-item">
 	    <a class="nav-link" href="/shop/user/product/EgovUserProductlist.do">상품게시판</a>
 	  </li>
-	</ul>
+	</ul> -->
 	<form class="form-inline" action="/shop/user/product/EgovUserProductlist.do">
 	  <input type="hidden" id="searchCnd" name="searchCnd" value="0">
 	  <input class="form-control mr-sm-2" id="searchWrd" name="searchWrd" type="text" placeholder="Search"3>
@@ -114,11 +114,11 @@
 	    				  	마이페이지
 	  					  </a>
 	  					  <div class="dropdown-menu">
-	   						   <a class="dropdown-item" href="#">후기 관리 페이지</a>
+	   						   <a class="dropdown-item" href="/shop/mng/admin/adminMainForm.do">운영자 페이지</a>
 	    					   <a class="dropdown-item" href="/shop/mng/product/EgovMngProductlist.do">상품관리 페이지</a>
-	     					   <a class="dropdown-item" href="#">관리자 관리 페이지</a>
+	     					   <!-- <a class="dropdown-item" href="#">관리자 관리 페이지</a>
 	     					   <a class="dropdown-item" href="#">구매자 관리 페이지</a>
-	     					   <a class="dropdown-item" href="#">판매자 관리 페이지</a>
+	     					   <a class="dropdown-item" href="#">판매자 관리 페이지</a> -->
 	   					 </div>
 					  </li>
 	  				</ul>
