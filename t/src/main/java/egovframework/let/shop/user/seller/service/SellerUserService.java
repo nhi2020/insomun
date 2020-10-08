@@ -38,5 +38,11 @@ public interface SellerUserService {
 
 	public SellerUserVO selectUserSeller(SellerUserVO vo);
 
+	public int sellerNicknameChk(SellerUserVO vo);
+
+	public int sellerEmailChk(SellerUserVO vo);
+
+	public void updateAgreenum(SellerUserVO vo);
+
 
 }

@@ -17,5 +17,5 @@
 <%--
 <jsp:forward page="/cmm/main/mainPage.do"/>
 --%>
- <!-- <script type="text/javaScript">document.location.href="<c:url value='/shop/user/EgovUserLoginForm.do'/>"</script> -->
-<script type="text/javaScript">document.location.href="<c:url value='/shop/mng/admin/adminMainForm.do'/>"</script> 
+ <script type="text/javaScript">document.location.href="<c:url value='/shop/user/EgovUserLoginForm.do'/>"</script>
+<!-- <script type="text/javaScript">document.location.href="<c:url value='/shop/mng/admin/adminMainForm.do'/>"</script> --> 

@@ -4,9 +4,36 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
 <%@ include file="../../../inc/EgovShopTop.jsp" %>
+<%@ include file="../../../inc/EgovShopHeader.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style> 
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+input[type=file] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+input[type=date] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
@@ -14,7 +41,49 @@
 		$(document).ready(function(){
 			 $("#s_id").blur(function() {
 		            idFlag = false;
-		            fn_idChk("first");
+		            fn_idChk();
+		        });
+			 $("#s_name").blur(function() {
+		            idFlag = false;
+		            fn_nameChk();
+		        });
+			 $("#s_pass").blur(function() {
+		            idFlag = false;
+		            fn_passChk();
+		        });
+			 $("#s_pass2").blur(function() {
+		            idFlag = false;
+		            fn_pass2Chk();
+		        });
+		     $("#s_nickname").blur(function() {
+		            idFlag = false;
+		            fn_nicknameChk();
+		        });
+		     $("#sample6_address").blur(function() {
+		            idFlag = false;
+		            fn_addr1Chk();
+		        });
+		     $("#sample6_detailAddress").blur(function() {
+		            idFlag = false;
+		            fn_addr2Chk();
+		        });
+		     $("#email1").blur(function() {
+		            idFlag = false;
+		            fn_email1Chk();
+		        });s_phone
+		     $("#email2").blur(function() {
+		            idFlag = false;
+		            fn_email2Chk();
+		        });
+		      $("#s_phone").blur(function() {
+		    	
+		            idFlag = false;
+		            fn_phonChk();
+		        });
+		      $("#s_birth").blur(function() {
+			    	
+		            idFlag = false;
+		            fn_birthChk();
 		        });
 			// 취소
 			$(".cencle").on("click", function(){
@@ -32,85 +101,86 @@
 	               var pregExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
 
 				if($("#s_id").val()==""){
-					alert("아이디를 입력해주세요.");
+					
 					$("#s_id").focus();
 					return false;
 				}
 				if($("#s_name").val()==""){
-					alert("이름을 입력해주세요.");
+					
 					$("#s_name").focus();
 					return false;
 				}
 				if($("#s_pass").val()==""){
-					alert("비밀번호를 입력해주세요.");
+					
 					$("#s_pass").focus();
 					return false;
 				}
 				if($("#s_pass2").val()==""){
-					alert("비밀번호재확인를 입력해주세요.");
+					
 					$("#s_pass2").focus();
 					return false;
 				}
 				if($("#s_pass").val() != $("#s_pass2").val()){
-					alert("비밀번호가 일치하지 않습니다.");
+					
 					$("#s_pass").focus();
 					return false;
 				}
 				if($("#s_nickname").val()==""){
-					alert("성명을 입력해주세요.");
+					
 					$("#s_nickname").focus();
 					return false;
 				}
 				if($("#sample6_address").val()==""){
-					alert("주소를 입력해주세요.");
+					
 					$("#sample6_address").focus();
 					return false;
 				}
 				if($("#sample6_detailAddress").val()==""){
-					alert("상세주소를 입력해주세요.");
+					
 					$("#sample6_detailAddress").focus();
 					return false;
 				}
 				if($("#email1").val()==""){
-					alert("이메일을 입력해주세요.");
+					
 					$("#email1").focus();
 					return false;
 				}
 				if($("#email2").val()==""){
-					alert("이메일을 입력해주세요.");
+					
 					$("#email2").focus();
 					return false;
 					}
 				if ( !emailAddress.match(eregExp) ) {
-	            	   alert("이메일형식이 맞지 않습니다.");
+	            	   
 	            	   $("#email2").focus();
 	            	 return false;
 	               } 
 				
 				if($("#s_phone").val()==""){
-					alert("핸드폰 번호을 입력해주세요.");
+					
 					$("#s_phone").focus();
 					return false;
 				}
 				if(!pregExp.test($("input[id='s_phone']").val())) {            
-					alert("핸드폰 번호을 형식에 맞게.");
+					
 					$("#s_phone").focus();
 		            return false;
 				}
 
 				if($("#s_birth").val()==""){
-					alert("생년월일을 입력해주세요.");
+					
 					$("#s_birth").focus();
 					return false;
 				}
 				var idChkVal = $("#idChk").val();
-				if(idChkVal == "N"){
-					alert("중복확인 버튼을 눌러주세요.");
-					return false;
-				}else if(idChkVal == "Y"){
+				var emailChkVal = $("#emailChk").val();
+				var nickChkVal = $("#nickChk").val();
+				
+				if(idChkVal == "Y" && emailChkVal == 'Y' && nickChkVal == 'Y'){
 					$("#regForm").submit();
-				}else if(idChkVal == "D"){
-					alert("중복된 아이디입니다.");
+					
+				}else{ 
+					alert("중복된 ");
 					return false;
 				}
 			
@@ -127,11 +197,6 @@
 	            setFocusToInputObject(oInput);
 	            return false;
 	        }
-			/* if($("#s_id").val()==""){
-				alert("아이디를 입력해주세요.");
-				$("#s_id").focus();
-				return false;
-			} */
 			idFlag = false;
 			$.ajax({
 				url : "/shop/user/seller/sellerIdChk.do",
@@ -141,7 +206,7 @@
 				success : function(data){
 					if(data == 1){
 						showErrorMsg(oMsg, "이미 사용중이거나 탈퇴한 아이디입니다.");
-						$("#idChk").attr("value", "D");
+						$("#idChk").attr("value", "N");
 						/* $("#s_id").focus(); */
 					}else if(data == 0){
 						  showSuccessMsg(oMsg, "멋진 아이디네요!");
@@ -152,6 +217,268 @@
 					
 				}
 			})
+			return true;
+		}
+		function fn_nameChk(){
+			var oMsg = $("#nameMsg");
+	        var oInput = $("#s_name");
+
+	        if ( $("#s_name").val() == "") {
+	            showErrorMsg(oMsg,"필수 정보입니다.");
+	            setFocusToInputObject(oInput);
+	            return false;
+	        }else{
+	        	showErrorMsg(oMsg,"");
+	        }
+			return true;
+		}
+		
+		function fn_passChk(){
+			var oMsg = $("#passMsg");
+	        var oInput = $("#s_pass");
+
+	        if ( $("#s_pass").val() == "") {
+	            showErrorMsg(oMsg,"필수 정보입니다.");
+	            setFocusToInputObject(oInput);
+	            return false;
+	        }else{
+	        	showErrorMsg(oMsg,"");
+	        }
+	        if ($("#s_pass2").val() == $("#s_pass").val()) {
+	            showErrorMsg($("#pass2Msg"),"");
+	        } 
+	        if ($("#s_pass2").val() != $("#s_pass").val()) {
+	            showErrorMsg($("#pass2Msg"),"비밀번호가 다릅니다.");
+	            setFocusToInputObject(oInput);
+	            return false;
+	        }
+	        
+	        if (  $("#s_pass2").val() != "" && $("#s_pass2").val() != $("#s_pass").val()) {
+	            showErrorMsg($("#pass2Msg"),"비밀번호가 다릅니다.");
+	            setFocusToInputObject(oInput);
+	            return false;
+	        }
+	        return true;
+		}
+		function fn_pass2Chk(){
+			var oMsg = $("#pass2Msg");
+	        var oInput = $("#s_pass2");
+
+	        if ( $("#s_pass2").val() == "") {
+	            showErrorMsg(oMsg,"필수 정보입니다.");
+	            setFocusToInputObject(oInput);
+	            return false;
+	        }else{
+	        	showErrorMsg(oMsg,"");
+	        }
+	        if ( $("#s_pass2").val() != $("#s_pass").val()) {
+	            showErrorMsg(oMsg,"비밀번호가 다릅니다.");
+	            setFocusToInputObject(oInput);
+	            return false;
+	        }
+	        
+			return true;
+		}
+		function fn_nicknameChk(){
+			if(idFlag) return true;
+			var oMsg = $("#nicknameMsg");
+	        var oInput = $("#s_nickname");
+
+	        if ( $("#s_nickname").val() == "") {
+	            showErrorMsg(oMsg,"필수 정보입니다.");
+	            setFocusToInputObject(oInput);
+	            return false;
+	        }
+			idFlag = false;
+			$.ajax({
+				url : "/shop/user/seller/sellerNicknameChk.do",
+				type : "post",
+				dataType : "json",
+				data : {"s_nickname" : $("#s_nickname").val()},
+				success : function(data){
+					if(data >= 1){
+						showErrorMsg(oMsg, "이미 사용중 입니다.");
+						$("#nickChk").attr("value", "N");
+						/* $("#s_id").focus(); */
+					}else if(data == 0){
+						  showSuccessMsg(oMsg, "멋진 닉네임이네요!");
+						$("#nickChk").attr("value", "Y");
+						
+						
+					}
+					
+				}
+			})
+			return true;
+		}
+		function fn_addr1Chk(){
+			var oMsg = $("#addrMsg");
+	        var oInput = $("#sample6_address");
+
+	        if ( $("#sample6_address").val() == "") {
+	            showErrorMsg(oMsg,"필수 정보입니다.");
+	            setFocusToInputObject(oInput);
+	            return false;
+	        }else{
+	        	showErrorMsg(oMsg,"");
+	        }
+	        if ( $("#sample6_detailAddress").val() == "") {
+	            showErrorMsg(oMsg,"필수 정보입니다.");
+	            setFocusToInputObject(oInput);
+	            return false;
+	        }else{
+	        	showErrorMsg(oMsg,"");
+	        }
+	        
+			return true;
+		}
+		function fn_addr2Chk(){
+			var oMsg = $("#addrMsg");
+	        var oInput = $("#sample6_detailAddress");
+
+	        if ( $("#sample6_address").val() == "") {
+	            showErrorMsg(oMsg,"필수 정보입니다.");
+	            setFocusToInputObject(oInput);
+	            return false;
+	        }else{
+	        	showErrorMsg(oMsg,"");
+	        }
+	        if ( $("#sample6_detailAddress").val() == "") {
+	            showErrorMsg(oMsg,"필수 정보입니다.");
+	            setFocusToInputObject(oInput);
+	            return false;
+	        }else{
+	        	showErrorMsg(oMsg,"");
+	        }
+	        
+			return true;
+		}
+		function fn_email1Chk(){
+			var emailAdd1 = document.getElementById('email1').value; 
+            var emailAdd2 = document.getElementById('email2').value;
+
+            var emailAddress = emailAdd1 + "@" + emailAdd2;
+            var eregExp = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+           
+			var oMsg = $("#emailMsg");
+	        var oInput = $("#email2");
+	        
+	        if ( $("#email1").val() == "" && $("#email2").val() == "") {
+	            showErrorMsg(oMsg,"필수 정보입니다.");
+	            
+	            return false;
+	        }
+	        if ( !emailAddress.match(eregExp) ) {
+	        	showErrorMsg(oMsg,"이메일형식이 맞지 않습니다.");
+	            
+	            return false
+            }else{
+            	
+            	idFlag = false;
+    		 	$.ajax({
+    				url : "/shop/user/seller/sellerEmailChk.do",
+    				type : "post",
+    				dataType : "json",
+    				data : {"email1" : $("#email1").val(),"email2" : $("#email2").val()},
+    				success : function(data){
+    					if(data >= 1){
+    						showErrorMsg(oMsg, "이미 사용중 입니다.");
+    						$("#emailChk").attr("value", "N");
+    						
+    					}else if(data == 0){
+    						  showSuccessMsg(oMsg, "성공");
+    						$("#emailChk").attr("value", "Y");
+    						
+    						
+    					}
+    					
+    				}
+    			})
+            	
+            }
+			
+			return true;
+		}
+		function fn_email2Chk(){
+			if(idFlag) return true;
+			var emailAdd1 = document.getElementById('email1').value; 
+            var emailAdd2 = document.getElementById('email2').value;
+
+            var emailAddress = emailAdd1 + "@" + emailAdd2;
+            var eregExp = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+           
+			var oMsg = $("#emailMsg");
+	        var oInput = $("#email2");
+	        
+	     
+	        if ( $("#email1").val() == "" && $("#email2").val() == "") {
+	            showErrorMsg(oMsg,"필수 정보입니다.");
+	            
+	            return false;
+	        }
+	        if ( !emailAddress.match(eregExp) ) {
+	        	showErrorMsg(oMsg,"이메일형식이 맞지 않습니다.");
+	            
+	            return false
+            }else{
+            	
+            	idFlag = false;
+    		 	$.ajax({
+    				url : "/shop/user/seller/sellerEmailChk.do",
+    				type : "post",
+    				dataType : "json",
+    				data : {"email1" : $("#email1").val(),"email2" : $("#email2").val()},
+    				success : function(data){
+    					if(data >= 1){
+    						showErrorMsg(oMsg, "이미 사용중 입니다.");
+    						$("#emailChk").attr("value", "N");
+    						
+    					}else if(data == 0){
+    						  showSuccessMsg(oMsg, "성공");
+    						$("#emailChk").attr("value", "Y");
+    						
+    						
+    					}
+    					
+    				}
+    			})
+            	
+            }
+			
+			return true;
+		}
+		function fn_phonChk(){
+			var oMsg = $("#phonMsg");
+	        
+			var pregExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+	        if ( $("#s_phone").val() == "") {
+	            showErrorMsg(oMsg,"필수 정보입니다.");
+	           
+	            return false;
+	        }else{
+	        	showErrorMsg(oMsg,"");
+	        }
+	        if(!pregExp.test($("input[id='s_phone']").val())) {
+	        	showErrorMsg(oMsg,"핸드폰 번호을 형식에 맞게.");
+
+	            return false;
+			}else{
+	        	showErrorMsg(oMsg,"");
+	        }
+	        
+			return true;
+		}
+		function fn_birthChk(){
+			var oMsg = $("#birthMsg");
+	        
+	        if ( $("#s_birth").val() == "") {
+	            showErrorMsg(oMsg,"필수 정보입니다.");
+	           
+	            return false;
+	        }else{
+	        	showErrorMsg(oMsg,"");
+	        }
+	        
 			return true;
 		}
 		
@@ -214,8 +541,11 @@
 		<div class="row justify-content-center">
 		
 		<!-- <form action="/shop/user/EgovUserLoginForm.do" name="frm" method="post"> -->
-			<form action="/shop/user/seller/sellerinsertPro.do" name="frm" method="post">
+			<form action="/shop/user/seller/sellerinsertPro.do" name="frm" method="post" enctype="multipart/form-data">
 			<input type="hidden" value="" name="s_addr">
+			<input type="hidden" id="idChk" value="N">
+			<input type="hidden" id="nickChk" value="N">
+			<input type="hidden" id="emailChk" value="N">
 					<h2>회원가입 </h2>
 					<div class="form-group">
 							<!-- <label for="id">아이디</label> --><div>
@@ -226,38 +556,37 @@
 							<!-- <button class="idChk" type="hidden" id="idChk" onclick="fn_idChk();" value="N">중복확인</button><br> -->
 							<div class="join_row">
 							<input type="text" id="s_name" name="s_name" placeholder="이름"><br>
-							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
+							<span class="error_next_box" id="nameMsg" style="display:none" aria-live="assertive"></span><br>
 							</div>
 							<div class="join_row">
 							<input type="password"  id="s_pass" name="s_pass" placeholder="비밀번호"><br>
-							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
+							<span class="error_next_box" id="passMsg" style="display:none" aria-live="assertive"></span><br>
 							</div>
 							<div class="join_row">
 							<input type="password"  id="s_pass2" name="s_pas2s" placeholder="비밀번호 재확인"><br>
-							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
+							<span class="error_next_box" id="pass2Msg" style="display:none" aria-live="assertive"></span><br>
 							</div>
 							<div class="join_row">
-							<input type="text"  name="s_nickname" placeholder="닉네임"><br>
-							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
+							<input type="text"  id ="s_nickname" name="s_nickname" placeholder="닉네임"><br>
+							<span class="error_next_box" id="nicknameMsg" style="display:none" aria-live="assertive"></span><br>
 							</div>
 							<div class="join_row">
 							<input type="text" id="sample6_address" name="addr1" placeholder="주소" readonly>
 							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 							<input type="text" id="sample6_detailAddress" name="addr2" placeholder="상세주소"><br>
-							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
+							<span class="error_next_box" id="addrMsg" style="display:none" aria-live="assertive"></span><br>
 							</div>
 							<div class="join_row">
-							<input type='text' id='email1' name="email1"/> @ <input type='text' id='email2' name="email2"/>
-							<button class="idChk" type="button" id="idChk" onclick="fn_emChk();" value="N">이메일 중복확인</button><br>
-							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
+							<input type='text' id='email1' name="email1"/> @ <input type='text' id='email2' name="email2"/><br>
+							<span class="error_next_box" id="emailMsg" style="display:none" aria-live="assertive"></span><br>
 							</div>
 							<div class="join_row">
 							<input type="text"  id="s_phone" name="s_phone" placeholder="01X-XXXX-XXXX"><br>
-							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
+							<span class="error_next_box" id="phonMsg" style="display:none" aria-live="assertive"></span><br>
 							</div>
 							<div class="join_row">
 							<input type="date"  id="s_birth" name="s_birth" placeholder="생년월일"><br>
-							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
+							<span class="error_next_box" id="birthMsg" style="display:none" aria-live="assertive"></span><br>
 							</div>
 							<select name="s_account_n">
 								<option value="null">은행선택</option>
@@ -274,7 +603,7 @@
 							<input type="radio" class="form-check-input" id="s_gender" name="s_gender" value="여자">여
 						</label>
 					</div>
-					<input type="file"  id="S_PHOTO" name="S_PHOTO"><br>
+					<input type="file"  id="file" name="file"><br>
 					<div class="form-check-inline">
 						<input class="btn btn-success" type="submit" id="submit" value="회원가입">
 					</div>
@@ -284,7 +613,7 @@
 		</div>
 	</div>
 	</div>
-	
+<%@ include file="../../../inc/EgovShopBottom.jsp" %>
 </html>
 </body>
 </html>

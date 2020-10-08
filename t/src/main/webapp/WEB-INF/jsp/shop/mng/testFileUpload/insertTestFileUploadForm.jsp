@@ -20,13 +20,6 @@
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 	<div class="container">
 		<div class="row">
-		
-		<c:if test="${delResult == 1 }">
-		서버 삭제 성공<br>
-		</c:if>
-		<c:if test="${dbResult == 1 }">
-		DB 삭제 성공<br>
-		</c:if>
 			<form action="/shop/mng/testFileUpload/insertTestFileUploadPro.do"
 				method="post" enctype="multipart/form-data">
 				<table>
@@ -42,13 +35,13 @@
 		<table>
 		<c:forEach var="filelist" items="${list }" varStatus="status">
 		<tr>
-			<td><img src="<c:url value='/'/>file/${filelist.stored_file_name}" width="200" height="150"/></td>
+			<td><img src="<c:url value='/'/>file/${filelist.stored_file_name}" width="200" height="150" /></td>
 			<td>${filelist.tfile_idx }</td>
 			<td>${filelist.original_file_name }</td>
 			<td>${filelist.stored_file_name }</td>
-			<td><button class="btn btn-danger" onclick="delFile(${status.index });">삭제</button></td>
+			<td><button class="btn btn-danger" onclick="delFile(${status.index})"></button></td>
 		</tr>		
-		<form id="frmDel${status.index }" name="frmDel${status.index }" action="/shop/mng/testFileUpload/deleteTestFileUpload.do">
+		<form id="frmDel${status.index}" name="frmDel${status.index}" action="/shop/mng/testFileUpload/deleteTestFileUpload.do">
 			<input type="hidden" name="tfile_idx" value="${filelist.tfile_idx }"/>
 			<input type="hidden" name="stored_file_name" value="${filelist.stored_file_name }"/>
 		</form>
@@ -58,14 +51,13 @@
 	</div>
 
 
-<script type="text/javascript">
-	function delFile(idx) {
-		alert("delFile idx =>" + idx);
+	
+	<script type="text/javascript">
+	function delFile(idx){
 		document.getElementById("frmDel" + idx).submit();
 	}
+	</script>
 
-
-</script>
 
 	<%@ include file="../../inc/EgovShopBottom.jsp"%>
 </body>

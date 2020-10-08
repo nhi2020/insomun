@@ -83,6 +83,5 @@ function linkPage(pageIndex){
 	return true;
 }
 </script>
-<%@ include file="../../inc/EgovShopBottom.jsp"%>
 </body>
 </html>

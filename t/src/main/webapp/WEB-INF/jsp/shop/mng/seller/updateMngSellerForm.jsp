@@ -61,16 +61,18 @@ function inputPhoneNumber(obj) {
 			<form class="mx-auto" action="/shop/mng/seller/updateMngSellerPro.do" method="post">
 				<input type="hidden" name="s_id" value="${SellerVO.s_id }" />
 
-					<img src="<c:url value='/'/>images/shop/seller/${SellerVO.s_photo }" width="400" height="400"/>
-					
-					<p>
-					
-					<input type="button" value="사진변경"/>
-					
-					<p>
-					
 				<table class="table">				
 				
+					<tr>
+						<th>사진</th>
+						<td>${SellerVO.s_photo }</td>
+					</tr>
+
+					<tr>
+						<th></th>
+						<td><!-- <input type="file" name="file"> --></td>
+					</tr>
+
 					<tr>
 						<th>회원아이디</th>
 						<td>${SellerVO.s_id }</td>
@@ -146,9 +148,9 @@ function inputPhoneNumber(obj) {
 						<td>${SellerVO.s_regdate }</td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="submit" class="btn btn-secondary"  value="수정" /> 
-						<input type="button" value="목록으로" class="btn btn-secondary"  onclick="location.href='/shop/mng/seller/listMngSeller.do'" />
-						<input type="button" value="강제 로그인" class="btn btn-secondary" onclick="location.href='/shop/user/seller/EgovsellerLoginPro.do?id=${SellerVO.s_id}&passwd=${SellerVO.s_pass }'">
+						<td colspan="2"><input type="submit" value="수정" /> 
+						<input type="button" value="목록으로" onclick="location.href='/shop/mng/seller/listMngSeller.do'" />
+						<input type="button" value="강제 로그인" onclick="location.href='/shop/user/seller/EgovsellerLoginPro.do?id=${SellerVO.s_id}&passwd=${SellerVO.s_pass }'">
 						</td>
 					</tr>
 				</table>

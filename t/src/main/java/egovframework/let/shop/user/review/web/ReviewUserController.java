@@ -9,9 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import egovframework.let.shop.user.review.service.ReviewUserService;
 import egovframework.let.shop.user.review.service.ReviewUserVO;
+import egovframework.let.shop.user.util.LogFileUtils;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -23,6 +26,9 @@ public class ReviewUserController {
 	
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
+	
+	@Resource(name ="logFileUtils")
+	private LogFileUtils logFileUtils;
 	/**
 	 * XSS 방지 처리.
 	 *
@@ -97,10 +103,15 @@ public class ReviewUserController {
 		}
 		return "redirect:/shop/user/review/reviewList.do";
 	}
+	
 	//상품상세애대한 리뷰 작성
 	@RequestMapping(value = "/shop/user/review/insertUserReview.do", method = RequestMethod.POST)
-	public String list(ReviewUserVO reviewVO, ModelMap model) throws Exception {
+	public String list(ReviewUserVO reviewVO, ModelMap model, HttpServletRequest request) throws Exception {
 		System.out.println("---------------------------mainReview insert Start");
+		
+		List<ReviewUserVO> vo=logFileUtils.parseInsertFileInfo(request);
+		/*egovReviewService.insertPicReview(request);*/
+		
 		
 		egovReviewService.insertMainUserReview(reviewVO);
 		

@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ include file="../../inc/EgovShopTop.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,6 +17,30 @@
 
 <body>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
+
+
+	<!-- result 값을 이용한 modal -->
+	<c:if test="${result == 1 }">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#updateModal").modal('show')
+			
+			})
+		</script>
+		<!-- Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1"
+			aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">개인 정보가 수정되었습니다.</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:if>
 
 	<div class="container">
 		<div class="row">

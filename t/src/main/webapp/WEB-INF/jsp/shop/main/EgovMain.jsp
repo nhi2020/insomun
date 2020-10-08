@@ -20,6 +20,57 @@
 </head>
 <body>
 	<%@ include file="../inc/EgovShopHeader.jsp"%>
+	<!-- 테스트용 임시 링크 -->
+	<div class="container text-center">
+		<div class="row justify-content-center">
+			<table border="1">
+				<tr>
+					<td><a href="/shop/mng/buyer/listMngBuyer.do">구매자 관리</a></td>
+				</tr>
+				<tr>
+					<td><a href="/shop/user/review/reviewList.do">리뷰 페이지</a></td>
+				</tr>
+				<tr>
+					<td><a href="/shop/mng/review.do">판매자 리뷰 관리</a></td>
+				</tr>
+				<tr>
+					<td><a href="/shop/mng/basket/listMngBasket.do">장바구니 관리</a></td>
+				</tr>
+				<tr>
+					<td><a href="/shop/mng/seller/listMngSeller.do">판매자 관리</a></td>
+				</tr>
+				<tr>
+					<td><a
+						href="/shop/mng/admin/adminControl/listMngAdminControl.do">운영자관리</a>
+				</tr>
+				<tr>
+					<td><a href="/shop/user/product/EgovUserProductlist.do">상품 관리</a></td>
+				</tr>
+				<tr>
+					<td><a href="/shop/user/seller/sellerUserMain.do">판매자 페이지</a></td>
+				</tr>
+				<tr>
+					<td><a href="/shop/mng/deal/dealMngList.do">운영자 거래관리</a></td>
+				</tr>
+				<tr>
+					<td><a href="/shop/user/deal/dealUserBuyerList.do">구매자 거래관리</a></td>
+				</tr>
+				<tr>
+					<td><a href="/shop/user/deal/dealUserSellerList.do">판매자 거래관리</a></td>
+				</tr>
+				<tr>
+					<td><a href="/shop/mng/testFileUpload/insertTestFileUploadForm.do">파일 업로드 테스트</a></td>
+				</tr>
+				<tr>
+					<td><a href="#">### 관리</a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<!-- <div id="test">
+
+</div> -->
+
 	<div class="container text-center" style="position: relative;">
 
 		<img src="<c:url value='/images/shop/main/main.jpg'/>" width=800
@@ -41,9 +92,9 @@
 			<div class="row">
 				<c:forEach var="product_list" items="${list}">
 					<div class="col-3">
-						
-						<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
-						<img src="<c:url value='/'/>file/${productuser_list.p_image}" width="270" height="270"></a>
+
+						<img src="./images/main/photo/${product_list.p_image}" width="270"
+							height="385" />
 
 						<p>
 

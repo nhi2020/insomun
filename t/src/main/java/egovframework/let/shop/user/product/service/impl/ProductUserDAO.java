@@ -50,9 +50,9 @@ public class ProductUserDAO extends EgovAbstractDAO {
     	return result;
     }
 
-	public String insertUserProductPro(ProductUserVO vo) throws Exception {
-		String result = (String) insert("EgovUserProductDAO.insertUserProductPro", vo);
-		return result;
+	public int insertUserProductPro(ProductUserVO vo) throws Exception {
+		return (int) insert("EgovUserProductDAO.insertUserProductPro", vo);
+		 
 	}
 	public int deleteUserProduct(ProductUserVO vo) throws Exception{
 		return update("EgovUserProductDAO.deleteUserProduct", vo);
