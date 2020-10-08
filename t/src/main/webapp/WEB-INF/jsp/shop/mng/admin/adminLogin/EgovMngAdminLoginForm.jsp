@@ -21,6 +21,7 @@
 </script>
 </head>
 <body>
+<%@ include file="../../../inc/EgovShopHeader.jsp" %>
 <form action="<c:url value='/shop/mng/admin/EgovMngAdminLoginPro.do'/>">
 	<div class="container" style="text-align:center; margin-top: 20px">
 		<h2>관리자 로그인</h2>
@@ -35,35 +36,6 @@
 	    <button class="btn btn-secondary" type="submit" style="width: 100%">로그인</button>
 	 </div><br>
 </form>
-<div class="container" style="text-align:center;">
-	<div class="find_info align_center">
-		<a target="_blank" id="idinquiry" href="<c:url value='#'/>">아이디 찾기</a> <span class="bar" aria-hidden="true">|</span> 
-		<a target="_blank" id="pwinquiry" href="<c:url value='#'/>">비밀번호 찾기</a> <span class="bar" aria-hidden="true">|</span> 
-		<a target="_blank" id="join" href="<c:url value='#'/>">회원가입</a>
-	</div>
-</div>	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-<%-- <div class="container text-center">
-	<h2>마켓 컬리</h2>
-		<c:forEach items="${list}" var="result">
-			<a>상품 : ${result.p_idx }</a> <p>
-		</c:forEach>
-</div>
-	<div id="paging_div">
-		<ul class="paging_align">
-			<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="fn_egov_select_productList" />
-		</ul>
-	</div> --%>
-
+<%@ include file="../../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>

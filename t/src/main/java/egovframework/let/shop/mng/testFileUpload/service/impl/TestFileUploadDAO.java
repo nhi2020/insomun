@@ -48,11 +48,12 @@ public class TestFileUploadDAO extends EgovAbstractDAO {
 	public int deleteTestFileUpload(TestFileUploadVO vo) {
 		int result = 0;
 		try {
-			delete("deleteTestFileUpload", vo);
+			delete("deleteTestFileUpload",vo);
 			result = 1;
 		} catch (Exception e) {
 			System.out.println("TestFileUploadDAO deleteTestFileUpload Exception: " + e.getMessage());
 		}
+
 		return result;
 	}
 

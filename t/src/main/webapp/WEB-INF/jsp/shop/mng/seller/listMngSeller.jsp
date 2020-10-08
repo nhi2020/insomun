@@ -113,7 +113,7 @@
 					<th>강제 로그인</th>
 				</tr>
 				
-		
+				
 				<c:forEach items="${list }" var="s_list" varStatus="status">
 					<tr>
 						<td><input type="checkbox" name="chk" id="chk" value="${s_list.s_idx }"></td>
