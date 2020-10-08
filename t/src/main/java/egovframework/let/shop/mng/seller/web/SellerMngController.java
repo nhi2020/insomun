@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.let.shop.mng.buyer.service.impl.BuyerMngVO;
 import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
@@ -109,11 +110,7 @@ public class SellerMngController {
 	}
 	
 	@RequestMapping(value = "/shop/mng/seller/updateMngSellerPro", method = RequestMethod.POST)
-<<<<<<< HEAD
 	public String updateMngSellerPro(HttpServletRequest request, SellerMngVO vo, Model model, String path) throws IOException{
-=======
-	public String updateMngSellerPro(SellerMngVO vo, Model model) {
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 		System.out.println("updateMngSellerPro()");
 		System.out.println("vo.getS_nickname() ->" + vo.getS_nickname());
 		int result = sellerService.sellerUpdate(vo);
@@ -133,24 +130,14 @@ public class SellerMngController {
 		
 		int result = sellerService.updateMngSellerStateChange(vo);
 		if(result > 0) {
-<<<<<<< HEAD
 			redirect.addFlashAttribute("result", result);
-=======
 			model.addAttribute("msg", "수정성공");
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 		} else {
-<<<<<<< HEAD
 			redirect.addFlashAttribute("result", result);
-=======
 			model.addAttribute("msg", "수정 실패");
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 		}
 		String pageIndex = Integer.toString(vo.getPageIndex());
-<<<<<<< HEAD
 		return "redirect:/shop/mng/seller/listMngSeller.do";
-=======
-		return "redirect:/shop/mng/seller/listMngSeller.do?pageIndex=" + pageIndex;
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 	}
 	
 	@RequestMapping("/shop/mng/seller/InsertMngSellerForm.do")
@@ -172,7 +159,6 @@ public class SellerMngController {
 		
 		String result = sellerService.InsertMngSellerPro(vo);
 	
-<<<<<<< HEAD
 		if(result != "" && result != null) {
 			redirect.addFlashAttribute("result1", result);
 			System.out.println("result1->" + result);
@@ -181,36 +167,24 @@ public class SellerMngController {
 			System.out.println("result1->" + result);
 		}
 		
-=======
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 		return "redirect:/shop/mng/seller/listMngSeller.do";
 	}
 	
 	@RequestMapping(value = "/shop/mng/seller/delMngSeller.do")
-<<<<<<< HEAD
 	public String delMngSeller(SellerMngVO mngVO, HttpServletRequest request, Model model, RedirectAttributes redirect) {
-=======
-	public String delMngSeller(SellerMngVO mngVO, HttpServletRequest request) {
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 		String[] chk = request.getParameterValues("chk");
 		for (int j = 0; j < chk.length; j++) {
 			System.out.println("chk : " +chk[j]);
 			mngVO.setS_idx(chk[j]);
-<<<<<<< HEAD
 			int result = sellerService.delMngSeller(mngVO);
 			if(result > 0) {
 				redirect.addFlashAttribute("result", result);
 			} else {
 				redirect.addFlashAttribute("result", result);
 			}
-=======
 			sellerService.delMngSeller(mngVO);
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 		}
-<<<<<<< HEAD
-=======
 		
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 		return "redirect:/shop/mng/seller/listMngSeller.do";
 	}	
 	

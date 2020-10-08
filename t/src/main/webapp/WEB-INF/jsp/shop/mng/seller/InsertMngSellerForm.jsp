@@ -169,7 +169,6 @@ function fn_idChk(){
     }
 </script>
 
-<<<<<<< HEAD
 
 <script type="text/javascript">
 function readURL(input) {
@@ -217,17 +216,12 @@ input[type="file"] {
   border: 0;
 }
 </style>
-=======
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 </head>
 
 <body>
 	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
-<<<<<<< HEAD
 <p><p><p><p><p>
-=======
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 
 <div class="container">
 		<div class="row">
@@ -244,7 +238,6 @@ input[type="file"] {
  					</tr>
  									
 					<tr>
-<<<<<<< HEAD
 						<th></th>
 						<td height="200" style=""><img id="blah" src="#" alt="your image" width="200" height="200" /></td>    				
 					</tr>
@@ -252,10 +245,6 @@ input[type="file"] {
 						<th>파일업로드</th>	
 						<td><label for="ex_file">업로드</label>
 							<input type='file' name="file" id="ex_file" onchange="readURL(this);" /></td>    
-=======
-						<th>파일업로드</th>
-						<td><input type="file" name="file"></td>
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 					</tr>
 					<tr>
 						<th>회원아이디</th>
