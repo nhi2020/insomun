@@ -10,12 +10,7 @@
 <meta http-equiv="content-language" content="ko">
 <title>상세페이지</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script type="text/javascript">
-	function likeUserInsert(){
-		document.frm.action="/shop/user/product/LikeUserInsert.do";
-		document.frm.submit();
-	}
-</script>
+
 
 </head>
 
@@ -28,16 +23,10 @@
  <div class="container-fluid">
 	<div class="container text-center">
 	    <div class="row">
-<<<<<<< HEAD
-			<form name="frm" method="post">
-				<input type="hidden" name="s_id" value="${ProductUserVO.s_id }"/>
-		    	<input type="hidden" name="p_idx" value="${ProductUserVO.p_idx }" />
-=======
-			<form name="frm" action="" >
+			<form name="frm" action=""  enctype="multipart/form-data">
 	    <input type="hidden" name="p_idx" value="${ProductUserVO.p_idx }" />
 	    <input type="hidden" name="s_id" value="${ProductUserVO.s_id }" />
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
-					<img src="./images/main/photo/${ProductUserVO.p_image}" width="270" height="385" class="float-left"/>
+					<img src="<c:url value='/'/>file/${ProductUserVO.p_image}" width="270" height="270"/>
 						<p>
 					<table class="table">
 					<tr>
@@ -48,15 +37,6 @@
 					<tr>
 						<th>가격</th>
 						<td>${ProductUserVO.p_price }</td>
-						<!-- <th class="dropdown">
-  					<button class="dropbtn">Dropdown</button>
-  					<div class="dropdown-content">
-  					<div class="dropdown">Dropdown</div>
-    				<a>1</a>
-    				<a>2</a>
-    				<a>3</a>
-  </div>
-</div> -->
 					</tr>
 					<tr>
 						<th>제품 내용</th>
@@ -86,13 +66,8 @@
 				
 				<p/>
 				<p/>
-<<<<<<< HEAD
-				<input type="submit" value="장바구니" onclick=""/>
-				<input type="submit" value="찜하기" onclick="likeUserInsert();"/>
-=======
 				<input type="submit" value="장바구니" onclick="goBasket(${ProductUserVO.p_idx}); return false;"/>
 				<input type="submit" value="찜하기" onclick=""/>
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 				<input type="submit" value="바로구매" onclick=""/>
 				<p/>
 				<input type="button" value="목록" onclick="location.href='/shop/user/product/EgovUserProductlist.do'"/>
