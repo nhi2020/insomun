@@ -354,6 +354,7 @@
 		SET
 			s_nickname = #s_nickname#,
 			s_email = #s_email#,
+			s_photo = #s_photo#,
 			s_status = #s_status#,
 			s_phone = #s_phone#,
 			s_account_n = #s_account_n#,
@@ -414,5 +415,5 @@
 					END
 		WHERE S_IDX = #s_idx#
 	</update>  
-	 
+
 </sqlMap>

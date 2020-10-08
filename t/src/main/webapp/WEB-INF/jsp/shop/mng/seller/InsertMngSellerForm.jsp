@@ -10,8 +10,130 @@
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
 <script type="text/javascript">
-function inputPhoneNumber(obj) {
+$(document).ready(function(){
+	
+	$("#s_id").blur(function() {
+          idFlag = false;
+          fn_idChk("first");
+      });
+	 // 취소
+	$("#submit").on("click", function(){
+		//이메일 정규식
+		if($("#s_id").val()==""){
+			alert("아이디를 입력해주세요.");
+			$("#s_id").focus();
+			return false;
+		}
+		if($("#s_nickname").val()==""){
+			alert("성명을 입력해주세요.");
+			$("#s_nickname").focus();
+			return false;
+		}
+		if($("#s_pass").val()==""){
+			alert("비밀번호를 입력해주세요.");
+			$("#s_pass").focus();
+			return false;
+		}
+		if($("#s_pass2").val()==""){
+			alert("비밀번호재확인를 입력해주세요.");
+			$("#s_pass2").focus();
+			return false;
+		}
+		if($("#s_pass").val() != $("#s_pass2").val()){
+			alert("비밀번호가 일치하지 않습니다.");
+			$("#s_pass").focus();
+			return false;
+		}
+		if($("#s_email").val()==""){
+			alert("이메일을 입력해주세요.");
+			$("#s_email").focus();
+			return false;
+		}
+		if($("#s_phone").val()==""){
+			alert("핸드폰 번호을 입력해주세요.");
+			$("#s_phone").focus();
+			return false;
+		}
+		if($("#sample6_address").val()==""){
+			alert("주소를 입력해주세요.");
+			$("#sample6_address").focus();
+			return false;
+		}
+		if($("#sample6_detailAddress").val()==""){
+			alert("상세주소를 입력해주세요.");
+			$("#sample6_detailAddress").focus();
+			return false;
+		}
+		if($("#s_gender").val()==""){
+			alert("성별을 입력해주세요.");
+			$("#s_gender").focus();
+			return false;
+		}
+		if($("#s_birth").val()==""){
+			alert("생일을 입력해주세요.");
+			$("#s_birth").focus();
+			return false;
+		}
+		var idChkVal = $("#idChk").val();
+		if(idChkVal == "N"){
+			alert("중복확인 버튼을 눌러주세요.");
+			return false;
+		}else if(idChkVal == "Y"){
+			$("#regForm").submit();
+		}else if(idChkVal == "D"){
+			alert("중복된 아이디입니다.");
+			return false;
+		}
+	
+	}); 
+})
+
+function fn_idChk(){
+			if(idFlag) return true;
+			var oMsg = $("#idMsg");
+	        var oInput = $("#id");
+
+	        if ( $("#s_id").val() == "") {
+	            showErrorMsg(oMsg,"필수 정보입니다.");
+	            setFocusToInputObject(oInput);
+	            return false;
+	        }
+	
+			idFlag = false;
+			$.ajax({
+				url : "/shop/user/seller/sellerIdChk.do",
+				type : "post",
+				dataType : "json",
+				data : {"s_id" : $("#s_id").val()},
+				success : function(data){
+					if(data == 1){
+						showErrorMsg(oMsg, "이미 사용중이거나 탈퇴한 아이디입니다.");
+						$("#idChk").attr("value", "D");
+					
+					}else if(data == 0){
+						  showSuccessMsg(oMsg, "멋진 아이디네요!");
+						$("#idChk").attr("value", "Y");
+						
+						
+					}
+					
+				}
+			})
+			return true;
+		}
+function showSuccessMsg(obj, msg) {
+    obj.attr("class", "error_next_box green");
+    obj.html(msg);
+    obj.show();
+}
+function showErrorMsg(obj, msg) {
+    obj.attr("class", "error_next_box");
+    obj.html(msg);
+    obj.show();
+} 
+ function inputPhoneNumber(obj) {
 
 
 
@@ -40,106 +162,10 @@ function inputPhoneNumber(obj) {
         phone += number.substr(7);
     }
     obj.value = phone;
-}
-
-$(document).ready(function(){
-	// 취소
-	$(".cencle").on("click", function(){
-		location.href = "/";
-	})
-	
-	$("#submit").on("click", function(){
-		//이메일 정규식
-		if($("#s_id").val()==""){
-			alert("아이디를 입력해주세요.");
-			$("#s_id").focus();
-			return false;
-		}
-		if($("#s_pass").val()==""){
-			alert("비밀번호를 입력해주세요.");
-			$("#s_pass").focus();
-			return false;
-		}
-		if($("#s_pass2").val()==""){
-			alert("비밀번호재확인를 입력해주세요.");
-			$("#s_pass2").focus();
-			return false;
-		}
-		if($("#s_pass").val() != $("#s_pass2").val()){
-			alert("비밀번호가 일치하지 않습니다.");
-			$("#s_pass").focus();
-			return false;
-		}
-		if($("#s_nickname").val()==""){
-			alert("성명을 입력해주세요.");
-			$("#s_nickname").focus();
-			return false;
-		}
-		if($("#sample6_address").val()==""){
-			alert("주소를 입력해주세요.");
-			$("#sample6_address").focus();
-			return false;
-		}
-		if($("#sample6_detailAddress").val()==""){
-			alert("상세주소를 입력해주세요.");
-			$("#sample6_detailAddress").focus();
-			return false;
-		}
-		if($("#s_email").val()==""){
-			alert("이메일을 입력해주세요.");
-			$("#s_email").focus();
-			return false;
-		}
-		if($("#s_phone").val()==""){
-			alert("핸드폰 번호을 입력해주세요.");
-			$("#s_phone").focus();
-			return false;
-		}
-		if($("#s_birth").val()==""){
-			alert("생년월일을 입력해주세요.");
-			$("#s_birth").focus();
-			return false;
-		}
-		var idChkVal = $("#idChk").val();
-		if(idChkVal == "N"){
-			alert("중복확인 버튼을 눌러주세요.");
-			return false;
-		}else if(idChkVal == "Y"){
-			$("#regForm").submit();
-		}else if(idChkVal == "D"){
-			alert("중복된 아이디입니다.");
-			return false;
-		}
-	
-	});
-})
-
-function fn_idChk(){
-	if($("#s_id").val()==""){
-		alert("아이디를 입력해주세요.");
-		$("#s_id").focus();
-		return false;
-	}
-	$.ajax({
-		url : "/shop/user/seller/sellerIdChk.do",
-		type : "post",
-		dataType : "json",
-		data : {"s_id" : $("#s_id").val()},
-		success : function(data){
-			if(data == 1){
-				alert("중복된 아이디입니다.");
-				$("#idChk").attr("value", "D");
-				$("#s_id").focus();
-				
-			}else if(data == 0){
-				$("#idChk").attr("value", "Y");
-				alert("사용가능한 아이디입니다.");
-			}
-		}
-	})
-}	
+} 
 </script>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+ <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -169,34 +195,44 @@ function fn_idChk(){
     }
 </script>
 
+
+<script type="text/javascript">
+function readURL(input) {
+if (input.files && input.files[0]) {
+var reader = new FileReader();
+reader.onload = function (e) {
+$('#blah').attr('src', e.target.result);
+}
+reader.readAsDataURL(input.files[0]);
+}
+}
+</script>
+
 </head>
 
 <body>
 	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
-
+<p><p><p><p><p>
 <div class="container">
 		<div class="row">
-			
-			
-			
+					
 			<form class="mx-auto" action="/shop/mng/seller/InsertMngSellerPro.do" method="post" enctype="multipart/form-data">
 					<input type="hidden" value="" name="s_addr">
 					
 				<table class="table">		
-						
-		<tr>
-  						 <td colspan="4"><div id="preView" class="preView" style="text-align: center;"></div></td>
- 					</tr>
- 									
 					<tr>
-						<th>파일업로드</th>
-						<td><input type="file" name="file"></td>
+						<th></th>
+						<td height="200" style=""><img id="blah" src="#" alt="your image" width="200" height="200" /></td>    				
+					</tr>
+					<tr>
+						<th>파일업로드</th>	
+						<td><input type='file' name="file" onchange="readURL(this);" /></td>    
 					</tr>
 					<tr>
 						<th>회원아이디</th>
-						<td><input type="text" name="s_id" id="s_id" placeholder="아이디">
-						<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button></td>
+						<td><input type="text" id="s_id" name="s_id" placeholder="아이디"><br>
+							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span></td>
 					</tr>
 			
 					<tr> 

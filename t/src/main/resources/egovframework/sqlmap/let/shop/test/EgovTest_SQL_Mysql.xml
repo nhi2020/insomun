@@ -23,5 +23,11 @@
 	FROM TFILE
 	WHERE 1=1
 	</select>
+	
+	<delete id="deleteTestFileUpload" parameterClass="TestFileUploadVO">
+	DELETE
+	FROM TFILE
+	WHERE TFILE_IDX = #tfile_idx#
+	</delete>
 
 </sqlMap>

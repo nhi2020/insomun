@@ -20,9 +20,8 @@ import egovframework.let.shop.user.review.service.ReviewUserVO;
 public class LogFileUtils {
 
    public List<ReviewUserVO> parseInsertFileInfo(HttpServletRequest request) throws Exception {
-      String url = this.getClass().getResource("").getPath();
-      String rootPath = url.substring(1, url.indexOf(".metadata")) + "log/src/main/webapp/WEB-INF/jsp/shop/user/upload/";
-      System.out.println("url :" + url);
+	  String rootPath=request.getSession().getServletContext().getRealPath("/upload/");
+      System.out.println("url :" + rootPath);
       MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
       Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
       MultipartFile multipartFile = null;
@@ -43,10 +42,12 @@ public class LogFileUtils {
             storedFileName = CommonUtils.getRandomString() + originalFileExtension;
             file = new File(rootPath + storedFileName);
             multipartFile.transferTo(file);
-            vo.setOriginal_pic_name(originalFileName);
+           /* vo.setOriginal_pic_name(originalFileName);
             vo.setStored_pic_name(storedFileName);
             vo.setPic_size(multipartFile.getSize());
-            vo.setWhere_is_pic(url);
+            vo.setWhere_is_pic(url);*/
+            vo.setOriginal_file_name(originalFileName);
+            
             list.add(vo);
          }
       }
@@ -54,10 +55,10 @@ public class LogFileUtils {
    }
 
    public void downloadFile(ReviewUserVO vo, HttpServletResponse response) throws Exception {
-      String storedFileName = vo.getStored_pic_name();
-      String originalFileName = vo.getOriginal_pic_name();
+      long storedFileName = vo.getStored_file_name();
+      String originalFileName = vo.getOriginal_file_name();
       String url = this.getClass().getResource("").getPath();
-      String rootPath = url.substring(1, url.indexOf(".metadata")) + "log/src/main/webapp/WEB-INF/jsp/shop/user/upload/";
+      String rootPath = url.substring(1, url.indexOf(".metadata"));
       byte fileByte[] = FileUtils.readFileToByteArray(new File(rootPath + storedFileName));
       response.setContentType("application/octet-stream");
       response.setContentLength(fileByte.length);

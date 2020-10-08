@@ -159,7 +159,8 @@
 				, R_DELYN
 				, R_DIV
 				, SNS_SCORE
-				, SELLER_SCORE)
+				, SELLER_SCORE
+				)
 			VALUES
 			(
 				  #s_id#
@@ -169,33 +170,54 @@
 				, SYSDATE()
 				, 'N'
 				, #r_div#
-				, 3 
+				, #sns_score# 
 				, 1
 			)			
 		]]>
 	</insert>
-	<insert id="EgovReviewDAO.insertUserPicReview" parameterClass="ReviewVO">
-		<isNotEmpty property="ORIGINAL_PIC_NAME">
-			<![CDATA[
-					INSERT INTO REVIEW(
-						   ORIGINAL_PIC_NAME
-						 , STORED_PIC_NAME
-						 , PIC_SIZE
-						 , WHERE_IS_PIC
-						 )
-					VALUES
-					(
-						  #original_pic_name#
-						, #stored_pic_name#
-						, #pic_name#
-						, #where_is_pic#
-					)			
-				]]>
-		</isNotEmpty>
-	</insert>
 	
+	<!-- <select id="EgovReviewDAO.selectFileMax" resultClass="java.lang.Integer" >
+		<![CDATA[
+			SELECT 
+				ifnull(MAX(TFILE_IDX),1) AS TFILE_IDX
+			FROM
+				TFILE
+			WHERE 1=1
+		]]>				
+	</select>
+	
+	<insert id="EgovReviewDAO.insertFileUserReview" parameterClass="ReviewVO">
+		<selectKey resultClass="int" keyProperty="tfile_idx">
+			SELECT 
+				CASE 
+					WHEN 
+						MAX(TFILE_IDX) IS NULL 
+					THEN 
+						1 
+					ELSE
+						MAX(TFILE_IDX)+1 
+					END
+			FROM
+				TFILE
+		</selectKey>
+			<isNotEmpty>
+				<![CDATA[
+					INSERT INTO TFILE(
+						  TFILE_IDX
+						, ORIGINAL_FILE_NAME
+						, STORED_FILE_NAME
+						, FILE_SIZE
+					VALUES(
+						 #tfile_idx#
+						,#original_file_name#
+						,#stored_file_name#
+						,#file_size#
+					)
+				]]>
+			</isNotEmpty>
+	</insert> -->
 <!-- 관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용관리자용 -->
-<resultMap id="MngReviewList" class="egovframework.let.shop.mng.review.service.ReviewMngVO"> 
+	<resultMap id="MngReviewList" class="egovframework.let.shop.mng.review.service.ReviewMngVO"> 
 		<result property="r_idx" column="R_IDX" columnIndex="1"/>
 		<result property="p_idx" column="P_IDX" columnIndex="2"/>
 		<result property="p_name" column="P_NAME" columnIndex="3"/>
@@ -293,7 +315,7 @@
 		]]>
 </select>
 
-<update id="EgovMngReviewDAO.updateMngUserReview" parameterClass="ReviewMngVO">
+	<update id="EgovMngReviewDAO.updateMngUserReview" parameterClass="ReviewMngVO">
 	 		<![CDATA[
 				UPDATE REVIEW SET 
 					R_DELYN = 'Y'
@@ -301,7 +323,7 @@
 	 		]]>
 	</update>
 	
-<update id="EgovMngReviewDAO.reUpdateMngUserReview" parameterClass="ReviewMngVO">
+	<update id="EgovMngReviewDAO.reUpdateMngUserReview" parameterClass="ReviewMngVO">
 	 		<![CDATA[
 				UPDATE REVIEW SET 
 					R_DELYN = 'N'
