@@ -22,8 +22,9 @@
 	
 <form action="/shop/user/product/EgovUserProductDelete.do" >
 <c:if test="${sessionScope.status == 2 }">
-<input type="button" value="등록" onclick="location.href='/shop/user/product/EgovUserProductInsertForm.do'"> &nbsp;
-<input type="submit" value="삭제">
+<input type="button" value="등록" onclick="location.href='/shop/user/product/EgovUserProductInsertForm.do'" style="float:right"> &nbsp;
+<input type="submit" value="삭제" style="text-align: center";>
+
 </c:if>
 <c:if test="${sessionScope.status == 1 }">
 <input type="submit" value="거래하기" onclick="">

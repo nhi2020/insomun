@@ -79,6 +79,7 @@
 			P_PRICE = #p_price#,
 			P_CONTENT = #p_content#,
 			P_TAGE = #p_tage#,
+			P_IMAGE = #p_image#,
 			P_Q = #p_q#,
 			P_SDATE = #p_sdate#,
 			P_EDATE = #p_edate#,
