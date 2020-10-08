@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.let.shop.mng.testFileUpload.service.TestFileUpload;
 import egovframework.let.shop.mng.testFileUpload.service.TestFileUploadService;
@@ -112,6 +113,44 @@ public class TestFileUploadController {
 		model.addAttribute("savedName", savedName);
 
 		return "redirect:/shop/mng/testFileUpload/insertTestFileUploadForm.do";
+	}
+	
+	@RequestMapping("/shop/mng/testFileUpload/deleteTestFileUpload")
+	public String deleteTestFileUpload(TestFileUploadVO vo,HttpServletRequest request, Model model, RedirectAttributes redirect){
+		String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
+		String deleteFilename = uploadPath + vo.getStored_file_name();
+		logger.info("deleteFilename => " + deleteFilename);
+		int delResult = deleteFile(deleteFilename);
+		logger.info("deleteFile result : " + delResult);
+		
+		// DB 반영.
+		
+		int dbResult = testFileUploadService.deleteTestFileUpload(vo);
+		
+		redirect.addFlashAttribute("dbResult", dbResult);
+		redirect.addFlashAttribute("delResult", delResult);
+		
+		return "redirect:/shop/mng/testFileUpload/insertTestFileUploadForm.do";
+	}
+
+	private int deleteFile(String deleteFilename) {
+		int result = 0;
+		logger.info("deleteFile start");
+		File file = new File(deleteFilename);
+		if(file.exists()){
+			if(file.delete()){
+				result = 1;
+				System.out.println("삭제 성공");
+			}else{
+				result = 0;
+				System.out.println("삭제 실패");
+			}
+		} else {
+			result = -1;
+			System.out.println("파일이 존재하지 않습니다.");
+		}
+		
+		return result;
 	}
 
 	// 업로드용 메소드. 저장된 파일명을 반환한다. 
