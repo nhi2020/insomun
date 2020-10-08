@@ -112,6 +112,11 @@ public class SellerUserDAO extends EgovAbstractDAO {
 		return (int) select("EgovSellerDAO.sellerEmailChk",vo);
 	}
 
+	public void updateAgreenum(SellerUserVO vo) {
+		update("EgovSellerDAO.updateAgreenum",vo);
+		
+	}
+
 
 
 }

@@ -80,8 +80,8 @@
 			SELLER
 	</selectKey>
 		<![CDATA[  
-			INSERT INTO SELLER(S_ID,S_IDX, S_NICKNAME,S_PASS,S_EMAIL,S_STATUS,S_PHONE,S_ADDR,S_GENDER,S_REGDATE,S_BIRTH,S_ACCOUNT,S_ACCOUNT_N)
-			value(#s_id#,#s_idx#,#s_nickname#,#s_pass#,#s_email#,'Y',#s_phone#,#s_addr#,#s_gender#,now(),#s_birth#,#s_account#,#s_account_n#)
+			INSERT INTO SELLER(S_ID,S_IDX, S_NICKNAME,S_PASS,S_EMAIL,S_PHOTO,S_STATUS,S_PHONE,S_ADDR,S_GENDER,S_REGDATE,S_BIRTH,S_ACCOUNT,S_ACCOUNT_N)
+			value(#s_id#,#s_idx#,#s_nickname#,#s_pass#,#s_email#,#s_photo#,'Y',#s_phone#,#s_addr#,#s_gender#,now(),#s_birth#,#s_account#,'NULL')
 		]]>
 	</insert>
 	<select id="EgovSellerDAO.sellerSearchIdPro"  parameterClass="SellerVO" resultClass="SellerVO">
@@ -139,6 +139,15 @@
  		<![CDATA[
 			UPDATE SELLER SET 
 				S_AGREENUM = #s_agreenum#
+			WHERE 1=1
+			AND S_NAME = #s_name#
+			AND S_EMAIL = #s_email#
+ 		]]>
+ 	</update>
+ 	<update id="EgovSellerDAO.updateAgreenum" parameterClass="SellerVO">
+ 		<![CDATA[
+			UPDATE SELLER SET 
+				S_AGREENUM = 0
 			WHERE 1=1
 			AND S_NAME = #s_name#
 			AND S_EMAIL = #s_email#

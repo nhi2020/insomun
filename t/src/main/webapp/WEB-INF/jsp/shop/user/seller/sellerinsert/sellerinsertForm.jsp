@@ -4,9 +4,36 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
 <%@ include file="../../../inc/EgovShopTop.jsp" %>
+<%@ include file="../../../inc/EgovShopHeader.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style> 
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+input[type=file] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+input[type=date] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
@@ -514,7 +541,7 @@
 		<div class="row justify-content-center">
 		
 		<!-- <form action="/shop/user/EgovUserLoginForm.do" name="frm" method="post"> -->
-			<form action="/shop/user/seller/sellerinsertPro.do" name="frm" method="post">
+			<form action="/shop/user/seller/sellerinsertPro.do" name="frm" method="post" enctype="multipart/form-data">
 			<input type="hidden" value="" name="s_addr">
 			<input type="hidden" id="idChk" value="N">
 			<input type="hidden" id="nickChk" value="N">
@@ -576,7 +603,7 @@
 							<input type="radio" class="form-check-input" id="s_gender" name="s_gender" value="여자">여
 						</label>
 					</div>
-					<input type="file"  id="S_PHOTO" name="S_PHOTO"><br>
+					<input type="file"  id="file" name="file"><br>
 					<div class="form-check-inline">
 						<input class="btn btn-success" type="submit" id="submit" value="회원가입">
 					</div>
@@ -586,7 +613,7 @@
 		</div>
 	</div>
 	</div>
-	
+<%@ include file="../../../inc/EgovShopBottom.jsp" %>
 </html>
 </body>
 </html>

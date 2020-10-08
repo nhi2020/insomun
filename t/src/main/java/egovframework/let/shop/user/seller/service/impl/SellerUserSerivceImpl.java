@@ -133,4 +133,12 @@ public class SellerUserSerivceImpl extends EgovAbstractServiceImpl implements Se
 
 
 
+	@Override
+	public void updateAgreenum(SellerUserVO vo) {
+		SellerDAO.updateAgreenum(vo);
+		
+	}
+
+
+
 }

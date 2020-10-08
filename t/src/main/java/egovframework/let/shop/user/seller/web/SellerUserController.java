@@ -1,7 +1,10 @@
 package egovframework.let.shop.user.seller.web;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
@@ -9,20 +12,26 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import egovframework.let.shop.mng.admin.service.impl.AdminVO;
 import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
+import egovframework.let.shop.mng.testFileUpload.web.TestFileUploadController;
 import egovframework.let.shop.user.seller.service.SellerUserService;
 import egovframework.let.shop.user.seller.service.impl.SellerUserVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
@@ -34,11 +43,16 @@ public class SellerUserController {
 	/**
 	 * EgovBBSManageService
 	 */
+	private static final Logger logger = LoggerFactory.getLogger(TestFileUploadController.class);
+	
 	@Resource(name = "SellerUserService")
 	private SellerUserService SellerService;
 
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
+	
+	@Resource(name = "multipartResolver")
+	CommonsMultipartResolver multipartResolver;
 	
 	@Autowired
 	private JavaMailSender mailSender;
@@ -147,7 +161,35 @@ public class SellerUserController {
 		return "/shop/user/seller/sellerinsert/sellerinsertForm";
 	}
 	@RequestMapping(value="/shop/user/seller/sellerinsertPro.do", method = RequestMethod.POST )
-	public String sellerinsertPro(SellerUserVO vo, Model model ){
+	public String sellerinsertPro(HttpServletRequest request, SellerUserVO vo, Model model,MultipartFile file,String path ) throws Exception {
+		// 업로드용 경로 설정
+				String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
+				// 서버에 업로드할 경우엔 프로퍼티에서 경로를 설정할 예정. 
+				// String uploadPath = propertyService.getString("Globals.fileStorePath");
+				System.out.println("uploadPath => " + uploadPath);
+				System.out.println("uploadForm POST Start");
+				
+				logger.info("originalName : " + file.getOriginalFilename());
+				logger.info("Size : " + file.getSize());
+				logger.info("contentType : " + file.getContentType());
+				System.out.println("file------------------->"+file);
+				String savedName= null;
+				if(file.getSize() != 0){
+				// 업로드하고 파일명을 받아온다. 
+				savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
+				logger.info("savedNames: " + savedName);
+				}
+				// VO에 파일 관련된 값을 수동으로 넘겨준다. savedName이 가장 중요하다. 
+				
+				vo.setS_photo(savedName);
+				if(savedName == null){
+					if(vo.getS_gender().equals("남자")){
+						vo.setS_photo("m.jpg");
+					}else{
+						vo.setS_photo("g.jpg");
+					}
+				}
+				System.out.println("이미지"+vo.getS_photo());
 		System.out.println("회원가입3");
 		System.out.println("은행선택"+vo.getS_account_n());
 		String addr1 =vo.getAddr1();
@@ -164,6 +206,35 @@ public class SellerUserController {
 	
 		return "redirect:/shop/user/EgovUserLoginForm.do";
 	}
+	private String uploadFile(String originalName, byte[] fileData, String uploadPath) throws Exception {
+		
+		// 랜덤으로 UUID를 생성해 파일 앞에 붙여줄 예정.
+		UUID uid = UUID.randomUUID();
+		System.out.println("uploadPath => " + uploadPath);
+		
+		// 업로드 경로를 확인하고, 경로에 폴더가 존재하지 않을 경우 생성해준다. 
+		File fileDiretory = new File(uploadPath);
+		if (!fileDiretory.exists()) {
+			fileDiretory.mkdirs();
+			System.out.println("the directory for uploading : " + uploadPath);
+		}
+		
+		// UUID를 스트링으로 변환해 원래 이름 앞에 붙여준다.
+		String savedName = uid.toString() + "_" + originalName;
+		
+		String[] invalidName = {"\\\\","/",":","\"","<",">","\\[","\\]"}; // 윈도우 파일명으로 사용할수 없는 문자
+
+		for(int i=0;i<invalidName.length;i++)
+			savedName = savedName.replaceAll(invalidName[i], "_"); // 언더바로 치환
+
+
+		// 저장될 파일 경로를 지정.
+		File target = new File(uploadPath, savedName);
+		
+		// FileCopyUtils로 경로에 저장해 복사한다.
+		FileCopyUtils.copy(fileData, target);
+		return savedName;
+	}
 	@RequestMapping(value="/shop/user/seller/sellerIdAgreeFrom.do")
 	public String sellerIdAgreeFrom(){
 		System.out.println("아이디 찾기 ");
@@ -176,6 +247,9 @@ public class SellerUserController {
 		System.out.println("test"+vo.getS_name());
 		System.out.println("testtest"+s_name);
 		String name = SellerService.sellerFindId(vo);
+		if(name != null){
+			SellerService.updateAgreenum(vo);
+		}
 		model.addAttribute("s_id",name);
 		return "/shop/user/seller/sellerFind/sellerFindId";
 	}

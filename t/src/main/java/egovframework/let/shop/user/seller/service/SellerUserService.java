@@ -42,5 +42,7 @@ public interface SellerUserService {
 
 	public int sellerEmailChk(SellerUserVO vo);
 
+	public void updateAgreenum(SellerUserVO vo);
+
 
 }
