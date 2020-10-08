@@ -53,7 +53,7 @@
 			<textarea rows="3" cols="80" name="r_content" id="r_content"></textarea>
 			<input type="file" name="file" id="file">
 			<c:choose>
-				<c:when test="${list.r_div eq 0 }"> <!-- 구매자 -->
+				<c:when test="${r_div eq 0 }"> <!-- 구매자 -->
 					<input type="radio" name="sns_score" id="radio1" value="1"><p>1점</p>
 					<input type="radio" name="sns_score" id="radio2" value="2"><p>2점</p>
 					<input type="radio" name="sns_score" id="radio3" value="3"><p>3점</p>

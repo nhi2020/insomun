@@ -42,4 +42,9 @@ public class ReviewUserDAO extends EgovAbstractDAO {
 	public List<String> pic_idx(ReviewUserVO reviewVO) throws Exception{
 		return (List<String>) list("EgovReviewDAO.selectFileMax",reviewVO);
 	}
+	//상품사진 인덱스 출력
+	@SuppressWarnings("unchecked")
+	public List<String> selectReviewAvg(ReviewUserVO reviewVO) throws Exception{
+		return (List<String>) list("EgovReviewDAO.selectReviewAvg", reviewVO);
+	}
 }

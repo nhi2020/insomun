@@ -15,17 +15,24 @@ public class ReviewUser {
 	private String nickname;
 	private String p_name;
 
-	private String tfile_idx;
 	private String original_file_name;
-	private long stored_file_name;
-	private String file_size;
+	private String stored_file_name;
+	private long file_size;
 
-	public String getTfile_idx() {
-		return tfile_idx;
+	public String getStored_file_name() {
+		return stored_file_name;
 	}
 
-	public void setTfile_idx(String tfile_idx) {
-		this.tfile_idx = tfile_idx;
+	public void setStored_file_name(String stored_file_name) {
+		this.stored_file_name = stored_file_name;
+	}
+
+	public long getFile_size() {
+		return file_size;
+	}
+
+	public void setFile_size(long file_size) {
+		this.file_size = file_size;
 	}
 
 	public String getOriginal_file_name() {
@@ -34,22 +41,6 @@ public class ReviewUser {
 
 	public void setOriginal_file_name(String original_file_name) {
 		this.original_file_name = original_file_name;
-	}
-
-	public long getStored_file_name() {
-		return stored_file_name;
-	}
-
-	public void setStored_file_name(long stored_file_name) {
-		this.stored_file_name = stored_file_name;
-	}
-
-	public String getFile_size() {
-		return file_size;
-	}
-
-	public void setFile_size(String file_size) {
-		this.file_size = file_size;
 	}
 
 	public String getS_id() {

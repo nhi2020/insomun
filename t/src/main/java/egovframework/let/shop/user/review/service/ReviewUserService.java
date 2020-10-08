@@ -23,4 +23,7 @@ public interface ReviewUserService {
 	
 	//사진번호 출력
 	public List<String> pic_idx(ReviewUserVO reviewVO) throws Exception;
+	
+	//상품사진 인덱스 출력
+	public List<String> selectReviewAvg(ReviewUserVO reviewVO) throws Exception;
 }

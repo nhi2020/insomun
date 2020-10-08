@@ -17,6 +17,7 @@
 <body>
 <%@ include file="../../inc/EgovShopTop.jsp"%>
 <%@ include file="../../inc/EgovShopHeader.jsp"%>
+<p class="h-25"/>
 <div class="container text-center">
 	<div class="row justify-content-center">
 		<table border="1">
@@ -26,10 +27,6 @@
 					<td><a href="/shop/mng/review/MngUserSelect.do">관리자 리뷰</a></td>
 				</tr>
 		</table>
-		<form action="/shop/mng/review2.do" name="frm2" method="post" enctype="multipart/form-data"><br><br><p>
-		<input type="file" name="file" id="file">
-		<input type="submit" value="전송">
-		</form>
 	</div>
 </div>
 </body>

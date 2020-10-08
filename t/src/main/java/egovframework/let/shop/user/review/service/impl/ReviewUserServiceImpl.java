@@ -20,6 +20,7 @@ public class ReviewUserServiceImpl extends EgovAbstractServiceImpl implements Re
 	//리뷰 후기 전체보기
 	@Override
 	public List<ReviewUserVO> selectReviewList(ReviewUserVO reviewVO) throws Exception {
+		System.out.println("reviewVOreviewVODAODAO"+reviewVO);
 		List<ReviewUserVO> list = egovReviewDAO.selectReviewList(reviewVO);
 		return list;
 	}
@@ -55,5 +56,13 @@ public class ReviewUserServiceImpl extends EgovAbstractServiceImpl implements Re
 		List<String> list = egovReviewDAO.pic_idx(reviewVO);
 		return list;
 	}
+
+	@Override
+	public List<String> selectReviewAvg(ReviewUserVO reviewVO) throws Exception {
+		List<String> list = egovReviewDAO.selectReviewAvg(reviewVO);
+		return list;
+	}
+
+	
 
 }
