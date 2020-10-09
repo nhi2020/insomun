@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
+
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript">
 function inputPhoneNumber(obj) {
@@ -43,45 +44,124 @@ function inputPhoneNumber(obj) {
 }
 </script>
 
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+             
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+              /*   document.getElementById('sample6_postcode').value = data.zonecode; */
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
+
+<script type="text/javascript">
+function readURL(input) {
+if (input.files && input.files[0]) {
+var reader = new FileReader();
+reader.onload = function (e) {
+$('#blah').attr('src', e.target.result);
+}
+reader.readAsDataURL(input.files[0]);
+}
+}
+</script>
+<style type="text/css">
+label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #fff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #6c757d;
+  cursor: pointer;
+  border: 1px solid #6c757d;
+  border-radius: .25em;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+label:hover {
+  background-color: #5a5a5a;
+}
+
+label:active {
+  background-color: #5a5a5a;
+}
+
+input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+</style>
 </head>
 
 <body>
 	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
-
-
-
-	<c:if test="${msg != null }">
-	<p>${msg }</p>
-	</c:if>
-	<c:if test="${msg = null }">
-	</c:if>
+<p><p><p><p><p>
+	
 	<div class="container">
 		<div class="row">
-			<form class="mx-auto" action="/shop/mng/seller/updateMngSellerPro.do" method="post">
+			<form class="mx-auto" action="/shop/mng/seller/updateMngSellerPro.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="s_id" value="${SellerVO.s_id }" />
-
+				<input type="hidden" name="s_photo" value="${SellerVO.s_photo }" />
+					
 				<table class="table">				
-				
-					<tr>
-						<th>사진</th>
-						<td>${SellerVO.s_photo }</td>
-					</tr>
-
 					<tr>
 						<th></th>
-						<td><!-- <input type="file" name="file"> --></td>
+						<td height="200" style="">
+						<img id="blah" src="<c:url value='/'/>file/${SellerVO.s_photo}" alt="your image" width="200" height="200" /> </td> 
 					</tr>
-
+					<tr>
+						<th>파일 업로드</th>	
+							<td><label for="ex_file">업로드</label>
+							<input type='file' name="file" id="ex_file" onchange="readURL(this);" /></td>    
+					</tr>
+					
 					<tr>
 						<th>회원아이디</th>
 						<td>${SellerVO.s_id }</td>
 					</tr>
-			
+					
 					<tr> 
 						<th>닉네임</th>
-						<td><input type="text" name="s_nickname"
-							value="${SellerVO.s_nickname }" /></td>
+						<td><input type="text" name="s_nickname" value="${SellerVO.s_nickname }" /></td>
+					</tr>
+					
+					<tr> 
+						<th>비밀번호</th>
+						<td><input type="text" id="s_pass" name="s_pass" value="${SellerVO.s_pass }"></td>
+					</tr>
+					<tr>
+						<th>생일</th>
+						<td><input type="date" id="s_birth" name="s_birth" value="${SellerVO.s_birth }"></td>
 					</tr>
 					<tr>
 						<th>이메일</th>
@@ -89,17 +169,6 @@ function inputPhoneNumber(obj) {
 					</tr>
 					<tr>
 						<th>상태</th>
-						<c:choose>
-							<c:when test="${SellerVO.s_status eq 'Y'}">
-								<td>활동중인 계정</td>
-							</c:when>
-							<c:when test="${SellerVO.s_status eq 'N'}">
-								<td>탈퇴된 계정</td>
-							</c:when>
-						</c:choose>	
-					</tr>
-					<tr>
-						<th></th>
 						<td><input type="radio" name="s_status" value="Y"
 							${SellerVO.s_status eq 'Y' ? "checked = 'checked'" : '' } />활동중인 계정
 							<input type="radio" name="s_status" value="N" 
@@ -135,10 +204,18 @@ function inputPhoneNumber(obj) {
 						<th>계좌 번호</th>
 						<td><input type="text" name="s_account" value="${SellerVO.s_account }" /></td>
 					</tr>
+					
 					<tr>
 						<th>주소</th>
-						<td><input type="text" name="s_addr" value="${SellerVO.s_addr }" /></td>
+						<td><input type="text" id="sample6_address" name="addr1"  value="${SellerVO.s_addr }" readonly>
+							<input type="button" class="btn btn-secondary" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
 					</tr>
+					
+					<tr>
+						<th>상세주소</th>
+						<td><input type="text" id="sample6_detailAddress" name="addr2"></td>
+					</tr>
+					
 					<tr>
 						<th>성별</th>
 						<td>${SellerVO.s_gender }</td>
@@ -148,15 +225,16 @@ function inputPhoneNumber(obj) {
 						<td>${SellerVO.s_regdate }</td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="submit" value="수정" /> 
-						<input type="button" value="목록으로" onclick="location.href='/shop/mng/seller/listMngSeller.do'" />
-						<input type="button" value="강제 로그인" onclick="location.href='/shop/user/seller/EgovsellerLoginPro.do?id=${SellerVO.s_id}&passwd=${SellerVO.s_pass }'">
+						<td colspan="2"><input type="submit" class="btn btn-secondary"  value="수정" /> 
+						<input type="button" value="목록으로" class="btn btn-secondary"  onclick="location.href='/shop/mng/seller/listMngSeller.do'" />
+						<input type="button" value="강제 로그인" class="btn btn-secondary" onclick="location.href='/shop/user/seller/EgovsellerLoginPro.do?id=${SellerVO.s_id}&passwd=${SellerVO.s_pass }'">
 						</td>
 					</tr>
 				</table>
 			</form>
 		</div>
 	</div>
+	
 
 	<%@ include file="../../inc/EgovShopBottom.jsp"%>
 </body>

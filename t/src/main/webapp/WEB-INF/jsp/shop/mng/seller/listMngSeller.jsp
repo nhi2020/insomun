@@ -26,48 +26,140 @@
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 
 
+<!-- result 값을 이용한 modal -->
+	<c:if test="${result == 1}">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#updateModal").modal('show')
+			
+			})
+		</script>
+		<!-- Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1"
+			aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">전환되었습니다.</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:if>
+	
+	<!-- result 값을 이용한 modal -->
+	<c:if test="${result2 == 1}">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#updateModal").modal('show')
+			
+			})
+		</script>
+		<!-- Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1"
+			aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">수정되었습니다.</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:if>
+	
+	<!-- result 값을 이용한 modal -->
+	<c:if test="${result3 == 0 && result ==null}">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#updateModal").modal('show')
+			
+			})
+		</script>
+		<!-- Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1"
+			aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">항목을 체크해주세요.</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:if>
+	
+	
+	<!-- result 값을 이용한 modal -->
+	<c:if test="${result1 != '' && result1 != null}">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#updateModal").modal('show')
+			
+			})
+		</script>
+		<!-- Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1"
+			aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">등록되었습니다.</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:if>
+
 <div class="container">
-		<div class="row">
-			
-			
+	
+		<div class="float-right">
 			<form action="/shop/mng/seller/listMngSeller.do">
-				<div class="input-group mb-3">
+			<div class="input-group mb-3">
 					<input type="text" class="form-control" placeholder="아이디"
 						aria-label="Username" aria-describedby="basic-addon1"
 						name="searchWrd">
-					<div class="input-group-append">
-						<input class="btn btn-secondary" type="submit" value="검색" />
-					</div>
-				</div>
+						<div class="input-group-append">
+							<input class="btn btn-secondary" type="submit" value="검색"/>
+						</div>
+			</div>
 			<input type="hidden" name="pageIndex" value="${searchVO.pageIndex }" />
 			<input type="hidden" name="searchCnd" value="0" />
 			</form>
-			
-			
- <input type="button" value="회원등록" onclick="location.href='/shop/mng/seller/InsertMngSellerForm.do'"> 
- <input type="button" value="(체크박스)전환" onclick="delReview();">
- 
-				<form name="frm" id="frm">
+		</div>
+		<p><p><p><p><p><p><p><p><p><p>
+		<form name="frm" id="frm">
+		 <input type="button"  class="btn btn-secondary" value="회원등록" onclick="location.href='/shop/mng/seller/InsertMngSellerForm.do'"> 
+		 <input type="button"  class="btn btn-secondary" value="(체크박스)전환" onclick="delReview();">
+		
 			<table class="table mx-auto">
 				<tr>
 					<th>체크박스</th>
 					<th>번호</th>
-					<th>판매자 아이디</th>
+					<th>아이디</th>
 					<th>닉네임</th>
 					<th>이메일</th>
-					<th>판매자 사진</th>
-					<th>핸드폰 번호</th>
+					<th>사진</th>
+					<th>핸드폰번호</th>
 					<th>주소</th>
 					<th>성별</th>
 					<th>수정일</th>
 					<th>등록일</th>
 					<th>생년월일</th>
-					<th>판매자 상태여부</th>	
-					<th>상태 변경</th>		
-					<th>강제 로그인</th>
+					<th>상태여부</th>	
+					<th>상태변경</th>		
+					<th>강제로그인</th>
 				</tr>
 				
-		
+				
 				<c:forEach items="${list }" var="s_list" varStatus="status">
 					<tr>
 						<td><input type="checkbox" name="chk" id="chk" value="${s_list.s_idx }"></td>
@@ -94,8 +186,9 @@
 								<td>탈퇴된 계정</td>
 							</c:when>
 						</c:choose>	
-						<td><input type="submit" value="전환" form="frm${status.index }"></td>
-						<td><input type="button" value="강제로그인" onclick="location.href='/shop/user/seller/EgovsellerLoginPro.do?id=${s_list.s_id}&passwd=${s_list.s_pass }'" /></td>
+						<td><input type="submit"  class="btn btn-secondary" value="전환" form="frm${status.index }"></td>
+						
+						<td><input type="button"  class="btn btn-secondary" value="로그인" onclick="location.href='/shop/user/seller/EgovsellerLoginPro.do?id=${s_list.s_id}&passwd=${s_list.s_pass }'" /></td>
 						</tr>
 				</c:forEach>
 						<tr>
@@ -116,7 +209,6 @@
 						jsFunction="fn_egov_select_productList" />
 				</ul>
 			</div>
-		</div>
 	</div>
 
 

@@ -108,38 +108,21 @@ public class SellerMngController {
 		model.addAttribute("SellerVO", vo);
 		return "shop/mng/seller/updateMngSellerForm";
 	}
-	
-	@RequestMapping(value = "/shop/mng/seller/updateMngSellerPro", method = RequestMethod.POST)
-	public String updateMngSellerPro(HttpServletRequest request, MultipartFile file, SellerMngVO vo, Model model, String path) throws IOException{
-		System.out.println("updateMngSellerPro()");
-		System.out.println("vo.getS_nickname() ->" + vo.getS_nickname());
-		
-		
-		int result = sellerService.sellerUpdate(vo);
-		if(result > 0) {
-			model.addAttribute("msg", "수정 성공");
-		}else {
-			model.addAttribute("msg", "수정 실패");
-		}
-		model.addAttribute("vo");
-		
-		return "forward:updateMngSellerForm.do";
-	}
-	
+
 	@RequestMapping("/shop/mng/seller/updateMngSellerStateChange")
-	public String updateMngSellerStateChange(SellerMngVO vo, Model model) {
+	public String updateMngSellerStateChange(SellerMngVO vo, Model model, RedirectAttributes redirect) {
 		System.out.println("updateMngSellerStateChange()");
 		
 		int result = sellerService.updateMngSellerStateChange(vo);
 		if(result > 0) {
-			model.addAttribute("msg", vo.getS_id() + " 상태전환 성공");
-			model.addAttribute("chk",1);
+			redirect.addFlashAttribute("result", result);
+			model.addAttribute("msg", "수정성공");
 		} else {
-			model.addAttribute("msg", vo.getS_id() + " 상태전환 실패");
-			model.addAttribute("chk",0);
+			redirect.addFlashAttribute("result", result);
+			model.addAttribute("msg", "수정 실패");
 		}
 		String pageIndex = Integer.toString(vo.getPageIndex());
-		return "/shop/mng/seller/delMngSellerPro";
+		return "redirect:/shop/mng/seller/listMngSeller.do";
 	}
 	
 	@RequestMapping("/shop/mng/seller/InsertMngSellerForm.do")
@@ -148,58 +131,114 @@ public class SellerMngController {
 	}
 	
 	@RequestMapping(value="/shop/mng/seller/InsertMngSellerPro.do", method = RequestMethod.POST )
-	public String InsertMngSellerPro(HttpServletRequest request, MultipartFile file, SellerMngVO vo, Model model, String path) throws IOException{
+	public String InsertMngSellerPro(HttpServletRequest request, MultipartFile file, SellerMngVO vo, Model model, String path, RedirectAttributes redirect) throws IOException{
+		String addr1 =vo.getAddr1();
+		String addr2 =vo.getAddr2();
+		String S_addr= addr1 + addr2; 
+		System.out.println("S_ADDR" + S_addr);
+		System.out.println("vo.getS_gender() ->" + vo.getS_gender());
+		vo.setS_addr(S_addr);
+		
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+		String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
+		String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
+		vo.setS_photo(savedName);
+		} else {
+			if(vo.getS_gender().toString().equals("남자")) {
+				vo.setS_photo("m.jpg");
+			} else if(vo.getS_gender().toString().equals("여자")){
+				vo.setS_photo("g.jpg");
+			}
+		}
+		
+		
+		String result = sellerService.InsertMngSellerPro(vo);
+	
+		if(result != "" && result != null) {
+			redirect.addFlashAttribute("result1", result);
+			System.out.println("result1->" + result);
+		} else {
+			redirect.addFlashAttribute("result1", result);
+			System.out.println("result1->" + result);
+		}
+		
+		return "redirect:/shop/mng/seller/listMngSeller.do";
+	}
+	
+	@RequestMapping(value = "/shop/mng/seller/delMngSeller.do")
+	public String delMngSeller(SellerMngVO mngVO, HttpServletRequest request, Model model, RedirectAttributes redirect) {
+		String[] chk = request.getParameterValues("chk");
+		
+		if(chk != null) {
+				for (int j = 0; j < chk.length; j++) {
+					System.out.println("chk : " +chk[j]);
+					mngVO.setS_idx(chk[j]);
+					int result = sellerService.delMngSeller(mngVO);
+					if(result > 0) {
+						redirect.addFlashAttribute("result", result);
+					} else {
+						redirect.addFlashAttribute("result", result);
+					}
+				}
+		} else {
+			int result = 0;
+			redirect.addFlashAttribute("result3", result);
+		}
+		return "redirect:/shop/mng/seller/listMngSeller.do";
+	}	
+	
+	@RequestMapping(value = "/shop/mng/seller/updateMngSellerPro", method = RequestMethod.POST)
+	public String updateMngSellerPro(HttpServletRequest request, MultipartFile file, SellerMngVO vo, Model model, RedirectAttributes redirect) throws IOException{
+		System.out.println("updateMngSellerPro()");
+		System.out.println("vo.getS_nickname() ->" + vo.getS_nickname());
+		System.out.println("vo.getS_photo() ->" + vo.getS_photo());
+		System.out.println("file.getOriginalFilename() ->" + file.getOriginalFilename());
+		
 		String addr1 =vo.getAddr1();
 		String addr2 =vo.getAddr2();
 		String S_addr= addr1 + addr2; 
 		System.out.println("S_ADDR" + S_addr);
 		vo.setS_addr(S_addr);
 		
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 		String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
+		String deleteFilename = uploadPath + vo.getS_photo();
+		deleteFile(deleteFilename);
+
 		String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
 		vo.setS_photo(savedName);
+		} 
 		
-		String result = sellerService.InsertMngSellerPro(vo);
-	
-		if (result != null && result !=""){
-			model.addAttribute("msg","성공");
-			model.addAttribute("chk",1);
-		}else {
-			model.addAttribute("msg","사용자 올바르지 않음");
-			model.addAttribute("chk",0);
+		int result = sellerService.sellerUpdate(vo);
+		
+		if(result > 0) {
+			redirect.addFlashAttribute("result2", result);
+		} else {
+			redirect.addFlashAttribute("result2", result);
 		}
+		model.addAttribute("vo");
 		
-		return "/shop/mng/seller/InsertMngSellerPro";
+		return "redirect:/shop/mng/seller/listMngSeller.do";
 	}
 	
-	@RequestMapping(value = "/shop/mng/seller/delMngSeller.do")
-	public String delMngSeller(SellerMngVO mngVO, HttpServletRequest request, Model model) {
-		String[] chk = request.getParameterValues("chk");
-		for (int j = 0; j < chk.length; j++) {
-			System.out.println("chk : " +chk[j]);
-			mngVO.setS_idx(chk[j]);
-			sellerService.delMngSeller(mngVO);
-			model.addAttribute("msg", " 상태전환 성공");
-			model.addAttribute("chk",1);
+	private int deleteFile(String deleteFilename) {
+		int result = 0;
+		File file = new File(deleteFilename);
+		if(file.exists()){
+			if(file.delete()){
+				result = 1;
+				System.out.println("삭제 성공");
+			}else{
+				result = 0;
+				System.out.println("삭제 실패");
+			}
+		} else {
+			result = -1;
+			System.out.println("파일이 존재하지 않습니다.");
 		}
-		return "/shop/mng/seller/delMngSellerPro";
-	}	
-	
-/*	@RequestMapping(value = "/shop/mng/seller/InsertImgMngSellerPro.do", method = RequestMethod.POST)
-	public String InsertImgMngSellerPro(HttpServletRequest request, MultipartFile file, SellerMngVO vo, String path, Model model) throws IOException {
-		String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
-		String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
-		vo.setOriginal_file_name(file.getOriginalFilename());
-		vo.setStored_file_name(savedName);
-		vo.setFile_size(file.getSize());
 		
-		int result = sellerService.insertImgFileUpload(vo);
-		
-		model.addAttribute("msg", result);
-		model.addAttribute("savedName", savedName);
-		
-		return "redirect:/shop/mng/seller/InsertImgMngSellerPro.do";
-	}*/
+		return result;
+	}
 	
 	private String uploadFile(String originalName, byte[] fileData, String uploadPath) throws IOException {
 		UUID uid = UUID.randomUUID();
@@ -218,6 +257,4 @@ public class SellerMngController {
 		FileCopyUtils.copy(fileData, target);
 		return savedName;
 	}
-	
-
 }
