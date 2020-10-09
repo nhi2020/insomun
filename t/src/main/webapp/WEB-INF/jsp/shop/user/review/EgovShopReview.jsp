@@ -87,11 +87,11 @@
 				<c:choose>
 		          	<c:when test="${result.r_div eq '1'}">
 		          	<span class="font-weight-normal" style="color: red">판매자</span><br>
-		          		${result.nickname}&nbsp;<span class="font-weight-normal">${result.r_regdate}&nbsp;${result.sns_score}</span>
+		          		${result.nickname}&nbsp;<span class="font-weight-normal">${result.r_regdate}&nbsp;판매자 점수 :${result.sns_score}</span>
 		          	</c:when>
 			       	<c:otherwise>
 			       	<span class="font-weight-normal" style="color: red">구매자</span><br>
-			       		${result.s_nickname}&nbsp;<span class="font-weight-normal">${result.r_regdate}&nbsp;${result.seller_score}</span>
+			       		${result.s_nickname}&nbsp;<span class="font-weight-normal">${result.r_regdate}&nbsp;구매자 점수 :${result.seller_score}</span>
 			       	</c:otherwise>
 		        </c:choose>
 	        </p>
