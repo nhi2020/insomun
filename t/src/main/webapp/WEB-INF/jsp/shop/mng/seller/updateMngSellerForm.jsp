@@ -236,5 +236,6 @@ input[type="file"] {
 	</div>
 	
 
-	<%@ include file="../../inc/EgovShopBottom.jsp"%>
+<%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
+</html>

@@ -62,7 +62,6 @@
 			</div>
 		</div>
 	</div>
-</body>
-<%@ include file="../../inc/EgovShopBottom.jsp"%>
+<%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>
