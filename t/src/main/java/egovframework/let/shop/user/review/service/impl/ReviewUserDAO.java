@@ -37,12 +37,8 @@ public class ReviewUserDAO extends EgovAbstractDAO {
 		int result = (Integer) insert("EgovReviewDAO.insertFileUserReview", request);
 		return result;
 	}
-	//상품사진 인덱스 출력
-	@SuppressWarnings("unchecked")
-	public List<String> pic_idx(ReviewUserVO reviewVO) throws Exception{
-		return (List<String>) list("EgovReviewDAO.selectFileMax",reviewVO);
-	}
-	//상품사진 인덱스 출력
+	
+	//상품 후기 평점
 	@SuppressWarnings("unchecked")
 	public List<String> selectReviewAvg(ReviewUserVO reviewVO) throws Exception{
 		return (List<String>) list("EgovReviewDAO.selectReviewAvg", reviewVO);

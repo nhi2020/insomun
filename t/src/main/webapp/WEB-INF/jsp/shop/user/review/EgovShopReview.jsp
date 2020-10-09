@@ -52,13 +52,16 @@
 			<input type="hidden" id="r_div" name="r_div" value="1">
 			<textarea rows="3" cols="80" name="r_content" id="r_content"></textarea>
 			<input type="file" name="file" id="file">
+			<input type="submit" value="저장" class="btn btn-primary">
+		</div>
+		<div class="custom-control custom-radio custom-control-inline">
 			<c:choose>
 				<c:when test="${r_div eq 0 }"> <!-- 구매자 -->
-					<input type="radio" name="sns_score" id="radio1" value="1"><p>1점</p>
-					<input type="radio" name="sns_score" id="radio2" value="2"><p>2점</p>
-					<input type="radio" name="sns_score" id="radio3" value="3"><p>3점</p>
-					<input type="radio" name="sns_score" id="radio4" value="4"><p>4점</p>
-					<input type="radio" name="sns_score" id="radio5" value="5"><p>5점</p>
+					<input type="radio" name="sns_score" id="customRadio1" value="1"><p>1점</p>
+					<input type="radio" name="sns_score" id="customRadio1" value="2"><p>2점</p>
+					<input type="radio" name="sns_score" id="customRadio1" value="3"><p>3점</p>
+					<input type="radio" name="sns_score" id="customRadio1" value="4"><p>4점</p>
+					<input type="radio" name="sns_score" id="customRadio1" value="5"><p>5점</p>
 				</c:when>
 				<c:otherwise>		<!-- 판매자 -->
 					<input type="radio" name="seller_score" id="radio1" value="1"><p>1점</p>
@@ -68,8 +71,8 @@
 					<input type="radio" name="seller_score" id="radio5" value="5"><p>5점</p>
 				</c:otherwise>
 			</c:choose>
-			<input type="submit" value="저장" class="btn btn-primary">
-		</div>														<!-- 시간남으면 상품 사진까지 올릴수있도록 -->
+		</div>
+		리뷰 평균 평점 : ${AVG }														<!-- 시간남으면 상품 사진까지 올릴수있도록 -->
 	</div>																<!-- 추가해보기 -->
 </form>
 <p class="h-25"/>

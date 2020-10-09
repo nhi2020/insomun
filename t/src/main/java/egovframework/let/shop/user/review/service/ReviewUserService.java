@@ -21,9 +21,6 @@ public interface ReviewUserService {
 	//구매자 상품사진 리뷰
 	public int insertPicReview(HttpServletRequest request) throws Exception;
 	
-	//사진번호 출력
-	public List<String> pic_idx(ReviewUserVO reviewVO) throws Exception;
-	
-	//상품사진 인덱스 출력
+	//상품 후기 평점
 	public List<String> selectReviewAvg(ReviewUserVO reviewVO) throws Exception;
 }

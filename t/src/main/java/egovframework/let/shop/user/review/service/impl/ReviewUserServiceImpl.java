@@ -50,13 +50,8 @@ public class ReviewUserServiceImpl extends EgovAbstractServiceImpl implements Re
 		int result = egovReviewDAO.insertPicReview(request);
 		return result ;
 	}
-
-	@Override
-	public List<String> pic_idx(ReviewUserVO reviewVO) throws Exception {
-		List<String> list = egovReviewDAO.pic_idx(reviewVO);
-		return list;
-	}
-
+	
+	//상품 후기 평점
 	@Override
 	public List<String> selectReviewAvg(ReviewUserVO reviewVO) throws Exception {
 		List<String> list = egovReviewDAO.selectReviewAvg(reviewVO);
