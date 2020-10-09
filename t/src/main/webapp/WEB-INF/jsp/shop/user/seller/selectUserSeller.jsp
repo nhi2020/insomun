@@ -25,7 +25,21 @@
             display: flex;
             align-items: center;
         }
-   
+ #div_con1 {
+ 			width: 50%;
+ 			height: 300px;
+ 			float: left;
+ }
+  #div_con2 {
+ 			width: 50%;
+ 			height: 300px;
+ 			float: right;
+ }
+   #div_bottom {
+ 			width: 100%;
+ 			height: 100px;
+ 			clear: both;
+ }
 </style>
 </head>
 
@@ -54,54 +68,55 @@
 	<p>
 	
 	
-	 <div>
-            <h1>신청대기중인 거래보기...</h1>
+	 <div class="p-3 mb-2 bg-light text-dark" id="div_con1">
+            <h3>신청대기중인 거래보기...</h3>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, tempore dicta ut voluptate asperiores doloremque sapiente odit iste? Totam id, labore aut eligendi ullam doloremque officiis iure expedita suscipit perspiciatis.</p>
 		<p><a href="/shop/user/deal/dealUserSellerList.do">자세히...</a></p>
 	</div>
 	
 	<p>
 	
-	<div>
-			<h1>수락한 거래보기...</h1>
+	<div class="p-3 mb-2 bg-light text-dark" id="div_con2">
+			<h3>수락한 거래보기...</h3>
         <p>Doloribus repudiandae sint enim, rerum dolorum ratione quis aspernatur deleniti excepturi, illum temporibus eveniet facilis cupiditate quaerat deserunt debitis ipsa ad illo assumenda minima. Facilis explicabo atque quasi eius dolorem!</p>
 		<p><a href="/shop/user/deal/dealUserSellerList.do">자세히...</a></p>
 	</div>
 	
 	<p>	
 	
-	<div>
-        	<h1>구매확정 거래보기...</h1>
+	<div class="p-3 mb-2 bg-light text-dark" id="div_con1">
+        	<h3>구매확정 거래보기...</h3>
         <p>Explicabo reiciendis aspernatur, repellat sapiente quae voluptas adipisci quod a ab, mollitia nobis. Facilis reprehenderit quasi eligendi repudiandae, nulla ad repellendus! Provident tempore quidem aliquam maxime dolores exercitationem laudantium consequatur?</p>
 		<p><a href="/shop/user/deal/dealUserSellerList.do">자세히...</a></p>
 	</div>
 		
 	<p>	
 	
-	<div>
-			<h1>취소된 거래보기..</h1>
+	<div class="p-3 mb-2 bg-light text-dark" id="div_con2"> 
+			<h3>취소된 거래보기..</h3>
         <p>Voluptas, fuga! Sint quaerat tempore sed alias aperiam vel nisi recusandae. Officia dolorum libero nisi maxime debitis aperiam cumque blanditiis, reiciendis voluptate voluptatibus asperiores saepe inventore odio, molestias, possimus dolorem.</p>
  		<p><a href="/shop/user/deal/dealUserSellerList.do">자세히...</a></p>
 	</div>
 	
 	<p>
 	
-	<div>
-			<h1>리뷰관리...</h1>
+	<div class="p-3 mb-2 bg-light text-dark" id="div_con1">
+			<h3>리뷰관리...</h3>
         <p>Doloribus repudiandae sint enim, rerum dolorum ratione quis aspernatur deleniti excepturi, illum temporibus eveniet facilis cupiditate quaerat deserunt debitis ipsa ad illo assumenda minima. Facilis explicabo atque quasi eius dolorem!</p>
 		<p><a href="/shop/mng/review/MngSelect.do">자세히...</a></p>
 	</div>
 	
 	<p>	
 	
-	<div>
-        	<h1>달린댓글...</h1>
+	<div class="p-3 mb-2 bg-light text-dark" id="div_con2">
+        	<h3>달린댓글...</h3>
         <p>Explicabo reiciendis aspernatur, repellat sapiente quae voluptas adipisci quod a ab, mollitia nobis. Facilis reprehenderit quasi eligendi repudiandae, nulla ad repellendus! Provident tempore quidem aliquam maxime dolores exercitationem laudantium consequatur?</p>
 		<p><a href="/shop/mng/review/MngSelect.do">자세히...</a></p>
 	</div>
 
 	</div>
-	
+	<div id="div_bottom">
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
+	</div>
 </body>
 </html>
