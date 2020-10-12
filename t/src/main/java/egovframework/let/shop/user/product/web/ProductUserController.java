@@ -233,6 +233,10 @@ public class ProductUserController {
 		 vo = userProductService.selectBuyerProduct(vo);
 		    System.out.println("EgovBuyerProduct"+vo);
 		    model.addAttribute("ProductUserVO",vo);
+		    int num = reviewVO.getFirstIndex();
+		    int result = num-1;
+		    reviewVO.setFirstIndex(result);
+		    System.out.println("result______________________>"+result);
 		    List<ReviewUserVO> list = egovReviewService.selectReviewList(reviewVO);
 		    model.addAttribute("list",list);
 		    return "/shop/user/product/EgovBuyerProductForm";
