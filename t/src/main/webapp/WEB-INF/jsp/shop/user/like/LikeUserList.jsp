@@ -12,19 +12,20 @@
   <%@ include file="../../inc/EgovShopHeader.jsp" %>
   <div class="container">
     <div class="row">
+    
       <table class="table mx-auto">
        <tr>
          <th>등록번호</th>
-         <th>상품번호</th>
          <th>상품이미지</th>
          <th>상품이름</th>
          <th>등록일자</th>
+         <th>삭제</th>
         </tr>
         <c:forEach items="${list }" var="like_list" >
         <tr>
-          <td>${like_list.l_idx }</td>
-          <td><a href="/shop/user/product/EgovUserProductForm.do">${like_list.p_idx }</a></td>
-          <td>${like_list.p_image }</td>
+        <input type="hidden" name="p_idx" value="${like_list.p_idx }" />
+          <td>${like_list.l_idx }</td>  
+          <td><a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${like_list.p_idx}"><img src="<c:url value='/'/>file/${like_list.p_image}" width="200" height="200"/></a></td>
           <td>${like_list.p_name }</td>
           <td>${like_list.l_regdate }</td>
           <td><input type="checkbox" name="p_idx" value="${like_list.p_idx }"></td>
