@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import egovframework.let.shop.mng.product.service.ProductMngService;
+import egovframework.let.shop.mng.testFileUpload.service.impl.TestFileUploadVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
 /**

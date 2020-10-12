@@ -11,14 +11,17 @@
 <meta http-equiv="content-language" content="ko">
 <title>운영자 상품 리스트 수정</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-
-
 </head>
-
+<script type="text/javascript">
+	function upload(p_idx) {
+		document.frm.action = "/shop/user/basket/insertBasketUserPro.do";
+		document.frm.submit();
+	}
+</script>
 <body>
 <%@ include file="../../inc/EgovShopTop.jsp" %>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
-<h2>수정 페이지</h2>
+<h2>수정 2 페이지</h2>
 
 	<c:if test="${msg != null }">
 	<p>${msg }</p>
@@ -29,11 +32,17 @@
  <div class="container-fluid">
 	<div class="container text-center">
 	    <div class="row">
-			<form action="/shop/mng/product/EgovMngProductUpdatePro.do" method="post">
-	    <input type="hidden" name="p_idx" value="${ProductMngVO.p_idx }" />
-					<img src="./images/main/photo/${ProductMngVO.p_image}" width="270" height="385"/>
-						<p>
+			<form action="/shop/mng/product/EgovMngProductUpdatePro.do" method="post" enctype="multipart/form-data">
+	    			<input type="hidden" name="p_idx" value="${ProductMngVO.p_idx }" />
+	    			<input type="hidden" name="preImage" value="${ProductMngVo.preImage }">
+					<img src="<c:url value='/'/>file/${ProductMngVO.p_image}" width="270" height="270"/>
+					<br/>
 					<table class="table">
+					<tr>
+						<th>사진변경</th>
+						<td><input type="file" name="file" value="${ProductMngVO.p_image}" />
+						</td>
+					</tr>
 					<tr>
 						<th>상품명</th>
 						<td><input type="text" name="p_name" value="${ProductMngVO.p_name }"/>

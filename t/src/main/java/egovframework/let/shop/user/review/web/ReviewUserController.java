@@ -20,7 +20,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import egovframework.let.shop.mng.testFileUpload.web.TestFileUploadController;
 import egovframework.let.shop.user.review.service.ReviewUserService;
 import egovframework.let.shop.user.review.service.ReviewUserVO;
-import egovframework.let.shop.user.util.LogFileUtils;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -39,9 +38,9 @@ public class ReviewUserController {
 		@Resource(name = "multipartResolver")
 		CommonsMultipartResolver multipartResolver;
 	
-	@Resource(name ="logFileUtils")
+	/*@Resource(name ="logFileUtils")
 	private LogFileUtils logFileUtils;
-	/**
+	*//**
 	 * XSS 방지 처리.
 	 *
 	 * @param data

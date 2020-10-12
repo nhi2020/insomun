@@ -3,6 +3,7 @@ package egovframework.let.shop.mng.product.service;
 import java.util.List;
 
 import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
+import egovframework.let.shop.mng.testFileUpload.service.impl.TestFileUploadVO;
 
 /**
  * 게시물 관리를 위한 서비스 인터페이스  클래스
@@ -35,4 +36,5 @@ public interface ProductMngService {
 	public int insertMngProductPro(ProductMngVO vo)throws Exception;
 	
 	public int deleteMngProduct(ProductMngVO vo) throws Exception;
+
 }

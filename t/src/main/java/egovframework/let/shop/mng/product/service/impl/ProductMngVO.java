@@ -27,7 +27,18 @@ import egovframework.let.shop.mng.product.service.ProductMng;
 @SuppressWarnings("serial")
 public class ProductMngVO extends ProductMng implements Serializable {
 
-    /** 검색시작일 */
+	/**이전 사진파일*/
+	private String preImage = "";
+	
+    public String getPreImage() {
+		return preImage;
+	}
+
+	public void setPreImage(String preImage) {
+		this.preImage = preImage;
+	}
+
+	/** 검색시작일 */
     private String searchBgnDe = "";
     
     /** 검색조건 */

@@ -1,7 +1,6 @@
 package egovframework.let.shop.mng.product.web;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.let.shop.mng.product.service.ProductMngService;
 import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
@@ -106,7 +106,6 @@ public class ProductMngController {
 		System.out.println("test");
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
-
 		PaginationInfo paginationInfo = new PaginationInfo();
 
 		paginationInfo.setCurrentPageNo(vo.getPageIndex());
@@ -143,25 +142,65 @@ public class ProductMngController {
 		System.out.println("vo.getP_IDX => " + vo.getP_idx());
 	    vo = mngProductService.selectMngProductForm(vo);
 	    System.out.println("EgovMngProductUpdateForm"+vo);
-	    List<ProductMngVO> list = new ArrayList<ProductMngVO>();
+	    
+	    
 	    model.addAttribute("ProductMngVO",vo);
+	    
+	    
 	    return "/shop/mng/product/EgovMngProductUpdateForm";
 	}
+
 //수정하기 가능하도록	
 	@RequestMapping(value ="/shop/mng/product/EgovMngProductUpdatePro", method = RequestMethod.POST)
-	public String egovMngProductUpdatePro(ProductMngVO vo, Model model) throws Exception{
-		int result = mngProductService.updateMngProductPro(vo);
+	public String egovMngProductUpdatePro(@ModelAttribute("ProductMngVO")ProductMngVO vo, HttpServletRequest request, Model model, RedirectAttributes redirect, MultipartFile file) throws Exception{
+		
+		//
+	    String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
+	    // 서버에 업로드할 경우엔 프로퍼티에서 경로를 설정할 예정.
+	 	// String uploadPath = propertyService.getString("Globals.fileStorePath");
+	    // 서버 파일 삭제
+	    String deleteFile = uploadPath + vo.getPreImage(); //
+	    int delResult = deleteFile(deleteFile);
+	    // 서버 업로드를 위한 절차
+	    String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
+		vo.setP_image(savedName);
+	    // DB 반영
+	    int dbResult = mngProductService.updateMngProductPro(vo);
+		
 		System.out.println("vo pname => " + vo.getP_name());
-		if (result > 0) {
+		if (dbResult > 0) {
 			model.addAttribute("msg", "수정 성공");
 		} else {
 			model.addAttribute("msg", "수정 실패");
 		}
 		model.addAttribute("vo");
+		model.addAttribute("delResult", delResult);
+	    model.addAttribute("dbResult", dbResult);
+	    //
 
 		return "forward:/shop/mng/product/EgovMngProductUpdateForm.do";
 
 	}
+	
+	private int deleteFile(String deleteFile) {
+		int result = 0;
+		File file = new File(deleteFile);
+		if(file.exists()){
+			if(file.delete()){
+				System.out.println("파일 삭제 성공");
+				result = 1;
+			} else {
+				System.out.println("파일 삭제 실패");
+				result = 0;
+			}
+		} else {
+			System.out.println("파일이 존재하지 않습니다.");
+			result = -1;
+		}
+		
+		return result;
+}
+
 	
 	@RequestMapping(value = "/shop/mng/product/EgovMngProductInsertForm")
 	public String EgovMngProductInsertForm() {
@@ -230,7 +269,6 @@ public class ProductMngController {
 		}
 		return "redirect:/shop/mng/product/EgovMngProductlist.do";
 	}
-	
 	
 
 /*    // xml에 설정된 리소스 참조

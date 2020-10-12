@@ -23,11 +23,16 @@
  <div class="container-fluid">
 	<div class="container text-center">
 	    <div class="row">
-			<form action="/shop/user/product/EgovUserProductUpdatePro.do" method="post">
-	    <input type="hidden" name="p_idx" value="${ProductUserVO.p_idx }" />
-					<img src="./images/main/photo/${ProductUserVO.p_image}" width="270" height="385"/>
-						<p>
+			<form action="/shop/user/product/EgovUserProductUpdatePro.do" method="post" >
+	    			<input type="hidden" name="p_idx" value="${ProductUserVO.p_idx }" />
+					<img src="<c:url value='/'/>file/${ProductUserVO.p_image}" width="270" height="385"/>
+					<p>
 					<table class="table">
+					<tr>
+						<th>사진변경</th>
+						<td><input type="file" name="file" value="${ProductUserVO.p_image}" />
+						</td>
+					</tr>
 					<tr>
 						<th>상품명</th>
 						<td><input type="text" name="p_name" value="${ProductUserVO.p_name }"/>
@@ -68,13 +73,11 @@
 					<input type="button" value="이전으로" onclick="location.href='/shop/user/product/EgovUserProductlist.do'"/>
 					</tr>
 				</table>
-					<%-- <c:if test=""></c:if> --%>
-				</p>
+				<p/>
 				</form>				
 			</div>
 		</div>
 	</div>
-</div>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>
