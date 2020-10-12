@@ -8,6 +8,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<<<<<<< HEAD
+<!-- <style> 
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+input[type=file] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+input[type=date] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+</style> -->
+=======
 <style> 
 input[type=text] {
   width: 100%;
@@ -34,6 +62,7 @@ input[type=date] {
   box-sizing: border-box;
 }
 </style>
+>>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
@@ -550,27 +579,82 @@ input[type=date] {
 					<div class="form-group">
 							<!-- <label for="id">아이디</label> --><div>
 							<div class="join_row">
-							<input type="text" id="s_id" name="s_id" placeholder="아이디"><br>
+							<input class="form-control" type="text" id="s_id" name="s_id" placeholder="아이디">
 							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span><br>
 							</div>
 							<!-- <button class="idChk" type="hidden" id="idChk" onclick="fn_idChk();" value="N">중복확인</button><br> -->
 							<div class="join_row">
+<<<<<<< HEAD
+							<input class="form-control" type="text" id="s_name" name="s_name" placeholder="이름">
+=======
 							<input type="text" id="s_name" name="s_name" placeholder="이름"><br>
+>>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 							<span class="error_next_box" id="nameMsg" style="display:none" aria-live="assertive"></span><br>
 							</div>
 							<div class="join_row">
+<<<<<<< HEAD
+							<input class="form-control" type="password"  id="s_pass" name="s_pass" placeholder="비밀번호">
+=======
 							<input type="password"  id="s_pass" name="s_pass" placeholder="비밀번호"><br>
+>>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 							<span class="error_next_box" id="passMsg" style="display:none" aria-live="assertive"></span><br>
 							</div>
 							<div class="join_row">
+<<<<<<< HEAD
+							<input class="form-control" type="password"  id="s_pass2" name="s_pas2s" placeholder="비밀번호 재확인">
+=======
 							<input type="password"  id="s_pass2" name="s_pas2s" placeholder="비밀번호 재확인"><br>
+>>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 							<span class="error_next_box" id="pass2Msg" style="display:none" aria-live="assertive"></span><br>
 							</div>
 							<div class="join_row">
-							<input type="text"  id ="s_nickname" name="s_nickname" placeholder="닉네임"><br>
+<<<<<<< HEAD
+							<input class="form-control" type="text"  id ="s_nickname" name="s_nickname" placeholder="닉네임">
 							<span class="error_next_box" id="nicknameMsg" style="display:none" aria-live="assertive"></span><br>
 							</div>
+							<!-- <div class="join_row">
+							<input class="form-control" type="text" id="sample6_address" name="addr1" placeholder="주소" readonly>
+							<input class="btn btn-secondary" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+							<input class="form-control" type="text" id="sample6_detailAddress" name="addr2" placeholder="상세주소">
+							<span class="error_next_box" id="addrMsg" style="display:none" aria-live="assertive"></span><br>
+							</div> -->
+							<div class="row">
+							<div class="col-9">
+      						<input class="form-control" type="text" id="sample6_address" name="addr1" placeholder="주소" readonly>
+    						</div>
+    						<div class="col-2">
+      						<input class="btn btn-secondary" type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기">
+    						</div>
+    						</div>
+    						<input class="form-control" type="text" id="sample6_detailAddress" name="addr2" placeholder="상세주소">
+      						<span class="error_next_box" id="addrMsg" style="display:none" aria-live="assertive"></span><br>
+    					
+							<div class="row">
+							<div class="col-5">
+      						<input class="form-control" type='text' id='email1' name="email1"/>
+    						</div>
+    						<div class="col-1">
+      						 @
+    						</div>
+    						<div class="col-6">
+      						 <input class="form-control" type='text' id='email2' name="email2"/>
+    						</div><br>
+    						</div>
+							<span class="error_next_box" id="emailMsg" style="display:none" aria-live="assertive"></span><br>
+							
 							<div class="join_row">
+							
+							<input class="form-control" type="text"  id="s_phone" name="s_phone" placeholder="01X-XXXX-XXXX">
+							<span class="error_next_box" id="phonMsg" style="display:none" aria-live="assertive"></span><br>
+=======
+							<input type="text"  id ="s_nickname" name="s_nickname" placeholder="닉네임"><br>
+							<span class="error_next_box" id="nicknameMsg" style="display:none" aria-live="assertive"></span><br>
+>>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
+							</div>
+							<div class="join_row">
+<<<<<<< HEAD
+							<input class="form-control" type="date"  id="s_birth" name="s_birth" placeholder="생년월일">
+=======
 							<input type="text" id="sample6_address" name="addr1" placeholder="주소" readonly>
 							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 							<input type="text" id="sample6_detailAddress" name="addr2" placeholder="상세주소"><br>
@@ -586,6 +670,7 @@ input[type=date] {
 							</div>
 							<div class="join_row">
 							<input type="date"  id="s_birth" name="s_birth" placeholder="생년월일"><br>
+>>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 							<span class="error_next_box" id="birthMsg" style="display:none" aria-live="assertive"></span><br>
 							</div>
 							<select name="s_account_n">
@@ -597,7 +682,7 @@ input[type=date] {
 								<option value="기업은행">기업은행</option>
 								<option value="하나은행">하나은행</option>
 							</select><br>
-							<input type="text"  id="s_account" name="s_account" placeholder="계좌번호"><br>
+							<input class="form-control" type="text"  id="s_account" name="s_account" placeholder="계좌번호"><br>
 							<label class="form-check-label" for="gender"> 
 							<input type="radio" class="form-check-input" id="s_gender" name="s_gender" value="남자" checked="checked">남&nbsp;&nbsp;&nbsp;&nbsp;
 							<input type="radio" class="form-check-input" id="s_gender" name="s_gender" value="여자">여

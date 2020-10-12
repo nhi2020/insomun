@@ -32,19 +32,19 @@
 	});
 	$(document).ready(function(){
 		$("#sellerlogout").click(function(){
-			alert("판매자");
+			
 			location.href = "/shop/user/seller/sellerLogout.do";
 		});
 	});
 	$(document).ready(function(){
 		$("#adminlogout").click(function(){
-			alert("관리자");
+			
 			location.href = "/shop/mng/seller/adminLogout.do";
 		});
 	});
 	$(document).ready(function(){
 		$("#userlogout").click(function(){
-			alert("구매자");
+			
 			location.href = "/shop/user/EgovUserLogout.do";
 		});
 	});
@@ -53,7 +53,7 @@
 </script>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<%-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	<!-- Brand -->
 	<a class="navbar-brand" href="/shop/user/main/EgovUserMain.do">Logo</a>
 
@@ -95,7 +95,7 @@
 	 				 <ul class="navbar-nav" >
 	 					 <li class="nav-item dropdown">
 	 					   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-	    				  	마이페이지
+	    				  	${sessionScope.S_ID} 님 
 	  					  </a>
 	  					  <div class="dropdown-menu">
 	   						   <a class="dropdown-item" href="/shop/user/seller/selectUserSeller.do">마이 페이지</a>
@@ -131,6 +131,98 @@
 		</c:otherwise>
 </c:choose>
 	  
+</nav> --%>
+<!-- <div class="navbar navbar-expand-sm bg-dark navbar-dark" style="background-color: black; width: 100%"> -->
+<!-- <div class="container"> -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="background-color: black; width: 100%">
+<div class="flex-grow-2">
+	<a class="navbar-brand" href="/shop/user/main/EgovUserMain.do">Logo</a>
+  	<div class="collapse navbar-collapse" id="collapsibleNavbar">
+	    <ul class="navbar-nav">
+	      <li class="nav-item">
+	       	 
+	      </li>
+		
+	    </ul>
+	</div>
+</div>
+	<div class="flex-grow-1 container">
+	<div class="row" style="padding-left: 35%;">
+		<form class="form-inline" action="/shop/user/product/EgovUserProductlist.do">
+	  <input type="hidden" id="searchCnd" name="searchCnd" value="0">
+	  <input class="form-control mr-sm-2" id="searchWrd" name="searchWrd" type="text" placeholder="Search" style="width:400px">
+	  <button class="btn btn-success" type="submit">Search</button>&nbsp;
+	</form>
+				
+	</div>
+	</div>  
+  	<div class="flex-grow-2">
+	<ul class="navbar-nav">
+		<c:choose>
+		 <c:when test="${(sessionScope.sns_idx != null)or(sessionScope.S_ID != null and sessionScope.S_ID ne ' ')or(sessionScope.A_ID != null and sessionScope.A_ID ne ' ')}">
+		 
+		 		<c:if test="${sessionScope.status == 1 }">
+				 <!-- <button type="button" id="btnlogout" id="userlogout">사용자 logout</button> -->
+				 <button  class="btn btn-info" type="button" id="userlogout">사용자 logout</button>
+				 <!-- Dropdown -->
+	 				 <ul class="navbar-nav" >
+	 					 <li class="nav-item dropdown">
+	 					   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+	    				  	회원 메뉴
+	  					  </a>
+	  					  <div class="dropdown-menu">
+	   						   <a class="dropdown-item" href="/shop/user/buyer/selectUserBuyer.do">마이 페이지</a>
+	    					   <a class="dropdown-item" href="#">Link 2</a>
+	     					   <a class="dropdown-item" href="#">Link 3</a>
+	   					 </div>
+					  </li>
+	  				</ul>
+				 </c:if>
+				 <c:if test="${sessionScope.status == 2 }">
+				 <button class="btn btn-info" type="button" id="sellerlogout">판매자logout</button>
+				  <!-- Dropdown -->
+	 				 <ul class="navbar-nav" >
+	 					 <li class="nav-item dropdown">
+	 					   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+	    				  	${sessionScope.S_ID} 님 
+	  					  </a>
+	  					  <div class="dropdown-menu">
+	   						   <a class="dropdown-item" href="/shop/user/seller/selectUserSeller.do">마이 페이지</a>
+	    					   <a class="dropdown-item" href="#">Link 2</a>
+	     					   <a class="dropdown-item" href="#">Link 3</a>
+	   					 </div>
+					  </li>
+	  				</ul>
+				 </c:if>
+				 <c:if test="${sessionScope.status == 0 }">
+				 <button class="btn btn-info" type="button" id="adminlogout">운영자logout</button>
+				  <!-- Dropdown -->
+	 				 <ul class="navbar-nav" >
+	 					 <li class="nav-item dropdown">
+	 					   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+	    				  	마이페이지
+	  					  </a>
+	  					  <div class="dropdown-menu">
+	   						   <a class="dropdown-item" href="/shop/mng/admin/adminMainForm.do">운영자 페이지</a>
+	    					   <a class="dropdown-item" href="/shop/mng/product/EgovMngProductlist.do">상품관리 페이지</a>
+	     					   <!-- <a class="dropdown-item" href="#">관리자 관리 페이지</a>
+	     					   <a class="dropdown-item" href="#">구매자 관리 페이지</a>
+	     					   <a class="dropdown-item" href="#">판매자 관리 페이지</a> -->
+	   					 </div>
+					  </li>
+	  				</ul>
+				 </c:if>
+			</c:when>
+	
+		<c:otherwise>
+			<button type="button" id="btnlogin" class="btn btn-info">login</button>
+			<!-- <button type="button" id="btnSignIn" class="btn btn-danger" >회원가입</button> -->
+		</c:otherwise>
+</c:choose>
+    </ul>
+</div>
 </nav>
+<!-- </div> -->
+<!-- </div> -->
 </body>
 </html>

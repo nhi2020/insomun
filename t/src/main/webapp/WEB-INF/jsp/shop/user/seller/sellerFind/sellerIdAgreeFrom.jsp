@@ -7,6 +7,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<<<<<<< HEAD
+<!-- <style type="text/css">
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+</style> -->
+=======
 <style type="text/css">
 input[type=text] {
   width: 100%;
@@ -15,37 +25,15 @@ input[type=text] {
   box-sizing: border-box;
 }
 </style>
+>>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
 <script type="text/javascript">
-/* function check() {
-	if($("#s_name").val()==""){
-		alert("아이디를 입력해주세요.");
-		$("#s_name").focus();
-		return false;
-	}
-	if($("#s_email").val()==""){
-		alert("이메일을 입력해주세요.");
-		$("#s_email").focus();
-		return false;
-	}
-	if($("#s_agreenum").val()==""){
-		alert("인증번호를 입력해주세요.");
-		$("#s_agreenum").focus();
-		return false;
-	}
-	if($("#idChk").val()=="N"){
-		alert("인증확인 해주세요.");
-		$("#s_agreenum").focus();
-		return false;
-	}
-
-}; */
  $(document).ready(function(){
 	// 취소
-	$(".cencle").on("click", function(){
-		location.href = "/";
+	$("#cencle").on("click", function(){
+		$("form").attr("action", "/shop/user/EgovUserLoginForm.do");
 	})
 	
 	$("#submit").on("click", function(){
@@ -127,6 +115,7 @@ function fn_idChk(){
 </head>
 <body>
 <%@ include file="../../../inc/EgovShopHeader.jsp" %>
+
 <form action="/shop/user/seller/sellerFindId.do">
 <div class="container"	style="text-align:center;">
 	<div class="container" style="text-align:left;">
@@ -134,16 +123,28 @@ function fn_idChk(){
 		<p class="dsc">본인확인 이메일 주소와 입력한 이메일 주소가 같아야, 인증번호를 받을 수 있습니다.</p>	
 		<dl>
 			<dt><label for="emailNm" class="label_txt">이름</label></dt>
+<<<<<<< HEAD
+			<dd><input class="form-control"  type="text" id="s_name" name="s_name" maxlength="40" class="input_txt"></dd>
+=======
 			<dd><input type="text" id="s_name" name="s_name" maxlength="40" class="input_txt"></dd>
+>>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 			<dt><label for="email" class="label_txt">이메일 주소</label></dt>
 			<dd>
+<<<<<<< HEAD
+				<input class="form-control"  type="text" id="s_email" name="s_email" maxlength="100" class="input_txt">
+=======
 				<input type="text" id="s_email" name="s_email" maxlength="100" class="input_txt">
+>>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 				<button class="btn btn-secondary" type="button" id="btnEmailAuthNo" name="btnEmailAuthNo" onClick="email();" value="N">인증번호 받기</button>
 			</dd>
 			<dt><label for="t_ct1" class="blind">인증번호 입력</label></dt>
 			<dd class="ct">
 				<span class="input_box2">
+<<<<<<< HEAD
+				<input class="form-control"  type="text" id="s_agreenum" name="s_agreenum" maxlength="6" placeholder="인증번호 6자리 숫자 입력">
+=======
 				<input type="text" id="s_agreenum" name="s_agreenum" maxlength="6" placeholder="인증번호 6자리 숫자 입력">
+>>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 				<button class="btn btn-secondary" type="button" id="idChk" onclick="fn_idChk();" value="N">인증확인</button><br>
 				</span>								
 			</dd>	
@@ -151,8 +152,11 @@ function fn_idChk(){
 	</div>
 	<!-- <button class="btn btn-secondary" type="submit" onclick="check();">다음</button> -->
 	<input class="btn btn-success" type="submit" id="submit" value="다음">
+	<input class="btn btn-success" type="submit" id="cencle" value="취소">
 
 </div>
+
+<%@ include file="../../../inc/EgovShopBottom.jsp"%>	
 </form>
 </body>
 </html>

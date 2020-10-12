@@ -256,6 +256,10 @@ public class SellerUserController {
 	@RequestMapping(value="/shop/user/seller/sellerFindPass.do")
 	public String sellerFindPass(Model model,SellerUserVO vo){
 		
+		if(vo.getS_id() != null){
+			SellerService.updateAgreenum(vo);
+		}
+		
 		System.out.println("비번 "+vo.getS_id());
 		model.addAttribute("s_id",vo.getS_id());
 		return "/shop/user/seller/sellerFind/sellerFindPass";

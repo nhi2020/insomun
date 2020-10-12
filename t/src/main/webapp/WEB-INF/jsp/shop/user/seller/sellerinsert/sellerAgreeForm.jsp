@@ -33,13 +33,20 @@
         } );
       $(function() {
           $( '#next' ).click( function() {
-        	  alert("test");
+        	 
         	  if($("input:checkbox[name=all]").is(":checked") == true){
-        		  alert("다음");
+        		 
         		  location.href = "<c:url value='/shop/user/seller/sellerinsert.do'/>";
         	  }else{
         		  alert("약관의 동의하십시오.")
         	  }
+          } );
+        } );
+      $(function() {
+          $( '#back' ).click( function() {
+        
+        		  location.href = "<c:url value='/shop/user/EgovUserLoginForm.do'/>";
+        	  
           } );
         } );
   
@@ -49,6 +56,8 @@
 <%@ include file="../../../inc/EgovShopHeader.jsp" %>
 
  <form>
+ <div class="wrap1" style="padding: 50px 40%">
+ 	
       <p><input type="checkbox" name="all" class="check-all"> <label>전체 동의</label></p>
       
       <p><input type="checkbox" name="cb1" class="ab"> <label>입소문 이용 약관 동의(필수)</label></p>
@@ -56,16 +65,13 @@
       <p><input type="checkbox" name="cb2" class="ab"> <label>개인정보 수집 및  이용 동의(필수)</label></p>
       <textarea rows="5" cols="30"></textarea><p>
      
+ 
+ </div>    
  </form>
  
-
-
-
-
-<div>
-	<input type="submit" id = "back" name= "back" onclick="check1();" value="취소">
-	<input type="submit" id = "next" name= "next" onclick="check();" value="다음">
-	
+<div class="wrap1" style="padding: 10px 40%">
+	 <input class="btn btn-secondary" type="submit" id = "back" name= "back" onclick="check1();" value="취소">
+	  <input class="btn btn-secondary" type="submit" id = "next" name= "next" onclick="check();" value="다음">
 </div>
 </body>
 </html>

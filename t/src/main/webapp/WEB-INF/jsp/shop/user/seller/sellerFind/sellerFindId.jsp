@@ -34,18 +34,20 @@ function passwd() {
 <body>
 <%@ include file="../../../inc/EgovShopHeader.jsp" %>
 <form>
-<div class="container" style="text-align:center">
+<div class="container" style="text-align:center; margin-top: 20px">
 		<div class="box6" >
 			가입한 아이디는 : 
 			<span id="s_id" name="s_id"> ${s_id }</span>
 			입니다.
-		</div>
+		</div><br>
 		<!-- 버튼 영역 -->
 		<div class="btn_area">
-			<a href="#" onclick="login();" class="btn_login2"><span class="blind">로그인하기</span></a>
-			<a href="#" onclick="passwd();" class="btn_findpw"><span class="blind">비밀번호 찾기</span></a>
+			
+			<a href="#" type="button" onclick="login();" class="btn btn-secondary" ><span class="blind">로그인하기</span></a>
+			<a href="#" onclick="passwd();" class="btn btn-secondary"><span class="blind">비밀번호 찾기</span></a>
 		</div>
 </div>
+<%@ include file="../../../inc/EgovShopBottom.jsp"%>
 </form>
 </body>
 </html>

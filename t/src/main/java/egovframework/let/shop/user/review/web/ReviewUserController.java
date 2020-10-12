@@ -40,7 +40,7 @@ public class ReviewUserController {
 	
 	/*@Resource(name ="logFileUtils")
 	private LogFileUtils logFileUtils;
-	*//**
+	/**
 	 * XSS 방지 처리.
 	 *
 	 * @param data
