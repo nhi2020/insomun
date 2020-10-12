@@ -78,7 +78,9 @@ function chk2() {
 		<a target="_blank" id="pwinquiry" href="<c:url value='/shop/user/seller/sellerSearchId.do'/>">비밀번호 찾기</a> <span class="bar" aria-hidden="true">|</span> 
 		<a target="_blank" id="join" href="<c:url value='/shop/user/seller/sellerAgree.do'/>">회원가입</a>
 	</div>
-</div>	   	
+</div>
+
+<%@ include file="../inc/EgovShopBottom.jsp"%>	   	
  
 </body>
 </html>

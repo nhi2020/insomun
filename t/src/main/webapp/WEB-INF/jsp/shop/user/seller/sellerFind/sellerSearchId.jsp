@@ -10,7 +10,18 @@
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-
+<script type="text/javascript">
+$(document).ready(function(){
+	// 취소
+	$("#cencle").on("click", function(){
+	$("form").attr("action", "/shop/user/EgovUserLoginForm.do");
+	})
+	
+	$("#submit").on("click", function(){
+	
+	});
+})
+</script>
 </head>
 
 <body>
@@ -21,12 +32,14 @@
 	<c:if test="${msg = null }">
 	</c:if>
 <form action="/shop/user/seller/sellerSearchIdPro.do">
-	<div>
-		<p>아이디를 입력하시요.
-		<input type="text" name=s_id>	
-		<input type="submit" value="다음">
+	<div class="container" style="margin-top: 20px">
+		<div class="box6" >
+			아이디를 입력하시요.<br><br>
+			<input class="form-control" type="text" name=s_id><br>
+			<input class="btn btn-secondary" type="submit" value="다음">
+			<input class="btn btn-secondary" type="submit" id="cencle" value="취소">
+		</div><br>
 	</div>
-	
 </form>
  
 <%@ include file="../../../inc/EgovShopBottom.jsp" %>

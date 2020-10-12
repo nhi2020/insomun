@@ -8,14 +8,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style type="text/css">
+input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
 <script type="text/javascript">
 $(document).ready(function(){
 			// 취소
-			$(".cencle").on("click", function(){
-				location.href = "/";
+			$("#cencle").on("click", function(){
+			$("form").attr("action", "/shop/user/EgovUserLoginForm.do");
 			})
 			
 			$("#submit").on("click", function(){
@@ -62,20 +70,25 @@ $(document).ready(function(){
 </head>
 <body>
 <%@ include file="../../../inc/EgovShopHeader.jsp" %>
-<form id="fm" name="fm" action="/shop/user/EgovUserLoginForm.do" method="post">	
-			<input id="s_id" name="s_id" type="hidden"value="${s_id }"> 		
+<form id="fm" name="fm" action="/shop/user/EgovUserLoginForm.do" method="post">
+<div class="container"	style="text-align:center;">
+	<div class="container" style="text-align:left;">
+		<input id="s_id" name="s_id" type="hidden"value="${s_id }"> 		
 			<div class="section section_find">
 					<dl class="n_id">
 					<dt>아이디 : ${s_id }</dt>
 					</dl>
-						<label id="lb_new_pw" for="new_pw" style="">새 비밀번호</label>					
-						<input id="s_pass" name="s_pass" type="password"><br>
-						<label id="lb_new_pw" for="new_pw" style="">새 비밀번호 확인</label>					
-						<input id="s_pass2" name="s_pass2" type="password">
+						<label id="lb_new_pw" for="new_pw" style="">새 비밀번호</label>	<br>			
+						<input class="form-control" id="s_pass" name="s_pass" type="password"><br>
+						<label id="lb_new_pw" for="new_pw" style="">새 비밀번호 확인</label>	<br>				
+						<input class="form-control" id="s_pass2" name="s_pass2" type="password">
 
 					<input class="btn btn-success" type="submit" id="submit" value="확인">
+					<input class="btn btn-success" type="submit" id="cencle" value="취소">
 				
 			</div>
+	</div>
+</div>
 </form>
 </body>
 </html>
