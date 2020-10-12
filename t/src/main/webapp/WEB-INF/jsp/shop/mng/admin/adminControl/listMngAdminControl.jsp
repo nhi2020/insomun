@@ -20,12 +20,12 @@
 	<c:if test="${msg = null }">
 	</c:if>
 	
-   <form action="/shop/mng/admin/adminControl/delMngAdminControl.do" name="frm"">
+  
     
   
 	<div class="container">
 	  <div class="row">
-	  
+	    <form action="/shop/mng/admin/adminControl/delMngAdminControl.do" name="frm"">
 	   <table class="table mx-auto">
 	      <tr>
 	         <th>아이디</th>
@@ -46,12 +46,13 @@
 		  </tr>
 	    </c:forEach> 
 	   </table>
-	  </div>
-	</div>
-	 <input type="submit" value="삭제"/>
- </form> 
+	    <input type="submit" value="삭제"/>
+     </form> 
 	  
 	   <input type="submit" value="등록" onclick="location.href='/shop/mng/admin/adminControl/insertMngAdminControlForm.do'">
+	  </div>
+	</div>
+	
   
 </body>
 </html>
