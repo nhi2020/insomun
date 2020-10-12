@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -151,7 +150,7 @@ public class ReviewUserController {
 
 		egovReviewService.insertMainUserReview(reviewVO);
 		
-		return "redirect:/shop/user/review/reviewList.do?p_idx="+reviewVO.getP_idx();
+		return "redirect:/shop/user/product/EgovBuyerProductForm?p_idx="+reviewVO.getP_idx();
 	}
 	@SuppressWarnings("unused")
 	private String uploadFile(String originalName, byte[] fileData, String uploadPath) throws Exception {

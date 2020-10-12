@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import egovframework.let.shop.user.product.service.ProductUserService;
 import egovframework.let.shop.user.product.service.impl.ProductUserVO;
+import egovframework.let.shop.user.review.service.ReviewUserService;
 import egovframework.let.shop.user.review.service.ReviewUserVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -50,6 +51,9 @@ public class ProductUserController {
 	@Resource(name = "EgovUserProductService")
 	private ProductUserService userProductService;
 
+	@Resource(name = "EgovReviewUserService")
+	private ReviewUserService egovReviewService;
+	
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
 	
@@ -225,10 +229,12 @@ public class ProductUserController {
 	}
 	
 	@RequestMapping(value = "/shop/user/product/EgovBuyerProductForm")
-	public String EgovBuyerProduct(ProductUserVO vo, ModelMap model) throws Exception {
+	public String EgovBuyerProduct(ProductUserVO vo, ModelMap model,ReviewUserVO reviewVO) throws Exception {
 		 vo = userProductService.selectBuyerProduct(vo);
 		    System.out.println("EgovBuyerProduct"+vo);
 		    model.addAttribute("ProductUserVO",vo);
+		    List<ReviewUserVO> list = egovReviewService.selectReviewList(reviewVO);
+		    model.addAttribute("list",list);
 		    return "/shop/user/product/EgovBuyerProductForm";
 	}
 
