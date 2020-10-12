@@ -95,7 +95,7 @@
 				<p/>
 				<input type="submit" value="장바구니" onclick="goBasket(${ProductUserVO.p_idx}); return false;"/>
 				<input type="submit" value="찜하기" onclick=""/>
-				<input type="submit" value="바로구매" onclick=""/>
+				<input type="button" value="바로구매" onclick="location.href='/shop/user/deal/dealUserBuyerRequest.do?p_idx=${ProductUserVO.p_idx}&s_id=${ProductUserVO.s_id }'"/>
 				<p/>
 				<input type="button" value="목록" onclick="location.href='/shop/user/product/EgovUserProductlist.do'"/>
 				</p>
