@@ -1,7 +1,9 @@
 package egovframework.let.shop.user.product.web;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -10,12 +12,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import egovframework.let.shop.user.product.service.ProductUserService;
 import egovframework.let.shop.user.product.service.impl.ProductUserVO;
+import egovframework.let.shop.user.review.service.ReviewUserService;
 import egovframework.let.shop.user.review.service.ReviewUserVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -46,6 +51,9 @@ public class ProductUserController {
 	@Resource(name = "EgovUserProductService")
 	private ProductUserService userProductService;
 
+	@Resource(name = "EgovReviewUserService")
+	private ReviewUserService egovReviewService;
+	
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
 	
@@ -160,18 +168,53 @@ public class ProductUserController {
 	}
 	
 	@RequestMapping(value = "/shop/user/product/EgovUserProductInsertPro", method = RequestMethod.POST)
-	public String EgovUserProductInsertPro(ProductUserVO vo,Model model, HttpServletRequest request) throws Exception {
+	public String EgovUserProductInsertPro(ProductUserVO vo,Model model, HttpServletRequest request, MultipartFile file, String path) throws Exception {
 		
 		HttpSession session = request.getSession();
 		String s_id = (String) session.getAttribute("S_ID");
 		vo.setS_id(s_id);
-		String result = userProductService.insertUserProductPro(vo);
-		System.out.println("EgovUserProductInsertPro");
-		System.out.println("result => " + result);
+	
+		//
+		String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
+		//String uploadPath = propertyService.getString("Globals.fileStorePath");
+		String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
+		vo.setP_image(savedName);
+		//
+		
+		userProductService.insertUserProductPro(vo);
 		
 		return "redirect:/shop/user/product/EgovUserProductInsertForm.do";
 	}
 	
+	private String uploadFile(String originalFilename, byte[] fileData, String uploadPath) throws Exception {
+		// 랜덤으로 UUID를 생성해 파일 앞에 붙여줄 예정.
+		UUID uid = UUID.randomUUID();
+		System.out.println("uploadPath => " + uploadPath);
+		
+		// 업로드 경로를 확인하고, 경로에 폴더가 존재하지 않을 경우 생성해준다. 
+		File fileDiretory = new File(uploadPath);
+		if (!fileDiretory.exists()) {
+			fileDiretory.mkdirs();
+			System.out.println("the directory for uploading : " + uploadPath);
+		}
+		
+		// UUID를 스트링으로 변환해 원래 이름 앞에 붙여준다.
+		String savedName = uid.toString() + "_" + originalFilename;
+		
+		String[] invalidName = {"\\\\","/",":","\"","<",">","\\[","\\]"}; // 윈도우 파일명으로 사용할수 없는 문자
+
+		for(int i=0;i<invalidName.length;i++)
+			savedName = savedName.replaceAll(invalidName[i], "_"); // 언더바로 치환
+
+
+		// 저장될 파일 경로를 지정.
+		File target = new File(uploadPath, savedName);
+		
+		// FileCopyUtils로 경로에 저장해 복사한다.
+		FileCopyUtils.copy(fileData, target);
+		return savedName;
+	}
+
 	@RequestMapping(value = "/shop/user/product/EgovUserProductDelete") 
 	public String EgovUserProductDelete(ProductUserVO vo, HttpServletRequest request)throws Exception {
 		
@@ -186,10 +229,12 @@ public class ProductUserController {
 	}
 	
 	@RequestMapping(value = "/shop/user/product/EgovBuyerProductForm")
-	public String EgovBuyerProduct(ProductUserVO vo, ModelMap model) throws Exception {
+	public String EgovBuyerProduct(ProductUserVO vo, ModelMap model,ReviewUserVO reviewVO) throws Exception {
 		 vo = userProductService.selectBuyerProduct(vo);
 		    System.out.println("EgovBuyerProduct"+vo);
 		    model.addAttribute("ProductUserVO",vo);
+		    List<ReviewUserVO> list = egovReviewService.selectReviewList(reviewVO);
+		    model.addAttribute("list",list);
 		    return "/shop/user/product/EgovBuyerProductForm";
 	}
 

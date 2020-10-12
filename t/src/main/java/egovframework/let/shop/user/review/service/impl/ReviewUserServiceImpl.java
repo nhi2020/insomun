@@ -3,6 +3,7 @@ package egovframework.let.shop.user.review.service.impl;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ public class ReviewUserServiceImpl extends EgovAbstractServiceImpl implements Re
 	//리뷰 후기 전체보기
 	@Override
 	public List<ReviewUserVO> selectReviewList(ReviewUserVO reviewVO) throws Exception {
+		System.out.println("reviewVOreviewVODAODAO"+reviewVO);
 		List<ReviewUserVO> list = egovReviewDAO.selectReviewList(reviewVO);
 		return list;
 	}
@@ -36,11 +38,26 @@ public class ReviewUserServiceImpl extends EgovAbstractServiceImpl implements Re
 		int result = egovReviewDAO.updateUserReview(reviewVO);
 		return result;
 	}
-
+	//상품상세에대한 리뷰
 	@Override
 	public int insertMainUserReview(ReviewUserVO reviewVO) throws Exception {
 		int reuslt = egovReviewDAO.insertMainUserReview(reviewVO);
 		return reuslt;
 	}
+	//상품 후기사진 올리기
+	@Override
+	public int insertPicReview(HttpServletRequest request) throws Exception {
+		int result = egovReviewDAO.insertPicReview(request);
+		return result ;
+	}
+	
+	//상품 후기 평점
+	@Override
+	public List<String> selectReviewAvg(ReviewUserVO reviewVO) throws Exception {
+		List<String> list = egovReviewDAO.selectReviewAvg(reviewVO);
+		return list;
+	}
+
+	
 
 }

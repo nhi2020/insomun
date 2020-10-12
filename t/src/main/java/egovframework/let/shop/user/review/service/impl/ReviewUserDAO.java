@@ -2,6 +2,8 @@ package egovframework.let.shop.user.review.service.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Repository;
 
 import egovframework.let.shop.user.review.service.ReviewUserVO;
@@ -30,5 +32,15 @@ public class ReviewUserDAO extends EgovAbstractDAO {
 		int result = (Integer) insert("EgovReviewDAO.insertMainUserReview",reviewVO);
 		return result;
 	}
+	//상품 후기사진 올리기
+	public int insertPicReview(HttpServletRequest request) throws Exception{
+		int result = (Integer) insert("EgovReviewDAO.insertFileUserReview", request);
+		return result;
+	}
 	
+	//상품 후기 평점
+	@SuppressWarnings("unchecked")
+	public List<String> selectReviewAvg(ReviewUserVO reviewVO) throws Exception{
+		return (List<String>) list("EgovReviewDAO.selectReviewAvg", reviewVO);
+	}
 }

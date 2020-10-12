@@ -11,6 +11,24 @@ public class ReviewMng {
 	private String r_delyn;
 	private String nickname;
 	private String r_div;
+	private int sns_score;
+	private int seller_score;
+
+	public int getSns_score() {
+		return sns_score;
+	}
+
+	public void setSns_score(int sns_score) {
+		this.sns_score = sns_score;
+	}
+
+	public int getSeller_score() {
+		return seller_score;
+	}
+
+	public void setSeller_score(int seller_score) {
+		this.seller_score = seller_score;
+	}
 
 	public String getR_div() {
 		return r_div;

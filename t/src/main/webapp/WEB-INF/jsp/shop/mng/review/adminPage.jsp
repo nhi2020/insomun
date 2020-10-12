@@ -17,6 +17,7 @@
 <body>
 <%@ include file="../../inc/EgovShopTop.jsp"%>
 <%@ include file="../../inc/EgovShopHeader.jsp"%>
+<p class="h-25"/>
 <div class="container text-center">
 	<div class="row justify-content-center">
 		<table border="1">

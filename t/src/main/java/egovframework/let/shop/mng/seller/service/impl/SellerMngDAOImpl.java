@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import egovframework.let.shop.mng.seller.service.SellerMngDAO;
-import egovframework.let.shop.mng.testFileUpload.service.TestFileUpload;
-import egovframework.let.shop.user.seller.service.impl.SellerUserVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
 @Repository("SellerMngDAO")

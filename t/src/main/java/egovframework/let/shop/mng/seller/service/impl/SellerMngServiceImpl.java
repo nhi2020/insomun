@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import egovframework.let.shop.mng.seller.service.SellerMngDAO;
 import egovframework.let.shop.mng.seller.service.SellerMngService;
-import egovframework.let.shop.mng.testFileUpload.service.TestFileUpload;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
 @Service("SellerMngService")
@@ -58,6 +57,5 @@ public class SellerMngServiceImpl extends EgovAbstractServiceImpl implements Sel
 		int result = SellerDAO.delMngSeller(vo);
 		return result;
 	}
-
 
 }
