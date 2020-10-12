@@ -48,16 +48,19 @@ public class MngLoginInterceptor extends WebContentInterceptor {
 		// 세션에서 로그인 정보를 취득
 		HttpSession session = request.getSession();
 		String a_id = (String) session.getAttribute("A_ID");
+		
 		if (a_id == null || a_id.equals("")) {
 			System.out.println("관리자 권한 없음 => 로그인 페이지로 리다이렉트 합니다.");
 			try {
 				response.sendRedirect("/shop/mng/admin/AdminLogin.do");
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			// 컨트롤러로 요청을 넘기지 않기 위해 false로 처리한다.
 			return false;
 		}
+		
 		// true로 처리될 경우 인터셉터가 작업된 이후 정상적으로 컨트롤러에 매핑된다.
 		return true;
 	}
