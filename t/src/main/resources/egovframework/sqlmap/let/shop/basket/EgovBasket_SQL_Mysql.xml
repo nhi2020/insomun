@@ -82,8 +82,8 @@
 	<update id="updateMngBasketQty" parameterClass="BasketVO">
 		UPDATE BASKET
 		SET
-		BA_Q = #ba_q#
-		WHERE BA_IDX = #ba_idx#
+				BA_Q = #ba_q#
+		WHERE 	BA_IDX = #ba_idx#
 	</update>
 
 	<update id="updateBasketUserQty" parameterClass="BasketUserVO">
@@ -120,7 +120,10 @@
 	<select id="selectByP_IdxBasketUser" parameterClass="BasketUserVO" resultClass="BasketUserVO">
 	SELECT *
 	FROM BASKET
-	WHERE P_IDX = #p_idx#
+	WHERE 
+			P_IDX = #p_idx#
+	AND
+			SNS_IDX = #sns_idx#
 	</select>
 	
 	

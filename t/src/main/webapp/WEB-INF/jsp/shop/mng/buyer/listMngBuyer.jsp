@@ -65,7 +65,11 @@
 					</div>
 				</div>
 			 <input type="hidden" name="pageIndex" value="1" />
-				<input type="hidden" name="searchCnd" value="0" />
+				<select name="searchCnd">
+					<option value="0">아이디</option>
+					<option value="1">닉네임</option>
+					<option value="2">이메일</option>
+				</select>
 			</form>
 			<div id="paging_div">
 				<ul class="paging_align">
