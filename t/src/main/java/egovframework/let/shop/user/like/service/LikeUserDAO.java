@@ -14,4 +14,6 @@ public interface LikeUserDAO  {
 
 	int insertUserLikeSelect(LikeUserVO vo);
 
+	int deleteUserLike(LikeUserVO vo);
+
 }

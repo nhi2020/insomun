@@ -21,7 +21,7 @@
 <body>
 <%@ include file="../../inc/EgovShopTop.jsp" %>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
-<h2>수정 2 페이지</h2>
+<h2>수정 페이지</h2>
 
 	<c:if test="${msg != null }">
 	<p>${msg }</p>
@@ -30,14 +30,14 @@
 	</c:if>
 	
  <div class="container-fluid">
-	<div class="container text-center">
+
 	    <div class="row">
-			<form action="/shop/mng/product/EgovMngProductUpdatePro.do" method="post" enctype="multipart/form-data">
+			<form class="mx-auto" action="/shop/mng/product/EgovMngProductUpdatePro.do" method="post" enctype="multipart/form-data">
 	    			<input type="hidden" name="p_idx" value="${ProductMngVO.p_idx }" />
 	    			<input type="hidden" name="preImage" value="${ProductMngVo.preImage }">
-					<img src="<c:url value='/'/>file/${ProductMngVO.p_image}" width="270" height="270"/>
+					<img class="mx-auto" src="<c:url value='/'/>file/${ProductMngVO.p_image}" width="270" height="270" style="display: block;/">
 					<br/>
-					<table class="table">
+					<table class="table" style="text-align: left">
 					<tr>
 						<th>사진변경</th>
 						<td><input type="file" name="file" value="${ProductMngVO.p_image}" />
@@ -78,8 +78,9 @@
 						<td><input type="date" name="p_moddate" value="${ProductMngVO.p_moddate }"/></td>
 					</tr>
 					<tr>
-						<td colspan="2"><br/><input type="submit" value="수정완료" > &nbsp;
-						<input type="button" value="이전으로" onclick="location.href='/shop/mng/product/EgovMngProductlist.do'"/>
+						<td colspan="2" style="text-align: center">
+						<input type="submit" value="수정완료" class="btn btn-primary"> &nbsp;
+						<input type="button" value="이전으로" class="btn btn-info" onclick="location.href='/shop/mng/product/EgovMngProductlist.do'"/>
 					</tr>
 				</table>
 					<%-- <c:if test=""></c:if> --%>

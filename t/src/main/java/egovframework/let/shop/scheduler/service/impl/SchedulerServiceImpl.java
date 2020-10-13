@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 import egovframework.let.shop.scheduler.service.SchedulerService;
 
-@Service("scheduler")
-public class SchedulerImpl implements SchedulerService {
+@Service("schedulerService")
+public class SchedulerServiceImpl implements SchedulerService {
 	
 	@Resource(name = "schedulerDao")
 	private SchedulerDAO schedulerDAO;

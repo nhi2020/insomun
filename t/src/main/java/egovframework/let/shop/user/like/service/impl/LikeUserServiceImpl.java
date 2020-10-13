@@ -44,6 +44,13 @@ public class LikeUserServiceImpl implements LikeUserService{
 	}
 
 
+	@Override
+	public int deleteUserLike(LikeUserVO vo) {
+		
+		return ld.deleteUserLike(vo);
+	}
+
+
 	
 
 

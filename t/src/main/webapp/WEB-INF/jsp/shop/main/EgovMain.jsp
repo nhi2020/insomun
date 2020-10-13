@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<%@ include file="../inc/EgovShopTop.jsp"%>
+<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopTop.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,58 +19,7 @@
 </script>
 </head>
 <body>
-	<%@ include file="../inc/EgovShopHeader.jsp"%>
-	<!-- 테스트용 임시 링크 -->
-	<div class="container text-center">
-		<div class="row justify-content-center">
-			<table border="1">
-				<tr>
-					<td><a href="/shop/mng/buyer/listMngBuyer.do">구매자 관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/user/review/reviewList.do">리뷰 페이지</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/mng/review.do">판매자 리뷰 관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/mng/basket/listMngBasket.do">장바구니 관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/mng/seller/listMngSeller.do">판매자 관리</a></td>
-				</tr>
-				<tr>
-					<td><a
-						href="/shop/mng/admin/adminControl/listMngAdminControl.do">운영자관리</a>
-				</tr>
-				<tr>
-					<td><a href="/shop/user/product/EgovUserProductlist.do">상품 관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/user/seller/sellerUserMain.do">판매자 페이지</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/mng/deal/dealMngList.do">운영자 거래관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/user/deal/dealUserBuyerList.do">구매자 거래관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/user/deal/dealUserSellerList.do">판매자 거래관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/mng/testFileUpload/insertTestFileUploadForm.do">파일 업로드 테스트</a></td>
-				</tr>
-				<tr>
-					<td><a href="#">### 관리</a></td>
-				</tr>
-			</table>
-		</div>
-	</div>
-	<!-- <div id="test">
-
-</div> -->
-
+	<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopHeader.jsp"%>
 	<div class="container text-center" style="position: relative;">
 
 		<img src="<c:url value='/images/shop/main/main.jpg'/>" width=800
@@ -93,16 +42,15 @@
 				<c:forEach var="product_list" items="${list}">
 					<div class="col-3">
 
-						<img src="./images/main/photo/${product_list.p_image}" width="270"
-							height="385" />
-
+						<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${product_list.p_idx }">
+					<img src="<c:url value='/'/>file/${product_list.p_image}" width="270" height="270"></a>
 						<p>
-
-							<span>판매자 아이디: ${product_list.s_id }</span> <br /> <span>가격:
-								${product_list.p_price }</span> <br /> <span>상태:
-								${product_list.p_status }</span> <br /> <span>재고 수량:
-								${product_list.p_q }</span> <br /> <span>업데이트된 날짜:
-								${product_list.p_moddate }</span>
+							<span>판매자 아이디: ${product_list.s_id }</span> <br />
+							<span>상품명: ${product_list.p_name }</span> <br />  
+							<span>가격: ${product_list.p_price }</span> <br /> 
+							<span>상태: ${product_list.p_status }</span> <br /> 
+							<span>재고 수량: ${product_list.p_q }</span> <br /> 
+							<span>업데이트된 날짜: ${product_list.p_moddate }</span>
 						</p>
 					</div>
 
@@ -111,16 +59,6 @@
 		</div>
 	</div>
 
-
-
-
-
-
-
-
-
-
-
-	<%@ include file="../inc/EgovShopBottom.jsp"%>
+	<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopBottom.jsp"%>
 </body>
 </html>

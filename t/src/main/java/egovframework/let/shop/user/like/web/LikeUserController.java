@@ -128,10 +128,16 @@ public class LikeUserController {
 		
 		 return "redirect:/shop/user/product/EgovUserProductlist.do";
 		 
+		 
 		
 	}
 	
 
-	 
+	@RequestMapping(value="/shop/user/like/LikeUserDelete")
+	 public String LikeUserDelete (HttpServletRequest request, Model model, LikeUserVO vo) throws Exception {
+		int result = likeUserService.deleteUserLike(vo);
+		return "redirect:/shop/user/like/LikeUserList.do";
+		 
+	 }
 	
 }

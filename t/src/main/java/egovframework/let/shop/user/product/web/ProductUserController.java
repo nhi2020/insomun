@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.let.shop.user.product.service.ProductUserService;
 import egovframework.let.shop.user.product.service.impl.ProductUserVO;
@@ -142,26 +143,44 @@ public class ProductUserController {
 	
 	    vo = userProductService.selectUserProductForm(vo);
 	    System.out.println("EgovUserProductUpdateForm"+vo);
-	    List<ProductUserVO> list = new ArrayList<ProductUserVO>();
 	    model.addAttribute("ProductUserVO",vo);
 	    return "/shop/user/product/EgovUserProductUpdateForm";
 	}
 //수정하기 가능하도록	
 	@RequestMapping(value ="/shop/user/product/EgovUserProductUpdatePro", method = RequestMethod.POST)
-	public String egovUserProductUpdatePro(ProductUserVO vo, Model model) throws Exception{
-		int result = userProductService.updateUserProductPro(vo);
+	public String egovUserProductUpdatePro(@ModelAttribute("ProductUserVO")ProductUserVO vo, HttpServletRequest request,Model model, RedirectAttributes redirect, MultipartFile file) throws Exception{
+		//
+	    String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
+	    // 서버에 업로드할 경우엔 프로퍼티에서 경로를 설정할 예정.
+	 	// String uploadPath = propertyService.getString("Globals.fileStorePath");
+	    // 서버 파일 삭제
+	    String deleteFile = uploadPath + vo.getPreImage(); //
+	    int delResult = deleteFile(deleteFile);
+	    // 서버 업로드를 위한 절차
+	    String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
+		vo.setP_image(savedName);
+	    // DB 반영
+	    int dbResult = userProductService.updateUserProductPro(vo);
+	    
 		System.out.println("vo pname => " + vo.getP_name());
-		if (result > 0) {
+		if (dbResult > 0) {
 			model.addAttribute("msg", "수정 성공");
 		} else {
 			model.addAttribute("msg", "수정 실패");
 		}
 		model.addAttribute("vo");
+		model.addAttribute("delResult", delResult);
+	    model.addAttribute("dbResult", dbResult);
 
 		return "forward:/shop/user/product/EgovUserProductUpdateForm.do";
 
 	}
 	
+	private int deleteFile(String deleteFile) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	@RequestMapping(value = "/shop/user/product/EgovUserProductInsertForm")
 	public String EgovUserProductInsertForm() {
 		return "/shop/user/product/EgovUserProductInsertForm";

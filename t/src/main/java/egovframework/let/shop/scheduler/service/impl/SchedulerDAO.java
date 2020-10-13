@@ -8,6 +8,6 @@ import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 public class SchedulerDAO extends EgovAbstractDAO {
 	
 	public int delSch() {
-		return delete("log.deleteLog");
+		return delete("scheduler.deleteLog");
 	}
 }

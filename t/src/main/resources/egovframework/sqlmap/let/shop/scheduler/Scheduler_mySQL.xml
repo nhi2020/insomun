@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
 
-<mapper namespace="log">
+<sqlMap namespace="Product">
 
-	<resultMap id="logList" type="egovframework.let.shop.scheduler.service.Scheduler">
+	<!-- <resultMap id="SchedulerList" type="egovframework.let.shop.scheduler.service.Scheduler">
 		<result property="log_idx" column="LOG_IDX" />
 	</resultMap>
 
-	<select id="selectLogList" resultMap="logList"> 
+	<select id="selectLogList" resultMap="SchedulerList"> 
       <![CDATA[ 
          SELECT 
             LOG_IDX
          FROM
             MLOG
       ]]>
-	</select>
+	</select> -->
 
-	<insert id="log.insertLog" >
+	<!-- <insert id="log.insertLog" >
 		INSERT INTO LOG(LOG_IDX) SELECT ifnull(MAX(LOG_IDX) + 1,1) FROM LOG
-	</insert>
+	</insert> -->
 
-	<delete id="log.deleteLog" parameterType="egovframework.let.shop.scheduler.service.Scheduler">
+	<delete id="scheduler.deleteLog">
       <![CDATA[ 
-         DELETE FROM MLOG where LOG_IDX = #{log_idx}
+         DELETE FROM MLOG WHERE 1=1 AND DATEDIFF(SYSDATE(), LOG_DATE) > 180
       ]]>
 	</delete>
 
-</mapper>
+</sqlMap>
