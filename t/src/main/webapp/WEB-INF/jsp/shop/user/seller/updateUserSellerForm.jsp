@@ -210,8 +210,9 @@ input[type="file"] {
 						<td>${SellerVO.s_regdate }</td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="submit" class="btn btn-secondary"  value="수정" /> 
-						</td>
+						<th></th>
+						<td colspan="2"><input type="submit" class="btn btn-secondary"  value="수정" />
+						<input type="button" value="목록으로" class="btn btn-secondary"  onclick="location.href='/shop/user/seller/selectUserSeller.do'" /></td>
 					</tr>
 				</table>
 			</form>
