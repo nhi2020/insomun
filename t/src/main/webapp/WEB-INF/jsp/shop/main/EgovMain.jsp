@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<%@ include file="../inc/EgovShopTop.jsp"%>
+<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopTop.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,7 +19,7 @@
 </script>
 </head>
 <body>
-	<%@ include file="../inc/EgovShopHeader.jsp"%>
+	<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopHeader.jsp"%>
 	<div class="container text-center" style="position: relative;">
 
 		<img src="<c:url value='/images/shop/main/main.jpg'/>" width=800
@@ -44,9 +44,7 @@
 
 						<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${product_list.p_idx }">
 					<img src="<c:url value='/'/>file/${product_list.p_image}" width="270" height="270"></a>
-
 						<p>
-
 							<span>판매자 아이디: ${product_list.s_id }</span> <br />
 							<span>상품명: ${product_list.p_name }</span> <br />  
 							<span>가격: ${product_list.p_price }</span> <br /> 
@@ -71,6 +69,6 @@
 
 
 
-	<%@ include file="../inc/EgovShopBottom.jsp"%>
+	<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopBottom.jsp"%>
 </body>
 </html>

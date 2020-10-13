@@ -20,8 +20,8 @@ import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 public class UserMainControllor {
 	
 	
-	@Resource(name = "UserMainService")
-	private UserMainService MainService;
+	@Resource(name = "userMainService")
+	private UserMainService userMainService;
 
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
@@ -53,7 +53,7 @@ public class UserMainControllor {
 	}
 	
 	@RequestMapping(value="/shop/user/main/EgovUserMain.do")
-	public String main(Model model,UserMainVO vo) {
+	public String main(Model model,UserMainVO vo) throws Exception{
 		System.out.println("UserMainControllor");
 		/*int count = MainService.selectCount();
 		System.out.println("count"+count);
@@ -81,9 +81,9 @@ public class UserMainControllor {
 		System.out.println(vo.getCount1().get(0));*/
 		/*@SuppressWarnings("unused")
 		List<UserMainVO> list3= MainService.selectMainList2(list2);*/
-		List<UserMainVO> list = MainService.selectMainList(vo);
+		List<UserMainVO> list = userMainService.selectMainList(vo);
 		
-		System.out.println("list"+ list);
+		/*System.out.println("list"+ list);*/
 		model.addAttribute("list",list);
 	    return "shop/main/EgovMain";
 	}

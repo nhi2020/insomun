@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import egovframework.let.shop.mng.buyer.service.impl.BuyerMngVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
-@Repository("UserMainDAO")
+@Repository("userMainDAO")
 public class UserMainDAO extends EgovAbstractDAO{
 
 	@SuppressWarnings("unchecked")
