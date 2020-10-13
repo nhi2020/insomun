@@ -53,21 +53,21 @@
 
 	
 	<div id="nav">
-        <div class="menu-item" id="item8"><input type="button" class="btn btn-light" onclick="location.href='/shop/mng/seller/updateMngSellerForm.do?s_id=${SellerVO.s_id}'" value="정보수정"></div>
-        <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/user/deal/dealUserSellerList.do'" value="신청대기중인 거래보기"></div>
+        <div class="menu-item" id="item8"><input type="button" class="btn btn-light" onclick="location.href='/shop/user/seller/updateUserSellerForm.do?s_id=${SellerVO.s_id}'" value="정보수정"></div>
+        <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/user/product/EgovUserProductlist.do'" value="내 상품보기"></div>
+<!--    <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/user/deal/dealUserSellerList.do'" value="신청대기중인 거래보기"></div>
         <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/user/deal/dealUserSellerList.do'" value="수락한 거래보기"></div>
         <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/user/deal/dealUserSellerList.do'" value="구매확정 거래보기"></div>
-        <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/user/deal/dealUserSellerList.do'" value="취소된 거래보기"></div>
-        <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/user/product/EgovUserProductInsertForm.do'" value="거래추가"></div>
-        <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/mng/review/MngSelect.do'" value="리뷰관리"></div>
-        <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/mng/review/MngSelect.do'" value="달린댓글"></div>
+        <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/user/deal/dealUserSellerList.do'" value="취소된 거래보기"></div> -->
+        <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/user/product/EgovUserProductInsertForm.do'" value="상품추가"></div>
+ <!--   <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/mng/review/MngSelect.do'" value="리뷰관리"></div>
+        <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/mng/review/MngSelect.do'" value="달린댓글"></div> -->
 
     </div>
     
-    
 	<p>
 	
-	
+	<!-- 
 	 <div class="p-3 mb-2 bg-light text-dark" id="div_con1">
             <h3>신청대기중인 거래보기...</h3>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, tempore dicta ut voluptate asperiores doloremque sapiente odit iste? Totam id, labore aut eligendi ullam doloremque officiis iure expedita suscipit perspiciatis.</p>
@@ -113,7 +113,7 @@
         <p>Explicabo reiciendis aspernatur, repellat sapiente quae voluptas adipisci quod a ab, mollitia nobis. Facilis reprehenderit quasi eligendi repudiandae, nulla ad repellendus! Provident tempore quidem aliquam maxime dolores exercitationem laudantium consequatur?</p>
 		<p><a href="/shop/mng/review/MngSelect.do">자세히...</a></p>
 	</div>
-
+ -->
 	</div>
 	<div id="div_bottom">
 <%@ include file="../../inc/EgovShopBottom.jsp" %>

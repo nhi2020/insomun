@@ -117,6 +117,26 @@ public class SellerUserDAO extends EgovAbstractDAO {
 		
 	}
 
+	public SellerUserVO sellerUserSelect(SellerUserVO vo) {
+		try {
+			vo = (SellerUserVO) select("sellerUserSelect", vo);
+		} catch (Exception e) {
+			System.out.println("sellerUserSelect Exception" + e.getMessage());
+		}
+		return vo;
+	}
+
+	public int sellerUserUpdate(SellerMngVO vo) {
+		System.out.println("sellerUserUpdate");
+		int result = 0;
+		try {
+			result = update("sellerUserUpdate", vo);
+		} catch (Exception e) {
+			System.out.println("sellerUserUpdate Exception" + e.getMessage());
+		}
+		return result;
+	}
+
 
 
 }
