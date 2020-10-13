@@ -44,5 +44,16 @@ public class LikeUserDAOImpl extends EgovAbstractDAO implements LikeUserDAO{
 		}
 		return result;
 	}
+
+	@Override
+	public int deleteUserLike(LikeUserVO vo) {
+		int result=0;
+		try{
+			result = delete("deleteUserLike",vo);
+		}catch (Exception e) {
+			System.out.println("LikeUserDAOImpl deleteUserLike Exception"+e.getMessage());
+		}
+		return result;
+	}
   
 }

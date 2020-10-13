@@ -93,8 +93,8 @@
 				
 				<p/>
 				<p/>
-				<input type="submit" value="장바구니" onclick="goBasket(${ProductUserVO.p_idx}); return false;"/>
-				<input type="submit" value="찜하기" onclick=""/>
+				<input type="button" value="장바구니" onclick="goBasket(); return false;"/>
+				<input type="submit" value="찜하기" onclick="goLike(); return false;"/>
 				<input type="button" value="바로구매" onclick="location.href='/shop/user/deal/dealUserBuyerRequest.do?p_idx=${ProductUserVO.p_idx}&s_id=${ProductUserVO.s_id }'"/>
 				<p/>
 				<input type="button" value="목록" onclick="location.href='/shop/user/product/EgovUserProductlist.do'"/>
@@ -104,11 +104,15 @@
 		</div>
 	</div>
 <script type="text/javascript">
-	function goBasket(p_idx) {
+	function goBasket() {
 		document.frm.action = "/shop/user/basket/insertBasketUserPro.do";
 		document.frm.submit();
 	}
-
+	
+	function goLike() {
+		document.frm.action = "/shop/user/product/LikeUserInsert.do";
+		document.frm.submit();
+	}
 </script>
 <p class="h-25"/>
 <form action="/shop/user/review/insertUserReview.do" name="frm2" method="post" enctype="multipart/form-data">
@@ -144,7 +148,7 @@
 	</div>																<!-- 추가해보기 -->
 </form>
 <p class="h-25"/>
-<form name="frm" method="post">
+<form name="frm3" method="post">
  	<input type="hidden" name="r_idx" value=""/>
  	<input type="hidden" name="r_content" value=""/>
 <c:forEach items="${list}" var="result">

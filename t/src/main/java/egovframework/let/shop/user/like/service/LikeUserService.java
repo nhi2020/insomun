@@ -14,6 +14,8 @@ public interface LikeUserService {
 
 	public int insertUserLikeSelect(LikeUserVO vo);
 
+	public int deleteUserLike(LikeUserVO vo);
+
 	
 
 }

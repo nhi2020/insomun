@@ -14,6 +14,12 @@
 		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
 				<![CDATA[	USERID LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 		</isEqual>
+		<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	NICKNAME LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
+				<isEqual prepend="AND" property="searchCnd" compareValue="2">
+				<![CDATA[	EMAIL LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
 
 	</select>
 	<select id="BuyerSelectList" resultClass="BuyerVO">
@@ -24,7 +30,10 @@
 				<![CDATA[	USERID LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 		</isEqual>
 		<isEqual prepend="AND" property="searchCnd" compareValue="1">
-				<![CDATA[	SNSCODE LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+				<![CDATA[	NICKNAME LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
+				<isEqual prepend="AND" property="searchCnd" compareValue="2">
+				<![CDATA[	EMAIL LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 		</isEqual>
 		ORDER BY REG_DATE DESC
 		LIMIT #recordCountPerPage# OFFSET #firstIndex#

@@ -30,7 +30,7 @@
 				<button class="btn btn-primary">거래현황</button>
 				<button class="btn btn-primary">거래후기</button>
 				<button class="btn btn-primary">거래내역</button>
-				<button class="btn btn-primary">찜한상품</button>
+				<button class="btn btn-primary" onclick="location.href='/shop/user/like/LikeUserList.do'">찜한상품</button>
 			</div>
 		</div>
 		<div class="row px-md-5">

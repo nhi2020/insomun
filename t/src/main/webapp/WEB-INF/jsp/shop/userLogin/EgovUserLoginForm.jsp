@@ -43,7 +43,28 @@ function chk2() {
  
 <body>
 <%@ include file="../inc/EgovShopHeader.jsp" %> 
-
+<!-- result 값을 이용한 modal -->
+	<c:if test="${chk == '0'}">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#updateModal").modal('show')
+			
+			})
+		</script>
+		<!-- Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1"
+			aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">로그인 실패.</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:if>
 <div class="container" style="text-align:center; margin-top: 20px;">
 <h2>로그인</h2>
 <button  class="btn btn-secondary" onclick="chk1();">구매자</button>

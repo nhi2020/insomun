@@ -136,6 +136,7 @@ public class SellerUserController {
 			System.out.println("오류 남");
 			model.addAttribute("msg","사용자 올바르지 않음");
 			model.addAttribute("chk",0);
+			return "forward:/shop/user/EgovUserLoginForm.do";
 		}
 		
 		return "shop/user/seller/sellerLogin/sellerLoginPro";

@@ -84,7 +84,10 @@ public class ReviewUserController {
 		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 		//vo.setP_idx(1);
 		List<String> AVG = egovReviewService.selectReviewAvg(vo);
-		
+		/*int num = vo.getFirstIndex();
+		int result= num -1;
+		System.out.println("result-------------->"+result);
+		vo.setFirstIndex(result);*/
 		List<ReviewUserVO> list = egovReviewService.selectReviewList(vo);
 		model.addAttribute("list", list);
 		model.addAttribute("r_div", vo.getR_div());

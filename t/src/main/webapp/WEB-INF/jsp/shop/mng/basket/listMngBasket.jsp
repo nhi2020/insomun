@@ -41,7 +41,7 @@
 			success:function(data){
 				console.log("result => "+ data)		
 				if(data==1){
-					alert("수량이 수정되었습니다! ")
+					$("#updateModal").modal('show')
 				}
 			}
 		})
@@ -55,6 +55,30 @@
 		return true;
 	}
 </script>
+<script type="text/javascript">
+	
+function updateUserBasketQty(index){
+	document.forms["frm"+index].submit();
+}
+
+</script>
+
+
+		<!-- Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1"
+			aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">수량이 수정되었습니다.</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 <div class="container">
 	<div class="row">
 

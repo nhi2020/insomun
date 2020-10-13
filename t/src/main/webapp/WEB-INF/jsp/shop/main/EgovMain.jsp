@@ -20,57 +20,6 @@
 </head>
 <body>
 	<%@ include file="../inc/EgovShopHeader.jsp"%>
-	<!-- 테스트용 임시 링크 -->
-	<div class="container text-center">
-		<div class="row justify-content-center">
-			<table border="1">
-				<tr>
-					<td><a href="/shop/mng/buyer/listMngBuyer.do">구매자 관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/user/review/reviewList.do">리뷰 페이지</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/mng/review.do">판매자 리뷰 관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/mng/basket/listMngBasket.do">장바구니 관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/mng/seller/listMngSeller.do">판매자 관리</a></td>
-				</tr>
-				<tr>
-					<td><a
-						href="/shop/mng/admin/adminControl/listMngAdminControl.do">운영자관리</a>
-				</tr>
-				<tr>
-					<td><a href="/shop/user/product/EgovUserProductlist.do">상품 관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/user/seller/sellerUserMain.do">판매자 페이지</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/mng/deal/dealMngList.do">운영자 거래관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/user/deal/dealUserBuyerList.do">구매자 거래관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/user/deal/dealUserSellerList.do">판매자 거래관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/mng/testFileUpload/insertTestFileUploadForm.do">파일 업로드 테스트</a></td>
-				</tr>
-				<tr>
-					<td><a href="#">### 관리</a></td>
-				</tr>
-			</table>
-		</div>
-	</div>
-	<!-- <div id="test">
-
-</div> -->
-
 	<div class="container text-center" style="position: relative;">
 
 		<img src="<c:url value='/images/shop/main/main.jpg'/>" width=800
@@ -93,11 +42,27 @@
 				<c:forEach var="product_list" items="${list}">
 					<div class="col-3">
 
+<<<<<<< HEAD
 						<img src="<c:url value='/'/>file/${product_list.p_image}" width="270" height="270" class="rounded"/> 
+=======
+						<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${product_list.p_idx }">
+					<img src="<c:url value='/'/>file/${product_list.p_image}" width="270" height="270"></a>
+
+>>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 						<p>
+<<<<<<< HEAD
 							<span> 판매자: ${product_list.s_id } </span> 
 							<br/> <span>상품명 : ${product_list.p_name }</span> 
 							<br/> <span>가격 : <fmt:formatNumber value="${product_list.p_price }" pattern="##,###"></fmt:formatNumber></span>
+=======
+
+							<span>판매자 아이디: ${product_list.s_id }</span> <br />
+							<span>상품명: ${product_list.p_name }</span> <br />  
+							<span>가격: ${product_list.p_price }</span> <br /> 
+							<span>상태: ${product_list.p_status }</span> <br /> 
+							<span>재고 수량: ${product_list.p_q }</span> <br /> 
+							<span>업데이트된 날짜: ${product_list.p_moddate }</span>
+>>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 						</p>
 					</div>
 
