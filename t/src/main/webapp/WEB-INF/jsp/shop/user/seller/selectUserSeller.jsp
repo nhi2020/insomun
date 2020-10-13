@@ -46,7 +46,7 @@
 <body>
 	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
-	
+
 	<h5 style="color: grey; text-align: center; margin-top: 50px">입소문넷 회원 ${SellerVO.s_nickname}님 안녕하세요!</h5>
 	
 	<div class="w-auto p-3">

@@ -16,7 +16,8 @@
 <body>
 <%@ include file="../../inc/EgovShopTop.jsp" %>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
-
+<div class="container text-center">
+		<div class="row justify-content-center">
 <form action="<c:url value='/shop/mng/admin/adminMainForm.do'/>">
 	<h2 class="text-center" style="padding-bottom: 50px; margin-top: 50px;"><strong>Admin Page</strong></h2>
 	<div class="text-center">
@@ -71,6 +72,7 @@
 		</div>
 	</div>
 	</form>
+	</div></div>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>

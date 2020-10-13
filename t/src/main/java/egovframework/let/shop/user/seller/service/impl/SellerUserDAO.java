@@ -126,7 +126,7 @@ public class SellerUserDAO extends EgovAbstractDAO {
 		return vo;
 	}
 
-	public int sellerUserUpdate(SellerMngVO vo) {
+	public int sellerUserUpdate(SellerUserVO vo) {
 		System.out.println("sellerUserUpdate");
 		int result = 0;
 		try {

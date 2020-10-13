@@ -1,9 +1,10 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopTop.jsp"%>
+<%@ include file="../inc/EgovShopTop.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,7 +20,7 @@
 </script>
 </head>
 <body>
-	<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopHeader.jsp"%>
+	<%@ include file="../inc/EgovShopHeader.jsp"%>
 	<div class="container text-center" style="position: relative;">
 
 		<img src="<c:url value='/images/shop/main/main.jpg'/>" width=800
@@ -32,25 +33,17 @@
 		</div>
 	</div>
 
-
-
-
 	<div class="container-fluid">
 		<div class="container text-center">
 			<h3>추천 상품</h3>
 			<div class="row">
-				<c:forEach var="product_list" items="${list}">
+				<c:forEach var="productuser_list" items="${list}">
 					<div class="col-3">
-
-						<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${product_list.p_idx }">
-					<img src="<c:url value='/'/>file/${product_list.p_image}" width="270" height="270"></a>
-						<p>
-							<span>판매자 아이디: ${product_list.s_id }</span> <br />
-							<span>상품명: ${product_list.p_name }</span> <br />  
-							<span>가격: ${product_list.p_price }</span> <br /> 
-							<span>상태: ${product_list.p_status }</span> <br /> 
-							<span>재고 수량: ${product_list.p_q }</span> <br /> 
-							<span>업데이트된 날짜: ${product_list.p_moddate }</span>
+						<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
+						<img src="<c:url value='/'/>file/${productuser_list.p_image}" width="270" height="270" class="rounded"/> </a>
+						<input type="hidden" value="${productuser_list.p_idx }">
+							<br/> <span>상품명 : ${productuser_list.p_name }</span> 
+							<br/> <span>가격 : <fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber></span>
 						</p>
 					</div>
 
@@ -58,7 +51,6 @@
 			</div>
 		</div>
 	</div>
-
-	<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopBottom.jsp"%>
+	<%@ include file="../inc/EgovShopBottom.jsp"%>
 </body>
 </html>
