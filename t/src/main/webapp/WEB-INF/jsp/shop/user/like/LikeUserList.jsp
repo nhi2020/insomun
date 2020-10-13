@@ -10,12 +10,13 @@
 <body>
    <%@ include file="../../inc/EgovShopTop.jsp" %>
   <%@ include file="../../inc/EgovShopHeader.jsp" %>
+  
+ 
   <div class="container">
     <div class="row">
-    
+   
       <table class="table mx-auto">
        <tr>
-         <th>등록번호</th>
          <th>상품이미지</th>
          <th>상품이름</th>
          <th>등록일자</th>
@@ -23,8 +24,7 @@
         </tr>
         <c:forEach items="${list }" var="like_list" >
         <tr>
-        <input type="hidden" name="p_idx" value="${like_list.p_idx }" />
-          <td>${like_list.l_idx }</td>  
+        <input type="hidden" name="p_idx" value="${like_list.p_idx }" /> 
           <td><a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${like_list.p_idx}"><img src="<c:url value='/'/>file/${like_list.p_image}" width="200" height="200"/></a></td>
           <td>${like_list.p_name }</td>
           <td>${like_list.l_regdate }</td>
@@ -32,8 +32,15 @@
         </tr>
         </c:forEach>
       </table>
+       <form action="/shop/user/like/LikeUserDelete.do">
+      <input type="submit" value="삭제">
+      </form>
+        <input type="submit" value="거래하기">
+      <input type="submit" value="장바구니">
+      <input type="submit" value="목록으로" onclick="location.href='/shop/user/product/EgovUserProductlist.do'">
+  
     </div>
   </div>
-  <input type="submit" value="삭제">
+    
 </body>
 </html>

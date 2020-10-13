@@ -53,4 +53,8 @@
 		WHERE P_IDX = #p_idx#
 		AND SNS_IDX = #sns_idx#
 	</select>
+	<delete id="deleteUserLike" parameterClass="LikeUserVO">
+	  DELETE FROM PLIKE
+	  WHERE P_IDX = #p_idx#
+	</delete>
 </sqlMap>
