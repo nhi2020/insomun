@@ -47,6 +47,17 @@
 			FROM
 				PRODUCT
 			WHERE 1=1
+			]]>
+			<isEqual prepend="AND" property="searchCnd" compareValue="0">
+				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%') 		]]>
+			</isEqual>
+			<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%')  		]]>
+			</isEqual>	
+		<![CDATA[  
+			ORDER BY P_REGDATE DESC
+			LIMIT 	#recordCountPerPage#
+			OFFSET	#firstIndex#
 		]]>
 	</select>
 	
@@ -147,12 +158,14 @@
 				,P_Q
 			FROM
 				PRODUCT
-			WHERE 1=1
+			WHERE P_STATUS = 'Y'
 		]]>
 			<isEqual prepend="AND" property="searchCnd" compareValue="0">
 				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%') 		]]>
 			</isEqual>
-		
+		ORDER BY P_REGDATE DESC
+		LIMIT #recordCountPerPage# OFFSET
+		#firstIndex#
 	</select>
 	
 	<select id="EgovUserProductDAO.selectUserProductListCnt" parameterClass="ProductUserVO" resultClass="java.lang.Integer" >

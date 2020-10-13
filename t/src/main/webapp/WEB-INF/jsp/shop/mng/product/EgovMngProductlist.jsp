@@ -15,38 +15,91 @@
 
 </head>
 <body>
-	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 
-
+<!-- result 값을 이용한 modal -->
+	<c:if test="${result2 == 0 && result ==null}">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#updateModal").modal('show')
+			
+			})
+		</script>
+		<!-- Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1"
+			aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">항목을 체크해주세요.</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:if>
+	
+	<!-- result 값을 이용한 modal -->
+	<c:if test="${result1 == 1}">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#updateModal").modal('show')
+			
+			})
+		</script>
+		<!-- Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1"
+			aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">등록되었습니다</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:if>
+	
 	<form action="/shop/mng/product/EgovMngProductDelete.do">
-		<input type="button" value="등록"
-			onclick="location.href='/shop/mng/product/EgovMngProductInsertForm.do'">
-		&nbsp; <input type="submit" value="삭제">
-		<div class="container-fluid">
+	<p/>
+	<div align="center">
+		<input type="button" value="등록" onclick="location.href='/shop/mng/product/EgovMngProductInsertForm.do'" class="btn btn-primary">
+		&nbsp; &nbsp; 
+		<input type="submit" value="삭제" class="btn btn-danger">
+	</div>
+		<p/>
+		<div class="container-fluid" >
 			<div class="container text-center">
 				<div class="row">
 					<c:forEach var="product_list" items="${list}">
-						<div class="col-3">
-
-							<img src="<c:url value='/'/>file/${product_list.p_image}" width="270" height="270" /> 
+						<div class="col-3 mt-3">
+						<img src="<c:url value='/'/>file/${product_list.p_image}" width="270" height="270" class="rounded"/> 
 							<span> <input type="checkbox" name="check" id="check" value="${product_list.p_idx }"> 
-							판매자 아이디: ${product_list.s_id }
+							판매자: ${product_list.s_id }
 							</span> <br /> 
-							<span>상품명: ${product_list.p_name }</span> <br /> 
-							<span>가격: ${product_list.p_price }</span> <br /> 
-							<span>상태: ${product_list.p_status }</span> <br /> 
-							<span>재고 수량: ${product_list.p_q }</span> <br /> 
-							<span>업데이트된 날짜: ${product_list.p_moddate }</span> 
-							<input type="button" value="수정"
+							<span>상품명 : ${product_list.p_name }</span> <br /> 
+							<span>가격 : 
+							<fmt:formatNumber value="${product_list.p_price }" pattern="##,###"></fmt:formatNumber></span><br /> 
+							<span>상태: ${product_list.p_status }</span> 
+							<p/>	
+							<input type="button" value="수정" class="btn btn-warning"
 							onclick="location.href='/shop/mng/product/EgovMngProductUpdateForm.do?p_idx=${product_list.p_idx}'">
-							</p>
+												
 						</div>
 					</c:forEach>
 				</div>
 			</div>
+			
+		<div id="paging_div" style="text-align: center" >
+			<ul class="paging_align" >	
+				<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="linkPage" />
+			</ul>
 		</div>
-	</form>
+	</div>
+</form>
 	<%@ include file="../../inc/EgovShopBottom.jsp"%>
 </body>
 </html>

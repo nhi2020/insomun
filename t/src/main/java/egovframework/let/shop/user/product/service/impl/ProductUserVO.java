@@ -28,7 +28,18 @@ import egovframework.let.shop.user.product.service.ProductUser;
 @SuppressWarnings("serial")
 public class ProductUserVO extends ProductUser implements Serializable {
 
-    /** 검색시작일 */
+	/**이전 사진파일*/
+	private String preImage = "";
+	
+    public String getPreImage() {
+		return preImage;
+	}
+
+	public void setPreImage(String preImage) {
+		this.preImage = preImage;
+	}
+
+	/** 검색시작일 */
     private String searchBgnDe = "";
     
     /** 검색조건 */
