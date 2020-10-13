@@ -11,15 +11,17 @@
    <%@ include file="../../inc/EgovShopTop.jsp" %>
   <%@ include file="../../inc/EgovShopHeader.jsp" %>
   
- 
+  
   <div class="container">
     <div class="row">
-   
+  
       <table class="table mx-auto">
        <tr>
          <th>상품이미지</th>
          <th>상품이름</th>
          <th>등록일자</th>
+         <th>장바구니</th>
+         <th>거래하기</th>
          <th>삭제</th>
         </tr>
         <c:forEach items="${list }" var="like_list" >
@@ -28,19 +30,18 @@
           <td><a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${like_list.p_idx}"><img src="<c:url value='/'/>file/${like_list.p_image}" width="200" height="200"/></a></td>
           <td>${like_list.p_name }</td>
           <td>${like_list.l_regdate }</td>
-          <td><input type="checkbox" name="p_idx" value="${like_list.p_idx }"></td>
+          <td><input class="btn btn-secondary" type="button" value="추가" onclick=""></td>
+          <td><input class="btn btn-success" type="button"  value="거래" onclick=""></td>
+          <td><input class="btn btn-danger" type="button" value="삭제" onclick="location.href='/shop/user/like/LikeUserDelete.do?p_idx=${like_list.p_idx}'"></td>
         </tr>
         </c:forEach>
       </table>
-       <form action="/shop/user/like/LikeUserDelete.do">
-      <input type="submit" value="삭제">
-      </form>
-        <input type="submit" value="거래하기">
-      <input type="submit" value="장바구니">
+      
       <input type="submit" value="목록으로" onclick="location.href='/shop/user/product/EgovUserProductlist.do'">
-  
     </div>
   </div>
     
+        
+     <%@ include file="../../inc/EgovShopBottom.jsp"%> 
 </body>
 </html>
