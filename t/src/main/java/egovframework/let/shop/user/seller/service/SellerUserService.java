@@ -44,5 +44,9 @@ public interface SellerUserService {
 
 	public void updateAgreenum(SellerUserVO vo);
 
+	public SellerUserVO sellerUserSelect(SellerUserVO vo);
+
+	public int sellerUserUpdate(SellerMngVO vo);
+
 
 }

@@ -5,16 +5,15 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-import org.stringtemplate.v4.compiler.CodeGenerator.list_return;
 
 import egovframework.let.shop.user.main.service.UserMainService;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
-@Service("UserMainService")
+@Service("userMainService")
 public class UserMainServiceImpl extends EgovAbstractServiceImpl  implements UserMainService{
 
 	
-	@Resource(name="UserMainDAO")
+	@Resource(name="userMainDAO")
 	private UserMainDAO MainDAO;
 
 	@Override
