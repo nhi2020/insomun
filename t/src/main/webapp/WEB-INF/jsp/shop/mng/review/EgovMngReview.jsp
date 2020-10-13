@@ -31,10 +31,19 @@
 	<div class="row justify-content-center">
 		<h2>구매자 리뷰 관리자 페이지입니다.</h2>
 		</div></div>
-<div class="container text-center">
-	<div class="row justify-content-center">
-		<form method="post" name="frm">
-			<table border="1">
+		<div class="flex-grow-1 container">
+			<div class="row" style="padding-left: 35%;">
+				<form class="form-inline" action="/shop/mng/review/MngSelect.do">
+					  <input type="hidden" id="searchCnd" name="searchCnd" value="0">
+					  <input class="form-control mr-sm-2" id="searchWrd" name="searchWrd" type="text" placeholder="Search" style="width:400px">
+					  <button class="btn btn-success" type="submit">Search</button>&nbsp;
+				</form>
+			</div>
+		</div>  
+	<div class="container text-center">
+		<div class="row justify-content-center">
+			<form method="post" name="frm">
+				<table border="1">
 					<thead>
 						<tr>
 							<th>리뷰 번호</th>
