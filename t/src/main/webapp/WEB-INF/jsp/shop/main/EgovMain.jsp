@@ -39,30 +39,13 @@
 		<div class="container text-center">
 			<h3>추천 상품</h3>
 			<div class="row">
-				<c:forEach var="product_list" items="${list}">
+				<c:forEach var="productuser_list" items="${list}">
 					<div class="col-3">
-
-<<<<<<< HEAD
-						<img src="<c:url value='/'/>file/${product_list.p_image}" width="270" height="270" class="rounded"/> 
-=======
-						<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${product_list.p_idx }">
-					<img src="<c:url value='/'/>file/${product_list.p_image}" width="270" height="270"></a>
-
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
-						<p>
-<<<<<<< HEAD
-							<span> 판매자: ${product_list.s_id } </span> 
-							<br/> <span>상품명 : ${product_list.p_name }</span> 
-							<br/> <span>가격 : <fmt:formatNumber value="${product_list.p_price }" pattern="##,###"></fmt:formatNumber></span>
-=======
-
-							<span>판매자 아이디: ${product_list.s_id }</span> <br />
-							<span>상품명: ${product_list.p_name }</span> <br />  
-							<span>가격: ${product_list.p_price }</span> <br /> 
-							<span>상태: ${product_list.p_status }</span> <br /> 
-							<span>재고 수량: ${product_list.p_q }</span> <br /> 
-							<span>업데이트된 날짜: ${product_list.p_moddate }</span>
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
+						<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
+						<img src="<c:url value='/'/>file/${productuser_list.p_image}" width="270" height="270" class="rounded"/> </a>
+						<input type="hidden" value="${productuser_list.p_idx }">
+							<br/> <span>상품명 : ${productuser_list.p_name }</span> 
+							<br/> <span>가격 : <fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber></span>
 						</p>
 					</div>
 
