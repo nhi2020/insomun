@@ -15,7 +15,7 @@
    
    <task:scheduler id="sch" pool-size="10"/>
    <task:scheduled-tasks scheduler="sch">
-      <task:scheduled ref="logXmlSch" method="insertLog" cron="0/3 * * * * ?"/>   
+      <task:scheduled ref="logXmlSch" method="delSch" cron="0/3 * * * * ?"/>   
       <!-- <task:scheduled ref="logXmlSch2" method="insertLog" cron="0/1 * * * * ?"/> -->
    </task:scheduled-tasks>
    
