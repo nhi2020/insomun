@@ -104,7 +104,7 @@ public class ProductMngController {
 	public String forwardPageWithMenuNo(@ModelAttribute("searchVO") ProductMngVO vo, HttpServletRequest request,
 			ModelMap model,ReviewMngVO vo2) throws Exception {
 		System.out.println("test");
-		vo.setPageUnit(propertyService.getInt("pageUnit"));
+		vo.setPageUnit(8);
 		vo.setPageSize(propertyService.getInt("pageSize"));
 		PaginationInfo paginationInfo = new PaginationInfo();
 
@@ -169,9 +169,9 @@ public class ProductMngController {
 		
 		System.out.println("vo pname => " + vo.getP_name());
 		if (dbResult > 0) {
-			model.addAttribute("msg", "수정 성공");
+			model.addAttribute("result2", "수정 성공");
 		} else {
-			model.addAttribute("msg", "수정 실패");
+			model.addAttribute("result2", "수정 실패");
 		}
 		model.addAttribute("vo");
 		model.addAttribute("delResult", delResult);
@@ -208,7 +208,7 @@ public class ProductMngController {
 	}
 	
 	@RequestMapping(value = "/shop/mng/product/EgovMngProductInsertPro", method = RequestMethod.POST)
-	public String EgovMngProductInsertPro(ProductMngVO vo,Model model, HttpServletRequest request, MultipartFile file, String path) throws Exception {
+	public String EgovMngProductInsertPro(ProductMngVO vo,Model model, HttpServletRequest request, MultipartFile file, String path, RedirectAttributes redirect) throws Exception {
 		System.out.println("INSERT");
 		HttpSession session = request.getSession();
 		String a_id = (String) session.getAttribute("A_ID");
@@ -223,9 +223,15 @@ public class ProductMngController {
 		vo.setP_image(savedName);
 		//
 		
-		mngProductService.insertMngProductPro(vo);
+		int result = mngProductService.insertMngProductPro(vo);
 		
-		return "redirect:/shop/mng/product/EgovMngProductInsertForm.do";
+		if(result > 0) {
+			redirect.addFlashAttribute("result1", result);
+		} else {
+			redirect.addFlashAttribute("result1", result);
+		}
+		
+		return "redirect:/shop/mng/product/EgovMngProductlist.do";
 	}
 
 	private String uploadFile(String originalFilename, byte[] fileData, String uploadPath) throws Exception {
@@ -258,14 +264,23 @@ public class ProductMngController {
 			}
 
 	@RequestMapping(value = "/shop/mng/product/EgovMngProductDelete") 
-	public String EgovMngProductDelete(ProductMngVO vo, HttpServletRequest request)throws Exception {
+	public String EgovMngProductDelete(ProductMngVO vo, HttpServletRequest request, Model model, RedirectAttributes redirect)throws Exception {
 		
 		String[] check = request.getParameterValues("check");
-		System.out.println("EgovMngProductDelete:");
-		for (int i = 0; i < check.length; i++) {
-			System.out.println("chk : " +check[i]);
-			vo.setP_idx(check[i]);
-			mngProductService.deleteMngProduct(vo);
+		if (check != null) {
+			for (int i = 0; i < check.length; i++) {
+				System.out.println("chk : " +check[i]);
+				vo.setP_idx(check[i]);
+				int result = mngProductService.deleteMngProduct(vo);
+				if(result > 0) {
+					redirect.addFlashAttribute("result", result);
+				} else {
+					redirect.addFlashAttribute("result", result);
+				}
+			}
+		} else {
+			int result = 0;
+			redirect.addFlashAttribute("result2", result);
 		}
 		return "redirect:/shop/mng/product/EgovMngProductlist.do";
 	}

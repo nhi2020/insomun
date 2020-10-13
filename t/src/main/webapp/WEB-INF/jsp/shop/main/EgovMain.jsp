@@ -93,16 +93,11 @@
 				<c:forEach var="product_list" items="${list}">
 					<div class="col-3">
 
-						<img src="./images/main/photo/${product_list.p_image}" width="270"
-							height="385" />
-
+						<img src="<c:url value='/'/>file/${product_list.p_image}" width="270" height="270" class="rounded"/> 
 						<p>
-
-							<span>판매자 아이디: ${product_list.s_id }</span> <br /> <span>가격:
-								${product_list.p_price }</span> <br /> <span>상태:
-								${product_list.p_status }</span> <br /> <span>재고 수량:
-								${product_list.p_q }</span> <br /> <span>업데이트된 날짜:
-								${product_list.p_moddate }</span>
+							<span> 판매자: ${product_list.s_id } </span> 
+							<br/> <span>상품명 : ${product_list.p_name }</span> 
+							<br/> <span>가격 : <fmt:formatNumber value="${product_list.p_price }" pattern="##,###"></fmt:formatNumber></span>
 						</p>
 					</div>
 
