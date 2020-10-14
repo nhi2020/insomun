@@ -13,4 +13,6 @@ public interface ReviewMngService {
 	public int reMngReview(ReviewMngVO vo) throws Exception;
 	//관리자 판매자 리뷰에서의 댓글 출력
 	public List<ReviewMngVO>selectSellerList(ReviewMngVO vo) throws Exception;
+	//판매자 CNT
+	public int selectMngCnt(ReviewMngVO vo) throws Exception;
 }

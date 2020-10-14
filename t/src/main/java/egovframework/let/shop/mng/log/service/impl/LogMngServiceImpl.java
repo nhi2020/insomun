@@ -10,6 +10,8 @@ import egovframework.let.shop.mng.log.service.LogMngDAO;
 import egovframework.let.shop.mng.log.service.LogMngService;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
+
+
 @Service("EgovMngLogService")
 public class LogMngServiceImpl extends EgovAbstractServiceImpl implements LogMngService {
 
@@ -17,18 +19,29 @@ public class LogMngServiceImpl extends EgovAbstractServiceImpl implements LogMng
 	private LogMngDAO logMngDAO;
 
 	@Override
-	public int selectMngLogListCnt(LogMngVO logVO) throws Exception {
-		int cnt = logMngDAO.selectMngLogListCnt(logVO);
+	public int selectMngLogListCnt(LogMngVO vo) {
+		int cnt = logMngDAO.selectMngLogListCnt(vo);
 		return cnt;
 	}
 
 	@Override
-	public List<LogMngVO> selectMngLogList(LogMngVO logVO) throws Exception {
-		List<LogMngVO> list = logMngDAO.selectMngLogList(logVO);
+	public List<LogMngVO> selectMngLogList(LogMngVO vo) {
+		List<LogMngVO> list = logMngDAO.selectMngLogList(vo);
 
 		return list;
 	}
 
+	@Override
+	public String insertMngLogPro(LogMngVO vo) {
+		return logMngDAO.insertMngLogPro(vo);
+	}
+
+/*	@Override
+	public LogMngVO selectMngLog(LogMngVO logVO) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+*/
 /*	@Override
 	public int updateMngLogPro(LogMngVO vo) {
 		int result = logMngDAO.updateMngLog(vo);

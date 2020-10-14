@@ -7,9 +7,11 @@ public class LogMng implements Serializable {
 	
 	private int 	log_idx;  // 등록 번호
 	private String 	s_id;	  // 판매자 아이디
-	private int 	sns_idx;  // 구매자 아이디
-	private String 	a_id;	  // 운영자 아이디
-	private String 	log_ip;	  // IP 주소
+	private String 	sns_idx;  // 구매자 아이디
+	private String  nickname;
+	private String 	ac_page;	 
+	private String 	ac_spec;	 
+	private String	log_ip;
 	private String 	log_date; // 등록일
 	
 	public int getLog_idx() {
@@ -24,17 +26,29 @@ public class LogMng implements Serializable {
 	public void setS_id(String s_id) {
 		this.s_id = s_id;
 	}
-	public int getSns_idx() {
+	public String getSns_idx() {
 		return sns_idx;
 	}
-	public void setSns_idx(int sns_idx) {
+	public void setSns_idx(String sns_idx) {
 		this.sns_idx = sns_idx;
 	}
-	public String getA_id() {
-		return a_id;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setA_id(String a_id) {
-		this.a_id = a_id;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getAc_page() {
+		return ac_page;
+	}
+	public void setAc_page(String ac_page) {
+		this.ac_page = ac_page;
+	}
+	public String getAc_spec() {
+		return ac_spec;
+	}
+	public void setAc_spec(String ac_spec) {
+		this.ac_spec = ac_spec;
 	}
 	public String getLog_ip() {
 		return log_ip;
@@ -48,5 +62,7 @@ public class LogMng implements Serializable {
 	public void setLog_date(String log_date) {
 		this.log_date = log_date;
 	}
+	
+	
 	
 }

@@ -48,17 +48,15 @@
 				PRODUCT
 			WHERE 1=1
 			]]>
-			<isEqual prepend="AND" property="searchCnd" compareValue="0">
-				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%') 		]]>
+			<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	P_NAME LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 			</isEqual>
 			<isEqual prepend="AND" property="searchCnd" compareValue="1">
-				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%')  		]]>
-			</isEqual>	
-		<![CDATA[  
+				<![CDATA[	S_ID LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>
 			ORDER BY P_REGDATE DESC
 			LIMIT 	#recordCountPerPage#
 			OFFSET	#firstIndex#
-		]]>
 	</select>
 	
 	<select id="EgovMngProductDAO.selectMngProductListCnt" parameterClass="ProductMngVO" resultClass="java.lang.Integer" >
@@ -159,6 +157,7 @@
 			FROM
 				PRODUCT
 			WHERE P_STATUS = 'Y'
+			AND S_ID = #s_id#
 		]]>
 			<isEqual prepend="AND" property="searchCnd" compareValue="0">
 				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%') 		]]>

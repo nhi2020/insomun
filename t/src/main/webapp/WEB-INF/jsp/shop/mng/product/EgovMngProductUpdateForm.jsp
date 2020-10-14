@@ -11,6 +11,52 @@
 <meta http-equiv="content-language" content="ko">
 <title>운영자 상품 리스트 수정</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript">
+function readURL(input) {
+if (input.files && input.files[0]) {
+var reader = new FileReader();
+reader.onload = function (e) {
+$('#blah').attr('src', e.target.result);
+}
+reader.readAsDataURL(input.files[0]);
+}
+}
+</script>
+<style type="text/css">
+label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #fff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #6c757d;
+  cursor: pointer;
+  border: 1px solid #6c757d;
+  border-radius: .25em;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+label:hover {
+  background-color: #5a5a5a;
+}
+
+label:active {
+  background-color: #5a5a5a;
+}
+
+input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+</style>
 </head>
 <script type="text/javascript">
 	function upload(p_idx) {
@@ -19,7 +65,6 @@
 	}
 </script>
 <body>
-<%@ include file="../../inc/EgovShopTop.jsp" %>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
 <h2>수정 페이지</h2>
 
@@ -35,13 +80,16 @@
 			<form class="mx-auto" action="/shop/mng/product/EgovMngProductUpdatePro.do" method="post" enctype="multipart/form-data">
 	    			<input type="hidden" name="p_idx" value="${ProductMngVO.p_idx }" />
 	    			<input type="hidden" name="preImage" value="${ProductMngVo.preImage }">
-					<img class="mx-auto" src="<c:url value='/'/>file/${ProductMngVO.p_image}" width="270" height="270" style="display: block;/">
-					<br/>
 					<table class="table" style="text-align: left">
 					<tr>
-						<th>사진변경</th>
-						<td><input type="file" name="file" value="${ProductMngVO.p_image}" />
-						</td>
+						<th></th>
+						<td height="200" style="">
+						<img id="blah" src="<c:url value='/'/>file/${ProductMngVO.p_image}" alt="your image" width="200" height="200" /> </td> 
+					</tr>
+					<tr>
+						<th>사진변경</th>	
+							<td><label for="ex_file">업로드</label>
+							<input type='file' name="file" id="ex_file" onchange="readURL(this);" /></td>    
 					</tr>
 					<tr>
 						<th>상품명</th>

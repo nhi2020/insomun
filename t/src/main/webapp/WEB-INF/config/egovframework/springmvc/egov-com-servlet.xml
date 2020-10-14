@@ -81,6 +81,15 @@
 			<bean class="egovframework.let.shop.intercepter.MngLoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
+	
+	<!-- 로그인 로깅 처리 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/shop/user/Egov*Login.do" />
+			<mvc:mapping path="/shop/user/seller/EgovsellerLoginPro.do" />
+			<bean class="egovframework.let.shop.intercepter.LoggerInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 	<mvc:annotation-driven />
 	
 </beans>

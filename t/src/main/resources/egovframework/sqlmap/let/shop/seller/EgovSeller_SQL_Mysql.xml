@@ -418,4 +418,30 @@
 		WHERE S_IDX = #s_idx#
 	</update>  
 
+	<select id="sellerUserSelect" resultClass="SellerUserVO" parameterClass="SellerUserVO">
+		SELECT *
+		FROM SELLER
+		WHERE s_id = #s_id#
+	</select>
+	
+	<update id="sellerUserUpdate" parameterClass="SellerUserVO">
+		UPDATE SELLER
+		SET
+			s_nickname = #s_nickname#,
+			s_pass = #s_pass#,
+			s_email = #s_email#,
+			s_photo = #s_photo#,
+			s_phone = #s_phone#,
+			s_birth = #s_birth#,
+			s_account_n = #s_account_n#,
+			s_account = #s_account#,
+			s_addr = #s_addr#
+		WHERE s_id = #s_id#	
+	</update>
+	
+	<select id="selectUserSeller" resultClass="SellerUserVO" parameterClass="SellerUserVO">
+		SELECT *
+		FROM SELLER
+		WHERE s_id = #s_id#
+	</select>
 </sqlMap>

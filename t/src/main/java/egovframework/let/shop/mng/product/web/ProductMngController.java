@@ -119,7 +119,7 @@ public class ProductMngController {
 		paginationInfo.setTotalRecordCount(totCnt);
 
 		List<ProductMngVO> list = mngProductService.selectMngProductList(vo);
-		System.out.println("test"+list.get(0).getS_id());
+
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
@@ -154,6 +154,7 @@ public class ProductMngController {
 	@RequestMapping(value ="/shop/mng/product/EgovMngProductUpdatePro", method = RequestMethod.POST)
 	public String egovMngProductUpdatePro(@ModelAttribute("ProductMngVO")ProductMngVO vo, HttpServletRequest request, Model model, RedirectAttributes redirect, MultipartFile file) throws Exception{
 		
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 		//
 	    String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
 	    // 서버에 업로드할 경우엔 프로퍼티에서 경로를 설정할 예정.
@@ -164,21 +165,31 @@ public class ProductMngController {
 	    // 서버 업로드를 위한 절차
 	    String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
 		vo.setP_image(savedName);
+		}
 	    // DB 반영
 	    int dbResult = mngProductService.updateMngProductPro(vo);
+	    
+	    if(dbResult > 0) {
+			redirect.addFlashAttribute("result3", dbResult);
+		} else {
+			redirect.addFlashAttribute("result3", dbResult);
+		}
+		model.addAttribute("vo");
 		
-		System.out.println("vo pname => " + vo.getP_name());
+		/*System.out.println("vo pname => " + vo.getP_name());
 		if (dbResult > 0) {
 			model.addAttribute("result2", "수정 성공");
+			model.addAttribute("dbResult", dbResult);
 		} else {
 			model.addAttribute("result2", "수정 실패");
+			model.addAttribute("dbResult", dbResult);
 		}
 		model.addAttribute("vo");
 		model.addAttribute("delResult", delResult);
 	    model.addAttribute("dbResult", dbResult);
 	    //
-
-		return "forward:/shop/mng/product/EgovMngProductUpdateForm.do";
+*/
+		return "redirect:/shop/mng/product/EgovMngProductlist.do";
 
 	}
 	

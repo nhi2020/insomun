@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<!DOCTYPE html>
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
 
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -129,7 +125,7 @@ input[type="file"] {
 	
 	<div class="container">
 		<div class="row">
-			<form class="mx-auto" action="/shop/mng/seller/updateMngSellerPro.do" method="post" enctype="multipart/form-data">
+			<form class="mx-auto" action="/shop/user/seller/updateUserSellerPro.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="s_id" value="${SellerVO.s_id }" />
 				<input type="hidden" name="s_photo" value="${SellerVO.s_photo }" />
 					
@@ -168,19 +164,8 @@ input[type="file"] {
 						<td><input type="email" name="s_email" value="${SellerVO.s_email }" /></td>
 					</tr>
 					<tr>
-						<th>상태</th>
-						<td><input type="radio" name="s_status" value="Y"
-							${SellerVO.s_status eq 'Y' ? "checked = 'checked'" : '' } />활동중인 계정
-							<input type="radio" name="s_status" value="N" 
-							${SellerVO.s_status eq 'N' ? "checked = 'checked'" : '' } />탈퇴된 계정
-						</td>
-					</tr>
-					<tr>
 						<th>핸드폰 번호</th>
-						<td><input type="text" maxlength="13" onKeyup="inputPhoneNumber(this);" name="s_phone" value="${SellerVO.s_phone }" />
-                     	 </td>
-							
-							
+						<td><input type="text" maxlength="13" onKeyup="inputPhoneNumber(this);" name="s_phone" value="${SellerVO.s_phone }" /></td>
 					</tr>
 					<tr>
 						<th>은행</th>
@@ -225,10 +210,9 @@ input[type="file"] {
 						<td>${SellerVO.s_regdate }</td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="submit" class="btn btn-secondary"  value="수정" /> 
-						<input type="button" value="목록" class="btn btn-secondary"  onclick="location.href='/shop/mng/seller/listMngSeller.do'" />
-						<input type="button" value="강제 로그인" class="btn btn-secondary" onclick="location.href='/shop/user/seller/EgovsellerLoginPro.do?id=${SellerVO.s_id}&passwd=${SellerVO.s_pass }'">
-						</td>
+						<th></th>
+						<td colspan="2"><input type="submit" class="btn btn-secondary"  value="수정" />
+						<input type="button" value="목록으로" class="btn btn-secondary"  onclick="location.href='/shop/user/seller/selectUserSeller.do'" /></td>
 					</tr>
 				</table>
 			</form>
@@ -236,6 +220,5 @@ input[type="file"] {
 	</div>
 	
 
-<%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>

@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.let.shop.mng.admin.service.impl.AdminVO;
 import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
@@ -382,18 +383,75 @@ public class SellerUserController {
 		return result;
 	}
 	
-	  @RequestMapping("/shop/user/seller/selectUserSeller")
+	  @RequestMapping("/shop/user/seller/selectUserSeller.do")
 	  public String selectUserSeller(SellerUserVO vo, Model model, HttpServletRequest request) {
 		  HttpSession session = request.getSession();
 		  String sessionS_id = (String) session.getAttribute("S_ID");
 	      System.out.println("s_id->" + sessionS_id);
-	      String s_nickname = (String) session.getAttribute("S_NICKNAME");
-	      System.out.println("s_nickname->" + s_nickname);
 	      vo.setS_id(sessionS_id);
-	      vo.setS_nickname(s_nickname);
 	      vo = SellerService.selectUserSeller(vo);
 	      model.addAttribute("SellerVO", vo);
 	      return "shop/user/seller/selectUserSeller";
 	   }
-	
+
+	  @RequestMapping("/shop/user/seller/updateUserSellerForm")
+	  public String updateUserSellerForm(SellerUserVO vo, Model model) {
+			System.out.println("updateUserSellerForm()");
+			vo = SellerService.sellerUserSelect(vo);
+			model.addAttribute("SellerVO", vo);
+			return "shop/user/seller/updateUserSellerForm";
+		}
+	 
+	  @RequestMapping(value = " /shop/user/seller/updateUserSellerPro", method = RequestMethod.POST)
+		public String updateUserSellerPro(HttpServletRequest request, MultipartFile file, SellerUserVO vo, Model model, RedirectAttributes redirect) throws Exception{
+			System.out.println("updateUserSellerPro()");
+			System.out.println("vo.getS_nickname() ->" + vo.getS_nickname());
+			System.out.println("vo.getS_photo() ->" + vo.getS_photo());
+			System.out.println("file.getOriginalFilename() ->" + file.getOriginalFilename());
+			
+			String addr1 =vo.getAddr1();
+			String addr2 =vo.getAddr2();
+			String S_addr= addr1 + addr2; 
+			System.out.println("S_ADDR" + S_addr);
+			vo.setS_addr(S_addr);
+			
+			if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+			String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
+			String deleteFilename = uploadPath + vo.getS_photo();
+			deleteFile(deleteFilename);
+
+			String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
+			vo.setS_photo(savedName);
+			} 
+			
+			int result = SellerService.sellerUserUpdate(vo);
+			
+			if(result > 0) {
+				redirect.addFlashAttribute("result", result);
+			} else {
+				redirect.addFlashAttribute("result", result);
+			}
+			model.addAttribute("vo");
+			
+			return "redirect:/shop/user/seller/selectUserSeller.do";
+		}
+	  private int deleteFile(String deleteFilename) {
+			int result = 0;
+			File file = new File(deleteFilename);
+			if(file.exists()){
+				if(file.delete()){
+					result = 1;
+					System.out.println("삭제 성공");
+				}else{
+					result = 0;
+					System.out.println("삭제 실패");
+				}
+			} else {
+				result = -1;
+				System.out.println("파일이 존재하지 않습니다.");
+			}
+			
+			return result;
+		}
+
 }

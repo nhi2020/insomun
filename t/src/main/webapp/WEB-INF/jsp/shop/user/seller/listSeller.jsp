@@ -54,6 +54,7 @@
 						value="${paginationInfo.currentPageNo }">
 				</form>
 			</c:forEach>
+			
 			<div id="paging_div">
 				<ul class="paging_align">
 					<ui:pagination paginationInfo="${paginationInfo}" type="image"
