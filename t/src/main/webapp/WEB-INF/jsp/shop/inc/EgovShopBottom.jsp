@@ -19,6 +19,9 @@ body {
 footer {
   margin-top: auto; /* 최소 높이 하단에서 자동으로 뻗어나가도록 설정 */
 }
+*{
+	font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"
+}
 
 /* optional */
 main {

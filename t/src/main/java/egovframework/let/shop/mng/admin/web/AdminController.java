@@ -89,12 +89,12 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 			session.setAttribute("status", 0);
 			/*request.getSession().setAttribute("user_id", id);*/
 			System.out.println("성공");
-			model.addAttribute("chk",1);
+			
 		}else {
 			System.out.println("실패");
 			model.addAttribute("msg","사용자 올바르지 않음");
 			model.addAttribute("chk",0);
-			return "redirect:/shop/mng/admin/AdminLogin.do";
+			return "forward:/shop/mng/admin/AdminLogin.do";
 		}
 		
 		return "redirect:/shop/mng/admin/adminMainForm.do";

@@ -134,9 +134,12 @@
 </nav> --%>
 <!-- <div class="navbar navbar-expand-sm bg-dark navbar-dark" style="background-color: black; width: 100%"> -->
 <!-- <div class="container"> -->
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="background-color: black; width: 100%">
+<!-- <div style="height: auto; width: 100%; border-top:2px solid black;"> 
+</div> -->
+<div class="container" >
+<nav class="navbar navbar-expand-sm mx-auto" style="width:100%";>
 <div class="flex-grow-2">
-	<a class="navbar-brand" href="/shop/user/main/EgovUserMain.do">Logo</a>
+	<a class="navbar-brand" href="/shop/user/main/EgovUserMain.do"><img src="<c:url value='/file/logo.png'/>"width="120px" height="50px"></a>
   	<div class="collapse navbar-collapse" id="collapsibleNavbar">
 	    <ul class="navbar-nav">
 	      <li class="nav-item">
@@ -149,9 +152,16 @@
 	<div class="flex-grow-1 container">
 	<div class="row" style="padding-left: 35%;">
 		<form class="form-inline" action="/shop/user/product/EgovUserProductlist.do">
-	  <input type="hidden" id="searchCnd" name="searchCnd" value="0">
-	  <input class="form-control mr-sm-2" id="searchWrd" name="searchWrd" type="text" placeholder="Search" style="width:400px">
-	  <button class="btn btn-success" type="submit">Search</button>&nbsp;
+			<input type="hidden" id="searchCnd" name="searchCnd" value="0">
+	  		<div class="input-group">
+				<input class="form-control" id="searchWrd" name="searchWrd" type="text" placeholder="검색어를 입력하세요." style="width: 400px">
+				<div class="input-group-append">
+				
+					<button class="btn btn-secondary" type="submit" style="border: 1px black"><i class="fa fa-search"></i></button>
+				
+					
+				</div>
+			</div>
 	</form>
 				
 	</div>
@@ -179,9 +189,9 @@
 	  				</ul>
 				 </c:if>
 				 <c:if test="${sessionScope.status == 2 }">
-				 <button class="btn btn-info" type="button" id="sellerlogout">판매자logout</button>
+				 
 				  <!-- Dropdown -->
-	 				 <ul class="navbar-nav" >
+	 				 <ul class="navbar-nav">
 	 					 <li class="nav-item dropdown">
 	 					   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
 	    				  	${sessionScope.S_ID} 님 
@@ -193,11 +203,12 @@
 	   					 </div>
 					  </li>
 	  				</ul>
+	  				<button class="btn btn-info" type="button" id="sellerlogout">logout</button>
 				 </c:if>
 				 <c:if test="${sessionScope.status == 0 }">
-				 <button class="btn btn-info" type="button" id="adminlogout">운영자logout</button>
+				
 				  <!-- Dropdown -->
-	 				 <ul class="navbar-nav" >
+	 				 <ul class="navbar-nav navbar-right" >
 	 					 <li class="nav-item dropdown">
 	 					   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
 	    				  	마이페이지
@@ -211,6 +222,7 @@
 	   					 </div>
 					  </li>
 	  				</ul>
+	  				 <button class="btn btn-info" type="button" id="adminlogout">logout</button>
 				 </c:if>
 			</c:when>
 	
@@ -222,6 +234,11 @@
     </ul>
 </div>
 </nav>
+<div class = "mx-auto" style="height: auto; width: 100%; border-top:2px solid #cd3c3c;">     
+                     
+</div>
+</div>
+<br>
 <!-- </div> -->
 <!-- </div> -->
 </body>
