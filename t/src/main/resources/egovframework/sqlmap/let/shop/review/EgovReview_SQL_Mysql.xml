@@ -319,9 +319,9 @@ SELECT
 					</isNotEqual>
 				</isNotEmpty>	
 			</isNotNull>	
-		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+		<!-- <isEqual prepend="AND" property="searchCnd" compareValue="0"> prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다.
 				<![CDATA[	P_NAME LIKE CONCAT ('%', #searchWrd#,'%') OR S_NICKNAME LIKE CONCAT ('%', #searchWrd#,'%') OR R_CONTENT LIKE CONCCAT ('%', #searchWrd#,'%') OR NICKNAME LIKE CONCAT('%', #searchWrd#,'%') ]]>
-		</isEqual>
+		</isEqual> -->
 		<![CDATA[			
 			ORDER BY R_IDX DESC
 			LIMIT #recordCountPerPage# OFFSET #firstIndex#
@@ -337,11 +337,8 @@ SELECT
 			WHERE 1=1
 		]]>
 			 <isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
-				<![CDATA[	P_NAME LIKE CONCAT ('%', #searchWrd#,'%') OR S_NICKNAME LIKE CONCAT ('%', #searchWrd#,'%') OR R_CONTENT LIKE CONCCAT ('%', #searchWrd#,'%') OR NICKNAME LIKE CONCAT('%', #searchWrd#,'%') ]]>
+				<![CDATA[	S_NICKNAME LIKE CONCAT ('%', #searchWrd#,'%') OR R_CONTENT LIKE CONCCAT ('%', #searchWrd#,'%') OR NICKNAME LIKE CONCAT('%', #searchWrd#,'%') ]]>
 			</isEqual>
-			<isEqual prepend="AND" property="searchCnd" compareValue="1">
-				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
-			</isEqual>	
 	</select>
 	
 	<update id="EgovMngReviewDAO.updateMngUserReview" parameterClass="ReviewMngVO">
