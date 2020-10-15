@@ -11,7 +11,6 @@ import org.springframework.web.servlet.mvc.WebContentInterceptor;
 
 import egovframework.let.shop.mng.log.service.LogMngService;
 import egovframework.let.shop.mng.log.service.impl.LogMngVO;
-import oracle.net.aso.r;
 
 public class LoggerInterceptor extends WebContentInterceptor {
 
