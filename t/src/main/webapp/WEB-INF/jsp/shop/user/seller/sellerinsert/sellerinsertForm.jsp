@@ -8,37 +8,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<!-- <style> 
-input[type=text] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-input[type=file] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-input[type=date] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-</style> -->
+<style> 
+input[type="date"]::before {content:attr(data-placeholder);width:100%}
+input[type="date"]:focus::before,
+input[type="date"]:valid::before {display:none}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
 <script type="text/javascript">
 		$(document).ready(function(){
+			$("#cencle").on("click", function(){
+				alert("test");
+				$("form").attr("action", "/shop/user/EgovUserLoginForm.do");
+			});
+			
 			 $("#s_id").blur(function() {
 		            idFlag = false;
 		            fn_idChk();
@@ -85,10 +69,9 @@ input[type=date] {
 		            idFlag = false;
 		            fn_birthChk();
 		        });
+		   
 			// 취소
-			$(".cencle").on("click", function(){
-				location.href = "/";
-			})
+			
 			
 			$("#submit").on("click", function(){
 				//이메일 정규식
@@ -167,11 +150,12 @@ input[type=date] {
 		            return false;
 				}
 
-				if($("#s_birth").val()==""){
+				 if($("#s_birth").val()==""){
 					
 					$("#s_birth").focus();
 					return false;
-				}
+				} 
+				
 				var idChkVal = $("#idChk").val();
 				var emailChkVal = $("#emailChk").val();
 				var nickChkVal = $("#nickChk").val();
@@ -484,11 +468,13 @@ input[type=date] {
 		
 		 function showSuccessMsg(obj, msg) {
 		        obj.attr("class", "error_next_box green");
+		        obj.css("color","black");
 		        obj.html(msg);
 		        obj.show();
 		    }
 		 function showErrorMsg(obj, msg) {
 		        obj.attr("class", "error_next_box");
+		        obj.css("color","red");
 		        obj.html(msg);
 		        obj.show();
 		    }
@@ -536,12 +522,10 @@ input[type=date] {
 <body>
 
 
-<div>
-	<div class="container">
-		<div class="row justify-content-center">
-		
-		<!-- <form action="/shop/user/EgovUserLoginForm.do" name="frm" method="post"> -->
-			<form action="/shop/user/seller/sellerinsertPro.do" name="frm" method="post" enctype="multipart/form-data">
+
+<div class="container">
+	<div class="row justify-content-center">
+		<form action="/shop/user/seller/sellerinsertPro.do" name="frm" method="post" enctype="multipart/form-data">
 			<input type="hidden" value="" name="s_addr">
 			<input type="hidden" id="idChk" value="N">
 			<input type="hidden" id="nickChk" value="N">
@@ -576,19 +560,19 @@ input[type=date] {
 							<input class="form-control" type="text" id="sample6_detailAddress" name="addr2" placeholder="상세주소">
 							<span class="error_next_box" id="addrMsg" style="display:none" aria-live="assertive"></span><br>
 							</div> -->
-							<div class="row">
-							<div class="col-9">
-      						<input class="form-control" type="text" id="sample6_address" name="addr1" placeholder="주소" readonly>
-    						</div>
-    						<div class="col-2">
-      						<input class="btn btn-secondary" type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기">
-    						</div>
+							<div class="join_row">
+							<div class="input-group">
+							<input class="form-control" type="text" id="sample6_address" name="addr1" placeholder="주소" readonly>
+								<div class="input-group-append">
+									<input class="btn btn-secondary" type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기">
+								</div>
+							</div>
     						</div>
     						<input class="form-control" type="text" id="sample6_detailAddress" name="addr2" placeholder="상세주소">
       						<span class="error_next_box" id="addrMsg" style="display:none" aria-live="assertive"></span><br>
     					
-							<div class="row">
-							<div class="col-5">
+							<div class="join_row">
+							<!-- <div class="col-5">
       						<input class="form-control" type='text' id='email1' name="email1"/>
     						</div>
     						<div class="col-1">
@@ -596,7 +580,13 @@ input[type=date] {
     						</div>
     						<div class="col-6">
       						 <input class="form-control" type='text' id='email2' name="email2"/>
-    						</div><br>
+    						</div><br> -->
+    						<div class="input-group">
+								<input class="form-control" type='text' id='email1' name="email1"/>@
+							<div class="input-group-append">
+								 <input class="form-control" type='text' id='email2' name="email2"/>
+							</div>
+							</div>
     						</div>
 							<span class="error_next_box" id="emailMsg" style="display:none" aria-live="assertive"></span><br>
 							
@@ -606,10 +596,11 @@ input[type=date] {
 							<span class="error_next_box" id="phonMsg" style="display:none" aria-live="assertive"></span><br>
 							</div>
 							<div class="join_row">
-							<input class="form-control" type="date"  id="s_birth" name="s_birth" placeholder="생년월일">
+							<input class="form-control" type="date"  id="s_birth" name="s_birth" data-placeholder="생년월일" required aria-required="true">
 							<span class="error_next_box" id="birthMsg" style="display:none" aria-live="assertive"></span><br>
 							</div>
-							<select name="s_account_n">
+							<div class="join_row">
+							<select class="form-control" name="s_account_n">
 								<option value="null">은행선택</option>
 								<option value="신한은행(구)">신한은행(구)</option>
 								<option value="신한은행(신)">신한은행(신)</option>
@@ -617,23 +608,30 @@ input[type=date] {
 								<option value="우리은행">우리은행</option>
 								<option value="기업은행">기업은행</option>
 								<option value="하나은행">하나은행</option>
-							</select><br>
+							</select>
+							</div>
 							<input class="form-control" type="text"  id="s_account" name="s_account" placeholder="계좌번호"><br>
-							<label class="form-check-label" for="gender"> 
-							<input type="radio" class="form-check-input" id="s_gender" name="s_gender" value="남자" checked="checked">남&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" class="form-check-input" id="s_gender" name="s_gender" value="여자">여
-						</label>
-					</div>
-					<input type="file"  id="file" name="file"><br>
-					<div class="form-check-inline">
-						<input class="btn btn-success" type="submit" id="submit" value="회원가입">
-					</div>
-				</div>
-				</div>
-			</form>
-		</div>
+							<div class="join_row">
+							<select class="form-control" id="s_gender" name="s_gender">
+								<option value="남자">남자</option>
+								<option value="여자">여자</option>
+							</select>
+							<!-- <label class="form-check-label" for="gender"> 
+							<input class="form-control" type="radio" class="form-check-input" id="s_gender" name="s_gender" value="남자" checked="checked">남&nbsp;&nbsp;&nbsp;&nbsp;
+							<input class="form-control" type="radio" class="form-check-input" id="s_gender" name="s_gender" value="여자">여
+							</label> -->
+							</div>
+					</div><br>
+					<input  type="file"  id="file" name="file"><br><br>
+					<div class="join_row">
+						<input class="btn btn-success" style="width: 100%" type="submit" id="submit" value="회원가입">
+					</div>	
+					
+			</div>
+		</form>
 	</div>
-	</div>
+</div>
+
 <%@ include file="../../../inc/EgovShopBottom.jsp" %>
 </html>
 </body>

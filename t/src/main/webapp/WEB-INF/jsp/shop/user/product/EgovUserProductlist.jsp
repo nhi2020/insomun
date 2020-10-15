@@ -13,9 +13,11 @@
 </head>
 
 <body>
-	<%@ include file="../../inc/EgovShopTop.jsp"%>
+
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
-	
+	<c:if test="${msg != null}">
+		<h1>${msg}</h1>
+	</c:if>
 
 	
 	
