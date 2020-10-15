@@ -25,8 +25,7 @@
 
 		<img src="<c:url value='/images/shop/main/main.jpg'/>" width=100%
 			height="450">
-		<div
-			style="left: 350px; width: 450px; bottom: 140px; font-size: 1.8em; font-weight: bold; position: absolute;">
+		<div class="centered">
 			<h1>입소문넷</h1>
 			믿음직한 농산품 직거래 <p>  
 			입소문넷 입니다.
