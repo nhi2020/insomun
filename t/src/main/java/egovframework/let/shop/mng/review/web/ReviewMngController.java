@@ -44,6 +44,12 @@ public class ReviewMngController {
 		paginationInfo.setRecordCountPerPage(mngVO.getPageUnit());
 		paginationInfo.setPageSize(mngVO.getPageSize());
 
+		
+		int num = mngVO.getFirstIndex();
+	    int result = num-1;
+	    mngVO.setFirstIndex(result);
+	    System.out.println("result---------------->"+result);
+		
 		mngVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
 		mngVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		mngVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
@@ -55,7 +61,7 @@ public class ReviewMngController {
 		model.addAttribute("paginationInfo", paginationInfo);
 		List<ReviewMngVO> list = reviewMngService.selectMngList(mngVO);
 		model.addAttribute("list", list);
-		return "/shop/mng/review/EgovMngReview";
+		return "/shop/mng/review/EgovMngReview";  //판매자
 	}
 
 	// 관리자 리뷰에서의 댓글 삭제
@@ -86,7 +92,15 @@ public class ReviewMngController {
 	@RequestMapping(value = "/shop/mng/review/MngUserSelect.do")
 	public String selectSellerList(ReviewMngVO mngVO, ModelMap model) throws Exception {
 		List<ReviewMngVO> list = reviewMngService.selectSellerList(mngVO);
-		model.addAttribute("list", list);
-		return "/shop/mng/review/EgovUserReview";
+		
+		int num = mngVO.getFirstIndex();
+	    int result = num-1;
+	    mngVO.setFirstIndex(result);
+	    System.out.println("result/*/*/*-/*/*-/*-/-*/-*>"+result);
+		
+	    
+	    
+		model.addAttribute("list", list);	//구매자
+		return "/shop/mng/review/EgovUserReview";  
 	}
 }

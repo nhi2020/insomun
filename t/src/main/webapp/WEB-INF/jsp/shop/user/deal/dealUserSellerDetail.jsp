@@ -15,12 +15,6 @@
 <div class="container">
 <h1>거래</h1><p1>
 <h4>판매자</h4><p1>
-
-	sns_idx : ${dealUserVO.sns_idx}<br>		
-	d_idx : ${dealUserVO.d_idx}<br>			
-	p_idx : ${dealUserVO.p_idx }<br>		
-	s_id : ${dealUserVO.s_id }<br>		
-	
 거래상태 : <strong>
 			<c:choose>
 				<c:when test="${dealUserVO.d_ing eq '1'}"> 신청 </c:when>

@@ -19,23 +19,30 @@
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
 <h2>수정 페이지</h2>
 
+<c:if test="${msg != null }">
+<p>${msg }</p>
+</c:if>
+<c:if test="${msg = null }">
+</c:if>
+
  <div class="container-fluid">
-	<div class="container text-center">
 	    <div class="row">
-			<form action="/shop/user/product/EgovUserProductUpdatePro.do" method="post" >
+			<form name="frm" class="mx-auto" action="/shop/user/product/EgovUserProductUpdatePro.do" method="post" enctype="multipart/form-data">
 	    			<input type="hidden" name="p_idx" value="${ProductUserVO.p_idx }" />
-					<img src="<c:url value='/'/>file/${ProductUserVO.p_image}" width="270" height="385"/>
-					<p>
-					<table class="table">
+	    			<input type="hidden" name="preImage" value="${ProductUserVO.preImage }" />
+	    			<input type="hidden" name="pageIndex" value="${searchVO.pageIndex }" />
+	    			<input type="hidden" name="searchCnd" value="${ProductUserVO.searchCnd }" />
+	    			<input type="hidden" name="searchWrd" value="${ProductUserVO.searchWrd }" />
+					<table class="table" style="text-align: left">
 					<tr>
-						<th>사진변경</th>
-						<td><input type="file" name="file" value="${ProductUserVO.p_image}" />
-						</td>
+						<th></th>
+						<td height="200" style="">
+						<img class="img-fluid" id="blah" src="<c:url value='/'/>file/${ProductUserVO.p_image}" alt="your image" width="200" height="200" /> </td> 
 					</tr>
 					<tr>
-						<th>상품명</th>
-						<td><input type="text" name="p_name" value="${ProductUserVO.p_name }"/>
-						</td>
+						<th>사진변경</th>	
+							<td><label for="ex_file">업로드</label>
+							<input type='file' name="file" id="ex_file" onchange="readURL(this);" /></td>    
 					</tr>
 					<tr>
 						<th>가격</th>
@@ -69,14 +76,20 @@
 					<tr>
 						<td colspan="2"><br/>
 					<input type="submit" value="수정완료" class="btn btn-primary"> &nbsp;
-					<input type="button" value="이전으로" class="btn btn-info" onclick="location.href='/shop/user/product/EgovUserProductlist.do'"/>
+					<input type="button" value="이전으로" class="btn btn-info" onclick="return1();"/>
 					</tr>
 				</table>
 				<p/>
 				</form>				
 			</div>
-		</div>
 	</div>
+<script>
+function return1(){
+	document.forms["frm"].action = "/shop/user/product/EgovUserProductlist.do";
+	document.forms["frm"].submit();
+	return true;
+}
+</script>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>

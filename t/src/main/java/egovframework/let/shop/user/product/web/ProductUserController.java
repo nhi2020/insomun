@@ -127,8 +127,6 @@ public class ProductUserController {
 
 		List<ProductUserVO> list = userProductService.selectUserProductList(vo);
 
-		
-		System.out.println("totCnt"+ totCnt);
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
@@ -137,7 +135,6 @@ public class ProductUserController {
 			System.out.println("검색결과가");
 			model.addAttribute("msg","검색결과가 없습니다.");
 		}else{
-			System.out.println("test"+list.get(0).getS_id());
 			System.out.println("totCnt"+ totCnt);
 			model.addAttribute("totCnt", totCnt);
 			model.addAttribute("list", list);
@@ -177,8 +174,6 @@ public class ProductUserController {
 		int totCnt = userProductService.selectUserProductListCnt(vo);
 		paginationInfo.setTotalRecordCount(totCnt);
 		
-
-
 		List<ProductUserVO> list = userProductService.selectUserProductList(vo);
 		
 		System.out.println("totCnt"+ totCnt);
@@ -196,7 +191,7 @@ public class ProductUserController {
 }
 //수정 형식 작성
 	@RequestMapping(value="/shop/user/product/EgovUserProductUpdateForm")
-	public String egovProductUpdateForm(ProductUserVO vo,  HttpServletRequest request,
+	public String egovProductUpdateForm(@ModelAttribute("searchVO") ProductUserVO vo,  HttpServletRequest request,
 			ModelMap model) throws Exception {
 	
 	    vo = userProductService.selectUserProductForm(vo);
@@ -229,7 +224,7 @@ public class ProductUserController {
 		}
 		model.addAttribute("vo");
 
-		return "redirect:/shop/user/product/EgovUserProductlist.do";
+		return "redirect:/shop/user/product/EgovUserProductlist.do" +"?pageIndex="+vo.getPageIndex();
 
 	}
 	
