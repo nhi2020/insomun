@@ -43,15 +43,9 @@
 						<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
 						<img class="img-fluid" src="<c:url value='/'/>file/${productuser_list.p_image}" width="270" height="270" class="rounded"/> </a>
 						<input type="hidden" value="${productuser_list.p_idx }">
-<<<<<<< HEAD
 							<br/><span><b>${productuser_list.p_name }</b></span> 
 							<br/> <span><b><fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber>원</b></span>
-						</p>
-=======
-							<br/> <span> ${productuser_list.p_name }</span> 
-							<br/> <span><fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber></span>
 				
->>>>>>> branch 'master' of https://github.com/nhi2020/insomun.git
 					</div>
 
 				</c:forEach>
