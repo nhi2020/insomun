@@ -157,8 +157,8 @@ public class DealUserController {
 	public String listDealUserSeller(@ModelAttribute("searchVO") DealUserVO vo, HttpServletRequest request, Model model, 
 			@RequestParam(value = "pageIndex", required=false, defaultValue="1") int pageIndex) {
 		HttpSession session = request.getSession();
-		System.out.println("session.getAttribute('s_id') -> "+session.getAttribute("s_id"));
-		vo.setS_id((String) session.getAttribute("s_id"));
+		System.out.println("session.getAttribute('S_ID') -> "+session.getAttribute("S_ID"));
+		vo.setS_id((String) session.getAttribute("S_ID"));
 		
 		vo.setPageIndex(pageIndex);
 		System.out.println("listUserSeller pageIndex => " + vo.getPageIndex());

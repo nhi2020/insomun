@@ -162,10 +162,6 @@ table {
 									<c:when test="${list.d_ing eq '6'}"> 판매자 거래 취소 </c:when>
 								</c:choose></td>
 							<td width="14%">${list.d_edate }<br>
-							${list.p_idx }
-							${list.d_idx }
-							${list.s_idx }
-							${list.sns_idx }
 							</td>
 				</c:forEach>
 					</tr>
