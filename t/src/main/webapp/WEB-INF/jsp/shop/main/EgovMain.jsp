@@ -42,10 +42,11 @@
 				<c:forEach var="productuser_list" items="${list}">
 					<div class="col-3">
 						<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
-						<img src="<c:url value='/'/>file/${productuser_list.p_image}" width="200" height="200" class="rounded"/> </a><br>
+						<img src="<c:url value='/'/>file/${productuser_list.p_image}" width="270" height="270" class="rounded"/> </a>
 						<input type="hidden" value="${productuser_list.p_idx }">
-							 <span style="">${productuser_list.p_name }</span> 
-							<br/> <span><fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber>원</span><br>
+							<br/> <span> ${productuser_list.p_name }</span> 
+							<br/> <span><fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber></span>
+						</p>
 					</div>
 
 				</c:forEach>

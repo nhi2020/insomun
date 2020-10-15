@@ -30,14 +30,6 @@ public class ProductUserVO extends ProductUser implements Serializable {
 
 	/**이전 사진파일*/
 	private String preImage = "";
-	
-    public String getPreImage() {
-		return preImage;
-	}
-
-	public void setPreImage(String preImage) {
-		this.preImage = preImage;
-	}
 
 	/** 검색시작일 */
     private String searchBgnDe = "";
@@ -50,8 +42,8 @@ public class ProductUserVO extends ProductUser implements Serializable {
     
     /** 검색단어 */
     private String searchWrd = "";
-    
-    /** 정렬순서(DESC,ASC) */
+
+	/** 정렬순서(DESC,ASC) */
     private long sortOrdr = 0L;
 
     /** 검색사용여부 */
@@ -121,6 +113,13 @@ public class ProductUserVO extends ProductUser implements Serializable {
     private String subPageIndex = "";
     ////-------------------------------
 
+    public String getPreImage() {
+		return preImage;
+	}
+
+	public void setPreImage(String preImage) {
+		this.preImage = preImage;
+	}
     /**
      * searchBgnDe attribute를 리턴한다.
      * 

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.let.shop.user.product.service.ProductUserService;
@@ -57,6 +58,10 @@ public class ProductUserController {
 	
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
+	
+	// 파일 처리를 위한 멀티파트 리졸버
+	@Resource(name = "multipartResolver")
+	CommonsMultipartResolver multipartResolver;
 	
 
 	/*@Resource(name ="EgovReviewService")
@@ -105,7 +110,7 @@ public class ProductUserController {
 			ModelMap model,ReviewUserVO vo2) throws Exception {
 		System.out.println("test"+vo.getSearchCnd());
 		System.out.println("test"+vo.getSearchWrd());
-		vo.setPageUnit(propertyService.getInt("pageUnit"));
+		vo.setPageUnit(8);
 		vo.setPageSize(propertyService.getInt("pageSize"));
 
 		PaginationInfo paginationInfo = new PaginationInfo();
@@ -113,7 +118,7 @@ public class ProductUserController {
 		paginationInfo.setCurrentPageNo(vo.getPageIndex());
 		paginationInfo.setRecordCountPerPage(vo.getPageUnit());
 		paginationInfo.setPageSize(vo.getPageSize());
-
+	
 		vo.setFirstIndex(paginationInfo.getFirstRecordIndex());
 		vo.setLastIndex(paginationInfo.getLastRecordIndex());
 		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
@@ -121,6 +126,13 @@ public class ProductUserController {
 		paginationInfo.setTotalRecordCount(totCnt);
 
 		List<ProductUserVO> list = userProductService.selectUserProductList(vo);
+
+		
+		System.out.println("totCnt"+ totCnt);
+		model.addAttribute("totCnt", totCnt);
+		model.addAttribute("list", list);
+		model.addAttribute("paginationInfo", paginationInfo);
+
 		if(list.size()==0){
 			System.out.println("검색결과가");
 			model.addAttribute("msg","검색결과가 없습니다.");
@@ -140,11 +152,52 @@ public class ProductUserController {
 //		리뷰 관련  			//		
 		return "/shop/user/product/EgovUserProductlist";
 	}
+	
+	@RequestMapping(value = "/shop/user/product/EgovUserProductlistForSeller")
+	public String EgovUserProductlistForSeller(@ModelAttribute("searchVO") ProductUserVO vo, HttpServletRequest request,
+			ModelMap model,ReviewUserVO vo2) throws Exception {
+		System.out.println("test"+vo.getSearchCnd());
+		System.out.println("test"+vo.getSearchWrd());
+		vo.setPageUnit(8);
+		vo.setPageSize(propertyService.getInt("pageSize"));
+
+		HttpSession session = request.getSession();
+		String S_ID = (String) session.getAttribute("S_ID");
+		vo.setS_id(S_ID);
+		
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		paginationInfo.setCurrentPageNo(vo.getPageIndex());
+		paginationInfo.setRecordCountPerPage(vo.getPageUnit());
+		paginationInfo.setPageSize(vo.getPageSize());
+	
+		vo.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		vo.setLastIndex(paginationInfo.getLastRecordIndex());
+		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		int totCnt = userProductService.selectUserProductListCnt(vo);
+		paginationInfo.setTotalRecordCount(totCnt);
+		
+
+
+		List<ProductUserVO> list = userProductService.selectUserProductList(vo);
+		
+		System.out.println("totCnt"+ totCnt);
+		model.addAttribute("totCnt", totCnt);
+		model.addAttribute("list", list);
+		model.addAttribute("paginationInfo", paginationInfo);
+			
+//		리뷰 관련  			//
+		
+		/*List<ReviewVO> list2 = reviewService.selectReviewList(vo2);
+		model.addAttribute("list2", list);*/
+		
+//		리뷰 관련  			//		
+		return "/shop/user/product/EgovUserProductlist";
+}
 //수정 형식 작성
 	@RequestMapping(value="/shop/user/product/EgovUserProductUpdateForm")
 	public String egovProductUpdateForm(ProductUserVO vo,  HttpServletRequest request,
 			ModelMap model) throws Exception {
-		
 	
 	    vo = userProductService.selectUserProductForm(vo);
 	    System.out.println("EgovUserProductUpdateForm"+vo);
@@ -154,6 +207,7 @@ public class ProductUserController {
 //수정하기 가능하도록	
 	@RequestMapping(value ="/shop/user/product/EgovUserProductUpdatePro", method = RequestMethod.POST)
 	public String egovUserProductUpdatePro(@ModelAttribute("ProductUserVO")ProductUserVO vo, HttpServletRequest request,Model model, RedirectAttributes redirect, MultipartFile file) throws Exception{
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 		//
 	    String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
 	    // 서버에 업로드할 경우엔 프로퍼티에서 경로를 설정할 예정.
@@ -164,27 +218,39 @@ public class ProductUserController {
 	    // 서버 업로드를 위한 절차
 	    String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
 		vo.setP_image(savedName);
+		}
 	    // DB 반영
 	    int dbResult = userProductService.updateUserProductPro(vo);
 	    
-		System.out.println("vo pname => " + vo.getP_name());
-		if (dbResult > 0) {
-			model.addAttribute("msg", "수정 성공");
+	    if(dbResult > 0) {
+			redirect.addFlashAttribute("result3", dbResult);
 		} else {
-			model.addAttribute("msg", "수정 실패");
+			redirect.addFlashAttribute("result3", dbResult);
 		}
 		model.addAttribute("vo");
-		model.addAttribute("delResult", delResult);
-	    model.addAttribute("dbResult", dbResult);
 
-		return "forward:/shop/user/product/EgovUserProductUpdateForm.do";
+		return "redirect:/shop/user/product/EgovUserProductlist.do";
 
 	}
 	
 	private int deleteFile(String deleteFile) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+		int result = 0;
+		File file = new File(deleteFile);
+		if(file.exists()){
+			if(file.delete()){
+				System.out.println("파일 삭제 성공");
+				result = 1;
+			} else {
+				System.out.println("파일 삭제 실패");
+				result = 0;
+			}
+		} else {
+			System.out.println("파일이 존재하지 않습니다.");
+			result = -1;
+		}
+		
+		return result;
+}
 
 	@RequestMapping(value = "/shop/user/product/EgovUserProductInsertForm")
 	public String EgovUserProductInsertForm() {
@@ -192,7 +258,7 @@ public class ProductUserController {
 	}
 	
 	@RequestMapping(value = "/shop/user/product/EgovUserProductInsertPro", method = RequestMethod.POST)
-	public String EgovUserProductInsertPro(ProductUserVO vo,Model model, HttpServletRequest request, MultipartFile file, String path) throws Exception {
+	public String EgovUserProductInsertPro(ProductUserVO vo,Model model, HttpServletRequest request, MultipartFile file, String path, RedirectAttributes redirect) throws Exception {
 		
 		HttpSession session = request.getSession();
 		String s_id = (String) session.getAttribute("S_ID");
@@ -205,9 +271,17 @@ public class ProductUserController {
 		vo.setP_image(savedName);
 		//
 		
-		userProductService.insertUserProductPro(vo);
+		String result = userProductService.insertUserProductPro(vo);
 		
-		return "redirect:/shop/user/product/EgovUserProductInsertForm.do";
+		if(result != "" && result != null) {
+			redirect.addFlashAttribute("result1", result);
+			System.out.println("result1->" + result);
+		} else {
+			redirect.addFlashAttribute("result1", result);
+			System.out.println("result1->" + result);
+		}
+		
+		return "redirect:/shop/user/product/EgovUserProductlist.do";
 	}
 	
 	private String uploadFile(String originalFilename, byte[] fileData, String uploadPath) throws Exception {
@@ -240,14 +314,23 @@ public class ProductUserController {
 	}
 
 	@RequestMapping(value = "/shop/user/product/EgovUserProductDelete") 
-	public String EgovUserProductDelete(ProductUserVO vo, HttpServletRequest request)throws Exception {
+	public String EgovUserProductDelete(ProductUserVO vo, HttpServletRequest request, Model model, RedirectAttributes redirect)throws Exception {
 		
 		String[] check = request.getParameterValues("check");
-		System.out.println("EgovUserProductDelete:");
-		for (int i = 0; i < check.length; i++) {
-			System.out.println("chk : " +check[i]);
-			vo.setP_idx(check[i]);
-			userProductService.deleteUserProduct(vo);
+		if (check != null) {
+			for (int i = 0; i < check.length; i++) {
+				System.out.println("chk : " +check[i]);
+				vo.setP_idx(check[i]);
+				int result = userProductService.deleteUserProduct(vo);
+				if(result > 0) {
+					redirect.addFlashAttribute("result", result);
+				} else {
+					redirect.addFlashAttribute("result", result);
+				}
+			}
+		} else {
+			int result = 0;
+			redirect.addFlashAttribute("result2", result);
 		}
 		return "redirect:/shop/user/product/EgovUserProductlist.do";
 	}
