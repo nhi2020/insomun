@@ -261,8 +261,11 @@ public class ProductUserController {
 		    int result = num-1;
 		    reviewVO.setFirstIndex(result);
 		    System.out.println("result______________________>"+result);
+		    List<String> AVG = egovReviewService.selectReviewAvg(reviewVO);
 		    List<ReviewUserVO> list = egovReviewService.selectReviewList(reviewVO);
 		    model.addAttribute("list",list);
+		    model.addAttribute("r_div", reviewVO.getR_div());
+			model.addAttribute("AVG", AVG);
 		    return "/shop/user/product/EgovBuyerProductForm";
 	}
 

@@ -46,7 +46,7 @@ public interface SellerUserService {
 
 	public SellerUserVO sellerUserSelect(SellerUserVO vo);
 
-	public int sellerUserUpdate(SellerMngVO vo);
+	public int sellerUserUpdate(SellerUserVO vo);
 
 
 }

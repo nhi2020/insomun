@@ -1,20 +1,21 @@
 package egovframework.let.shop.mng.log.web;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
-
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.let.shop.mng.log.service.LogMngService;
 import egovframework.let.shop.mng.log.service.impl.LogMngVO;
-import egovframework.let.shop.mng.review.service.ReviewMngVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -75,8 +76,11 @@ public class LogMngController {
 	 */
 
 	@RequestMapping(value = "/shop/mng/log/EgovMngLogList")
-	public String forwardPageWithMenuNo(@ModelAttribute("searchVO") LogMngVO vo, HttpServletRequest request,
-			ModelMap model, ReviewMngVO vo2) throws Exception {
+	public String selectMngLogList(@ModelAttribute("searchVO") LogMngVO vo, HttpServletRequest request,
+			Model model,
+			@RequestParam(value = "pageIndex", required=false, defaultValue="1") int pageIndex) throws Exception {
+		vo.setPageIndex(pageIndex);
+		System.out.println("listMngLog pageIndex => " + vo.getPageIndex());
 		System.out.println("test");
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
@@ -90,25 +94,33 @@ public class LogMngController {
 		vo.setFirstIndex(paginationInfo.getFirstRecordIndex());
 		vo.setLastIndex(paginationInfo.getLastRecordIndex());
 		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		
 		int totCnt = mngLogService.selectMngLogListCnt(vo);
 		paginationInfo.setTotalRecordCount(totCnt);
 
 		List<LogMngVO> list = mngLogService.selectMngLogList(vo);
-		System.out.println("test" + list.get(0).getS_id());
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
 
-		// 리뷰 관련 //
-
-		/*
-		 * List<ReviewVO> list2 = reviewService.selectReviewList(vo2);
-		 * model.addAttribute("list2", list);
-		 */
-
-		// 리뷰 관련 //
 		return "/shop/mng/log/EgovMngLogList";
 	}
+	
+	@RequestMapping(value="/shop/mng/log/insertMngLogForm.do")
+	public String insertMngLogForm(){
+		return "/shop/mng/log/EgovMngLogInsert"; // JSP 위치
+	}
+
+	@RequestMapping(value="/shop/mng/log/insertMngLogPro", method = RequestMethod.POST)
+	public String insertMngLogPro(HttpServletRequest request, LogMngVO vo, Model model) throws IOException {
+		System.out.println("LogMngController insertMngLogPro()");
+		String result = mngLogService.insertMngLogPro(vo);
+		System.out.println("result => " + result);
+		
+		return "redirect:/shop/mng/log/insertMngLogForm.do"; // redirect랑 Forward는 URI를 적는다
+	}
+	
+	
 
 	/*@RequestMapping(value = "/shop/mng/log/EgovMngLogUpdatePro", method = RequestMethod.POST)
 	public String egovMngLogUpdatePro(LogMngVO vo, Model model) throws Exception {
@@ -142,5 +154,7 @@ public class LogMngController {
 
 		return "redirect:/shop/mng/log/EgovMngLogInsertForm.do";
 */
+	
+	
 	}
 

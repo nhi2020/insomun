@@ -6,10 +6,12 @@ import egovframework.let.shop.mng.log.service.impl.LogMngVO;
 
 public interface LogMngService {
 	
-	List<LogMngVO> selectMngLogList(LogMngVO logVO) throws Exception;
-
-	int selectMngLogListCnt(LogMngVO logVO) throws Exception;
+	int selectMngLogListCnt(LogMngVO vo);
 	
+	List<LogMngVO> selectMngLogList(LogMngVO vo);
+	
+	String insertMngLogPro(LogMngVO vo);
+
 /*	int updateMngLogPro(LogMngVO vo);
 
 	int insertMngLogPro(LogMngVO vo);*/

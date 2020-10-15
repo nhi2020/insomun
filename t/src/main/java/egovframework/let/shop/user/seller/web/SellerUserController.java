@@ -383,15 +383,12 @@ public class SellerUserController {
 		return result;
 	}
 	
-	  @RequestMapping("/shop/user/seller/selectUserSeller")
+	  @RequestMapping("/shop/user/seller/selectUserSeller.do")
 	  public String selectUserSeller(SellerUserVO vo, Model model, HttpServletRequest request) {
 		  HttpSession session = request.getSession();
 		  String sessionS_id = (String) session.getAttribute("S_ID");
 	      System.out.println("s_id->" + sessionS_id);
-	      String s_nickname = (String) session.getAttribute("S_NICKNAME");
-	      System.out.println("s_nickname->" + s_nickname);
 	      vo.setS_id(sessionS_id);
-	      vo.setS_nickname(s_nickname);
 	      vo = SellerService.selectUserSeller(vo);
 	      model.addAttribute("SellerVO", vo);
 	      return "shop/user/seller/selectUserSeller";
@@ -406,7 +403,7 @@ public class SellerUserController {
 		}
 	 
 	  @RequestMapping(value = " /shop/user/seller/updateUserSellerPro", method = RequestMethod.POST)
-		public String updateUserSellerPro(HttpServletRequest request, MultipartFile file, SellerMngVO vo, Model model, RedirectAttributes redirect) throws Exception{
+		public String updateUserSellerPro(HttpServletRequest request, MultipartFile file, SellerUserVO vo, Model model, RedirectAttributes redirect) throws Exception{
 			System.out.println("updateUserSellerPro()");
 			System.out.println("vo.getS_nickname() ->" + vo.getS_nickname());
 			System.out.println("vo.getS_photo() ->" + vo.getS_photo());
@@ -436,7 +433,7 @@ public class SellerUserController {
 			}
 			model.addAttribute("vo");
 			
-			return "shop/user/seller/selectUserSeller";
+			return "redirect:/shop/user/seller/selectUserSeller.do";
 		}
 	  private int deleteFile(String deleteFilename) {
 			int result = 0;
