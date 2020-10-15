@@ -58,7 +58,7 @@
 		</table>
 	</form>
 
-		<div id="paging_div">
+	<div id="paging_div">
 		<form name="frmPage" id="frmPage" action="/shop/mng/log/EgovMngLogList.do">
 			<ul class="paging_align">	
 				<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="linkPage" />
