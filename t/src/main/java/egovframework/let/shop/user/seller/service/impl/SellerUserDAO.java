@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import egovframework.let.shop.mng.admin.service.impl.AdminVO;
+import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
 import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
+import egovframework.let.shop.user.deal.service.impl.DealUserVO;
+import egovframework.let.shop.user.product.service.impl.ProductUserVO;
+import egovframework.let.shop.user.review.service.ReviewUserVO;
 import egovframework.let.shop.user.seller.service.impl.SellerUserVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
@@ -136,6 +140,35 @@ public class SellerUserDAO extends EgovAbstractDAO {
 		}
 		return result;
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<ProductUserVO> sellerSelectProductList(ProductUserVO vo3) { 
+		List<ProductUserVO> list = null;
+		try {
+			list = (List<ProductUserVO>) list("sellerSelectProductList", vo3);
+			System.out.println("sellerSelectProductList list size => "+list.size());
+		} catch (Exception e) {
+			System.out.println("sellerSelectProductList Exception : " + e.getMessage());
+		}
+		
+		return list;
+    }
+
+	@SuppressWarnings("unchecked")
+	public List<DealUserVO> sellerSelectDealList(DealUserVO vo2) {
+		List<DealUserVO> listDealUserBuyer = null;
+		try {
+			listDealUserBuyer = (List<DealUserVO>) list("sellerSelectDealList", vo2);
+		} catch (Exception e) {
+			System.out.println("sellerSelectDealList Exception -> " + e.getMessage());
+		}
+		return listDealUserBuyer;
+	}
+
+	public List<ReviewUserVO> sellerSelectReviewList(ReviewUserVO vo1) {
+		return (List<ReviewUserVO>) list("sellerSelectReviewListt",vo1);
+	}
+    
 
 
 

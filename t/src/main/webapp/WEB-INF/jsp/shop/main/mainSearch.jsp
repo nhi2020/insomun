@@ -22,22 +22,15 @@
 		<div class="container text-center">
 			<h3>${keyword} 검색 결과 </h3>
 			<div class="row">
-				<c:forEach var="product_list" items="${list2}">
+				<c:forEach var="productuser_list" items="${list2}">
 					<div class="col-3">
-
-						<img src="./images/main/photo/${product_list.p_image}" width="270"
-							height="385" />
-
-						<p>
-
-							<span>판매자 아이디: ${product_list.s_id }</span> <br /> <span>가격:
-								${product_list.p_price }</span> <br /> <span>상태:
-								${product_list.p_status }</span> <br /> <span>재고 수량:
-								${product_list.p_q }</span> <br /> <span>업데이트된 날짜:
-								${product_list.p_moddate }</span>
+						<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
+						<img src="<c:url value='/'/>file/${productuser_list.p_image}" width="270" height="270" class="rounded"/> </a>
+						<input type="hidden" value="${productuser_list.p_idx }">
+							<br/> <span>${productuser_list.p_name }</span> 
+							<br/> <span><fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber></span>
 						</p>
 					</div>
-
 				</c:forEach>
 			</div>
 		</div>

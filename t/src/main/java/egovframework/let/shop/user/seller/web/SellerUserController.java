@@ -19,6 +19,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,8 +32,15 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.let.shop.mng.admin.service.impl.AdminVO;
+import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
+import egovframework.let.shop.mng.review.service.ReviewMngVO;
 import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
 import egovframework.let.shop.mng.testFileUpload.web.TestFileUploadController;
+import egovframework.let.shop.user.deal.service.DealUserService;
+import egovframework.let.shop.user.deal.service.impl.DealUserVO;
+import egovframework.let.shop.user.product.service.ProductUserService;
+import egovframework.let.shop.user.product.service.impl.ProductUserVO;
+import egovframework.let.shop.user.review.service.ReviewUserVO;
 import egovframework.let.shop.user.seller.service.SellerUserService;
 import egovframework.let.shop.user.seller.service.impl.SellerUserVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
@@ -384,12 +392,23 @@ public class SellerUserController {
 	}
 	
 	  @RequestMapping("/shop/user/seller/selectUserSeller.do")
-	  public String selectUserSeller(SellerUserVO vo, Model model, HttpServletRequest request) {
+	  public String selectUserSeller(ProductUserVO vo3, DealUserVO vo2, ReviewUserVO vo1, SellerUserVO vo, Model model, HttpServletRequest request) {
 		  HttpSession session = request.getSession();
 		  String sessionS_id = (String) session.getAttribute("S_ID");
 	      System.out.println("s_id->" + sessionS_id);
 	      vo.setS_id(sessionS_id);
 	      vo = SellerService.selectUserSeller(vo);
+	      
+
+	      	List<ProductUserVO> list = SellerService.sellerSelectProductList(vo3);
+			model.addAttribute("list", list);
+
+			List<DealUserVO> list1 = SellerService.sellerSelectDealList(vo2);
+			model.addAttribute("dealUserlist", list1);
+			
+			List<ReviewUserVO> list2 = SellerService.sellerSelectReviewList(vo1);
+			model.addAttribute("list1", list2);
+			
 	      model.addAttribute("SellerVO", vo);
 	      return "shop/user/seller/selectUserSeller";
 	   }
@@ -453,5 +472,5 @@ public class SellerUserController {
 			
 			return result;
 		}
-
+	  
 }

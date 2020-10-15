@@ -11,14 +11,12 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
-<%@ include file="../../inc/EgovShopTop.jsp" %>
-<%@ include file="../../inc/EgovShopHeader.jsp" %>
+<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopTop.jsp" %>
+<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopHeader.jsp" %>
   
 <%
 	String context = request.getContextPath();
 %>
-  
-  
 
 <h1>현재 진행중인 거래...판매자</h1>
 
@@ -27,6 +25,7 @@
 수락 : 판매자 거랙 수락 후 구매자 입금 및 판매자 배송 단계<br>
 구매 확정 : 판매자 입금 확인 및 구매자 물품 수령 및 최종 확인<br>
 거래 취소 : 어떠한 사유로 거래 취소 * 구매 확정 시 취소 안됨<br>
+
 <div class="container">
 	<div class="row">
 
@@ -66,7 +65,12 @@
 						<c:when test="${list.d_ing eq '6'}"> 판매자 거래 취소 </c:when>
 					</c:choose>
 				</td>
-				<td>${list.d_edate }</td>
+				<td>${list.d_edate }<br>
+					sns_idx : ${list.sns_idx}<br>		
+					d_idx : ${list.d_idx}<br>			
+					p_idx : ${list.p_idx }<br>		
+					s_id : ${list.s_id }<br>	
+				</td>
 		</form>
 			</tr>
 		</c:forEach>
@@ -95,6 +99,6 @@
 	</div>
 
 
-<%@ include file="../../inc/EgovShopBottom.jsp" %>
+<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopBottom.jsp" %>
 </body>
 </html>

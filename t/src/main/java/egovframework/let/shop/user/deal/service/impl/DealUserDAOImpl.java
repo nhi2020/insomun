@@ -129,6 +129,44 @@ public class DealUserDAOImpl extends EgovAbstractDAO implements DealUserDAO {
 		}
 		return vo;
 	}
+	
+	// 구매 시
+	@Override
+	public DealUserVO selectDealUserBuyerRequest(DealUserVO vo) {
+		System.out.println("DealUserDAOImpl selectDealUserBuyerRequest Start...");
+		try {
+			vo = (DealUserVO) select("selectDealUserBuyerRequest", vo);
+			
+		} catch (Exception e) {
+			System.out.println("selectDealUserBuyerRequest Exception -> " + e.getMessage());
+		}
+		return vo;
+	}
+
+	@Override
+	public DealUserVO selectDealUserBuyerRequestPro(DealUserVO vo) {
+		System.out.println("DealUserDAOImpl selectDealUserBuyerRequestPro Start...");
+		try {
+			vo = (DealUserVO) insert("selectDealUserBuyerRequestPro", vo);
+			
+		} catch (Exception e) {
+			System.out.println("selectDealUserBuyerRequestPro Exception -> " + e.getMessage());
+		}
+		return vo;
+	}
+
+	@Override
+	public int selectDealUserBuyerD_idx(DealUserVO vo) {
+		int d_idx = 0;
+		try {
+			d_idx = (int) select("selectDealUserBuyerD_idx", vo);
+
+		} catch (Exception e) {
+			System.out.println("selectDealUserBuyerD_idx Exception -> " + e.getMessage());
+		}
+		return d_idx;
+	}
+
 
 
 }

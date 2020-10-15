@@ -66,10 +66,6 @@
 						<td>${ProductUserVO.p_price }</td>
 					</tr>
 					<tr>
-						<th>제품 내용</th>
-						<td>${ProductUserVO.p_content }</td>
-					</tr>
-					<tr>
 						<th>해시태그</th>
 						<td>${ProductUserVO.p_tage }</td>
 					</tr>
@@ -88,6 +84,10 @@
 					<tr>
 						<th>업데이트된 날짜</th>
 						<td>${ProductUserVO.p_moddate }</td>
+					</tr>
+					<tr>
+						<th>제품 내용</th>
+						<td width="400px;">${ProductUserVO.p_content }</td>
 					</tr>
 				</table>
 				
