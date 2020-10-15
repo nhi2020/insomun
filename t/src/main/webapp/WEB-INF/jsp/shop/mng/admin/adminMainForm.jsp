@@ -30,7 +30,7 @@
 					<td><a href="/shop/user/review/reviewList.do">리뷰 페이지</a></td>
 				</tr>
 				<tr>
-					<td><a href="/shop/mng/review/MngSelect.do">관리자리뷰 관리</a></td>
+					<td><a href="/shop/mng/review.do">관리자리뷰 관리</a></td>
 				</tr>
 				<tr>
 					<td><a href="/shop/mng/basket/listMngBasket.do">장바구니 관리</a></td>
