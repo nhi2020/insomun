@@ -40,9 +40,10 @@
 						<td>${sns_list.snscode }</td>
 						<td>${sns_list.nickname }</td>
 						<td>${sns_list.email }</td>
-						<td>${sns_list.reg_date }</td>
+						<fmt:formatDate var="dateTempFmt" value="${sns_list.reg_date }" pattern="yyyy.MM.dd. HH:mm:ss"/>
+						<td><c:out value="${dateTempFmt}"></c:out></td>
 						<td>${sns_list.del_yn }</td>
-						<td><input type="submit" value="전환"
+						<td><input class="btn btn-danger" type="submit" value="전환"
 							form="frm${status.index }" /></td>
 						<td><input class="btn btn-secondary" type="button" value="로그인" onclick="location.href='/shop/mng/snsprofile/loginMngSnsprofilePro.do?sns_idx=${sns_list.sns_idx}'" /></td>
 					</tr>
@@ -57,7 +58,14 @@
 			</c:forEach>
 			<form name="frmPage" action="/shop/mng/buyer/listMngBuyer.do">
 				<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="아이디"
+					<div class="input-group-prepend">
+						<select class="form-control bg-info text-light" name="searchCnd">
+							<option value="0">아이디</option>
+							<option value="1">닉네임</option>
+							<option value="2">이메일</option>
+						</select>
+					</div>
+					<input type="text" class="form-control" placeholder="검색어"
 						aria-label="Username" aria-describedby="basic-addon1"
 						name="searchWrd" value="${searchVO.searchWrd }"> 
 					<div class="input-group-append">
@@ -65,11 +73,7 @@
 					</div>
 				</div>
 			 <input type="hidden" name="pageIndex" value="1" />
-				<select name="searchCnd">
-					<option value="0">아이디</option>
-					<option value="1">닉네임</option>
-					<option value="2">이메일</option>
-				</select>
+		
 			</form>
 			<div id="paging_div">
 				<ul class="paging_align">
