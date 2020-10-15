@@ -10,8 +10,8 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
-<%@ include file="/WEB-INF/jsp/shop/inc/inc/EgovShopTop.jsp" %>
-<%@ include file="/WEB-INF/jsp/shop/inc/inc/EgovShopHeader.jsp" %>
+<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopTop.jsp" %>
+<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopHeader.jsp" %>
 <div class="container">
 <h1>거래</h1><p1>
 <h4>판매자</h4><p1>
