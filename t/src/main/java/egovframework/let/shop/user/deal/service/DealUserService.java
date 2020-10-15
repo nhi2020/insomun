@@ -36,5 +36,11 @@ public interface DealUserService {
 
 	int updateDealUserSellerDeliver(DealUserVO vo);
 	
+	// 구매 시
+	DealUserVO selectDealUserBuyerRequest(DealUserVO vo);
+	
+	DealUserVO selectDealUserBuyerRequestPro(DealUserVO vo);
+	
+	int selectDealUserBuyerD_idx(DealUserVO vo);
 	
 }
