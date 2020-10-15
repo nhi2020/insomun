@@ -35,4 +35,8 @@ public class ReviewMngDAO extends EgovAbstractDAO {
 	public List<ReviewMngVO> selectSellerList(ReviewMngVO vo) throws Exception {
 		return (List<ReviewMngVO>) list("EgovMngReviewDAO.selectMngProList",vo);
 	}
+	//판매자 CNT
+	public int selectMngCnt(ReviewMngVO reviewVO){
+		return (Integer) select("EgovMngReviewDAO.selectMngReviewListCnt", reviewVO);
+	}
 }

@@ -23,20 +23,22 @@
 	<%@ include file="../inc/EgovShopHeader.jsp"%>
 	<div class="container text-center" style="position: relative;">
 
-		<img src="<c:url value='/images/shop/main/main.jpg'/>" width=800
+		<img src="<c:url value='/images/shop/main/main.jpg'/>" width=100%
 			height="450">
 		<div
 			style="left: 350px; width: 450px; bottom: 140px; font-size: 1.8em; font-weight: bold; position: absolute;">
 			<h1>입소문넷</h1>
-			믿음직한 농산품 직거래 입소문넷 입니다.
+			믿음직한 농산품 직거래 <p>  
+			입소문넷 입니다.
 
 		</div>
-	</div>
+	</div><br>
 
-	<div class="container-fluid">
-		<div class="container text-center">
+		<div class="container">
 			<h3>추천 상품</h3>
-			<div class="row">
+			<div class = "mx-auto" style="height: auto; width: 100%; border-top:2px solid #cd3c3c;">
+			<div class="container">
+			<div class="row" style="background-color: #fff8f8; padding: 20px">
 				<c:forEach var="productuser_list" items="${list}">
 					<div class="col-3">
 						<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
@@ -46,10 +48,12 @@
 							<br/> <span><fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber></span>
 						</p>
 					</div>
+
 				</c:forEach>
 			</div>
+			</div>
 		</div>
-	</div>
+	</div><Br><Br>
 	<%@ include file="../inc/EgovShopBottom.jsp"%>
 </body>
 </html>

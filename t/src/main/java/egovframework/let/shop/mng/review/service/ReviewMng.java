@@ -13,6 +13,15 @@ public class ReviewMng {
 	private String r_div;
 	private int sns_score;
 	private int seller_score;
+	private String searchWrd;
+
+	public String getSearchWrd() {
+		return searchWrd;
+	}
+
+	public void setSearchWrd(String searchWrd) {
+		this.searchWrd = searchWrd;
+	}
 
 	public int getSns_score() {
 		return sns_score;

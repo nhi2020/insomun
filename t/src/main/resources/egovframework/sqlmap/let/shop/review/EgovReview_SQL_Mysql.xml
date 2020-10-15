@@ -106,12 +106,6 @@
 			<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
 				<![CDATA[	NICKNAME LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 			</isEqual>
-			<isEqual prepend="AND" property="searchCnd" compareValue="1">
-				<![CDATA[	S_NICKNAME LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
-			</isEqual>	
-			<isEqual prepend="AND" property="searchCnd" compareValue="2">
-				<![CDATA[	P_NAME LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
-			</isEqual>
 		<![CDATA[			
 			ORDER BY R_REGDATE DESC
 			LIMIT #recordCountPerPage# OFFSET #firstIndex#
@@ -325,21 +319,28 @@ SELECT
 					</isNotEqual>
 				</isNotEmpty>	
 			</isNotNull>	
-		 <isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
-				<![CDATA[	R_IDX LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
-			</isEqual>
-			<isEqual prepend="AND" property="searchCnd" compareValue="1">
-				<![CDATA[	R_CONTENT LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
-			</isEqual>	
-			<isEqual prepend="AND" property="searchCnd" compareValue="2">
-				<![CDATA[	R_REGDATE LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
-			</isEqual>
+		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	P_NAME LIKE CONCAT ('%', #searchWrd#,'%') OR S_NICKNAME LIKE CONCAT ('%', #searchWrd#,'%') OR R_CONTENT LIKE CONCCAT ('%', #searchWrd#,'%') OR NICKNAME LIKE CONCAT('%', #searchWrd#,'%') ]]>
+		</isEqual>
 		<![CDATA[			
 			ORDER BY R_IDX DESC
 			LIMIT #recordCountPerPage# OFFSET #firstIndex#
 		]]>
 </select>
 
+<select id="EgovMngReviewDAO.selectMngReviewListCnt" parameterClass="ReviewMngVO" resultClass="java.lang.Integer" >
+		<![CDATA[
+			SELECT
+				COUNT(R_IDX)
+			FROM
+				REVIEW
+			WHERE 1=1
+		]]>
+			 <isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	S_NICKNAME LIKE CONCAT ('%', #searchWrd#,'%') OR R_CONTENT LIKE CONCCAT ('%', #searchWrd#,'%') OR NICKNAME LIKE CONCAT('%', #searchWrd#,'%') ]]>
+			</isEqual>
+	</select>
+	
 	<update id="EgovMngReviewDAO.updateMngUserReview" parameterClass="ReviewMngVO">
 	 		<![CDATA[
 				UPDATE REVIEW SET 

@@ -127,15 +127,21 @@ function fn_idChk(){
 			<dd><input class="form-control"  type="text" id="s_name" name="s_name" maxlength="40" class="input_txt"></dd>
 			<dt><label for="email" class="label_txt">이메일 주소</label></dt>
 			<dd>
-				<input class="form-control"  type="text" id="s_email" name="s_email" maxlength="100" class="input_txt">
-				<button class="btn btn-secondary" type="button" id="btnEmailAuthNo" name="btnEmailAuthNo" onClick="email();" value="N">인증번호 받기</button>
+			<div class="input-group mb-3">
+					<input class="form-control"  type="text" id="s_email" name="s_email" maxlength="100" class="input_txt">
+				<div class="input-group-append">
+					<button class="btn btn-secondary" type="button" id="btnEmailAuthNo" name="btnEmailAuthNo" onClick="email();" value="N">인증번호 받기</button>
+				</div>
+			</div>
 			</dd>
 			<dt><label for="t_ct1" class="blind">인증번호 입력</label></dt>
 			<dd class="ct">
-				<span class="input_box2">
-				<input class="form-control"  type="text" id="s_agreenum" name="s_agreenum" maxlength="6" placeholder="인증번호 6자리 숫자 입력">
-				<button class="btn btn-secondary" type="button" id="idChk" onclick="fn_idChk();" value="N">인증확인</button><br>
-				</span>								
+				<div class="input-group">
+					<input class="form-control"  type="text" id="s_agreenum" name="s_agreenum" maxlength="6" placeholder="인증번호 6자리 숫자 입력">
+					<div class="input-group-append">
+						<button class="btn btn-secondary" type="button" id="idChk" onclick="fn_idChk();" value="N">인증확인</button>
+					</div>
+				</div>						
 			</dd>	
 		</dl>
 	</div>

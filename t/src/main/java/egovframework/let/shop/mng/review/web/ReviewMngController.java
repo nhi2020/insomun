@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import egovframework.let.shop.mng.review.service.ReviewMngService;
 import egovframework.let.shop.mng.review.service.ReviewMngVO;
+import egovframework.let.shop.user.product.service.impl.ProductUserVO;
+import egovframework.rte.fdl.property.EgovPropertyService;
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
 public class ReviewMngController {
@@ -18,6 +21,9 @@ public class ReviewMngController {
 	@Resource(name = "EgovMngReview")
 	private ReviewMngService reviewMngService;
 
+	@Resource(name = "propertiesService")
+	protected EgovPropertyService propertyService;
+	
 	//구매자, 판매자 선택 화면
 	@RequestMapping(value ="/shop/mng/review.do")
 	public String mngView() throws Exception{
@@ -26,6 +32,27 @@ public class ReviewMngController {
 	// 관리자 리뷰 페이지의 전체 댓글 출력
 	@RequestMapping(value = "/shop/mng/review/MngSelect.do")
 	public String selectMngList(ReviewMngVO mngVO, ModelMap model) throws Exception {
+		
+		System.out.println("test"+mngVO.getSearchCnd());
+		System.out.println("test"+mngVO.getSearchWrd());
+		mngVO.setPageUnit(propertyService.getInt("pageUnit"));
+		mngVO.setPageSize(propertyService.getInt("pageSize"));
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		paginationInfo.setCurrentPageNo(mngVO.getPageIndex());
+		paginationInfo.setRecordCountPerPage(mngVO.getPageUnit());
+		paginationInfo.setPageSize(mngVO.getPageSize());
+
+		mngVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		mngVO.setLastIndex(paginationInfo.getLastRecordIndex());
+		mngVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		int totCnt = reviewMngService.selectMngCnt(mngVO);
+		paginationInfo.setTotalRecordCount(totCnt);
+
+		System.out.println("totCnt"+ totCnt);
+		model.addAttribute("totCnt", totCnt);
+		model.addAttribute("paginationInfo", paginationInfo);
 		List<ReviewMngVO> list = reviewMngService.selectMngList(mngVO);
 		model.addAttribute("list", list);
 		return "/shop/mng/review/EgovMngReview";

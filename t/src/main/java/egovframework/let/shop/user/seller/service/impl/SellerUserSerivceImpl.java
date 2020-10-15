@@ -150,7 +150,7 @@ public class SellerUserSerivceImpl extends EgovAbstractServiceImpl implements Se
 
 
 	@Override
-	public int sellerUserUpdate(SellerMngVO vo) {
+	public int sellerUserUpdate(SellerUserVO vo) {
 		int result = SellerDAO.sellerUserUpdate(vo);
 		return result;
 	}

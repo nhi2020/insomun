@@ -126,11 +126,23 @@ public class ProductUserController {
 		paginationInfo.setTotalRecordCount(totCnt);
 
 		List<ProductUserVO> list = userProductService.selectUserProductList(vo);
+
 		
 		System.out.println("totCnt"+ totCnt);
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
+
+		if(list.size()==0){
+			System.out.println("검색결과가");
+			model.addAttribute("msg","검색결과가 없습니다.");
+		}else{
+			System.out.println("test"+list.get(0).getS_id());
+			System.out.println("totCnt"+ totCnt);
+			model.addAttribute("totCnt", totCnt);
+			model.addAttribute("list", list);
+			model.addAttribute("paginationInfo", paginationInfo);
+		}
 			
 //		리뷰 관련  			//
 		
@@ -332,8 +344,11 @@ public class ProductUserController {
 		    int result = num-1;
 		    reviewVO.setFirstIndex(result);
 		    System.out.println("result______________________>"+result);
+		    List<String> AVG = egovReviewService.selectReviewAvg(reviewVO);
 		    List<ReviewUserVO> list = egovReviewService.selectReviewList(reviewVO);
 		    model.addAttribute("list",list);
+		    model.addAttribute("r_div", reviewVO.getR_div());
+			model.addAttribute("AVG", AVG);
 		    return "/shop/user/product/EgovBuyerProductForm";
 	}
 
