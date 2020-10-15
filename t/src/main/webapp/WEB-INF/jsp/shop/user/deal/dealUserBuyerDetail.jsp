@@ -59,10 +59,10 @@ td {
 					<tr>
 						<th style="text-align: right">거래상태</th>
 						<td><c:choose>
-								<c:when test="${dealUserVO.d_ing eq '1'}"> 구매 신청 </c:when>
-								<c:when test="${dealUserVO.d_ing eq '2'}"> 판매 수락 </c:when>
+								<c:when test="${dealUserVO.d_ing eq '1'}"> 구매자 신청 </c:when>
+								<c:when test="${dealUserVO.d_ing eq '2'}"> 판매자 수락 </c:when>
 								<c:when test="${dealUserVO.d_ing eq '3'}"> 배송 시작 </c:when>
-								<c:when test="${dealUserVO.d_ing eq '4'}"> 구매 확정 </c:when>
+								<c:when test="${dealUserVO.d_ing eq '4'}"> 구매 완료 </c:when>
 								<c:when test="${dealUserVO.d_ing eq '5'}"> 구매자 거래 취소 </c:when>
 								<c:when test="${dealUserVO.d_ing eq '6'}"> 판매자 거래 취소 </c:when>
 							</c:choose></td>

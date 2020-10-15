@@ -115,7 +115,6 @@ table {
 						<div class="dropdown-menu">
 							<a class="dropdown-item" onclick="onOrder(1)">과거 순</a> <a
 								class="dropdown-item" onclick="onOrder(2)">최신 순 </a>
-
 						</div>
 					</th>
 					<th width="18%">
@@ -126,10 +125,10 @@ table {
 						</button>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" onclick="onD_ing(0)">전체</a> <a
-								class="dropdown-item" onclick="onD_ing(1)">구매 신청</a> <a
-								class="dropdown-item" onclick="onD_ing(2)">판매 수락</a> <a
+								class="dropdown-item" onclick="onD_ing(1)">구매자 신청</a> <a
+								class="dropdown-item" onclick="onD_ing(2)">판매자 수락</a> <a
 								class="dropdown-item" onclick="onD_ing(3)">배송 시작</a> <a
-								class="dropdown-item" onclick="onD_ing(4)">구매 확정</a> <a
+								class="dropdown-item" onclick="onD_ing(4)">구매 완료</a> <a
 								class="dropdown-item" onclick="onD_ing(5)">구매자 거래 취소</a> <a
 								class="dropdown-item" onclick="onD_ing(6)">판매자 거래 취소 
 							</a>
@@ -154,15 +153,12 @@ table {
 							<td width="14%">${list.s_nickname }</td>
 							<td width="10%">${list.d_q }개</td>
 							<td width="10%"><fmt:formatNumber type="number" maxFractionDigits="3" value="${list.p_price * list.d_q}"/>원</td>
-
-							
 							<td width="14%">${list.d_regdate }</td>
-
 							<td width="18%"><c:choose>
-									<c:when test="${list.d_ing eq '1'}"> 구매 신청 </c:when>
-									<c:when test="${list.d_ing eq '2'}"> 판매 수락 </c:when>
+									<c:when test="${list.d_ing eq '1'}"> 구매자 신청 </c:when>
+									<c:when test="${list.d_ing eq '2'}"> 판매자 수락 </c:when>
 									<c:when test="${list.d_ing eq '3'}"> 배송 시작 </c:when>
-									<c:when test="${list.d_ing eq '4'}"> 구매 확정 </c:when>
+									<c:when test="${list.d_ing eq '4'}"> 구매 완료 </c:when>
 									<c:when test="${list.d_ing eq '5'}"> 구매자 거래 취소 </c:when>
 									<c:when test="${list.d_ing eq '6'}"> 판매자 거래 취소 </c:when>
 								</c:choose></td>

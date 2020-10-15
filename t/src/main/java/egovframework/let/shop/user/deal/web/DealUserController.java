@@ -156,6 +156,10 @@ public class DealUserController {
 	@RequestMapping(value = "/shop/user/deal/dealUserSellerList.do")
 	public String listDealUserSeller(@ModelAttribute("searchVO") DealUserVO vo, HttpServletRequest request, Model model, 
 			@RequestParam(value = "pageIndex", required=false, defaultValue="1") int pageIndex) {
+		HttpSession session = request.getSession();
+		System.out.println("session.getAttribute('s_id') -> "+session.getAttribute("s_id"));
+		vo.setS_id((String) session.getAttribute("s_id"));
+		
 		vo.setPageIndex(pageIndex);
 		System.out.println("listUserSeller pageIndex => " + vo.getPageIndex());
 		System.out.println("listUserSeller vo.getSortD_ing() => " + vo.getSortD_ing());
