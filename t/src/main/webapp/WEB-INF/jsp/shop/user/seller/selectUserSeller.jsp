@@ -40,6 +40,12 @@
  			height: 100px;
  			clear: both;
  }
+ .avatar {
+  vertical-align: middle;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
 </style>
 </head>
 <body>
@@ -89,7 +95,7 @@
 	 <div class="p-3 mb-2 bg-light text-dark" id="div_con1">
             <h3>내 정보보기...</h3>	
         <p><p><p><p><p>
-        <img src="<c:url value='/'/>file/${s_list.s_photo}" width="300" height="300"/>
+        <img src="<c:url value='/'/>file/${SellerVO.s_photo}" alt="Avatar" class="avatar" />
 			${SellerVO.s_id}
 			${SellerVO.s_nickname}
 			${SellerVO.s_birth}

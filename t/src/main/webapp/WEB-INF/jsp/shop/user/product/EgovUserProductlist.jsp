@@ -87,36 +87,39 @@
 	
 	
 	
-<form action="/shop/user/product/EgovUserProductDelete.do">
+<form name="frm" action="/shop/user/product/EgovUserProductDelete.do">
 <div align="center">
 <c:if test="${sessionScope.status == 2 }">
 <input type="button" value="등록" onclick="location.href='/shop/user/product/EgovUserProductInsertForm.do'" class="btn btn-primary"> &nbsp;&nbsp;
 <input type="submit" value="삭제" class="btn btn-danger">
+<input type="hidden" name="p_idx">
+<input type="hidden" name="pageIndex" value="${searchVO.pageIndex }">
+<input type="hidden" name="searchCnd" value="${searchVO.searchCnd }">
+<input type="hidden" name="searchWrd" value="${searchVO.searchWrd }">
 </c:if>
 </div>
 <c:if test="${sessionScope.status == 1 }">
 <input type="submit" value="거래하기" onclick="">
 </c:if>
  <div class="container-fluid">
-	<div class="container text-center">
+	<div class="container">
 	    <div class="row">
 	  		<c:forEach var="productuser_list" items="${list}">
 			<div class="col-3 mt-3">
 					
 					<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
-					<img src="<c:url value='/'/>file/${productuser_list.p_image}" width="200" height="200" class="rounded"/> 
+					<img class="img-fluid" src="<c:url value='/'/>file/${productuser_list.p_image}" width="200" height="200" class="rounded"/> 
 					</a>
 							<br/><span> 
 							<c:if test="${sessionScope.status == 2 }">
 							<input type="checkbox" name="check" id="check" value="${productuser_list.p_idx }"> </c:if>
-							상품명 : ${productuser_list.p_name }
+							<b>${productuser_list.p_name }</b>
 							</span> <br /> 
-							<span>가격 : 
-							<fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber></span><br /> 
+							<span><b></b><fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber>원</span><br /> 
 							
 							<p/>	
 					<c:if test="${sessionScope.status == 2 }">
-					<input type="button" value="수정" class="btn btn-warning" onclick="location.href='/shop/user/product/EgovUserProductUpdateForm.do?p_idx=${productuser_list.p_idx}'" >
+					<input type="button" value="수정" class="btn btn-warning" onclick="return2(${productuser_list.p_idx });" >
 					</c:if>			
 				</div>	
 				</c:forEach>
@@ -155,4 +158,12 @@
 </c:if>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
+<script>
+function return2(p_idx){
+	document.forms["frm"].action = "/shop/user/product/EgovUserProductUpdateForm.do"
+	document.forms["frm"]["p_idx"].value = p_idx;
+	document.forms["frm"].submit();
+	return true;
+}
+</script>
 </html>

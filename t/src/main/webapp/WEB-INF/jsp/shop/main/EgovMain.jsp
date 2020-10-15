@@ -34,14 +34,14 @@
 	</div><br>
 
 		<div class="container">
-			<h3>추천 상품</h3>
+			<h3 style="text-align: center;">추천 상품</h3>
 			<div class = "mx-auto" style="height: auto; width: 100%; border-top:2px solid #cd3c3c;">
 			<div class="container">
 			<div class="row" style="background-color: #fff8f8; padding: 20px">
 				<c:forEach var="productuser_list" items="${list}">
 					<div class="col-3">
 						<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
-						<img class="img-fluid" src="<c:url value='/'/>file/${productuser_list.p_image}" width="270" height="270" class="rounded"/> </a>
+						<img class="img-fluid" src="<c:url value='/'/>file/${productuser_list.p_image}" width="200" height="200" class="rounded"/> </a>
 						<input type="hidden" value="${productuser_list.p_idx }">
 							<br/><span><b>${productuser_list.p_name }</b></span> 
 							<br/> <span><b><fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber>원</b></span>
