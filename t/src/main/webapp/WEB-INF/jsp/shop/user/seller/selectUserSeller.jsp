@@ -54,7 +54,7 @@
 	
 	<div id="nav">
         <div class="menu-item" id="item8"><input type="button" class="btn btn-light" onclick="location.href='/shop/user/seller/updateUserSellerForm.do?s_id=${SellerVO.s_id}'" value="정보수정"></div>
-        <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/user/product/EgovUserProductlist.do'" value="내 상품보기"></div>
+        <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href = '/shop/user/product/EgovUserProductlistForSeller.do'" value="내 상품보기"></div>
 <!--    <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/user/deal/dealUserSellerList.do'" value="신청대기중인 거래보기"></div>
         <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/user/deal/dealUserSellerList.do'" value="수락한 거래보기"></div>
         <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/user/deal/dealUserSellerList.do'" value="구매확정 거래보기"></div>
@@ -62,6 +62,7 @@
         <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/user/product/EgovUserProductInsertForm.do'" value="상품추가"></div>
  <!--   <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/mng/review/MngSelect.do'" value="리뷰관리"></div>
         <div class="menu-item" id="item10"><input type="button" class="btn btn-light" onclick="location.href='/shop/mng/review/MngSelect.do'" value="달린댓글"></div> -->
+
 
     </div>
     

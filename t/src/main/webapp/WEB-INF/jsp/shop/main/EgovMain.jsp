@@ -42,11 +42,10 @@
 						<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
 						<img src="<c:url value='/'/>file/${productuser_list.p_image}" width="270" height="270" class="rounded"/> </a>
 						<input type="hidden" value="${productuser_list.p_idx }">
-							<br/> <span>상품명 : ${productuser_list.p_name }</span> 
-							<br/> <span>가격 : <fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber></span>
+							<br/> <span> ${productuser_list.p_name }</span> 
+							<br/> <span><fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber></span>
 						</p>
 					</div>
-
 				</c:forEach>
 			</div>
 		</div>

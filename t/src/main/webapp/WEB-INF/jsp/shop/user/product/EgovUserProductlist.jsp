@@ -13,19 +13,87 @@
 </head>
 
 <body>
-	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
+
+<!-- result 값을 이용한 modal -->
+	<c:if test="${result2 == 0 && result ==null}">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#updateModal").modal('show')
+			
+			})
+		</script>
+		<!-- Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1"
+			aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">항목을 체크해주세요.</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:if>
 	
+	<!-- result 값을 이용한 modal -->
+	<c:if test="${result1 == 1}">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#updateModal").modal('show')
+			
+			})
+		</script>
+		<!-- Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1"
+			aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">등록되었습니다</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:if>
+	
+	<!-- result 값을 이용한 modal -->
+	<c:if test="${result3 == 1 }">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#updateModal").modal('show')
+			
+			})
+		</script>
+		<!-- Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1"
+			aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">수정되었습니다.</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:if>
 
 	
 	
 	
 <form action="/shop/user/product/EgovUserProductDelete.do">
+<div align="center">
 <c:if test="${sessionScope.status == 2 }">
-<input type="button" value="등록" onclick="location.href='/shop/user/product/EgovUserProductInsertForm.do'" style="float:right"> &nbsp;
-<input type="submit" value="삭제" style="text-align: center";>
-
+<input type="button" value="등록" onclick="location.href='/shop/user/product/EgovUserProductInsertForm.do'" class="btn btn-primary"> &nbsp;&nbsp;
+<input type="submit" value="삭제" class="btn btn-danger">
 </c:if>
+</div>
 <c:if test="${sessionScope.status == 1 }">
 <input type="submit" value="거래하기" onclick="">
 </c:if>
@@ -33,28 +101,58 @@
 	<div class="container text-center">
 	    <div class="row">
 	  		<c:forEach var="productuser_list" items="${list}">
-			<div class="col-3">
+			<div class="col-3 mt-3">
 					
 					<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
-					<img src="./images/main/photo/${productuser_list.p_image}" width="270" height="270"></a>
-					<span >
-					<input type="checkbox" name="check" id="check" value="${productuser_list.p_idx }">
-					상품명: ${productuser_list.p_name }</span>
-					<br/><span >가격: ${productuser_list.p_price }</span>
-					<br/><span >상태: ${productuser_list.p_status }</span>
-					<br/><span >재고 수량: ${productuser_list.p_q }</span>
-					<br/><span >업데이트된 날짜: ${productuser_list.p_moddate }</span>
+					<img src="<c:url value='/'/>file/${productuser_list.p_image}" width="200" height="200" class="rounded"/> 
+					</a>
+							<br/><span> 
+							<c:if test="${sessionScope.status == 2 }">
+							<input type="checkbox" name="check" id="check" value="${productuser_list.p_idx }"> </c:if>
+							상품명 : ${productuser_list.p_name }
+							</span> <br /> 
+							<span>가격 : 
+							<fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber></span><br /> 
+							
+							<p/>	
 					<c:if test="${sessionScope.status == 2 }">
-					<input type="button" value="수정" onclick="location.href='/shop/user/product/EgovUserProductUpdateForm.do?p_idx=${productuser_list.p_idx}'" >
-					</c:if>
-
-				</p>				
+					<input type="button" value="수정" class="btn btn-warning" onclick="location.href='/shop/user/product/EgovUserProductUpdateForm.do?p_idx=${productuser_list.p_idx}'" >
+					</c:if>			
+				</div>	
+				</c:forEach>
 			</div>
-			
-			</c:forEach>
 		</div>
 	</div>
+</form>
+<c:if test="${sessionScope.status == 2 }">
+	<div class="container">
+	<div class="row">
+		<form name="frmPage" class="mx-auto" action="/shop/user/product/EgovUserProductlist.do">
+						<div class="input-group mb-3">
+						<input type="hidden" name="pageIndex" value="1" />
+						<select name="searchCnd">
+							<option value="0">상품명</option>
+						</select>
+							<input type="text" class="form-control" placeholder="검색하세요"
+								aria-label="Productusername" aria-describedby="basic-addon1"
+								name="searchWrd" value="${searchVO.searchWrd }"> 
+							<div class="input-group-append">
+								<input class="btn btn-secondary" type="submit" value="검색" />
+							</div>
+						</div>
+					 
+					</form>
+	</div>
+				<div class="row">
+					<div id="paging_div" class="mx-auto">
+						<ul class="paging_align">
+							<ui:pagination paginationInfo="${paginationInfo}" type="image"
+								jsFunction="linkPage" />
+						</ul>
+					</div>
+				</div>
 </div>
+</c:if>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>

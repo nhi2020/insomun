@@ -16,7 +16,6 @@
 </head>
 
 <body>
-<%@ include file="../../inc/EgovShopTop.jsp" %>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
 <h2>수정 페이지</h2>
 
@@ -69,8 +68,8 @@
 					</tr>
 					<tr>
 						<td colspan="2"><br/>
-					<input type="submit" value="수정완료" > &nbsp;
-					<input type="button" value="이전으로" onclick="location.href='/shop/user/product/EgovUserProductlist.do'"/>
+					<input type="submit" value="수정완료" class="btn btn-primary"> &nbsp;
+					<input type="button" value="이전으로" class="btn btn-info" onclick="location.href='/shop/user/product/EgovUserProductlist.do'"/>
 					</tr>
 				</table>
 				<p/>
