@@ -121,11 +121,16 @@ public class ProductUserController {
 		paginationInfo.setTotalRecordCount(totCnt);
 
 		List<ProductUserVO> list = userProductService.selectUserProductList(vo);
-		System.out.println("test"+list.get(0).getS_id());
-		System.out.println("totCnt"+ totCnt);
-		model.addAttribute("totCnt", totCnt);
-		model.addAttribute("list", list);
-		model.addAttribute("paginationInfo", paginationInfo);
+		if(list.size()==0){
+			System.out.println("검색결과가");
+			model.addAttribute("msg","검색결과가 없습니다.");
+		}else{
+			System.out.println("test"+list.get(0).getS_id());
+			System.out.println("totCnt"+ totCnt);
+			model.addAttribute("totCnt", totCnt);
+			model.addAttribute("list", list);
+			model.addAttribute("paginationInfo", paginationInfo);
+		}
 			
 //		리뷰 관련  			//
 		
