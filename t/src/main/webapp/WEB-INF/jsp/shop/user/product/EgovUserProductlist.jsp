@@ -98,9 +98,7 @@
 <input type="hidden" name="searchWrd" value="${searchVO.searchWrd }">
 </c:if>
 </div>
-<c:if test="${sessionScope.status == 1 }">
-<input type="submit" value="거래하기" onclick="">
-</c:if>
+
  <div class="container-fluid">
 	<div class="container">
 	    <div class="row">
