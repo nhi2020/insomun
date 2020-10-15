@@ -118,7 +118,7 @@
 			FROM 
 				REVIEW
 			WHERE
-				P_IDX = 1
+				P_IDX = #p_idx#
 		]]>					
 	</select>
 	<update id="EgovReviewDAO.updateUserReview" parameterClass="ReviewVO">

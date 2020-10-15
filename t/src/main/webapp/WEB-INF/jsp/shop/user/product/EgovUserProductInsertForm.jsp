@@ -69,7 +69,7 @@ input[type="file"] {
 					<table class="table" style="text-align: left">
 					<tr>
 						<th></th>
-						<td height="200" style=""><img id="blah" src="#" alt="your image" width="200" height="200" /></td>    				
+						<td height="200" style=""><img class="img-fluid" id="blah" src="#" alt="your image" width="200" height="200" /></td>    				
 						</tr>
 						<tr>
 					 <tr>

@@ -4,18 +4,23 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import egovframework.let.shop.user.buyer.service.impl.BuyerUserVO;
 import egovframework.let.shop.user.deal.service.DealUser;
 import egovframework.let.shop.user.deal.service.DealUserService;
 import egovframework.let.shop.user.deal.service.impl.DealUserVO;
+import egovframework.let.shop.user.product.service.impl.ProductUserVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -56,11 +61,19 @@ public class DealUserController {
 	}
 
 	// 구매자
+	/*@RequestMapping(value = "/shop/user/deal/dealUserBuyerList.do", method=RequestMethod.POST)*/
 	@RequestMapping(value = "/shop/user/deal/dealUserBuyerList.do")
 	public String listDealUserBuyer(@ModelAttribute("searchVO") DealUserVO vo, HttpServletRequest request, Model model, 
 			@RequestParam(value = "pageIndex", required=false, defaultValue="1") int pageIndex) {
+		HttpSession session = request.getSession();
+		System.out.println("session.getAttribute('sns_idx') -> "+session.getAttribute("sns_idx"));
+		vo.setSns_idx((int) session.getAttribute("sns_idx"));
+		
 		vo.setPageIndex(pageIndex);
-		System.out.println("listUserBuyer pageIndex => " + vo.getPageIndex());
+		System.out.println("listDealUserBuyer pageIndex => " + vo.getPageIndex());
+		System.out.println("listDealUserBuyer vo.getSortD_ing() => " + vo.getSortD_ing());
+		System.out.println("listDealUserBuyer vo.getSortD_regdate() => " + vo.getSortD_regdate());
+		
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
 
@@ -76,11 +89,17 @@ public class DealUserController {
 
 		int totCnt = dealUserService.selectListCntDealUserBuyer(vo); //
 		paginationInfo.setTotalRecordCount(totCnt);
-
+		System.out.println("listDealUserBuyer searchWrd Con => " + vo.getSearchWrd());
 		List<DealUserVO> list = dealUserService.selectListDealUserBuyer(vo); //
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("dealUserlist", list);
 		model.addAttribute("paginationInfo", paginationInfo);
+		model.addAttribute("vo", vo);
+		System.out.println(" sortD_regdate -> " +vo.getSortD_regdate());
+		System.out.println(" sortD_ing -> " +vo.getSortD_ing());
+		System.out.println(" p_idx -> " +vo.getP_idx());
+		System.out.println(" pageIndex -> " +vo.getPageIndex());
+		System.out.println(" searchWrd -> " +vo.getSearchWrd());
 
 		return "/shop/user/deal/dealUserBuyerList";
 
@@ -88,6 +107,7 @@ public class DealUserController {
 	@RequestMapping(value="/shop/user/deal/dealUserBuyerDetail.do")
 	public String selectDealUserBuyerDetail(HttpServletRequest request, DealUserVO vo, Model model) {
 		System.out.println("DealUserController selectDealUserBuyerDetail Start...");
+		
 		vo = dealUserService.selectDealUserBuyerDetail(vo);
 		model.addAttribute("dealUserVO", vo);
 		return "/shop/user/deal/dealUserBuyerDetail";	
@@ -138,6 +158,8 @@ public class DealUserController {
 			@RequestParam(value = "pageIndex", required=false, defaultValue="1") int pageIndex) {
 		vo.setPageIndex(pageIndex);
 		System.out.println("listUserSeller pageIndex => " + vo.getPageIndex());
+		System.out.println("listUserSeller vo.getSortD_ing() => " + vo.getSortD_ing());
+		System.out.println("listUserSeller vo.getSortD_regdate() => " + vo.getSortD_regdate());
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
 
@@ -161,9 +183,6 @@ public class DealUserController {
 
 		return "/shop/user/deal/dealUserSellerList";
 	}	
-	
-	
-	
 	
 	@RequestMapping(value="/shop/user/deal/dealUserSellerDetail.do")
 	public String selectDealUserSellerDetail(HttpServletRequest request, DealUserVO vo, Model model) {
@@ -213,5 +232,48 @@ public class DealUserController {
 		int d_idx = vo.getD_idx();
 		return "forward:/shop/user/deal/dealUserSellerDetail.do";
 	}
-
+	//구매 시
+	@RequestMapping(value = "/shop/user/deal/dealUserBuyerRequest.do")
+	public String selectDealUserBuyerRequest(HttpServletRequest request, ProductUserVO pvo, Model model) {
+		DealUserVO vo = new DealUserVO();
+		System.out.println("pvo.getP_idx() ->"+pvo.getP_idx());
+		System.out.println("pvo.getS_id() ->"+pvo.getS_id());
+		vo.setP_idx(Integer.parseInt(pvo.getP_idx()));
+		vo.setS_id(pvo.getS_id());
+		if(vo.getSortD_ing() != null){
+		vo.setSortD_ing(vo.getSortD_ing());
+		}
+		if(vo.getPageIndex() != 0){
+			vo.setPageIndex(vo.getPageIndex());
+		}
+		if(vo.getSortD_regdate() != null){
+			vo.setSortD_regdate(vo.getSortD_regdate());
+		}
+		System.out.println("DealUserController selectDealUserBuyerRequest Start...");
+		
+		HttpSession session = request.getSession();
+		System.out.println("session.getAttribute('sns_idx') ->"+session.getAttribute("sns_idx"));
+		vo.setSns_idx((int) session.getAttribute("sns_idx"));
+		
+		vo = dealUserService.selectDealUserBuyerRequest(vo);
+		System.out.println("vo.getD_q() -> " + vo.getD_q());
+		System.out.println("vo.getD_request() -> " + vo.getD_request());
+		    model.addAttribute("DealUserVO", vo);
+		    return "/shop/user/deal/dealUserBuyerRequest";
+	}
+	 
+	/*@RequestMapping(value = "/shop/user/deal/dealUserBuyerRequestPro.do", method=RequestMethod.POST)*/
+	@RequestMapping(value = "/shop/user/deal/dealUserBuyerRequestPro.do")
+	public String selectDealUserBuyerRequestPro(HttpServletRequest request, DealUserVO vo, Model model) {
+		System.out.println("DealUserController selectDealUserBuyerRequestPro Start...");
+		HttpSession session = request.getSession();
+		System.out.println("session.getAttribute('sns_idx') ->"+session.getAttribute("sns_idx"));
+		vo.setSns_idx((int) session.getAttribute("sns_idx"));
+		
+		vo = dealUserService.selectDealUserBuyerRequestPro(vo);
+		    model.addAttribute("DealUserVO",vo);
+		int d_idx = dealUserService.selectDealUserBuyerD_idx(vo);
+		/*vo.setSortD_ing("0");*/
+		return "forward:/shop/user/deal/dealUserBuyerList.do?d_idx=" + d_idx ;
+	}
 }
