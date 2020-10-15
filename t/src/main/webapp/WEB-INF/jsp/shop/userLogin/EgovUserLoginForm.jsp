@@ -16,7 +16,7 @@
 		var snscode='${sessionScope.snscode}';
 		if(snscode!=null && snscode!=''){
 			alert('로그인 상태 입니다.\n로그아웃하고 다시 이용해 주세요.');
-			location.href ="http://xn--z92bt9ibqf.net/shop/product/EgovMngMain.do";	
+			location.href ="http://xn--z92bt9ibqf.net/shop/user/main/EgovUserMain.do";	
 		}
 	});
 function chk1() {
