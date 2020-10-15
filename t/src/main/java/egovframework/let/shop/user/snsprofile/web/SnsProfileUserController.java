@@ -136,7 +136,7 @@ public class SnsProfileUserController {
 	        }
 	    }
 
-		return "shop/main/EgovMain";
+		return "redirect:shop/main/EgovMain";
 	}
 	
 	@RequestMapping(value = "/shop/user/EgovNaverLogin.do")
