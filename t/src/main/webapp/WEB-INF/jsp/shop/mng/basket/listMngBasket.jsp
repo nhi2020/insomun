@@ -121,9 +121,15 @@ function updateUserBasketQty(index){
 		</c:forEach>
 	</table>
 	<form action="/shop/mng/basket/listMngBasket.do">
-	<input type="hidden" name="searchCnd" value="0"/>
-	<input type="text" name="searchWrd" value="${searchVO.searchWrd }" /> <input class="btn btn-primary" type="submit" value="아이디 검색" />
-	
+		<input type="hidden" name="searchCnd" value="0"/>
+		<div class="input-group mb-3">
+			<input type="text" class="form-control" placeholder="검색어"
+					aria-label="Username" aria-describedby="basic-addon1"
+					name="searchWrd" value="${searchVO.searchWrd }"> 
+			<div class="input-group-append">
+				<input class="btn btn-secondary" type="submit" value="검색" />
+			</div>
+		</div>
 	</form>
 		<div id="paging_div">
 		<form name="frmPage" id="frmPage" action="/shop/mng/basket/listMngBasket.do">
