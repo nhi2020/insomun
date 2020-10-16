@@ -54,6 +54,8 @@ public class DealMng {
 	private Date s_regdate;  // 등록일
 	private Date s_birth;  // 생년월일
 	private String s_account;  // 계좌번호
+	private String s_account_n;  // 계좌은행
+	
 
 	// 후기 review
 	//private String s_id;  // 판매자 아이디
@@ -69,6 +71,13 @@ public class DealMng {
 
 	//참조 참고용
 	private int rn;  // 거래 순번용
+
+	// 운영자 ADMIN
+	private String a_pass; // 운영자 비밀번호 
+	private String a_email; // 운영자 이메일
+	private String a_name; // 운영자 이름
+	private Date a_moddate; // 운영자 수정일
+	private Date a_regdate; // 운영자 등록일
 	
 	
 	public int getRn() {
@@ -353,6 +362,43 @@ public class DealMng {
 	public void setSeller_score(int seller_score) {
 		this.seller_score = seller_score;
 	}
-
+	public String getA_pass() {
+		return a_pass;
+	}
+	public void setA_pass(String a_pass) {
+		this.a_pass = a_pass;
+	}
+	public String getA_email() {
+		return a_email;
+	}
+	public void setA_email(String a_email) {
+		this.a_email = a_email;
+	}
+	public String getA_name() {
+		return a_name;
+	}
+	public void setA_name(String a_name) {
+		this.a_name = a_name;
+	}
+	public Date getA_moddate() {
+		return a_moddate;
+	}
+	public void setA_moddate(Date a_moddate) {
+		this.a_moddate = a_moddate;
+	}
+	public Date getA_regdate() {
+		return a_regdate;
+	}
+	public void setA_regdate(Date a_regdate) {
+		this.a_regdate = a_regdate;
+	}
+	public String getS_account_n() {
+		return s_account_n;
+	}
+	public void setS_account_n(String s_account_n) {
+		this.s_account_n = s_account_n;
+	}
+	
+	
 	
 }

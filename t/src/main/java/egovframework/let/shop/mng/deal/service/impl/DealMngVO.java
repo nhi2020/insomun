@@ -6,8 +6,18 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import egovframework.let.shop.mng.deal.service.DealMng;
 
+/**
+ * @author user
+ *
+ */
 @SuppressWarnings("serial")
 public class DealMngVO extends DealMng implements Serializable {
+
+	/** 상태정렬  */
+	private String sortD_ing = "";
+	
+	/** 거래 등록 일시 정렬순서(DESC,ASC) */
+	private String sortD_regdate = "";
 
 	/** 검색시작일 */
 	private String searchBgnDe = "";
@@ -592,4 +602,21 @@ public class DealMngVO extends DealMng implements Serializable {
 		return ToStringBuilder.reflectionToString(this);
 	}
 
+	public String getSortD_ing() {
+		return sortD_ing;
+	}
+
+	public void setSortD_ing(String sortD_ing) {
+		this.sortD_ing = sortD_ing;
+	}
+
+	public String getSortD_regdate() {
+		return sortD_regdate;
+	}
+
+	public void setSortD_regdate(String sortD_regdate) {
+		this.sortD_regdate = sortD_regdate;
+	}
+
+	
 }

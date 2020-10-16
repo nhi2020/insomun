@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,11 +56,20 @@ public class DealMngController {
 		return ret;
 	}
 
-	@RequestMapping(value = "/shop/mng/deal/dealMngList")
+	@RequestMapping(value = "/shop/mng/deal/dealMngList.do")
 	public String listDealMngBuyer(@ModelAttribute("searchVO") DealMngVO vo, HttpServletRequest request, Model model, 
 			@RequestParam(value = "pageIndex", required=false, defaultValue="1") int pageIndex) {
+
+		HttpSession session = request.getSession();
+		String a_id = (String) session.getAttribute("A_ID");
+		System.out.println("DealMngController listDealMngBuyer a_id -> " +a_id);
+		vo.setA_id(a_id);
+		
 		vo.setPageIndex(pageIndex);
 		System.out.println("listMng pageIndex => " + vo.getPageIndex());
+		System.out.println("listDealUserBuyer vo.getSortD_ing() => " + vo.getSortD_ing());
+		System.out.println("listDealUserBuyer vo.getSortD_regdate() => " + vo.getSortD_regdate());
+		
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
 
@@ -76,11 +86,12 @@ public class DealMngController {
 		int totCnt = dealMngService.selectListCntDealMng(vo); //
 		paginationInfo.setTotalRecordCount(totCnt);
 
+		
 		List<DealMngVO> list = dealMngService.selectListDealMng(vo); //
 		model.addAttribute("totCnt", totCnt);
-		model.addAttribute("deallist", list);
+		model.addAttribute("dealMnglist", list);
 		model.addAttribute("paginationInfo", paginationInfo);
-
+		model.addAttribute("vo", vo);
 		return "/shop/mng/deal/dealMngList";
 
 	}
@@ -91,7 +102,7 @@ public class DealMngController {
 		/*vo = dealMngService.selectDealMngBuyerScore(vo);*/
 		
 		model.addAttribute("dealMngVO", vo);
-		return "shop/mng/deal/dealMngBuyerDetail";	
+		return "/shop/mng/deal/dealMngBuyerDetail";	
 	}
 	
 	@RequestMapping(value="/shop/mng/deal/dealMngBuyerIng.do")

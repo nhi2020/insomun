@@ -55,7 +55,7 @@ td {
 	<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopHeader.jsp"%>
 	<div class="container text-center">
 		<div class="row justify-content-center">
-			<h2>구매 거래 상세 페이지</h2>
+			<h2>판매 거래 상세 페이지</h2>
 		</div>
 	</div>
 	<div class="container text-center">

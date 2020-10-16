@@ -37,23 +37,71 @@
 	</resultMap>-->
 	
 <!-- Mng 부분 -->
-<!-- 구매자  -->
-
 	<select id="ListCntDealMng" parameterClass="DealMngVO" resultClass="int">
-	SELECT 
-			COUNT(*),
-			d.s_id
-		FROM DEAL d, SNSPROFILE s
-		WHERE d.sns_idx = s.sns_idx
-			<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
-					<![CDATA[	nickname LIKE CONCAT ('%', #searchWrd#,'%')		]]>
-			</isEqual>
-	</select> 
+	SELECT
+		COUNT(*)
+	FROM
+	(SELECT
+			(SELECT A_ID FROM ADMIN WHERE A_ID = #a_id#) AS A_ID,
+			a.sns_idx,
+			a.s_id,
+			a.s_nickname,
+			a.p_idx,
+			a.p_name,
+			s.nickname
+	FROM
+	(SELECT
+			a.sns_idx,
+			a.s_id,
+			a.s_nickname,
+			a.p_idx,
+			p.p_name
+		FROM
+			(SELECT 
+				a.sns_idx,
+				a.s_id,
+				a.p_idx,
+				s.s_nickname
+			FROM DEAL a, SELLER s
+			WHERE 1 = 1
+			AND a.s_id = s.s_id
+			AND 1 = 1
+		<isEqual prepend="AND" property="sortD_ing" compareValue="1">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="2">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="3">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="4">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="5">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="6">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		) a, PRODUCT p
+		WHERE 1 = 1
+		AND a.p_idx = p.p_idx) a, SNSPROFILE s
+		WHERE 1 = 1
+		AND a.sns_idx = s.sns_idx
+		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+			(s_nickname LIKE CONCAT ('%', #searchWrd#,'%')
+			OR p_name LIKE CONCAT ('%', #searchWrd#,'%')
+			OR p_name LIKE CONCAT ('%', #searchWrd#,'%'))	
+		</isEqual>
+		) A
+	</select>
 
 	<select id="ListDealMng" parameterClass="DealMngVO" resultClass="DealMngVO">
 	<![CDATA[  
-SELECT
+	SELECT
 		rn,
+		(SELECT A_ID FROM ADMIN WHERE A_ID = #a_id#) AS A_ID,
 		P_IDX,
 		P_NAME,
 		D_Q,
@@ -66,6 +114,7 @@ SELECT
 		S_ID,
 		sns_idx,
 		userid,
+		snscode,
 		nickname
 	FROM
 	(SELECT
@@ -82,6 +131,7 @@ SELECT
 			A.S_ID,
 			A.sns_idx,
 			B.userid,
+			B.snscode,
 			B.nickname
 		FROM
 		(SELECT
@@ -116,17 +166,42 @@ SELECT
 		WHERE 1 = 1
 		AND A.S_ID = B.S_ID) A, SNSPROFILE B
 	WHERE 1 = 1
-	AND A.sns_idx = B.sns_idx) A
-	WHERE 1 = 1
-	]]>
-	<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
-			<![CDATA[	nickname LIKE CONCAT ('%', #searchWrd#,'%') OR s_nickname LIKE CONCAT ('%', #searchWrd#,'%')		]]>
-	</isEqual>
-			<isEqual prepend="AND" property="searchCnd" compareValue="1">
-				<![CDATA[	s_nickname LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+	AND A.sns_idx = B.sns_idx]]>
+	
+		<isEqual prepend="AND" property="sortD_ing" compareValue="1">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
 		</isEqual>
-	<![CDATA[			
-			ORDER BY RN DESC
+		<isEqual prepend="AND" property="sortD_ing" compareValue="2">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="3">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="4">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="5">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="6">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+	) A
+	WHERE 1 = 1
+		<isNotEmpty prepend="AND" property="searchWrd">
+			(s_nickname LIKE CONCAT ('%', #searchWrd#,'%')
+			OR p_name LIKE CONCAT ('%', #searchWrd#,'%')
+			OR p_name LIKE CONCAT ('%', #searchWrd#,'%'))
+		</isNotEmpty>
+			ORDER BY 
+	<isEqual property="sortD_regdate" compareValue="1">
+			<![CDATA[	D_REGDATE ASC, 		]]>
+	</isEqual>
+	<isEqual property="sortD_regdate" compareValue="2">
+			<![CDATA[	D_REGDATE DESC, 	]]>
+	</isEqual>
+		<![CDATA[
+			d_idx DESC
 			LIMIT #recordCountPerPage# OFFSET #firstIndex#
 		]]>		
 	</select>
@@ -139,9 +214,8 @@ SELECT
 FROM 
 	SCORES, (SELECT @ROWNUM:=0) R -->
 
-
 	<select id="selectDealMngBuyerDetail" parameterClass="DealMngVO" resultClass="DealMngVO">
-SELECT
+	SELECT
 			D_ING,
 			D_REQUEST,
 			P_NAME,
@@ -149,8 +223,12 @@ SELECT
 			S_ID,
 			S_PHONE,
 			S_ACCOUNT,
+			S_ACCOUNT_N,
 			S_NICKNAME,
-			D_IDX
+			D_IDX,
+			D_Q,
+			sns_idx,
+			P_PRICE
 		FROM
 		(SELECT
 				A.D_ING,
@@ -160,8 +238,12 @@ SELECT
 				A.S_ID,
 				B.S_PHONE,
 				B.S_ACCOUNT,
+				B.S_ACCOUNT_N,
 				B.S_NICKNAME,
-				A.D_IDX
+				A.D_IDX,
+				A.D_Q,
+				A.sns_idx,
+				A.P_PRICE
 			FROM
 				(SELECT
 					A.D_ING,
@@ -169,15 +251,20 @@ SELECT
 					B.P_NAME,
 					A.P_IDX,
 					A.S_ID,
-					A.D_IDX
+					A.D_IDX,
+					A.D_Q,
+					A.sns_idx,
+					B.P_PRICE
 				FROM
 				(SELECT
 					D_ING,
 					D_REQUEST,
 					P_IDX,
 					S_ID,
-					D_IDX
-					FROM DEAL
+					D_IDX,
+					D_Q,
+					sns_idx
+				FROM DEAL
 				WHERE D_IDX = #d_idx#
 				 ) A, PRODUCT B
 					WHERE 1 = 1
@@ -185,8 +272,6 @@ SELECT
 				WHERE 1 = 1
 				AND A.S_ID = B.S_ID) A
 	</select>
-
-
 
 	<select id="selectDealMngBuyerScore" parameterClass="DealMngVO" resultClass="DealMngVO">
 	SELECT 
@@ -208,6 +293,7 @@ SELECT
 	</update>
 
 <!-- 판매자  -->
+
 	<select id="selectDealMngSellerDetail" parameterClass="DealMngVO" resultClass="DealMngVO">
 	SELECT
 		A.sns_idx,
@@ -242,6 +328,7 @@ SELECT
 		WHERE A.P_IDX = B.P_IDX) A, SNSPROFILE B
 	WHERE A.sns_idx = B.sns_idx
 	</select>
+
 	
 
 <!-- User 부분 -->
@@ -409,6 +496,7 @@ SELECT
 			S_ID,
 			S_PHONE,
 			S_ACCOUNT,
+			S_ACCOUNT_N,
 			S_NICKNAME,
 			D_IDX,
 			D_Q,
@@ -423,6 +511,7 @@ SELECT
 				A.S_ID,
 				B.S_PHONE,
 				B.S_ACCOUNT,
+				B.S_ACCOUNT_N,
 				B.S_NICKNAME,
 				A.D_IDX,
 				A.D_Q,

@@ -54,6 +54,7 @@ public class DealUser {
 	private Date s_regdate;  // 등록일
 	private Date s_birth;  // 생년월일
 	private String s_account;  // 계좌번호
+	private String s_account_n;  // 계좌은행	
 
 	// 후기 review
 	//private String s_id;  // 판매자 아이디
@@ -353,6 +354,12 @@ public class DealUser {
 	public void setSeller_score(int seller_score) {
 		this.seller_score = seller_score;
 	}
-
+	public String getS_account_n() {
+		return s_account_n;
+	}
+	public void setS_account_n(String s_account_n) {
+		this.s_account_n = s_account_n;
+	}
+	
 	
 }

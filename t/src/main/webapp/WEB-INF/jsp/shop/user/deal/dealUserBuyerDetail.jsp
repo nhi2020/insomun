@@ -89,7 +89,7 @@ td {
 					</tr>
 					<tr>
 						<th style="text-align: right">판매자 계좌</th>
-						<td>${dealUserVO.s_account}</td>
+						<td> ${dealUserVO.s_account_n} ${dealUserVO.s_account}</td>
 					</tr>
 					<tr>
 						<th style="text-align: right">내용</th>
