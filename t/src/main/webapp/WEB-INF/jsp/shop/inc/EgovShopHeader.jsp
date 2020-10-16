@@ -181,7 +181,7 @@
 
 						<c:if test="${sessionScope.status == 1 }">
 							<!-- <button type="button" id="btnlogout" id="userlogout">사용자 logout</button> -->
-							<button class="btn btn-info" type="button" id="userlogout">사용자
+							<button class="btn btn-info" type="button" id="userlogout">
 								logout</button>
 							<!-- Dropdown -->
 							<ul class="navbar-nav">
