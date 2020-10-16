@@ -102,23 +102,23 @@ table {
 
 			<table class="table table-hover">
 				<tr>
-					<th width="9%" style="text-align: left;">거래번호</th>
-					<th width="9%" style="text-align: left;">상품이름</th>
-					<th width="9%">상품수량</th>
+					<th width="5%" style="text-align: left;">번호</th>
+					<th width="17%" style="text-align: left;">상품이름</th>
+					<th width="5%">수량</th>
 					<th width="9%">가격</th>
 					<th width="9%">
 						<button type="button"
 							class="btn btn-outline-dark btn-sm dropdown-toggle dropdown-toggle m-1"
 							data-toggle="dropdown">
-							<Strong>거래 등록 일시</Strong>
+							<Strong>등록 일시</Strong>
 						</button>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" onclick="onOrder(1)">과거 순</a> <a
 								class="dropdown-item" onclick="onOrder(2)">최신 순 </a>
 						</div>
 					</th>
-					<th width="9%">거래 완료 일시</th>
-					<th width="9%">
+					<th width="9%">완료 일시</th>
+					<th width="12%">
 						<button type="button"
 							class="btn btn-outline-dark btn-sm dropdown-toggle dropdown-toggle m-1"
 							data-toggle="dropdown">
@@ -134,10 +134,10 @@ table {
 								class="dropdown-item" onclick="onD_ing(6)">판매자 거래 취소 
 							</a>
 						</div></th>
-					<th width="9%">구매자</th>
-					<th width="9%">구매자 거래</th>
-					<th width="9%">판매자</th>
-					<th width="10%">판매자 거래</th>
+					<th width="8%">구매자</th>
+					<th width="9%">구매자<br>거래</th>
+					<th width="8%">판매자</th>
+					<th width="9%">판매자<br>거래</th>
 					</th>
 				</tr>
 				
