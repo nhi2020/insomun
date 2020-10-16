@@ -29,9 +29,8 @@
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 <div class="container text-center">
 	<div class="row justify-content-center">
-		<h2>구매자 리뷰 관리자 페이지입니다.</h2>
+		<h2>판매자 리뷰 관리자 페이지입니다.</h2>
 		</div></div>
-		<div class="flex-grow-1 container">
 			<div class="row" style="padding-left: 35%;">
 				<form class="form-inline" action="/shop/mng/review/MngSelect.do">
 					  <input type="hidden" id="searchCnd" name="searchCnd" value="0">
@@ -39,44 +38,52 @@
 					  <button class="btn btn-success" type="submit">Search</button>&nbsp;
 				</form>
 			</div>
-		</div>  
 	<div class="container text-center">
 		<div class="row justify-content-center">
-			<form method="post" name="frm">
-				<table border="1">
-					<thead>
-						<tr>
-							<th>리뷰 번호</th>
-							<th>상품 이름</th>
-							<th>구매자 닉네임</th>
-							<th>구매자 리뷰</th>
-							<th>구매자리뷰 등록일자</th>
-							<th>리뷰 삭제 여부</th>
-							<th>리뷰 삭제 하기</th>
-							<th>리뷰 복구 하기</th>
-						</tr>
-					</thead> 
-				<c:forEach var="result" items="${list }" varStatus="i">
-					<tbody>
-						<tr>
-							<td>${result.r_idx }</td>
-							<td>${result.p_name }</td>
-							<td>${result.nickname }</td>
-							<td>${result.r_content }</td>
-							<td>${result.r_regdate }</td>
-							<td>${result.r_delyn }</td>
-							<td><input type="checkbox" name="chk" id="chk" value="${result.r_idx }"></td>
-							<td><input type="checkbox" name="rechk" id="rechk" value="${result.r_idx }"></td>
-						</tr>
-					</tbody>
-				</c:forEach>
-						<tr>
-							<td colspan="6"></td>
-							<td><input type="button" value="삭제" onclick="delReview();"></td>
-							<td><input type="button" value="복구" onclick="reReview();"></td>
-						</tr>
-			</table>
-		</form>
+			
+					<form method="post" name="frm">
+						<table border="1">
+							<thead>
+								<tr>
+									<th>리뷰 번호</th>
+									<th>상품 이름</th>
+									<th>판매자 닉네임</th>
+									<th>판매자 리뷰</th>
+									<th>판매자리뷰 등록일자</th>
+									<th>리뷰 삭제 여부</th>
+									<th>리뷰 삭제 하기</th>
+									<th>리뷰 복구 하기</th>
+								</tr>
+							</thead> 
+						<c:forEach var="result" items="${list }" varStatus="i">
+						<c:choose>
+							<c:when test="${result.r_div == 1 }">
+							<tbody>
+								<tr>
+									<td>${result.r_idx }</td>
+									<td>${result.p_name }</td>
+									<td>${result.nickname }</td>
+									<td>${result.r_content }</td>
+									<td>${result.r_regdate }</td>
+									<td>${result.r_delyn }</td>
+									<td><input type="checkbox" name="chk" id="chk" value="${result.r_idx }"></td>
+									<td><input type="checkbox" name="rechk" id="rechk" value="${result.r_idx }"></td>
+								</tr>
+							</tbody>
+							</c:when>
+								<c:otherwise>
+									
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+								<tr>
+									<td colspan="6"></td>
+									<td><input type="button" value="삭제" onclick="delReview();"></td>
+									<td><input type="button" value="복구" onclick="reReview();"></td>
+								</tr>
+					</table>
+				</form>
+			
 	</div>
 </div>
 <%@ include file="../../inc/EgovShopBottom.jsp"%>

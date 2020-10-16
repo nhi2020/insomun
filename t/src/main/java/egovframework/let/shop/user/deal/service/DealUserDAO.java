@@ -25,4 +25,11 @@ public interface DealUserDAO {
 	List<DealUserVO> selectListDealUserSeller(DealUserVO vo);
 	
 	DealUserVO selectDealUserSellerDetail(DealUserVO vo);
+	
+	//구매 시
+	DealUserVO selectDealUserBuyerRequest(DealUserVO vo);
+	
+	DealUserVO selectDealUserBuyerRequestPro(DealUserVO vo);
+	
+	int selectDealUserBuyerD_idx(DealUserVO vo);
 }

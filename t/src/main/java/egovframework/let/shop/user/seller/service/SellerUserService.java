@@ -2,7 +2,11 @@ package egovframework.let.shop.user.seller.service;
 
 import java.util.List;
 
+import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
 import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
+import egovframework.let.shop.user.deal.service.impl.DealUserVO;
+import egovframework.let.shop.user.product.service.impl.ProductUserVO;
+import egovframework.let.shop.user.review.service.ReviewUserVO;
 import egovframework.let.shop.user.seller.service.impl.SellerUserVO;
 
 public interface SellerUserService {
@@ -47,6 +51,12 @@ public interface SellerUserService {
 	public SellerUserVO sellerUserSelect(SellerUserVO vo);
 
 	public int sellerUserUpdate(SellerUserVO vo);
+
+	public List<ProductUserVO> sellerSelectProductList(ProductUserVO vo3);
+
+	public List<DealUserVO> sellerSelectDealList(DealUserVO vo2);
+
+	public List<ReviewUserVO> sellerSelectReviewList(ReviewUserVO vo1);
 
 
 }

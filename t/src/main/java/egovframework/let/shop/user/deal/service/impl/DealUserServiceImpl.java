@@ -116,5 +116,27 @@ public class DealUserServiceImpl implements DealUserService {
 		return result;
 	}
 
+	@Override
+	public DealUserVO selectDealUserBuyerRequest(DealUserVO vo) {
+		System.out.println("DealUserServiceImpl selectDealUserBuyerRequest Start...");
+		vo = dealUserDAO.selectDealUserBuyerRequest(vo);
+		return vo;
+	}
+
+	@Override
+	public DealUserVO selectDealUserBuyerRequestPro(DealUserVO vo) {
+		System.out.println("DealUserServiceImpl selectDealUserBuyerRequestPro Start...");
+		vo = dealUserDAO.selectDealUserBuyerRequestPro(vo);
+		return vo;
+	}
+
+	@Override
+	public int selectDealUserBuyerD_idx(DealUserVO vo) {
+		System.out.println("DealUserServiceImpl selectDealUserBuyerD_idx Start...");
+		int d_idx = dealUserDAO.selectDealUserBuyerD_idx(vo);
+		return d_idx;
+	}
+
+
 
 }

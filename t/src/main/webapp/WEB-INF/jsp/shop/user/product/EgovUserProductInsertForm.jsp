@@ -9,20 +9,75 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
 <title>판매자 등록 페이지</title>
+<script type="text/javascript">
+function readURL(input) {
+if (input.files && input.files[0]) {
+var reader = new FileReader();
+reader.onload = function (e) {
+$('#blah').attr('src', e.target.result);
+}
+reader.readAsDataURL(input.files[0]);
+}
+}
+</script>
+<style type="text/css">
+label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #fff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #6c757d;
+  cursor: pointer;
+  border: 1px solid #6c757d;
+  border-radius: .25em;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+label:hover {
+  background-color: #5a5a5a;
+}
+
+label:active {
+  background-color: #5a5a5a;
+}
+
+input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+</style>
 </head>
 
 <body>
-<%@ include file="../../inc/EgovShopTop.jsp" %>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
 
   <div class="container-fluid">
-	<div class="container text-center">
+	<div class="container text-center" style="padding-top: 20px;">
 	    <div class="row">
-			<form action="/shop/user/product/EgovUserProductInsertPro.do" method="post">
-				 	<img src="./images/main/photo/" width="270" height="385"/>
+			<form class="mx-auto" action="/shop/user/product/EgovUserProductInsertPro.do" method="post" enctype="multipart/form-data">
 						<p>
-					<table class="table">
+					<input type="hidden" name="s_id" id="s_id">
+					<table class="table" style="text-align: left">
+					<tr>
+						<th></th>
+						<td height="200" style=""><img class="img-fluid" id="blah" src="#" alt="your image" width="200" height="200" /></td>    				
+						</tr>
+						<tr>
 					 <tr>
+					 <tr>
+						<th>파일업로드</th>	
+						<td><label for="ex_file">업로드</label>
+							<input type='file' name="file" id="ex_file" onchange="readURL(this);" /></td>    
+					</tr>
 						<th>상품명</th>
 						<td>
 						<input type="text" name="p_name" id="p_name"/>
@@ -34,19 +89,7 @@
 						<input type="text" name="p_price" id="p_price"/>
 						</td>
 					</tr>
-				 	<tr>
-						<th>등록날짜</th>
-						<td>
-						<input type="date" name="p_regdate" id="p_regdate" />
-						</td>
-					</tr>
 					<tr>
- 					<th>업데이트된 날짜</th>
-						<td>
-						<input type="date" name="p_moddate" id="p_moddate" />
-						</td>
-					</tr>
-						<tr>
 						<th>제품 내용</th>
 						<td>
 						<textarea rows="5" cols="50" name="p_content" id="p_content"></textarea>
@@ -83,9 +126,9 @@
 						</td>
 					</tr>  
 					<tr> 
-						<td colspan="2"><br/>
-						<input type="submit" value="등록완료" onclick="" /> &nbsp;	
-						<input type="button" value="이전으로" onclick="location.href='/shop/user/product/EgovUserProductlist.do'"/>		
+						<td colspan="2" style="text-align: center"><br/>
+						<input type="submit" value="등록완료" class="btn btn-primary" /> &nbsp;	
+						<input type="button" value="이전으로" class="btn btn-info" onclick="location.href='/shop/user/product/EgovUserProductlist.do'"/>		
 						</td>
 					</tr>
 				</table>

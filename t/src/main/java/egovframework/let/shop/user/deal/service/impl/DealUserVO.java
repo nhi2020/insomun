@@ -9,6 +9,12 @@ import egovframework.let.shop.user.deal.service.DealUser;
 @SuppressWarnings("serial")
 public class DealUserVO extends DealUser implements Serializable {
 
+	/** 상태정렬  */
+	private String sortD_ing = "";
+	
+	/** 거래 등록 일시 정렬순서(DESC,ASC) */
+	private String sortD_regdate = "";
+	
 	/** 검색시작일 */
 	private String searchBgnDe = "";
 
@@ -91,6 +97,9 @@ public class DealUserVO extends DealUser implements Serializable {
 	private String subPageIndex = "";
 	//// -------------------------------
 
+	
+	
+	
 	/**
 	 * searchBgnDe attribute를 리턴한다.
 	 * 
@@ -98,6 +107,22 @@ public class DealUserVO extends DealUser implements Serializable {
 	 */
 	public String getSearchBgnDe() {
 		return searchBgnDe;
+	}
+
+	public String getSortD_ing() {
+		return sortD_ing;
+	}
+
+	public void setSortD_ing(String sortD_ing) {
+		this.sortD_ing = sortD_ing;
+	}
+
+	public String getSortD_regdate() {
+		return sortD_regdate;
+	}
+
+	public void setSortD_regdate(String sortD_regdate) {
+		this.sortD_regdate = sortD_regdate;
 	}
 
 	/**

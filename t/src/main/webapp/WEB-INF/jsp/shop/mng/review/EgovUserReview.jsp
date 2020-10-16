@@ -25,43 +25,54 @@
 <body>
 <%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
-<h2>판매자 리뷰 관리 페이지 입니다.</h2>
+	<div class="container text-center">
+	<div class="row justify-content-center">
+<h2>구매자 리뷰 관리 페이지 입니다.</h2>
+</div></div>
 <div class="container text-center">
 	<div class="row justify-content-center">
 		<form method="post" name="frm">
-			<table border="1">
-				<thead>
-					<tr>
-						<th>리뷰 번호</th>
-						<th>상품 이름</th>
-						<th>판매자 닉네임</th>
-						<th>판매자 리뷰</th>
-						<th>리뷰 등록일자</th>
-						<th>리뷰삭제여부</th>
-						<th>리뷰 삭제 하기</th>
-						<th>리뷰 삭제 복구</th>
-					</tr>
-				</thead>
-				<c:forEach var="result" items="${list}" varStatus="i">
-				<tbody>
-					<tr>
-						<td>${result.r_idx }</td>
-						<td>${result.p_name }</td>
-						<td>${result.s_nickname }</td>
-						<td>${result.r_content }</td>
-						<td>${result.r_regdate }</td>
-						<td>${result.r_delyn }</td>
-						<td><input type="checkbox" name="chk" id="chk" value="${result.r_idx }"></td>
-						<td><input type="checkbox" name="rechk" id="rechk" value="${result.r_idx }"></td>
-					</tr>
-				</tbody>		
-				</c:forEach>
-				<tr>
-					<td colspan="6"></td>
-					<td><input type="button" value="삭제" onclick="delReview();"></td>
-					<td><input type="button" value="복구" onclick="reReview();"></td>
-				</tr>
-			</table>
+				
+					<table border="1">
+						<thead>
+							<tr>
+								<th>리뷰 번호</th>
+								<th>상품 이름</th>
+								<th>구매자 닉네임</th>
+								<th>구매자 리뷰</th>
+								<th>리뷰 등록일자</th>
+								<th>리뷰삭제여부</th>
+								<th>리뷰 삭제 하기</th>
+								<th>리뷰 삭제 복구</th>
+							</tr>
+						</thead>
+						<c:forEach var="result" items="${list}" varStatus="i">
+						<c:choose>
+							<c:when test="${result.r_div == 2 }">
+						<tbody>
+							<tr>
+								<td>${result.r_idx }</td>
+								<td>${result.p_name }</td>
+								<td>${result.s_nickname }</td>
+								<td>${result.r_content }</td>
+								<td>${result.r_regdate }</td>
+								<td>${result.r_delyn }</td>
+								<td><input type="checkbox" name="chk" id="chk" value="${result.r_idx }"></td>
+								<td><input type="checkbox" name="rechk" id="rechk" value="${result.r_idx }"></td>
+							</tr>
+						</tbody>
+						</c:when>
+								<c:otherwise>
+									
+								</c:otherwise>
+							</c:choose>	
+						</c:forEach>
+						<tr>
+							<td colspan="6"></td>
+							<td><input type="button" value="삭제" onclick="delReview();"></td>
+							<td><input type="button" value="복구" onclick="reReview();"></td>
+						</tr>
+					</table>
 		</form>
 	</div>
 </div>

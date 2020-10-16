@@ -24,7 +24,7 @@
 				<tr>
 					<td><a href="/shop/mng/review/MngSelect.do"> 판매자 리뷰</a></td>
 					<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-					<td><a href="/shop/mng/review/MngUserSelect.do">관리자 리뷰</a></td>
+					<td><a href="/shop/mng/review/MngUserSelect.do">구매자 리뷰</a></td>
 				</tr>
 		</table>
 	</div>

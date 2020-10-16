@@ -10,8 +10,8 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
-<%@ include file="../../inc/EgovShopTop.jsp" %>
-<%@ include file="../../inc/EgovShopHeader.jsp" %>
+<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopTop.jsp" %>
+<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopHeader.jsp" %>
 <div class="container">
 <h1>거래</h1><p1>
 <h4>판매자</h4><p1>
@@ -37,5 +37,6 @@
 	    	<button type="button" class="btn btn-warning"  onclick="location.href='/shop/user/deal/dealUserSellerDeliver.do?d_idx=${dealUserVO.d_idx}'"><i class="fa fa-bars">배송 시작</i></button>
 	    	<br><button type="button" class="btn btn-warning"  onclick="location.href='/shop/user/deal/dealUserSellerList.do'"><i class="fa fa-bars">목록</i></button>
 </div>
+<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopBottom.jsp" %>
 </body>
 </html>

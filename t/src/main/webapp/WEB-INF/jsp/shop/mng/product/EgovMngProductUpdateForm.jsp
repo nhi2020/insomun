@@ -77,14 +77,17 @@ input[type="file"] {
  <div class="container-fluid">
 
 	    <div class="row">
-			<form class="mx-auto" action="/shop/mng/product/EgovMngProductUpdatePro.do" method="post" enctype="multipart/form-data">
+			<form name="frm" class="mx-auto" action="/shop/mng/product/EgovMngProductUpdatePro.do" method="post" enctype="multipart/form-data">
 	    			<input type="hidden" name="p_idx" value="${ProductMngVO.p_idx }" />
 	    			<input type="hidden" name="preImage" value="${ProductMngVo.preImage }">
+	    			<input type="hidden" name="pageIndex" value="${searchVO.pageIndex }">
+	    			<input type="hidden" name="searchCnd" value="${searchVO.searchCnd }">
+	    			<input type="hidden" name="searchWrd" value="${searchVO.searchWrd }">
 					<table class="table" style="text-align: left">
 					<tr>
 						<th></th>
 						<td height="200" style="">
-						<img id="blah" src="<c:url value='/'/>file/${ProductMngVO.p_image}" alt="your image" width="200" height="200" /> </td> 
+						<img class="img-fluid" id="blah" src="<c:url value='/'/>file/${ProductMngVO.p_image}" alt="your image" width="200" height="200" /> </td> 
 					</tr>
 					<tr>
 						<th>사진변경</th>	
@@ -128,15 +131,21 @@ input[type="file"] {
 					<tr>
 						<td colspan="2" style="text-align: center">
 						<input type="submit" value="수정완료" class="btn btn-primary"> &nbsp;
-						<input type="button" value="이전으로" class="btn btn-info" onclick="location.href='/shop/mng/product/EgovMngProductlist.do'"/>
+						<input type="button" value="이전으로" class="btn btn-info" onclick="return1();"/>
 					</tr>
 				</table>
 					<%-- <c:if test=""></c:if> --%>
-				</form>				
+				</form>			
 			</div>
 		</div>
 	</div>
-
+<script>
+function return1(){
+	document.forms["frm"].action = "/shop/mng/product/EgovMngProductlist.do";
+	document.forms["frm"].submit();
+	return true;
+}
+</script>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>
