@@ -8,8 +8,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 <title>유저용 상품 관리 페이지입니다</title>
 
+<style type="text/css">
+.price {font-family: 'Noto Sans KR', sans-serif;
+font-size: 18px;}
+.name {font-family: 'Nanum Gothic Coding', monospace;
+font-size: 20px; color: #616A6B;}
+</style>
 </head>
 
 <body>
@@ -110,10 +118,11 @@
 					</a>
 							<br/><span> 
 							<c:if test="${sessionScope.status == 2 }">
-							<input type="checkbox" name="check" id="check" value="${productuser_list.p_idx }"> </c:if>
-							<b>${productuser_list.p_name }</b>
-							</span> <br /> 
-							<span><b></b><fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber>원</span><br /> 
+							<input type="checkbox" name="check" id="check" value="${productuser_list.p_idx }">
+							</c:if>
+							<b class="name">${productuser_list.p_name }</b></span> <br/> 
+							<span>
+							<b class="price"><fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber>원</b></span>
 							
 							<p/>	
 					<c:if test="${sessionScope.status == 2 }">
