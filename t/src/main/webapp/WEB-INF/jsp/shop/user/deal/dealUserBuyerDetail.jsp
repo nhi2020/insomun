@@ -61,7 +61,7 @@ td {
 								<c:when test="${dealUserVO.d_ing eq '1'}"> 구매자 신청 </c:when>
 								<c:when test="${dealUserVO.d_ing eq '2'}"> 판매자 수락 </c:when>
 								<c:when test="${dealUserVO.d_ing eq '3'}"> 배송 시작 </c:when>
-								<c:when test="${dealUserVO.d_ing eq '4'}"> 구매 완료 </c:when>
+								<c:when test="${dealUserVO.d_ing eq '4'}"> 거래 완료 </c:when>
 								<c:when test="${dealUserVO.d_ing eq '5'}"> 구매자 거래 취소 </c:when>
 								<c:when test="${dealUserVO.d_ing eq '6'}"> 판매자 거래 취소 </c:when>
 							</c:choose></td>
@@ -85,11 +85,23 @@ td {
 					</tr>
 					<tr>
 						<th style="text-align: right">판매자 연락처</th>
-						<td>${dealUserVO.s_phone }</td>
+						<td>
+							<c:choose>
+								<c:when test="${dealUserVO.d_ing ne '1'}">
+									${dealUserVO.s_phone }
+								</c:when>
+							</c:choose>
+						</td>
 					</tr>
 					<tr>
 						<th style="text-align: right">판매자 계좌</th>
-						<td> ${dealUserVO.s_account_n} ${dealUserVO.s_account}</td>
+						<td> 
+							<c:choose>
+								<c:when test="${dealUserVO.d_ing ne '1'}">
+									${dealUserVO.s_account_n} ${dealUserVO.s_account}
+								</c:when>
+							</c:choose>
+						</td>
 					</tr>
 					<tr>
 						<th style="text-align: right">내용</th>
