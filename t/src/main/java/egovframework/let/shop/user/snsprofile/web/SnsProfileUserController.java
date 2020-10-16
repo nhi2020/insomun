@@ -1,9 +1,11 @@
 package egovframework.let.shop.user.snsprofile.web;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -104,7 +106,7 @@ public class SnsProfileUserController {
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/shop/user/EgovKakaoLogin.do")
-	public String egovUserLogin(@RequestParam("code") String code, SnsProfileUserVO snsProfileVO, HttpServletRequest request, ModelMap model, HttpSession session)
+	public void egovUserLogin(@RequestParam("code") String code, SnsProfileUserVO snsProfileVO, HttpServletRequest request, ModelMap model, HttpSession session, HttpServletResponse response)
 			  throws Exception{
 		System.out.println("code : "+code);
 		String access_Token = kakao.getAccessToken(code);
@@ -117,30 +119,42 @@ public class SnsProfileUserController {
 	    	snsProfileVO.setSnscode("kakao");
 	    	snsProfileVO.setNickname((String) userInfo.get("nickname"));
 	    	String email=(String)userInfo.get("email");
-	    	snsProfileVO.setEmail(email);
+	    	if(email!=null&& !email.equals("")){
+	    		snsProfileVO.setEmail(email);	
+	    	}else{
+	    		snsProfileVO.setEmail("");
+	    	}
+	    	
 	    	//---------------------
 	        session.setAttribute("userid", userInfo.get("kakaoid"));
 	        session.setAttribute("nickname", userInfo.get("nickname"));
-	        session.setAttribute("email", userInfo.get("email"));
+	        session.setAttribute("status", 1);
+	        /* session.setAttribute("email", userInfo.get("email"));*/
 	        //session.setAttribute("email", userInfo.get("email"));//카카오에서 이메일 못가져옴
 	        session.setAttribute("snscode","kakao"); //세션 생성
 	        session.setAttribute("access_Token", access_Token);
 	        int result2 = snsprofileUserService.checkUserLogin(snsProfileVO);
-	        if(result2 == 0){
-	        	String result = snsprofileUserService.insertSnsUser(snsProfileVO);
-	        	if(result==null){
-	        		System.out.println("성공");
-	        	}else{
-	        		System.out.println("실패");
-	        	}
+	        System.out.println("result2 : "+result2);
+	        response.setContentType("text/html; charset=UTF-8");
+    		PrintWriter writer = response.getWriter();
+	        if(result2 ==0){
+	        	int result=snsprofileUserService.insertSnsUser(snsProfileVO);
+	        	System.out.println("result : "+result);
+        		System.out.println("성공");
+        		
+        		writer.println("<script>alert('로그인 되었습니다.');</script>");
+        		writer.println("<script>location.href='/shop/user/main/EgovUserMain.do';</script>");
+        		writer.flush();
+	        }else{
+	        	writer.println("<script>alert('로그인 되었습니다.');</script>");
+        		writer.println("<script>location.href='/shop/user/main/EgovUserMain.do';</script>");
+        		writer.flush();
 	        }
 	    }
-
-		return "redirect:/shop/user/main/EgovUserMain.do";
 	}
 	
 	@RequestMapping(value = "/shop/user/EgovNaverLogin.do")
-	public String egovUserLogin(@RequestParam("code") String code, @RequestParam("state") String state, SnsProfileUserVO snsProfileVO, HttpServletRequest request, ModelMap model, HttpSession session)
+	public String egovUserLogin(@RequestParam("code") String code, @RequestParam("state") String state, SnsProfileUserVO snsProfileVO, HttpServletRequest request, ModelMap model, HttpSession session, HttpServletResponse response)
 			  throws Exception{
 	    OAuth2AccessToken oauthToken;
         oauthToken = naver.getAccessToken(session, code, state);
@@ -167,7 +181,7 @@ public class SnsProfileUserController {
 	        //response의 nickname값 파싱
 	        String id = (String)response_obj.get("id");
 	        String name = (String)response_obj.get("name");
-	        String email = (String)response_obj.get("email");
+	        String email = (String)response_obj.get("email")==null?"":(String)response_obj.get("email");
 	        //navre 정보 dbd에 담는 로직
 	        snsProfileVO.setSnscode("naver");
 	        snsProfileVO.setEmail(email);
@@ -183,13 +197,20 @@ public class SnsProfileUserController {
 	        model.addAttribute("result", apiResult);
 	        System.out.println("access_token : "+oauthToken.getAccessToken());
 	        int result2 = snsprofileUserService.checkUserLogin(snsProfileVO);
-	        if(result2 == 0){
-	        	String result = snsprofileUserService.insertSnsUser(snsProfileVO);
-	        	if(result==null){
-	        		System.out.println("성공");
-	        	}else{
-	        		System.out.println("실패");
-	        	}
+	        response.setContentType("text/html; charset=UTF-8");
+    		PrintWriter writer = response.getWriter();
+	        if(result2 ==0){
+	        	int result=snsprofileUserService.insertSnsUser(snsProfileVO);
+	        	System.out.println("result : "+result);
+        		System.out.println("성공");
+        		
+        		writer.println("<script>alert('로그인 되었습니다.');</script>");
+        		writer.println("<script>location.href='/shop/user/main/EgovUserMain.do';</script>");
+        		writer.flush();
+	        }else{
+	        	writer.println("<script>alert('로그인 되었습니다.');</script>");
+        		writer.println("<script>location.href='/shop/user/main/EgovUserMain.do';</script>");
+        		writer.flush();
 	        }
         }
         

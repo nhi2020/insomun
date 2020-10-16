@@ -91,16 +91,36 @@ public class ReviewMngController {
 	// 관리자 판매자 리뷰에서의 댓글 출력
 	@RequestMapping(value = "/shop/mng/review/MngUserSelect.do")
 	public String selectSellerList(ReviewMngVO mngVO, ModelMap model) throws Exception {
-		List<ReviewMngVO> list = reviewMngService.selectSellerList(mngVO);
+		
+		System.out.println("test"+mngVO.getSearchCnd());
+		System.out.println("test"+mngVO.getSearchWrd());
+		
+		mngVO.setPageUnit(propertyService.getInt("pageUnit"));
+		mngVO.setPageSize(propertyService.getInt("pageSize"));
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		paginationInfo.setCurrentPageNo(mngVO.getPageIndex());
+		paginationInfo.setRecordCountPerPage(mngVO.getPageUnit());
+		paginationInfo.setPageSize(mngVO.getPageSize());
+
 		
 		int num = mngVO.getFirstIndex();
 	    int result = num-1;
 	    mngVO.setFirstIndex(result);
-	    System.out.println("result/*/*/*-/*/*-/*-/-*/-*>"+result);
+	    System.out.println("result---------------->"+result);
 		
-	    
-	    
-		model.addAttribute("list", list);	//구매자
+		mngVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		mngVO.setLastIndex(paginationInfo.getLastRecordIndex());
+		mngVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		int totCnt = reviewMngService.selectMngCnt(mngVO);
+		paginationInfo.setTotalRecordCount(totCnt);
+
+		System.out.println("totCnt"+ totCnt);
+		model.addAttribute("totCnt", totCnt);
+		model.addAttribute("paginationInfo", paginationInfo);
+		List<ReviewMngVO> list = reviewMngService.selectMngList(mngVO);
+		model.addAttribute("list", list);
 		return "/shop/mng/review/EgovUserReview";  
 	}
 }

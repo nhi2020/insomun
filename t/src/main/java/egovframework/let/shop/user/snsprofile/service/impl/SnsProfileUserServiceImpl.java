@@ -30,8 +30,8 @@ public class SnsProfileUserServiceImpl extends EgovAbstractServiceImpl implement
 	}
 
 	@Override
-	public String insertSnsUser(SnsProfileUserVO snsProfileVo) throws Exception {
-		String result = snsUserDAO.insertSnsUser(snsProfileVo);
+	public int insertSnsUser(SnsProfileUserVO snsProfileVo) throws Exception {
+		int result = snsUserDAO.insertSnsUser(snsProfileVo);
 		return result;
 	}
 

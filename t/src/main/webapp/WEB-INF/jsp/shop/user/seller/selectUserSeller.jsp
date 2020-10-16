@@ -13,12 +13,6 @@
 
 <style type="text/css">
 
- .avatar {
-  vertical-align: middle;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-}
 div.button input {
    padding: 9px;
    margin-left :30px;
@@ -27,8 +21,11 @@ div.button input {
 div.button {
 text-align: center;
 margin-bottom: 20px;
-margin-left: 200px;
 }
+p {
+font-size: 2em;
+}
+
 </style>
 </head>
 <body>
@@ -58,36 +55,32 @@ margin-left: 200px;
       </div>
    </c:if>
 <div class="container">
-	<div class="row">
-		<div class="button">
+	<div class="row" >
+	    <div class="card" style="border:1px solid #fff; padding-left: 30px;">
+            <div class="row no-gutters">
+              <div class="col-2">
+                <img src="<c:url value='/'/>file/${SellerVO.s_photo}" class="card-img" style="border-radius: 50%;"/>
+              </div>
+              <div class="col-8">
+                <div class="card-body">
+                  <p class="card-text"> <h6 class="text-center">입소문넷 회원 ${SellerVO.s_nickname}님 안녕하세요!</h6> <p>
+                  <div class="button" style="border-top-width: 20px">
 		        <input type="button" class="btn btn-outline-danger" onclick="location.href='/shop/user/seller/updateUserSellerForm.do?s_id=${SellerVO.s_id}'" value="정보수정">
 		        <input type="button" class="btn btn-outline-danger" onclick="location.href='/shop/user/product/EgovUserProductlist.do?s_id=${SellerVO.s_id}'" value="내 상품보기">
 		        <input type="button" class="btn btn-outline-danger" onclick="location.href='/shop/user/product/EgovUserProductInsertForm.do?s_id=${SellerVO.s_id}'" value="상품추가">
 		      	<input type="button" class="btn btn-outline-danger" onclick="location.href='/shop/user/deal/dealUserSellerList.do'" value="내 거래내역보기">
 		        <input type="button" class="btn btn-outline-danger" onclick="location.href='/shop/mng/review/MngSelect.do'" value="리뷰관리">
-	<p><br>
-		
-   	<h6 class="text-center">입소문넷 회원 ${SellerVO.s_nickname}님 안녕하세요!</h6>
-   
+					</div>
+                </div>
+              </div>
+            </div>
+          </div>
 		</div>
-</div>
-    <p>
-    
-   
-    <div class="bg-light text-dark">
-            <h3>내 정보보기...</h3>   
-        <p><p><p><p><p>
-        <img src="<c:url value='/'/>file/${SellerVO.s_photo}" alt="Avatar" class="avatar" />
-         ${SellerVO.s_id}
-         ${SellerVO.s_nickname}
-         ${SellerVO.s_birth}
-         ${SellerVO.s_addr}
-   </div>
-   
+
    <p>
 
-    <div class="bg-light text-dark">
-            <h3>내 상품보기...</h3>   
+    <div class="text-dark" style="border:1px solid #cd3c3c; padding-left: 50px; border-radius: 10px;">
+            <p class="text-left m-3">내 상품보기</p>  
         <p><p><p><p><p>
                <c:forEach var="product_list" items="${list}" varStatus="status" begin="1" end="5">
                <div class="mt-3">
@@ -98,14 +91,15 @@ margin-left: 200px;
                      <fmt:formatNumber value="${product_list.p_price }" pattern="##,###"></fmt:formatNumber>
                </div>
                </c:forEach>
-      
-      <a href="/shop/user/product/EgovUserProductlist.do?s_id=sid">자세히...</a></p>
+      <div class="m-3" style="text-align: right; color: #275291; border-right-width: 5px;">
+      <a href="/shop/user/product/EgovUserProductlist.do?s_id=sid">자세히...</a>
+      </div>
    </div>
    
    <p>
 
-   <div class="bg-light text-dark">
-         <h3>내 거래내역 보기...</h3>
+   <div class="text-dark" style="border:1px solid #cd3c3c; padding-left: 50px; border-radius:10px;">
+          <p class="text-left m-3">내 거래내역 보기</p>
       <p><p><p><p><p>
                 <c:forEach  items="${dealUserlist }" var="list" varStatus="status" begin="1" end="5">
                <div class="mt-3">
@@ -125,15 +119,16 @@ margin-left: 200px;
                         </c:choose>
                </div>
                </c:forEach>
-               
-      <a href="/shop/user/deal/dealUserSellerList.do">자세히...</a></p>
+      <div class="m-3" style="text-align: right; color: #275291; border-right-width: 5px;">         
+     	 <a href="/shop/user/deal/dealUserSellerList.do">자세히...</a>
+      </div>
    </div>
    
    <p>
 
-    <div class="bg-light text-dark">
-            <h3>내 상품에 달린 리뷰 보기...</h3>   
-        <p><p><p><p><p>
+    <div class="text-dark" style="border:1px solid #cd3c3c; padding-left: 50px; border-radius: 10px;">
+             <p class="text-left m-3">내 상품에 달린 리뷰 보기</p>   
+        <p><p><p><p><p></p>
                <c:forEach items="${list1}" var="result"  begin="1" end="3">
                   <c:choose>
                          <c:when test="${result.r_div eq '1'}">
@@ -145,7 +140,6 @@ margin-left: 200px;
                             ${result.s_nickname}&nbsp;<span class="font-weight-normal">${result.r_regdate}&nbsp;구매자 점수 :${result.seller_score}</span>
                          </c:otherwise>
                     </c:choose>
-                 </p>
                <div id="r_view${result.r_idx}" style="display: none;">
                   <textarea id="r_contentVal${result.r_idx}" name="r_contentVal${result.r_idx}" rows="5" cols="70">${result.r_content }</textarea>
                   <a href="javascript:updateUserReview('${result.r_idx}');">저장</a>
@@ -162,11 +156,12 @@ margin-left: 200px;
                   </c:if>
                </div>
                </c:forEach>
-      
-      <a href="/shop/mng/review/MngSelect.do">자세히...</a>
+            <div class="m-3" style="text-align: right; color: #275291;">         
+  		  	  <a href="/shop/mng/review/MngSelect.do">자세히...</a>
+  		  	</div>
    </div>
 </div>
-   <div id="div_bottom">
+   <div id="div_bottom" style="padding-top: 50px;">
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
    </div>
 </body>
