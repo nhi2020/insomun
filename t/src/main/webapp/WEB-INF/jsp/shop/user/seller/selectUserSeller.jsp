@@ -75,10 +75,7 @@ p {
 									value="정보수정"> <input type="button"
 									class="btn btn-outline-danger"
 									onclick="location.href='/shop/user/product/EgovUserProductlist.do?s_id=${SellerVO.s_id}'"
-									value="내 상품보기"> <input type="button"
-									class="btn btn-outline-danger"
-									onclick="location.href='/shop/user/product/EgovUserProductInsertForm.do?s_id=${SellerVO.s_id}'"
-									value="상품추가"> <input type="button"
+									value="내 상품보기"><input type="button"
 									class="btn btn-outline-danger"
 									onclick="location.href='/shop/user/deal/dealUserSellerList.do'"
 									value="내 거래내역보기"> <!-- <input type="button"
@@ -182,16 +179,6 @@ p {
 				</div>
 				<div id="r_view2${result.r_idx}" style="display: block;">
 					<pre>${result.r_content}</pre>
-				</div>
-				<div class="float-right">
-					<c:if test="${'1' eq result.sns_idx}">
-						<a href="javascript:displayView('${result.r_idx}');"><span
-							style="color: gray;">수정</span></a>
-					</c:if>
-					<c:if test="${'1' eq result.sns_idx}">
-						<a href="javascript:delUserReview('${result.r_idx}');"><span
-							style="color: gray;">삭제</span></a>
-					</c:if>
 				</div>
 			</c:forEach>
 			<!-- <div class="m-3" style="text-align: right; color: #275291;">
