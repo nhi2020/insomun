@@ -177,12 +177,11 @@
 			<ul class="navbar-nav">
 				<c:choose>
 					<c:when
-						test="${(sessionScope.sns_idx != null)or(sessionScope.S_ID != null and sessionScope.S_ID ne ' ')or(sessionScope.A_ID != null and sessionScope.A_ID ne ' ')}">
+						test="${(sessionScope.userid != null)or(sessionScope.S_ID != null and sessionScope.S_ID ne ' ')or(sessionScope.A_ID != null and sessionScope.A_ID ne ' ')}">
 
 						<c:if test="${sessionScope.status == 1 }">
 							<!-- <button type="button" id="btnlogout" id="userlogout">사용자 logout</button> -->
-							<button class="btn btn-info" type="button" id="userlogout">사용자
-								logout</button>
+							<button class="btn btn-info" type="button" id="userlogout">logout</button>
 							<!-- Dropdown -->
 							<ul class="navbar-nav">
 								<li class="nav-item dropdown"><a
@@ -190,9 +189,7 @@
 									data-toggle="dropdown"> 회원 메뉴 </a>
 									<div class="dropdown-menu">
 										<a class="dropdown-item"
-											href="/shop/user/buyer/selectUserBuyer.do">마이 페이지</a> <a
-											class="dropdown-item" href="#">Link 2</a> <a
-											class="dropdown-item" href="#">Link 3</a>
+											href="/shop/user/buyer/selectUserBuyer.do">마이 페이지</a>
 									</div></li>
 							</ul>
 						</c:if>
@@ -205,9 +202,7 @@
 									data-toggle="dropdown"> ${sessionScope.S_ID} 님 </a>
 									<div class="dropdown-menu">
 										<a class="dropdown-item"
-											href="/shop/user/seller/selectUserSeller.do">마이 페이지</a> <a
-											class="dropdown-item" href="#">Link 2</a> <a
-											class="dropdown-item" href="#">Link 3</a>
+											href="/shop/user/seller/selectUserSeller.do">마이 페이지</a>
 									</div></li>
 							</ul>
 							<button class="btn btn-info" type="button" id="sellerlogout">logout</button>
@@ -216,18 +211,16 @@
 
 							<!-- Dropdown -->
 							<ul class="navbar-nav navbar-right">
-								<li class="nav-item dropdown"><a
-									class="nav-link dropdown-toggle" href="#" id="navbardrop"
-									data-toggle="dropdown"> 마이페이지 </a>
+								<li>
+									<a class="dropdown-item" href="/shop/mng/admin/adminMainForm.do">운영자 페이지</a>
+								</li> 
+								<!-- <li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
 									<div class="dropdown-menu">
-										<a class="dropdown-item"
-											href="/shop/mng/admin/adminMainForm.do">운영자 페이지</a> <a
-											class="dropdown-item"
-											href="/shop/mng/product/EgovMngProductlist.do">상품관리 페이지</a>
-										<!-- <a class="dropdown-item" href="#">관리자 관리 페이지</a>
-	     					   <a class="dropdown-item" href="#">구매자 관리 페이지</a>
-	     					   <a class="dropdown-item" href="#">판매자 관리 페이지</a> -->
-									</div></li>
+										<a class="dropdown-item" href="/shop/mng/admin/adminMainForm.do">운영자 페이지</a> 
+										<a class="dropdown-item" href="/shop/mng/product/EgovMngProductlist.do">상품관리 페이지</a>
+										
+									</div></li> -->
 							</ul>
 							<button class="btn btn-info" type="button" id="adminlogout">logout</button>
 						</c:if>

@@ -14,7 +14,11 @@
 
 <body>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
-
+<c:if test="${msg != null}">
+	<div class="container" style="text-align: center">
+		<h1>${msg}</h1>
+	</div>
+</c:if>
 <!-- result 값을 이용한 modal -->
 	<c:if test="${result2 == 0 && result ==null}">
 		<script type="text/javascript">
