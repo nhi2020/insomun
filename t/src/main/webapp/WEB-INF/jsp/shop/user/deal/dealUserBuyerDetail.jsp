@@ -31,20 +31,14 @@ td {
 			alert('아니오를 누르셨습니다');
 		}
 	}
-</script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#dealUserBuyerReview").click(function(){
-			location.href = "/shop/user/review/EgovBuyerReviewInsert.do";
-		});
-	});
-	/* function dealUserBuyerReview() {
+
+	function dealUserBuyerReview() {
 		if (confirm(" 후기 작성 하시려면 예를 누르시고\n후기 작성 하지 않으시려면 아니오를 눌러주세요")) {
-			location.href = "/shop/user/review/EgovBuyerReviewInsert.do"; //다시
+			location.href = "/shop/user/review/EgovBuyerInsertForm.do"; //다시
 		} else {
 			alert('아니오를 누르셨습니다');
 		}
-	} */
+	}
 </script>
 </head>
 <body>
@@ -137,10 +131,8 @@ td {
 
 								<c:choose>
 									<c:when test="${dealUserVO.d_ing == '4'}">
-									<div id="dealUserBuyerReview();">
-										<button type="button" class="btn btn-info">후기 작성</button> 
-										<!-- onclick="dealUserBuyerReview()" -->
-									</div>
+									<button type="button" class="btn btn-info"
+											onclick="dealUserSellerReview()">후기 작성</button>
 									</c:when>
 								</c:choose>
 							</div><p>
