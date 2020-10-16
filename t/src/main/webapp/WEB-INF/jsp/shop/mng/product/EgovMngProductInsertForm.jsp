@@ -60,9 +60,8 @@ input[type="file"] {
 </head>
 
 <body>
-<%@ include file="../../inc/EgovShopTop.jsp" %>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
-
+<h3 style="text-align: center">등록 페이지</h3>
   <div class="container-fluid" style="padding-top: 20px;">
 	    <div class="row">
 			<form class="mx-auto" action="/shop/mng/product/EgovMngProductInsertPro.do" method="post" enctype="multipart/form-data">
