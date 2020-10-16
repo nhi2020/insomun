@@ -34,7 +34,7 @@ td {
 
 	function dealMngBuyerReview() {
 		if (confirm(" 후기 작성 하시려면 예를 누르시고\n후기 작성 하지 않으시려면 아니오를 눌러주세요")) {
-			location.href = "/shop/mng/deal/dealMngBuyerComplete.do?d_idx=${dealMngVO.d_idx}"; // 구매 후기 주소 바꾸고 주석 제거해 주세요.
+			location.href = ""; // 구매 후기 주소 바꾸고 주석 제거해 주세요.
 		} else {
 			alert('아니오를 누르셨습니다');
 		}
@@ -51,7 +51,7 @@ td {
 	
 	<div class="container text-center">
 		<div class="row justify-content-center">
-			<h2>구매 거래 상세 페이지</h2>
+			<h3>구매 거래 상세 페이지</h3>
 		</div>
 	</div>
 	<div class="container text-center">
@@ -71,8 +71,8 @@ td {
 							</c:choose></td>
 					</tr>
 					<tr>
-						<th style="text-align: right">판매자[신용]</th>
-						<td>${dealMngVO.s_nickname}[${dealMngVO.seller_score}]</td>
+						<th style="text-align: right">판매자</th>
+						<td>${dealMngVO.s_nickname}</td>
 					</tr>
 					<tr>
 						<th style="text-align: right">상품명</th>
@@ -97,7 +97,7 @@ td {
 					</tr>
 					<tr>
 						<th style="text-align: right">내용</th>
-						<td>설명~~~~~~~~</td>
+						<td>설명</td>
 					</tr>
 					<tr>
 						<th style="text-align: right">주소 및 배송 요청사항</th>
