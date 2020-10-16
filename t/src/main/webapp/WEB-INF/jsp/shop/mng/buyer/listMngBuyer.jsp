@@ -59,7 +59,7 @@
 			<form name="frmPage" action="/shop/mng/buyer/listMngBuyer.do">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
-						<select class="form-control bg-info text-light" name="searchCnd">
+						<select class="form-control bg-white text-dark" name="searchCnd">
 							<option value="0">아이디</option>
 							<option value="1">닉네임</option>
 							<option value="2">이메일</option>
@@ -83,7 +83,7 @@
 			</div>
 		</div>
 	</div>
-</body>
+
 <script>
 function linkPage(pageIndex){
 	document.forms["frmPage"]["pageIndex"].value=pageIndex;
@@ -91,5 +91,6 @@ function linkPage(pageIndex){
 	return true;
 }
 </script>
+<%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>

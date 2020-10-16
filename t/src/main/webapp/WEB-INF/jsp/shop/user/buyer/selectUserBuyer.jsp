@@ -21,38 +21,22 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="mx-auto p-2">
-				<button class="btn btn-primary"
-					onclick="location.href='/shop/user/buyer/updateUserBuyerForm.do'">
-												정보수정</button>
-				<button class="btn btn-primary"
+				<button class="btn btn-outline-danger"
+						onclick="location.href='/shop/user/buyer/updateUserBuyerForm.do'">
+						정보수정</button>
+				<button class="btn btn-outline-danger"
 						onclick="location.href='/shop/user/basket/listBasketUser.do'">
-												장바구니</button>
-				<button class="btn btn-primary">거래현황</button>
-				<button class="btn btn-primary">거래후기</button>
-				<button class="btn btn-primary">거래내역</button>
-				<button class="btn btn-primary" onclick="location.href='/shop/user/like/LikeUserList.do'">찜한상품</button>
+						장바구니</button>
+				<button class="btn btn-outline-danger"
+						onclick="location.href='/shop/user/deal/dealUserBuyerList.do'">
+						내 거래 보기</button>
+				<button class="btn btn-outline-danger" onclick="location.href='/shop/user/like/LikeUserList.do'">찜한상품</button>
 			</div>
 		</div>
 		<div class="row px-md-5">
-			<div class="col-3 mx-auto">
-				<table class="table mx-auto">
-					<tr>
-						<td>SNS IDX</td>
-						<td>${BuyerVO.sns_idx }</td>
-					</tr>
-					<tr>
-						<td>USERID</td>
-						<td>${BuyerVO.userid }</td>
-					</tr>
-					<tr>
-						<td>SNSCODE</td>
-						<td>${BuyerVO.snscode }</td>
-					</tr>
-					<tr>
-						<td>NICKNAME</td>
-						<td>${BuyerVO.nickname }</td>
-					</tr>
-				</table>
+			<div class="mx-auto">
+			<h3 class="m-3"><b> ${BuyerVO.nickname } 님 안녕하세요! </b> </h3>
+			<p class="m-3">${BuyerVO.nickname } 님은 ${BuyerVO.snscode } 계정으로 로그인 중이십니다. </p>
 			</div>
 		</div>
 	</div>

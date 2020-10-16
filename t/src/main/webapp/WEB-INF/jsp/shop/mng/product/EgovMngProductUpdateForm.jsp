@@ -66,7 +66,7 @@ input[type="file"] {
 </script>
 <body>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
-<h2>수정 페이지</h2>
+<h3 style="text-align: center">수정 페이지</h3>
 
 	<c:if test="${msg != null }">
 	<p>${msg }</p>
