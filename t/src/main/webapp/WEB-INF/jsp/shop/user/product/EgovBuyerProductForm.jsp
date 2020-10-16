@@ -249,6 +249,12 @@
 							</ul> --%>
 		</form>
 		</c:if>
+		<div class="container text-center">
+				<div class="row justify-content-center">
+		<c:if test="${sessionScope.status eq 0}">
+			<h2>로그인하세요.</h2>
+		</c:if>
+		</div></div>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>
