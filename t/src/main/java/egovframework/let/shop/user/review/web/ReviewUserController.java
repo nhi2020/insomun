@@ -151,12 +151,17 @@ public class ReviewUserController {
 		reviewVO.setStored_file_name(savedName);
 		reviewVO.setFile_size(file.getSize());
 
-				
-
 		egovReviewService.insertMainUserReview(reviewVO);
 		
 		return "redirect:/shop/user/product/EgovBuyerProductForm?p_idx="+reviewVO.getP_idx();
 	}
+	
+	@RequestMapping(value = "/shop/user/review/EgovBuyerInsertForm.do")
+	public String insertReview(){
+		System.out.println("abcdefghijklmnop");
+		return "/shop/user/review/EgovBuyerReviewInsert";
+	}
+	
 	@SuppressWarnings("unused")
 	private String uploadFile(String originalName, byte[] fileData, String uploadPath) throws Exception {
 
