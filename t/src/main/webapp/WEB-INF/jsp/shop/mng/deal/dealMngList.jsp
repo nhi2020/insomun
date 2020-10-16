@@ -159,9 +159,9 @@ table {
 									<c:when test="${list.d_ing eq '6'}"> 판매자 거래 취소 </c:when>
 								</c:choose></td>
 							<td width="9%">${list.s_nickname }</td>
-							<td width="9%"><input type="hidden" name="d_idx" value="${list.d_idx }"><button type="button" class="btn btn-warning"  onclick="location.href='/shop/mng/deal/dealMngBuyerDetail.do?d_idx=${list.d_idx}'"><i class="fa fa-bars">이동</i></button></td>
+							<td width="9%"><input type="hidden" name="d_idx" value="${list.d_idx }"><button type="button" class="btn btn-warning"  onclick="location.href='/shop/mng/deal/dealMngBuyerDetail.do?d_idx=${list.d_idx}'">이동</button></td>
 							<td width="9%">${list.nickname }</td>
-							<td width="10%"><button type="button" class="btn btn-warning"  onclick="location.href='/shop/mng/deal/dealMngSellerDetail.do?d_idx=${list.d_idx}'"><i class="fa fa-bars">이동</i></button></td>
+							<td width="10%"><button type="button" class="btn btn-warning"  onclick="location.href='/shop/mng/deal/dealMngSellerDetail.do?d_idx=${list.d_idx}'">이동</button></td>
 					</tr>
 				</c:forEach>
 			</table>
