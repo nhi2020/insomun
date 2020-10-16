@@ -89,6 +89,9 @@ public class ReviewUserController {
 		System.out.println("result-------------->"+result);
 		vo.setFirstIndex(result);*/
 		List<ReviewUserVO> list = egovReviewService.selectReviewList(vo);
+		
+		
+		
 		model.addAttribute("list", list);
 		model.addAttribute("r_div", vo.getR_div());
 		model.addAttribute("AVG", AVG);

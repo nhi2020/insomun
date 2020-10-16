@@ -67,12 +67,12 @@
 				PRODUCT
 			WHERE 1=1
 		]]>
-			<isEqual prepend="AND" property="searchCnd" compareValue="0">
-				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%') 		]]>
+			<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	P_NAME LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 			</isEqual>
 			<isEqual prepend="AND" property="searchCnd" compareValue="1">
-				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%')  		]]>
-			</isEqual>	
+				<![CDATA[	S_ID LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+			</isEqual>
 	</select>
 	
 	<select id="EgovMngProductDAO.selectMngProductForm"  parameterClass="ProductMngVO" resultClass="ProductMngVO">
@@ -100,10 +100,10 @@
  	<insert id="EgovMngProductDAO.insertMngProductPro" parameterClass="ProductMngVO" >
  		<![CDATA[
  			INSERT INTO PRODUCT
-			(P_IDX,S_ID, P_NAME, P_PRICE, P_REGDATE, P_MODDATE, P_IMAGE, P_CONTENT, P_TAGE, P_SDATE, P_EDATE, P_STATUS, P_Q, A_ID)
+			(P_IDX,S_ID, P_NAME, P_PRICE, P_IMAGE, P_CONTENT, P_TAGE, P_SDATE, P_EDATE, P_Q, A_ID)
 			VALUES
 			((select max(P_IDX)+1
-			 FROM PRODUCT p), #s_id#, #p_name#, #p_price#, SYSDATE(), SYSDATE(), #p_image#, #p_content#, #p_tage#, #p_sdate#, #p_edate#, #p_status#, #p_q#, #a_id#)				
+			 FROM PRODUCT p), #s_id#, #p_name#, #p_price#, #p_image#, #p_content#, #p_tage#, #p_sdate#, #p_edate#, #p_q#, #a_id#)				
  		]]>
  	</insert>
  	
@@ -157,14 +157,16 @@
 			FROM
 				PRODUCT
 			WHERE P_STATUS = 'Y'
-			AND S_ID = #s_id#
 		]]>
 			<isEqual prepend="AND" property="searchCnd" compareValue="0">
 				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%') 		]]>
 			</isEqual>
+			<isNotNull prepend="AND" property="s_id" > <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	S_ID LIKE CONCAT ('%', #s_id#,'%') 		]]>
+			</isNotNull>
 		ORDER BY P_REGDATE DESC
-		LIMIT #recordCountPerPage# OFFSET
-		#firstIndex#
+		LIMIT 	#recordCountPerPage#
+		OFFSET	#firstIndex#
 	</select>
 	
 	<select id="EgovUserProductDAO.selectUserProductListCnt" parameterClass="ProductUserVO" resultClass="java.lang.Integer" >
@@ -173,14 +175,14 @@
 				COUNT(P_IDX)
 			FROM
 				PRODUCT
-			WHERE 1=1
+			WHERE P_STATUS = 'Y'
 		]]>
 			<isEqual prepend="AND" property="searchCnd" compareValue="0">
 				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%') 		]]>
 			</isEqual>
-			<isEqual prepend="AND" property="searchCnd" compareValue="1">
-				<![CDATA[	PRODUCT_NM LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
-			</isEqual>	
+			<isNotNull prepend="AND" property="s_id" > <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	S_ID LIKE CONCAT ('%', #s_id#,'%') 		]]>
+			</isNotNull>
 	</select>
 	
 	<select id="EgovUserProductDAO.selectUserProductForm"  parameterClass="ProductUserVO" resultClass="ProductUserVO">
@@ -206,10 +208,10 @@
 	<insert id="EgovUserProductDAO.insertUserProductPro" parameterClass="ProductUserVO" >
  		<![CDATA[
  			INSERT INTO PRODUCT
-			(P_IDX, S_ID, P_NAME, P_PRICE, P_REGDATE, P_MODDATE, P_IMAGE, P_CONTENT, P_TAGE, P_SDATE, P_EDATE, P_STATUS, P_Q)
+			(P_IDX, S_ID, P_NAME, P_PRICE, P_IMAGE, P_CONTENT, P_TAGE, P_SDATE, P_EDATE, P_Q, S_ID)
 			VALUES
 			((select max(P_IDX)+1
-			 FROM PRODUCT p), #s_id#, #p_name#, #p_price#, SYSDATE(), SYSDATE(), #p_image#, #p_content#, #p_tage#, #p_sdate#, #p_edate#, #p_status#, #p_q#)	
+			 FROM PRODUCT p), #s_id#, #p_name#, #p_price#, #p_image#, #p_content#, #p_tage#, #p_sdate#, #p_edate#, #p_q#, #s_id#)	
  		]]>
  	</insert>
  	

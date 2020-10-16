@@ -161,6 +161,38 @@
 				
 					
 				</div>
+	<div class="container">
+		<nav class="navbar navbar-expand-sm mx-auto" style="width:100%";>
+		<div class="flex-grow-2">
+			<a class="navbar-brand" href="/shop/user/main/EgovUserMain.do"><img
+				src="<c:url value='/file/logo.png'/>" width="120px" height="50px"></a>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item"></li>
+
+				</ul>
+			</div>
+		</div>
+		<div class="flex-grow-1 container">
+			<div class="row mx-auto">
+				<form class="form-inline"
+					action="/shop/user/product/EgovUserProductlist.do">
+					<input type="hidden" id="searchCnd" name="searchCnd" value="0">
+					<div class="input-group">
+						<input class="form-control" id="searchWrd" name="searchWrd"
+							type="text" placeholder="검색어를 입력하세요." style="width: 50%">
+						<div class="input-group-append">
+
+							<button class="btn btn-secondary" type="submit"
+								style="border: 1px black">
+								<i class="fa fa-search"></i>
+							</button>
+
+
+						</div>
+					</div>
+				</form>
+
 			</div>
 	</form>
 				

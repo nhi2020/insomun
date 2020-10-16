@@ -59,6 +59,7 @@ function updateUserBasketQty(index){
 					<th>상품수량</th>
 					<th>수정</th>
 					<th>삭제</th>
+					<th>구매</th>
 
 				</tr>
 				<c:forEach items="${list }" var="basketList" varStatus="status">
@@ -78,6 +79,9 @@ function updateUserBasketQty(index){
 						<td><input class="btn btn-danger" type="button" value="삭제"
 							form="frm${status.index }"
 							onclick="location.href='/shop/user/basket/deleteBasketUser.do?ba_idx=${basketList.ba_idx}'" /></td>
+						<td><input class="btn btn-primary" type="button" value="구매"
+							form="frm${status.index }"
+							onclick="location.href='/'" /></td>
 					</tr>
 					<form action="/shop/user/basket/updateBasketUserQty.do"
 						name="frm${status.index }" id="frm${status.index }">

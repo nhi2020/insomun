@@ -12,6 +12,9 @@
 	<typeAlias alias="SellerMngVO" type="egovframework.let.shop.mng.seller.service.impl.SellerMngVO" /> <!-- db에서 세터로 받아넣는 -->
 	<typeAlias alias="SellerUserVO" type="egovframework.let.shop.user.seller.service.impl.SellerUserVO" /> <!-- db에서 세터로 받아넣는 -->
 	<typeAlias alias="SellerMng" type="egovframework.let.shop.mng.seller.service.SellerMng" />
+	<typeAlias alias="ProductUserVO" type="egovframework.let.shop.user.product.service.impl.ProductUserVO"/>
+	<typeAlias alias="DealUserVO" type="egovframework.let.shop.user.deal.service.impl.DealUserVO" /> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias  alias="ReviewVO" type="egovframework.let.shop.user.review.service.ReviewUserVO"/>
 	
 	
 	
@@ -34,6 +37,21 @@
 		<result property="s_id" column="S_ID" columnIndex="1"/>
 	</resultMap>
 	
+	<resultMap id="ReviewList1" class="egovframework.let.shop.user.review.service.ReviewUserVO"> <!-- property는 vo값 -->
+		<result property="s_id" column="S_ID" columnIndex="1"/>
+		<result property="sns_idx" column="SNS_IDX" columnIndex="2"/>							<!-- collum 은 db의 컬럼값 -->
+		<result property="r_idx" column="R_IDX" columnIndex="3"/>			  					<!-- db의 컬럼 순서 -->
+		<result property="p_idx" column="P_IDX" columnIndex="4"/>
+		<result property="r_content" column="R_CONTENT" columnIndex="5"/>
+		<result property="r_regdate" column="R_REGDATE" columnIndex="6"/>
+		<result property="r_delyn" column="R_DELYN" columnIndex="7"/>
+		<result property="r_div" column="R_DIV" columnIndex="8"/>
+		<result property="sns_score" column="SNS_SCORE" columnIndex="9"/>
+		<result property="seller_score" column="SELLER_SCORE" columnIndex="10"/>
+		<result property="nickname" column="NICKNAME" columnIndex="11"/>
+		<result property="s_nickname" column="S_NICKNAME" columnIndex="12"/>
+		<result property="p_name" column="P_NAME" columnIndex="13"/>
+	</resultMap>
 	
 	<!-- <select id="EgovSellerDAO.selectSellerList1" parameterClass="SellerVO" resultMap="selleroList2" >
 	쿼리문 작성
@@ -444,4 +462,170 @@
 		FROM SELLER
 		WHERE s_id = #s_id#
 	</select>
+	
+	<select id="sellerSelectProductList" resultClass="ProductUserVO" parameterClass="ProductUserVO">
+	<!-- 쿼리문 작성 -->  
+			SELECT 
+				 P_IDX
+				,S_ID
+				,P_NAME
+				,P_PRICE
+				,P_REGDATE
+				,P_MODDATE
+				,P_IMAGE
+				,P_CONTENT
+				,P_TAGE
+				,P_SDATE
+				,P_EDATE
+				,P_STATUS
+				,A_ID
+				,P_Q
+			FROM
+				PRODUCT
+			WHERE 1=1
+			ORDER BY P_REGDATE DESC
+	</select>
+
+	<select id="sellerSelectDealList" parameterClass="DealUserVO" resultClass="DealUserVO">
+	SELECT
+		rn,
+		P_IDX,
+		P_NAME,
+		D_Q,
+		P_PRICE,
+		D_REGDATE,
+		S_NICKNAME,
+		D_ING,
+		D_EDATE,
+		D_IDX,
+		S_ID,
+		sns_idx,
+		userid,
+		nickname
+	FROM
+	(SELECT
+			rn,
+			A.P_IDX,
+			A.P_NAME,
+			A.D_Q,
+			A.P_PRICE,
+			A.D_REGDATE,
+			A.S_NICKNAME,
+			A.D_ING,
+			A.D_EDATE,
+			A.D_IDX,
+			A.S_ID,
+			A.sns_idx,
+			B.userid,
+			B.nickname
+		FROM
+		(SELECT
+			rn,
+			A.P_IDX,
+			A.P_NAME,
+			A.D_Q,
+			A.P_PRICE,
+			A.D_REGDATE,
+			B.S_NICKNAME,
+			A.D_ING,
+			A.D_EDATE,
+			A.D_IDX,
+			A.S_ID,
+			A.sns_idx
+		FROM
+			(SELECT
+				@ROWNUM:=@ROWNUM+1 AS rn,
+				A.P_IDX,
+				B.P_NAME,
+				A.D_Q,
+				B.P_PRICE,
+				A.D_REGDATE,
+				A.D_ING,
+				A.D_EDATE,
+				A.D_IDX,
+				A.S_ID,
+				A.sns_idx
+			FROM DEAL A, PRODUCT B, (SELECT @ROWNUM:=0) R
+			WHERE 1 = 1
+			AND A.P_IDX = B.P_IDX) A, SELLER B
+		WHERE 1 = 1
+		AND A.S_ID = B.S_ID) A, SNSPROFILE B
+	WHERE 1 = 1
+	AND A.sns_idx = B.sns_idx) A
+	WHERE 1 = 1		
+			ORDER BY RN ASC
+	</select>
+	
+		<select id="sellerSelectReviewListt" parameterClass="ReviewVO" resultMap="ReviewList1" >
+			SELECT
+				S_ID
+				, SNS_IDX
+				, R_IDX 
+				, P_IDX
+				, R_CONTENT
+				, R_REGDATE
+				, R_DELYN
+				, R_DIV
+				, SNS_SCORE
+				, SELLER_SCORE
+				, NICKNAME
+				, S_NICKNAME
+				, P_NAME
+			FROM(
+				SELECT
+						A.S_ID
+						, A.SNS_IDX
+						, A.R_IDX 
+						, A.P_IDX
+						, A.R_CONTENT
+						, A.R_REGDATE
+						, A.R_DELYN
+						, A.R_DIV
+						, A.SNS_SCORE
+						, A.SELLER_SCORE
+						, A.NICKNAME
+						, A.S_NICKNAME
+						, B.P_NAME
+				FROM(
+					SELECT 
+						A.S_ID
+						, A.SNS_IDX
+						, A.R_IDX 
+						, A.P_IDX
+						, A.R_CONTENT
+						, A.R_REGDATE
+						, A.R_DELYN
+						, A.R_DIV
+						, A.SNS_SCORE
+						, A.SELLER_SCORE
+						, A.NICKNAME
+						, B.S_NICKNAME
+					FROM(	
+						SELECT 
+							A.S_ID
+							, A.SNS_IDX
+							, A.R_IDX 
+							, A.P_IDX
+							, A.R_CONTENT
+							, A.R_REGDATE
+							, A.R_DELYN
+							, A.R_DIV
+							, A.SNS_SCORE
+							, A.SELLER_SCORE
+							, B.NICKNAME
+						FROM REVIEW A, SNSPROFILE B
+						WHERE 1=1
+						AND A.R_DELYN='N'
+						AND A.SNS_IDX=B.SNS_IDX
+					) A, SELLER B
+					WHERE 1=1
+					AND A.S_ID=B.S_ID
+				) A, PRODUCT B
+				WHERE 1=1
+				AND A.P_IDX=B.P_IDX
+			) A WHERE 1=1
+			ORDER BY R_REGDATE DESC
+	</select>
+	
+	
 </sqlMap>

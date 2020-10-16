@@ -86,12 +86,16 @@
 		</div>
 	</c:if>
 	
-	<form action="/shop/mng/product/EgovMngProductDelete.do">
+	<form name="frm" action="/shop/mng/product/EgovMngProductDelete.do">
 	<p/>
 	<div align="center">
 		<input type="button" value="등록" onclick="location.href='/shop/mng/product/EgovMngProductInsertForm.do'" class="btn btn-primary">
 		&nbsp; &nbsp; 
 		<input type="submit" value="삭제" class="btn btn-danger">
+		<input type="hidden" name="p_idx">
+		<input type="hidden" name="pageIndex" value="${searchVO.pageIndex }">
+	    <input type="hidden" name="searchCnd" value="${searchVO.searchCnd }">
+	    <input type="hidden" name="searchWrd" value="${searchVO.searchWrd }">
 	</div>
 		<p/>
 		<div class="container-fluid" >
@@ -99,17 +103,19 @@
 				<div class="row">
 					<c:forEach var="product_list" items="${list}">
 						<div class="col-3 mt-3">
-						<img src="<c:url value='/'/>file/${product_list.p_image}" width="270" height="270" class="rounded"/> 
+						<img class="img-fluid" src="<c:url value='/'/>file/${product_list.p_image}" width="200" height="200" class="rounded"/> 
 							<span> <input type="checkbox" name="check" id="check" value="${product_list.p_idx }"> 
-							상품명 : ${product_list.p_name }
+							<b> ${product_list.p_name }</b>
 							</span> <br /> 
-							<span>판매자: ${product_list.s_id }</span> <br /> 
 							<span>가격 : 
-							<fmt:formatNumber value="${product_list.p_price }" pattern="##,###"></fmt:formatNumber></span><br /> 
+							<fmt:formatNumber value="${product_list.p_price }" pattern="##,###"></fmt:formatNumber>원</span><br /> 
+							<span>판매자: ${product_list.s_id }</span> <br /> 
 							<span>상태: ${product_list.p_status }</span> 
-							<p/>	
+							<p/>
+							<div>
 							<input type="button" value="수정" class="btn btn-warning"
-							onclick="location.href='/shop/mng/product/EgovMngProductUpdateForm.do?p_idx=${product_list.p_idx}'">							
+							onclick="return2(${product_list.p_idx });">
+							</div>								
 						</div>
 					</c:forEach>
 				</div>
@@ -147,9 +153,10 @@
 	<%@ include file="../../inc/EgovShopBottom.jsp"%>
 </body>
 <script>
-function linkPage(pageIndex){
-	document.forms["frmPage"]["pageIndex"].value=pageIndex;
-	document.forms["frmPage"].submit();
+function return2(p_idx){
+	document.forms["frm"].action = "/shop/mng/product/EgovMngProductUpdateForm.do"
+	document.forms["frm"]["p_idx"].value = p_idx;
+	document.forms["frm"].submit();
 	return true;
 }
 </script>

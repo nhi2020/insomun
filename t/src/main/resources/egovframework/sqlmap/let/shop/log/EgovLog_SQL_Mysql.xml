@@ -32,7 +32,7 @@
 				 L.LOG_DATE
 			FROM SNSPROFILE S, MLOG L
 			WHERE 1=1
-				AND S.sns_idx = L.SNS_IDX		
+				AND S.sns_idx = L.SNS_IDX
 		]]>
 			<isEqual prepend="AND" property="searchCnd" compareValue="0">
 				<![CDATA[	S_ID LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
@@ -40,9 +40,6 @@
 			<isEqual prepend="AND" property="searchCnd" compareValue="1">
 				<![CDATA[	L.SNS_IDX LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
 			</isEqual>
-			<!-- <isEqual prepend="AND" property="searchCnd" compareValue="2">
-				<![CDATA[	SNS_IDX LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
-			</isEqual> -->
 			ORDER BY L.LOG_DATE DESC
 			LIMIT #recordCountPerPage# OFFSET #firstIndex#	
 	</select>

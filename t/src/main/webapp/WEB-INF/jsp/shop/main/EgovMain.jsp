@@ -25,8 +25,7 @@
 
 		<img src="<c:url value='/images/shop/main/main.jpg'/>" width=100%
 			height="450">
-		<div
-			style="left: 350px; width: 450px; bottom: 140px; font-size: 1.8em; font-weight: bold; position: absolute;">
+		<div class="centered">
 			<h1>입소문넷</h1>
 			믿음직한 농산품 직거래 <p>  
 			입소문넷 입니다.
@@ -34,18 +33,19 @@
 		</div>
 	</div><br>
 
-<div class="container">
-			<h3>추천 상품</h3>
+		<div class="container">
+			<h3 style="text-align: center;">추천 상품</h3>
 			<div class = "mx-auto" style="height: auto; width: 100%; border-top:2px solid #cd3c3c;">
 			<div class="container">
 			<div class="row" style="background-color: #fff8f8; padding: 20px">
 				<c:forEach var="productuser_list" items="${list}">
 					<div class="col-3">
 						<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
-						<img src="<c:url value='/'/>file/${productuser_list.p_image}" width="200" height="200" class="rounded"/> </a><br>
+						<img class="img-fluid" src="<c:url value='/'/>file/${productuser_list.p_image}" width="200" height="200" class="rounded"/> </a>
 						<input type="hidden" value="${productuser_list.p_idx }">
-							 <span style="">${productuser_list.p_name }</span> 
-							<br/> <span><fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber>원</span><br>
+							<br/><span><b>${productuser_list.p_name }</b></span> 
+							<br/> <span><b><fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber>원</b></span>
+				
 					</div>
 
 				</c:forEach>

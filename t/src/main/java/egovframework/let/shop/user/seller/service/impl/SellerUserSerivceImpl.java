@@ -7,7 +7,11 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import egovframework.let.shop.mng.admin.service.impl.AdminVO;
+import egovframework.let.shop.mng.product.service.impl.ProductMngVO;
 import egovframework.let.shop.mng.seller.service.impl.SellerMngVO;
+import egovframework.let.shop.user.deal.service.impl.DealUserVO;
+import egovframework.let.shop.user.product.service.impl.ProductUserVO;
+import egovframework.let.shop.user.review.service.ReviewUserVO;
 import egovframework.let.shop.user.seller.service.SellerUserService;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
@@ -153,6 +157,29 @@ public class SellerUserSerivceImpl extends EgovAbstractServiceImpl implements Se
 	public int sellerUserUpdate(SellerUserVO vo) {
 		int result = SellerDAO.sellerUserUpdate(vo);
 		return result;
+	}
+
+
+	@Override
+	public List<ProductUserVO> sellerSelectProductList(ProductUserVO vo3) {
+		List<ProductUserVO> list = SellerDAO.sellerSelectProductList(vo3);
+		return list;
+	}
+
+
+
+	@Override
+	public List<DealUserVO> sellerSelectDealList(DealUserVO vo2) {
+		List<DealUserVO> list = SellerDAO.sellerSelectDealList(vo2);
+		return list;
+	}
+
+
+
+	@Override
+	public List<ReviewUserVO> sellerSelectReviewList(ReviewUserVO vo1) {
+		List<ReviewUserVO> list = SellerDAO.sellerSelectReviewList(vo1);
+		return list;
 	}
 
 
