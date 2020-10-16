@@ -337,6 +337,7 @@ public class ProductUserController {
 		    System.out.println("EgovBuyerProduct"+vo);
 		    vo.setP_content(vo.getP_content().replaceAll("\r\n", "<br>"));
 		    model.addAttribute("ProductUserVO",vo);
+		    
 		    int num = reviewVO.getFirstIndex();
 		    int result = num-1;
 		    reviewVO.setFirstIndex(result);

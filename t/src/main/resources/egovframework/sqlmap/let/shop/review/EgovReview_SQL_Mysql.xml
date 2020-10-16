@@ -94,8 +94,8 @@
 				) A, PRODUCT B
 				WHERE 1=1
 				AND A.P_IDX=B.P_IDX
-			) A WHERE 1=1
-		]]>	
+			) A WHERE R_DIV = 2
+		]]>					<!-- 2는 구매자 -->
 			<isNotNull property="p_idx">
 				<isNotEmpty property="p_idx">
 					<isNotEqual prepend="AND" property="p_idx" compareValue="0">
@@ -111,6 +111,9 @@
 			LIMIT #recordCountPerPage# OFFSET #firstIndex#
 		]]>					
 	</select>
+	<!-- 1는 판매자 -->
+	
+	
 	<select id="EgovReviewDAO.selectReviewAvg" parameterClass="ReviewVO" resultClass="java.lang.Integer" >
 		<![CDATA[
 			SELECT 
@@ -119,6 +122,8 @@
 				REVIEW
 			WHERE
 				P_IDX = #p_idx#
+			AND
+				R_DELYN = 'N'
 		]]>					
 	</select>
 	<update id="EgovReviewDAO.updateUserReview" parameterClass="ReviewVO">
