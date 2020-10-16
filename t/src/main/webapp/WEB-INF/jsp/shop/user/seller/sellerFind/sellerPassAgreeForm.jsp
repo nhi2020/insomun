@@ -151,5 +151,6 @@ function fn_idChk(){
 
 </div>
 </form>
+<%@ include file="../../../inc/EgovShopBottom.jsp"%>	
 </body>
 </html>

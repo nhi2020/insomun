@@ -149,9 +149,9 @@
 	    </ul>
 	</div>
 </div>
-	<div class="flex-grow-1 container">
-	<div class="row" style="padding-left: 35%;">
-		<form class="form-inline" action="/shop/user/product/EgovUserProductlist.do">
+	<div class="flex-grow-1">
+	<div class="row container"style="margin-left: 180px">
+	<form class="form-inline" action="/shop/user/product/EgovUserProductlist.do">
 			<input type="hidden" id="searchCnd" name="searchCnd" value="0">
 	  		<div class="input-group">
 				<input class="form-control" id="searchWrd" name="searchWrd" type="text" placeholder="검색어를 입력하세요." style="width: 400px">

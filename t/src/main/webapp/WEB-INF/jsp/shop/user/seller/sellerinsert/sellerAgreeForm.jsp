@@ -73,5 +73,6 @@
 	 <input class="btn btn-secondary" type="submit" id = "back" name= "back" onclick="check1();" value="취소">
 	  <input class="btn btn-secondary" type="submit" id = "next" name= "next" onclick="check();" value="다음">
 </div>
+<%@ include file="../../../inc/EgovShopBottom.jsp"%>
 </body>
 </html>

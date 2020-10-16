@@ -34,7 +34,7 @@
 		</div>
 	</div><br>
 
-		<div class="container">
+<div class="container">
 			<h3>추천 상품</h3>
 			<div class = "mx-auto" style="height: auto; width: 100%; border-top:2px solid #cd3c3c;">
 			<div class="container">
@@ -52,7 +52,7 @@
 			</div>
 			</div>
 		</div>
-	</div><Br><Br>
-	<%@ include file="../inc/EgovShopBottom.jsp"%>
+</div><br><Br>
+<%@ include file="../inc/EgovShopBottom.jsp"%>
 </body>
 </html>
