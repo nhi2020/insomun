@@ -135,6 +135,14 @@ font-size: 20px; color: #616A6B;}
 				</div>	
 				</c:forEach>
 			</div>
+			<div class="row">
+				<div id="paging_div" class="mx-auto">
+					<ul class="paging_align">
+					<ui:pagination paginationInfo="${paginationInfo}" type="image"
+									jsFunction="linkPage" />
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </form>
@@ -157,14 +165,6 @@ font-size: 20px; color: #616A6B;}
 					 
 					</form>
 	</div>
-				<div class="row">
-					<div id="paging_div" class="mx-auto">
-						<ul class="paging_align">
-							<ui:pagination paginationInfo="${paginationInfo}" type="image"
-								jsFunction="linkPage" />
-						</ul>
-					</div>
-				</div>
 </div>
 </c:if>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
