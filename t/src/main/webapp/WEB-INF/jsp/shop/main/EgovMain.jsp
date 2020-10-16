@@ -10,7 +10,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 <title>입소문넷</title>
+<style type="text/css">
+.price {font-family: 'Noto Sans KR', sans-serif;
+font-size: 18px;}
+.name {font-family: 'Nanum Gothic Coding', monospace;
+font-size: 20px; color: #616A6B;}
+</style>
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js"
 	charset="utf-8"></script>
@@ -43,8 +51,8 @@
 						<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
 						<img class="img-fluid" src="<c:url value='/'/>file/${productuser_list.p_image}" width="200" height="200" class="rounded"/> </a>
 						<input type="hidden" value="${productuser_list.p_idx }">
-							<br/><span><b>${productuser_list.p_name }</b></span> 
-							<br/> <span><b><fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber>원</b></span>
+							<br/><span><b class="name">${productuser_list.p_name }</b></span> 
+							<br/> <span><b class="price"><fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber>원</b></span>
 				
 					</div>
 

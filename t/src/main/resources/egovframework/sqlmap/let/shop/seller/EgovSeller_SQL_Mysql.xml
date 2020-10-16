@@ -483,6 +483,7 @@
 			FROM
 				PRODUCT
 			WHERE 1=1
+			AND S_ID = #s_id#
 			ORDER BY P_REGDATE DESC
 	</select>
 
@@ -553,6 +554,7 @@
 	WHERE 1 = 1
 	AND A.sns_idx = B.sns_idx) A
 	WHERE 1 = 1		
+	AND S_ID = #s_id#
 			ORDER BY RN ASC
 	</select>
 	
@@ -624,6 +626,7 @@
 				WHERE 1=1
 				AND A.P_IDX=B.P_IDX
 			) A WHERE 1=1
+			AND S_ID = #s_id#
 			ORDER BY R_REGDATE DESC
 	</select>
 	

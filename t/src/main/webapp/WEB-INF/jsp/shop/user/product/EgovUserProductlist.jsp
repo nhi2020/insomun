@@ -144,6 +144,7 @@
 					 
 					</form>
 	</div>
+</c:if>
 				<div class="row">
 					<div id="paging_div" class="mx-auto">
 						<ul class="paging_align">
@@ -152,8 +153,7 @@
 						</ul>
 					</div>
 				</div>
-</div>
-</c:if>
+
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 <script>
