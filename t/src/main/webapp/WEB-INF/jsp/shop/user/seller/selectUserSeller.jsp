@@ -102,9 +102,12 @@ p {
 					begin="0" end="4">
 					<div class="mt-3">
 						<li><img src="<c:url value='/'/>file/${product_list.p_image}"
-							width="30" height="30" class="rounded" /> ${product_list.p_name }
-							판매자: ${product_list.s_id } 가격 : <fmt:formatNumber
-								value="${product_list.p_price }" pattern="##,###"></fmt:formatNumber>
+							width="30" height="30" class="rounded" /> 
+							<span class="font-weight-bold">
+							"${product_list.p_name }"</span>
+							 <span class="font-weight-normal" style="color: red"> 
+							<span class="font-weight-normal" style="color: #59a3d9;"> (${product_list.s_id }) </span> 
+							 <fmt:formatNumber value="${product_list.p_price }" pattern="##,###"></fmt:formatNumber>원</span>
 					</div>
 				</c:forEach>
 			<div class="m-3"
@@ -125,11 +128,11 @@ p {
 				<c:forEach items="${dealUserlist }" var="list" varStatus="status"
 					begin="0" end="4">
 					<div class="mt-3">
-							<li>${list.p_name}
+							<li><span class="font-weight-bold">"${list.p_name}"</span>
 							${list.d_q }개
-							${list.p_price * list.d_q  }
-							${list.d_regdate }
-							${list.nickname }
+							 <span class="font-weight-normal" style="color: red">${list.p_price * list.d_q  }</span>
+							<span class="font-weight-normal" style="color: #59a3d9;">(${list.nickname })</span>
+							<span class="font-weight-normal" style="color: gray; font-style: oblique;">
 						<c:choose>
 							<c:when test="${list.d_ing eq '1'}"> 신청 </c:when>
 							<c:when test="${list.d_ing eq '2'}"> 수락 </c:when>
@@ -138,6 +141,8 @@ p {
 							<c:when test="${list.d_ing eq '5'}"> 구매자 거래 취소 </c:when>
 							<c:when test="${list.d_ing eq '6'}"> 판매자 거래 취소 </c:when>
 						</c:choose>
+							</span>
+							${list.d_regdate }
 					</div>
 				</c:forEach>
 			<div class="m-3"
@@ -156,20 +161,19 @@ p {
 			<p>
 			<p></p>
 			<c:forEach items="${list1}" var="result" begin="0" end="2">
+				<li>
 				<c:choose>
 					<c:when test="${result.r_div eq '1'}">
-						<span class="font-weight-normal" style="color: red">판매자</span>
-						<br>
-                            ${result.nickname}&nbsp;<span
-							class="font-weight-normal">${result.r_regdate}&nbsp;판매자 점수
-							:${result.sns_score}</span>
+						<span class="font-weight-normal" style="color: #59a3d9;">구매자</span>
+                            <span class="font-weight-normal" style="color: #59a3d9;">(${result.nickname})</span>
+                            <span class="font-weight-normal" style="color: red">구매자 점수 : ${result.sns_score}</span>
+                            <span class="font-weight-normal">${result.r_regdate}</span>
 					</c:when>
 					<c:otherwise>
-						<span class="font-weight-normal" style="color: red">구매자</span>
-						<br>
-                            ${result.s_nickname}&nbsp;<span
-							class="font-weight-normal">${result.r_regdate}&nbsp;구매자 점수
-							:${result.seller_score}</span>
+						<span class="font-weight-normal" style="color: #59a3d9;">판매자</span>
+                            <span class="font-weight-normal" style="color: #59a3d9;">(${result.s_nickname})</span>
+							<span class="font-weight-normal" style="color: red">판매자 점수 : ${result.seller_score}</span>
+                            <span class="font-weight-normal">${result.r_regdate}</span>
 					</c:otherwise>
 				</c:choose>
 				<div id="r_view${result.r_idx}" style="display: none;">
@@ -178,7 +182,7 @@ p {
 					<a href="javascript:updateUserReview('${result.r_idx}');">저장</a>
 				</div>
 				<div id="r_view2${result.r_idx}" style="display: block;">
-					<pre>${result.r_content}</pre>
+					<span class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"${result.r_content}"</span>
 				</div>
 			</c:forEach>
 			<!-- <div class="m-3" style="text-align: right; color: #275291;">
