@@ -43,7 +43,6 @@ td {
 
 </head>
 <body>
-	<a onclick="next()">클릭을 하여주세요 next function 을 실행시킵니다</a>
 	<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopTop.jsp"%>
 	<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopHeader.jsp"%>
 	<div class="container text-center">

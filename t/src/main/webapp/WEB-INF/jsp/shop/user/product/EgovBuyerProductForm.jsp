@@ -113,7 +113,7 @@
 		document.frm.submit();
 	}
 </script>
-	<c:if test="${sessionScope.status == 2 }">
+	<c:if test="${sessionScope.status == 2 }"><!-- 판매자 -->
 		<p class="h-25"/>
 			<form action="/shop/user/review/insertUserReview.do" name="frm2" method="post" enctype="multipart/form-data">
 			<div class="container text-center">
@@ -163,10 +163,10 @@
 						<pre>${result.r_content}</pre>
 					</div>
 					<div class="float-right">
-						<c:if test="${'1' eq result.sns_idx}">
+						<c:if test="${sessionScope.sns_idx eq result.sns_idx}">
 							<a href="javascript:displayView('${result.r_idx}');"><span style="color: gray;">수정</span></a>
 						</c:if>
-						<c:if test="${'1' eq result.sns_idx}">
+						<c:if test="${sessionScope.sns_idx eq result.sns_idx}">
 							<a href="javascript:delUserReview('${result.r_idx}');"><span style="color: gray;">삭제</span></a>
 						</c:if>
 					</div>
@@ -180,15 +180,15 @@
 							</ul> --%>
 		</form>
 		</c:if>
-		<c:if test="${sessionScope.status == 1 }">
+		<c:if test="${sessionScope.status == 1 }"><!-- 구매자 -->
 			<p class="h-25"/>
 			<form action="/shop/user/review/insertUserReview.do" name="frm2" method="post" enctype="multipart/form-data">
 			<div class="container text-center">
 				<div class="row justify-content-center">
-					<input type="hidden" id="s_id" name="s_id" value="${ProductUserVO.s_id }">	<!-- 상품 상세페이지가 나오면  EL표기법으로 값가져오기. -->
-					<input type="hidden" id="sns_idx" name="sns_idx" value=" ">
+					<%-- <input type="hidden" id="s_id" name="s_id" value="${ProductUserVO.s_id }"> --%>	<!-- 상품 상세페이지가 나오면  EL표기법으로 값가져오기. -->
+					<input type="hidden" id="sns_idx" name="sns_idx" value="${sessionScope.sns_idx}">
 					<input type="hidden" id="p_idx" name="p_idx" value="${ProductUserVO.p_idx }">
-					<input type="hidden" id="r_div" name="r_div" value="1">
+					<input type="hidden" id="r_div" name="r_div" value="2">
 					<textarea rows="3" cols="80" name="r_content" id="r_content"></textarea>
 					<input type="file" name="file" id="file">
 					<input type="submit" value="저장" class="btn btn-primary">
@@ -213,7 +213,7 @@
 				<div class="col-md-8 border border-1 p-3">
 					<p class="font-weight-bold">
 						<c:choose>
-				          	<c:when test="${result.r_div eq '1'}">
+				          	<c:when test="${result.r_div eq '2'}">
 				          	<span class="font-weight-normal" style="color: red">판매자</span><br>
 				          		${result.nickname}&nbsp;<span class="font-weight-normal">${result.r_regdate}&nbsp;판매자 점수 :${result.sns_score}</span>
 				          	</c:when>
@@ -231,10 +231,10 @@
 						<pre>${result.r_content}</pre>
 					</div>
 					<div class="float-right">
-						<c:if test="${'1' eq result.sns_idx}">
+						<c:if test="${sessionScope.sns_idx eq result.sns_idx}">
 							<a href="javascript:displayView('${result.r_idx}');"><span style="color: gray;">수정</span></a>
 						</c:if>
-						<c:if test="${'1' eq result.sns_idx}">
+						<c:if test="${sessionScope.sns_idx eq result.sns_idx}">
 							<a href="javascript:delUserReview('${result.r_idx}');"><span style="color: gray;">삭제</span></a>
 						</c:if>
 					</div>
@@ -248,12 +248,37 @@
 							</ul> --%>
 		</form>
 		</c:if>
-		<div class="container text-center">
-				<div class="row justify-content-center">
-		<c:if test="${sessionScope.status eq 0}">
-			<h2>로그인하세요.</h2>
+<div class="container text-center">
+		<div class="row justify-content-center">
+<c:if test="${sessionScope.status eq null}">
+	<c:forEach items="${list}" var="result">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-8 border border-1 p-3">
+					<p class="font-weight-bold"/>
+						<h3>리뷰 평균 평점 : ${AVG }</h3>
+				          	<div class="container">
+								<p class="font-weight-bold">
+								<div class="col-md-8 border border-1 p-3">
+							          	<span class="font-weight-normal" style="color: red">판매자</span><br>
+							          		${result.nickname}&nbsp;<span class="font-weight-normal">${result.r_regdate}&nbsp;판매자 점수 :${result.sns_score}</span>
+							    </div>
+							    <div class="col-md-8 border border-1 p-3">
+								       	<span class="font-weight-normal" style="color: red">구매자</span><br>
+								       		<div class="col-md-8 border border-1 p-3">${result.s_nickname}&nbsp;</div><span class="font-weight-normal">${result.r_regdate}&nbsp;구매자 점수 :${result.seller_score}</span>
+								 </div>      		
+						        </p>
+						        <div class="col-md-8 border border-1 p-3">
+									<pre>${result.r_content}</pre>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
 		</c:if>
-		</div></div>
+	</div>
+</div>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>

@@ -399,13 +399,16 @@ public class SellerUserController {
 	      vo.setS_id(sessionS_id);
 	      vo = SellerService.selectUserSeller(vo);
 	      
-
+	        vo3.setS_id(sessionS_id);
 	      	List<ProductUserVO> list = SellerService.sellerSelectProductList(vo3);
 			model.addAttribute("list", list);
-
+			
+			vo2.setS_id(sessionS_id);
 			List<DealUserVO> list1 = SellerService.sellerSelectDealList(vo2);
+			System.out.println("list1->" + list1.size());
 			model.addAttribute("dealUserlist", list1);
 			
+			vo1.setS_id(sessionS_id);
 			List<ReviewUserVO> list2 = SellerService.sellerSelectReviewList(vo1);
 			model.addAttribute("list1", list2);
 			
