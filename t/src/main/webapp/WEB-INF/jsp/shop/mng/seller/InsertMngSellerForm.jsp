@@ -242,7 +242,6 @@ input[type="file"] {
 <body>
 	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
-<p><p><p><p><p>
 
 <div class="container">
 		<div class="row">
@@ -334,8 +333,9 @@ input[type="file"] {
 						<td><input type="text" name="s_account" id="s_account" placeholder="계좌번호"></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input class="btn btn-secondary" type="submit" id="submit" value="등록" /> 
-						<input type="button" class="btn btn-secondary" value="목록으로" onclick="location.href='/shop/mng/seller/listMngSeller.do'" />
+						<th></th>
+						<td><input class="btn btn-primary" type="submit" id="submit" value="등록" /> 
+						<input type="button" class="btn btn-info" value="목록" onclick="location.href='/shop/mng/seller/listMngSeller.do'" />
 						</td>
 					</tr>
 				</table>

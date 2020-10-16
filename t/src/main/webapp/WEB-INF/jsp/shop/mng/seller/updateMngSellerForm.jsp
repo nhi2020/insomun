@@ -125,7 +125,7 @@ input[type="file"] {
 <body>
 	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
-<p><p><p><p><p>
+
 	
 	<div class="container">
 		<div class="row">
@@ -225,9 +225,10 @@ input[type="file"] {
 						<td>${SellerVO.s_regdate }</td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="submit" class="btn btn-secondary"  value="수정" /> 
-						<input type="button" value="목록" class="btn btn-secondary"  onclick="location.href='/shop/mng/seller/listMngSeller.do'" />
-						<input type="button" value="강제 로그인" class="btn btn-secondary" onclick="location.href='/shop/user/seller/EgovsellerLoginPro.do?id=${SellerVO.s_id}&passwd=${SellerVO.s_pass }'">
+						<th></th>
+						<td><input type="submit" class="btn btn-primary"  value="수정" /> 
+						<input type="button" value="목록" class="btn btn-info"  onclick="location.href='/shop/mng/seller/listMngSeller.do'" />
+						<input type="button" value="로그인" class="btn btn-secondary" onclick="location.href='/shop/user/seller/EgovsellerLoginPro.do?id=${SellerVO.s_id}&passwd=${SellerVO.s_pass }'">
 						</td>
 					</tr>
 				</table>
