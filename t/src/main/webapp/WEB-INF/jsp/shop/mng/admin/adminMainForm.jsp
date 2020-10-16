@@ -45,6 +45,8 @@
 		onclick="location.href='/shop/mng/review.do'">관리자리뷰 관리</button>
 <button class="m-3 btn btn-outline-secondary" 
 		onclick="location.href='/shop/mng/notice/listMngNotice.do'">공지사항 관리</button>
+<button class="m-3 btn btn-outline-secondary" 
+		onclick="location.href='/shop/mng/deal/dealMngList.do'">거래 관리</button>
 
 			</div>
 			<div class="col-4"></div>
