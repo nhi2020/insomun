@@ -86,7 +86,8 @@
 					</tr>
 					<tr>
 						<th>제품 내용</th>
-						<td width="400px;">${ProductUserVO.p_content }</td>
+						<td width="400px;">
+						${ProductUserVO.p_content }</td>
 					</tr>
 				</table>
 				

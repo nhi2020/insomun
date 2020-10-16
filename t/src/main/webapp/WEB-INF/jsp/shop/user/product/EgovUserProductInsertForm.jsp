@@ -68,6 +68,7 @@ input[type="file"] {
 			<form class="mx-auto" action="/shop/user/product/EgovUserProductInsertPro.do" method="post" enctype="multipart/form-data">
 						<p>
 					<input type="hidden" name="s_id" id="s_id">
+					<input type="hidden" name="p_status" value="Y">
 					<table class="table" style="text-align: left">
 					<tr>
 						<th></th>
@@ -94,7 +95,7 @@ input[type="file"] {
 					<tr>
 						<th>제품 내용</th>
 						<td>
-						<textarea rows="5" cols="50" name="p_content" id="p_content"></textarea>
+						<textarea rows="7" cols="50" name="p_content" id="p_content"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -113,12 +114,6 @@ input[type="file"] {
 						<th>판매종료일</th>
 						<td>
 						<input type="date" name="p_edate" id="p_edate" />
-						</td>
-					</tr>
-					<tr>
-						<th>상태</th>
-						<td>
-						<input type="text" name="p_status" id="p_status" />
 						</td>
 					</tr>
 					<tr>

@@ -265,7 +265,7 @@ public class ProductUserController {
 		String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
 		vo.setP_image(savedName);
 		//
-		
+		System.out.println(vo.getP_content());
 		String result = userProductService.insertUserProductPro(vo);
 		
 		if(result != "" && result != null) {
@@ -332,8 +332,10 @@ public class ProductUserController {
 	
 	@RequestMapping(value = "/shop/user/product/EgovBuyerProductForm")
 	public String EgovBuyerProduct(ProductUserVO vo, ModelMap model,ReviewUserVO reviewVO) throws Exception {
+		
 		 vo = userProductService.selectBuyerProduct(vo);
 		    System.out.println("EgovBuyerProduct"+vo);
+		    vo.setP_content(vo.getP_content().replaceAll("\r\n", "<br>"));
 		    model.addAttribute("ProductUserVO",vo);
 		    int num = reviewVO.getFirstIndex();
 		    int result = num-1;
