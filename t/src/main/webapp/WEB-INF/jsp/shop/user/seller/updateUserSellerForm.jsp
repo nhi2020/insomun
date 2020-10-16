@@ -211,8 +211,8 @@ input[type="file"] {
 					</tr>
 					<tr>
 						<th></th>
-						<td colspan="2"><input type="submit" class="btn btn-secondary"  value="수정" />
-						<input type="button" value="목록으로" class="btn btn-secondary"  onclick="location.href='/shop/user/seller/selectUserSeller.do'" /></td>
+						<td colspan="2"><input type="submit" class="btn btn-primary"  value="수정" />
+						<input type="button" value="목록" class="btn btn-info"  onclick="location.href='/shop/user/seller/selectUserSeller.do'" /></td>
 				</table>
 			</form>
 		</div>

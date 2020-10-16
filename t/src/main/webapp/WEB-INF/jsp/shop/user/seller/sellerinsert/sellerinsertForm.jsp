@@ -602,8 +602,8 @@ input[type="date"]:valid::before {display:none}
 							<div class="join_row">
 							<select class="form-control" name="s_account_n">
 								<option value="null">은행선택</option>
-								<option value="신한은행(구)">신한은행(구)</option>
-								<option value="신한은행(신)">신한은행(신)</option>
+								<option value="농협은행">농협은행</option>
+								<option value="신한은행">신한은행</option>
 								<option value="국민은행">국민은행</option>
 								<option value="우리은행">우리은행</option>
 								<option value="기업은행">기업은행</option>
