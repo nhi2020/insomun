@@ -114,8 +114,8 @@
 		document.frm.submit();
 	}
 </script>
-	<c:choose>
-		<c:when test="${r_div eq 2 }">
+	<%-- <c:choose>
+		<c:when test="${r_div eq 2 }"> --%>
 		<p class="h-25"/>
 			<form action="/shop/user/review/insertUserReview.do" name="frm2" method="post" enctype="multipart/form-data">
 			<div class="container text-center">
@@ -182,9 +182,9 @@
 									jsFunction="linkPage" />
 							</ul> --%>
 		</form>
-		</c:when>
-		<c:otherwise>
-			<c:when test="${r_div eq 1 }">
+		<%-- </c:when> --%>
+		<%-- <c:otherwise>
+			<c:when test="${r_div eq 1 }"> --%>
 			<p class="h-25"/>
 			<form action="/shop/user/review/insertUserReview.do" name="frm2" method="post" enctype="multipart/form-data">
 			<div class="container text-center">
@@ -251,9 +251,9 @@
 									jsFunction="linkPage" />
 							</ul> --%>
 		</form>
-		</c:when>
+		<%-- </c:when>
 		</c:otherwise>
-</c:choose>
+</c:choose> --%>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>
