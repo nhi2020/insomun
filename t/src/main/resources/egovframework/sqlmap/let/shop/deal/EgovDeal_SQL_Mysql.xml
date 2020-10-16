@@ -480,18 +480,56 @@ SELECT
 	
 	<!-- 판매자  -->
 	<select id="ListCntDealUserSeller" parameterClass="DealUserVO" resultClass="int">
-		SELECT 
-			COUNT(*),
-			d.s_id
-		FROM DEAL d, SNSPROFILE s
-		WHERE d.sns_idx = s.sns_idx
-		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
-			<![CDATA[	nickname LIKE CONCAT ('%' #searchWrd# '%') 	]]>
+	SELECT
+		COUNT(*)
+	FROM
+	(SELECT
+			a.sns_idx,
+			a.s_id,
+			a.p_idx,
+			a.nickname,
+			p.p_name
+		FROM
+			(SELECT 
+				a.sns_idx,
+				a.s_id,
+				a.p_idx,
+				s.nickname
+			FROM DEAL a, SNSPROFILE s
+			WHERE 1 = 1
+			AND a.sns_idx = s.sns_idx
+			AND a.s_id = #s_id#
+
+		<isEqual prepend="AND" property="sortD_ing" compareValue="1">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
 		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="2">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="3">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="4">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="5">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="6">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		) a, PRODUCT p
+		WHERE 1 = 1
+		AND a.p_idx = p.p_idx
+		<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+			(nickname LIKE CONCAT ('%', #searchWrd#,'%')
+			OR p_name LIKE CONCAT ('%', #searchWrd#,'%'))	
+		</isEqual>
+		) A
 	</select>
 	
-	<select id="ListDealUserSeller" parameterClass="DealUserVO" resultClass="DealUserVO">
-		<![CDATA[  
+		<select id="ListDealUserSeller" parameterClass="DealUserVO" resultClass="DealUserVO">
+	<![CDATA[  
 	SELECT
 		rn,
 		P_IDX,
@@ -551,22 +589,51 @@ SELECT
 				A.S_ID,
 				A.sns_idx
 			FROM DEAL A, PRODUCT B, (SELECT @ROWNUM:=0) R
-			WHERE 1 = 1
+			WHERE A.S_ID = #s_id#
 			AND A.P_IDX = B.P_IDX) A, SELLER B
 		WHERE 1 = 1
 		AND A.S_ID = B.S_ID) A, SNSPROFILE B
 	WHERE 1 = 1
-	AND A.sns_idx = B.sns_idx) A
-	WHERE 1 = 1
-	]]>
-	<isEqual prepend="AND" property="searchCnd" compareValue="0"> <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
-		<![CDATA[	nickname LIKE CONCAT ('%', #searchWrd#,'%') OR s_nickname LIKE CONCAT ('%', #searchWrd#,'%')		]]>
+	AND A.sns_idx = B.sns_idx]]>
+	
+		<isEqual prepend="AND" property="sortD_ing" compareValue="1">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="2">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="3">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="4">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="5">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="sortD_ing" compareValue="6">
+				<![CDATA[	D_ING = #sortD_ing#		]]>
+		</isEqual>
+		) A
+		WHERE 1 = 1
+		<isNotEmpty prepend="AND" property="searchWrd">
+			(nickname LIKE CONCAT ('%', #searchWrd#,'%')
+			OR p_name LIKE CONCAT ('%', #searchWrd#,'%'))
+		</isNotEmpty>
+			ORDER BY 
+	<isEqual property="sortD_regdate" compareValue="1">
+			<![CDATA[	D_REGDATE ASC, 		]]>
 	</isEqual>
-	<![CDATA[			
-			ORDER BY RN DESC
+	<isEqual property="sortD_regdate" compareValue="2">
+			<![CDATA[	D_REGDATE DESC, 	]]>
+	</isEqual>
+		<![CDATA[
+			RN DESC
 			LIMIT #recordCountPerPage# OFFSET #firstIndex#
 		]]>		
 	</select>
+	
+
 		
 	<select id="selectDealUserSellerDetail" parameterClass="DealUserVO" resultClass="DealUserVO">
 	SELECT
@@ -632,7 +699,6 @@ SELECT
 				(#s_id#, #sns_idx#, (select max(D_IDX)+1 FROM DEAL d), #p_idx#, "1", #d_q#, SYSDATE(), #d_request#)
  		]]>
  	</insert>
-	
 
 	<select id="selectDealUserBuyerD_idx" parameterClass="DealUserVO" resultClass="DealUserVO">
 	<!-- <select id="selectDealUserBuyerD_idx" parameterClass="DealUserVO" resultClass="int"> -->

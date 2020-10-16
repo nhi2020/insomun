@@ -134,7 +134,7 @@ public class ProductMngController {
 	}
 //수정 형식 작성
 	@RequestMapping(value="/shop/mng/product/EgovMngProductUpdateForm")
-	public String egovMngProductUpdateForm(ProductMngVO vo,  HttpServletRequest request,
+	public String egovMngProductUpdateForm(@ModelAttribute("searchVO") ProductMngVO vo,  HttpServletRequest request,
 			ModelMap model) throws Exception {
 		
 		System.out.println("EgovMngProductUpdateForm"+vo);
@@ -142,7 +142,7 @@ public class ProductMngController {
 		System.out.println("vo.getP_IDX => " + vo.getP_idx());
 	    vo = mngProductService.selectMngProductForm(vo);
 	    System.out.println("EgovMngProductUpdateForm"+vo);
-	    
+	    System.out.println("pageIndex"+vo.getPageIndex());
 	    
 	    model.addAttribute("ProductMngVO",vo);
 	    
@@ -174,7 +174,7 @@ public class ProductMngController {
 		} else {
 			redirect.addFlashAttribute("result3", dbResult);
 		}
-		model.addAttribute("vo");
+
 		
 		/*System.out.println("vo pname => " + vo.getP_name());
 		if (dbResult > 0) {
@@ -189,7 +189,7 @@ public class ProductMngController {
 	    model.addAttribute("dbResult", dbResult);
 	    //
 */
-		return "redirect:/shop/mng/product/EgovMngProductlist.do";
+		return "redirect:/shop/mng/product/EgovMngProductlist.do" +"?pageIndex="+vo.getPageIndex();
 
 	}
 	

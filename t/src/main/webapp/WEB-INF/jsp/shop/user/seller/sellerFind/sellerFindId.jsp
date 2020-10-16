@@ -47,7 +47,7 @@ function passwd() {
 			<a href="#" onclick="passwd();" class="btn btn-secondary"><span class="blind">비밀번호 찾기</span></a>
 		</div>
 </div>
-<%@ include file="../../../inc/EgovShopBottom.jsp"%>
 </form>
+<%@ include file="../../../inc/EgovShopBottom.jsp"%>
 </body>
 </html>

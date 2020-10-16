@@ -53,9 +53,9 @@
 			<form name="frm" action=""  enctype="multipart/form-data">
 	    <input type="hidden" name="p_idx" value="${ProductUserVO.p_idx }" />
 	    <input type="hidden" name="s_id" value="${ProductUserVO.s_id }" />
-					<img src="<c:url value='/'/>file/${ProductUserVO.p_image}" width="270" height="270"/>
+					<img class="img-fluid" src="<c:url value='/'/>file/${ProductUserVO.p_image}" width="200" height="200"/>
 						<p>
-					<table class="table">
+					<table class="table" style="text-align: left">
 					<tr>
 						<th>상품명</th>
 						<td>${ProductUserVO.p_name}
@@ -93,11 +93,11 @@
 				
 				<p/>
 				<p/>
-				<input type="button" value="장바구니" onclick="goBasket(); return false;"/>
-				<input type="submit" value="찜하기" onclick="goLike(); return false;"/>
-				<input type="button" value="바로구매" onclick="location.href='/shop/user/deal/dealUserBuyerRequest.do?p_idx=${ProductUserVO.p_idx}&s_id=${ProductUserVO.s_id }'"/>
+				<input type="button" value="장바구니" class="btn btn-primary" onclick="goBasket(); return false;"/>
+				<input type="submit" value="찜하기" class="btn btn-primary" onclick="goLike(); return false;"/>
+				<input type="button" value="바로구매" class="btn btn-primary" onclick="location.href='/shop/user/deal/dealUserBuyerRequest.do?p_idx=${ProductUserVO.p_idx}&s_id=${ProductUserVO.s_id }'"/>
 				<p/>
-				<input type="button" value="목록" onclick="location.href='/shop/user/product/EgovUserProductlist.do'"/>
+				<input type="button" value="목록" class="btn btn-info" onclick="location.href='/shop/user/product/EgovUserProductlist.do'"/>
 				</p>
 				</form>				
 			</div>

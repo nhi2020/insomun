@@ -7,17 +7,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
-<!-- <style type="text/css">
-input[type=text] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-</style> -->
-
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
@@ -160,7 +149,8 @@ function fn_idChk(){
 
 </div>
 
-<%@ include file="../../../inc/EgovShopBottom.jsp"%>	
+
 </form>
+<%@ include file="../../../inc/EgovShopBottom.jsp"%>	
 </body>
 </html>
