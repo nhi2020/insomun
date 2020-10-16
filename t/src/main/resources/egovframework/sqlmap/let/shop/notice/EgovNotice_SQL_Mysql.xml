@@ -2,4 +2,56 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="Notice">
+
+	<typeAlias alias="egovMap"
+		type="egovframework.rte.psl.dataaccess.util.EgovMap" />
+	<typeAlias alias="NoticeMngVO"
+		type="egovframework.let.shop.mng.notice.service.impl.NoticeMngVO" /> <!-- db에서 세터로 받아넣는 -->
+	<typeAlias alias="NoticeMng"
+		type="egovframework.let.shop.mng.notice.service.NoticeMng" />
+
+	<resultMap id="noticeList"
+		class="egovframework.let.shop.mng.notice.service.impl.NoticeMngVO"> <!-- property는 vo값 -->
+		<result property="n_idx" 	 column="N_IDX" 	columnIndex="1" />
+		<result property="n_div"	 column="N_DIV" 	columnIndex="2" />
+		<result property="n_sub" 	 column="N_SUB" 	columnIndex="3" />
+		<result property="n_content" column="N_CONTENT" columnIndex="4" />
+		<result property="n_date" 	 column="N_DATE" 	columnIndex="5" />
+		<result property="a_id" 	 column="A_ID" 		columnIndex="6" />
+	</resultMap>
+
+	<select id="selectNoticeMngListCnt" parameterClass="NoticeMngVO" resultClass="int">
+		SELECT COUNT(*)
+		FROM NOTICE
+		WHERE 1=1
+	 	<isEqual prepend="AND" property="searchCnd" compareValue="0"><!--  prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
+				<![CDATA[	N_IDX LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
+	</select>
+
+	<select id="selectNoticeMngList" resultClass="NoticeMngVO">
+		SELECT 
+			 N_IDX
+			,N_DIV
+			,N_SUB
+			,N_CONTENT
+			,N_DATE
+		FROM 
+			NOTICE
+		WHERE 1=1
+		<isEqual prepend="AND" property="searchCnd" compareValue="0"> prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다.
+				<![CDATA[	N_SUB LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
+		<isEqual prepend="AND" property="searchCnd" compareValue="1">
+				<![CDATA[	N_CONTENT LIKE CONCAT ('%', #searchWrd#,'%') 		]]>
+		</isEqual>
+		ORDER BY N_IDX DESC
+		LIMIT #recordCountPerPage# OFFSET #firstIndex#
+	</select>
+
+	<!-- <delete id="deleteMngNotice" parameterClass="NoticeMngVO"> DELETE FROM 
+		NOTICE WHERE n_idx = #n_idx# </delete> -->
+		<!-- - -->
+
+
 </sqlMap>

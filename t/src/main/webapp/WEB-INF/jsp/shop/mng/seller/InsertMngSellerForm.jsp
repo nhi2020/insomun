@@ -242,7 +242,6 @@ input[type="file"] {
 <body>
 	<%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
-<p><p><p><p><p>
 
 <div class="container">
 		<div class="row">
@@ -263,42 +262,42 @@ input[type="file"] {
 					</tr>
 					<tr>
 						<th>회원아이디</th>
-						<td><input type="text" id="s_id" name="s_id" placeholder="아이디"><br>
+						<td><input class="form-control" type="text" id="s_id" name="s_id" placeholder="아이디"><br>
 							<span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span></td>
 					</tr>
 			
 					<tr> 
 						<th>닉네임</th>
-						<td><input type="text" name="s_nickname" placeholder="닉네임"></td>
+						<td><input class="form-control" type="text" name="s_nickname" placeholder="닉네임"></td>
 					</tr>
 					<tr> 
 						<th>비밀번호</th>
-						<td><input type="password" id="s_pass" name="s_pass" placeholder="비밀번호"></td>
+						<td><input class="form-control" type="password" id="s_pass" name="s_pass" placeholder="비밀번호"></td>
 					</tr>
 					<tr> 
 						<th>비밀번호 재확인</th>
-						<td><input type="password" id="s_pass2" name="s_pas2s" placeholder="비밀번호 재확인"></td>
+						<td><input class="form-control" type="password" id="s_pass2" name="s_pas2s" placeholder="비밀번호 재확인"></td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td><input type="email" id="s_email" name="s_email" placeholder="이메일"></td>
+						<td><input class="form-control" type="email" id="s_email" name="s_email" placeholder="이메일"></td>
 					</tr>
 				
 					<tr>
 						<th>핸드폰 번호</th>
-						<td><input type="text" maxlength="13" onKeyup="inputPhoneNumber(this);" id="s_phone" name="s_phone" placeholder="01X-XXXX-XXXX">
+						<td><input class="form-control" type="text" maxlength="13" onKeyup="inputPhoneNumber(this);" id="s_phone" name="s_phone" placeholder="01X-XXXX-XXXX">
                      	 </td>						
 					</tr>
 					
 					<tr>
 						<th>주소</th>
-						<td><input type="text" id="sample6_address" name="addr1" placeholder="주소" readonly>
+						<td><input class="form-control" type="text" id="sample6_address" name="addr1" placeholder="주소" readonly>
 							<input type="button" class="btn btn-secondary" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
 					</tr>
 					
 					<tr>
 						<th>상세주소</th>
-						<td><input type="text" id="sample6_detailAddress" name="addr2" placeholder="상세주소"></td>
+						<td><input class="form-control" type="text" id="sample6_detailAddress" name="addr2" placeholder="상세주소"></td>
 					</tr>
 					
 					<tr>
@@ -309,33 +308,28 @@ input[type="file"] {
 					</tr>
 					<tr>
 						<th>생일</th>
-						<td><input type="date" id="s_birth" name="s_birth" placeholder="생년월일"></td>
+						<td><input class="form-control" type="date" id="s_birth" name="s_birth" placeholder="생년월일"></td>
 					</tr>
 					<tr>
 						<th>은행</th>
 						<td>
-						<select name="s_account_n" value="${SellerVO.s_account_n }">
+						<select class="form-control" name="s_account_n">
 							<option value="국민은행" ${SellerVO.s_account_n eq '국민은행' ? "selected='selected'" : '' }>국민은행</option>
 							<option value="농협은행" ${SellerVO.s_account_n eq '농협은행' ? "selected='selected'" : '' }>농협은행</option>
 							<option value="기업은행" ${SellerVO.s_account_n eq '기업은행' ? "selected='selected'" : '' }>기업은행</option>
-							<option value="국민은행" ${SellerVO.s_account_n eq '국민은행' ? "selected='selected'" : '' }>국민은행</option>
-							<option value="카카오뱅크" ${SellerVO.s_account_n eq '카카오뱅크' ? "selected='selected'" : '' }>카카오뱅크</option>
 							<option value="신한은행" ${SellerVO.s_account_n eq '신한은행' ? "selected='selected'" : '' }>신한은행</option>
 							<option value="하나은행" ${SellerVO.s_account_n eq '하나은행' ? "selected='selected'" : '' }>하나은행</option>
 							<option value="우리은행" ${SellerVO.s_account_n eq '우리은행' ? "selected='selected'" : '' }>우리은행</option>
-							<option value="sc제일은행" ${SellerVO.s_account_n eq 'sc제일은행' ? "selected='selected'" : '' }>sc제일은행</option>
-							<option value="우체국은행" ${SellerVO.s_account_n eq '우체국은행' ? "selected='selected'" : '' }>우체국은행</option>
-							<option value="케이뱅크" ${SellerVO.s_account_n eq '케이뱅크' ? "selected='selected'" : '' }>케이뱅크</option>
-							<option value="저축은행" ${SellerVO.s_account_n eq '저축은행' ? "selected='selected'" : '' }>저축은행</option>
 						</select>
 					</tr>
 					<tr>
 						<th>계좌 번호</th>
-						<td><input type="text" name="s_account" id="s_account" placeholder="계좌번호"></td>
+						<td><input class="form-control" type="text" name="s_account" id="s_account" placeholder="계좌번호"></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input class="btn btn-secondary" type="submit" id="submit" value="등록" /> 
-						<input type="button" class="btn btn-secondary" value="목록으로" onclick="location.href='/shop/mng/seller/listMngSeller.do'" />
+						<th></th>
+						<td><input class="btn btn-primary" type="submit" id="submit" value="등록" /> 
+						<input type="button" class="btn btn-info" value="목록" onclick="location.href='/shop/mng/seller/listMngSeller.do'" />
 						</td>
 					</tr>
 				</table>
