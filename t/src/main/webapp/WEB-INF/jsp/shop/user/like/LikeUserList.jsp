@@ -31,7 +31,7 @@
           <td>${like_list.p_name }</td>
           <td>${like_list.l_regdate }</td>
           <td><input class="btn btn-secondary" type="button" value="추가" onclick=""></td>
-          <td><input class="btn btn-success" type="button"  value="거래" onclick=""></td>
+          <td><input class="btn btn-success" type="button"  value="거래" onclick="location.href='/shop/user/deal/dealUserBuyerRequest.do?p_idx=${like_list.p_idx}&s_id=${like_list.s_id }'"></td>
           <td><input class="btn btn-danger" type="button" value="삭제" onclick="location.href='/shop/user/like/LikeUserDelete.do?p_idx=${like_list.p_idx}'"></td>
         </tr>
         </c:forEach>
