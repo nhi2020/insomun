@@ -177,7 +177,7 @@
 			<ul class="navbar-nav">
 				<c:choose>
 					<c:when
-						test="${(sessionScope.userid != null)or(sessionScope.S_ID != null and sessionScope.S_ID ne ' ')or(sessionScope.A_ID != null and sessionScope.A_ID ne ' ')}">
+						test="${(sessionScope.sns_idx != null)or(sessionScope.S_ID != null and sessionScope.S_ID ne ' ')or(sessionScope.A_ID != null and sessionScope.A_ID ne ' ')}">
 
 						<c:if test="${sessionScope.status == 1 }">
 							<!-- <button type="button" id="btnlogout" id="userlogout">사용자 logout</button> -->
