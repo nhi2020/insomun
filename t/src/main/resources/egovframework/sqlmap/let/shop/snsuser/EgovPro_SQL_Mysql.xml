@@ -9,7 +9,7 @@
 	<typeAlias  alias="SnsProfile" type="egovframework.let.shop.mng.snsprofile.service.SnsProfileMng"/>
 	<typeAlias  alias="SnsProfileMngVO" type="egovframework.let.shop.mng.snsprofile.service.SnsProfileMngVO"/>
 					
-	<resultMap id="snsProfileList" class="egovframework.let.shop.mng.snsprofile.service.SnsProfileMngVO"> <!-- property는 vo값 -->
+	<resultMap id="snsProfileList" class="egovframework.let.shop.user.snsprofile.service.SnsProfileUserVO"> <!-- property는 vo값 -->
 		<result property="sns_idx" column="SNS_IDX" columnIndex="1"/>
 		<result property="userid" column="USERID" columnIndex="2"/>						 <!-- collum 은 db의 컬럼값 -->
 		<result property="snscode" column="SNSCODE" columnIndex="3"/>			 <!--  db의 컬럼 순서 -->
@@ -61,7 +61,7 @@
 			</isEqual>	
 	</select>
 	
-	<insert id="EgovSnsUserDAO.insertSnsUser" parameterClass="SnsProfileVO">
+	<insert id="EgovSnsUserDAO.insertSnsUser" parameterClass="SnsProfileUserVO">
 		<![CDATA[
 			INSERT INTO SNSPROFILE
 			(USERID, SNSCODE, NICKNAME, EMAIL, REG_DATE, DEL_YN)
@@ -70,10 +70,10 @@
 		]]>
 	</insert>
 	
-	<select id="EgovSnsUserDAO.checkUserLogin" parameterClass="SnsProfileVO" resultClass="java.lang.Integer" >
+	<select id="EgovSnsUserDAO.checkUserLogin" parameterClass="SnsProfileUserVO" resultClass="Integer" >
 		<![CDATA[
 			SELECT 
-					COUNT(*) AS CNT
+					COUNT(*)
 			FROM 
 					SNSPROFILE 
 			WHERE 	
