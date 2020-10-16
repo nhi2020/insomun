@@ -245,6 +245,8 @@ input[type="file"] {
 
 <div class="container">
 		<div class="row">
+			<div class="col-lg-3 col-md-2 col-sm-1"></div>
+			<div class="col-lg-6 col-md-8 col-sm-10">
 			
 			<form class="mx-auto" action="/shop/mng/seller/InsertMngSellerPro.do" method="post" enctype="multipart/form-data">
 					<input type="hidden" value="" name="s_addr">
@@ -253,7 +255,7 @@ input[type="file"] {
 						
 					<tr>
 						<th></th>
-						<td height="200" style=""><img id="blah" src="#" alt="your image" width="200" height="200" /></td>    				
+						<td height="200" style=""><img id="blah" src="#" alt="your image" width="300" height="200" /></td>    				
 					</tr>
 					<tr>
 						<th>파일업로드</th>	
@@ -291,8 +293,13 @@ input[type="file"] {
 					
 					<tr>
 						<th>주소</th>
-						<td><input class="form-control" type="text" id="sample6_address" name="addr1" placeholder="주소" readonly>
-							<input type="button" class="btn btn-secondary" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
+						<td>
+							<div class="join_row">
+							<div class="input-group">
+								<input class="form-control" type="text" id="sample6_address" name="addr1" placeholder="주소" readonly>
+							<div class="input-group-append">
+								<input type="button" class="btn btn-secondary" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+							</div></div></div></td>
 					</tr>
 					
 					<tr>
@@ -334,6 +341,8 @@ input[type="file"] {
 					</tr>
 				</table>
 			</form>
+			</div>
+			<div class="col-lg-3 col-md-2 col-sm-1"></div>
 		</div>
 	</div>
 

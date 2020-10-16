@@ -129,6 +129,9 @@ input[type="file"] {
 	
 	<div class="container">
 		<div class="row">
+			<div class="col-lg-3 col-md-2 col-sm-1"></div>
+			<div class="col-lg-6 col-md-8 col-sm-10">
+			
 			<form class="mx-auto" action="/shop/mng/seller/updateMngSellerPro.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="s_id" value="${SellerVO.s_id }" />
 				<input type="hidden" name="s_photo" value="${SellerVO.s_photo }" />
@@ -137,7 +140,7 @@ input[type="file"] {
 					<tr>
 						<th></th>
 						<td height="200" style="">
-						<img id="blah" src="<c:url value='/'/>file/${SellerVO.s_photo}" alt="your image" width="200" height="200" /> </td> 
+						<img id="blah" src="<c:url value='/'/>file/${SellerVO.s_photo}" alt="your image" width="300" height="200" /> </td> 
 					</tr>
 					<tr>
 						<th>파일 업로드</th>	
@@ -152,20 +155,20 @@ input[type="file"] {
 					
 					<tr> 
 						<th>닉네임</th>
-						<td><input type="text" name="s_nickname" value="${SellerVO.s_nickname }" /></td>
+						<td><input class="form-control" type="text" name="s_nickname" value="${SellerVO.s_nickname }" /></td>
 					</tr>
 					
 					<tr> 
 						<th>비밀번호</th>
-						<td><input type="text" id="s_pass" name="s_pass" value="${SellerVO.s_pass }"></td>
+						<td><input class="form-control" type="text" id="s_pass" name="s_pass" value="${SellerVO.s_pass }"></td>
 					</tr>
 					<tr>
 						<th>생일</th>
-						<td><input type="date" id="s_birth" name="s_birth" value="${SellerVO.s_birth }"></td>
+						<td><input class="form-control" type="date" id="s_birth" name="s_birth" value="${SellerVO.s_birth }"></td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td><input type="email" name="s_email" value="${SellerVO.s_email }" /></td>
+						<td><input class="form-control" type="email" name="s_email" value="${SellerVO.s_email }" /></td>
 					</tr>
 					<tr>
 						<th>상태</th>
@@ -177,7 +180,7 @@ input[type="file"] {
 					</tr>
 					<tr>
 						<th>핸드폰 번호</th>
-						<td><input type="text" maxlength="13" onKeyup="inputPhoneNumber(this);" name="s_phone" value="${SellerVO.s_phone }" />
+						<td><input class="form-control" type="text" maxlength="13" onKeyup="inputPhoneNumber(this);" name="s_phone" value="${SellerVO.s_phone }" />
                      	 </td>
 							
 							
@@ -185,7 +188,7 @@ input[type="file"] {
 					<tr>
 						<th>은행</th>
 						<td>
-						<select name="s_account_n" value="${SellerVO.s_account_n }">
+						<select class="form-control" name="s_account_n">
 							<option value="국민은행" ${SellerVO.s_account_n eq '국민은행' ? "selected='selected'" : '' }>국민은행</option>
 							<option value="농협은행" ${SellerVO.s_account_n eq '농협은행' ? "selected='selected'" : '' }>농협은행</option>
 							<option value="기업은행" ${SellerVO.s_account_n eq '기업은행' ? "selected='selected'" : '' }>기업은행</option>
@@ -202,18 +205,23 @@ input[type="file"] {
 					</tr>
 					<tr>
 						<th>계좌 번호</th>
-						<td><input type="text" name="s_account" value="${SellerVO.s_account }" /></td>
+						<td><input class="form-control" type="text" name="s_account" value="${SellerVO.s_account }" /></td>
 					</tr>
 					
 					<tr>
 						<th>주소</th>
-						<td><input type="text" id="sample6_address" name="addr1"  value="${SellerVO.s_addr }" readonly>
-							<input type="button" class="btn btn-secondary" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
+						<td>
+						<div class="join_row">
+						<div class="input-group">
+							<input class="form-control" type="text" id="sample6_address" name="addr1"  value="${SellerVO.s_addr }" readonly>
+						<div class="input-group-append">
+							<input type="button" class="btn btn-secondary" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+						</div></div></div></td>
 					</tr>
 					
 					<tr>
 						<th>상세주소</th>
-						<td><input type="text" id="sample6_detailAddress" name="addr2"></td>
+						<td><input class="form-control" type="text" id="sample6_detailAddress" name="addr2"></td>
 					</tr>
 					
 					<tr>
@@ -233,6 +241,8 @@ input[type="file"] {
 					</tr>
 				</table>
 			</form>
+			</div>
+			<div class="col-lg-3 col-md-2 col-sm-1"></div>
 		</div>
 	</div>
 	
