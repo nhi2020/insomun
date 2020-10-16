@@ -11,8 +11,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 <title>운영자 상품 관리 페이지입니다</title>
-
+<style type="text/css">
+.price {font-family: 'Noto Sans KR', sans-serif;
+font-size: 18px;}
+.name {font-family: 'Nanum Gothic Coding', monospace;
+font-size: 20px; color: #616A6B;}
+</style>
 </head>
 <body>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
@@ -103,12 +110,12 @@
 				<div class="row">
 					<c:forEach var="product_list" items="${list}">
 						<div class="col-3 mt-3">
-						<img class="img-fluid" src="<c:url value='/'/>file/${product_list.p_image}" width="200" height="200" class="rounded"/> 
+						<img class="img-fluid" src="<c:url value='/'/>file/${product_list.p_image}" width="250" height="250" class="rounded"/> 
 							<span> <input type="checkbox" name="check" id="check" value="${product_list.p_idx }"> 
-							<b> ${product_list.p_name }</b>
+							<b class="name"> ${product_list.p_name }</b>
 							</span> <br /> 
-							<span>가격 : 
-							<fmt:formatNumber value="${product_list.p_price }" pattern="##,###"></fmt:formatNumber>원</span><br /> 
+							<span><b class="price">
+							<fmt:formatNumber value="${product_list.p_price }" pattern="##,###"></fmt:formatNumber>원</b></span><br /> 
 							<span>판매자: ${product_list.s_id }</span> <br /> 
 							<span>상태: ${product_list.p_status }</span> 
 							<p/>

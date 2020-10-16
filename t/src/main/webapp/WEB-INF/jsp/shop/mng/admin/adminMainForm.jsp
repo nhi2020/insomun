@@ -10,56 +10,47 @@
 <meta http-equiv="content-language" content="ko">
 <title>입소문넷</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-
 </head>
+<style>
+<!--
 
+-->
+</style>
 <body>
-<%@ include file="../../inc/EgovShopTop.jsp" %>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
 <div class="container text-center">
 		<div class="row justify-content-center">
-<form action="<c:url value='/shop/mng/admin/adminMainForm.do'/>">
-	<h2 class="text-center" style="padding-bottom: 50px; margin-top: 50px;"><strong>Admin Page</strong></h2>
+
+	<h2 class="text-center mx-auto"><strong>Admin Page</strong></h2>
 	<div class="text-center">
 		<div class="row">
-		<table border="1">
-				<tr>
-					<td><a href="/shop/mng/buyer/listMngBuyer.do">구매자 관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/user/review/reviewList.do">리뷰 페이지</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/mng/review.do">관리자리뷰 관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/mng/basket/listMngBasket.do">장바구니 관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/mng/seller/listMngSeller.do">판매자 관리</a></td>
-				</tr>
-				<tr>
-					<td><a
-						href="/shop/mng/admin/adminControl/listMngAdminControl.do">운영자관리</a>
-				</tr>
-				<tr>
-					<td><a href="/shop/mng/product/EgovMngProductlist.do">상품 관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/user/seller/sellerUserMain.do">판매자 페이지</a></td>
-				</tr>
-				<tr>
-					<td><a href="/shop/mng/log/EgovMngLogList.do">로그 페이지</a></td>
-				</tr>
-				<!-- <tr>
-					<td><a href="#">### 관리</a></td>
-				<tr>
-					<td><a href="#">### 관리</a></td>
-				</tr>
-				<tr>
-					<td><a href="#">### 관리</a></td>
-				</tr> -->
-			</table>
+			<div class="col-4"></div>
+			<div class="col-4">
+		
+<button class="m-3 btn btn-outline-secondary" 
+		onclick="location.href='/shop/mng/product/EgovMngProductlist.do'">상품 관리</button>
+<button class="m-3 btn btn-outline-secondary" 
+		onclick="location.href='/shop/mng/basket/listMngBasket.do'">장바구니 관리</button>
+<button class="m-3 btn btn-outline-secondary" 
+		onclick="location.href='/shop/mng/buyer/listMngBuyer.do'">구매자 관리</button>
+<button class="m-3 btn btn-outline-secondary" 
+		onclick="location.href='/shop/mng/seller/listMngSeller.do'">판매자 관리</button>
+<button class="m-3 btn btn-outline-secondary" 
+		onclick="location.href='/shop/mng/admin/adminControl/listMngAdminControl.do'">운영자관리</button>
+<button class="m-3 btn btn-outline-secondary" 
+		onclick="location.href='/shop/mng/log/EgovMngLogList.do'">로그 페이지</button>
+<button class="m-3 btn btn-outline-secondary" 
+		onclick="location.href='/shop/user/review/reviewList.do'">리뷰 페이지</button>
+<button class="m-3 btn btn-outline-secondary" 
+		onclick="location.href='/shop/mng/review.do'">관리자리뷰 관리</button>
+
+			</div>
+			<div class="col-4"></div>
+
+
+
+
+
 		<!-- 	<img class="mx-auto" src="/images/shop/main/admin.png" usemap="#map" style="margin-bottom: 100px;"/>
 			<map name="map" id="map">
 		   <area shape="rect" href="memMng.do" 	 								coords="87,60,246,179" />
@@ -71,7 +62,7 @@
 			</map> -->
 		</div>
 	</div>
-	</form>
+
 	</div></div>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>

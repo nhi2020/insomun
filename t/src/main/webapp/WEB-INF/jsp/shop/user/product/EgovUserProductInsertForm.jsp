@@ -60,6 +60,8 @@ input[type="file"] {
 <body>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
 
+<h3 style="text-align: center">등록 페이지</h3> 
+
   <div class="container-fluid">
 	<div class="container text-center" style="padding-top: 20px;">
 	    <div class="row">

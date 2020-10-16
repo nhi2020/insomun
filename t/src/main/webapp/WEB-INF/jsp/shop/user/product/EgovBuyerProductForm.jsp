@@ -40,12 +40,11 @@
 	//--------------------------
 </script>
 <body>
-<%@ include file="../../inc/EgovShopTop.jsp" %>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
-
+<h3 style="text-align: center">상품 상세 페이지</h3> 
   <div class="container text-center">
 		<div class="row justify-content-center">
-  <h2>상품 상세 페이지</h2>
+  
   </div></div>
  <div class="container text-center">
 		<div class="row justify-content-center">

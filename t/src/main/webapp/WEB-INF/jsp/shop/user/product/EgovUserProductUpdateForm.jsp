@@ -11,13 +11,11 @@
 <meta http-equiv="content-language" content="ko">
 <title>판매자 수정 페이지</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-
-
 </head>
 
 <body>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
-<h2>수정 페이지</h2>
+<h3 style="text-align: center">수정 페이지</h3>
 
 <c:if test="${msg != null }">
 <p>${msg }</p>
@@ -45,6 +43,10 @@
 							<input type='file' name="file" id="ex_file" onchange="readURL(this);" /></td>    
 					</tr>
 					<tr>
+						<th>상품명</th>
+						<td><input type="text" name="p_name" value="${ProductUserVO.p_name }"/></td>
+					</tr>
+					<tr>
 						<th>가격</th>
 						<td><input type="text" name="p_price" value="${ProductUserVO.p_price }"/></td>
 					</tr>
@@ -70,11 +72,7 @@
 						<td><input type="date" name="p_edate" value="${ProductUserVO.p_edate }"/></td>
 					</tr>
 					<tr>
-						<th>업데이트된 날짜</th>
-						<td><input type="date" name="p_moddate" value="${ProductUserVO.p_moddate }"/></td>
-					</tr>
-					<tr>
-						<td colspan="2"><br/>
+						<td colspan="2" style="text-align: center"><br/>
 					<input type="submit" value="수정완료" class="btn btn-primary"> &nbsp;
 					<input type="button" value="이전으로" class="btn btn-info" onclick="return1();"/>
 					</tr>
