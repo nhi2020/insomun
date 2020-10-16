@@ -55,7 +55,7 @@ td {
 	<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopHeader.jsp"%>
 	<div class="container text-center">
 		<div class="row justify-content-center">
-			<h2>판매 거래 상세 페이지</h2>
+			<h3>판매 거래 상세 페이지</h3>
 		</div>
 	</div>
 	<div class="container text-center">
@@ -69,14 +69,14 @@ td {
 								<c:when test="${dealMngVO.d_ing eq '1'}"> 구매자 신청 </c:when>
 								<c:when test="${dealMngVO.d_ing eq '2'}"> 판매자 수락 </c:when>
 								<c:when test="${dealMngVO.d_ing eq '3'}"> 배송 시작 </c:when>
-								<c:when test="${dealMngVO.d_ing eq '4'}"> 구매 완료 </c:when>
+								<c:when test="${dealMngVO.d_ing eq '4'}"> 거래 완료 </c:when>
 								<c:when test="${dealMngVO.d_ing eq '5'}"> 구매자 거래 취소 </c:when>
 								<c:when test="${dealMngVO.d_ing eq '6'}"> 판매자 거래 취소 </c:when>
 							</c:choose></td>
 					</tr>
 					<tr>
-						<th style="text-align: right">구매자[신용]</th>
-						<td>${dealMngVO.nickname}[${dealMngVO.seller_score}]</td>
+						<th style="text-align: right">구매자</th>
+						<td>${dealMngVO.nickname}</td>
 					</tr>
 					<tr>
 						<th style="text-align: right">상품명</th>
@@ -93,7 +93,7 @@ td {
 					</tr>
 					<tr>
 						<th style="text-align: right">내용</th>
-						<td>설명~~~~~~~~</td>
+						<td>설명</td>
 					</tr>
 					<tr>
 						<th style="text-align: right">주소 및 배송 요청사항</th>
@@ -104,35 +104,14 @@ td {
 						<td colspan="2">
 							<div style="text-align: right;">
 
-								<c:choose>
-									<c:when
-										test="${dealMngVO.d_ing eq '1' || dealMngVO.d_ing eq '2' || dealMngVO.d_ing eq '3'}">
-										<button type="button" class="btn btn-danger"
-											onclick="dealMngSellerCancel()">거래 취소</button>
-									</c:when>
-								</c:choose>
-
-								<c:choose>
-									<c:when
-										test="${dealMngVO.d_ing eq '1'}">
-										<button type="button" class="btn btn-success"
-											onclick="dealMngSellerAccept()">거래 수락</button>
-									</c:when>
-								</c:choose>
-
-								<c:choose>
-									<c:when test="${dealMngVO.d_ing == '2'}">
-										<button type="button" class="btn btn-success"
-											onclick="dealMngSellerDeliver()">배송 시작</button>
-									</c:when>
-								</c:choose>
-
-								<c:choose>
-									<c:when test="${dealMngVO.d_ing == '4'}">
-										<button type="button" class="btn btn-info"
-											onclick="dealMngSellerReview()">후기 작성</button>
-									</c:when>
-								</c:choose>
+							<button type="button" class="btn btn-danger"
+								onclick="dealMngSellerCancel()">거래 취소</button>
+							<button type="button" class="btn btn-success"
+								onclick="dealMngSellerAccept()">거래 수락</button>
+							<button type="button" class="btn btn-success"
+								onclick="dealMngSellerDeliver()">배송 시작</button>
+							<button type="button" class="btn btn-info"
+								onclick="dealMngSellerReview()">후기 작성</button>
 							</div><p>
 
 							<div style="text-align: center;">

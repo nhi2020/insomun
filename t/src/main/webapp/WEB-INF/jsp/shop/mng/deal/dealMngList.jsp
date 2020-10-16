@@ -102,8 +102,8 @@ table {
 
 			<table class="table table-hover">
 				<tr>
-					<th width="5%" style="text-align: left;">번호</th>
-					<th width="17%" style="text-align: left;">상품이름</th>
+					<th width="5%">번호</th>
+					<th width="17%">상품이름</th>
 					<th width="5%">수량</th>
 					<th width="9%">가격</th>
 					<th width="9%">
@@ -118,7 +118,7 @@ table {
 						</div>
 					</th>
 					<th width="9%">완료 일시</th>
-					<th width="12%">
+					<th width="9%">
 						<button type="button"
 							class="btn btn-outline-dark btn-sm dropdown-toggle dropdown-toggle m-1"
 							data-toggle="dropdown">
@@ -129,39 +129,39 @@ table {
 								class="dropdown-item" onclick="onD_ing(1)">구매자 신청</a> <a
 								class="dropdown-item" onclick="onD_ing(2)">판매자 수락</a> <a
 								class="dropdown-item" onclick="onD_ing(3)">배송 시작</a> <a
-								class="dropdown-item" onclick="onD_ing(4)">구매 완료</a> <a
+								class="dropdown-item" onclick="onD_ing(4)">거래 완료</a> <a
 								class="dropdown-item" onclick="onD_ing(5)">구매자 거래 취소</a> <a
 								class="dropdown-item" onclick="onD_ing(6)">판매자 거래 취소 
 							</a>
 						</div></th>
-					<th width="8%">구매자</th>
-					<th width="9%">구매자<br>거래</th>
-					<th width="8%">판매자</th>
-					<th width="9%">판매자<br>거래</th>
+					<th width="12%">구매자<br>(아이디)</th>
+					<th width="5%">거래<br>이동</th>
+					<th width="15%">판매자<br>(아이디)</th>
+					<th width="5%">거래<br>이동</th>
 					</th>
 				</tr>
 				
 				<c:forEach items="${dealMnglist }" var="list" varStatus="status">
 						<input type="hidden" name="d_idx" value="${list.d_idx }"/>
 						<tr>
-							<td width="9%" style="text-align: left;">${list.d_idx }</td>
-							<td width="9%" style="text-align: left;">${list.p_name }</td>
-							<td width="9%">${list.d_q }개</td>
+							<td width="5%" style="text-align: left;">${list.d_idx }</td>
+							<td width="17%" style="text-align: left;">${list.p_name }</td>
+							<td width="5%">${list.d_q }개</td>
 							<td width="9%"><fmt:formatNumber type="number" maxFractionDigits="3" value="${list.p_price * list.d_q}"/>원</td>
 							<td width="9%">${list.d_regdate }</td>
 							<td width="9%">${list.d_edate }</td>
 							<td width="9%"><c:choose>
-									<c:when test="${list.d_ing eq '1'}"> 구매자 신청 </c:when>
-									<c:when test="${list.d_ing eq '2'}"> 판매자 수락 </c:when>
+									<c:when test="${list.d_ing eq '1'}"> 구매자<br>신청 </c:when>
+									<c:when test="${list.d_ing eq '2'}"> 판매자<br>수락 </c:when>
 									<c:when test="${list.d_ing eq '3'}"> 배송 시작 </c:when>
-									<c:when test="${list.d_ing eq '4'}"> 구매 완료 </c:when>
-									<c:when test="${list.d_ing eq '5'}"> 구매자 거래 취소 </c:when>
-									<c:when test="${list.d_ing eq '6'}"> 판매자 거래 취소 </c:when>
+									<c:when test="${list.d_ing eq '4'}"> 거래 완료 </c:when>
+									<c:when test="${list.d_ing eq '5'}"> 구매자<br>거래 취소 </c:when>
+									<c:when test="${list.d_ing eq '6'}"> 판매자<br>거래 취소 </c:when>
 								</c:choose></td>
-							<td width="9%">${list.s_nickname }</td>
-							<td width="9%"><input type="hidden" name="d_idx" value="${list.d_idx }"><button type="button" class="btn btn-warning"  onclick="location.href='/shop/mng/deal/dealMngBuyerDetail.do?d_idx=${list.d_idx}'">이동</button></td>
-							<td width="9%">${list.nickname }</td>
-							<td width="10%"><button type="button" class="btn btn-warning"  onclick="location.href='/shop/mng/deal/dealMngSellerDetail.do?d_idx=${list.d_idx}'">이동</button></td>
+							<td width="12%">${list.s_nickname }<br>(${list.sns_idx })</td>
+							<td width="5%"><input type="hidden" name="d_idx" value="${list.d_idx }"><button type="button" class="btn btn-warning"  onclick="location.href='/shop/mng/deal/dealMngBuyerDetail.do?d_idx=${list.d_idx}'"><i class="fa fa-bars"></i></button></td>
+							<td width="15%">${list.nickname }<br>(${list.userid }[${list.snscode }]) </td>
+							<td width="5%"><button type="button" class="btn btn-warning"  onclick="location.href='/shop/mng/deal/dealMngSellerDetail.do?d_idx=${list.d_idx}'"><i class="fa fa-bars"></i></button></td>
 					</tr>
 				</c:forEach>
 			</table>
