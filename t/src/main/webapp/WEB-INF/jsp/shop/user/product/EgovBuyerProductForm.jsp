@@ -114,14 +114,12 @@
 		document.frm.submit();
 	}
 </script>
-	<%-- <c:choose>
-		<c:when test="${r_div eq 2 }"> --%>
+	<c:if test="${sessionScope.status == 2 }">
 		<p class="h-25"/>
 			<form action="/shop/user/review/insertUserReview.do" name="frm2" method="post" enctype="multipart/form-data">
 			<div class="container text-center">
 				<div class="row justify-content-center">
 					<input type="hidden" id="s_id" name="s_id" value="${ProductUserVO.s_id }">	<!-- 상품 상세페이지가 나오면  EL표기법으로 값가져오기. -->
-					<input type="hidden" id="sns_idx" name="sns_idx" value=" ">
 					<input type="hidden" id="p_idx" name="p_idx" value="${ProductUserVO.p_idx }">
 					<input type="hidden" id="r_div" name="r_div" value="1">
 					<textarea rows="3" cols="80" name="r_content" id="r_content"></textarea>
@@ -182,9 +180,8 @@
 									jsFunction="linkPage" />
 							</ul> --%>
 		</form>
-		<%-- </c:when> --%>
-		<%-- <c:otherwise>
-			<c:when test="${r_div eq 1 }"> --%>
+		</c:if>
+		<c:if test="${sessionScope.status == 1 }">
 			<p class="h-25"/>
 			<form action="/shop/user/review/insertUserReview.do" name="frm2" method="post" enctype="multipart/form-data">
 			<div class="container text-center">
@@ -251,9 +248,7 @@
 									jsFunction="linkPage" />
 							</ul> --%>
 		</form>
-		<%-- </c:when>
-		</c:otherwise>
-</c:choose> --%>
+		</c:if>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>

@@ -56,8 +56,6 @@
 								</tr>
 							</thead> 
 						<c:forEach var="result" items="${list }" varStatus="i">
-						<c:choose>
-							<c:when test="${result.r_div == 1 }">
 							<tbody>
 								<tr>
 									<td>${result.r_idx }</td>
@@ -70,11 +68,6 @@
 									<td><input type="checkbox" name="rechk" id="rechk" value="${result.r_idx }"></td>
 								</tr>
 							</tbody>
-							</c:when>
-								<c:otherwise>
-									
-								</c:otherwise>
-							</c:choose>
 						</c:forEach>
 								<tr>
 									<td colspan="6"></td>
@@ -83,6 +76,12 @@
 								</tr>
 					</table>
 				</form>
+				<div id="paging_div">
+				<ul class="paging_align">
+					<ui:pagination paginationInfo="${paginationInfo}" type="image"
+						jsFunction="linkPage" />
+				</ul>
+			</div>
 			
 	</div>
 </div>
