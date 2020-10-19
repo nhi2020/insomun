@@ -109,6 +109,7 @@ public class DealUserController {
 		System.out.println("DealUserController selectDealUserBuyerDetail Start...");
 		
 		vo = dealUserService.selectDealUserBuyerDetail(vo);
+		System.out.println("p_idx값 확인" + vo.getP_idx());
 		model.addAttribute("dealUserVO", vo);
 		return "/shop/user/deal/dealUserBuyerDetail";	
 	}

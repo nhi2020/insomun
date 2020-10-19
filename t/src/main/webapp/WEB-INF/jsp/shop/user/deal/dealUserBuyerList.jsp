@@ -145,7 +145,7 @@ table {
 						<input type="hidden" name="p_idx" value="${list.p_idx }"/>
 						</c:when>
 				      <c:otherwise>
-					<tr onclick="location.href='/shop/user/deal/dealUserBuyerDetail.do?d_idx=${list.d_idx}'"
+					<tr onclick="location.href='/shop/user/deal/dealUserBuyerDetail.do?d_idx=${list.d_idx}&p_idx=${list.p_idx }'"
 						style="cursor: pointer;">
 				      </c:otherwise> 
 				</c:choose> 			

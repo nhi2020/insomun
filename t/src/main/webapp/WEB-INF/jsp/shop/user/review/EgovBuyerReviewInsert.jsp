@@ -15,17 +15,54 @@
 
 <body>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
-<div class="container text-center">
-	<div class="row justify-content-center">
-		<form action="">
-	  		<h2>리뷰작성페이지입니다.</h2>
-	  		
-	  		<input type="text">
-	  		<input type="submit">
-	  	</form>
-	</div>
-</div>
-
+<c:if test="${sessionScope.status == 2 }"><!-- 판매자 -->
+	<form action="/shop/user/review/insertUserReview.do" name="frm2" method="post" enctype="multipart/form-data">
+		<div class="container text-center">
+			<div class="row justify-content-center">
+			<h2>판매자 리뷰작성페이지입니다.</h2>
+					<input type="hidden" id="s_id" name="s_id" value="${sessionScope.S_ID}">	<!-- 상품 상세페이지가 나오면  EL표기법으로 값가져오기. -->
+					<input type="hidden" id="p_idx" name="p_idx" value="${dealUserVO.p_idx }">
+					<input type="hidden" id="r_div" name="r_div" value="1">
+						<textarea rows="3" cols="80" name="r_content" id="r_content"></textarea>
+					<input type="file" name="file" id="file">
+				<div class="custom-control custom-radio custom-control-inline">
+					<input type="radio" name="seller_score" id="customRadio1" value="1"><p>1점</p>
+					<input type="radio" name="seller_score" id="customRadio1" value="2"><p>2점</p>
+					<input type="radio" name="seller_score" id="customRadio1" value="3"><p>3점</p>
+					<input type="radio" name="seller_score" id="customRadio1" value="4"><p>4점</p>
+					<input type="radio" name="seller_score" id="customRadio1" value="5"><p>5점</p>
+				</div>
+					<input type="submit" value="저장" class="btn btn-primary">
+			</div>
+		</div>
+	</form>
+</c:if>
+<c:if test="${sessionScope.status == 1 }"><!-- 구매자 -->
+	<form action="/shop/user/review/insertUserReview.do" name="frm2" method="post" enctype="multipart/form-data">
+		<div class="container text-center">
+				<div class="row justify-content-center">
+				<h2>구매자 리뷰작성페이지입니다.</h2>
+			</div>
+		</div>
+			<div class="container text-center">
+				<div class="row justify-content-center">
+					<input type="hidden" id="sns_idx" name="sns_idx" value="${sessionScope.sns_idx}">
+					<input type="hidden" id="p_idx" name="p_idx" value="${dealUserVO.p_idx }">
+					<input type="hidden" id="r_div" name="r_div" value="2">
+						<textarea rows="3" cols="80" name="r_content" id="r_content"></textarea>
+					<input type="file" name="file" id="file">
+						<div class="custom-control custom-radio custom-control-inline">
+							<input type="radio" name="sns_score" id="customRadio1" value="1"><p>1점</p>
+							<input type="radio" name="sns_score" id="customRadio1" value="2"><p>2점</p>
+							<input type="radio" name="sns_score" id="customRadio1" value="3"><p>3점</p>
+							<input type="radio" name="sns_score" id="customRadio1" value="4"><p>4점</p>
+							<input type="radio" name="sns_score" id="customRadio1" value="5"><p>5점</p>
+						</div>
+					<input type="submit" value="저장" class="btn btn-primary">
+				</div>
+			</div>
+		</form>
+</c:if>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>

@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import egovframework.let.shop.mng.testFileUpload.web.TestFileUploadController;
+import egovframework.let.shop.user.deal.service.impl.DealUserVO;
 import egovframework.let.shop.user.review.service.ReviewUserService;
 import egovframework.let.shop.user.review.service.ReviewUserVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
@@ -153,12 +154,13 @@ public class ReviewUserController {
 
 		egovReviewService.insertMainUserReview(reviewVO);
 		
-		return "redirect:/shop/user/product/EgovBuyerProductForm?p_idx="+reviewVO.getP_idx();
+		return "redirect:/shop/user/deal/dealUserBuyerList.do";
 	}
 	
 	@RequestMapping(value = "/shop/user/review/EgovBuyerInsertForm.do")
-	public String insertReview(){
+	public String insertReview(DealUserVO vo, ModelMap model){
 		System.out.println("abcdefghijklmnop");
+		model.addAttribute("dealUserVO", vo);
 		return "/shop/user/review/EgovBuyerReviewInsert";
 	}
 	
