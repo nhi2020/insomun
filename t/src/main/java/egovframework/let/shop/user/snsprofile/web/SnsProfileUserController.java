@@ -141,6 +141,7 @@ public class SnsProfileUserController {
 	        if(result2 ==0){
 	        	
 	        	int result=snsprofileUserService.insertSnsUser(snsProfileVO);
+	        	vo = (snsprofileUserService).selectSnsidx(userid);
 	        	 session.setAttribute("userid", userInfo.get("kakaoid"));
 	 	        session.setAttribute("nickname", userInfo.get("nickname"));
 	 	        session.setAttribute("status", 1);
@@ -156,6 +157,7 @@ public class SnsProfileUserController {
         		writer.println("<script>location.href='/shop/user/main/EgovUserMain.do';</script>");
         		writer.flush();
 	        }else{
+	        	 vo = (snsprofileUserService).selectSnsidx(userid);
 	        	 session.setAttribute("userid", userInfo.get("kakaoid"));
 	 	        session.setAttribute("nickname", userInfo.get("nickname"));
 	 	        session.setAttribute("status", 1);
