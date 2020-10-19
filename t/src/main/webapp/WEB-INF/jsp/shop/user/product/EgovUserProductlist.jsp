@@ -83,11 +83,13 @@
 			</div>
 		</div>
 	</c:if>
-<div class="container" style="text-align: center; margin-top:140px ;margin-bottom:140px ">
+
 <c:if test="${msg != null}">
+<div class="container" style="text-align: center; margin-top:140px ;margin-bottom:140px ">
 		<h1>${msg}</h1>
-	</c:if>
-</div>
+		</div>
+</c:if>
+
 	
 <form name="frm" action="/shop/user/product/EgovUserProductDelete.do">
 <div align="center">
