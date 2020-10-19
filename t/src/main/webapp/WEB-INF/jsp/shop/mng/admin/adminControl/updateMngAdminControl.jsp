@@ -9,15 +9,40 @@
 <body>
 <%@ include file="../../../inc/EgovShopTop.jsp" %>
 <%@ include file="../../../inc/EgovShopHeader.jsp" %>
-<h2>수정페이지</h2>
-  <c:if test="${msg != null }">
-	<p>${msg }</p>
+<div class="container">
+		<div class="row">
+			<h2 class="mx-auto">운영자 수정</h2>
+		</div>
+		
+			<c:if test="${msg != null}">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#updateModal").modal('show')
+			
+				
+			})
+		</script>
+		<!-- Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1"
+			aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">${msg }</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</c:if>
-	<c:if test="${msg = null }">
-	</c:if>
-   <div class="container-fluid">
-    <div class="container text-center">
-      <form action="/shop/mng/admin/adminControl/updateMngAdminControlPro.do" method="post">
+		
+		
+		
+ 
+    <div class="row">
+      <form class="mx-auto" action="/shop/mng/admin/adminControl/updateMngAdminControlPro.do" method="post">
+        <input type="hidden" name="p_moddate" value="${AdminVO.a_moddate }">
        <table class="table">
        <tr>
             <th>아이디</th>
@@ -36,13 +61,18 @@
             <td><input type="text" name="a_name" value="${AdminVO.a_name }"></td>
         </tr>
         <tr>
-            <td colspan="2"><br/><input type="submit" value="수정완료">&nbsp;</td>
+            <th></th>
+            <td colspan="2"><br/><input class="btn btn-primary" type="submit" value="수정완료">&nbsp;
+             <input class="btn btn-info" type="button" value="목록으로" onclick="location.href='/shop/mng/admin/adminControl/listMngAdminControl.do'">
+            </td>
       </table>
-      <input type="hidden" name="p_moddate" value="${AdminVO.a_moddate }">
+     
      
       </form>
-       <input type="submit" value="목록으로" onclick="location.href='/shop/mng/admin/adminControl/listMngAdminControl.do'">
+      
     </div>
    </div>
+  
 </body>
+
 </html>

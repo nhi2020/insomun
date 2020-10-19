@@ -19,13 +19,10 @@
 	</c:if>
 	<c:if test="${msg = null }">
 	</c:if>
-	
-  
-    
-  
 	<div class="container">
 	  <div class="row">
 	   <%-- <input type="hidden" name="a_pass" value="${AdminVO.a_pass }" /> --%>
+	   <form class="w-100" action="/shop/mng/admin/adminControl/delMngAdminControl.do" name="frm"">
 	   <table class="table mx-auto">
 	      <tr>
 	         <th>아이디</th>
@@ -35,7 +32,7 @@
 	         <th>등록일</th>
 	         <th>삭제</th>
 	     </tr>
-	     <form action="/shop/mng/admin/adminControl/delMngAdminControl.do" name="frm"">
+	     
        <c:forEach items="${list }" var="admin_list" varStatus="loop">
 	    <tr>
 	       <td><a href="/shop/mng/admin/adminControl/updateMngAdminControl.do?a_id=${admin_list.a_id }">${admin_list.a_id }</a></td>
@@ -47,10 +44,14 @@
 		  </tr>
 	    </c:forEach> 
 	   </table>
-	   <input type="submit" value="삭제"/>
+	   <input class="btn btn-danger" type="submit" value="삭제"/>
+	    <input class="btn btn-info" type="button" value="등록" onclick="location.href='/shop/mng/admin/adminControl/insertMngAdminControlForm.do'">
 	   </form>
-	
-	      <input type="submit" value="등록" onclick="location.href='/shop/mng/admin/adminControl/insertMngAdminControlForm.do'">
+	   <div id="paging_div" class="mx-auto">
+	   <ul class="paging_align">	
+				<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="linkPage" />
+			</ul>
+	    </div>
 	  </div>
 	  
 	</div>

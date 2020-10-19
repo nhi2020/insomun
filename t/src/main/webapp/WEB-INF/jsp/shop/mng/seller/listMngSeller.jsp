@@ -55,6 +55,7 @@
 			$(document).ready(function(){
 				$("#updateModal").modal('show')
 			
+				
 			})
 		</script>
 		<!-- Modal -->

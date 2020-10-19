@@ -127,6 +127,7 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 		
 		int totCnt = adminService.selectListCnt(vo); //
+		System.out.println("vo"+vo);
 		paginationInfo.setTotalRecordCount(totCnt);
 
 		List<AdminVO> list = adminService.selectList(vo); //
@@ -134,7 +135,7 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("paginationInfo", paginationInfo);
-		System.out.println("pagecount");
+		System.out.println("pagecount"+totCnt);
 		
 		return "/shop/mng/admin/adminControl/listMngAdminControl";
 		

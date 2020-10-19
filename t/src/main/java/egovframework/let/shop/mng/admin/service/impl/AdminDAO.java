@@ -24,7 +24,7 @@ public class AdminDAO extends EgovAbstractDAO{
 		System.out.println("adminListCnt");
 		int count = 0;
 		try{
-			count = (int)select("adminListCnt", vo);
+			count = (int)select("AdminDAO.adminListCnt", vo);
 		} catch(Exception e) {
 			System.out.println("adminListCnt Exception " + e.getMessage());
 		}

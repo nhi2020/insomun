@@ -14,7 +14,7 @@
   
   <div class="container">
     <div class="row">
-  
+      
       <table class="table mx-auto">
        <tr>
          <th>상품이미지</th>
@@ -25,8 +25,8 @@
          <th>삭제</th>
         </tr>
         <c:forEach items="${list }" var="like_list" >
+         <input type="hidden" name="p_idx" value="${like_list.p_idx }" /> 
         <tr>
-        <input type="hidden" name="p_idx" value="${like_list.p_idx }" /> 
           <td><a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${like_list.p_idx}"><img src="<c:url value='/'/>file/${like_list.p_image}" width="200" height="200"/></a></td>
           <td>${like_list.p_name }</td>
           <td>${like_list.l_regdate }</td>
@@ -36,8 +36,9 @@
         </tr>
         </c:forEach>
       </table>
-      
-      <input type="submit" value="목록으로" onclick="location.href='/shop/user/product/EgovUserProductlist.do'">
+         <div class="float-left m-3">
+            <input class="btn btn-info" type="submit" value="상품목록" onclick="location.href='/shop/user/product/EgovUserProductlist.do'">
+        </div>
     </div>
   </div>
     
