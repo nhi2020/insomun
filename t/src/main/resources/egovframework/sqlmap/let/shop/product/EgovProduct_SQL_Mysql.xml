@@ -159,7 +159,7 @@
 			WHERE P_STATUS = 'Y'
 		]]>
 			<isEqual prepend="AND" property="searchCnd" compareValue="0">
-				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%') 		]]>
+				<![CDATA[	(p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%') )	]]>
 			</isEqual>
 			<isNotNull prepend="AND" property="s_id" > <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
 				<![CDATA[	S_ID LIKE CONCAT ('%', #s_id#,'%') 		]]>
@@ -178,7 +178,7 @@
 			WHERE P_STATUS = 'Y'
 		]]>
 			<isEqual prepend="AND" property="searchCnd" compareValue="0">
-				<![CDATA[	p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%') 		]]>
+				<![CDATA[	(p_name LIKE CONCAT('%',#searchWrd#,'%') OR s_id LIKE CONCAT('%',#searchWrd#,'%') OR P_CONTENT LIKE CONCAT('%',#searchWrd#,'%') OR P_TAGE LIKE CONCAT('%',#searchWrd#,'%') )	]]>
 			</isEqual>
 			<isNotNull prepend="AND" property="s_id" > <!-- prepend로 and,or...쓰고 searchCnd값이 0이면 쿼리 문을 실행 시킨다. -->
 				<![CDATA[	S_ID LIKE CONCAT ('%', #s_id#,'%') 		]]>
@@ -202,7 +202,7 @@
 			P_SDATE = #p_sdate#,
 			P_EDATE = #p_edate#,
 			P_MODDATE = SYSDATE()
-		WHERE P_IDX = #p_idx#
+		WHERE P_IDX = #p_idx#+0
 	</update>
 	
 	<insert id="EgovUserProductDAO.insertUserProductPro" parameterClass="ProductUserVO" >

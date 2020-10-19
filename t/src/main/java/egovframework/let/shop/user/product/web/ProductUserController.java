@@ -132,7 +132,7 @@ public class ProductUserController {
 		model.addAttribute("paginationInfo", paginationInfo);
 
 		if(list.size()==0){
-			System.out.println("검색결과가");
+			System.out.println("검색결과가없습니다");
 			model.addAttribute("msg","검색결과가 없습니다.");
 		}else{
 			System.out.println("totCnt"+ totCnt);
