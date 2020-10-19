@@ -16,7 +16,7 @@
 <body>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
 <c:if test="${sessionScope.status == 2 }"><!-- 판매자 -->
-	<form action="/shop/user/review/insertUserReview.do" name="frm2" method="post" enctype="multipart/form-data">
+	<form action="/shop/user/review/insertSellerReview2.do" name="frm2" method="post" enctype="multipart/form-data">
 		<div class="container text-center">
 			<div class="row justify-content-center">
 			<h2>판매자 리뷰작성페이지입니다.</h2>

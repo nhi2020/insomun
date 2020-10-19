@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -131,6 +132,9 @@ public class ReviewUserController {
 	public String list(ReviewUserVO reviewVO, ModelMap model, HttpServletRequest request, String path, MultipartFile file) throws Exception {
 		System.out.println("---------------------------mainReview insert Start");
 		
+		HttpSession session = request.getSession();
+		int sessionStatus =(int)session.getAttribute("status");
+		
 		// 업로드용 경로 설정
 		String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
 		// 서버에 업로드할 경우엔 프로퍼티에서 경로를 설정할 예정.
@@ -155,6 +159,39 @@ public class ReviewUserController {
 		egovReviewService.insertMainUserReview(reviewVO);
 		
 		return "redirect:/shop/user/deal/dealUserBuyerList.do";
+
+	}
+	@RequestMapping(value = "/shop/user/review/insertSellerReview2.do", method = RequestMethod.POST)
+	public String list2(ReviewUserVO reviewVO, ModelMap model, HttpServletRequest request, String path, MultipartFile file) throws Exception {
+		System.out.println("---------------------------mainReview insert Start");
+		
+		HttpSession session = request.getSession();
+		int sessionStatus =(int)session.getAttribute("status");
+		
+		// 업로드용 경로 설정
+		String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
+		// 서버에 업로드할 경우엔 프로퍼티에서 경로를 설정할 예정.
+		// String uploadPath =
+		// propertyService.getString("Globals.fileStorePath");
+		System.out.println("uploadPath => " + uploadPath);
+		System.out.println("uploadForm POST Start");
+
+		logger.info("originalName : " + file.getOriginalFilename());
+		logger.info("Size : " + file.getSize());
+		logger.info("contentType : " + file.getContentType());
+
+		// 업로드하고 파일명을 받아온다.
+		String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
+		logger.info("savedNames: " + savedName);
+
+		// VO에 파일 관련된 값을 수동으로 넘겨준다. savedName이 가장 중요하다.
+		reviewVO.setOriginal_file_name(file.getOriginalFilename());
+		reviewVO.setStored_file_name(savedName);
+		reviewVO.setFile_size(file.getSize());
+
+		egovReviewService.insertMainUserReview(reviewVO);
+		
+		return "redirect:/shop/user/deal/dealUserSellerList.do";
 	}
 	
 	@RequestMapping(value = "/shop/user/review/EgovBuyerInsertForm.do")
