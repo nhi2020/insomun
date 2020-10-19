@@ -295,38 +295,38 @@ FROM
 <!-- 판매자  -->
 
 	<select id="selectDealMngSellerDetail" parameterClass="DealMngVO" resultClass="DealMngVO">
-	SELECT
-		A.sns_idx,
-		A.D_IDX,
-		A.P_IDX,
-		A.D_ING,
-		A.D_REQUEST,
-		A.D_Q,
-		A.P_NAME,
-		A.P_PRICE,
-		B.nickname
-	FROM
-		(SELECT
+SELECT
 			A.sns_idx,
 			A.D_IDX,
 			A.P_IDX,
 			A.D_ING,
 			A.D_REQUEST,
 			A.D_Q,
-			B.P_NAME,
-			B.P_PRICE
+			A.P_NAME,
+			A.P_PRICE,
+			B.nickname
 		FROM
 			(SELECT
-				sns_idx,
-				D_IDX,
-				P_IDX,
-				D_ING,
-				D_REQUEST,
-				D_Q
-			FROM DEAL
-				WHERE D_IDX = #d_idx#) A, PRODUCT B
-		WHERE A.P_IDX = B.P_IDX) A, SNSPROFILE B
-	WHERE A.sns_idx = B.sns_idx
+				A.sns_idx,
+				A.D_IDX,
+				A.P_IDX,
+				A.D_ING,
+				A.D_REQUEST,
+				A.D_Q,
+				B.P_NAME,
+				B.P_PRICE
+			FROM
+				(SELECT
+					sns_idx,
+					D_IDX,
+					P_IDX,
+					D_ING,
+					D_REQUEST,
+					D_Q
+				FROM DEAL
+					WHERE D_IDX = 3) A, PRODUCT B
+			WHERE A.P_IDX = B.P_IDX) A, SNSPROFILE B
+		WHERE A.sns_idx = B.sns_idx
 	</select>
 
 	

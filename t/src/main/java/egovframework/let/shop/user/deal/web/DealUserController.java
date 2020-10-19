@@ -194,7 +194,6 @@ public class DealUserController {
 		System.out.println("DealMngController selectDealUserSellerDetail Start...");
 		vo = dealUserService.selectDealUserSellerDetail(vo);
 		/*vo = dealMngService.selectDealMngBuyerScore(vo);*/
-		
 		model.addAttribute("dealUserVO", vo);
 		return "/shop/user/deal/dealUserSellerDetail";	
 	}

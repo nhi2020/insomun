@@ -159,9 +159,14 @@ table {
 									<c:when test="${list.d_ing eq '6'}"> 판매자<br>거래 취소 </c:when>
 								</c:choose></td>
 							<td width="12%">${list.s_nickname }<br>(${list.sns_idx })</td>
-							<td width="5%"><input type="hidden" name="d_idx" value="${list.d_idx }"><button type="button" class="btn btn-warning"  onclick="location.href='/shop/mng/deal/dealMngBuyerDetail.do?d_idx=${list.d_idx}'"><i class="fa fa-bars"></i></button></td>
+							<td width="5%"><input type="hidden" name="d_idx" value="${list.d_idx }"><button type="button" class="btn btn-warning"  
+									onclick="location.href='/shop/mng/deal/dealMngBuyerDetail.do?d_idx=${list.d_idx}&sns_idx=${list.sns_idx }&p_idx=${list.p_idx}'">
+											<i class="fa fa-bars"></i></button></td>
+											
 							<td width="15%">${list.nickname }<br>(${list.userid }[${list.snscode }]) </td>
-							<td width="5%"><button type="button" class="btn btn-warning"  onclick="location.href='/shop/mng/deal/dealMngSellerDetail.do?d_idx=${list.d_idx}'"><i class="fa fa-bars"></i></button></td>
+							<td width="5%"><button type="button" class="btn btn-warning"  
+									onclick="location.href='/shop/mng/deal/dealMngSellerDetail.do?d_idx=${list.d_idx}&p_idx=${list.p_idx}&s_id=${list.s_id}'">
+											<i class="fa fa-bars"></i></button></td>
 					</tr>
 				</c:forEach>
 			</table>

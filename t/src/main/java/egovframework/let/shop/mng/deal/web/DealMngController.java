@@ -86,7 +86,7 @@ public class DealMngController {
 		int totCnt = dealMngService.selectListCntDealMng(vo); //
 		paginationInfo.setTotalRecordCount(totCnt);
 
-		
+		System.out.println("s_id 출력 값 ->" + vo.getS_id());
 		List<DealMngVO> list = dealMngService.selectListDealMng(vo); //
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("dealMnglist", list);
@@ -151,6 +151,7 @@ public class DealMngController {
 		vo = dealMngService.selectDealMngSellerDetail(vo);
 		/*vo = dealMngService.selectDealMngBuyerScore(vo);*/
 		
+		System.out.println("s_id 값  출력 ->"+vo.getS_id());
 		model.addAttribute("dealMngVO", vo);
 		return "/shop/mng/deal/dealMngSellerDetail";	
 	}
