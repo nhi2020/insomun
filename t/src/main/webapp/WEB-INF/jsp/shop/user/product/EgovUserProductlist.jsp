@@ -100,6 +100,7 @@
 <input type="hidden" name="pageIndex" value="${searchVO.pageIndex }">
 <input type="hidden" name="searchCnd" value="${searchVO.searchCnd }">
 <input type="hidden" name="searchWrd" value="${searchVO.searchWrd }">
+<input type="hidden" name="p_status" value="${productuser_list.p_status }">
 </c:if>
 </div>
 

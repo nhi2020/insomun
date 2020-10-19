@@ -213,6 +213,7 @@ public class ProductUserController {
 	    // 서버 업로드를 위한 절차
 	    String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
 		vo.setP_image(savedName);
+		vo.setP_status("Y");
 		}
 	    // DB 반영
 	    int dbResult = userProductService.updateUserProductPro(vo);

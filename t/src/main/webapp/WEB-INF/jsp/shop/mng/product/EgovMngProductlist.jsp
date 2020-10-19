@@ -103,7 +103,6 @@ font-size: 20px; color: #616A6B;}
 		<input type="hidden" name="pageIndex" value="${searchVO.pageIndex }">
 	    <input type="hidden" name="searchCnd" value="${searchVO.searchCnd }">
 	    <input type="hidden" name="searchWrd" value="${searchVO.searchWrd }">
-	    <input type="hidden" name="p_status" value="${product_list.p_status }">
 	</div>
 		<p/>
 		<div class="container-fluid" >
