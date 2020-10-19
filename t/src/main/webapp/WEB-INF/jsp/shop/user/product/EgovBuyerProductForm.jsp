@@ -42,10 +42,8 @@
 <body>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
 <h3 style="text-align: center">상품 상세 페이지</h3> 
-  <div class="container text-center">
-		<div class="row justify-content-center">
-  
-  </div></div>
+
+
  <div class="container text-center">
 		<div class="row justify-content-center">
 	    <div class="row">
@@ -102,6 +100,15 @@
 				</form>				
 			</div>
 		</div>
+		<div class="row">
+			<c:forEach var="result" items="${list }">
+				<div class="p-2 border">
+	         		<span class="font-weight-normal" style="color: red">구매자 이름 </span><br>
+	         		${result.nickname}&nbsp;<span class="font-weight-normal">&nbsp;&nbsp;${result.r_regdate}&nbsp;
+	         		구매자 점수 :${result.sns_score}</span>&nbsp;&nbsp;&nbsp;	${result.r_content }
+         		</div>
+		</c:forEach>
+		</div>
 	</div>
 <script type="text/javascript">
 	function goBasket() {
@@ -115,13 +122,7 @@
 	}
 </script>
 
-	<c:forEach var="result" items="${list }">
-	<div class="p-2 border">
-         	<span class="font-weight-normal" style="color: red">구매자 이름 </span><br>
-         		${result.nickname}&nbsp;<span class="font-weight-normal">&nbsp;&nbsp;${result.r_regdate}&nbsp;
-         		구매자 점수 :${result.sns_score}</span>&nbsp;&nbsp;&nbsp;	${result.r_content }
-         		</div>
-		</c:forEach>
+
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
 </body>
 </html>
