@@ -35,4 +35,10 @@ public class SnsProfileUserServiceImpl extends EgovAbstractServiceImpl implement
 		return result;
 	}
 
+	@Override
+	public SnsProfileUserVO selectSnsidx(String userid) {
+		
+		return snsUserDAO.selectSnsidx(userid);
+	}
+
 }

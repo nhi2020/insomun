@@ -89,7 +89,8 @@ $(document).ready(function(){
 			</div>
 	</div>
 </div>
-<%@ include file="../../../inc/EgovShopBottom.jsp"%>
 </form>
+<%@ include file="../../../inc/EgovShopBottom.jsp"%>
+
 </body>
 </html>

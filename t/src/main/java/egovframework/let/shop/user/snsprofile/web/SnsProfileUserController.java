@@ -118,6 +118,7 @@ public class SnsProfileUserController {
 	    	snsProfileVO.setUserid((String) userInfo.get("kakaoid"));
 	    	snsProfileVO.setSnscode("kakao");
 	    	snsProfileVO.setNickname((String) userInfo.get("nickname"));
+	    	
 	    	String email=(String)userInfo.get("email");
 	    	if(email!=null&& !email.equals("")){
 	    		snsProfileVO.setEmail(email);	
@@ -126,19 +127,28 @@ public class SnsProfileUserController {
 	    	}
 	    	
 	    	//---------------------
-	        session.setAttribute("userid", userInfo.get("kakaoid"));
-	        session.setAttribute("nickname", userInfo.get("nickname"));
-	        session.setAttribute("status", 1);
-	        /* session.setAttribute("email", userInfo.get("email"));*/
-	        //session.setAttribute("email", userInfo.get("email"));//카카오에서 이메일 못가져옴
-	        session.setAttribute("snscode","kakao"); //세션 생성
-	        session.setAttribute("access_Token", access_Token);
+	       
 	        int result2 = snsprofileUserService.checkUserLogin(snsProfileVO);
+	        SnsProfileUserVO vo = new SnsProfileUserVO();
+	        String userid= snsProfileVO.getUserid();
+	        if(userid != null){
+	        	 vo = (snsprofileUserService).selectSnsidx(userid);
+	        }
+	        
 	        System.out.println("result2 : "+result2);
 	        response.setContentType("text/html; charset=UTF-8");
     		PrintWriter writer = response.getWriter();
 	        if(result2 ==0){
+	        	
 	        	int result=snsprofileUserService.insertSnsUser(snsProfileVO);
+	        	 session.setAttribute("userid", userInfo.get("kakaoid"));
+	 	        session.setAttribute("nickname", userInfo.get("nickname"));
+	 	        session.setAttribute("status", 1);
+	 	        /* session.setAttribute("email", userInfo.get("email"));*/
+	 	        //session.setAttribute("email", userInfo.get("email"));//카카오에서 이메일 못가져옴
+	 	        session.setAttribute("snscode","kakao"); //세션 생성
+	 	        session.setAttribute("access_Token", access_Token);
+	        	session.setAttribute("sns_idx",vo.getSns_idx());
 	        	System.out.println("result : "+result);
         		System.out.println("성공");
         		
@@ -146,6 +156,14 @@ public class SnsProfileUserController {
         		writer.println("<script>location.href='/shop/user/main/EgovUserMain.do';</script>");
         		writer.flush();
 	        }else{
+	        	 session.setAttribute("userid", userInfo.get("kakaoid"));
+	 	        session.setAttribute("nickname", userInfo.get("nickname"));
+	 	        session.setAttribute("status", 1);
+	 	        /* session.setAttribute("email", userInfo.get("email"));*/
+	 	        //session.setAttribute("email", userInfo.get("email"));//카카오에서 이메일 못가져옴
+	 	        session.setAttribute("snscode","kakao"); //세션 생성
+	 	        session.setAttribute("access_Token", access_Token);
+	        	session.setAttribute("sns_idx",vo.getSns_idx());
 	        	writer.println("<script>alert('로그인 되었습니다.');</script>");
         		writer.println("<script>location.href='/shop/user/main/EgovUserMain.do';</script>");
         		writer.flush();

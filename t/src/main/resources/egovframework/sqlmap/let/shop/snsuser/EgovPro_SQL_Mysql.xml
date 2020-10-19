@@ -92,6 +92,11 @@
 		FROM 	SNSPROFILE
 		WHERE 	sns_idx = #sns_idx#
 	</select>
+	<select id="EgovSnsUserDAO.selectSnsidx" parameterClass="java.lang.String" resultClass="SnsProfileUserVO">
+		SELECT 	SNS_IDX
+		FROM 	SNSPROFILE
+		WHERE 	USERID = #userid#
+	</select>
 	<!-- <insert id="EgovMngProductDAO.insertMngProduct" parameterClass="Product">
 		<![CDATA[
 			INSERT INTO 테이블명

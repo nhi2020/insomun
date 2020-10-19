@@ -9,4 +9,6 @@ public interface SnsProfileUserService {
 	public int insertSnsUser(SnsProfileUserVO snsProfileVo)throws Exception;
 	
 	public int checkUserLogin(SnsProfileUserVO vo)throws Exception;
+
+	public SnsProfileUserVO selectSnsidx(String userid);
 }

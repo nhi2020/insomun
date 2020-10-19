@@ -23,4 +23,9 @@ public class SnsProfileUserDAO extends EgovAbstractDAO {
 		int result=(Integer)select("EgovSnsUserDAO.checkUserLogin", vo);
 		return result;
 	}
+
+	public SnsProfileUserVO selectSnsidx(String userid) {
+		
+		return (SnsProfileUserVO) select("EgovSnsUserDAO.selectSnsidx",userid);
+	}
 }
