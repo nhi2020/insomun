@@ -239,8 +239,8 @@ public class SnsProfileUserController {
 	
 	@RequestMapping(value="/shop/user/EgovUserLogout.do")
 	public String egovUserLogout(HttpSession session) {
-	    session.invalidate();
-	    return "shop/main/EgovMain";
+		 session.invalidate();
+		 return "redirect:/shop/user/main/EgovUserMain.do";
 	}
 
 }
