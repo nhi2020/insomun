@@ -68,7 +68,7 @@
 		<div class="container text-center">
 			<div class="row justify-content-center">
 			<h2>판매자 리뷰작성페이지입니다.</h2>
-					<input type="hidden" id="sns_idx" name="sns_idx" value="${dealUserVO.sns_idx}">	
+					<input type="hidden" id="sns_idx" name="sns_idx" value="${dealUserVO.sns_idx}">
 					<input type="hidden" id="p_idx" name="p_idx" value="${dealUserVO.p_idx }">
 					<input type="hidden" id="r_div" name="r_div" value="0">		<!-- 구매자 -->
 						<textarea rows="3" cols="80" name="r_content" id="r_content"></textarea>

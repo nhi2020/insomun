@@ -201,6 +201,14 @@ public class ReviewUserController {
 		return "/shop/user/review/EgovBuyerReviewInsert";
 	}
 	
+	@RequestMapping(value = "/shop/user/review/EgovBuyerInsertForm2.do")
+	public String insertReview2(DealUserVO vo, ModelMap model){
+		System.out.println("abcdefghijklmnop");
+		model.addAttribute("dealUserVO", vo);
+		
+		return "/shop/mng/review/EgovSellerReviewInset";
+	}
+	
 	@SuppressWarnings("unused")
 	private String uploadFile(String originalName, byte[] fileData, String uploadPath) throws Exception {
 

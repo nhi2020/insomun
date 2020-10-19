@@ -42,7 +42,7 @@ td {
 
 	function dealMngSellerReview() {
 		if (confirm(" 후기 작성 하시려면 예를 누르시고\n후기 작성 하지 않으시려면 아니오를 눌러주세요")) {
-			location.href = "/shop/user/review/EgovBuyerInsertForm.do?s_id=${dealMngVO.s_id }&p_idx=${dealMngVO.p_idx}";
+			location.href = "/shop/user/review/EgovBuyerInsertForm2.do?s_id=${dealMngVO.s_id }&p_idx=${dealMngVO.p_idx}";
 		} else {
 			alert('아니오를 누르셨습니다');
 		}
