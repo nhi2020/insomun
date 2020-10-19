@@ -110,7 +110,9 @@ font-size: 20px; color: #616A6B;}
 				<div class="row">
 					<c:forEach var="product_list" items="${list}">
 						<div class="col-3 mt-3">
-						<img class="img-fluid" src="<c:url value='/'/>file/${product_list.p_image}" width="250" height="250" class="rounded"/> 
+							<div style="width: 200px; height: 200px;" class="bg-dark d-flex flex-wrap align-items-center">
+							<img class="img-fluid" src="<c:url value='/'/>file/${product_list.p_image}" class="rounded"/>
+							</div> 
 							<span> <input type="checkbox" name="check" id="check" value="${product_list.p_idx }"> 
 							<b class="name"> ${product_list.p_name }</b>
 							</span> <br /> 
