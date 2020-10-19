@@ -104,10 +104,11 @@
 	    <div class="row">
 	  		<c:forEach var="productuser_list" items="${list}">
 			<div class="col-3 mt-3">
-					
+					<div style="width: 200px; height: 200px;" class="bg-dark d-flex flex-wrap align-items-center">
 					<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
-					<img class="img-fluid" src="<c:url value='/'/>file/${productuser_list.p_image}" width="200" height="200" class="rounded"/> 
+					<img class="img-fluid" src="<c:url value='/'/>file/${productuser_list.p_image}" class="rounded"/>
 					</a>
+					</div> 
 							<br/><span> 
 							<c:if test="${sessionScope.status == 2 }">
 							<input type="checkbox" name="check" id="check" value="${productuser_list.p_idx }"> </c:if>
