@@ -213,13 +213,7 @@
 								<li>
 									<a class="dropdown-item" href="/shop/mng/admin/adminMainForm.do">운영자 페이지</a>
 								</li> 
-								<!-- <li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
-									<div class="dropdown-menu">
-										<a class="dropdown-item" href="/shop/mng/admin/adminMainForm.do">운영자 페이지</a> 
-										<a class="dropdown-item" href="/shop/mng/product/EgovMngProductlist.do">상품관리 페이지</a>
-										
-									</div></li> -->
+								
 							</ul>
 							<button class="btn btn-info" type="button" id="adminlogout">logout</button>
 						</c:if>
