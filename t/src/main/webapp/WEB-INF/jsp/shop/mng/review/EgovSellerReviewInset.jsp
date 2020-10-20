@@ -12,7 +12,6 @@
 </head>
 <body>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
-<h1>${dealUserVO.s_id}${dealUserVO.s_id}${dealUserVO.s_id}erewertrwetrewte</h1>
 <c:if test="${sessionScope.status == 0 }"><!-- 운영자 -->
 	<form action="/shop/user/review/insertSellerReview2.do" name="frm2" method="post" enctype="multipart/form-data">
 		<div class="container text-center">
