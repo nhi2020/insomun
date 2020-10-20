@@ -113,7 +113,7 @@ public class ReviewUserController {
 		}else{
 			System.out.println("후기 삭제 성공");
 		}
-		return "forward:/shop/user/review/reviewList.do";
+		return "forward:/shop/user/review/EgovUserSellerListForm.do";
 	}
 	//사용자가 작성한 후기 수정
 	@RequestMapping(value ="/shop/user/review/updateUserReview.do")

@@ -14,7 +14,7 @@
 	//삭제
 	function delUserReview(idx){
 		document.frm.r_idx.value=idx;
-		document.frm.action="/shop/user/review/delUserReview.do";
+		document.frm.action="/shop/user/review/delUserReview.do?s_id=${s_id}";
 		document.frm.submit();
 	}
 	//본인이쓴 id 만 수정 삭제할수있게 보여준다.
@@ -46,39 +46,44 @@
  	<input type="hidden" name="r_idx" value=""/>
  	<input type="hidden" name="r_content" value=""/>
 		<c:forEach var="result" items="${list }">
-			<table border="1">
-				<thead>
-					<tr>
-						<th>판매자 아이디</th>
-						<th>상품 이름</th>
-						<th>리뷰 내용</th>
-						<th>등록일자</th>
-						<th>판매자 점수</th>				
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>${result.s_id }</td>
-						<td>${result.p_name }</td>
-						<td>
-							<div id="r_view${result.r_idx}" style="display: none;">
-							<textarea id="r_contentVal${result.r_idx}" name="r_contentVal${result.r_idx}" rows="5" cols="70">${result.r_content }</textarea>
-							<a href="javascript:updateUserReview('${result.r_idx}');">저장</a>
-							</div>
-							<div id="r_view2${result.r_idx}" style="display: block;">
-							<pre>${result.r_content}</pre>
-						</div>
-						<div>
-							<a href="javascript:displayView('${result.r_idx}');"><span style="color: gray;">수정</span></a><br>
-							<a href="javascript:delUserReview('${result.r_idx}');"><span style="color: gray;">삭제</span></a>
-						</div>
-						</td>
-						<td>${result.r_regdate }</td>
-						<td>${result.seller_score }</td>
-					</tr>
-				</tbody>
-			</table>
-		</c:forEach>
+			<c:if test="${result.r_delyn eq 'N' }">
+				<table border="1">
+					<thead>
+						<tr>
+							<th>판매자 아이디</th>
+							<th>상품 이름</th>
+							<th>리뷰 내용</th>
+							<th>등록일자</th>
+							<th>판매자 점수</th>				
+						</tr>
+					</thead>
+						<tbody>
+							<tr>
+								<td>${result.s_id }</td>
+								<td>${result.p_name }</td>
+								<td>
+									<div id="r_view${result.r_idx}" style="display: none;">
+									<textarea id="r_contentVal${result.r_idx}" name="r_contentVal${result.r_idx}" rows="5" cols="70">${result.r_content }</textarea>
+									<a href="javascript:updateUserReview('${result.r_idx}');">저장</a>
+									</div>
+									<div id="r_view2${result.r_idx}" style="display: block;">
+									<pre>${result.r_content}</pre>
+								</div>
+								<div>
+									<a href="javascript:displayView('${result.r_idx}');"><span style="color: gray;">수정</span></a><br>
+									<a href="javascript:delUserReview('${result.r_idx}');"><span style="color: gray;">삭제</span></a>
+								</div>
+								</td>
+								<td>${result.r_regdate }</td>
+								<td>${result.seller_score }</td>
+							</tr>
+						</tbody>
+					</table>
+				</c:if>
+			</c:forEach>
+				<c:if test="${result.r_delyn eq 'Y' }">
+					<h1>등록된 댓글이 없습니다.</h1>
+				</c:if>
 		</form>
 	</div>
 </div>
