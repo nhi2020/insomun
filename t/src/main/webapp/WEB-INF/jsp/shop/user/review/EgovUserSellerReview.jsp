@@ -54,7 +54,8 @@
 							<th>상품 이름</th>
 							<th>리뷰 내용</th>
 							<th>등록일자</th>
-							<th>판매자 점수</th>				
+							<th>판매자 점수</th>
+							<th>수정  삭제 </th>				
 						</tr>
 					</thead>
 						<tbody>
@@ -69,13 +70,16 @@
 									<div id="r_view2${result.r_idx}" style="display: block;">
 									<pre>${result.r_content}</pre>
 								</div>
-								<div>
-									<a href="javascript:displayView('${result.r_idx}');"><span style="color: gray;">수정</span></a><br>
-									<a href="javascript:delUserReview('${result.r_idx}');"><span style="color: gray;">삭제</span></a>
-								</div>
+								
 								</td>
 								<td>${result.r_regdate }</td>
 								<td>${result.seller_score }</td>
+								<td>
+									<div>
+										<a href="javascript:displayView('${result.r_idx}');"><span style="color: gray;">수정</span></a><br>
+										<a href="javascript:delUserReview('${result.r_idx}');"><span style="color: gray;">삭제</span></a>
+									</div>
+								</td>
 							</tr>
 						</tbody>
 					</table>
