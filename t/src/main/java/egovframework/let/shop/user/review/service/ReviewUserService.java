@@ -23,4 +23,7 @@ public interface ReviewUserService {
 	
 	//상품 후기 평점
 	public List<String> selectReviewAvg(ReviewUserVO reviewVO) throws Exception;
+	
+	//판매자가 작성한 리뷰 리스트
+	public List<ReviewUserVO> UserSellerReview(ReviewUserVO reviewVO) throws Exception;
 }

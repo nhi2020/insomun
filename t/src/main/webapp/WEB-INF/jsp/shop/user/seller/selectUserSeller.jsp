@@ -185,9 +185,9 @@ p {
 					<span class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"${result.r_content}"</span>
 				</div>
 			</c:forEach>
-			<!-- <div class="m-3" style="text-align: right; color: #275291;">
-				<a href="/shop/mng/review/MngSelect.do">자세히...</a>
-			</div> -->
+			<div class="m-3" style="text-align: right; color: #275291;">
+				<a href="/shop/user/review/EgovUserSellerListForm.do">자세히...</a>
+			</div>
 		</div>
 	</div>
 	<div id="div_bottom" style="padding-top: 50px;">

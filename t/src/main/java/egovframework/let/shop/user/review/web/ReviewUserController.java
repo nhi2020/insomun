@@ -196,24 +196,6 @@ public class ReviewUserController {
 		return "redirect:/shop/user/deal/dealUserSellerList.do";
 	}
 	
-	@RequestMapping(value = "/shop/user/review/EgovBuyerInsertForm.do")
-	public String insertReview(DealUserVO vo, ModelMap model){
-		System.out.println("abcdefghijklmnop");
-		model.addAttribute("dealUserVO", vo);
-		return "/shop/user/review/EgovBuyerReviewInsert";
-	}
-	
-	@RequestMapping(value = "/shop/mng/review/EgovSellerInsertForm2.do")
-	public String insertReview2(DealUserVO vo, ModelMap model){
-		System.out.println("abcdefghijklmnop");
-		
-		System.out.println("vo------>s_id"+vo.getS_id());
-		System.out.println("vo------>p_idx"+vo.getP_idx());
-		model.addAttribute("dealUserVO", vo);
-			
-		return "shop/mng/review/EgovSellerReviewInset";
-	}
-	
 	@SuppressWarnings("unused")
 	private String uploadFile(String originalName, byte[] fileData, String uploadPath) throws Exception {
 
@@ -246,6 +228,33 @@ public class ReviewUserController {
 		// FileCopyUtils로 경로에 저장해 복사한다.
 		FileCopyUtils.copy(fileData, target);
 		return savedName;
+	}
+	//리뷰 작성 폼
+	@RequestMapping(value = "/shop/user/review/EgovBuyerInsertForm.do")
+	public String insertReview(DealUserVO vo, ModelMap model){
+		System.out.println("abcdefghijklmnop");
+		model.addAttribute("dealUserVO", vo);
+		return "/shop/user/review/EgovBuyerReviewInsert";
+	}
+	
+	@RequestMapping(value = "/shop/mng/review/EgovSellerInsertForm2.do")
+	public String insertReview2(DealUserVO vo, ModelMap model){
+		System.out.println("abcdefghijklmnop");
+		
+		System.out.println("vo------>s_id"+vo.getS_id());
+		System.out.println("vo------>p_idx"+vo.getP_idx());
+		model.addAttribute("dealUserVO", vo);
+			
+		return "shop/mng/review/EgovSellerReviewInset";
+	}
+	
+	
+	//판매자 리뷰 리스트
+	@RequestMapping(value = "/shop/user/review/EgovUserSellerListForm.do")
+	public String UserSellerReview(ReviewUserVO reviewVO, ModelMap model) throws Exception{
+		List<ReviewUserVO> list =egovReviewService.UserSellerReview(reviewVO);
+		model.addAttribute("list" , list);
+		return "shop/user/review/EgovUserSellerReview";
 	}
 	
 }

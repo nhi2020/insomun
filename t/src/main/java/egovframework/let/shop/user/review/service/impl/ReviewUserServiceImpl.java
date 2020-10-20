@@ -58,6 +58,12 @@ public class ReviewUserServiceImpl extends EgovAbstractServiceImpl implements Re
 		return list;
 	}
 
+	@Override
+	public List<ReviewUserVO> UserSellerReview(ReviewUserVO reviewVO) throws Exception {
+		List<ReviewUserVO> list = egovReviewDAO.UserSellerReview(reviewVO);
+		return list;
+	}
+
 	
 
 }

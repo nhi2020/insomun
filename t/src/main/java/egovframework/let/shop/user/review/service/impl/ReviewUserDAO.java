@@ -43,4 +43,11 @@ public class ReviewUserDAO extends EgovAbstractDAO {
 	public List<String> selectReviewAvg(ReviewUserVO reviewVO) throws Exception{
 		return (List<String>) list("EgovReviewDAO.selectReviewAvg", reviewVO);
 	}
+	
+	//판매자가 작성한 리뷰 리스트
+	@SuppressWarnings("unchecked")
+	public List<ReviewUserVO> UserSellerReview(ReviewUserVO reviewVO) throws Exception{
+		return (List<ReviewUserVO>) list("EgovReviewDAO.UserSellerReview", reviewVO);
+	}
+	
 }

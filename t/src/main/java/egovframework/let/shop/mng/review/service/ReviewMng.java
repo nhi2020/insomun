@@ -14,6 +14,15 @@ public class ReviewMng {
 	private int sns_score;
 	private int seller_score;
 	private String searchWrd;
+	private String s_id;
+
+	public String getS_id() {
+		return s_id;
+	}
+
+	public void setS_id(String s_id) {
+		this.s_id = s_id;
+	}
 
 	public String getSearchWrd() {
 		return searchWrd;
