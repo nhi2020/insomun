@@ -81,7 +81,7 @@
 					</table>
 				</c:if>
 			</c:forEach>
-				<c:if test="${result.r_delyn eq 'Y' }">
+				<c:if test="${result.r_delyn eq null }">
 					<h1>등록된 댓글이 없습니다.</h1>
 				</c:if>
 		</form>
