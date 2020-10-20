@@ -277,4 +277,9 @@ public class ReviewUserController {
 		return "shop/user/review/EgovUserSellerReview";
 	}
 	
+	@RequestMapping(value = "/shop/mng/review/miniGame.do")
+	public String mingGame() throws Exception{
+		
+		return "shop/mng/review/reviewMini";
+	}
 }

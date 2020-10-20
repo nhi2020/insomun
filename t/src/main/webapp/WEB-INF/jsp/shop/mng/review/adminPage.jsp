@@ -22,6 +22,9 @@
 	<div class="row justify-content-center">
 		<table border="1">
 				<tr>
+					<th><a href="/shop/mng/review/miniGame.do">미니게임</a></th>
+				</tr>
+				<tr>
 					<td><a href="/shop/mng/review/MngSelect.do"> 판매자 리뷰</a></td>
 					<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 					<td><a href="/shop/mng/review/MngUserSelect.do">구매자 리뷰</a></td>
