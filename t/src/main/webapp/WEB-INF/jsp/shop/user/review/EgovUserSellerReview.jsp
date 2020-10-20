@@ -70,7 +70,6 @@
 									<div id="r_view2${result.r_idx}" style="display: block;">
 									<pre>${result.r_content}</pre>
 								</div>
-								
 								</td>
 								<td>${result.r_regdate }</td>
 								<td>${result.seller_score }</td>
