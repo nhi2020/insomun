@@ -106,6 +106,9 @@
 				</c:if>
 			</c:forEach>
 		</form>
+		<ul class="paging_align">	
+				<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="linkPage" />
+			</ul>
 	</div>
 </div>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>
