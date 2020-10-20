@@ -81,9 +81,27 @@
 					</table>
 				</c:if>
 			</c:forEach>
-				<c:if test="${result.r_delyn eq null }">
-					<h1>등록된 댓글이 없습니다.</h1>
+			<c:forEach var="result" items="${list }">
+				<c:if test="${result.r_delyn eq 'Y' }">
+					<table border="1">
+					<thead>
+						<tr>
+							<th>판매자 아이디</th>
+							<th>상품 이름</th>
+							<th>리뷰 내용</th>
+										
+						</tr>
+					</thead>
+						<tbody>
+							<tr>
+								<td>${result.s_id }</td>
+								<td>${result.p_name }</td>
+								<td>삭제된 리뷰입니다.</td>
+							</tr>
+						</tbody>
+					</table>
 				</c:if>
+			</c:forEach>
 		</form>
 	</div>
 </div>
