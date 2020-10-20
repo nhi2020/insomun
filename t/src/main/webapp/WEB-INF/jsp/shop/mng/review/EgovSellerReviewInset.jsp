@@ -12,12 +12,12 @@
 </head>
 <body>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
+<h1>${dealUserVO.s_id}${dealUserVO.s_id}${dealUserVO.s_id}erewertrwetrewte</h1>
 <c:if test="${sessionScope.status == 0 }"><!-- 운영자 -->
-	<form action="/shop/mng/review/insertSellerReview2.do" name="frm2" method="post" enctype="multipart/form-data">
+	<form action="/shop/user/review/insertSellerReview2.do" name="frm2" method="post" enctype="multipart/form-data">
 		<div class="container text-center">
 			<div class="row justify-content-center">
 			<h2>판매자 리뷰작성페이지입니다.</h2>
-			<h1>${dealUserVO.s_id}${dealUserVO.s_id}${dealUserVO.s_id}</h1>
 					<input type="hidden" id="s_id" name="s_id" value="${dealUserVO.s_id}">
 					<input type="hidden" id="p_idx" name="p_idx" value="${dealUserVO.p_idx }">
 					<input type="hidden" id="r_div" name="r_div" value="0">		<!-- 판매자 -->

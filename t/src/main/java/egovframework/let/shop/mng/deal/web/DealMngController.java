@@ -148,11 +148,14 @@ public class DealMngController {
 	@RequestMapping(value="/shop/mng/deal/dealMngSellerDetail.do")
 	public String selectDealMngSellerDetail(HttpServletRequest request, DealMngVO vo, Model model) {
 		System.out.println("DealMngController selectDealMngSellerDetail Start...");
+		System.out.println("s_id 값  출력 ->"+vo.getS_id());
+		String ssid = vo.getS_id();
 		vo = dealMngService.selectDealMngSellerDetail(vo);
 		/*vo = dealMngService.selectDealMngBuyerScore(vo);*/
 		
-		System.out.println("s_id 값  출력 ->"+vo.getS_id());
 		model.addAttribute("dealMngVO", vo);
+		model.addAttribute("s_id", ssid);
+		System.out.println("s_id"+vo.getS_id());
 		return "/shop/mng/deal/dealMngSellerDetail";	
 	}
 	

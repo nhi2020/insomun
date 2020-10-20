@@ -165,6 +165,8 @@ public class ReviewUserController {
 	public String list2(ReviewUserVO reviewVO, ModelMap model, HttpServletRequest request, String path, MultipartFile file) throws Exception {
 		System.out.println("---------------------------mainReview insert Start");
 		
+		System.out.println(reviewVO.getS_id());
+		
 		HttpSession session = request.getSession();
 		int sessionStatus =(int)session.getAttribute("status");
 		
@@ -201,12 +203,15 @@ public class ReviewUserController {
 		return "/shop/user/review/EgovBuyerReviewInsert";
 	}
 	
-	@RequestMapping(value = "/shop/user/review/EgovBuyerInsertForm2.do")
+	@RequestMapping(value = "/shop/mng/review/EgovSellerInsertForm2.do")
 	public String insertReview2(DealUserVO vo, ModelMap model){
 		System.out.println("abcdefghijklmnop");
-		model.addAttribute("dealUserVO", vo);
 		
-		return "/shop/mng/review/EgovSellerReviewInset";
+		System.out.println("vo------>s_id"+vo.getS_id());
+		System.out.println("vo------>p_idx"+vo.getP_idx());
+		model.addAttribute("dealUserVO", vo);
+			
+		return "shop/mng/review/EgovSellerReviewInset";
 	}
 	
 	@SuppressWarnings("unused")
