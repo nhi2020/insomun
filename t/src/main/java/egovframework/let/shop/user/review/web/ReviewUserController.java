@@ -117,14 +117,19 @@ public class ReviewUserController {
 	}
 	//사용자가 작성한 후기 수정
 	@RequestMapping(value ="/shop/user/review/updateUserReview.do")
-	public String updateUserReview(ReviewUserVO reviewVO) throws Exception{
+	public String updateUserReview(ReviewUserVO reviewVO, ModelMap model, HttpServletRequest request) throws Exception{
+
+		HttpSession session = request.getSession();
+		String sessionSta = (String)session.getAttribute("s_id");
+		
 		int result = egovReviewService.updateUserReview(reviewVO);
 		if (result == 0) {
 			System.out.println("후기 수정 실패");
 		}else{
 			System.out.println("후기 수정 성공");
 		}
-		return "redirect:/shop/user/review/reviewList.do";
+		model.addAttribute("s_id", sessionSta);
+		return "forward:/shop/user/review/EgovUserSellerListForm.do";
 	}
 	
 	//상품상세애대한 리뷰 작성
@@ -252,8 +257,23 @@ public class ReviewUserController {
 	//판매자 리뷰 리스트
 	@RequestMapping(value = "/shop/user/review/EgovUserSellerListForm.do")
 	public String UserSellerReview(ReviewUserVO reviewVO, ModelMap model) throws Exception{
+		
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		String aa = reviewVO.getS_id();
+		System.out.println("aaaaaaaaaaaaaaaa"+aa);
+		paginationInfo.setCurrentPageNo(reviewVO.getPageIndex());
+		paginationInfo.setRecordCountPerPage(reviewVO.getPageUnit());
+		paginationInfo.setPageSize(reviewVO.getPageSize());
+
+		reviewVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		reviewVO.setLastIndex(paginationInfo.getLastRecordIndex());
+		reviewVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 		List<ReviewUserVO> list =egovReviewService.UserSellerReview(reviewVO);
+		
 		model.addAttribute("list" , list);
+		model.addAttribute("s_id", aa);
+		model.addAttribute("paginationInfo", paginationInfo);
 		return "shop/user/review/EgovUserSellerReview";
 	}
 	

@@ -186,7 +186,7 @@ p {
 				</div>
 			</c:forEach>
 			<div class="m-3" style="text-align: right; color: #275291;">
-				<a href="/shop/user/review/EgovUserSellerListForm.do">자세히...</a>
+				<a href="/shop/user/review/EgovUserSellerListForm.do?s_id=${SellerVO.s_id}">자세히...</a>
 			</div>
 		</div>
 	</div>

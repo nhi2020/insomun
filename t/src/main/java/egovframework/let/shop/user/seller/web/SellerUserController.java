@@ -410,6 +410,7 @@ public class SellerUserController {
 			
 			vo1.setS_id(sessionS_id);
 			List<ReviewUserVO> list2 = SellerService.sellerSelectReviewList(vo1);
+			System.out.println("SellerController --->s_id---->"+ vo1.getS_id());
 			model.addAttribute("list1", list2);
 			
 	      model.addAttribute("SellerVO", vo);
