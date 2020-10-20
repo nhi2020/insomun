@@ -25,7 +25,7 @@
 			AND A_PASS = #a_pass#
 		]]>
 	</select>
-    <select id="AdminDAO.adminListCnt" resultClass="int">
+    <select id="AdminDAO.adminListCnt" resultClass="int"> 
        <![CDATA[
          SELECT COUNT(*)
          FROM ADMIN

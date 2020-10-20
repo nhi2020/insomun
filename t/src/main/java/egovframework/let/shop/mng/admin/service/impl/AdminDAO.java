@@ -59,7 +59,7 @@ public class AdminDAO extends EgovAbstractDAO{
 	public int adminUpdate(AdminVO adminVO) {
 		int result = 1;
 		try {
-			result = update("AdminDAO.adminUpdate",adminVO);
+			result = update("AdminDAO.adminUpdate",adminVO); 
 		} catch (Exception e) {
 			System.out.println("adminUpdate Exception" + e.getMessage());
 		}

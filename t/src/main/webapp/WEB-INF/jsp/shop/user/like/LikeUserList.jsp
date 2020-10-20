@@ -25,7 +25,7 @@
          <th>삭제</th>
         </tr>
         <c:forEach items="${list }" var="like_list" >
-         <input type="hidden" name="p_idx" value="${like_list.p_idx }" /> 
+         <input type="hidden" name="p_idx" value="${like_list.p_idx }" />  
         <tr>
           <td><a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${like_list.p_idx}"><img src="<c:url value='/'/>file/${like_list.p_image}" width="200" height="200"/></a></td>
           <td>${like_list.p_name }</td>

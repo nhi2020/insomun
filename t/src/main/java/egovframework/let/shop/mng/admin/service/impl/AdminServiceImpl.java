@@ -53,7 +53,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int adminInsert(AdminVO vo) {
+	public int adminInsert(AdminVO vo) { 
 		int result = adminDAO.adminInsert(vo);
 		return result;
 	}

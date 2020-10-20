@@ -14,11 +14,11 @@
 <body>
   <%@ include file="../../../inc/EgovShopTop.jsp" %>
   <%@ include file="../../../inc/EgovShopHeader.jsp" %>
-    <c:if test="${msg != null }">
+   <c:if test="${msg != null }">
 	<p>${msg }</p>
 	</c:if>
 	<c:if test="${msg = null }">
-	</c:if>
+	</c:if> 
 	<div class="container">
 	  <div class="row">
 	   <%-- <input type="hidden" name="a_pass" value="${AdminVO.a_pass }" /> --%>

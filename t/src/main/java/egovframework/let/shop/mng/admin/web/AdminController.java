@@ -112,7 +112,7 @@ public String EgovMngAdminLoginPro( @RequestParam("id") String id,  @RequestPara
 	public String EgovMngListAdminControl(@ModelAttribute("searchVO")AdminVO vo, HttpServletRequest request, Model model,
 		   @RequestParam(value="pageIndex", required=false, defaultValue="1") int pageIndex) {
 		vo.setPageIndex(pageIndex);
-		System.out.println("listAdminControl pageIndex => " + vo.getPageIndex());
+		System.out.println("listAdminControl pageIndex => " + vo.getPageIndex()); 
 		vo.setPageUnit(propertyService.getInt("pageUnit"));
 		vo.setPageSize(propertyService.getInt("pageSize"));
 

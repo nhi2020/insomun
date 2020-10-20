@@ -12,7 +12,7 @@
 	<%@ include file="../../../inc/EgovShopHeader.jsp"%>
 	<div class="container">
 		<div class="row">
-			<h2 class="mx-auto">운영자 등록</h2>
+			<h2 class="mx-auto">운영자 등록</h2> 
 		</div>
 		
 		<c:if test="${msg != null}">
