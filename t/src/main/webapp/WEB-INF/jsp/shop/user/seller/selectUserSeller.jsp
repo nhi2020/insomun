@@ -78,10 +78,10 @@ p {
 									value="내 상품보기"><input type="button"
 									class="btn btn-outline-danger"
 									onclick="location.href='/shop/user/deal/dealUserSellerList.do'"
-									value="내 거래내역보기"> <!-- <input type="button"
+									value="내 거래내역보기"> <input type="button"
 									class="btn btn-outline-danger"
-									onclick="location.href='/shop/user/product/EgovBuyerProductForm.do'"
-									value="리뷰관리"> -->
+									onclick="location.href='/shop/user/review/EgovUserSellerListForm.do?s_id=${SellerVO.s_id}'"
+									value="리뷰관리"> 
 							</div>
 						</div>
 					</div>
