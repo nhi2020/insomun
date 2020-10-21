@@ -11,7 +11,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
-<title>Insert title here</title>
+<title>리뷰 관리 페이지</title>
 </head>
 <script type="text/javascript">
 	function delReview() {
@@ -27,10 +27,6 @@
 <body>
 <%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
-<div class="container text-center">
-	<div class="row justify-content-center">
-		<h2>판매자 리뷰 관리자 페이지입니다.</h2>
-		</div></div>
 			<div class="row" style="padding-left: 35%;">
 				<form class="form-inline" action="/shop/mng/review/MngSelect.do">
 					  <input type="hidden" id="searchCnd" name="searchCnd" value="0">
@@ -42,7 +38,7 @@
 		<div class="row justify-content-center">
 			
 					<form method="post" name="frm">
-						<table border="1">
+						<table class="table table-hover">
 							<thead>
 								<tr>
 									<th>리뷰 번호</th>
@@ -56,6 +52,8 @@
 								</tr>
 							</thead> 
 						<c:forEach var="result" items="${list }" varStatus="i">
+						<c:choose>
+							<c:when test="${result.r_div eq 1}">
 							<tbody>
 								<tr>
 									<td>${result.r_idx }</td>
@@ -68,6 +66,11 @@
 									<td><input type="checkbox" name="rechk" id="rechk" value="${result.r_idx }"></td>
 								</tr>
 							</tbody>
+							</c:when>
+								<c:otherwise>
+									
+								</c:otherwise>
+							</c:choose>	
 						</c:forEach>
 								<tr>
 									<td colspan="6"></td>

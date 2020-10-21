@@ -24,7 +24,9 @@
 					<input type="hidden" id="p_idx" name="p_idx" value="${dealUserVO.p_idx }">
 					<input type="hidden" id="r_div" name="r_div" value="1">
 						<textarea rows="3" cols="80" name="r_content" id="r_content"></textarea>
-					<input type="file" name="file" id="file">
+					 <div class="custom-file">
+				    <input type="file" class="custom-file-input"name="file" id="file">	
+					</div>
 				<div class="custom-control custom-radio custom-control-inline">
 					<input type="radio" name="seller_score" id="customRadio1" value="1"><p>1점</p>
 					<input type="radio" name="seller_score" id="customRadio1" value="2"><p>2점</p>

@@ -103,12 +103,13 @@
 		<div class="d-flex justify-content-center">
 		<div class="row">
 			<c:forEach var="result" items="${list }">
+			<div class="col-12">
 				<div class="p-2 border">
 	         		<span class="float-left"><span class="font-weight-normal" style="color: red">구매자 이름 </span></span>	
 	         			<span class="float-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점수 :${result.sns_score}</span> 
 	         			<span class="float-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${result.r_regdate}</span><br>
 	         		<span class="float-left">${result.nickname}</span>&nbsp;<span class="font-weight-normal">
-	         		</span>&nbsp;&nbsp;&nbsp;<span class="float-right">	${result.r_content }</span>
+	         		</span>&nbsp;&nbsp;&nbsp;<p class="text-center">	${result.r_content }</p></div>
          		</div>
 			</c:forEach>
          	</div>

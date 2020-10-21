@@ -47,7 +47,7 @@
  	<input type="hidden" name="r_content" value=""/>
 		<c:forEach var="result" items="${list }">
 			<c:if test="${result.r_delyn eq 'N' }">
-				<table border="1">
+				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th>판매자 아이디</th>

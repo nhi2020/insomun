@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>리뷰 관리 페이지</title>
 </head>
 <script type="text/javascript">
 	function delReview() {
@@ -25,15 +25,17 @@
 <body>
 <%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
-	<div class="container text-center">
-	<div class="row justify-content-center">
-<h2>구매자 리뷰 관리 페이지 입니다.</h2>
-</div></div>
+<div class="row" style="padding-left: 35%;">
+				<form class="form-inline" action="/shop/mng/review/MngSelect.do">
+					  <input type="hidden" id="searchCnd" name="searchCnd" value="0">
+					  <input class="form-control mr-sm-2" id="searchWrd" name="searchWrd" type="text" placeholder="Search" style="width:400px">
+					  <button class="btn btn-success" type="submit">Search</button>&nbsp;
+				</form>
+			</div>
 <div class="container text-center">
 	<div class="row justify-content-center">
 		<form method="post" name="frm">
-				
-					<table border="1">
+					<table class="table table-hover">
 						<thead>
 							<tr>
 								<th>리뷰 번호</th>
@@ -73,7 +75,10 @@
 							<td><input type="button" value="복구" onclick="reReview();"></td>
 						</tr>
 					</table>
-		</form>
+				</form>
+		<ul class="paging_align">	
+			<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="linkPage" />
+		</ul>
 	</div>
 </div>
 <%@ include file="../../inc/EgovShopBottom.jsp"%>

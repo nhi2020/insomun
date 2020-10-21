@@ -20,13 +20,14 @@
 <p class="h-25"/>
 <div class="container text-center">
 	<div class="row justify-content-center">
-		<table border="1">
+		<table class="table table-hover">
 				<tr>
-					<th><a href="/shop/mng/review/miniGame.do">미니게임</a></th>
+					<!-- <th><a href="/shop/mng/review/miniGame.do">미니게임</a></th>
+					<th><a href="/shop/mng/review/daumMap.do">다음 지도</a></th> -->
 				</tr>
 				<tr>
 					<td><a href="/shop/mng/review/MngSelect.do"> 판매자 리뷰</a></td>
-					<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+					<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 					<td><a href="/shop/mng/review/MngUserSelect.do">구매자 리뷰</a></td>
 				</tr>
 		</table>

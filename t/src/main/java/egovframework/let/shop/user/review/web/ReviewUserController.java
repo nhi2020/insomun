@@ -282,4 +282,10 @@ public class ReviewUserController {
 		
 		return "shop/mng/review/reviewMini";
 	}
+	
+	@RequestMapping(value = "/shop/mng/review/daumMap.do")
+	public String daumMap() throws Exception{
+		
+		return "shop/mng/review/daumMap";
+	}
 }
