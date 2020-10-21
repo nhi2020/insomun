@@ -105,8 +105,19 @@ public class LikeUserController {
 	@RequestMapping(value="/shop/user/product/LikeUserInsert")
 	 public String LikeUserInsert(ProductUserVO pvo, LikeUserVO vo, Model model, HttpServletRequest request) throws Exception {
 		 System.out.println("LikeUserInsert"+vo.getS_id());
+		 
 		 HttpSession session = request.getSession();
-		 int sns_idx =  (int) session.getAttribute("sns_idx");
+			int userSnsIdx = 0;
+			try {
+				userSnsIdx = (int) session.getAttribute("sns_idx");
+			} catch (NullPointerException e) {
+				System.out.println("");
+				return "redirect:/shop/user/EgovUserLoginForm.do";
+			}
+		 
+		 
+		 HttpSession session1 = request.getSession();
+		 int sns_idx =  (int) session1.getAttribute("sns_idx");
 		 System.out.println("sns id = " + sns_idx );
 		 vo.setSns_idx(sns_idx);
 	

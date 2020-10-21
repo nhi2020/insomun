@@ -242,6 +242,16 @@ public class DealUserController {
 		DealUserVO vo = new DealUserVO();
 		System.out.println("pvo.getP_idx() ->"+pvo.getP_idx());
 		System.out.println("pvo.getS_id() ->"+pvo.getS_id());
+		
+		HttpSession session = request.getSession();
+		int userSnsIdx = 0;
+		try {
+			userSnsIdx = (int) session.getAttribute("sns_idx");
+		} catch (NullPointerException e) {
+			System.out.println("");
+			return "redirect:/shop/user/EgovUserLoginForm.do";
+		}
+		
 		vo.setP_idx(Integer.parseInt(pvo.getP_idx()));
 		vo.setS_id(pvo.getS_id());
 		if(vo.getSortD_ing() != null){
@@ -255,9 +265,9 @@ public class DealUserController {
 		}
 		System.out.println("DealUserController selectDealUserBuyerRequest Start...");
 		
-		HttpSession session = request.getSession();
-		System.out.println("session.getAttribute('sns_idx') ->"+session.getAttribute("sns_idx"));
-		vo.setSns_idx((int) session.getAttribute("sns_idx"));
+		HttpSession session1 = request.getSession();
+		System.out.println("session.getAttribute('sns_idx') ->"+session1.getAttribute("sns_idx"));
+		vo.setSns_idx((int) session1.getAttribute("sns_idx"));
 		
 		vo = dealUserService.selectDealUserBuyerRequest(vo);
 		System.out.println("vo.getD_q() -> " + vo.getD_q());
