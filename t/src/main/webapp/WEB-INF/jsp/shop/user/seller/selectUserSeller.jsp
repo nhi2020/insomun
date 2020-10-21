@@ -165,13 +165,13 @@ p {
 				<c:choose>
 					<c:when test="${result.r_div eq '1'}">
 						<span class="font-weight-normal" style="color: #59a3d9;">구매자</span>
-                            <span class="font-weight-normal" style="color: #59a3d9;">(${result.nickname})</span>
+                            <span class="font-weight-normal" style="color: #59a3d9;">(${result.s_id})</span>
                             <span class="font-weight-normal" style="color: red">구매자 점수 : ${result.sns_score}</span>
                             <span class="font-weight-normal">${result.r_regdate}</span>
 					</c:when>
 					<c:otherwise>
 						<span class="font-weight-normal" style="color: #59a3d9;">판매자</span>
-                            <span class="font-weight-normal" style="color: #59a3d9;">(${result.s_nickname})</span>
+                            <span class="font-weight-normal" style="color: #59a3d9;">(${result.s_id})</span>
 							<span class="font-weight-normal" style="color: red">판매자 점수 : ${result.seller_score}</span>
                             <span class="font-weight-normal">${result.r_regdate}</span>
 					</c:otherwise>
