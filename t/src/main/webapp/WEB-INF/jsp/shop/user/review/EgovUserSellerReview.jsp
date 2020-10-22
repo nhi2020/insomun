@@ -72,14 +72,19 @@
 											<pre>${result.r_content}</pre></div>
 										</td>
 										<td><!-- 사진 업로드 되는 경로 다시한번 확인하고. 사진 가져올수 있도록 하기. -->
-										<img class="img-fluid" src="<c:url value='/'/>file/${result.original_file_name }" width="200" height="200" class="rounded"/>
+											<c:if test="${result.original_file_name ne ' ' }">
+												<img class="img-fluid" src="<c:url value='/'/>file/${result.original_file_name }" width="200" height="200" alt="리뷰사진" class="rounded"/>
+											</c:if>
+											<c:if test="${result.original_file_name eq ' ' && result.original_file_name eq null }">
+												<span style="color: gray;">사진이없습니다.</span>
+											</c:if>
 										</td>
 										<td>${result.original_file_name }</td>
 										<td>${result.r_regdate }</td>
 										<td>${result.seller_score }</td>
 										<td>
 											<div>
-												<a href="javascript:displayView('${result.r_idx}');"><button type="button" class="btn btn-secondary">수정</button></a><br>
+												<a href="javascript:displayView('${result.r_idx}');"><button type="button" class="btn btn-secondary">수정</button></a>
 												<a href="javascript:delUserReview('${result.r_idx}');"><button type="button" class="btn btn-danger">삭제</button></a>
 											</div>
 										</td>
