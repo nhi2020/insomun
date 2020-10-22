@@ -51,6 +51,7 @@
 							<th>판매자 아이디</th>
 							<th>상품 이름</th>
 							<th>리뷰 내용</th>
+							<th>사진</th>
 							<th>등록일자</th>
 							<th>판매자 점수</th>
 							<th>수정  삭제 </th>				
@@ -70,6 +71,10 @@
 											<div id="r_view2${result.r_idx}" style="display: block;">
 											<pre>${result.r_content}</pre></div>
 										</td>
+										<td><!-- 사진 업로드 되는 경로 다시한번 확인하고. 사진 가져올수 있도록 하기. -->
+										<img class="img-fluid" src="<c:url value='/'/>file/${result.original_file_name }" width="200" height="200" class="rounded"/>
+										</td>
+										<td>${result.original_file_name }</td>
 										<td>${result.r_regdate }</td>
 										<td>${result.seller_score }</td>
 										<td>

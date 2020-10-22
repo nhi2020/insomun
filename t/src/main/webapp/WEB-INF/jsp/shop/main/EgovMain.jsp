@@ -50,7 +50,7 @@ font-size: 20px; color: #616A6B;}
 					<div class="col-3">
 						<div style="width: 200px; height: 200px; background-color: #f1f1f1;" class="flex-wrap align-items-center">
 						<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
-						<img class="img-fluid" src="<c:url value='/'/>file/${productuser_list.p_image}" width="200" height="200" class="rounded"/> </a>
+						<img class="img-fluid" src="<c:url value='/'/>file/${productuser_list.p_image}" width="50" height="50" class="rounded"/> </a>
 						</div>
 						<input type="hidden" value="${productuser_list.p_idx }">
 							<br/><span><b class="name">${productuser_list.p_name }</b></span> 
