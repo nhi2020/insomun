@@ -51,13 +51,13 @@ public class LoggerInterceptor extends WebContentInterceptor {
 		LogMngVO vo = new LogMngVO();
 		HttpSession session = request.getSession();
 		if (session.getAttribute("S_ID") != null) {
-			vo.setS_id((String) session.getAttribute("S_ID"));
+			vo.setS_id(session.getAttribute("S_ID").toString());
 		} else {
 			vo.setS_id("");
 		}
 
 		if (session.getAttribute("sns_idx") != null) {
-			vo.setSns_idx((String) session.getAttribute("sns_idx"));
+			vo.setSns_idx(session.getAttribute("sns_idx").toString());
 		} else {
 			vo.setSns_idx("");
 		}

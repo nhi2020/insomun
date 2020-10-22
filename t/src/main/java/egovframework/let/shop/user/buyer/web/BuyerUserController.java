@@ -1,9 +1,13 @@
 package egovframework.let.shop.user.buyer.web;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,12 +15,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.let.shop.mng.buyer.service.impl.BuyerMngVO;
+import egovframework.let.shop.user.basket.service.impl.BasketProductUserVO;
+import egovframework.let.shop.user.basket.service.impl.BasketUserVO;
+import egovframework.let.shop.user.basket.web.BasketUserController;
 import egovframework.let.shop.user.buyer.service.BuyerUserService;
 import egovframework.let.shop.user.buyer.service.impl.BuyerUserVO;
+import egovframework.let.shop.user.deal.service.impl.DealUserVO;
+import egovframework.let.shop.user.like.service.impl.LikeUserVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 
 @Controller
 public class BuyerUserController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(BasketUserController.class);
+
+	
 	@Resource(name="BuyerUserSerivce")
 	private BuyerUserService buyerService;
 	
@@ -54,8 +67,22 @@ public class BuyerUserController {
 		HttpSession session = request.getSession();
 		int sessionSns_idx = (int) session.getAttribute("sns_idx");
 		vo.setSns_idx(sessionSns_idx);		
+		
 		vo = buyerService.selectUserBuyer(vo);
 		model.addAttribute("BuyerVO", vo);
+		
+		List<BasketProductUserVO> myBasketList = buyerService.listBuyerUserBasket(sessionSns_idx);
+		model.addAttribute("myBasket", myBasketList);
+		logger.info("myBasketList size() : " + myBasketList.size());
+		
+		List<DealUserVO> myDealList = buyerService.listBuyerUserDeal(sessionSns_idx);
+		model.addAttribute("myDeal", myDealList);
+		logger.info("myDealList size() : " + myDealList.size());
+		
+		List<LikeUserVO> myLikeList = buyerService.listBuyerUserLike(sessionSns_idx);
+		model.addAttribute("myLike", myLikeList);
+		logger.info("myLikeList size() : " + myLikeList.size());
+		
 		return "shop/user/buyer/selectUserBuyer";
 	}
 	
@@ -65,8 +92,8 @@ public class BuyerUserController {
 		int sessionSns_idx = (int) session.getAttribute("sns_idx");
 		vo.setSns_idx(sessionSns_idx);
 		vo = buyerService.selectUserBuyer(vo);
-		System.out.println("vo.getNickName => " + vo.getNickname());
 		model.addAttribute("BuyerVO", vo);
+		
 		return "shop/user/buyer/updateUserBuyerForm";
 	}
 	
