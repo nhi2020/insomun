@@ -36,7 +36,7 @@
 			</div>
 	<div class="container text-center">
 		<div class="row justify-content-center">
-			
+			<h1>판매자 리뷰관리</h1>
 					<form method="post" name="frm">
 						<table class="table table-hover">
 							<thead>

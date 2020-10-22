@@ -42,11 +42,9 @@
 </div>
 <div class="container text-center">
 	<div class="row justify-content-center">
-<form name="frm" method="post">
- 	<input type="hidden" name="r_idx" value=""/>
- 	<input type="hidden" name="r_content" value=""/>
-		<c:forEach var="result" items="${list }">
-			<c:if test="${result.r_delyn eq 'N' }">
+		<form name="frm" method="post">
+		 	<input type="hidden" name="r_idx" value=""/>
+		 	<input type="hidden" name="r_content" value=""/>
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -58,43 +56,51 @@
 							<th>수정  삭제 </th>				
 						</tr>
 					</thead>
-						<tbody>
-							<tr>
-								<td>${result.s_id }</td>
-								<td>${result.p_name }</td>
-								<td>
-									<div id="r_view${result.r_idx}" style="display: none;">
-									<textarea id="r_contentVal${result.r_idx}" name="r_contentVal${result.r_idx}" rows="5" cols="70">${result.r_content }</textarea>
-									<a href="javascript:updateUserReview('${result.r_idx}');">저장</a>
-									</div>
-									<div id="r_view2${result.r_idx}" style="display: block;">
-									<pre>${result.r_content}</pre>
-								</div>
-								</td>
-								<td>${result.r_regdate }</td>
-								<td>${result.seller_score }</td>
-								<td>
-									<div>
-										<a href="javascript:displayView('${result.r_idx}');"><span style="color: gray;">수정</span></a><br>
-										<a href="javascript:delUserReview('${result.r_idx}');"><span style="color: gray;">삭제</span></a>
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</c:if>
-			</c:forEach>
-			<c:forEach var="result" items="${list }">
-				<c:if test="${result.r_delyn eq 'Y' }">
-					<table border="1">
-					<thead>
-						<tr>
-							<th>판매자 아이디</th>
-							<th>상품 이름</th>
-							<th>리뷰 내용</th>
-										
-						</tr>
-					</thead>
+						<c:forEach var="result" items="${list }">
+							<c:if test="${result.r_delyn eq 'N' }">
+								<tbody>
+									<tr>
+										<td>${result.s_id }</td>
+										<td>${result.p_name }</td>
+										<td>
+											<div id="r_view${result.r_idx}" style="display: none;">
+											<textarea id="r_contentVal${result.r_idx}" name="r_contentVal${result.r_idx}" rows="3" cols="45">${result.r_content }</textarea>
+											<a href="javascript:updateUserReview('${result.r_idx}');"><button type="button" class="btn btn-outline-dark">저장</button></a> 
+											</div>
+											<div id="r_view2${result.r_idx}" style="display: block;">
+											<pre>${result.r_content}</pre></div>
+										</td>
+										<td>${result.r_regdate }</td>
+										<td>${result.seller_score }</td>
+										<td>
+											<div>
+												<a href="javascript:displayView('${result.r_idx}');"><button type="button" class="btn btn-secondary">수정</button></a><br>
+												<a href="javascript:delUserReview('${result.r_idx}');"><button type="button" class="btn btn-danger">삭제</button></a>
+											</div>
+										</td>
+									</tr>
+							</c:if>
+						</c:forEach>
+					</tbody>
+				</table>
+				<div class="container text-center">
+			<div class="row justify-content-center">
+				<ul class="paging_align">	
+					<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="linkPage" />
+				</ul>
+			</div>
+				</div>	
+		<h5>삭제된 리뷰</h5>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>판매자 아이디</th>
+						<th>상품 이름</th>
+						<th>리뷰 내용</th>
+					</tr>
+				</thead>
+					<c:forEach var="result" items="${list }">
+					<c:if test="${result.r_delyn eq 'Y' }">
 						<tbody>
 							<tr>
 								<td>${result.s_id }</td>
@@ -102,13 +108,10 @@
 								<td>삭제된 리뷰입니다.</td>
 							</tr>
 						</tbody>
-					</table>
-				</c:if>
-			</c:forEach>
+					</c:if>
+				</c:forEach>
+				</table>
 		</form>
-		<ul class="paging_align">	
-				<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="linkPage" />
-			</ul>
 	</div>
 </div>
 <%@ include file="../../inc/EgovShopBottom.jsp" %>

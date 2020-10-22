@@ -26,14 +26,15 @@
 <%@ include file="../../inc/EgovShopTop.jsp"%>
 	<%@ include file="../../inc/EgovShopHeader.jsp"%>
 <div class="row" style="padding-left: 35%;">
-				<form class="form-inline" action="/shop/mng/review/MngSelect.do">
-					  <input type="hidden" id="searchCnd" name="searchCnd" value="0">
-					  <input class="form-control mr-sm-2" id="searchWrd" name="searchWrd" type="text" placeholder="Search" style="width:400px">
-					  <button class="btn btn-success" type="submit">Search</button>&nbsp;
-				</form>
-			</div>
+	<form class="form-inline" action="/shop/mng/review/MngSelect.do">
+		  <input type="hidden" id="searchCnd" name="searchCnd" value="0">
+		  <input class="form-control mr-sm-2" id="searchWrd" name="searchWrd" type="text" placeholder="Search" style="width:400px">
+		  <button class="btn btn-success" type="submit">Search</button>&nbsp;
+	</form>
+</div>
 <div class="container text-center">
 	<div class="row justify-content-center">
+	<h1>구매자 리뷰관리</h1>
 		<form method="post" name="frm">
 					<table class="table table-hover">
 						<thead>

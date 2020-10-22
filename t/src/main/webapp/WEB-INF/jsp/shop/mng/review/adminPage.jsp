@@ -11,6 +11,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-language" content="ko">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 
 <title>Insert title here</title>
 </head>
@@ -20,15 +21,16 @@
 <p class="h-25"/>
 <div class="container text-center">
 	<div class="row justify-content-center">
+	<h1>후기관리</h1> 
 		<table class="table table-hover">
 				<tr>
 					<!-- <th><a href="/shop/mng/review/miniGame.do">미니게임</a></th>
 					<th><a href="/shop/mng/review/daumMap.do">다음 지도</a></th> -->
 				</tr>
 				<tr>
-					<td><a href="/shop/mng/review/MngSelect.do"> 판매자 리뷰</a></td>
-					<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-					<td><a href="/shop/mng/review/MngUserSelect.do">구매자 리뷰</a></td>
+					<td><a href="/shop/mng/review/MngSelect.do"><p class="font-weight-bold"><span style="color: black;">판매자 리뷰</span></p> <i class="fas fa-wallet" style="font-size: 250px;"></i></a></td>
+					<td></td><td></td>
+					<td><a href="/shop/mng/review/MngUserSelect.do"><p class="font-weight-bold"><span style="color: black;">구매자 리뷰</span></p><i class="fas fa-shopping-cart" style="font-size: 250px;"></i></a></td>
 				</tr>
 		</table>
 	</div>
