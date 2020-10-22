@@ -109,7 +109,7 @@
 	    <div class="row">
 	  		<c:forEach var="productuser_list" items="${list}">
 			<div class="col-3 mt-3">
-					<div style="width: 200px; height: 200px;" class="bg-dark d-flex flex-wrap align-items-center">
+					<div style="width: 200px; height: 200px; background-color: #f1f1f1;" class="flex-wrap align-items-center">
 					<a href="/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }">
 					<img class="img-fluid" src="<c:url value='/'/>file/${productuser_list.p_image}" class="rounded"/>
 					</a>
