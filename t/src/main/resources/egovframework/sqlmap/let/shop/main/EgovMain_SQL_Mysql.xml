@@ -13,6 +13,7 @@
 			FROM
 				PRODUCT
 			WHERE 1=1
+			AND P_STATUS = 'Y'
 			order by rand() limit 8
 			
 		]]>
