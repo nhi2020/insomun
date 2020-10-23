@@ -1,13 +1,14 @@
 package egovframework.let.shop.mng.notice.web;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.let.shop.mng.notice.service.NoticeMngService;
 import egovframework.let.shop.mng.notice.service.impl.NoticeMngVO;
-import egovframework.let.shop.mng.testFileUpload.service.TestFileUploadService;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -26,12 +26,8 @@ public class NoticeMngController {
 	@Resource(name = "NoticeMngService")
 	private NoticeMngService noticeMngService;
 
-	@Resource(name = "TestFileUploadService")
-	TestFileUploadService testFileUploadService;
-
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
-
 
 	protected String unscript(String data) {
 		if (data == null || data.trim().equals("")) {
@@ -76,10 +72,10 @@ public class NoticeMngController {
 		vo.setLastIndex(paginationInfo.getLastRecordIndex());
 		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
-		int totCnt = noticeMngService.selectNoticeMngListCnt(vo);
+		int totCnt = noticeMngService.selectMngNoticeListCnt(vo);
 		paginationInfo.setTotalRecordCount(totCnt);
 
-		List<NoticeMngVO> list = noticeMngService.selectNoticeMngList(vo);
+		List<NoticeMngVO> list = noticeMngService.selectMngNoticeList(vo);
 
 		model.addAttribute("totCnt", totCnt);
 		model.addAttribute("list", list);
@@ -88,80 +84,83 @@ public class NoticeMngController {
 		return "shop/mng/notice/listMngNotice";
 	}
 
-	@RequestMapping("/shop/mng/notice/updateMngNoticeForm")
-	public String noticeMngUpdateForm(NoticeMngVO vo, Model model) {
-		System.out.println("updateMngNoticeForm()");
-		vo = noticeMngService.noticeMngSelect(vo);
-		model.addAttribute("NoticeVO", vo);
 
-		return "/shop/mng/notice/updateMngNoticeForm";
+	@RequestMapping(value = "/shop/mng/notice/deleteMngNotice")
+	public String deleteMngNotice(RedirectAttributes redirect, int n_idx, Model model) {
+		System.out.println("deleteMngNotice()" + n_idx);
+		NoticeMngVO vo = new NoticeMngVO();
+		vo.setN_idx(n_idx);
+		int result = noticeMngService.deleteMngNotice(vo);
+		System.out.println("result" + result);
+		return "redirect:/shop/mng/notice/listMngNotice.do";
 	}
-	
-	@RequestMapping(value = "/shop/mng/notice/insertMngNoticeForm.do")
-	public String insertMngNoticeForm(){
+
+	@RequestMapping(value = "/shop/mng/notice/updateMngNoticeForm")
+	public String updateMngNoticeForm(@ModelAttribute("searchVO") NoticeMngVO vo, HttpServletRequest request, ModelMap model) {
+		System.out.println("updateMngNoticeForm()" + vo);
+		
+		System.out.println("vo.getN_IDX" + vo.getN_idx());
+		vo = noticeMngService.selectMngNoticeForm(vo);
+		System.out.println("selectMngNoticeForm" + vo);
+		System.out.println("pageIndex" + vo.getPageIndex());
+		
+		model.addAttribute("NoticeMngVO", vo);
+		
+		return "/shop/mng/notice/updateMngNoticeForm";
+
+	}
+
+	@RequestMapping(value = "/shop/mng/notice/updateMngNoticePro", method = RequestMethod.POST)
+	public String updateMngNoticePro(NoticeMngVO vo, HttpServletRequest request, Model model,
+			RedirectAttributes redirect) throws Exception {
+		System.out.println("updateMngNoticePro()");
+		
+		HttpSession session = request.getSession();
+		String a_id = (String) session.getAttribute("A_ID");
+		System.out.println("a_id" + a_id);
+		vo.setA_id(a_id);
+		
+		int result = noticeMngService.updateMngNoticePro(vo);
+
+		if (result > 0) {
+			redirect.addFlashAttribute("result", result);
+		} else {
+			redirect.addFlashAttribute("result", result);
+		}
+		
+		model.addAttribute(vo);
+
+		return "redirect:/shop/mng/notice/listMngNotice.do";
+		
+	}
+
+	@RequestMapping(value = "/shop/mng/notice/insertMngNoticeForm")
+	public String insertMngNoticeForm() {
 		return "/shop/mng/notice/insertMngNoticeForm";
 	}
 	
 	@RequestMapping(value = "/shop/mng/notice/insertMngNoticePro", method = RequestMethod.POST)
-	public String insertMngNoticePro(HttpServletRequest request, NoticeMngVO vo, Model model, RedirectAttributes redirect) throws IOException {
+	public String insertMngNoticePro(HttpServletRequest request, NoticeMngVO vo, Model model,
+			RedirectAttributes redirect) {
 		System.out.println("NoticeMngController insertMngNoticePro()");
-		String result = noticeMngService.insertNoticeMngPro(vo);
-		System.out.println("result => " + result);
 		
-		if(result != "" && result != null) {
-			redirect.addFlashAttribute("result1", result);
-			System.out.println("result1->" + result);
+		HttpSession session = request.getSession();
+		String a_id  = (String) session.getAttribute("A_ID");
+		System.out.println("a_id" + a_id);
+		System.out.println("INSERT");
+		vo.setA_id(a_id);
+		
+		int result = noticeMngService.insertMngNoticePro(vo);
+		
+		
+		if (result > 0) {
+			redirect.addFlashAttribute("result", result);
+			System.out.println("result->" + result);
 		} else {
-			redirect.addFlashAttribute("result1", result);
-			System.out.println("result1->" + result);
+			redirect.addFlashAttribute("result", result);
+			System.out.println("result->" + result);
 		}
 		
-		return "redirect:/shop/mng/log/insertMngNoticeForm.do";
+		return "redirect:/shop/mng/notice/listMngNotice.do";
 	}
-	
-/*	@RequestMapping(value = "/shop/mng/notice/deleteMngNotice.do")
-	public String deleteMngNotice(HttpServletRequest request,NoticeMngVO vo) throws Exception {
-		
-		int result = noticeMngService.deleteMngNotice(vo);
-		if (result == 0) {
-			System.out.println("삭제 실패");
-		} else {
-			System.out.println("삭제 성공");
-		}
-		return "forward:/shop/mng/notice/listMngNotice.do";
-	}*/
-	
-	
-	
-	
-	/*@RequestMapping(value = "/shop/mng/notice/delNoticeMng.do")
-	public String delNoticeMng (NoticeMngVO vo, HttpServletRequest request, Model model, RedirectAttributes redirect) {
-		int[] chk = request.getParameterValues("chk");
-		
-		if(chk != null) {
-			for (int j = 0; j < chk.length; j++) {
-				System.out.println("chk :" + chk[j]);
-				
-				vo.setN_idx(chk[j]);
-			}
-		}
-		
-		return null;
-	}*/
-
-	/*@RequestMapping("/")
-	public String deleteMngNotice(NoticeMngVO vo, Model model, RedirectAttributes redirect) {
-		System.out.println("deleteMngNotice()");
-		
-		int result = noticeMngService.deleteMngNotice(vo);
-		if(result > 0) {
-			redirect.addFlashAttribute("result", result);
-			model.addAttribute("msg", "삭제성공");
-		} else {
-			redirect.addFlashAttribute("result", result);
-			model.addAttribute("msg", "삭제 실패");
-		}
-		String pageIndex = Integer.toString(vo.getPageIndex());
-		return "redirect:/.do";
-	}*/
 }

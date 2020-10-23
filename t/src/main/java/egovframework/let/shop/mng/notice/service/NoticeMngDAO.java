@@ -6,17 +6,15 @@ import egovframework.let.shop.mng.notice.service.impl.NoticeMngVO;
 
 public interface NoticeMngDAO {
 
-	int selectNoticeMngListCnt(NoticeMngVO vo);
+	int selectMngNoticeListCnt(NoticeMngVO vo);
 
-	List<NoticeMngVO> selectNoticeMngList(NoticeMngVO vo);
+	List<NoticeMngVO> selectMngNoticeList(NoticeMngVO vo);
 
-	NoticeMngVO noticeMngSelect(NoticeMngVO vo);
+	NoticeMngVO selectMngNoticeForm(NoticeMngVO vo);
 
-	int noticeMngUpdate(NoticeMngVO vo);
+	int updateMngNoticePro(NoticeMngVO vo);
 
-	int updateNoticeMngStateChange(NoticeMngVO vo);
+	int insertMngNoticePro(NoticeMngVO vo);
 
-	String insertNoticeMngPro(NoticeMngVO vo);
-
-	int deleteMngNotice(NoticeMngVO vo);
+	int deleteMngNotice(int n_idx);
 }

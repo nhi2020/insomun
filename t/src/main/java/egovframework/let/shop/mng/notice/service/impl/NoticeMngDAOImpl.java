@@ -11,79 +11,75 @@ import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 public class NoticeMngDAOImpl extends EgovAbstractDAO implements NoticeMngDAO {
 
 	@Override
-	public int selectNoticeMngListCnt(NoticeMngVO vo) {
-		System.out.println("selectNoticeMngListCnt");
+	public int selectMngNoticeListCnt(NoticeMngVO vo) {
+		System.out.println("selectMngNoticeListCnt");
 		int count = 0;
 		try {
-			count = (int) select("selectNoticeMngListCnt", vo);
+			count = (int) select("selectMngNoticeListCnt", vo);
 
 		} catch (Exception e) {
-			System.out.println("selectNoticeMngListCnt Exception" + e.getMessage());
+			System.out.println("selectMngNoticeListCnt Exception" + e.getMessage());
 		}
 		return count;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<NoticeMngVO> selectNoticeMngList(NoticeMngVO vo) {
+	public List<NoticeMngVO> selectMngNoticeList(NoticeMngVO vo) {
 		List<NoticeMngVO> NoticeList = null;
 
 		try {
-			NoticeList = (List<NoticeMngVO>) list("selectNoticeMngList", vo);
+			NoticeList = (List<NoticeMngVO>) list("selectMngNoticeList", vo);
 
 		} catch (Exception e) {
-			System.out.println("selectNoticeMngList Exception" + e.getMessage());
+			System.out.println("selectMngNoticeList Exception" + e.getMessage());
 		}
 
 		return NoticeList;
 	}
 
 	@Override
-	public NoticeMngVO noticeMngSelect(NoticeMngVO vo) {
+	public NoticeMngVO selectMngNoticeForm(NoticeMngVO vo) {
 		try {
-			vo = (NoticeMngVO) select("noticeMngSelect", vo);
+			vo = (NoticeMngVO) select("selectMngNoticeForm", vo);
 		} catch (Exception e) {
-			System.out.println("noticeMngSelect Exception" + e.getMessage());
+			System.out.println("selectMngNoticeForm Exception" + e.getMessage());
 
 		}
 		return vo;
 	}
+	
 
 	@Override
-	public int noticeMngUpdate(NoticeMngVO vo) {
-		System.out.println("NoticeMngDAOImpl noticeMngUpdate");
+	public int updateMngNoticePro(NoticeMngVO vo) {
+		System.out.println("NoticeMngDaoImpl updateMngNoticePro()");
 		int result = 0;
 		try {
-			result = update("noticeMngUpdate", vo);
+			result = update("updateMngNoticePro", vo);
 		} catch (Exception e) {
-			System.out.println("noticeMngUpdate Exception" + e.getMessage());
+			System.out.println("updateMngNoticePro Exception" + e.getMessage());
 		}
 		return result;
 	}
 
 	@Override
-	public int updateNoticeMngStateChange(NoticeMngVO vo) {
-		System.out.println("NoticeMngDaoImpl updateNoticeMngStateChange()");
+	public int insertMngNoticePro(NoticeMngVO vo) {
+		System.out.println("NoticeMngDaoImpl insertMngNoticePro()");
 		int result = 0;
 		try {
-			result = update("updateNoticeMngStateChange", vo.getN_idx());
+			result = (int) insert("insertMngNoticePro",vo);
 		} catch (Exception e) {
-			System.out.println("updateNoticeMngStateChange Exception" + e.getMessage());
+			System.out.println("insertMngNoticePro Exception" + e.getMessage());
 		}
 		return result;
 	}
 
 	@Override
-	public String insertNoticeMngPro(NoticeMngVO vo) {
-		return (String) insert("insertNoticeMngPro", vo);
-	}
-
-	@Override
-	public int deleteMngNotice(NoticeMngVO vo) {
+	public int deleteMngNotice(int n_idx) {
 		System.out.println("NoticeMngDAOImpl deleteMngNotice");
 		int result = 0;
 		try {
-			result = delete("deleteMngNotice", vo);
+			result = delete("deleteMngNotice", n_idx);
 		} catch (Exception e) {
 			System.out.println("deleteMngNotice Exception" + e.getMessage());
 		}
