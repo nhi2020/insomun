@@ -136,11 +136,11 @@
 								</c:if>
 								<b>${productuser_list.p_name }</b>
 							</p>
-							<p class="my-2">
+							<p class="my-2"><b>
 								<fmt:formatNumber value="${productuser_list.p_price }"
 									pattern="##,###"></fmt:formatNumber>
 								원
-							</p>
+							</b></p>
 						</div>
 						<c:if test="${sessionScope.status == 2 }">
 							<input type="button" value="수정" class="btn btn-warning"
