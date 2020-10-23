@@ -69,8 +69,10 @@
 			SELECT S_ID
 			FROM SELLER
 			WHERE 1=1
+			AND S_STATUS = 'Y'
 			AND S_ID = #s_id#
 			AND S_PASS = #s_pass#
+			
 		]]>
 	</select>
 	<select id="EgovSellerDAO.selectLoginListCheck" parameterClass="SellerVO" resultClass="SellerVO">
@@ -79,8 +81,10 @@
 			SELECT *
 			FROM SELLER
 			WHERE 1=1
+			AND S_STATUS = 'Y'
 			AND S_ID = #s_id#
 			AND S_PASS = #s_pass#
+			
 		]]>
 	</select>
 	<insert id="EgovSellerDAO.sellerinsertPro" parameterClass="SellerVO">
