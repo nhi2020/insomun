@@ -46,7 +46,7 @@
 
  <div class="container text-center">
 		<div class="row justify-content-center">
-	    <div class="row">
+	    <div class="row"> 
 			<form name="frm" action=""  enctype="multipart/form-data">
 	    <input type="hidden" name="p_idx" value="${ProductUserVO.p_idx }" />
 	    <input type="hidden" name="s_id" value="${ProductUserVO.s_id }" />

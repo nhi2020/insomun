@@ -62,7 +62,7 @@ public class ProductUserController {
 	// 파일 처리를 위한 멀티파트 리졸버
 	@Resource(name = "multipartResolver")
 	CommonsMultipartResolver multipartResolver;
-	
+	 
 
 	/*@Resource(name ="EgovReviewService")
 	protected ReviewMngService reviewService;*/
