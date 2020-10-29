@@ -74,29 +74,7 @@ table {
 		
 		
 		<div class="container">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="상품이름, 구매자"
-							aria-label="Username" aria-describedby="basic-addon1"
-							name="searchWrd" value="${searchVO.searchWrd }"/>
-						<div class="input-group-append">
-							<input class="btn btn-secondary" type="button" value="검색" onclick="searchChd();"/>
-						</div>
-						<div class="input-group-append">
-							<button type="button" class="btn btn-secondary"
-								onclick="location.href='/shop/user/deal/dealUserSellerList.do'">
-								<i class="fa fa-bars">목록으로</i>
-							</button>
-						</div>
-					</div>
-				</div>
-				<div id="paging_div">
-					<ul class="paging_align">
-						<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="fn_egov_select_dealList"/>
-					</ul>
-				</div>
-			</div>
+		
 
 			<table class="table table-hover">
 				<tr>
@@ -166,6 +144,34 @@ table {
 				</c:forEach>
 					</tr>
 			</table>
+				<div class="row">
+				<div class="mx-auto">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="상품이름, 구매자"
+							aria-label="Username" aria-describedby="basic-addon1"
+							name="searchWrd" value="${searchVO.searchWrd }"/>
+						<div class="input-group-append">
+							<input class="btn btn-secondary" type="button" value="검색" onclick="searchChd();"/>
+						</div>
+						<div class="input-group-append">
+							<button type="button" class="btn btn-secondary"
+								onclick="location.href='/shop/user/deal/dealUserSellerList.do'">
+								<i class="fa fa-bars">목록으로</i>
+							</button>
+						</div>
+					</div>
+				</div>
+				</div>
+				
+				<div class="row">
+				<div id="paging_div" class="mx-auto">
+					<ul class="paging_align">
+						<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="fn_egov_select_dealList"/>
+					</ul>
+				</div>
+				</div>
+				
+			
 		</div>
 	</form>
 		<%@ include file="/WEB-INF/jsp/shop/inc/EgovShopBottom.jsp"%>

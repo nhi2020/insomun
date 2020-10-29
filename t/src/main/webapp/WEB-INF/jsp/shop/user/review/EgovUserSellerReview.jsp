@@ -79,7 +79,6 @@
 												<span style="color: gray;">사진이없습니다.</span>
 											</c:if>
 										</td>
-										<td>${result.original_file_name }</td>
 										<td>${result.r_regdate }</td>
 										<td>${result.seller_score }</td>
 										<td>
