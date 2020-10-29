@@ -141,11 +141,13 @@
 									pattern="##,###"></fmt:formatNumber>
 								원
 							</b></p>
-						</div>
+						<b>
 						<c:if test="${sessionScope.status == 2 }">
 							<input type="button" value="수정" class="btn btn-warning"
 								onclick="return2(${productuser_list.p_idx });">
 						</c:if>
+						</b>
+						</div>
 
 					</c:forEach>
 				</div>
