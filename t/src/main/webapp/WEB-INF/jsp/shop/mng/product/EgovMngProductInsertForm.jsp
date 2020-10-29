@@ -127,7 +127,8 @@ input[type="file"] {
 					<tr>
 						<th>상태</th>
 						<td>
-						<input type="text" name="p_status" id="p_status" />
+						<input type="radio" id="p_status" name="p_status" value="Y" checked="checked" />Y &nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" id="p_status" name="p_status" value="N" >N
 						</td>
 					</tr>
 					<tr>

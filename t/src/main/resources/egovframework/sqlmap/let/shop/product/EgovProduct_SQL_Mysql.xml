@@ -100,10 +100,10 @@
  	<insert id="EgovMngProductDAO.insertMngProductPro" parameterClass="ProductMngVO" >
  		<![CDATA[
  			INSERT INTO PRODUCT
-			(P_IDX,S_ID, P_NAME, P_PRICE, P_REGDATE P_IMAGE, P_CONTENT, P_TAGE, P_SDATE, P_EDATE, P_Q, A_ID)
+			(P_IDX,S_ID, P_NAME, P_PRICE, P_REGDATE, P_IMAGE, P_CONTENT, P_TAGE, P_SDATE, P_EDATE, P_STATUS, P_Q, A_ID)
 			VALUES
 			((select max(P_IDX)+1
-			 FROM PRODUCT p), #s_id#, #p_name#, #p_price#, SYSDATE(), #p_image#, #p_content#, #p_tage#, #p_sdate#, #p_edate#, #p_q#, #a_id#)				
+			 FROM PRODUCT p), #s_id#, #p_name#, #p_price#, SYSDATE(), #p_image#, #p_content#, #p_tage#, #p_sdate#, #p_edate#, #p_status#, #p_q#, #a_id#)				
  		]]>
  	</insert>
  	
