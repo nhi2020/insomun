@@ -124,7 +124,7 @@
 			<div class="container">
 				<div class="row">
 					<c:forEach var="productuser_list" items="${list}">
-						<div class="col-3 mt-3">
+						<div class="col-lg-3 col-md-4 col-sm-12 mt-3">
 							<div 	style="background-image: url('<c:url value='/'/>file/${productuser_list.p_image}');" 
 									class="product-image"
 									onclick="location.href='/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }'">

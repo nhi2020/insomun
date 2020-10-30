@@ -42,7 +42,7 @@ font-size: 20px; color: #616A6B;}
 	<div class="container text-center" style="position: relative;">
 
 		<img src="<c:url value='/images/shop/main/main.jpg'/>" width=100%
-			height="450">
+			height="auto">
 		<div class="centered">
 			<h1>입소문넷</h1>
 			믿음직한 농산품 직거래 <p>  
@@ -57,16 +57,23 @@ font-size: 20px; color: #616A6B;}
 			<div class="container">
 			<div class="row" style="background-color: #fff8f8; padding: 20px">
 				<c:forEach var="productuser_list" items="${list}">
-					<div class="col-3">
-						<div 	style="background-image: url('<c:url value='/'/>file/${productuser_list.p_image}');" 
-								class="product-image"
-								onclick="location.href='/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }'">
+					<div class="col-lg-3 col-md-4 col-sm-12">
+							<div class="mx-auto">
+								<div
+									style="background-image: url('<c:url value='/'/>file/${productuser_list.p_image}');"
+									class="product-image mx-auto"
+									onclick="location.href='/shop/user/product/EgovBuyerProductForm.do?p_idx=${productuser_list.p_idx }'">
+								</div>
+								<input type="hidden" value="${productuser_list.p_idx }">
+								<br />
+								<div class="product_desc mx-auto my-2" style="width: 200px;"> 
+								<span><b class="name">${productuser_list.p_name }</b></span> <br />
+								<span><b class="price"><fmt:formatNumber
+											value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber>원</b></span>
+
+								</div>
+							</div>
 						</div>
-						<input type="hidden" value="${productuser_list.p_idx }">
-							<br/><span><b class="name">${productuser_list.p_name }</b></span> 
-							<br/> <span><b class="price"><fmt:formatNumber value="${productuser_list.p_price }" pattern="##,###"></fmt:formatNumber>원</b></span>
-				
-					</div>
 
 				</c:forEach>
 			</div>

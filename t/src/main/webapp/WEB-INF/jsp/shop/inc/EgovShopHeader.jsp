@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ page import="egovframework.com.cmm.LoginVO"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -140,8 +140,8 @@
 	<!-- <div style="height: auto; width: 100%; border-top:2px solid black;"> 
 </div> -->
 	<div class="container">
-		<nav class="navbar navbar-expand-sm mx-auto" style="width:100%";>
-		<div class="flex-grow-2">
+		<nav class="navbar navbar-expand-sm mx-auto" style="width:100%">
+		<div class="col-lg-4">
 			<a class="navbar-brand" href="/shop/user/main/EgovUserMain.do"><img
 				src="<c:url value='/file/logo.png'/>" width="120px" height="50px"></a>
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
@@ -151,9 +151,9 @@
 				</ul>
 			</div>
 		</div>
-		<div class="flex-grow-1 container">
-			<div class="row mx-auto">
-				<form class="form-inline"
+		
+			<div class="col-lg-4">
+				<form class="form-inline mx-auto my-3"
 					action="/shop/user/product/EgovUserProductlist.do">
 					<input type="hidden" id="searchCnd" name="searchCnd" value="0">
 					<div class="input-group">
@@ -172,9 +172,8 @@
 				</form>
 
 			</div>
-		</div>
-		<div class="flex-grow-2">
-			<ul class="navbar-nav">
+		<div class="col-lg-4">
+			<ul class="navbar-nav float-right"> 
 				<c:choose>
 					<c:when
 						test="${(sessionScope.sns_idx != null)or(sessionScope.S_ID != null and sessionScope.S_ID ne ' ')or(sessionScope.A_ID != null and sessionScope.A_ID ne ' ')}">
