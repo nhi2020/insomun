@@ -37,6 +37,8 @@
 		SELECT COUNT(*)
 		FROM PLIKE
 		WHERE SNS_IDX = #sns_idx#
+		AND
+		P_IDX=#p_idx#
 	</select>
 	
 	<insert id="insertUserLike" parameterClass="LikeUserVO">

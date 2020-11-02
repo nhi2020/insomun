@@ -105,6 +105,7 @@ public class LikeUserController {
 	@RequestMapping(value="/shop/user/product/LikeUserInsert")
 	 public String LikeUserInsert(ProductUserVO pvo, LikeUserVO vo, Model model, HttpServletRequest request) throws Exception {
 		 System.out.println("LikeUserInsert"+vo.getS_id());
+		 System.out.println("LikeUserInsert"+vo.getP_idx());
 		 
 		 HttpSession session = request.getSession();
 			int userSnsIdx = 0;
@@ -124,8 +125,10 @@ public class LikeUserController {
 		 int result=0;
 		 
 		 
-		 int voChk = likeUserService.insertUserLikeSelect(vo);
-		
+		 int voChk = likeUserService.selectLikeUserListCnt(vo);
+		 System.out.println("voChk = " + voChk );
+		 
+		 
 		 
 		 if(voChk == 0){
 			 System.out.println("찜하기 성공");
@@ -133,7 +136,9 @@ public class LikeUserController {
 		 }else{
 			 // delete list failed
 			 System.out.println("찜하기 실패");
-			return "redirect:/shop/user/product/EgovBuyerProductForm.do";
+			 model.addAttribute("p_idx", vo.getP_idx());
+			 model.addAttribute("msg", "이미 있는 상품입니다");
+			return "forward:/shop/user/product/EgovBuyerProductForm.do?";
 			 
 		 }
 		
@@ -143,7 +148,9 @@ public class LikeUserController {
 		
 	}
 	
-
+	
+  
+	
 	@RequestMapping(value="/shop/user/like/LikeUserDelete")
 	 public String LikeUserDelete (HttpServletRequest request, Model model, LikeUserVO vo) throws Exception {
 		int result = likeUserService.deleteUserLike(vo);

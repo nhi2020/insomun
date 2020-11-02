@@ -41,6 +41,28 @@
 </script>
 <body>
 <%@ include file="../../inc/EgovShopHeader.jsp" %>
+		<c:if test="${msg != null}">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#updateModal").modal('show')
+			
+				
+			})
+		</script>
+		<!-- Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1"
+			aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">${msg }</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:if>
 <h3 style="text-align: center">상품 상세 페이지</h3> 
 
 
