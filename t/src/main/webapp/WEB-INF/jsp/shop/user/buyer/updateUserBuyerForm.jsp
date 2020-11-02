@@ -22,9 +22,9 @@
 	<!-- result 값을 이용한 modal -->
 	<c:if test="${result == 1 }">
 		<script type="text/javascript">
-			$(document).ready(function(){
+			$(document).ready(function() {
 				$("#updateModal").modal('show')
-			
+
 			})
 		</script>
 		<!-- Modal -->
@@ -44,38 +44,45 @@
 
 	<div class="container">
 		<div class="row">
-			<form class="mx-auto" action="/shop/user/buyer/updateUserBuyerPro.do" method="post">
-			<input type="hidden" name="sns_idx" value="${BuyerVO.sns_idx }" />
-				<table class="table">
-					<tr>
-						<th>사용자 ID</th>
-						<td>${BuyerVO.userid }</td>
-					</tr>
-					<tr>
-						<th>SNS 종류</th>
-						<td>${BuyerVO.snscode }</td>
-					</tr>
-					<tr>
-						<th>닉네임</th>
-						<td><input type="text" name="nickname"
-							value="${BuyerVO.nickname }" /></td>
-					</tr>
-					<tr>
-						<th>이메일</th>
-						<td><input type="text" name="email" value="${BuyerVO.email }" /></td>
-					</tr>
-					<tr>
-						<th>가입일</th>
-						<td>${BuyerVO.reg_date }</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<input class="btn btn-info" type="submit" value="수정" />
-							<input class="btn btn-secondary" type="button" value="목록으로" onclick="location.href='/shop/user/buyer/selectUserBuyer.do'" />
-						</td>
-					</tr>
-				</table>
-			</form>
+			<div class="col-lg-3 col-md-2 col-sm-0"></div>
+			<div class="col-lg-6 col-md-8 col-sm-12">
+				<form class="mx-auto"
+					action="/shop/user/buyer/updateUserBuyerPro.do" method="post">
+					<input type="hidden" name="sns_idx" value="${BuyerVO.sns_idx }" />
+					<table class="table">
+						<tr>
+							<th>사용자 ID</th>
+							<td>${BuyerVO.userid }</td>
+						</tr>
+						<tr>
+							<th>SNS 종류</th>
+							<td>${BuyerVO.snscode }</td>
+						</tr>
+						<tr>
+							<th>닉네임</th>
+							<td><input type="text" name="nickname"
+								value="${BuyerVO.nickname }" /></td>
+						</tr>
+						<tr>
+							<th>이메일</th>
+							<td><input type="text" name="email"
+								value="${BuyerVO.email }" /></td>
+						</tr>
+						<tr>
+							<th>가입일</th>
+							<td>${BuyerVO.reg_date }</td>
+						</tr>
+						<tr>
+							<td colspan="2"><input class="btn btn-info" type="submit"
+								value="수정" /> <input class="btn btn-secondary" type="button"
+								value="목록으로"
+								onclick="location.href='/shop/user/buyer/selectUserBuyer.do'" />
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div class="col-lg-3 col-md-2 col-sm-0"></div>
 		</div>
 	</div>
 
